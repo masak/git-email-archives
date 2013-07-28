@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jul 25 14:59:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B14692712D3
+	for <tkil@scrye.com>; Mon, 25 Jul 2005 14:59:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261389AbVGYU7c (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Jul 2005 16:59:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261420AbVGYU7c
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Jul 2005 16:59:32 -0400
+Received: from mta09-winn.ispmail.ntl.com ([81.103.221.49]:48333 "EHLO
+	mta09-winn.ispmail.ntl.com") by vger.kernel.org with ESMTP
+	id S261389AbVGYU7a (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 25 Jul 2005 16:59:30 -0400
+Received: from aamta11-winn.ispmail.ntl.com ([81.103.221.35])
+          by mta09-winn.ispmail.ntl.com with ESMTP
+          id <20050725205929.UIKQ25008.mta09-winn.ispmail.ntl.com@aamta11-winn.ispmail.ntl.com>;
+          Mon, 25 Jul 2005 21:59:29 +0100
+Received: from cpc1-cmbg5-3-0-cust179.cmbg.cable.ntl.com ([81.104.192.179])
+          by aamta11-winn.ispmail.ntl.com with ESMTP
+          id <20050725205929.GFEE24042.aamta11-winn.ispmail.ntl.com@cpc1-cmbg5-3-0-cust179.cmbg.cable.ntl.com>;
+          Mon, 25 Jul 2005 21:59:29 +0100
+Subject: Re: [RFC] extending git-ls-files --exclude.
+From: Catalin Marinas <catalin.marinas@gmail.com>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Petr Baudis <pasky@suse.cz>, Linus Torvalds <torvalds@osdl.org>,
+	git@vger.kernel.org, Marco Costalba <mcostalba@yahoo.it>
+In-Reply-To: <7vk6jelkty.fsf@assigned-by-dhcp.cox.net>
+References: <20050721202309.8216.19338.stgit@h164.c77.b0.tor.eicat.ca>
+	 <7v3bq71rmb.fsf@assigned-by-dhcp.cox.net> <tnx1x5ryvn2.fsf@arm.com>
+	 <20050722192424.GB8556@mars.ravnborg.org>
+	 <7vy87yr2xh.fsf@assigned-by-dhcp.cox.net>
+	 <20050722205948.GE11916@pasky.ji.cz>
+	 <7vd5p73jlu.fsf@assigned-by-dhcp.cox.net> <tnxmzobutsf.fsf@arm.com>
+	 <7vk6jelkty.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+Date:	Mon, 25 Jul 2005 21:59:27 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1122325168.6866.14.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 37
+Xref: brand.scrye.com linux.git:6422
+
+On Mon, 2005-07-25 at 12:58 -0700, Junio C Hamano wrote:
+> Catalin Marinas <catalin.marinas@gmail.com> writes:
+> >> An exclude pattern is of the following format:
+> > [...]
+> >
+> > That's fine. Actually, the Porcelain would care much about it since it
+> > gets the information already filtered by git.
+> 
+> Your saying "fine" is a relief.  This change aims at helping
+> Porcelain people by making it less likely for Porcelain to need
+> its own filtering. As you say, if ls-files filters more than
+> the Porcelain wants, that's a bigger problem.
+
+I don't plan to add any additional filtering in StGIT. What I meant
+above was that Porcelain would not care much about the patterns. The
+user should cope with what git provides, nothing more. With these git
+patches, I think there are enough features for filtering.
+
+> > Wouldn't it be clearer to have the general rules first (*.html),
+> > overridden by the more specific ones (!foo.html)? Just my opinion, I
+> > don't know what others think.
+> 
+> I do not know, either, but I do know it is consistent with the
+> "first match determines fate" rule and cleaner to implement.
+
+I also don't have a strong preference for this and the "first match"
+rule clarifies it (otherwise, you could have pushed them on a list in
+reverse order).
+
+-- 
+Catalin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

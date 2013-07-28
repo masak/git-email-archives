@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 26 16:24:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8ED5112A437
+	for <tkil@scrye.com>; Mon, 26 Sep 2005 16:24:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932482AbVIZWYe (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 26 Sep 2005 18:24:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932489AbVIZWYd
+	(ORCPT <rfc822;git-outgoing>); Mon, 26 Sep 2005 18:24:33 -0400
+Received: from iabervon.org ([66.92.72.58]:48136 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S932482AbVIZWYd (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 26 Sep 2005 18:24:33 -0400
+Received: (qmail 2768 invoked by uid 1000); 26 Sep 2005 18:29:02 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 26 Sep 2005 18:29:02 -0400
+Date:	Mon, 26 Sep 2005 18:29:02 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Nick Hengeveld <nickh@reactrix.com>
+cc:	git@vger.kernel.org
+Subject: Re: [PATCH 0/3] http-fetch enhancements
+In-Reply-To: <20050926175148.GA9410@reactrix.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509261823590.23242@iabervon.org>
+References: <20050926175148.GA9410@reactrix.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:9338
+
+On Mon, 26 Sep 2005, Nick Hengeveld wrote:
+
+> The following series contains some http-fetch enhancements, based on
+> our requirements for use of SSL client certificates and partial HTTP
+> transfers.
+
+If you happen to know how to have curl do multiple simultaneous downloads, 
+that would be a big performance win, and I should be able to explain how 
+to get this to work. I haven't gotten around to learning libcurl well 
+enough to do the flow control.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

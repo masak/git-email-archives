@@ -1,0 +1,124 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun  6 07:51:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 77B9C27D7A4
+	for <tkil@scrye.com>; Mon,  6 Jun 2005 07:51:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261448AbVFFNvM (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 6 Jun 2005 09:51:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261436AbVFFNvM
+	(ORCPT <rfc822;git-outgoing>); Mon, 6 Jun 2005 09:51:12 -0400
+Received: from mail.timesys.com ([65.117.135.102]:42681 "EHLO
+	exchange.timesys.com") by vger.kernel.org with ESMTP
+	id S261448AbVFFNux (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 6 Jun 2005 09:50:53 -0400
+X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
+Received:  from jmcmullan by owa.timesys.com; 06 Jun 2005 09:50:50 -0400
+Content-Type: multipart/signed;
+	boundary="=-o35axde4QZ5xGL2rKZti";
+	micalg=pgp-sha1;
+	protocol="application/pgp-signature"
+In-Reply-To: <Pine.LNX.4.21.0506051523280.30848-100000@iabervon.org>
+Date:	Mon, 06 Jun 2005 09:50:49 -0400
+References: <Pine.LNX.4.21.0506051523280.30848-100000@iabervon.org>
+X-Mailer: Evolution 2.0.4-3mdk 
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <1118065849.8970.37.camel@jmcmullan.timesys>
+Content-Class: urn:content-classes:message
+MIME-Version: 1.0
+Subject: Database consistency after a successful pull
+X-Mailer: Evolution 2.0.4-3mdk 
+Date:	Mon, 6 Jun 2005 09:43:50 -0400
+Message-ID: <1118065849.8970.37.camel@jmcmullan.timesys>
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+Thread-Topic: Database consistency after a successful pull
+thread-index: AcVqncVzQp0mP6TORuuE/6nYd2Tfig==
+From: "McMullan, Jason" <jason.mcmullan@timesys.com>
+To: "Daniel Barkalow" <barkalow@iabervon.org>
+Cc: "Junio C Hamano" <junkio@cox.net>,
+	"Linus Torvalds" <torvalds@osdl.org>,
+	"GIT Mailling list" <git@vger.kernel.org>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00,INVALID_DATE 
+	autolearn=no version=3.0.3
+Lines: 71
+Xref: brand.scrye.com linux.git:4619
+
+
+--=-o35axde4QZ5xGL2rKZti
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+
+Subject Was: [PATCH] pull: gracefu[PAlly recover from delta retrieval
+failure.]
+
+[snip lots of really good information about the thinking
+ behind the design of the pull mechanisms ]
+
+Ok, so would I be correct in the following assumptions
+about the validity of a 'consistent' .git/objects database:
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Commits:
+	* May have the tree they refer to in the database
+	* Must have their parents in the database
+
+Trees:
+	* Must have the blobs they refer to in the database
+	* Must have the trees they refer to in the database
+
+Deltas:
+	* Must have the referred to object in the database
+
+Blobs:
+	* No references to check
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+In short, the database would contain:
+
+	* The entire commit history
+	* Selected commits would have the entire tree available
+
+Correct, or totally mistaken? If mistaken, what are the consitency
+rules?
+
+[Oh, and does PGP signing my messages bug anybody? If so, I can stop
+ doing that on this list]
+
+--=20
+Jason McMullan <jason.mcmullan@timesys.com>
+TimeSys Corporation
+
+
+--=-o35axde4QZ5xGL2rKZti
+Content-Type: application/pgp-signature; name=signature.asc
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQBCpFS58/0vJ5szK6kRAsKFAJ90468btuiPEHujB0P7+pC+AeKr/gCggbZi
+fh2cMwo/SXCDBRKgyX7VCKs=
+=dW0a
+-----END PGP SIGNATURE-----
+
+--=-o35axde4QZ5xGL2rKZti--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

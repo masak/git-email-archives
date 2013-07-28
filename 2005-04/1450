@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 23 21:43:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 8479D6D85
+	for <tkil@scrye.com>; Sat, 23 Apr 2005 21:43:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262243AbVDXDnt (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 23 Apr 2005 23:43:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262244AbVDXDnt
+	(ORCPT <rfc822;git-outgoing>); Sat, 23 Apr 2005 23:43:49 -0400
+Received: from fire.osdl.org ([65.172.181.4]:9367 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262243AbVDXDnr (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 23 Apr 2005 23:43:47 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3O3has4031450
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 23 Apr 2005 20:43:37 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3O3hZbu027789;
+	Sat, 23 Apr 2005 20:43:36 -0700
+Date:	Sat, 23 Apr 2005 20:45:35 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Martin Schlemmer <azarah@nosferatu.za.org>
+Cc: Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+Subject: Re: [ANNOUNCE] git-pasky-0.7
+In-Reply-To: <1114306009.27940.23.camel@nosferatu.lan>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504232044040.2344@ppc970.osdl.org>
+References: <20050424005923.GA8859@pasky.ji.cz> <1114306009.27940.23.camel@nosferatu.lan>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 19
+Xref: brand.scrye.com linux.git:1450
+
+
+
+On Sun, 24 Apr 2005, Martin Schlemmer wrote:
+> 
+> Over here gitmerge-file.sh is looking for a 'merge' command not present.
+
+It's usually packaged up with RCS. So in that sense git does need RCS,
+although it's really only the traditional three-way merge program it
+wants.
+
+Do "yum install rcs" and you should get it (or whatever your local 
+alternative is).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

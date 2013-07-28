@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jul 16 11:33:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B8A1326CA9D
+	for <tkil@scrye.com>; Sat, 16 Jul 2005 11:33:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261752AbVGPRdr (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 16 Jul 2005 13:33:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261778AbVGPRdr
+	(ORCPT <rfc822;git-outgoing>); Sat, 16 Jul 2005 13:33:47 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:49323 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261752AbVGPRdq (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 16 Jul 2005 13:33:46 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6GHXZjA006531
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 16 Jul 2005 10:33:36 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6GHXUja013291;
+	Sat, 16 Jul 2005 10:33:32 -0700
+Date:	Sat, 16 Jul 2005 10:33:30 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH-fix] fetch/pull: short-hand notation for remote repositories.
+In-Reply-To: <7vek9yn1f5.fsf_-_@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507161032410.19183@g5.osdl.org>
+References: <7vbr55kgq2.fsf@assigned-by-dhcp.cox.net> <7vzmsots7t.fsf@assigned-by-dhcp.cox.net>
+ <7voe93rbmu.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0507151529590.19183@g5.osdl.org>
+ <7virzbnruf.fsf_-_@assigned-by-dhcp.cox.net> <7vek9yn1f5.fsf_-_@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:6171
+
+
+
+On Sat, 16 Jul 2005, Junio C Hamano wrote:
+> 
+> *** I see you have already merged my broken one; sorry.
+
+I already noticed the breakage, and fixed that a bit differently.
+
+Feel free to send an updated patch if you prefer your version after my 
+commits have percolated out..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

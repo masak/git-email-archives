@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 14:28:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id ABF6B2851FA
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 14:28:57 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751254AbVKQV1Z (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 16:27:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751265AbVKQV1Z
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 16:27:25 -0500
+Received: from relais.videotron.ca ([24.201.245.36]:58859 "EHLO
+	relais.videotron.ca") by vger.kernel.org with ESMTP
+	id S1751254AbVKQV1Z (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 16:27:25 -0500
+Received: from xanadu.home ([24.202.136.67]) by VL-MO-MR003.ip.videotron.ca
+ (Sun Java System Messaging Server 6.2-2.05 (built Apr 28 2005))
+ with ESMTP id <0IQ4000ZKBLNIJS0@VL-MO-MR003.ip.videotron.ca> for
+ git@vger.kernel.org; Thu, 17 Nov 2005 16:27:24 -0500 (EST)
+Date:	Thu, 17 Nov 2005 16:27:23 -0500 (EST)
+From:	Nicolas Pitre <nico@cam.org>
+Subject: Re: Teach "approxidate" about weekday syntax
+In-reply-to: <Pine.LNX.4.64.0511171223110.13959@g5.osdl.org>
+X-X-Sender: nico@localhost.localdomain
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <Pine.LNX.4.64.0511171622450.14287@localhost.localdomain>
+MIME-version: 1.0
+Content-type: TEXT/PLAIN; charset=US-ASCII
+Content-transfer-encoding: 7BIT
+References: <Pine.LNX.4.64.0511171223110.13959@g5.osdl.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:12143
+
+On Thu, 17 Nov 2005, Linus Torvalds wrote:
+
+> NOTE! The parsing is strictly sequential, so if you do
+> 
+> 	"one day before last thursday"
+> 
+> it will _not_ do what you think it does. It will take the current time, 
+> subtract one day, and then go back to the thursday before that.
+
+Maybe if you applied the different time units in decreasing size that 
+would do the trick?  e.g. months have precedence over weeks, weeks over 
+weekdays, weekdays over days, etc.
+
+
+Nicolas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

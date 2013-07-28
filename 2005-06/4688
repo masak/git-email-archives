@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun  8 12:51:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 156B81A4AF3
+	for <tkil@scrye.com>; Wed,  8 Jun 2005 12:51:40 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261515AbVFHSuF (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 8 Jun 2005 14:50:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261522AbVFHSuF
+	(ORCPT <rfc822;git-outgoing>); Wed, 8 Jun 2005 14:50:05 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:40671 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261515AbVFHSt3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 8 Jun 2005 14:49:29 -0400
+Received: (qmail 6063 invoked by uid 2001); 8 Jun 2005 18:49:27 -0000
+Date:	Wed, 8 Jun 2005 20:49:27 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Philip Pokorny <ppokorny@mindspring.com>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: Problem with Cogito repository?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050608184927.GF982@pasky.ji.cz>
+References: <42A3E858.7070809@mindspring.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42A3E858.7070809@mindspring.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:4688
+
+Dear diary, on Mon, Jun 06, 2005 at 08:08:24AM CEST, I got a letter
+where Philip Pokorny <ppokorny@mindspring.com> told me that...
+> I've just updated my tree with cg-pull from 
+> rsync://rsync.kernel.org/pub/scm/cogito/cogito.git
+> 
+> There seems to be a problem with the repository object for tag 
+> "pull_from_pasky"
+
+Indeed, unbelievable. I've deleted it several times but somehow it
+always pops up again. Yes, its contents is nonsensical as it points to
+the history at some point before the hashing changes. Please just delete
+it.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

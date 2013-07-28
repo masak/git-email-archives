@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 16:40:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=AWL,BAYES_00,PLING_QUERY 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E0C36135B57
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 16:40:46 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751444AbVKAXj7 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 18:39:59 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751445AbVKAXj7
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 18:39:59 -0500
+Received: from iabervon.org ([66.92.72.58]:30727 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751444AbVKAXj6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 1 Nov 2005 18:39:58 -0500
+Received: (qmail 23505 invoked by uid 1000); 1 Nov 2005 18:39:39 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 1 Nov 2005 18:39:39 -0500
+Date:	Tue, 1 Nov 2005 18:39:39 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: git-pull - strange (copy/rename) messages ?!
+In-Reply-To: <7vu0ew6jf3.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511011834050.25300@iabervon.org>
+References: <43678C73.1080601@excelsior-online.org>
+ <Pine.LNX.4.64.0511010801370.27915@g5.osdl.org> <7vbr149sbs.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0511011646070.25300@iabervon.org> <7vu0ew6jf3.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:10965
+
+On Tue, 1 Nov 2005, Junio C Hamano wrote:
+
+> Daniel Barkalow <barkalow@iabervon.org> writes:
+> 
+> > I think it's more confusing for the system to report Z differently from 
+> > other things, because there's nothing special about what it found, except 
+> > that Z happens to be last.
+> 
+> What would we get for a simple "mv A B and nothing else" case if
+> we follow your proposal and Pasky's?  What about "cp A B and
+> nothing else" case?
+
+My suggestion for "mv A B" would be:
+
+Rename A
+  => B (n%)
+
+Same as the current thing, except with a line break and indentation before 
+the arrow.
+
+For "cp A B":
+
+Copy A
+  => B (n%)
+
+I think the only difference should be the line with "A" on it, and the 
+difference should only depend on whether A still exists.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

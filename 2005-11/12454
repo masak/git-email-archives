@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 11:08:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 58D6A1842A1
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 11:08:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932440AbVKUSIO (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 13:08:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932437AbVKUSIO
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 13:08:14 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:53891 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S932442AbVKUSIM
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 13:08:12 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 3AB9B6BD08
+	for <git@vger.kernel.org>; Mon, 21 Nov 2005 19:08:11 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43820D0B.6000006@op5.se>
+Date:	Mon, 21 Nov 2005 19:08:11 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: default update hook broken
+References: <20051121140914.GB1598@parisc-linux.org>
+In-Reply-To: <20051121140914.GB1598@parisc-linux.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:12454
+
+Matthew Wilcox wrote:
+> There's two syntax errors and one good-netizen error in the hooks/update
+> file created when cloning Linus' linux-2.6.git repo.  I don't know
+> if that file is created fresh or if it gets pulled from Linus' tree.
+> Here's a patch to fix it
+> 
+
+Good thing I read new list entries before I send things. I did this 
+exact same patch too. :)
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

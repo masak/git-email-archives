@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 16:04:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AB55C27ECBB
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 16:04:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965103AbVIUWDq (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 18:03:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965104AbVIUWDq
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 18:03:46 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:11997 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965103AbVIUWDp (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Sep 2005 18:03:45 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8LM3fBo022051
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 21 Sep 2005 15:03:41 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8LM3d58032526;
+	Wed, 21 Sep 2005 15:03:40 -0700
+Date:	Wed, 21 Sep 2005 15:03:39 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: Please undo "Use git-merge instead of git-resolve in git-pull"
+In-Reply-To: <7vu0genlc1.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509211501130.2553@g5.osdl.org>
+References: <Pine.LNX.4.58.0509211310150.2553@g5.osdl.org>
+ <7vu0genlc1.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.117 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:9074
+
+
+
+On Wed, 21 Sep 2005, Junio C Hamano wrote:
+> 
+> * I thought you do not multitask and wonder why you are merging
+>   while you still have local changes, but that does not justify
+>   this regression.
+
+I've always multi-tasked, but when I started git I was ready to drop it. 
+Then I came up with that wonderful "merge in the index" approach, and I 
+could do it again, and I was _soo_ happy.
+
+I often have local changes in my tree that I don't want to commit but that 
+I'm testing out. Havign them interfere with merging other peoples work 
+would mean that I'd have to have a totally separate tree for that, which I 
+could do, but I'm much much happier not having to.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

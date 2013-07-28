@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 12 17:11:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 124966122
+	for <tkil@scrye.com>; Fri, 12 Aug 2005 17:11:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751239AbVHLXLO (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 12 Aug 2005 19:11:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751303AbVHLXLO
+	(ORCPT <rfc822;git-outgoing>); Fri, 12 Aug 2005 19:11:14 -0400
+Received: from iabervon.org ([66.92.72.58]:7182 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751239AbVHLXLN (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 12 Aug 2005 19:11:13 -0400
+Received: (qmail 25885 invoked by uid 1000); 12 Aug 2005 19:14:28 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 12 Aug 2005 19:14:28 -0400
+Date:	Fri, 12 Aug 2005 19:14:28 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Wolfgang Denk <wd@denx.de>, git@vger.kernel.org
+Subject: Re: [OT?] git tools at SourceForge ?
+In-Reply-To: <Pine.LNX.4.58.0508121513530.3295@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508121906130.12816@iabervon.org>
+References: <20050812190739.AC222352633@atlas.denx.de>
+ <Pine.LNX.4.63.0508121634570.12816@iabervon.org> <Pine.LNX.4.58.0508121513530.3295@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 21
+Xref: brand.scrye.com linux.git:7148
+
+On Fri, 12 Aug 2005, Linus Torvalds wrote:
+
+> And it's possible that git usage won't expand all that much either. But
+> quite frankly, I think git is a lot better than CVS (or even SVN) by now,
+> and I wouldn't be surprised if it started getting some use outside of the
+> git-only and kernel projects once people start getting more used to it. 
+> And so I'd be thrilled to have some site like SF support it.
+
+I certainly think it's going to happen; it's just not surprising that it 
+hasn't happened yet. Once there's a stable release and some publicity, I'd 
+expect SF to see it as worthwhile. But a hosting site with git-only shell 
+access needs to know what the necessary programs are going to be, which we 
+haven't committed to quite yet.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

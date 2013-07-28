@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 01:29:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2D5DC1FD4F9
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 01:29:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751199AbVILH3o (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 03:29:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751200AbVILH3o
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 03:29:44 -0400
+Received: from i1.inoi.fi ([194.100.97.46]:65455 "EHLO mail.srv.inoi.fi")
+	by vger.kernel.org with ESMTP id S1751199AbVILH3o (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 03:29:44 -0400
+Received: from mail.srv.inoi.fi (localhost.localdomain [127.0.0.1])
+	by mail.srv.inoi.fi (Postfix) with ESMTP id D258D10C022;
+	Mon, 12 Sep 2005 10:29:42 +0300 (EEST)
+Received: from [10.105.0.184] (unknown [10.105.0.184])
+	by mail.srv.inoi.fi (Postfix) with ESMTP id 9E7C610C01F;
+	Mon, 12 Sep 2005 10:29:42 +0300 (EEST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43252E5C.5090207@debian.org>
+Date:	Mon, 12 Sep 2005 10:29:32 +0300
+From:	Tommi Virtanen <tv@debian.org>
+Organization: Debian GNU/Linux
+User-Agent: Debian Thunderbird 1.0.6 (X11/20050802)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] cogito bugfixes and cleanups, mainly Debian things
+References: <11250540944027-git-send-email-tv@debian.org> <11250540952285-git-send-email-tv@debian.org> <20050912003156.GF15630@pasky.or.cz>
+In-Reply-To: <20050912003156.GF15630@pasky.or.cz>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV using ClamSMTP
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 12
+Xref: brand.scrye.com linux.git:8364
+
+Petr Baudis wrote:
+>>As long as the cg-cancel name is around, provide docs for it too.
+> cg-cancel is a compatibility alias only, so adding docs for it would
+> only encourage its further use, which is precisely what I don't want.
+
+Maybe then it should have documentation that basically states
+"cg-cancel is deprecated, please use cg-reset".
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

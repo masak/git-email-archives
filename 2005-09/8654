@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 23:59:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D35A92303D1
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 23:59:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030596AbVIPF7X (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 01:59:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030600AbVIPF7X
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 01:59:23 -0400
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:58535 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S1030596AbVIPF7W (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 16 Sep 2005 01:59:22 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050916055921.HWGZ9510.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 16 Sep 2005 01:59:21 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Paul Mackerras <paulus@samba.org>, Wayne Scott <wsc9tt@gmail.com>,
+	git@vger.kernel.org
+Subject: Re: git-diff-tree rename detection bug
+References: <59a6e583050914094777c4fe96@mail.gmail.com>
+	<7vwtljjzc3.fsf@assigned-by-dhcp.cox.net>
+	<59a6e583050914114054b1564d@mail.gmail.com>
+	<Pine.LNX.4.58.0509141321180.26803@g5.osdl.org>
+	<17192.56103.803096.526568@cargo.ozlabs.ibm.com>
+	<Pine.LNX.4.58.0509142029210.26803@g5.osdl.org>
+Date:	Thu, 15 Sep 2005 22:59:18 -0700
+In-Reply-To: <Pine.LNX.4.58.0509142029210.26803@g5.osdl.org> (Linus Torvalds's
+	message of "Wed, 14 Sep 2005 20:29:50 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3bo5v9hl.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:8654
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> On Thu, 15 Sep 2005, Paul Mackerras wrote:
+>>
+>> Linus Torvalds writes:
+>> 
+>> > Damn, too bad valgrind doesn't work on ppc64, so I can't use it on my main 
+>> > machine. It seems to be in development on ppc32, so maybe some day.
+
+FWIW, I think I fixed the leak that patch we reverted was
+attempting to fix, and on my i386 box valgrind seems much
+happier.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

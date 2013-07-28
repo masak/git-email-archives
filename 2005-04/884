@@ -1,0 +1,106 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 17:34:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E139E1FC809
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 17:34:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261186AbVDSXdJ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 19:33:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261270AbVDSXdJ
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 19:33:09 -0400
+Received: from adsl-69-233-54-142.dsl.pltn13.pacbell.net ([69.233.54.142]:38418
+	"EHLO bastard.smallmerchant.com") by vger.kernel.org with ESMTP
+	id S261186AbVDSXcr (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 19 Apr 2005 19:32:47 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by bastard.smallmerchant.com (Postfix) with ESMTP id 15A023A016C;
+	Tue, 19 Apr 2005 16:37:42 -0700 (PDT)
+Received: from bastard.smallmerchant.com ([127.0.0.1])
+	by localhost (mail.smallmerchant.com [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id 26268-03-5; Tue, 19 Apr 2005 16:37:28 -0700 (PDT)
+Received: from [172.16.1.197] (unknown [172.16.1.197])
+	by bastard.smallmerchant.com (Postfix) with ESMTP id 7B29D3A0161;
+	Tue, 19 Apr 2005 16:37:28 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <426594F9.4090002@tupshin.com>
+Date:	Tue, 19 Apr 2005 16:32:09 -0700
+From: Tupshin Harper <tupshin@tupshin.com>
+User-Agent: Debian Thunderbird 1.0 (X11/20050116)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Ray Lee <ray-lk@madrabbit.org>
+Cc: Kevin Smith <yarcs@qualitycode.com>, git@vger.kernel.org,
+	darcs-devel@darcs.net
+Subject: Re: [darcs-devel] Darcs and git: plan of action
+References: <20050418210436.23935.qmail@science.horizon.com>	 <1113869248.23938.94.camel@orca.madrabbit.org>	 <42645969.2090609@qualitycode.com>	 <1113874931.23938.111.camel@orca.madrabbit.org>	 <4264677A.9090003@qualitycode.com>	 <1113950442.29444.31.camel@orca.madrabbit.org>	 <42658E38.1020406@qualitycode.com> <1113951972.29444.42.camel@orca.madrabbit.org>
+In-Reply-To: <1113951972.29444.42.camel@orca.madrabbit.org>
+X-Enigmail-Version: 0.90.0.0
+X-Enigmail-Supports: pgp-inline, pgp-mime
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at smallmerchant.com
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 53
+Xref: brand.scrye.com linux.git:884
+
+Ray Lee wrote:
+
+> I'm still not communicating well.
+>
+>Give me a case where assuming it's a replace will do the wrong thing,
+>for C code, where it's a variable or function name.
+>
+>Ray
+>
+>-
+>
+I think you are communicating fine, but not fully understanding darcs.
+
+try this:
+initial patch creates hello.c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+  printf("Hello world!\n");
+  return 0;
+}
+
+second patch:
+replace ./hello.c [A-Za-z_0-9] world universe
+
+third patch, for conceptual clarity, created in another repository that 
+had seen the first patch, but not the second (adds function wide_world):
+hunk ./hello.c 3
++void wide_world()
++{
++  printf("Hello wide world\n");
++}
++
+hunk ./hello.c 11
++  wide_world();
+}
+
+If patch2 was a replace patch, then the result of running the combined 3 
+patch version would be:
+Hello universe!
+Hello wide universe
+
+but if patch2 was a non-replace patch, then the result would be:
+Hello universe!
+Hello wide world
+
+-Tupshin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

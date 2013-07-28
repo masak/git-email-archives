@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 29 13:30:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id ED4E816D1BA
+	for <tkil@scrye.com>; Thu, 29 Sep 2005 13:30:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932418AbVI2T2z (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 29 Sep 2005 15:28:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932215AbVI2T2z
+	(ORCPT <rfc822;git-outgoing>); Thu, 29 Sep 2005 15:28:55 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:61655 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932418AbVI2T2y (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 29 Sep 2005 15:28:54 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 2EF8813E650; Thu, 29 Sep 2005 21:28:53 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 1424D9DB34; Thu, 29 Sep 2005 21:28:53 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id E87E59DB32; Thu, 29 Sep 2005 21:28:52 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CB10613E650; Thu, 29 Sep 2005 21:28:52 +0200 (CEST)
+Date:	Thu, 29 Sep 2005 21:28:52 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] fetch-pack should not ask for a ref which is already
+ there
+In-Reply-To: <Pine.LNX.4.63.0509292058020.8413@wgmdd8.biozentrum.uni-wuerzburg.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509292124190.8668@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0509290149230.19126@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0509291120170.3308@g5.osdl.org>
+ <Pine.LNX.4.63.0509292058020.8413@wgmdd8.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:9489
+
+Hi,
+
+On Thu, 29 Sep 2005, Johannes Schindelin wrote:
+
+> Hi,
+> 
+> On Thu, 29 Sep 2005, Linus Torvalds wrote:
+> 
+> > On Thu, 29 Sep 2005, Johannes Schindelin wrote:
+> > >
+> > > With this patch, instead of blindly asking for every remote ref, 
+> > > fetch-pack first looks in the local repository if that ref is 
+> > > already there.
+> > 
+> > No. This is WRONG.
+
+Following up on the "I'd rather download twice than have a corrupt 
+repository":
+
+Wouldn't it make much more sense to add a flag which repairs an incomplete 
+fetch? After all, not every day you fsck up a fetch, right? So, be nice to 
+the server, the network and all the rest, in most cases, and be not so 
+nice if you know something went wrong and you want to fix it.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

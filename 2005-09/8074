@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep  4 23:26:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8827A19BCD2
+	for <tkil@scrye.com>; Sun,  4 Sep 2005 23:26:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932206AbVIEFZ5 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Sep 2005 01:25:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932208AbVIEFZ4
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Sep 2005 01:25:56 -0400
+Received: from [85.8.31.11] ([85.8.31.11]:53967 "EHLO mail6.wasadata.com")
+	by vger.kernel.org with ESMTP id S932206AbVIEFZ4 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 5 Sep 2005 01:25:56 -0400
+Received: from c165 (unknown [85.8.2.189])
+	by mail6.wasadata.com (Postfix) with ESMTP
+	id 6A767411A; Mon,  5 Sep 2005 07:30:24 +0200 (CEST)
+Received: from ksorim by c165 with local (Exim 3.36 #1 (Debian))
+	id 1EC9UL-0000pI-00; Mon, 05 Sep 2005 07:25:49 +0200
+Date:	Mon, 5 Sep 2005 07:25:49 +0200
+From:	Fredrik Kuivinen <freku045@student.liu.se>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Make git-apply understand "\ No newline at end of file" in non-english locales
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050905052549.GA1875@c165.ib.student.liu.se>
+References: <20050904172901.GA20574@c165.ib.student.liu.se> <20050904184625.GB23525@c165.ib.student.liu.se> <7vd5noeiub.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vd5noeiub.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.6+20040907i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:8074
+
+On Sun, Sep 04, 2005 at 12:25:16PM -0700, Junio C Hamano wrote:
+> Fredrik Kuivinen <freku045@student.liu.se> writes:
+> 
+> > The message "\ No newline at end of file" which sometimes is produced
+> > by diff(1) is locale dependent. We can't assume more than that it
+> > begins with "\ ".
+> >
+> > Signed-off-by: Fredrik Kuivinen <freku@ida.liu.se>
+> > ---
+> >
+> > The previous patch wasn't doing the right thing. Hopefully I have
+> > managed to get it right this time.
+> 
+> I noticed that you left 12 in the previous patch, and thought it
+> was a sane safety measure to make sure that the incomplete line
+> marker is of reasonably length, not just any line that starts
+> with '\ ' (i.e. "\ foobar\n", which is a tad short).
+> 
+
+Maybe the first patch wasn't that bad after all :)
+
+In the current diffutils package the Swedish translation is one of the
+shortest ones, so 12 is ok for now at least.
+
+- Fredrik
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

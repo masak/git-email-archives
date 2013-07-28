@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  2 15:04:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 382DF6B415
+	for <tkil@scrye.com>; Fri,  2 Dec 2005 15:04:26 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750866AbVLBWDi (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 2 Dec 2005 17:03:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750886AbVLBWDi
+	(ORCPT <rfc822;git-outgoing>); Fri, 2 Dec 2005 17:03:38 -0500
+Received: from main.gmane.org ([80.91.229.2]:2466 "EHLO ciao.gmane.org")
+	by vger.kernel.org with ESMTP id S1750866AbVLBWDh (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 2 Dec 2005 17:03:37 -0500
+Received: from list by ciao.gmane.org with local (Exim 4.43)
+	id 1EiIxg-0001un-U8
+	for git@vger.kernel.org; Fri, 02 Dec 2005 23:01:01 +0100
+Received: from ip-66-80-53-59.lax.megapath.net ([66.80.53.59])
+        by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Fri, 02 Dec 2005 23:01:00 +0100
+Received: from junkio by ip-66-80-53-59.lax.megapath.net with local (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Fri, 02 Dec 2005 23:01:00 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To:	git@vger.kernel.org
+From:	Junio C Hamano <junkio@twinsun.com>
+Subject:  Re: More merge questions (why doesn't this work?)
+Date:	Fri, 2 Dec 2005 22:00:42 +0000 (UTC)
+Lines:	17
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID:  <loom.20051202T225802-582@post.gmane.org>
+References:  <7vbqzz2qc8.fsf@assigned-by-dhcp.cox.net> <20051202213214.27282.qmail@science.horizon.com>
+Mime-Version:  1.0
+Content-Type:  text/plain; charset=us-ascii
+Content-Transfer-Encoding:  7bit
+X-Complaints-To: usenet@sea.gmane.org
+X-Gmane-NNTP-Posting-Host: main.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 66.80.53.59 (Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.12) Gecko/20050915 Firefox/1.0.7)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:13121
+
+ <linux <at> horizon.com> writes:
+
+> + git merge 'Merge a, b, c' master a b c
+> Trying simple merge with a
+> Trying simple merge with b
+> Trying simple merge with c
+> Simple merge did not work, trying automatic merge.
+> Removing c
+> fatal: merge program failed
+> No merge strategy handled the merge.
+
+I think this is the same problem I fixed yesterday after the breakage report
+from Luben Tuikov.  You need the ce3ca275452cf069eb6451d6f5b0f424a6f046aa commit.
+Sorry about that.
+
+Could you try the latest and see if it still breaks?
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

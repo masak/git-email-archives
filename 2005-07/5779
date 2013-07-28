@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul  7 19:27:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E15041F5C04
+	for <tkil@scrye.com>; Thu,  7 Jul 2005 19:27:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261393AbVGHB0D (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 7 Jul 2005 21:26:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261438AbVGHB0D
+	(ORCPT <rfc822;git-outgoing>); Thu, 7 Jul 2005 21:26:03 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:33990 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S261393AbVGHBYr (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 7 Jul 2005 21:24:47 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050708012445.CRGI8651.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 7 Jul 2005 21:24:45 -0400
+To: Peter Osterlund <petero2@telia.com>
+Cc: Catalin Marinas <catalin.marinas@gmail.com>, git@vger.kernel.org
+Subject: Re: Stacked GIT 0.3 (now more Quilt-like)
+References: <1119994003.9631.6.camel@localhost.localdomain>
+	<m31x6acdcl.fsf@telia.com>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 07 Jul 2005 18:24:45 -0700
+In-Reply-To: <m31x6acdcl.fsf@telia.com> (Peter Osterlund's message of "08 Jul 2005 03:10:02 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vk6k2dr8i.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_WU 
+	autolearn=ham version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:5779
+
+>>>>> "PO" == Peter Osterlund <petero2@telia.com> writes:
+
+PO> I think it would be good if it was possible to include diffstat output
+PO> in exported patches, something like this:
+
+PO> Added possibility to include diffstat output in exported patches.
+
+And you wuold want to do things similarly to what others have
+already done.  git-resolve-script uses "git-apply --stat" there,
+instead of "diffstat", so people without diffstat installed can
+still get the same information.
+
+Even if you want to stick to "diffstat", at least I would
+suggest giving -p1, not -p0, to it; otherwise you would see b/
+like what you have there.
+
+PO>  b/stgit/git.py  |   22 ++++++++++++++++++++++
+PO>  b/stgit/main.py |    2 ++
+PO>  2 files changed, 24 insertions(+)
+
+Further, using "git-apply --stat --summary" would be nicer; this
+is something you cannot do with plain "diffstat".
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

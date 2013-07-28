@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct  7 16:51:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B63812976D8
+	for <tkil@scrye.com>; Fri,  7 Oct 2005 16:51:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161010AbVJGWvF (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 7 Oct 2005 18:51:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030558AbVJGWvF
+	(ORCPT <rfc822;git-outgoing>); Fri, 7 Oct 2005 18:51:05 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:34724 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1030556AbVJGWvE (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 7 Oct 2005 18:51:04 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CE9BF13F002; Sat,  8 Oct 2005 00:51:00 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id AFF759DD32; Sat,  8 Oct 2005 00:51:00 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 95E889A007; Sat,  8 Oct 2005 00:50:53 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 3470C13F002; Sat,  8 Oct 2005 00:50:53 +0200 (CEST)
+Date:	Sat, 8 Oct 2005 00:50:53 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Nick Hengeveld <nickh@reactrix.com>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Don't fetch objects that exist in the local repository
+In-Reply-To: <20051007220151.GB4989@reactrix.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510080047500.20922@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051007220151.GB4989@reactrix.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:9814
+
+Hi,
+
+On Fri, 7 Oct 2005, Nick Hengeveld wrote:
+
+> Be sure not to fetch objects that already exist in the local repository.
+
+Really? I seem to recall a dispute I had with Linus that this is 
+unacceptable. He seems worried about incomplete fetches.
+
+Only objects which are descendants of refs are safe, since the refs are 
+written only after the objects were fetched successfully.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

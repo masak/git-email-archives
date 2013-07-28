@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 28 21:34:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 89E6828E13B
+	for <tkil@scrye.com>; Mon, 28 Nov 2005 21:34:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750733AbVK2Ee3 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 28 Nov 2005 23:34:29 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750756AbVK2Ee3
+	(ORCPT <rfc822;git-outgoing>); Mon, 28 Nov 2005 23:34:29 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:52662 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750733AbVK2Ee2 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 28 Nov 2005 23:34:28 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAT4YFnO013073
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 28 Nov 2005 20:34:16 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAT4YBrE007390;
+	Mon, 28 Nov 2005 20:34:13 -0800
+Date:	Mon, 28 Nov 2005 20:34:11 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+cc:	Petr Baudis <pasky@suse.cz>, Junio C Hamano <junkio@cox.net>,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Re: keeping remote repo checked out?
+In-Reply-To: <Pine.LNX.4.64.0511282208050.25300@iabervon.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511282029290.3177@g5.osdl.org>
+References: <m3k6et9rdw.fsf@lugabout.cloos.reno.nv.us>
+ <7vbr051ad1.fsf@assigned-by-dhcp.cox.net> <20051128105736.GO22159@pasky.or.cz>
+ <7vsltgtvk4.fsf@assigned-by-dhcp.cox.net> <20051128212804.GV22159@pasky.or.cz>
+ <Pine.LNX.4.64.0511281420390.3263@g5.osdl.org> <Pine.LNX.4.64.0511281845280.25300@iabervon.org>
+ <Pine.LNX.4.64.0511281637480.3177@g5.osdl.org> <Pine.LNX.4.64.0511282027360.25300@iabervon.org>
+ <Pine.LNX.4.64.0511281837040.3177@g5.osdl.org> <Pine.LNX.4.64.0511282208050.25300@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:12908
+
+
+
+On Mon, 28 Nov 2005, Daniel Barkalow wrote:
+> 
+> I was planning to keep it in .git (instead of .git/refs/...), because it's 
+> information about the working tree, not properly part of the repository. 
+> It's like MERGE_HEAD in being about what the user is in the middle of.
+
+That's fine.
+
+However, your patch isn't.
+
+Your patch just creates this eternal confusion of "why is HEAD different 
+from CHECKED_OUT". 
+
+It's really easy to do what you want to do _without_ any tool changes:
+
+	git-rev-parse HEAD > .git/CHECKED_OUT
+	rm .git/HEAD
+	ln -s refs/heads/../../CHECKED_OUT .git/HEAD
+
+and you're done. No tool changes necessary.
+
+Now "HEAD" always points to the checked-out thing, but a "git clone" won't 
+ever actually clone your CHECKED_OUT branch.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 15:04:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 01A4A6E633
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 15:04:52 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965036AbVKGVyV (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 16:54:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965170AbVKGVyV
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 16:54:21 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:40429 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S965036AbVKGVyU (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 7 Nov 2005 16:54:20 -0500
+Received: (qmail 23872 invoked by uid 2001); 7 Nov 2005 22:54:12 +0100
+Date:	Mon, 7 Nov 2005 22:54:12 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Support for passing path to custom map in git-shortlog.perl
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051107215412.GU1431@pasky.or.cz>
+References: <20051106230757.24941.19267.stgit@machine.or.cz> <7vek5twc3u.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vek5twc3u.fsf@assigned-by-dhcp.cox.net>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:11273
+
+Dear diary, on Mon, Nov 07, 2005 at 01:11:33AM CET, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> Petr Baudis <pasky@suse.cz> writes:
+> 
+> > Aside of looking into .mailmap, add support for -m MAPFILE.
+> 
+> I thought about this when I did .mailmap because I felt 
+> the more flexibility the better, but wouldn't maintaining the
+> project-wide .mailmap as part of the project easier to manage?
+
+Ok, I'm not a die-hard proponent of this change (the genesis is that it
+comes from the ages before .mailmap was supported and was originally
+coupled with -n which disabled the internal mappings - but then .mailmap
+got supported, I deemed -n useless but this still seemed worth something
+so I passed it along), but I think it can be useful - either when you
+want to work on readonly tree, or when you want to support custom
+mailmap in addition to the default project's one without interference...
+*shrug*
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

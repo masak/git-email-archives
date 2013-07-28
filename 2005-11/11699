@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 14:30:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A4FCB241D86
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 14:30:26 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964834AbVKLVaL (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 16:30:11 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964835AbVKLVaL
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 16:30:11 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:45470 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S964834AbVKLVaJ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 12 Nov 2005 16:30:09 -0500
+Received: (qmail 18150 invoked by uid 2001); 12 Nov 2005 22:30:02 +0100
+Date:	Sat, 12 Nov 2005 22:30:02 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	git@vger.kernel.org
+Subject: Re: Cloning speed comparison, round II
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051112213002.GI30496@pasky.or.cz>
+References: <20051112155302.GD30496@pasky.or.cz> <Pine.LNX.4.64.0511121134170.3263@g5.osdl.org> <20051112194646.GE30496@pasky.or.cz> <Pine.LNX.4.64.0511121159470.3263@g5.osdl.org> <Pine.LNX.4.64.0511121229340.3263@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.64.0511121229340.3263@g5.osdl.org>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:11699
+
+Dear diary, on Sat, Nov 12, 2005 at 09:31:32PM CET, I got a letter
+where Linus Torvalds <torvalds@osdl.org> said that...
+> On Sat, 12 Nov 2005, Linus Torvalds wrote:
+> > 
+> > So the fact is: rsync is often slower, and _always_ less capable. 
+> 
+> Side note: a lot of the rsync problems are non-issues for the initial 
+> clone. 
+
+But based on my "machine X" tests, git is as fast as git+ssh (which is
+as it should be), which means it is even slightly faster than rsync,
+even for the initial commit.
+
+> That initial clone is in fact the only time I think rsync can be a good 
+> idea, especially if the server end is repacking regularly.
+
+Yes, the only advantage of rsync I can see is that you get it all
+packed. Well, I think this only means we are doing something wrong,
+and perhaps we should automatically pack as well.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 16:54:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 609F3F6554
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 16:54:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751101AbVKRXxe (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 18:53:34 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751119AbVKRXxe
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 18:53:34 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:13025 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1751101AbVKRXxe
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 18:53:34 -0500
+Received: from [192.168.1.19] (1-2-9-7a.gkp.gbg.bostream.se [82.182.116.44])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 26B046BCFE
+	for <git@vger.kernel.org>; Sat, 19 Nov 2005 00:53:33 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437E697C.7090307@op5.se>
+Date:	Sat, 19 Nov 2005 00:53:32 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: Rss produced by git is not valid xml?
+References: <200511181833.40048.ismail@uludag.org.tr> <200511182127.06958.ismail@uludag.org.tr> <20051118200217.GA2831@vrfy.org> <200511182208.24248.ismail@uludag.org.tr> <Pine.LNX.4.64.0511181220350.13959@g5.osdl.org> <20051118205513.GA3168@vrfy.org> <Pine.LNX.4.64.0511181314470.13959@g5.osdl.org> <Pine.LNX.4.64.0511181338460.13959@g5.osdl.org> <437E51EB.7050100@zytor.com> <Pine.LNX.4.64.0511181519100.13959@g5.osdl.org> <437E6505.8000201@zytor.com>
+In-Reply-To: <437E6505.8000201@zytor.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 45
+Xref: brand.scrye.com linux.git:12291
+
+H. Peter Anvin wrote:
+> Linus Torvalds wrote:
+> 
+>>
+>> On Fri, 18 Nov 2005, H. Peter Anvin wrote:
+>>
+>>> On the fly conversion on CVS import isn't particularly crazy, as long 
+>>> as it's
+>>> under user control.
+>>
+>>
+>> Actually, it is.
+>>
+>> Why?
+>>
+>> How are you going to feed your changes back to the original (and 
+>> initially main) project?
+>>
+>> Hint: they're not going to pull from your git tree, are they?
+>>
+>> Ahh. Maybe patches would be a good idea.
+>>
+>> Ooops.
+>>
+> 
+> You're assuming there *IS* an original (and initially main) project.
+> 
+> There is another usage mode: "we're dumping CVS and switching to this 
+> new-fangled git thing."  I have myself done this with several projects 
+> by now.
+> 
+
+
+I'm guessing Linus' scenario is more common. I do it myself and I'd like 
+it to keep working.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

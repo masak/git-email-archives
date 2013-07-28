@@ -1,0 +1,105 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 10 14:17:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D7B99276223
+	for <tkil@scrye.com>; Wed, 10 Aug 2005 14:17:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030251AbVHJUNJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 10 Aug 2005 16:13:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030239AbVHJUNJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 10 Aug 2005 16:13:09 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:1689 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1030251AbVHJUNH (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 10 Aug 2005 16:13:07 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050810201307.TTJJ12158.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 10 Aug 2005 16:13:07 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: Wolfgang Denk <wd@denx.de>
+Cc: Sam Ravnborg <sam@ravnborg.org>, Chris Wright <chrisw@osdl.org>,
+	Ryan Anderson <ryan@michonline.com>, git@vger.kernel.org
+Subject: Re: Cannot install git RPM
+References: <20050810194459.8584D353C12@atlas.denx.de>
+Date:	Wed, 10 Aug 2005 13:13:05 -0700
+In-Reply-To: <20050810194459.8584D353C12@atlas.denx.de> (Wolfgang Denk's
+	message of "Wed, 10 Aug 2005 21:44:59 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vk6itr1ny.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 60
+Xref: brand.scrye.com linux.git:7032
+
+Wolfgang Denk <wd@denx.de> writes replying to Sam Ravnborg:
+
+> In message <20050810163202.GA11131@mars.ravnborg.org> you wrote:
+>>
+>> Not knowing perl at all I wonder if some more widespread used packages
+>> can replace the above two?
+>
+> Installation of the required modules from the  CPAN  is  trivial.  It
+> should be documented somewhere, though.
+
+I would appreciate a patch for RPM building after 0.99.4, but
+the tentative solution for 0.99.4 (and current "master" branch
+since last night) is to ship the problematic program as part of
+the sources under "contrib" status, but not install nor include
+in the resulting binary package.
+
+The dependency list for the RPM built from the tip of "rc"
+branch now reads like this (thanks Chris for teaching me how to
+get this information).  This will hopefully be the one that
+becomes the official 0.99.4.
+
+$ rpm -qp ~/rpms/RPMS/i386/git-core-0.99.4-1.i386.rpm --requires
+/bin/sh
+/usr/bin/env
+/usr/bin/perl
+diffutils
+libc.so.6
+libc.so.6(GLIBC_2.0)
+libc.so.6(GLIBC_2.1)
+libc.so.6(GLIBC_2.1.3)
+libc.so.6(GLIBC_2.2.3)
+libc.so.6(GLIBC_2.3)
+libcrypto.so.4
+libcurl.so.3
+libssl.so.4
+libz.so.1
+mktemp >= 1.5
+perl(File::Basename)
+perl(File::Path)
+perl(File::Spec)
+perl(File::Temp)
+perl(Getopt::Std)
+perl(IO::Pipe)
+perl(IO::Socket)
+perl(POSIX)
+perl(Time::Local)
+perl(strict)
+perl(warnings)
+rcs
+rpmlib(CompressedFileNames) <= 3.0.4-1
+rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+rsync
+sh-utils
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

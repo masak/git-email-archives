@@ -1,0 +1,103 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 04:31:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C43892851FA
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 04:31:48 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750725AbVKKLbT (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 06:31:19 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750727AbVKKLbS
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 06:31:18 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:54444 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1750725AbVKKLbS
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 11 Nov 2005 06:31:18 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id DABF16BD0D
+	for <git@vger.kernel.org>; Fri, 11 Nov 2005 12:31:16 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43748104.5020707@op5.se>
+Date:	Fri, 11 Nov 2005 12:31:16 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] specfile cleanups
+References: <20051111091029.GW8041@shell0.pdx.osdl.net> <7vveyzpmi7.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vveyzpmi7.fsf@assigned-by-dhcp.cox.net>
+Content-Type: multipart/mixed;
+ boundary="------------020906030407040303080602"
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 61
+Xref: brand.scrye.com linux.git:11577
+
+This is a multi-part message in MIME format.
+--------------020906030407040303080602
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Junio C Hamano wrote:
+> Chris Wright <chrisw@osdl.org> writes:
+> 
+> 
+>>Some specfile cleanups after the split.
+> 
+> 
+> Thanks.
+> 
+> Does it matter some Requires use comma and others don't?
+> 
+
+Other than for consistency reasons, no. Most distributions have it in 
+their conventions to use commas. Some don't.
+
+Most also have the conventions enforced by the attached script as it 
+enhances readability by removing much un-necessary clutter.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+
+--------------020906030407040303080602
+Content-Type: application/x-shellscript;
+ name="specwash.sh"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+ filename="specwash.sh"
+
+IyEvYmluL2Jhc2gKIwojIHNwZWN3YXNoLnNoIC0gd2FzaCB1bm5lZWRlZCBjdXJsaWVzIGZy
+b20gc2NyaXB0cyBhbmQgc3BlYy1maWxlcwojICAgICAgICAgICAgICAgdXNlIG1hY3JvcyBp
+biBmYXZvciBvZiBhbnl0aGluZyBlbHNlCiMKCmlmIFsgJCMgLWx0IDEgXTsgdGhlbgoJZWNo
+byAiVXNhZ2U6ICR7MCMjKi99IHNjcmlwdHMvc3BlYy1maWxlcyIKCWV4aXQgMQpmaQoKIyB2
+YXJjaGFycyBpbiByZWdleCBmb3JtCiMgdXNpbmcgdGhpcyB3aGl0ZWxpc3QgYWxsb3dzIHRo
+aW5ncyBsaWtlICR7MCMjKi99IHRvIHBhc3MgdW5tb2xlc3RlZAojIGl0IG1pZ2h0IGJyZWFr
+IHNvbWUgb3RoZXIgdGhpbmdzIHRob3VnaCwgc28gd2Uga2VlcCB0aGUgYmFja3Vwcy4KdmM9
+ImEtekEtWjAtOV8iCiMJCS1lICJzL15cKFteI10uKlteX11cKW1rZGlyL1wxJV9fbWtkaXIv
+IiBcCgpmb3IgaSBpbiAiJEAiOyBkbwoJbXYgLWkgJGkgJGkuYmFrIHx8IGNvbnRpbnVlCglz
+ZWQgLWUgInMvICokLy9nIiBcCgkJLWUgInMvXChbXCVcJF1cKXtcKFskdmNdKlwpXH1cKFte
+JHZjXVwpL1wxXDJcMy9nIiBcCgkJLWUgInMvXChbXCVcJF1cKXtcKFskdmNdKlwpXH0kL1wx
+XDIvZyIgXAoJCS1lICdzLC91c3IvYmluLywlX2JpbmRpci8sZycgLWUgJ3MsL3Vzci9zYmlu
+LywlX3NiaW5kaXIvLGcnIFwKCQktZSAncywvdXNyL2xpYmV4ZWMvLCVfbGliZXhlY2Rpci8s
+ZycgLWUgJ3MsL3Vzci9saWIvLCVfbGliZGlyLyxnJyBcCgkJLWUgJ3MsL3Vzci9pbmNsdWRl
+LywlX2luY2x1ZGVkaXIvLGcnIFwKCQktZSAncywvdXNyL2luZm8vLCVfaW5mb2Rpci8sZycg
+LWUgJ3MsL3Vzci9tYW4vLCVfbWFuZGlyLyxnJyBcCgkJLWUgJ3MsL3Vzci9zaGFyZS9pbmZv
+LywlX2luZm9kaXIvLGcnIC1lICdzLC91c3Ivc2hhcmUvbWFuLywlX21hbmRpci8sZycgXAoJ
+CS1lICdzLC91c3IvLCVfcHJlZml4LyxnJyBcCgkJLWUgJ3MsXCRSUE1fQlVJTERfUk9PVCwl
+YnVpbGRyb290LGcnIFwKCQktZSAncyxcJFJQTV9PUFRfRkxBR1MsJW9wdGZsYWdzLGcnIFwK
+CSRpLmJhayA+ICRpCmRvbmUK
+--------------020906030407040303080602--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

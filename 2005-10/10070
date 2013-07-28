@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 13 09:56:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6DA552615AD
+	for <tkil@scrye.com>; Thu, 13 Oct 2005 09:56:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751589AbVJMP4n (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 13 Oct 2005 11:56:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751590AbVJMP4n
+	(ORCPT <rfc822;git-outgoing>); Thu, 13 Oct 2005 11:56:43 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:47531 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751588AbVJMP4n (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 13 Oct 2005 11:56:43 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9DFuS4s006436
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 13 Oct 2005 08:56:28 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9DFuR1J021147;
+	Thu, 13 Oct 2005 08:56:27 -0700
+Date:	Thu, 13 Oct 2005 08:56:27 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+cc:	Junio C Hamano <junkio@cox.net>,
+	Morten Welinder <mwelinder@gmail.com>, git@vger.kernel.org
+Subject: Re: Usage of isspace and friends
+In-Reply-To: <434E8117.3090102@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510130847190.15297@g5.osdl.org>
+References: <118833cc0510111840k715e1190l54ad65f821c77848@mail.gmail.com>
+ <7vachd6hdx.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0510130756550.15297@g5.osdl.org>
+ <434E8117.3090102@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.124 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:10070
+
+
+
+On Thu, 13 Oct 2005, H. Peter Anvin wrote:
+> 
+> Because of the special case of 255 which looks indistinguishable from EOF,
+> therefore making it required?
+
+Yeah, and I agree, that was a mistake. It could have been fixed by making 
+EOF be MIN_INT (or any other value outside the range of either "unsigned 
+char" or "signed char" - preferably still negative), but there are 
+probably programs that depend on it being -1. 
+
+The stupid thing I just posted doesn't care. It happens to return 0 for 
+EOF for all cases, but that's a side effect of (a) not doing locales (so 
+255 is never printable or alpha) and (b) not even implementing iscntrl().
+
+In general, the rule for ctype and EOF _should_ have been that it's part 
+of an acceptable input range, but that the return value is undefined ;)
+
+(Which would allow you to test EOF later, and not worry about any faults).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

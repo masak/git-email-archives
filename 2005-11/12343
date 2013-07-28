@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 19 14:08:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 805792AFA30
+	for <tkil@scrye.com>; Sat, 19 Nov 2005 14:08:28 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750808AbVKSVIP (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 19 Nov 2005 16:08:15 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750844AbVKSVIP
+	(ORCPT <rfc822;git-outgoing>); Sat, 19 Nov 2005 16:08:15 -0500
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:57549 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1750808AbVKSVIO (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 19 Nov 2005 16:08:14 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051119210717.SQVB17006.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 19 Nov 2005 16:07:17 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: Re: [RFC] git email submissions
+References: <437B4472.1080401@pobox.com>
+	<Pine.LNX.4.64.0511160847250.13959@g5.osdl.org>
+	<437B7213.2020406@zytor.com> <437B73E2.3080903@pobox.com>
+Date:	Sat, 19 Nov 2005 13:08:13 -0800
+In-Reply-To: <437B73E2.3080903@pobox.com> (Jeff Garzik's message of "Wed, 16
+	Nov 2005 13:01:06 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vlkzk4a82.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12343
+
+Jeff Garzik <jgarzik@pobox.com> writes:
+
+> I would presume an email body would look like
+>
+> overall description of changes
+> git log master..HEAD | git shortlog
+> git diff master..HEAD | diffstat -p1
+> git diff master..HEAD
+> <pack file MIME attachment>
+
+As Smurf commented, the delta data is sent twice if you sent a
+pack of "^his mine" -- once as a textual diff and then the delta
+data in the pack.  You can slightly do better than that.
+Because you are sending the diff, the pack you send does not
+have to include the post-image of patch application, and I
+suspect your pack would not have to contain anything other than
+commit objects.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

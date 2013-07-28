@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 25 04:50:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO,
+	X_MAILER_SPAM autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E26BA277CF5
+	for <tkil@scrye.com>; Fri, 25 Nov 2005 04:50:05 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751219AbVKYLtk (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 25 Nov 2005 06:49:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751453AbVKYLtk
+	(ORCPT <rfc822;git-outgoing>); Fri, 25 Nov 2005 06:49:40 -0500
+Received: from i1.inoi.fi ([194.100.97.46]:31908 "EHLO mail.srv.inoi.fi")
+	by vger.kernel.org with ESMTP id S1751219AbVKYLtk (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 25 Nov 2005 06:49:40 -0500
+Received: from mail.srv.inoi.fi (localhost.localdomain [127.0.0.1])
+	by mail.srv.inoi.fi (Postfix) with ESMTP id 79591F5111;
+	Fri, 25 Nov 2005 13:49:47 +0200 (EET)
+Received: from pooch.inoi.fi (GMMDXXVII.dsl.saunalahti.fi [85.76.242.28])
+	by mail.srv.inoi.fi (Postfix) with ESMTP id 1CECCF4D30;
+	Fri, 25 Nov 2005 13:49:47 +0200 (EET)
+Received: from pooch (pooch [127.0.0.1])
+	by pooch.inoi.fi (Postfix) with SMTP id 8A551BA068;
+	Fri, 25 Nov 2005 13:49:31 +0200 (EET)
+Cc:	Tommi Virtanen <tv@inoi.fi>
+Subject: [PATCH] Fix segfault in git-shell when given no argument.
+In-Reply-To: 
+X-Mailer: git-send-email
+Date:	Fri, 25 Nov 2005 13:49:31 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <11329193711298-git-send-email-tv@inoi.fi>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Tommi Virtanen <tv@inoi.fi>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Tommi Virtanen <tv@inoi.fi>
+X-Virus-Scanned: ClamAV using ClamSMTP
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:12729
+
+The bug is trivially reproducible with "git-shell -c git-receive-pack"
+
+Signed-off-by: Tommi Virtanen <tv@inoi.fi>
+
+---
+
+ shell.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+applies-to: 2ada0cb8fce070b6b2c56fa689791230636f1857
+4fbfea212a9afcd123a213e20388b1fa775fc7fe
+diff --git a/shell.c b/shell.c
+index 2c4789e..7fab432 100644
+--- a/shell.c
++++ b/shell.c
+@@ -5,6 +5,8 @@ static int do_generic_cmd(const char *me
+ {
+ 	const char *my_argv[4];
+ 
++	if (!arg)
++		die("missing argument");
+ 	arg = sq_dequote(arg);
+ 	if (!arg)
+ 		die("bad argument");
+---
+0.99.9.GIT
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

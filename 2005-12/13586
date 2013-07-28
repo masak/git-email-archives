@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 13 15:32:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_VN 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7A8A1692DB
+	for <tkil@scrye.com>; Tue, 13 Dec 2005 15:32:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030278AbVLMW2d (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 13 Dec 2005 17:28:33 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030284AbVLMW2d
+	(ORCPT <rfc822;git-outgoing>); Tue, 13 Dec 2005 17:28:33 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:952 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1030278AbVLMW2b (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 13 Dec 2005 17:28:31 -0500
+Received: (qmail 2419 invoked by uid 2001); 13 Dec 2005 23:28:29 +0100
+Date:	Tue, 13 Dec 2005 23:28:29 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Sam Ravnborg <sam@ravnborg.org>
+Cc:	git@vger.kernel.org
+Subject: Re: git cole give unexpected error message
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051213222829.GE22159@pasky.or.cz>
+References: <20051213212820.GB5232@mars.ravnborg.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051213212820.GB5232@mars.ravnborg.org>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:13586
+
+Dear diary, on Tue, Dec 13, 2005 at 10:28:20PM CET, I got a letter
+where Sam Ravnborg <sam@ravnborg.org> said that...
+> cogito being a nice porcelain gives the git errormessage but manage to
+> clean up when the clone fails.
+> So also cogito would benefit from a more descriptive errormessage.
+
+Well, git clone can fail for many reasons and I don't think the "no such
+repository" one is completely overwhelming, so hinting that by Cogito
+could be quite confusing (theme of the day: usability ;-)).
+
+The real solution would be proper error reporting by the git daemon.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

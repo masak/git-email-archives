@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 10:02:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 282011A045A
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 10:02:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030492AbVIOQCo (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 12:02:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030503AbVIOQCo
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 12:02:44 -0400
+Received: from xproxy.gmail.com ([66.249.82.193]:44094 "EHLO xproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1030492AbVIOQCn (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 15 Sep 2005 12:02:43 -0400
+Received: by xproxy.gmail.com with SMTP id h28so307690wxd
+        for <git@vger.kernel.org>; Thu, 15 Sep 2005 09:02:41 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:disposition-notification-to:date:from:reply-to:user-agent:x-accept-language:mime-version:to:subject:references:in-reply-to:content-type:content-transfer-encoding;
+        b=O5h2dfb1x7oDAKP1a/GYwoChMEVt3k7hN8kgu82yJgTU202Lol2wnbk+mMeWwX6oxYmDquGIz6ot+IYUXAR6MmX1nvY7KbZW98tCNMVoNs5osAyfHNp35k27YscCFJgaAI0lIlAoZ1hCRU5YPKUFGTq55IPEuFD7919wE6wTji4=
+Received: by 10.70.87.14 with SMTP id k14mr867331wxb;
+        Thu, 15 Sep 2005 09:02:41 -0700 (PDT)
+Received: from ?10.0.0.6? ( [70.89.97.97])
+        by mx.gmail.com with ESMTP id h12sm565567wxd.2005.09.15.09.02.39;
+        Thu, 15 Sep 2005 09:02:40 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43299B1E.1050407@gmail.com>
+Date:	Thu, 15 Sep 2005 12:02:38 -0400
+From:	A Large Angry SCM <gitzilla@gmail.com>
+Reply-To:  gitzilla@gmail.com
+User-Agent: Mozilla Thunderbird 1.0 (X11/20041207)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git Mailing List <git@vger.kernel.org>
+Subject: Re: git version
+References: <u5tzmqeqw6z.fsf@lysator.liu.se> <432985A7.5070900@gmail.com> <u5tslw6qrtu.fsf@lysator.liu.se>
+In-Reply-To: <u5tslw6qrtu.fsf@lysator.liu.se>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:8603
+
+David Kågedal wrote:
+> A Large Angry SCM <gitzilla@gmail.com> writes:
+> 
+>>David Kågedal wrote:
+>>>Why is "git --version" called so, and not "git version"?  It works
+>>>just like any other command, except that it is implemented internally
+>>>in the git script.
+>>>The "git" command takes a subcommand that does some action or simply
+>>>prints some informational output.  The "version" subcommand fits
+>>>nicely into that, and I don't see any need to prepend "--" to it.
+>>>
+>>Consistency with other (non Git) commands was why I suggested the 
+>>"--version" form when the discussion happened.
+> 
+> You mean, like, "cvs version"?
+> 
+> Actually, cvs has both, with different semantics.
+
+More along the lines of *ALL* the GNU utilities.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

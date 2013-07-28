@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun  5 18:54:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 917C96DEB
+	for <tkil@scrye.com>; Sun,  5 Jun 2005 18:54:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261152AbVFFAyU (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 5 Jun 2005 20:54:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261155AbVFFAyU
+	(ORCPT <rfc822;git-outgoing>); Sun, 5 Jun 2005 20:54:20 -0400
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:14741 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S261152AbVFFAyR (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 5 Jun 2005 20:54:17 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050606005412.YIJO7629.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 5 Jun 2005 20:54:12 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] Documentation: describe diff tweaking (fix).
+References: <7vr7fg1ofh.fsf@assigned-by-dhcp.cox.net>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Sun, 05 Jun 2005 17:54:10 -0700
+In-Reply-To: <7vr7fg1ofh.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+ message of "Sun, 05 Jun 2005 14:30:58 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64wswbil.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 24
+Xref: brand.scrye.com linux.git:4602
+
+I cannot count ;-)
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+diff --git a/Documentation/diffcore.txt b/Documentation/diffcore.txt
+--- a/Documentation/diffcore.txt
++++ b/Documentation/diffcore.txt
+@@ -45,7 +45,7 @@ the -p option is not used.  E.g.
+ The diffcore mechanism is fed a list of such comparison results
+ (each of which is called "filepair", although at this point each
+ of them talks about a single file), and transforms such a list
+-into another list.  There are currently 7 such transformations:
++into another list.  There are currently 6 such transformations:
+ 
+  - diffcore-pathspec
+  - diffcore-break
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

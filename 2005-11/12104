@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 06:59:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E943ED71D9
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 06:59:26 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750828AbVKQN61 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 08:58:27 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750830AbVKQN61
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 08:58:27 -0500
+Received: from xproxy.gmail.com ([66.249.82.198]:41223 "EHLO xproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750828AbVKQN61 convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 08:58:27 -0500
+Received: by xproxy.gmail.com with SMTP id s14so2211021wxc
+        for <git@vger.kernel.org>; Thu, 17 Nov 2005 05:58:26 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=lWV6KZvELjBEXrmswFyHmMPLucuwD4s8dVmicoySfwvDvs1sl5VYnfCl23H7Zo/wkRwB/Usul3QI+awVukmG5z0o0vKDIqZvPhqRfVjDfMb1LQySk3I8TtBJu/pB9pyCaxN8zRh6iRjCoOXVC8oxsSMEsufCId0Nj1oko00F1Mo=
+Received: by 10.70.43.4 with SMTP id q4mr4889731wxq;
+        Thu, 17 Nov 2005 05:58:26 -0800 (PST)
+Received: by 10.70.7.3 with HTTP; Thu, 17 Nov 2005 05:58:26 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <59a6e5830511170558u2356fb8djf48914702a95ec07@mail.gmail.com>
+Date:	Thu, 17 Nov 2005 08:58:26 -0500
+From:	Wayne Scott <wsc9tt@gmail.com>
+To:	git@vger.kernel.org
+Subject: BUG: 'make clean; make' won't rebuilt 'git'
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12104
+
+The 'make clean' target doesn't remove the 'git' application and since
+the 'git' make target depends on git.c directly it won't get rebuilt
+after a clean.
+
+The net result is that if you do:
+   make
+   make clean
+   make prefix=/usr/local
+   make prefix=/usr/local install
+
+it won't install the correct git binary.
+
+-Wayne
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jul  5 10:41:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 088E11879BC
+	for <tkil@scrye.com>; Tue,  5 Jul 2005 10:41:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261938AbVGEQi7 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 5 Jul 2005 12:38:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261927AbVGEQi5
+	(ORCPT <rfc822;git-outgoing>); Tue, 5 Jul 2005 12:38:57 -0400
+Received: from iabervon.org ([66.92.72.58]:52998 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261932AbVGEQXR (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 5 Jul 2005 12:23:17 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DpqAX-0008AF-00; Tue, 5 Jul 2005 12:21:09 -0400
+Date:	Tue, 5 Jul 2005 12:21:09 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Linus Torvalds <torvalds@osdl.org>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Git Mailing List <git@vger.kernel.org>,
+	Junio C Hamano <junkio@cox.net>, ftpadmin@kernel.org
+Subject: Re: Tags
+In-Reply-To: <m1vf3p2yks.fsf@ebiederm.dsl.xmission.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0507051155580.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:5647
+
+On Tue, 5 Jul 2005, Eric W. Biederman wrote:
+
+> Could you include the person who generated the tag and the time the
+> tag was generated in the tag object?
+> 
+> For a tag like "latest" it would help quite a bit if you could actually
+> find out which was the latest version of it :)
+
+Actually, what you really want here is to put in refs/tags/latest the hash
+of the tag whose "tag" field is v2.6.13-rc1 (or whatever it is). Having a
+tag with the "tag" field of "latest" would be a bit silly, because the
+object will probably stay in circulation long after it's no longer
+true. And the object itself would tell you that it was the latest version
+when it was created (but isn't every version?). That's why you want the
+_tag_ to say something useful about the version (maybe "v2.6.12", maybe
+just "tested"), and the _ref_ to tell you it's the latest.
+
+The fact that lots of tags get refs named with their contents is just due
+to tags only getting used for a small portion of their possible uses. This
+only happens when the feature you'd look something up under is a feature
+which is persistent.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

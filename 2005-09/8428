@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 15:32:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DDEF5138EA4
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 15:32:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932266AbVILVb6 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 17:31:58 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932268AbVILVb6
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 17:31:58 -0400
+Received: from [85.8.31.11] ([85.8.31.11]:7405 "EHLO mail6.wasadata.com")
+	by vger.kernel.org with ESMTP id S932266AbVILVb5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 17:31:57 -0400
+Received: from c165 (unknown [85.8.2.189])
+	by mail6.wasadata.com (Postfix) with ESMTP
+	id A3A0F4115; Mon, 12 Sep 2005 23:36:57 +0200 (CEST)
+Received: from ksorim by c165 with local (Exim 3.36 #1 (Debian))
+	id 1EEvu8-0001wH-00; Mon, 12 Sep 2005 23:31:56 +0200
+Date:	Mon, 12 Sep 2005 23:31:56 +0200
+From:	Fredrik Kuivinen <freku045@student.liu.se>
+To:	git@vger.kernel.org
+Cc:	junkio@cox.net
+Subject: [PATCH 5/5] Make the ProgramError class printable.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050912213156.GG6644@c165.ib.student.liu.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050912212601.GB6644@c165.ib.student.liu.se>
+User-Agent: Mutt/1.5.6+20040907i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:8428
+
+Signed-off-by: Fredrik Kuivinen <freku045@student.liu.se>
+
+
+---
+
+ gitMergeCommon.py |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+30c12b2a8d3df83b15952f786327ccd0c3c04554
+diff --git a/gitMergeCommon.py b/gitMergeCommon.py
+--- a/gitMergeCommon.py
++++ b/gitMergeCommon.py
+@@ -46,6 +46,9 @@ class ProgramError(Exception):
+         self.progStr = progStr
+         self.error = error
+ 
++    def __str__(self):
++        return self.progStr + ': ' + self.error
++
+ addDebug('runProgram')
+ def runProgram(prog, input=None, returnCode=False, env=None, pipeOutput=True):
+     debug('runProgram prog:', str(prog), 'input:', str(input))
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

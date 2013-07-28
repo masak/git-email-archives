@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 09:15:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 68FD62851FD
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 09:15:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932353AbVKRQOf (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 11:14:35 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932362AbVKRQOf
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 11:14:35 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:37322 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932353AbVKRQOe (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 18 Nov 2005 11:14:34 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAIGE5nO015412
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 18 Nov 2005 08:14:06 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAIGE2vV017044;
+	Fri, 18 Nov 2005 08:14:04 -0800
+Date:	Fri, 18 Nov 2005 08:14:01 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Matthias Urlichs <smurf@smurf.noris.de>, git@vger.kernel.org
+Subject: Re: "make test" fails with current HEAD
+In-Reply-To: <7vbr0imlha.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511180812200.13959@g5.osdl.org>
+References: <pan.2005.11.17.15.31.56.755022@smurf.noris.de>
+ <7v7jb6o1kl.fsf@assigned-by-dhcp.cox.net> <20051118075117.GK31613@kiste.smurf.noris.de>
+ <7vbr0imlha.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:12227
+
+
+
+On Fri, 18 Nov 2005, Junio C Hamano wrote:
+> 
+> And at this point it becomes more and more tempting to have our
+> own internal diff generator, without relying on external diff.
+> 
+> A midway compromise solution would be to detect if either file
+> is binary ourselves and not to call diff but always say "Binary
+> files difer".
+
+Umm.. Why not just say "if the line after the 'diff' line doesn't start 
+with '@@ ', then it's a binary diff"?
+
+And not care at _all_ about what it says.
+
+We require unified diffs, and they _always_ start with '@@ ' after the 
+header. No need to check anything else.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 10:58:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 32C78167AEE
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 10:58:51 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932113AbVKWR6S (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 12:58:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932119AbVKWR6S
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 12:58:18 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:55241 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932113AbVKWR6R (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 23 Nov 2005 12:58:17 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jANHvtnO032125
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 23 Nov 2005 09:57:55 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jANHvsfb014549;
+	Wed, 23 Nov 2005 09:57:54 -0800
+Date:	Wed, 23 Nov 2005 09:57:54 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Allow editing of a revert-message
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511230954440.13959@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:12631
+
+
+I think all commit operations should allow editing of the message (ie we 
+should do this for merges too), but that's _particularly_ true of doing a 
+"git revert".
+
+We should always explain why we needed to revert something.
+
+This patch adds a "-e" or "--edit" flag to "git revert", although I 
+actually suspect it should be on by default (and we should have a 
+"--no-edit" flag to disable it, probably together with an automatic 
+disable if stdin isn't a terminal).
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/git-revert.sh b/git-revert.sh
+index 4154fe0..05bd854 100755
+--- a/git-revert.sh
++++ b/git-revert.sh
+@@ -25,7 +25,7 @@ usage () {
+ 	esac
+ }
+ 
+-no_commit= replay=
++no_commit= replay= edit=
+ while case "$#" in 0) break ;; esac
+ do
+ 	case "$1" in
+@@ -36,6 +36,9 @@ do
+ 	-r|--r|--re|--rep|--repl|--repla|--replay)
+ 		replay=t
+ 		;;
++	-e|--edit)
++		edit=t
++		;;
+ 	-*)
+ 		usage
+ 		;;
+@@ -161,6 +164,7 @@ echo >&2 "Finished one $me."
+ # If we are revert, or if our cherry-pick results in a hand merge,
+ # we had better say that the current user is responsible for that.
+ 
++[ "$edit" ] && ${EDITOR:-${VISUAL:-vi}} .msg
+ case "$no_commit" in
+ '')
+ 	git-commit -n -F .msg
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

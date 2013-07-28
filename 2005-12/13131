@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  2 19:24:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 91E541EAA7E
+	for <tkil@scrye.com>; Fri,  2 Dec 2005 19:24:00 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751162AbVLCCXT (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 2 Dec 2005 21:23:19 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751164AbVLCCXT
+	(ORCPT <rfc822;git-outgoing>); Fri, 2 Dec 2005 21:23:19 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:57500 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751162AbVLCCXS (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 2 Dec 2005 21:23:18 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 9375E13FAB4; Sat,  3 Dec 2005 03:23:17 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 78E649F50E; Sat,  3 Dec 2005 03:23:17 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 581B59F4EA; Sat,  3 Dec 2005 03:23:17 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 126AD13FAB4; Sat,  3 Dec 2005 03:23:17 +0100 (CET)
+Date:	Sat, 3 Dec 2005 03:23:17 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Jason Riedy <ejr@EECS.Berkeley.EDU>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Include Makefile.localdef in Makefile, if it exists.
+In-Reply-To: <28417.1133565102@lotus.CS.Berkeley.EDU>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512030322410.19086@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <28417.1133565102@lotus.CS.Berkeley.EDU>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:13131
+
+Hi,
+
+On Fri, 2 Dec 2005, Jason Riedy wrote:
+
+> Makefile.localdef is just a hook for local definitions.  Users
+> can track their definitions in a branch and not worry about
+> merge conflicts.
+
+I wonder why you do not just override them in config.mak, which was 
+introduced just for that purpose...
+
+Hth,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

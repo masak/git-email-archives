@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 15:38:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1C46321F6D5
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 15:38:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964846AbVLUWhF (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 17:37:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964852AbVLUWhE
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 17:37:04 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:39343 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S964846AbVLUWhB (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 17:37:01 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id BD35713FC80; Wed, 21 Dec 2005 23:37:00 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A303B9E268; Wed, 21 Dec 2005 23:37:00 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8E0959E21B; Wed, 21 Dec 2005 23:37:00 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 685D213FC80; Wed, 21 Dec 2005 23:37:00 +0100 (CET)
+Date:	Wed, 21 Dec 2005 23:37:00 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: [PATCH] Use --abbrev in git-whatchanged
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512212336230.18908@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:13900
+
+
+The output is much nicer on standard 80 columns. If you want the old
+behaviour, you can still do
+
+	git-whatchanged --abbrev=40
+
+Signed-off-by: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+
+---
+
+ git-whatchanged.sh |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+5d0a4d9aedc8af48666744ab240cdc30b9c6cae3
+diff --git a/git-whatchanged.sh b/git-whatchanged.sh
+index b170f74..a30f64d 100755
+--- a/git-whatchanged.sh
++++ b/git-whatchanged.sh
+@@ -8,5 +8,5 @@ rev_list_args=$(git-rev-parse --sq --def
+ diff_tree_args=$(git-rev-parse --sq --no-revs "$@") &&
+ 
+ eval "git-rev-list $rev_list_args" |
+-eval "git-diff-tree --stdin --pretty -r $diff_tree_args" |
++eval "git-diff-tree --stdin --pretty -r --abbrev $diff_tree_args" |
+ LESS="$LESS -S" ${PAGER:-less}
+-- 
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 09:42:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 33235FF4AF
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 09:42:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932129AbVK2QkF (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 11:40:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932081AbVK2QkF
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 11:40:05 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:60891 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932114AbVK2QkE (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 29 Nov 2005 11:40:04 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0689213F7D7; Tue, 29 Nov 2005 17:40:03 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id E1B2A9F492; Tue, 29 Nov 2005 17:40:02 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CAD2B8365C; Tue, 29 Nov 2005 17:40:02 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id AC05613F7D7; Tue, 29 Nov 2005 17:40:02 +0100 (CET)
+Date:	Tue, 29 Nov 2005 17:40:02 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Jan Andres <jandres@gmx.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Fix typo in http-push.c
+In-Reply-To: <20051129133537.GA490@pitr.home.jan>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511291739090.12136@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051129005154.GA3076@pitr.home.jan>
+ <Pine.LNX.4.63.0511290923390.16927@wbgn013.biozentrum.uni-wuerzburg.de>
+ <20051129133537.GA490@pitr.home.jan>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:12937
+
+Hi,
+
+On Tue, 29 Nov 2005, Jan Andres wrote:
+
+> [...]
+>
+> +				lock->token = xmalloc(strlen(ctx->cdata + 16) + 1);
+> 
+> so as to account for the trailing NUL?
+
+Of course! That's why I wanted to write "strlen(ctx->cdata + 15)", but I 
+fsck'ed up. Sorry.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec  6 16:58:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0388827F402
+	for <tkil@scrye.com>; Tue,  6 Dec 2005 16:58:51 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932659AbVLFX6c (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Dec 2005 18:58:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932661AbVLFX6c
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Dec 2005 18:58:32 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:54945 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932659AbVLFX6c (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 6 Dec 2005 18:58:32 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id E46FC13F879; Wed,  7 Dec 2005 00:58:28 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CC3469DC28; Wed,  7 Dec 2005 00:58:28 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 9D39256D2B; Wed,  7 Dec 2005 00:58:28 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 5242413F879; Wed,  7 Dec 2005 00:58:28 +0100 (CET)
+Date:	Wed, 7 Dec 2005 00:58:28 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Jason Riedy <ejr@EECS.Berkeley.EDU>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Initial AIX portability fixes.
+In-Reply-To: <20493.1133907616@lotus.CS.Berkeley.EDU>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512070055430.5888@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20493.1133907616@lotus.CS.Berkeley.EDU>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:13296
+
+Hi,
+
+On Tue, 6 Dec 2005, Jason Riedy wrote:
+
+> -#define _XOPEN_SOURCE /* glibc2 needs this */
+> +#define _XOPEN_SOURCE 500 /* glibc2 and AIX 5.3L need this */
+> +#define _XOPEN_SOURCE_EXTENDED 1 /* AIX 5.3L needs this */
+
+Why not enclose the #define in #ifndef/#endif, and do the real magic in 
+the Makefile? Within the AIX clause:
+
+	ALL_CFLAGS += -D_XOPEN_SOURCE=500 -XOPEN_SOURCE_EXTENDED=1
+
+This way the source does not get cluttered with platform dependent 
+defines.
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun 30 16:25:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2AF89575B9
+	for <tkil@scrye.com>; Thu, 30 Jun 2005 16:25:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263087AbVF3WYx (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 30 Jun 2005 18:24:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263050AbVF3WYx
+	(ORCPT <rfc822;git-outgoing>); Thu, 30 Jun 2005 18:24:53 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:40137 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S263045AbVF3WYc (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 30 Jun 2005 18:24:32 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j5UMOIjA032634
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 30 Jun 2005 15:24:19 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j5UMOHh0005123;
+	Thu, 30 Jun 2005 15:24:18 -0700
+Date:	Thu, 30 Jun 2005 15:26:23 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Daniel Barkalow <barkalow@iabervon.org>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: "git-send-pack"
+In-Reply-To: <42C46A3C.1070104@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506301514240.14331@ppc970.osdl.org>
+References: <Pine.LNX.4.21.0506301651250.30848-100000@iabervon.org>
+ <Pine.LNX.4.58.0506301412470.14331@ppc970.osdl.org> <42C46A3C.1070104@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:5475
+
+
+
+On Thu, 30 Jun 2005, H. Peter Anvin wrote:
+> 
+> For producing minimum network traffic, I think something like this would 
+> work:
+
+In the "minimum traffic", the thing to look at is number of packets, and 
+penalize further for anything that requires a synchronous reply.
+
+That's why I'd suggest just letting the client stream out the list of
+objects it has - it may appear wasteful to stream out even a thousand
+SHA1's, but hey, that's just 20kB worth of data, and especially if there
+is no synchronous stuff, that's just 15 ethernet packets.
+
+For the server side, looking up a thousand SHA's is pretty easy (it's
+_really_ cheap if the server ends up using a few big packed objects: you
+don't even have to look at the pack data itself, it can look at just the
+index and say "yup, I've got it")
+
+So I'd go for simple brute force over anything that needs to discuss
+things and have a back-and-forth between server/client. And making the
+client do the heavy lifting is the right thing to do (the server will have
+to create the pack, which can be expensive, but you can tune the delta 
+window for how much CPU the server has)
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

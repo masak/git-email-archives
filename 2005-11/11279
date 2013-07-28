@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 16:00:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 08097260D23
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 16:00:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965345AbVKGW5V (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 17:57:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965590AbVKGW5T
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 17:57:19 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:36738 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S965589AbVKGW44 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 7 Nov 2005 17:56:56 -0500
+Received: (qmail 3842 invoked by uid 2001); 7 Nov 2005 23:56:52 +0100
+Date:	Mon, 7 Nov 2005 23:56:52 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Joel Becker <Joel.Becker@oracle.com>
+Cc:	Martin Langhoff <martin.langhoff@gmail.com>,
+	Linus Torvalds <torvalds@osdl.org>,
+	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	walt <wa1ter@myrealbox.com>, git@vger.kernel.org
+Subject: Re: git versus CVS (versus bk)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051107225652.GW1431@pasky.or.cz>
+References: <Pine.LNX.4.64.0510301720390.14972@x2.ybpnyarg> <Pine.LNX.4.64.0510301811390.27915@g5.osdl.org> <Pine.LNX.4.63.0510311111340.2916@wbgn013.biozentrum.uni-wuerzburg.de> <Pine.LNX.4.64.0510310804400.27915@g5.osdl.org> <20051031195010.GM11488@ca-server1.us.oracle.com> <46a038f90510311228v50743158q80d79e963bd503ce@mail.gmail.com> <20051031213003.GN11488@ca-server1.us.oracle.com> <20051101091533.GB11618@pasky.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051101091533.GB11618@pasky.or.cz>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:11279
+
+Dear diary, on Tue, Nov 01, 2005 at 10:15:33AM CET, I got a letter
+where Petr Baudis <pasky@suse.cz> told me that...
+> That said, with a big warning, I would be willing to do something like
+> cg-merge -s and cg-update -s (s as squash), with a big warning that this
+> is suitable only for topical branches. And I think it'd be still much
+> better to spend the work making StGIT able to track history of changes
+> to a particular patch.
+
+FWIW, cg-merge -s and cg-update -s is supported now.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

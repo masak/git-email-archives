@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 20 14:52:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0187C276ACD
+	for <tkil@scrye.com>; Sun, 20 Nov 2005 14:52:09 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932091AbVKTVwA (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 20 Nov 2005 16:52:00 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932092AbVKTVwA
+	(ORCPT <rfc822;git-outgoing>); Sun, 20 Nov 2005 16:52:00 -0500
+Received: from ns2.uludag.org.tr ([193.140.100.220]:61096 "EHLO uludag.org.tr")
+	by vger.kernel.org with ESMTP id S932091AbVKTVwA convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 20 Nov 2005 16:52:00 -0500
+Received: from [85.101.233.42] (unknown [85.101.233.42])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by uludag.org.tr (Postfix) with ESMTP id 71467AAF19
+	for <git@vger.kernel.org>; Sun, 20 Nov 2005 23:51:53 +0200 (EET)
+From:	Ismail Donmez <ismail@uludag.org.tr>
+Organization: =?utf-8?q?T=C3=9CB=C4=B0TAK/UEKAE?=
+To:	git@vger.kernel.org
+Subject: Re: non-trivial merge failures
+Date:	Sun, 20 Nov 2005 23:51:42 +0200
+User-Agent: KMail/1.8.92
+References: <20051120.134945.104623647.davem@davemloft.net>
+In-Reply-To: <20051120.134945.104623647.davem@davemloft.net>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 8BIT
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511202351.42320.ismail@uludag.org.tr>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 12
+Xref: brand.scrye.com linux.git:12395
+
+Sunday 20 November 2005 23:49 tarihinde şunları yazmıştınız:
+> ImportError: No module named subprocess
+
+You need Python 2.4.x, subprocess is a new module in Python 2.4
+
+Regards,
+ismail
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

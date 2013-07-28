@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 21 10:19:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 39D5F198CAE
+	for <tkil@scrye.com>; Fri, 21 Oct 2005 10:19:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965015AbVJUQSt (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 21 Oct 2005 12:18:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965016AbVJUQSt
+	(ORCPT <rfc822;git-outgoing>); Fri, 21 Oct 2005 12:18:49 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:28642 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S965015AbVJUQSs (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 21 Oct 2005 12:18:48 -0400
+Received: (qmail 18490 invoked from network); 21 Oct 2005 18:18:46 +0200
+Received: from localhost (HELO machine.or.cz) (127.0.0.1)
+  by localhost with SMTP; 21 Oct 2005 18:18:46 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	<git@vger.kernel.org>
+Subject: [PATCH] Silence confusing and false-positive curl error message
+Date:	Fri, 21 Oct 2005 18:18:46 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051021161846.18478.50202.stgit@machine.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:10430
+
+git-http-fetch spits out curl 404 error message when unable to fetch an object,
+but that's confusing since no error really happenned and the object is usually
+found in a pack it tries right after that. And if the object still cannot be
+retrieved, it will say another error message anyway. OTOH other HTTP errors
+(403 etc) are likely fatal and the user should be still informed about them.
+
+Signed-off-by: Petr Baudis <pasky@suse.cz>
+---
+
+ http-fetch.c |    9 ++++++---
+ 1 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/http-fetch.c b/http-fetch.c
+index a7dc2cc..2d76ee1 100644
+--- a/http-fetch.c
++++ b/http-fetch.c
+@@ -1069,9 +1069,12 @@ static int fetch_object(struct alt_base 
+ 	}
+ 
+ 	if (request->curl_result != CURLE_OK && request->http_code != 416) {
+-		ret = error("%s (curl_result = %d, http_code = %ld, sha1 = %s)",
+-			    request->errorstr, request->curl_result,
+-			    request->http_code, hex);
++		if (request->http_code == 404)
++			ret = -1; /* Be silent, it is probably in a pack. */
++		else
++			ret = error("%s (curl_result = %d, http_code = %ld, sha1 = %s)",
++				    request->errorstr, request->curl_result,
++				    request->http_code, hex);
+ 		release_request(request);
+ 		return ret;
+ 	}
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

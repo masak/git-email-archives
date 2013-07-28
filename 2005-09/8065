@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep  4 18:36:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 36C0420D009
+	for <tkil@scrye.com>; Sun,  4 Sep 2005 18:36:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932171AbVIEAf0 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Sep 2005 20:35:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932160AbVIEAfZ
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Sep 2005 20:35:25 -0400
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:10636 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S932148AbVIEAfY (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 4 Sep 2005 20:35:24 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050905003522.DTUF2438.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 4 Sep 2005 20:35:22 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Peter Williams <pwil3058@bigpond.net.au>
+Cc:	Horst von Brand <vonbrand@inf.utfsm.cl>,
+	Daniel Barkalow <barkalow@iabervon.org>,
+	Tim Ottinger <tottinge@progeny.com>, git@vger.kernel.org
+Subject: Re: Tool renames? was Re: First stab at glossary
+References: <200509042143.j84LhDZo020359@laptop11.inf.utfsm.cl>
+	<7vmzmsbcuc.fsf@assigned-by-dhcp.cox.net>
+	<431B90B9.4000108@bigpond.net.au>
+Date:	Sun, 04 Sep 2005 17:35:21 -0700
+In-Reply-To: <431B90B9.4000108@bigpond.net.au> (Peter Williams's message of
+	"Mon, 05 Sep 2005 10:26:33 +1000")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vbr38bbcm.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 14
+Xref: brand.scrye.com linux.git:8065
+
+Peter Williams <pwil3058@bigpond.net.au> writes:
+
+> *.pl is what is usually used for perl scripts.
+
+My recollection may be faulty, but '*.pl' was meant to be used
+for older Perl libraries back in perl4 days, and the standalone
+scripts are to be named '*.perl' but many people made the
+mistake of naming them '*.pl'.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

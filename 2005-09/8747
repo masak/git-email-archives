@@ -1,0 +1,89 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 23:51:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9FEAC1C9525
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 23:51:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750942AbVIQFuP (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Sep 2005 01:50:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750947AbVIQFuP
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Sep 2005 01:50:15 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:16357 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750942AbVIQFuN (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 17 Sep 2005 01:50:13 -0400
+Received: (qmail 31768 invoked by uid 2001); 17 Sep 2005 07:50:09 +0200
+Date:	Sat, 17 Sep 2005 07:50:09 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Catalin Marinas <catalin.marinas@gmail.com>,
+	Pierre Ossman <drzeus-list@drzeus.cx>, git@vger.kernel.org
+Subject: Re: Git and cogito uses different exclude files
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050917055009.GB31324@pasky.or.cz>
+References: <432A7902.20603@drzeus.cx> <tnxbr2t9zsk.fsf@arm.com> <20050916104430.GA25169@pasky.or.cz> <7vfys5ote8.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vfys5ote8.fsf@assigned-by-dhcp.cox.net>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 48
+Xref: brand.scrye.com linux.git:8747
+
+Dear diary, on Fri, Sep 16, 2005 at 06:43:27PM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> Petr Baudis <pasky@suse.cz> writes:
+> 
+> >> The latest StGIT snapshot uses .git/info/exclude. Probably next week I
+> >> will make a new StGIT release.
+> >
+> > So does Cogito now. ;-) It still looks at .git/exclude as well and gives
+> > warning if it exists.
+> 
+> Late last night I could not find in the list archive the "list
+> consensus" I used to justify what 'git-status' does in this log
+> message:
+> 
+>     Message-ID: <7vfysw89do.fsf@assigned-by-dhcp.cox.net>
+>     From: Junio C Hamano <junkio@cox.net>
+>     Subject: [PATCH] Teach git-status-script about git-ls-files --others
+>     Date: Fri, 26 Aug 2005 18:18:59 -0700
+> 
+>     When there is non-empty $GIT_DIR/info/exclude file, use it along
+>     with .gitignore per-directory exclude pattern files (which was
+>     a convention agreed on the list while ago and is compatible with
+>     Cogito) to generate a list of ignored files as well.
+> 
+>     Signed-off-by: Junio C Hamano <junkio@cox.net>
+> 
+> I do remember checking Cogito and StGIT and making sure the use
+> of .gitignore is consistent with you two, but I do not remember
+> if we had consensus on info/exclude now.  It could be that I was
+> just hallucinating back then and ended up forcing this change
+> onto you and your users by mistake in this round.
+
+I'm too tired to search now (just after a night bus trip from Denmark -
+actually, one of the bus drivers looked exactly like Linus, perhaps his
+twin works for a Czech bus company?), but I believe we actually did
+agree on using .git/info/exclude instead of .git/exclude in some old
+now-forgotten thread, or we are having the same hallucinations.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

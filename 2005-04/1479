@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 01:14:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DD8966DB4
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 01:14:34 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262274AbVDXHOT (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 03:14:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262275AbVDXHOT
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 03:14:19 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:26559 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262274AbVDXHOP (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Apr 2005 03:14:15 -0400
+Received: (qmail 1341 invoked by uid 2001); 24 Apr 2005 07:14:13 -0000
+Date:	Sun, 24 Apr 2005 09:14:13 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Paul Jackson <pj@sgi.com>
+Cc: git@vger.kernel.org
+Subject: Re: [ANNOUNCE] git-pasky-0.7
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050424071413.GA578@pasky.ji.cz>
+References: <20050424005923.GA8859@pasky.ji.cz> <20050423205847.7758bfaa.pj@sgi.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050423205847.7758bfaa.pj@sgi.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 34
+Xref: brand.scrye.com linux.git:1479
+
+Dear diary, on Sun, Apr 24, 2005 at 05:58:47AM CEST, I got a letter
+where Paul Jackson <pj@sgi.com> told me that...
+> What are the exact steps, given that I have an empty chunk
+> of diskspace, to get Linux 2.6.12-rc3 to appear there, using
+> git.
+
+FWIW, excerpt from the README:
+
+===
+
+If you want to start out new project, do (IN NEW DIRECTORY)
+
+        git init
+
+and if you want to have a look at someone else's project, do
+
+        git init URL
+
+(your working directory will be by default tracking branch 'origin').
+
+===
+
+(although I'm not sure why did I write it when apparently noone bothers
+to read it anyway ;-)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

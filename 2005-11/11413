@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 15:16:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F3BF8147BD9
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 15:16:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030425AbVKIWKa (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 17:10:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030435AbVKIWKa
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 17:10:30 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:3541 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1030425AbVKIWK3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 17:10:29 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jA9MALnO032070
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 9 Nov 2005 14:10:22 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jA9MAJ6B017593;
+	Wed, 9 Nov 2005 14:10:20 -0800
+Date:	Wed, 9 Nov 2005 14:10:19 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Peter Eriksen <s022018@student.dtu.dk>
+cc:	git@vger.kernel.org
+Subject: Re: Problems with binary patches (pull) and spaces in filenames
+ (gitk)
+In-Reply-To: <20051109213730.GA23052@ebar091.ebar.dtu.dk>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511091404000.4627@g5.osdl.org>
+References: <20051109213730.GA23052@ebar091.ebar.dtu.dk>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 46
+Xref: brand.scrye.com linux.git:11413
+
+
+
+On Wed, 9 Nov 2005, Peter Eriksen wrote:
+> 
+> 1) When pulling an updated binary files, I guess it still tries to 
+>    print this update summary by making and processing patches, and so
+>    gives this error:
+> 
+>        Updating from ab1c4033ba98c043e13da3446e7f244ac7f79942 to
+>        c164231f6b59fd80171e95f31d762a80d884c708.
+>        Fast forward
+>        fatal: patch with only garbage at line 3249
+
+Yes, this is "git-apply --stat" being unhappy about an empty patch.
+
+Maybe we should only be unhappy when actually trying to apply (or check) 
+the patch.
+
+So a patch like the appended may or may not be the right solution.
+
+> 2) When there are spaces in filenames, gitk only shows the first part of
+>    the name in the filelist at the buttom right.
+
+Can't help you there, that's more tcl/tk than I know. Paul?
+
+		Linus
+
+---
+diff --git a/apply.c b/apply.c
+index 3e53b34..da1416a 100644
+--- a/apply.c
++++ b/apply.c
+@@ -890,7 +890,7 @@ static int parse_chunk(char *buffer, uns
+ 
+ 	patchsize = parse_single_patch(buffer + offset + hdrsize, size - offset - hdrsize, patch);
+ 
+-	if (!patchsize && !metadata_changes(patch))
++	if ((check ||apply) && !patchsize && !metadata_changes(patch))
+ 		die("patch with only garbage at line %d", linenr);
+ 
+ 	return offset + hdrsize + patchsize;
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

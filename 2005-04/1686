@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 25 22:58:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 327BA17063C
+	for <tkil@scrye.com>; Mon, 25 Apr 2005 22:58:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261290AbVDZE6m (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 00:58:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261318AbVDZE6m
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 00:58:42 -0400
+Received: from 216-237-124-58.infortech.net ([216.237.124.58]:14722 "EHLO
+	mail.dvmed.net") by vger.kernel.org with ESMTP id S261290AbVDZE6i
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 26 Apr 2005 00:58:38 -0400
+Received: from cpe-065-184-065-144.nc.res.rr.com ([65.184.65.144] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.50 #1 (Red Hat Linux))
+	id 1DQI9a-0002ef-A3; Tue, 26 Apr 2005 04:58:35 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <426DCA75.901@pobox.com>
+Date:	Tue, 26 Apr 2005 00:58:29 -0400
+From: Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.6) Gecko/20050328 Fedora/1.7.6-1.2.5
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: pasky@ucw.cz, git@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Subject: Re: [ANNOUNCE] Cogito-0.8 (former git-pasky, big changes!)
+References: <20050426032422.GQ13467@pasky.ji.cz>
+In-Reply-To: <20050426032422.GQ13467@pasky.ji.cz>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_VF,TW_XV 
+	autolearn=no version=3.0.2
+Lines: 37
+Xref: brand.scrye.com linux.git:1686
+
+Petr Baudis wrote:
+>   Hello,
+> 
+>   here goes Cogito-0.8, my SCMish layer over Linus Torvald's git tree
+> history tracker. This package was formerly called git-pasky, however
+> this release brings big changes. The usage is significantly different,
+> as well as some basic concepts; the history changed again (hopefully the
+> last time?) because of fixing dates of some old commits. The .git/
+> directory layout changed too.
+
+tar xvfj $x
+cd x
+make
+...
+gcc -g -O2 -Wall '-DSHA1_HEADER=<openssl/sha.h>' -o rpull rpull.c 
+libgit.a rsh.c -lz -lssl
+gcc -g -O2 -Wall '-DSHA1_HEADER=<openssl/sha.h>' -o rev-list rev-list.c 
+libgit.a -lz -lssl
+gcc -g -O2 -Wall '-DSHA1_HEADER=<openssl/sha.h>' -o git-mktag 
+git-mktag.c libgit.a -lz -lssl
+gcc -g -O2 -Wall '-DSHA1_HEADER=<openssl/sha.h>' -o diff-tree-helper 
+diff-tree-helper.c libgit.a -lz -lssl
+make: commit-id: Command not found
+Generating cg-version...
+
+
+
+So, it still complains about commit-id
+
+	Jeff
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

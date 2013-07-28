@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 22:47:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4BA736FCE
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 22:47:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262533AbVDYErI (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Apr 2005 00:47:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262532AbVDYErH
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Apr 2005 00:47:07 -0400
+Received: from iabervon.org ([66.92.72.58]:56580 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262533AbVDYErF (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 25 Apr 2005 00:47:05 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DPvV0-0002xi-00; Mon, 25 Apr 2005 00:47:10 -0400
+Date:	Mon, 25 Apr 2005 00:47:10 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Andreas Gal <gal@uci.edu>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] New option (-H) for rpush/rpull to update HEAD
+In-Reply-To: <Pine.LNX.4.58.0504242132280.5064@sam.ics.uci.edu>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0504250041500.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 18
+Xref: brand.scrye.com linux.git:1569
+
+On Sun, 24 Apr 2005, Andreas Gal wrote:
+
+> This patch adds a new option -H to rpush/rpull to update the
+> HEAD pointer when pushing a new release to a remote repository. 
+
+Updating the head pointer (in either direction) should be instead of
+specifying a commit, and should also apply to http-pull. I've also
+suggested some changes to the organization of HEAD and related items, so
+the logical things to read and write are likely to change soon.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

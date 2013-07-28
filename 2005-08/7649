@@ -1,0 +1,95 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 11:07:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A1B7D24B01E
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 11:07:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932229AbVHWRHh (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 23 Aug 2005 13:07:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932230AbVHWRHh
+	(ORCPT <rfc822;git-outgoing>); Tue, 23 Aug 2005 13:07:37 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:45185 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932229AbVHWRHh (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 23 Aug 2005 13:07:37 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7NH7WjA014701
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 23 Aug 2005 10:07:32 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7NH7V3C025536;
+	Tue, 23 Aug 2005 10:07:32 -0700
+Date:	Tue, 23 Aug 2005 10:07:31 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: git-rev-parse question.
+In-Reply-To: <7v7jedulli.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508231004180.3317@g5.osdl.org>
+References: <7v7jedulli.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 50
+Xref: brand.scrye.com linux.git:7649
+
+
+
+On Tue, 23 Aug 2005, Junio C Hamano wrote:
+>
+> I have been looking at what git-rev-parse does and could not
+> figure out a way to convince it to give me only arguments with
+> a '-' prefix.
+
+Gaah. Understandable. It got broken during some cleanup.
+
+Try this trivial patch, it should work better.
+
+NOTE! The behaviour of "--" for git-rev-parse is somewhat unclear. Right 
+now it prints it out with "--flags", which is probably wrong.
+
+		Linus
+---
+Subject: Fix git-rev-parse --default and --flags handling
+
+This makes the argument to --default and any --flags arguments should up 
+correctly.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/rev-parse.c b/rev-parse.c
+--- a/rev-parse.c
++++ b/rev-parse.c
+@@ -107,7 +107,7 @@ static void show_arg(char *arg)
+ 	if (do_rev_argument && is_rev_argument(arg))
+ 		show_rev_arg(arg);
+ 	else
+-		show_norev(arg);
++		show(arg);
+ }
+ 
+ static void show_default(void)
+@@ -122,7 +122,7 @@ static void show_default(void)
+ 			show_rev(NORMAL, sha1, s);
+ 			return;
+ 		}
+-		show_arg(s);
++		show(s);
+ 	}
+ }
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

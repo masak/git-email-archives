@@ -1,0 +1,52 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 01:07:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 001763FBC7
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 01:07:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751376AbVKOIHo (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 03:07:44 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751379AbVKOIHo
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 03:07:44 -0500
+Received: from hand.yhbt.net ([66.150.188.102]:30626 "EHLO mail.yhbt.net")
+	by vger.kernel.org with ESMTP id S1751376AbVKOIHn (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 15 Nov 2005 03:07:43 -0500
+Received: from mayonaise.dyndns.org (user-118bgak.cable.mindspring.com [66.133.193.84])
+	by mail.yhbt.net (Postfix) with SMTP id 70ABF2DC033;
+	Tue, 15 Nov 2005 00:07:42 -0800 (PST)
+Received: by mayonaise.dyndns.org (sSMTP sendmail emulation); Tue, 15 Nov 2005 00:07:42 -0800
+Date:	Tue, 15 Nov 2005 00:07:42 -0800
+From:	Eric Wong <normalperson@yhbt.net>
+To:	Martin Langhoff <martin@catalyst.net.nz>
+Cc:	git list <git@vger.kernel.org>
+Subject: Re: [PATCH 1/2] archimport: allow for old style branch and public tag names
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051115080742.GC30506@Muzzle>
+References: <20051112092336.GA16218@Muzzle> <46a038f90511120354n4584aedfhb1f2928ac41478ab@mail.gmail.com> <20051112202150.GA2037@Muzzle> <46a038f90511141438q1d85d429vedcf2a3b54d761e1@mail.gmail.com> <20051115080352.GG7484@mail.yhbt.net> <20051115080546.GA30506@Muzzle>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051115080546.GA30506@Muzzle>
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 10
+Xref: brand.scrye.com linux.git:11875
+
+Oops, I sent these two patches out of order.  They should apply
+fine without conflicts either way.
+
+-- 
+Eric Wong
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

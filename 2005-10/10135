@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 15 14:45:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_SV 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AA7E82851FA
+	for <tkil@scrye.com>; Sat, 15 Oct 2005 14:45:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751236AbVJOUoM (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 15 Oct 2005 16:44:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751237AbVJOUoM
+	(ORCPT <rfc822;git-outgoing>); Sat, 15 Oct 2005 16:44:12 -0400
+Received: from fep01-0.kolumbus.fi ([193.229.0.41]:40056 "EHLO
+	fep01-app.kolumbus.fi") by vger.kernel.org with ESMTP
+	id S1751236AbVJOUoL (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 15 Oct 2005 16:44:11 -0400
+Received: from litku.valo.iki.fi ([81.197.35.21]) by fep01-app.kolumbus.fi
+          with ESMTP
+          id <20051015204409.BLQV24578.fep01-app.kolumbus.fi@litku.valo.iki.fi>;
+          Sat, 15 Oct 2005 23:44:09 +0300
+From:	Kalle Valo <Kalle.Valo@iki.fi>
+To:	Matthias Urlichs <smurf@smurf.noris.de>
+Cc:	git@vger.kernel.org
+Subject: svnimport: fixed Makefile entry
+References: <pan.2005.08.19.10.00.49.401829@smurf.noris.de>
+	<pan.2005.10.10.09.45.00.468989@smurf.noris.de>
+	<878xwuldvx.fsf@litku.valo.iki.fi>
+Date:	Sat, 15 Oct 2005 23:44:09 +0300
+In-Reply-To: <878xwuldvx.fsf@litku.valo.iki.fi> (Kalle Valo's message of "Sat,
+	15 Oct 2005 23:32:50 +0300")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <874q7ildd2.fsf_-_@litku.valo.iki.fi>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:10135
+
+Makefile entry for git-svnimport contained a small typo.
+
+---
+
+ Makefile |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+applies-to: b5467f815f8de270a755099df924bff5ed98512e
+bce2921cf6fe774ba4f8edffe35ef914c2a836e6
+diff --git a/Makefile b/Makefile
+index 8f2dfb2..1cca928 100644
+--- a/Makefile
++++ b/Makefile
+@@ -94,7 +94,7 @@ SCRIPT_SH = \
+ SCRIPT_PERL = \
+ 	git-archimport.perl git-cvsimport.perl git-relink.perl \
+ 	git-rename.perl git-shortlog.perl git-fmt-merge-msg.perl \
+-	git-findtags.perl git-svnimport-perl
++	git-findtags.perl git-svnimport.perl
+ 
+ SCRIPT_PYTHON = \
+ 	git-merge-recursive.py
+---
+0.99.8.GIT
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

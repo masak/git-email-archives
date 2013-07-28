@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun  3 18:00:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id BB86C989AE
+	for <tkil@scrye.com>; Fri,  3 Jun 2005 18:00:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261180AbVFDAAq (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 3 Jun 2005 20:00:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261183AbVFDAAq
+	(ORCPT <rfc822;git-outgoing>); Fri, 3 Jun 2005 20:00:46 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:37357 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261180AbVFDAAo (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 3 Jun 2005 20:00:44 -0400
+Received: (qmail 6326 invoked by uid 2001); 4 Jun 2005 00:00:42 -0000
+Date:	Sat, 4 Jun 2005 02:00:42 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Use correct U*MAX.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050604000042.GG13093@pasky.ji.cz>
+References: <7vy89ums2l.fsf@assigned-by-dhcp.cox.net> <7vis0xkjn4.fsf@assigned-by-dhcp.cox.net> <7vwtpc7lju.fsf_-_@assigned-by-dhcp.cox.net> <20050603230234.GC13093@pasky.ji.cz> <7v4qcfko0q.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v4qcfko0q.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 19
+Xref: brand.scrye.com linux.git:4497
+
+Dear diary, on Sat, Jun 04, 2005 at 01:40:21AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> I'd rather see it use the correct U*MAX.
+
+Care to elaborate? It doesn't make sense to me to use any U*MAX stuff
+there whatsoever. (And how do you define the "correct" U*MAX anyway?)
+
+P.S.: Could you please always keep at least some context in the mail?
+Thanks.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

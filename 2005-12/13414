@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  9 04:00:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EE42E186EF6
+	for <tkil@scrye.com>; Fri,  9 Dec 2005 04:00:30 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932115AbVLIK7X (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 9 Dec 2005 05:59:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751311AbVLIK7X
+	(ORCPT <rfc822;git-outgoing>); Fri, 9 Dec 2005 05:59:23 -0500
+Received: from nproxy.gmail.com ([64.233.182.206]:12831 "EHLO nproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1751310AbVLIK7X convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Fri, 9 Dec 2005 05:59:23 -0500
+Received: by nproxy.gmail.com with SMTP id n28so271319nfc
+        for <git@vger.kernel.org>; Fri, 09 Dec 2005 02:59:21 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=Z78acXCH+FcoQscaTH/nXT/m8JLdiNAuBCE8chcd7K887pQQoyljliQRzSmyQ+B9aT5PWrCpKEEuuIubgEQziQ1AltpuJMpSgqk4dP7l5Bnhi5a2GLt9Ghw9UHhGaoBJ/Uff1SgKBbnVRA2nIRz2UKz48n2Q/Hv4i8xpO5BSDhw=
+Received: by 10.48.254.13 with SMTP id b13mr398508nfi;
+        Fri, 09 Dec 2005 02:59:21 -0800 (PST)
+Received: by 10.48.248.18 with HTTP; Fri, 9 Dec 2005 02:59:21 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <81b0412b0512090259l5f06f6d6n5416e271af36d6a1@mail.gmail.com>
+Date:	Fri, 9 Dec 2005 11:59:21 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Junio C Hamano <junkio@cox.net>
+Subject: Re: [PATCH] use "git init-db" in tests
+Cc:	git@vger.kernel.org
+In-Reply-To: <7vlkyu7l05.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20051208202555.GA3046@steel.home>
+	 <7vu0dje2oi.fsf@assigned-by-dhcp.cox.net>
+	 <20051208210251.GB19423@steel.home>
+	 <7v7jafcmev.fsf@assigned-by-dhcp.cox.net>
+	 <81b0412b0512082336i674932bapd631d559e80cad79@mail.gmail.com>
+	 <7vlkyu7l05.fsf@assigned-by-dhcp.cox.net>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:13414
+
+On 12/9/05, Junio C Hamano <junkio@cox.net> wrote:
+> > An accident? Like a filesystem not supporting executable permission?
+> > What is the reason to report success from the test run in that conditions?
+>
+> Let's be reasonable.  I was hoping to hear from you a real-world
+> breakage case that I overlooked due to my lack of access to
+> platforms you may have access to. I am not interested in a
+> theoretical failure case discussion very much.  If your
+> filesystem does not support executables, why do you expect
+> things to run from the freshly built directory to begin with?
+
+In my case it was the freshly build directory where a chmod 0666 * was
+done. This directory wont rebuild (the dates are correct), and the
+tests run, as if nothing happened.
+I actually noticed only after a half an hour, that I wasn't running
+the executables I expected.
+
+> Linkage error of git-init-db (or git wrapper) may leave the file
+> created but leave that in unexecutable form, which could be a
+> valid concern, but that would signal an error to the make during
+> the build stage, and "test" target depends on "all" target.
+>
+> And please do not start arguing that you can cd to 't' directory
+> after such a build failure and manually say "make".  You can do
+> that without even running make at the top level and cause the
+> same failure.  I consider both of them pilot errors.
+
+Yes, but they are not obvious. It is also not obvious what to do,
+because everything seams alright.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

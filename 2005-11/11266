@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 11:35:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EDB8313590D
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 11:35:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964907AbVKGSeg (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 13:34:36 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964909AbVKGSeg
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 13:34:36 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:19863 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S964907AbVKGSef (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 7 Nov 2005 13:34:35 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP id 839B213F186
+	for <git@vger.kernel.org>; Mon,  7 Nov 2005 19:34:34 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP id 65F67B50DB
+	for <git@vger.kernel.org>; Mon,  7 Nov 2005 19:34:34 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP id 4A186B50D9
+	for <git@vger.kernel.org>; Mon,  7 Nov 2005 19:34:34 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP id 31C1913F186
+	for <git@vger.kernel.org>; Mon,  7 Nov 2005 19:34:34 +0100 (CET)
+Date:	Mon, 7 Nov 2005 19:34:34 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org
+Subject: Notes on http-push
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511071926240.14149@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 39
+Xref: brand.scrye.com linux.git:11266
+
+Hi,
+
+two little things I noticed while playing around with http-push:
+
+- if you init your test by git-clone'ing from a http repo, be sure to
+	add a slash to the URL, else git-push will tell you erroneously
+	that the server does not do DAV locking. (Probably http-push.c 
+	should be fixed to add the slash when needed.)
+
+- if you execute "git push origin", it does not do anything (correctly?),
+	if there is no "Push:" line in .git/remotes/origin (which is the
+	default after cloning). Try "git push origin master". (Probably
+	http-push or git-push should say something about it, not
+	just quit silently.)
+
+If you want to play with it yourself: A minimal setup using Apache needs 
+something like this in httpd.conf:
+
+--- snip ---
+<Location /gits>
+  DAV on
+  Deny From *
+  Allow From 192.168.0.
+</Location>
+
+DAVLockDB "/usr/local/apache2/temp/DAV.lock"
+--- snap ---
+
+Make sure that your www user has write permissions on <HTDOCS>/gits and on 
+the DAV lock.
+
+Have fun,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,49 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 10 16:13:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6D64D27DC98
+	for <tkil@scrye.com>; Fri, 10 Jun 2005 16:13:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261266AbVFJWN1 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 10 Jun 2005 18:13:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261267AbVFJWN1
+	(ORCPT <rfc822;git-outgoing>); Fri, 10 Jun 2005 18:13:27 -0400
+Received: from sccrmhc14.comcast.net ([204.127.202.59]:10227 "EHLO
+	sccrmhc14.comcast.net") by vger.kernel.org with ESMTP
+	id S261266AbVFJWN0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 10 Jun 2005 18:13:26 -0400
+Received: from highlab.com ([24.8.179.27])
+          by comcast.net (sccrmhc14) with ESMTP
+          id <2005061022132601400crjeae>; Fri, 10 Jun 2005 22:13:26 +0000
+Received: from seb (helo=highlab.com)
+	by highlab.com with local-esmtp (Exim 4.50)
+	id 1Dgrmf-0003x5-Ik
+	for git@vger.kernel.org; Fri, 10 Jun 2005 16:15:25 -0600
+To: git@vger.kernel.org
+Subject: cg-pull fails on ssh repos 
+Date:	Fri, 10 Jun 2005 16:15:25 -0600
+From: Sebastian Kuzminsky <seb@highlab.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1Dgrmf-0003x5-Ik@highlab.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 10
+Xref: brand.scrye.com linux.git:4811
+
+cg-pull's pull_ssh() calls git-rpull, should that be git-ssh-pull?
+
+
+-- 
+Sebastian Kuzminsky
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

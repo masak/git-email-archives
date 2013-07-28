@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 15:43:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 35E291E15DF
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 15:43:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161009AbVKRWmf (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 17:42:35 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161047AbVKRWmf
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 17:42:35 -0500
+Received: from web31805.mail.mud.yahoo.com ([68.142.207.68]:40602 "HELO
+	web31805.mail.mud.yahoo.com") by vger.kernel.org with SMTP
+	id S1161009AbVKRWme (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 17:42:34 -0500
+Received: (qmail 50768 invoked by uid 60001); 18 Nov 2005 22:42:33 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Message-ID:Received:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=v62L3YgThuMMwDrHh7gO6CK5BW45ai0HPnlz5kMQv456EOLb9MIvh1p8Jiaoz3hLeePn7Srf9c4vF9RsP8SdY6W37V9CZAq76TXLFwzrV/Bwz8XDHEygeGxGnS6OLBB00ZEqA1lhnjvkQhQAkp1YoA18mljyrLJs3fv1REs74rA=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051118224233.50766.qmail@web31805.mail.mud.yahoo.com>
+Received: from [68.221.46.29] by web31805.mail.mud.yahoo.com via HTTP; Fri, 18 Nov 2005 14:42:33 PST
+Date:	Fri, 18 Nov 2005 14:42:33 -0800 (PST)
+From:	Luben Tuikov <ltuikov@yahoo.com>
+Reply-To: ltuikov@yahoo.com
+Subject: Re: [PATCH rev-list.c] max-count in terms of intersection
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+In-Reply-To: <7v1x1dha6x.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:12280
+
+
+--- Junio C Hamano <junkio@cox.net> wrote:
+
+> Luben Tuikov <ltuikov@yahoo.com> writes:
+> 
+> > diff-tree 768b79de9eadc38a839332df0fcce021f7174d6d (from
+> 2e67a5f449f4026097494569f871d79bf263ab28)
+> > tree 6403fc730f8d5843043788f4c2f466727ba94bc0
+> > parent 2e67a5f449f4026097494569f871d79bf263ab28
+> > author Luben Tuikov <ltuikov@yahoo.com> 1132349344 -0500
+> > committer Luben Tuikov <ltuikov@yahoo.com> 1132349344 -0500
+> >
+> >     [PATCH rev-list.c] max-count in terms of intersection
+> >     
+> 
+> Documentation/SubmittingPatches, perhaps?
+
+Sorry, I just saw this document existed for GIT too.
+Would you like me to resubmit?
+
+> >     When a path designation is given, max-count counts the number
+> >     of commits therein (intersection), not globally.
+> 
+> This makes sense, but I wonder if the same logic applies to
+> max_age as well.  If we have clock-skewed commits that are
+> skipped by the DENSE processing, we probably do not want them to
+> be affecting what to do on the commits that matter.
+
+As far as I understand it, I think max-age is fine the way
+it is.  After all, max-age depends on date/time which is
+absolute (i.e. applies to commits in the whole set and in
+the intersection just the same).
+
+    Luben
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

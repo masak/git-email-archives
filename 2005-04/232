@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 15 17:49:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 53795174606
+	for <tkil@scrye.com>; Fri, 15 Apr 2005 17:49:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262385AbVDOXtn (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 15 Apr 2005 19:49:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262406AbVDOXtn
+	(ORCPT <rfc822;git-outgoing>); Fri, 15 Apr 2005 19:49:43 -0400
+Received: from wproxy.gmail.com ([64.233.184.202]:37591 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262385AbVDOXtg convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 15 Apr 2005 19:49:36 -0400
+Received: by wproxy.gmail.com with SMTP id 69so850916wri
+        for <git@vger.kernel.org>; Fri, 15 Apr 2005 16:49:35 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=tp+b/qsz4BUT5C3cPf/OcV4VVBd2fFhKU3PLY/WsyMaQzuLIAbtgSvoyv+3eOnYJjlsUnq9B2SaYKddIqpl7zs4Tivg+YZNQxGMrq6/z6rQOvv695gXXiYotb00T16+4z2TLsyd0YHeSczhJyULOR1qY8rfDCdpbkNE48qIDeVc=
+Received: by 10.54.43.72 with SMTP id q72mr347337wrq;
+        Fri, 15 Apr 2005 16:49:35 -0700 (PDT)
+Received: by 10.54.79.20 with HTTP; Fri, 15 Apr 2005 16:49:05 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <81b0412b050415164958cadbe8@mail.gmail.com>
+Date:	Sat, 16 Apr 2005 01:49:05 +0200
+From: Alex Riesen <raa.lkml@gmail.com>
+Reply-To: Alex Riesen <raa.lkml@gmail.com>
+To: azarah@nosferatu.za.org
+Subject: Re: Re: Re: Re: Remove need to untrack before tracking new branch
+Cc: Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+In-Reply-To: <1113543914.23299.151.camel@nosferatu.lan>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20050412132307.GH22614@pasky.ji.cz>
+	 <20050413221936.GI25711@pasky.ji.cz>
+	 <1113461754.23299.68.camel@nosferatu.lan>
+	 <1113467335.23299.77.camel@nosferatu.lan>
+	 <1113467905.23299.81.camel@nosferatu.lan>
+	 <20050414091106.GX25711@pasky.ji.cz>
+	 <1113471609.23299.95.camel@nosferatu.lan>
+	 <1113472557.23299.99.camel@nosferatu.lan>
+	 <81b0412b0504141535793cc235@mail.gmail.com>
+	 <1113543914.23299.151.camel@nosferatu.lan>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.2
+Lines: 21
+Xref: brand.scrye.com linux.git:232
+
+On 4/15/05, Martin Schlemmer <azarah@nosferatu.za.org> wrote:
+> > > +               if (update_mode && changed & MODE_CHANGED)
+> > > +                       chmod(ce->name, ce->st_mode);
+> >
+> > it's "if ((update_mode && changed) & MODE_CHANGED)"
+> > Did you really mean that?
+> 
+> No, '&' have a higher priority (weight?) than '&&'.  Although, yes, it
+> might be better style to add brackets.
+
+I wasn't concerned about style
+
+> But just to make you happy, let me prove it:
+
+It's not to make me happy, it's just to prove you're right.
+You did it, I stand corrected.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

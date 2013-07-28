@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 27 13:59:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A7C191704C8
+	for <tkil@scrye.com>; Fri, 27 May 2005 13:59:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262565AbVE0T7F (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 27 May 2005 15:59:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262566AbVE0T7F
+	(ORCPT <rfc822;git-outgoing>); Fri, 27 May 2005 15:59:05 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:34231 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S262565AbVE0T7D (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 27 May 2005 15:59:03 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j4RJwvS8007893
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 27 May 2005 19:58:57 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j4RJwvO0007892;
+	Fri, 27 May 2005 21:58:57 +0200 (CEST)
+Date:	Fri, 27 May 2005 21:58:56 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: More gitweb queries..
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050527195856.GA7735@cip.informatik.uni-erlangen.de>
+References: <Pine.LNX.4.58.0505271145570.17402@ppc970.osdl.org> <20050527192941.GE7068@cip.informatik.uni-erlangen.de> <7vd5rcxx5p.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vd5rcxx5p.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 17
+Xref: brand.scrye.com linux.git:4056
+
+Hello,
+
+* Junio C Hamano <junkio@cox.net> [050527 21:54]:
+> Thomas, could you please stop doing Mail-Followup-To in your
+> header please?  I automatically did 'reply all' and ended up
+> preaching Linus (because that was the first mailbox on your
+> Mail-Followup-to header) how Octopus works, when he knows what
+> it is already.
+
+test without the mft.
+
+	Thomas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

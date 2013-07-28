@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 12 13:54:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A192D14706A
+	for <tkil@scrye.com>; Thu, 12 May 2005 13:54:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262016AbVELTyq (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 15:54:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262032AbVELTyq
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 15:54:46 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:3530 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S262016AbVELTyo (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 12 May 2005 15:54:44 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050512195419.HLHB22430.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 12 May 2005 15:54:19 -0400
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] checkout-cache fix
+References: <118833cc05050911255e601fc@mail.gmail.com>
+	<7vr7gewuxt.fsf@assigned-by-dhcp.cox.net>
+	<20050510230357.GF26384@pasky.ji.cz>
+	<7vsm0us5p5.fsf@assigned-by-dhcp.cox.net>
+	<118833cc050511113122e2d17d@mail.gmail.com>
+	<7vpsvxqwab.fsf@assigned-by-dhcp.cox.net>
+	<7vd5rxquo5.fsf@assigned-by-dhcp.cox.net>
+	<20050511224044.GI22686@pasky.ji.cz>
+	<7voebhnwey.fsf_-_@assigned-by-dhcp.cox.net>
+	<20050512193838.GE324@pasky.ji.cz>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 12 May 2005 12:54:17 -0700
+In-Reply-To: <20050512193838.GE324@pasky.ji.cz> (Petr Baudis's message of
+ "Thu, 12 May 2005 21:38:38 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vekccfceu.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 19
+Xref: brand.scrye.com linux.git:3160
+
+>>>>> "PB" == Petr Baudis <pasky@ucw.cz> writes:
+
+PB> ... I've already seen something like this
+PB> in one commit merged from git-jc (IIRC some of the Ingo Molnar's leak
+PB> fixes),...
+
+Yes, I am very unhappy about that commit, too.  I was mucking
+with jit-commit command at the time, and apparently used a buggy
+one to make that commit---I realized what happened much later
+when I reviewed the commit log and it was already too late (I
+told everybody that the tree is published and pullable by then).
+
+Sorry about that.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

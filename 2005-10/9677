@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct  4 12:54:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BCDFE1A075D
+	for <tkil@scrye.com>; Tue,  4 Oct 2005 12:54:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964912AbVJDSx3 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 4 Oct 2005 14:53:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964914AbVJDSx3
+	(ORCPT <rfc822;git-outgoing>); Tue, 4 Oct 2005 14:53:29 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:12231 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S964912AbVJDSx2 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 4 Oct 2005 14:53:28 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051004185319.RTRY29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 4 Oct 2005 14:53:19 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+Cc:	git@vger.kernel.org
+Subject: Re: What to expect after 0.99.8
+References: <7v7jcvxxrl.fsf@assigned-by-dhcp.cox.net>
+	<200510031455.30187.Josef.Weidendorfer@gmx.de>
+	<7v1x31hlj4.fsf@assigned-by-dhcp.cox.net>
+	<200510041108.36202.Josef.Weidendorfer@gmx.de>
+Date:	Tue, 04 Oct 2005 11:53:26 -0700
+In-Reply-To: <200510041108.36202.Josef.Weidendorfer@gmx.de> (Josef
+	Weidendorfer's message of "Tue, 4 Oct 2005 11:08:35 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyrhcdw9.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 47
+Xref: brand.scrye.com linux.git:9677
+
+Josef Weidendorfer <Josef.Weidendorfer@gmx.de> writes:
+
+> On Tuesday 04 October 2005 07:57, Junio C Hamano wrote:
+>> I do not understand this comment.
+>
+> I talk about configuration per remote repository vs. configuration per
+> local head, and a consistent user interface regarding these.
+>
+> Cogito is using configuration per head: If there is a remote fetch mapping,
+> this is stored in branches/<headname>. There is no new shortcut to
+> remember, because every file in branches corresponds to a local head.
+
+Thanks.  This is "lightbulb" moment for me.  I did not realize
+branches/ files are "per head configuration" -- I just thought
+they are arbitrary tokens, and by convention it can only slurp
+into the branch with the same name as the file.  I even thought
+about mentioning the possibility to enhance the current
+
+    url://to/repo#rembranch
+
+to
+    url://to/repo#rembranch1:localbranch1,rembranch2:localbranch2,...
+
+but I am glad I didn't -- localbranch cannot be anything other
+than the filename because by definition the file is to describe
+the local branch of the same name, and describing more than one
+localbranch does not make sense.  OTOH,
+
+    url://to/repo#rembranch1,rembranch2,...
+
+may make sense now --- you are telling this local branch pulls
+(and makes Octopus) from multiple remote branches.
+
+Anyway, I think I understand what you meant to say now.
+
+> I still think it is wrong to use one head name of a repository as the
+> default for the repository's name.
+
+I think this is about branches/ file: "One head name of the
+local repository is used as a shorthand to name the remote
+repository described by the file, inside the local repository".  
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

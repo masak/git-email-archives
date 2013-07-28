@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 08:17:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E641C2851FA
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 08:17:36 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751034AbVKQPRc (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 10:17:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751040AbVKQPRc
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 10:17:32 -0500
+Received: from metronet39.infocom.co.ug ([217.113.73.39]:61445 "EHLO
+	entandikwa.ds.co.ug") by vger.kernel.org with ESMTP
+	id S1751031AbVKQPRb (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 10:17:31 -0500
+Received: from igloo.ds.co.ug (igloo.ds.co.ug [192.168.129.66])
+	by entandikwa.ds.co.ug (Postfix) with ESMTP id D51155160
+	for <git@vger.kernel.org>; Thu, 17 Nov 2005 18:19:02 +0300 (EAT)
+Received: from matlads by igloo.ds.co.ug with local (Exim 4.54)
+	id 1EclVN-00012B-W3
+	for git@vger.kernel.org; Thu, 17 Nov 2005 18:16:54 +0300
+Date:	Thu, 17 Nov 2005 18:16:53 +0300
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] Add .git/version
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051117151653.GB3626@igloo.ds.co.ug>
+Mail-Followup-To: git@vger.kernel.org
+References: <11322339372137-git-send-email-matlads@dsmagic.com> <Pine.LNX.4.63.0511171436170.13358@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.63.0511171436170.13358@wbgn013.biozentrum.uni-wuerzburg.de>
+User-Agent: Mutt/1.5.11
+From:	Martin Atukunda <matlads@dsmagic.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:12108
+
+On Thu, Nov 17, 2005 at 02:39:21PM +0100, Johannes Schindelin wrote:
+> Hi,
+> 
+> On Thu, 17 Nov 2005, Martin Atukunda wrote:
+> 
+> > This patch series attempts to add .git/version support to init-db.c.
+> 
+> Wouldn't it make more sense to add the variable VERSION to git-var? After 
+> all, git is designed to be backwards compatible; newer versions are 
+> supposed to work with ancient repositories.
+> 
+> I think you are more interested in knowing which version the tools are at.
+
+Actually this patch series is more a response to the thread
+"Re: [PATCH] Disable USE_SYMLINK_HEAD by default" in  particular see
+this message 200511160205.43443.Josef.Weidendorfer@gmx.de by Josef
+Weidendorfer.
+
+We've had at least one change that was backwards incompatible, though
+this was in the ancient days of git development. This patch allows git to record what
+version of the git tools created the repo we are dealing with. Just in
+case future changes require this.
+
+- Martin -
+
+-- 
+Due to a shortage of devoted followers, the production of great leaders has been discontinued.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

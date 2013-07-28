@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep  8 15:55:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A02B82A2FC1
+	for <tkil@scrye.com>; Thu,  8 Sep 2005 15:55:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964960AbVIHVy5 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Sep 2005 17:54:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965005AbVIHVy5
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Sep 2005 17:54:57 -0400
+Received: from zealot.progeny.com ([216.37.46.162]:63921 "EHLO
+	morimoto.progeny.com") by vger.kernel.org with ESMTP
+	id S964960AbVIHVy4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 8 Sep 2005 17:54:56 -0400
+Received: from localhost.localdomain (morimoto.progeny.com [192.168.1.53])
+	by morimoto.progeny.com (Postfix) with ESMTP
+	id 9E934636A4; Thu,  8 Sep 2005 16:54:55 -0500 (EST)
+Subject: Re: Multi-ancestor read-tree notes
+From:	Darrin Thompson <darrint@progeny.com>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Cc:	git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.63.0509081727560.23242@iabervon.org>
+References: <Pine.LNX.4.63.0509050049030.23242@iabervon.org>
+	 <1126199765.3984.1.camel@localhost.localdomain>
+	 <Pine.LNX.4.63.0509081727560.23242@iabervon.org>
+Content-Type: text/plain
+Date:	Thu, 08 Sep 2005 16:54:55 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1126216495.3984.4.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 16
+Xref: brand.scrye.com linux.git:8213
+
+On Thu, 2005-09-08 at 17:39 -0400, Daniel Barkalow wrote:
+> I assume that what you want is something to include everything from two 
+> commits, which would give conflicts if a name is reused?
+> 
+
+Yes.
+
+--
+Darrin
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

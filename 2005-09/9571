@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 30 18:17:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7E6B924374B
+	for <tkil@scrye.com>; Fri, 30 Sep 2005 18:17:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030517AbVJAARb (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 30 Sep 2005 20:17:31 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030518AbVJAARb
+	(ORCPT <rfc822;git-outgoing>); Fri, 30 Sep 2005 20:17:31 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:11913 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S1030517AbVJAARa (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 30 Sep 2005 20:17:30 -0400
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1ELV4C-0003la-3x; Sat, 01 Oct 2005 00:17:29 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <433DD595.4070508@pobox.com>
+Date:	Fri, 30 Sep 2005 20:17:25 -0400
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Horst von Brand <vonbrand@inf.utfsm.cl>
+CC:	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [howto] Kernel hacker's guide to git, updated
+References: <200509301813.j8UIDXr5015488@laptop11.inf.utfsm.cl>
+In-Reply-To: <200509301813.j8UIDXr5015488@laptop11.inf.utfsm.cl>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:9571
+
+Horst von Brand wrote:
+> Jeff Garzik <jgarzik@pobox.com> wrote:
+> 
+>>Thanks for all the comments.  I just updated the KHGtG with the
+>>feedback I received.  Go to
+>>
+>>	http://linux.yyz.us/git-howto.html
+>>
+>>and click reload.  Continued criticism^H^H^Hcomments welcome!
+> 
+> 
+> - To know the current branch, "git branch" is enough (the one '*'-ed)
+
+Click reload, this is already mentioned.
+
+
+> - rsync(1) a repository is dangerous, it might catch it in the middle of
+>   a update and give you an incomplete/messed up copy. Repeat rsync until no
+>   change, perhaps?
+
+Usually that's just unlucky.  I have caught kernel.org in the middle of 
+a sync once, maybe twice.
+
+
+> - I understand "git checkout -f" blows away any local changes, no questions
+>   asked. Not very nice to suggest that to a newbie...
+
+I constantly run into problems if I -do not- use the "-f" flag.  I 
+habitually use it at all times, now.
+
+Thanks,
+
+	Jeff
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

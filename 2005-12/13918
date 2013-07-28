@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 18:21:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AD8231E7ECB
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 18:21:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965017AbVLVBTo (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 20:19:44 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965023AbVLVBTo
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 20:19:44 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:49587 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S965017AbVLVBTo
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 20:19:44 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EpF7L-0003Wt-S0
+	for git@vger.kernel.org; Wed, 21 Dec 2005 20:19:40 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EpF7J-00014C-1v; Wed, 21 Dec 2005 20:19:37 -0500
+Subject: [PATCH] qgit: patchesStillToFind not initialized
+From:	Pavel Roskin <proski@gnu.org>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Cc:	git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Wed, 21 Dec 2005 20:19:36 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1135214376.2253.2.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:13918
+
+Git::patchesStillToFind is not initialized on non-StGit repositories.
+Found by Valgrind.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/src/git_startup.cpp b/src/git_startup.cpp
+index 35dcaf7..307517f 100644
+--- a/src/git_startup.cpp
++++ b/src/git_startup.cpp
+@@ -473,6 +473,7 @@ bool Git::init(QString* repoDir, bool as
+ 	if (!startGetFileProc())
+ 		qDebug("ERROR: unable to start background git-diff-tree");
+ 
++	patchesStillToFind = 0;
+ 	if (isStGIT && !filteredLoading) { // updated by getRefs()
+ 		POST_MSG(msg1 + "StGIT patches...");
+ 		if (getStGITPatches()) {
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

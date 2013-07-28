@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  1 10:20:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3835724B15D
+	for <tkil@scrye.com>; Sun,  1 May 2005 10:20:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261686AbVEAQT2 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 1 May 2005 12:19:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261695AbVEAQTE
+	(ORCPT <rfc822;git-outgoing>); Sun, 1 May 2005 12:19:04 -0400
+Received: from fire.osdl.org ([65.172.181.4]:5255 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261718AbVEAQQP (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 1 May 2005 12:16:15 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j41GG7s4010363
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 1 May 2005 09:16:08 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j41GG7qU020645;
+	Sun, 1 May 2005 09:16:07 -0700
+Date:	Sun, 1 May 2005 09:18:07 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: Should git-prune-script warn about dircache?
+In-Reply-To: <7vwtqjxlrv.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505010916510.2296@ppc970.osdl.org>
+References: <7vwtqjxlrv.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:2273
+
+
+
+On Sun, 1 May 2005, Junio C Hamano wrote:
+> 
+> Maybe a big warning in red ugly bold blinking typeface somewhere
+> in the doc?
+
+How about making git-prune-script first run "git-update-cache --refresh",
+and checking the return value of it (this, of course, assumes that
+git-update-cache --refresh would return non-zero if it can't refresh a
+file, which is currently not true, but should be easily fixable).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

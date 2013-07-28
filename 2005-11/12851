@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 28 01:49:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 431B52AFF83
+	for <tkil@scrye.com>; Mon, 28 Nov 2005 01:49:58 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751254AbVK1Itu (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 28 Nov 2005 03:49:50 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751255AbVK1Itu
+	(ORCPT <rfc822;git-outgoing>); Mon, 28 Nov 2005 03:49:50 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:6568 "EHLO smtp-gw1.op5.se")
+	by vger.kernel.org with ESMTP id S1751254AbVK1Itt (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 28 Nov 2005 03:49:49 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 4397B6BCBE
+	for <git@vger.kernel.org>; Mon, 28 Nov 2005 09:49:48 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <438AC4AB.1040405@op5.se>
+Date:	Mon, 28 Nov 2005 09:49:47 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: Perl version support (was Re: [PATCH] git-mv is not able to handle
+ big directories)
+References: <200511231141.57683.lan@ac-sw.com>	<7voe4b7uw7.fsf@assigned-by-dhcp.cox.net>	<7vk6ez7u1y.fsf@assigned-by-dhcp.cox.net>	<867jazre78.fsf@blue.stonehenge.com>	<7vu0e369p4.fsf@assigned-by-dhcp.cox.net>	<20051123135604.GB16995@mythryan2.michonline.com> <86mzjvphhj.fsf_-_@blue.stonehenge.com> <438A6175.2020705@michonline.com>
+In-Reply-To: <438A6175.2020705@michonline.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:12851
+
+Ryan Anderson wrote:
+> Randal L. Schwartz wrote:
+> 
+>>However, I have not seen the "target market" of git discussed yet
+>>(I came late to the party), so if support for 5.6 (or 5.5) is not chosen,
+>>it merely limits the market.
+> 
+> 
+> Well, I think the general target market[1] for Linux probably applies
+> here, as well.  On the other hand, the users limited to Perl 5.5 for
+> corporate reasons are probably also prevented from installing new tools
+> for general use, so the difference may not matter very much.
+> 
+> [1] - "World domination", of course.
+> 
+
+Servers with software installation restrictions are rarely used for 
+development either and the server side part of git is all C. So long as 
+that's true I don't think we need to bother very much with staying 
+backwards compatible. It's nice if we manage it, but we shouldn't, imho, 
+bend over backwards for the sake of perl 5.5 (or even 5.6).
+
+Just my two öre. :)
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

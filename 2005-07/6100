@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul 14 01:02:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3FB87238D04
+	for <tkil@scrye.com>; Thu, 14 Jul 2005 01:02:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262927AbVGNHCO (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 14 Jul 2005 03:02:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262928AbVGNHCN
+	(ORCPT <rfc822;git-outgoing>); Thu, 14 Jul 2005 03:02:13 -0400
+Received: from mta08-winn.ispmail.ntl.com ([81.103.221.48]:28039 "EHLO
+	mta08-winn.ispmail.ntl.com") by vger.kernel.org with ESMTP
+	id S262927AbVGNHCM (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 14 Jul 2005 03:02:12 -0400
+Received: from aamta11-winn.ispmail.ntl.com ([81.103.221.35])
+          by mta08-winn.ispmail.ntl.com with ESMTP
+          id <20050714070211.NYUP889.mta08-winn.ispmail.ntl.com@aamta11-winn.ispmail.ntl.com>;
+          Thu, 14 Jul 2005 08:02:11 +0100
+Received: from cpc1-cmbg5-3-0-cust179.cmbg.cable.ntl.com ([81.104.192.179])
+          by aamta11-winn.ispmail.ntl.com with ESMTP
+          id <20050714070211.XITP17887.aamta11-winn.ispmail.ntl.com@cpc1-cmbg5-3-0-cust179.cmbg.cable.ntl.com>;
+          Thu, 14 Jul 2005 08:02:11 +0100
+Subject: Re: [PATCH] stgit: allow spaces in filenames
+From: Catalin Marinas <catalin.marinas@gmail.com>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+In-Reply-To: <7vpstms5pc.fsf@assigned-by-dhcp.cox.net>
+References: <20050713083805.18461.87079.sendpatchset@bryan-larsens-ibook-g4.local>
+	 <tnxll4bdn7b.fsf@arm.com> <42D55AC9.4000506@gmail.com>
+	 <1121290004.6876.11.camel@localhost.localdomain>
+	 <7vpstms5pc.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+Date:	Thu, 14 Jul 2005 08:02:02 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1121324523.6873.1.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:6100
+
+On Wed, 2005-07-13 at 15:26 -0700, Junio C Hamano wrote:
+> Catalin Marinas <catalin.marinas@gmail.com> writes:
+> 
+> >> I'd very much like to stay on the same list.  By the same logic, cogito 
+> >> should have it's own list as well...
+> >
+> > I'd like this too and it's probably OK with a low traffic (we'll see if
+> > we receive complaints :-) ).
+> 
+> I'd like to keep Porcelain discussions on this list for two
+> reasons:
+
+That's great then. I will keep the StGIT discussions on this list.
+
+--
+Catalin
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

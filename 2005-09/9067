@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 14:55:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B037827B7E8
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 14:55:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964826AbVIUUyV (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 16:54:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964829AbVIUUyV
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 16:54:21 -0400
+Received: from smtp13.wxs.nl ([195.121.6.27]:40618 "EHLO smtp13.wxs.nl")
+	by vger.kernel.org with ESMTP id S964826AbVIUUyU (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Sep 2005 16:54:20 -0400
+Received: from greensroom.kotnet.org (ip54515aaa.direct-adsl.nl [84.81.90.170])
+ by smtp13.wxs.nl (iPlanet Messaging Server 5.2 Patch 2 (built Jul 14 2004))
+ with SMTP id <0IN600L85Q2GR1@smtp13.wxs.nl> for git@vger.kernel.org; Wed,
+ 21 Sep 2005 22:54:17 +0200 (CEST)
+Received: (qmail 28808 invoked by uid 500); Wed, 21 Sep 2005 20:54:16 +0000
+Date:	Wed, 21 Sep 2005 22:54:16 +0200
+From:	Sven Verdoolaege <skimo@kotnet.org>
+Subject: Re: Another gitweb wishlist
+In-reply-to: <20050921201656.GA10575@pasky.or.cz>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	kay.sievers@vrfy.org, ch@gierke.de, git@vger.kernel.org
+Reply-to: skimo@liacs.nl
+Mail-followup-to: Petr Baudis <pasky@suse.cz>, kay.sievers@vrfy.org,
+ ch@gierke.de, git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20050921205416.GU15165MdfPADPa@greensroom.kotnet.org>
+MIME-version: 1.0
+Content-type: text/plain; charset=us-ascii
+Content-transfer-encoding: 7BIT
+Content-disposition: inline
+User-Agent: Mutt/1.5.10i
+References: <20050921201656.GA10575@pasky.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.5 required=5.0 tests=AWL,BAYES_00,RCVD_IN_DSBL 
+	autolearn=no version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:9067
+
+On Wed, Sep 21, 2005 at 10:16:56PM +0200, Petr Baudis wrote:
+>   (ii) I need persistent links to the latest version of <file>. Obvious
+> 
+> 	http://kernel.org/git/?p=cogito/cogito.git;a=blob;f=contrib/ciabot.pl
+> 
+
+Works for me:
+http://www.liacs.nl/~sverdool/gitweb.cgi?p=barvinok.git;a=blob;f=README
+
+It's probably this one:
+
+diff --git a/gitweb.cgi b/gitweb.cgi
+--- a/gitweb.cgi
++++ b/gitweb.cgi
+@@ -1269,9 +1269,9 @@ sub git_get_hash_by_path {
+ }
+ 
+ sub git_blob {
++	$hash_base ||= git_read_hash("$project/HEAD");
+ 	if (!defined $hash && defined $file_name) {
+-		my $base = $hash_base || git_read_hash("$project/HEAD");
+-		$hash = git_get_hash_by_path($base, $file_name, "blob");
++		$hash = git_get_hash_by_path($hash_base, $file_name, "blob");
+ 	}
+ 	open my $fd, "-|", "$gitbin/git-cat-file blob $hash" or die_error(undef, "Open failed.");
+ 	my $base = $file_name || "";
+
+skimo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

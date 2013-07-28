@@ -1,0 +1,107 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 16:54:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3F8E819BD7B
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 16:54:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964779AbVISWyG (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 18:54:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932680AbVISWyG
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 18:54:06 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:20906 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932675AbVISWyF (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Sep 2005 18:54:05 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8JMrpBo014589
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 19 Sep 2005 15:53:51 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8JMroOe021397;
+	Mon, 19 Sep 2005 15:53:50 -0700
+Date:	Mon, 19 Sep 2005 15:53:50 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Return proper error valud from "parse_date()"
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509191548180.2553@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.116 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 64
+Xref: brand.scrye.com linux.git:8910
+
+
+Right now we don't return any error value at all from parse_date(), and if 
+we can't parse it, we just silently leave the result buffer unchanged. 
+
+That's fine for the current user, which will always default to the current 
+date, but it's a crappy interface, and we might well be better off with an 
+error message rather than just the default date.
+
+So let's change the thing to return a negative value if an error occurs, 
+and the length of the result otherwise (snprintf behaviour: if the buffer 
+is too small, it returns how big it _would_ have been).
+
+[ I started looking at this in case we could support date-based revision 
+  names. Looks ugly. Would have to parse relative dates.. ]
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/cache.h b/cache.h
+--- a/cache.h
++++ b/cache.h
+@@ -241,7 +241,7 @@ extern void *read_object_with_reference(
+ 					unsigned char *sha1_ret);
+ 
+ const char *show_date(unsigned long time, int timezone);
+-void parse_date(const char *date, char *buf, int bufsize);
++int parse_date(const char *date, char *buf, int bufsize);
+ void datestamp(char *buf, int bufsize);
+ 
+ extern int setup_ident(void);
+diff --git a/date.c b/date.c
+--- a/date.c
++++ b/date.c
+@@ -388,7 +388,7 @@ static int match_tz(const char *date, in
+ 
+ /* Gr. strptime is crap for this; it doesn't have a way to require RFC2822
+    (i.e. English) day/month names, and it doesn't work correctly with %z. */
+-void parse_date(const char *date, char *result, int maxlen)
++int parse_date(const char *date, char *result, int maxlen)
+ {
+ 	struct tm tm;
+ 	int offset, sign, tm_gmt;
+@@ -431,7 +431,7 @@ void parse_date(const char *date, char *
+ 		offset = (then - mktime(&tm)) / 60;
+ 
+ 	if (then == -1)
+-		return;
++		return -1;
+ 
+ 	if (!tm_gmt)
+ 		then -= offset * 60;
+@@ -442,7 +442,7 @@ void parse_date(const char *date, char *
+ 		sign = '-';
+ 	}
+ 
+-	snprintf(result, maxlen, "%lu %c%02d%02d", then, sign, offset/60, offset % 60);
++	return snprintf(result, maxlen, "%lu %c%02d%02d", then, sign, offset/60, offset % 60);
+ }
+ 
+ void datestamp(char *buf, int bufsize)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 24 11:37:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 457B11DEAEF
+	for <tkil@scrye.com>; Sat, 24 Sep 2005 11:37:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932205AbVIXRfr (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 24 Sep 2005 13:35:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932206AbVIXRfr
+	(ORCPT <rfc822;git-outgoing>); Sat, 24 Sep 2005 13:35:47 -0400
+Received: from khepri.openbios.org ([80.190.231.112]:37287 "EHLO
+	khepri.openbios.org") by vger.kernel.org with ESMTP id S932205AbVIXRfq
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 24 Sep 2005 13:35:46 -0400
+Received: from dsl-082-083-078-010.arcor-ip.net ([82.83.78.10] helo=t-stueck.streichelzoo)
+	by khepri.openbios.org with esmtps (TLSv1:DES-CBC3-SHA:168)
+	(Exim 4.50)
+	id 1EJDw3-000315-NJ; Sat, 24 Sep 2005 19:35:40 +0200
+Received: from 192.168.1.202 ([192.168.1.202])
+	by t-stueck.streichelzoo (8.13.4+Sun/8.13.3) with ESMTP id j8OHZWAK015588;
+	Sat, 24 Sep 2005 19:35:38 +0200 (CEST)
+Subject: Re: /bin/sh portability question
+From:	Patrick Mauritz <oxygene@studentenbude.ath.cx>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Peter Eriksen <s022018@student.dtu.dk>, git@vger.kernel.org
+In-Reply-To: <7vmzm4duf8.fsf@assigned-by-dhcp.cox.net>
+References: <20050923075058.GA25473@bohr.gbar.dtu.dk>
+	 <7vmzm4duf8.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1127583315.895.11.camel@tetris>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6.316 
+Date:	Sat, 24 Sep 2005 19:35:15 +0200
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-2.0 (t-stueck.streichelzoo [192.168.1.200]); Sat, 24 Sep 2005 19:35:38 +0200 (CEST)
+X-Duff:	Orig. Duff, Duff Lite, Duff Dry, Duff Dark,
+	Raspberry Duff, Lady Duff, Red Duff, Tartar Control Duff
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:9230
+
+On Fri, 2005-09-23 at 11:07, Junio C Hamano wrote:
+> Good to have a Solaris user.  I have one patch that I've been
+> keeping in the proposed updates branch, waiting for a
+> comfirmation or 'not-good-enough-for-me' answer from people that
+> have cURL installed in nonstandard places.
+sorry for the lack of reponse.. apart from fixing up context (to match
+0.99.7), this patch works here.
+
+
+thanks,
+patrick mauritz
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 07:00:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 41F83235AB7
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 07:00:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261570AbVD0M7D (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Apr 2005 08:59:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261571AbVD0M7D
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Apr 2005 08:59:03 -0400
+Received: from DELFT.AURA.CS.CMU.EDU ([128.2.206.88]:61093 "EHLO
+	delft.aura.cs.cmu.edu") by vger.kernel.org with ESMTP
+	id S261570AbVD0M6v (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 27 Apr 2005 08:58:51 -0400
+Received: from jaharkes by delft.aura.cs.cmu.edu with local (Exim 3.36 #1 (Debian))
+	id 1DQm7o-0005A4-00; Wed, 27 Apr 2005 08:58:44 -0400
+Date:	Wed, 27 Apr 2005 08:58:44 -0400
+To: Andrew Morton <akpm@osdl.org>
+Cc: Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+Subject: Re: I'm missing isofs.h
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050427125843.GA9454@delft.aura.cs.cmu.edu>
+Mail-Followup-To: Andrew Morton <akpm@osdl.org>,
+	Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+References: <20050426214338.32e9ac27.akpm@osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050426214338.32e9ac27.akpm@osdl.org>
+User-Agent: Mutt/1.5.9i
+From: Jan Harkes <jaharkes@cs.cmu.edu>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.8 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 30
+Xref: brand.scrye.com linux.git:1834
+
+On Tue, Apr 26, 2005 at 09:43:38PM -0700, Andrew Morton wrote:
+> In a current tree, using git-pasky-0.7:
+
+It looks like git-pasky-0.7 doesn't include the following commit, but
+there are also several other diff and merge related fixes that were
+added since then.
+
+Jan
+
+
+commit 65bc81d6fef619d7aadc5c7116be52860539f17a
+tree 9adb399af84228740555d732732983b7a02b019d
+parent 93256315b2444601a35484f4fb76cd5723284201
+author Petr Baudis <pasky@ucw.cz> Sat, 23 Apr 2005 18:05:07 -0700
+committer Linus Torvalds <torvalds@ppc970.osdl.org> Sat, 23 Apr 2005 18:05:07 -0700 
+
+    [PATCH] Fix broken diff-cache output on added files
+
+    Added files were errorneously reported with the - prefix by diff-cache,
+    obviously leading to great confusion.
+
+    Signed-off-by: Petr Baudis <pasky@ucw.cz>
+    Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

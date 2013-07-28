@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  1 18:16:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BE38614109
+	for <tkil@scrye.com>; Thu,  1 Dec 2005 18:16:04 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932704AbVLBBNY (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Dec 2005 20:13:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932706AbVLBBNY
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Dec 2005 20:13:24 -0500
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:16052 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S932704AbVLBBNX (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 1 Dec 2005 20:13:23 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051202011251.VYHV3131.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 1 Dec 2005 20:12:51 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: Re: [RFC] Using sticky directories to control access to branches.
+References: <20051117170129.GA14013@hpsvcnb.fc.hp.com>
+	<7vfypumlu3.fsf@assigned-by-dhcp.cox.net>
+	<20051121180133.GA28171@hpsvcnb.fc.hp.com>
+	<20051201154222.GB18993@hpsvcnb.fc.hp.com>
+cc:	Carl Baldwin <cnb@fc.hp.com>
+Date:	Thu, 01 Dec 2005 17:13:20 -0800
+In-Reply-To: <20051201154222.GB18993@hpsvcnb.fc.hp.com> (Carl Baldwin's
+	message of "Thu, 1 Dec 2005 08:42:22 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtio9u8f.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:13086
+
+Carl Baldwin <cnb@fc.hp.com> writes:
+
+> I have tweaked the script a little.  I thought I'd send to the list in
+> case anyone was following this.  If not, then safely ignore this.
+
+It _might_ make sense to have a contrib/examples subdirectory in
+git.git project and keep a collection of examples like this.
+
+Anybody else interested?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

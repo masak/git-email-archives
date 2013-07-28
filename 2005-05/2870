@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  9 11:46:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 69692635A
+	for <tkil@scrye.com>; Mon,  9 May 2005 11:46:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261454AbVEIRpp (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 9 May 2005 13:45:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261460AbVEIRpp
+	(ORCPT <rfc822;git-outgoing>); Mon, 9 May 2005 13:45:45 -0400
+Received: from soundwarez.org ([217.160.171.123]:43667 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S261454AbVEIRpd (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 9 May 2005 13:45:33 -0400
+Received: from dhcp-113.off.vrfy.org (d081084.adsl.hansenet.de [80.171.81.84])
+	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	(No client certificate requested)
+	by soundwarez.org (Postfix) with ESMTP id 060BA2F2DA;
+	Mon,  9 May 2005 19:45:29 +0200 (CEST)
+Subject: Re: kernel.org upgraded to cogito-0.10
+From: Kay Sievers <kay.sievers@vrfy.org>
+To: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Jan-Benedict Glaw <jbglaw@lug-owl.de>,
+	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <427F7FEF.7040406@zytor.com>
+References: <427F70F4.4030409@zytor.com> <20050509145943.GJ24187@lug-owl.de>
+	 <427F7FEF.7040406@zytor.com>
+Content-Type: text/plain
+Date:	Mon, 09 May 2005 19:45:32 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1115660732.8675.4.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-1) 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 24
+Xref: brand.scrye.com linux.git:2870
+
+On Mon, 2005-05-09 at 08:21 -0700, H. Peter Anvin wrote:
+> Jan-Benedict Glaw wrote:
+> > On Mon, 2005-05-09 07:17:24 -0700, H. Peter Anvin <hpa@zytor.com> wrote:
+> > 
+> >>I have installed cogito-0.10 on the kernel.org machines.
+
+Very nice!
+
+> > ...and you'd probably revert or fix the bug(s) that make all project's
+> > logs look quite empty at http://www.kernel.org/git ...
+> > 
+> 
+> Kay has a new version of the git web client which is needed for the new 
+> version... Kay?
+
+The new version of gitweb is installed now.
+
+Kay
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

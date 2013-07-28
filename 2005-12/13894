@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 14:47:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 08BF121F39D
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 14:47:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932195AbVLUVrr (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 16:47:47 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751166AbVLUVrr
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 16:47:47 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:35494 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S1751136AbVLUVrq
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 16:47:46 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EpBm7-0000rx-4r
+	for git@vger.kernel.org; Wed, 21 Dec 2005 16:45:38 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EpBnt-0004f1-87; Wed, 21 Dec 2005 16:47:21 -0500
+Subject: Re: [PATCH] off-by-one bugs found by valgrind
+From:	Pavel Roskin <proski@gnu.org>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+In-Reply-To: <43A9C654.2010009@zytor.com>
+References: <1135197348.3046.7.camel@dv>
+	 <7vr7865fq5.fsf@assigned-by-dhcp.cox.net>  <43A9C654.2010009@zytor.com>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Wed, 21 Dec 2005 16:47:21 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1135201641.15567.7.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:13894
+
+On Wed, 2005-12-21 at 13:17 -0800, H. Peter Anvin wrote:
+> >>quote_c_style_counted() in quote.c uses a dangerous construct, when a
+> >>variable is incremented once and used twice in the same expression.
+> > 
+> > Sorry, I do not follow you.  Isn't && a sequence point?
+
+The patch is right, but my comment was wrong, sorry.
+
+The actual problem detected by valgrind is that sp is dereferenced
+before it's checked for the upper boundary.  So, if e.g. namelen is 6,
+the code reads name[6] into ch and then leaves the loop.
+
+> && is a sequence point.  The code is techically fine, but it's harder 
+> than necessary to read.
+
+That alone should be a good reason to apply this patch.
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

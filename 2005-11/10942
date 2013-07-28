@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 13:09:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0435527B910
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 13:09:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751306AbVKAUHG (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 15:07:06 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751342AbVKAUHF
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 15:07:05 -0500
+Received: from iabervon.org ([66.92.72.58]:16912 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751306AbVKAUHC (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 1 Nov 2005 15:07:02 -0500
+Received: (qmail 22378 invoked by uid 1000); 1 Nov 2005 15:06:42 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 1 Nov 2005 15:06:42 -0500
+Date:	Tue, 1 Nov 2005 15:06:42 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Nick Hengeveld <nickh@reactrix.com>
+cc:	git@vger.kernel.org
+Subject: Re: HTTP pushes
+In-Reply-To: <20051101020248.GA3928@reactrix.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511011500580.25300@iabervon.org>
+References: <20051101020248.GA3928@reactrix.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:10942
+
+On Mon, 31 Oct 2005, Nick Hengeveld wrote:
+
+> HTTP is currently listed as a read-only/unsupported method for doing
+> pushes, is that due to inherent problems with HTTP or just because
+> it hasn't been written yet?
+
+You obviously need a bit more than HTTP, and I don't personally know DAV. 
+Also, I was writing things with all of the control on the receiving side, 
+which isn't going to be the case here. If you've got a suitable 
+environment for that sort of thing, I say go for it.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

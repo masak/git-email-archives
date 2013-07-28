@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 17:47:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9B578182C3B
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 17:47:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030546AbVKXArq (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 19:47:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932607AbVKXArq
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 19:47:46 -0500
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:35571 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S932535AbVKXArp (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 23 Nov 2005 19:47:45 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051124004636.DGK26964.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 23 Nov 2005 19:46:36 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Pavel Roskin <proski@gnu.org>, Paul Mackerras <paulus@samba.org>
+Subject: Re: [PATCH] gitk: UTF-8 support
+References: <1132719301.12227.5.camel@dv>
+cc:	git@vger.kernel.org
+Date:	Wed, 23 Nov 2005 16:47:43 -0800
+In-Reply-To: <1132719301.12227.5.camel@dv> (Pavel Roskin's message of "Tue, 22
+	Nov 2005 23:15:01 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64qi50sw.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:12656
+
+Pavel Roskin <proski@gnu.org> writes:
+
+> Add gitencoding variable and set it to "utf-8".  Use it for converting
+> git-rev-list output.
+
+Sounds good, but is it necessary?  Unless I am grossly mistaken,
+I am opposed to this patch.
+
+When I run gitk with LANG and/or LC_CTYPE set to ja_JP.utf8 (I
+suspect *whatever*.utf8 would work the same way) on git.git
+repository, I see Lukas's name (originally in iso8859-1 but my
+commit objects have it in utf8) and Yoshifuji-san's name
+(iso2022 converted to utf8) just fine.
+
+And when I run gitk with LANG and/or LC_CTYPE set to ja_JP.ujis
+(that is another name for EUC-JP) on a toy repository I have
+commit log messages in EUC-JP (I am not recommending that, just
+pointing out a possibility), I can see them just fine.  In that
+test repository, setting locale to *.utf8 would not work.
+
+So I suspect your change breaks projects that use local
+encodings, without fixing or adding anything new.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

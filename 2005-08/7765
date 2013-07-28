@@ -1,0 +1,143 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 25 19:29:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 90847268FB0
+	for <tkil@scrye.com>; Thu, 25 Aug 2005 19:29:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965039AbVHZB3R (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 25 Aug 2005 21:29:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965040AbVHZB3R
+	(ORCPT <rfc822;git-outgoing>); Thu, 25 Aug 2005 21:29:17 -0400
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:12954 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S965039AbVHZB3Q (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 25 Aug 2005 21:29:16 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050826012910.IWCS1860.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 25 Aug 2005 21:29:10 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Cc:	Tony Luck <tony.luck@intel.com>, Linus Torvalds <torvalds@osdl.org>
+Subject: [PATCH] Fix pulling into the same branch.
+References: <B8E391BBE9FE384DAA4C5C003888BE6F043B9B85@scsmsx401.amr.corp.intel.com>
+Date:	Thu, 25 Aug 2005 18:29:10 -0700
+In-Reply-To: Junio C. Hamano's message of "(unknown date)"
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7chmqop.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 100
+Xref: brand.scrye.com linux.git:7765
+
+Earlier, I said:
+
+    Subject: Re: cache status after git pull
+    Date: Thu, 25 Aug 2005 13:26:07 -0700
+    Message-ID: <7v4q9dvk4g.fsf@assigned-by-dhcp.cox.net>
+
+    > 1) Updated my "linus" branch:
+    >
+    >   $ git checkout linus && git pull linus
+
+    The second command, "git pull linus", would internally run "git
+    fetch linus".  It depends on how your shorthand "linus" is
+    defined, but if it is set to update (either overwrite or
+    fast-forward) the "linus" branch head, then your HEAD pointer
+    would be updated without updating the index and working tree.
+    This is bad because now you are telling git that your working
+    tree is based on updated "linus" branch head, and what you
+    _could_ commit on top of it is the same thing as what old
+    "linus" branch head commit used to have.  That's why "git
+    status" output shows the minefield.
+
+    If I keep copies of foreign brahches in $GIT_DIR/refs/heads/
+    somewhere, I never checkout those branches in my working tree.
+    I always stay in my branches to do my work.  I may "diff"
+    against them to see where I am.  Of course I would "resolve"
+    with them when I feel I am ready.
+
+    So, assuming that "linus" short-hand is set up to update
+    $GIT_DIR/refs/heads/linus with the foreign branch head, the
+    above example would have been:
+
+        $ git checkout master && git pull linus
+        : examine diffs and be convinced what Linus does is always right.
+
+This "do not pull into the branch you are on" is probably a good
+advice as a workaround, but there is no fundamental reason to
+forbid it.  Worse, there is no machinery to even warn about the
+situation right now.
+
+This patch is to show my current thinking.  Please let me know
+what you think.
+
+-jc
+
+------------
+When the "git pull" command updates the branch head you are
+currently on, before doing anything else, first update your
+index file and the working tree contents to that of the new
+branch head.  Otherwise, the later resolving steps would think
+your index file is attempting to revert the change between the
+original head commit and the updated head commit.
+
+It uses two-tree fast-forward form of "read-tree -m -u" to
+prevent losing whatever local changes you may have in the
+working tree to do this update.  I think this would at least
+make things safer (a lot safer), and prevent mistakes.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+
+---
+
+ git-pull-script |   18 ++++++++++++++++++
+ 1 files changed, 18 insertions(+), 0 deletions(-)
+
+10f624a7743fc1e29277de9875dbd6a882f2d3b3
+diff --git a/git-pull-script b/git-pull-script
+--- a/git-pull-script
++++ b/git-pull-script
+@@ -5,7 +5,25 @@
+ # Fetch one or more remote refs and merge it/them into the current HEAD.
+ 
+ . git-sh-setup-script || die "Not a git archive"
++
++orig_head=$(cat "$GIT_DIR/HEAD") || die "Pulling into a black hole?"
+ git-fetch-script "$@" || exit 1
++
++curr_head=$(cat "$GIT_DIR/HEAD")
++if test "$curr_head" != "$orig_head"
++then
++	# The fetch involved updating the current branch.
++
++	# The working tree and the index file is still based on the
++	# $orig_head commit, but we are merging into $curr_head.
++	# First update the working tree to match $curr_head.
++
++	echo >&2 "Warning: fetch updated the current branch head."
++	echo >&2 "Warning: fast forwarding your working tree."
++	git-read-tree -u -m "$orig_head" "$curr_head" ||
++		die "You need to first update your working tree."
++fi
++
+ merge_head=$(sed -e 's/	.*//' "$GIT_DIR"/FETCH_HEAD | tr '\012' ' ')
+ merge_name=$(sed -e 's/^[0-9a-f]*	//' "$GIT_DIR"/FETCH_HEAD |
+ 	 tr '\012' ' ')
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

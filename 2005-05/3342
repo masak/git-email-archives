@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 15 10:11:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7DBBB65E7
+	for <tkil@scrye.com>; Sun, 15 May 2005 10:11:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261683AbVEOQKi (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 15 May 2005 12:10:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261693AbVEOQKi
+	(ORCPT <rfc822;git-outgoing>); Sun, 15 May 2005 12:10:38 -0400
+Received: from iabervon.org ([66.92.72.58]:24326 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261683AbVEOQKc (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 15 May 2005 12:10:32 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DXLgh-0003fA-00; Sun, 15 May 2005 12:09:55 -0400
+Date:	Sun, 15 May 2005 12:09:55 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Petr Baudis <pasky@ucw.cz>, Zack Brown <zbrown@tumblerings.org>,
+	git@vger.kernel.org, Linus Torvalds <torvalds@osdl.org>
+Subject: Re: speeding up cg-log -u
+In-Reply-To: <7vk6m212g7.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0505151158300.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 35
+Xref: brand.scrye.com linux.git:3342
+
+On Sat, 14 May 2005, Junio C Hamano wrote:
+
+> Whenever I work with those "struct object" derivatives, I get
+> very frustrated by the fact that they are designed to cater only
+> to the need of very narrow immediate users. 
+
+They aren't designed for the immediate users; they're implemented for the
+immediate users. Feel free to add more fields as you need them. The
+current selection is based on only adding things when there's a user for
+them.
+
+> The first round of tree objects did not even have names for each entry
+> because the only thing it cared about was connectivity checking, and for
+> that purpose callers would not care about what each blob or
+> subtree was referred as.  Now when I want to use commit objects
+> I find that it only records the commit date (other than
+> connectivity information).  It really appears that connectivity
+> is the primary thing and everything else is bolted on top.
+
+Existance is the primary thing, and everything else was added as
+needed. (Pure connectivity is a bit special, because it's a property of
+generic objects so that fsck-cache doesn't need to know about particular
+types of objects unless there are particular things to check about them)
+
+If you need more fields, let me know, and I'll figure out how to include
+them.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

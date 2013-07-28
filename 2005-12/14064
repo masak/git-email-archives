@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 27 02:02:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_VN 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 11F7C10EA3C
+	for <tkil@scrye.com>; Tue, 27 Dec 2005 02:02:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932255AbVL0JCo (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 27 Dec 2005 04:02:44 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932271AbVL0JCn
+	(ORCPT <rfc822;git-outgoing>); Tue, 27 Dec 2005 04:02:43 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:15058 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932255AbVL0JCn (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 27 Dec 2005 04:02:43 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051227090149.TJBE20875.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 27 Dec 2005 04:01:49 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH] copy_fd: close ifd on error
+References: <20051227081905.GA9946@mars.ravnborg.org>
+cc:	git@vger.kernel.org
+Date:	Tue, 27 Dec 2005 01:02:41 -0800
+In-Reply-To: <20051227081905.GA9946@mars.ravnborg.org> (Sam Ravnborg's message
+	of "Tue, 27 Dec 2005 09:19:05 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpsnic3pq.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:14064
+
+Sam Ravnborg <sam@ravnborg.org> writes:
+
+> In copy_fd when write fails we ought to close input file descriptor.
+>
+> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> ---
+>
+> Found while looking at the source for inspiration for something else.
+> I did not see any error related to this.
+
+Thanks.  I think the only place this matters is git-local-fetch
+which nobody uses these days where it can leak handful ifd.
+All other users immediately exit upon seeing failure return from
+the function.
+
+Of course this would matter much when we do libification.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,104 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 10 16:34:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 91B866E25
+	for <tkil@scrye.com>; Tue, 10 May 2005 16:34:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261808AbVEJWeK (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 10 May 2005 18:34:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261810AbVEJWeK
+	(ORCPT <rfc822;git-outgoing>); Tue, 10 May 2005 18:34:10 -0400
+Received: from tendencies.com.br ([72.29.102.143]:44684 "EHLO
+	tendencies.com.br") by vger.kernel.org with ESMTP id S261808AbVEJWeE
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 10 May 2005 18:34:04 -0400
+Received: from tendencies.com.br (localhost [127.0.0.1])
+	by tendencies.com.br (8.12.11/8.12.11) with ESMTP id j4AMXm7n014207;
+	Tue, 10 May 2005 18:33:48 -0400
+Received: (from apache@localhost)
+	by tendencies.com.br (8.12.11/8.12.11/Submit) id j4AMXmIt014206;
+	Tue, 10 May 2005 19:33:48 -0300
+X-Authentication-Warning: tendencies.com.br: apache set sender to eduardo@tendencies.com.br using -f
+Received: from 200.158.14.67 (proxying for 200.158.14.67)
+        (SquirrelMail authenticated user etdias)
+        by www.tendencies.com.br with HTTP;
+        Tue, 10 May 2005 19:33:48 -0300 (BRT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <62633.200.158.14.67.1115764428.squirrel@www.tendencies.com.br>
+Date:	Tue, 10 May 2005 19:33:48 -0300 (BRT)
+Subject: Re: Core and Not-So Core
+From: "Eduardo Teixeira Dias" <eduardo@tendencies.com.br>
+To: <diegocg@gmail.com>
+In-Reply-To: <20050510234501.79eea7a4.diegocg@gmail.com>
+References: <2cfc40320505100800426d38ca@mail.gmail.com>
+        <1115739511.16187.432.camel@hades.cambridge.redhat.com>
+        <17115.200.158.14.67.1115740220.squirrel@www.tendencies.com.br>
+        <1115740844.16187.445.camel@hades.cambridge.redhat.com>
+        <26021.200.158.14.67.1115741989.squirrel@www.tendencies.com.br>
+        <20050510234501.79eea7a4.diegocg@gmail.com>
+X-Priority: 3
+Importance: Normal
+Cc: <eduardo@tendencies.com.br>, <dwmw2@infradead.org>,
+	<jon@blackcubes.dyndns.org>, <git@vger.kernel.org>
+Reply-To: eduardo@tendencies.com.br
+X-Mailer: SquirrelMail (version 1.2.11)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 45
+Xref: brand.scrye.com linux.git:2977
+
+I'm a Java programmer and I was thinking like one (Culture thing).
+
+The reuse argument is very Strong.
+
+The git-core are ready and it's a very good idea to reuse it. Any change
+in the core or in the internal representation of git repository will
+benefit the Git-Java implementation...
+
+I think that a growing utilization of GCJ and ClassPath will contribute to
+a Gradual Culture Change in the Java Land and promote a beter
+reutilization among all GCC languages...
+
+Write Once Run Everywhere that GCJ Runs (Sounds Good).
+
+Eclipse will be compiled with GCJ in Fedora 4. Let's see how it works...
+
+Cheers!
+
+> El Tue, 10 May 2005 13:19:49 -0300 (BRT),
+> "Eduardo Teixeira Dias" <eduardo@tendencies.com.br> escribió:
+>
+>>   - Just a .jar download
+>>   - Installation without external dependencies
+>
+>
+> Someone who is going to hack the kernel can very well install more
+> things. And anyway, git is "the linux SCM tool" so all distros will
+> package it. Also, people who hacks the linux kernel usually runs it, so
+> "git is not ported to win32" is not a big problem.
+>
+> ...and I don't think people who use eclipse wants to have the fastest
+> tool on earth, so "java-invoking-C is slower than pure java" is not a
+> great excuse either...
+>
+> Code reuse == good. Java programmers should know that. Anyway, people is
+> free to do whatever they want with their time :)
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

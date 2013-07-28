@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 11:18:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 40ED228520A
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 11:18:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751177AbVHQRSu (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 13:18:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751178AbVHQRSu
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 13:18:50 -0400
+Received: from web26301.mail.ukl.yahoo.com ([217.146.176.12]:55204 "HELO
+	web26301.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S1751177AbVHQRSu (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 17 Aug 2005 13:18:50 -0400
+Received: (qmail 57568 invoked by uid 60001); 17 Aug 2005 17:18:44 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=Bb8FCQMFpxCMuKxiySHf5RUYfhj3CfL+8ZsNgzWfkQWg7JrE1Q79xiuyZg/XUkb0LHhYGgW2+ySHNLh2HX8SgVIrscZ0ReP3FQU/ZrH772EP9UKxr/Xn8EjkntHBMIw52d8dqM+C8uwVxnFXIwPd7ZXwVZ5Cq+rk5PNgX1wUY38=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050817171844.57566.qmail@web26301.mail.ukl.yahoo.com>
+Received: from [151.42.53.158] by web26301.mail.ukl.yahoo.com via HTTP; Wed, 17 Aug 2005 10:18:44 PDT
+Date:	Wed, 17 Aug 2005 10:18:44 -0700 (PDT)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: git-format-patch + git-applymbox small issue
+To:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 47
+Xref: brand.scrye.com linux.git:7445
+
+Hi, 
+
+the round trip 
+
+1)  git-format-patch --mbox --keep-subject
+
+2)  git-applymbox -k
+
+is not perfect for revisions where there is only the subject.
+
+An example is c35a7b8d806317dc1762e36561cbd31c2530dd9c in git archive
+
+Original text is:
+
+   Skip merges in format-patch.
+
+
+After round trip:
+
+ Skip merges in format-patch.
+
+   
+    git-format-patch-script |    3 ++-
+    1 files changed, 2 insertions(+), 1 deletions(-)
+   
+   c35a7b8d806317dc1762e36561cbd31c2530dd9c
+
+
+
+I know I'm a bit annoying ;-)
+
+Marco
+
+P.S: I say 'revision', and 'git archive' but are very common also 'commit' and
+'git repository'. This is just a silly example where a common dictionary 
+should be useful.
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

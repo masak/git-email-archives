@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 17:52:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1D42F22C3AD
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 17:52:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965130AbVLOAow (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 19:44:52 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965042AbVLOAov
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 19:44:51 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:19688 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S965130AbVLOAov (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Dec 2005 19:44:51 -0500
+Received: (qmail 12332 invoked by uid 2001); 15 Dec 2005 01:44:40 +0100
+Date:	Thu, 15 Dec 2005 01:44:40 +0100
+From:	Petr Baudis <pasky@ucw.cz>
+To:	junkio@cox.net
+Cc:	git@vger.kernel.org
+Subject: How to clone-pack the HEAD?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051215004440.GM22159@pasky.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:13657
+
+  Hello,
+
+  I'd like to make cg-clone use git-clone-pack instead of git-fetch-pack
+so that it gets actually usable on large repositories, but I'm hitting
+problems:
+
+  (i) git-clone-pack url HEAD doesn't work
+
+	If .git/HEAD already exists, it will panick because of the
+	write_one_ref()'s O_CREAT|O_EXCL. If .git/HEAD doesn't exist,
+	git-clone-pack refuses to do anything since it doesn't run
+	with valid GIT repository.
+
+  (ii) git-clone-pack has hardcoded assumptions about refs/heads/master
+
+	The problem is, git-clone-pack doesn't seem to care about what
+	ref does HEAD point to at the remote side, it just starts to
+	panic and do weird things if it isn't master, which seems
+	"really really wrong". Also, because git-clone-pack ... HEAD
+	doesn't work, I think I have no way to clone the actual HEAD
+	ref of the remote repository.
+
+  Overally, I think what I really need is git-fetch-pack (with it
+outputting the ref info which I can write on my own, DTRT'ing from
+the Cogito POV), just with the option not to unpack the pack.
+
+  I'd be very happy if fixing this would be possible before 1.0 so that
+I can fix Cogito's fetching over git and ssh ASAP - git-clone-pack's
+architecture seems to be way too much hardcoded to carry over head names
+to the cloned repository (which is fine for the GIT porcelainish, but
+not for Cogito philosophy).
+
+  PS: Sorry if this mail is a bit incoherent - I'm already falling
+asleep over the keyboard, but I don't want to see GIT 1.0 fly by during
+the night. ;-) BTW, Junio, do you have any timeline (more precise than
+"in the coming week(s)") for the release, or are you just waiting for
+"n days without big problem" or something like that?
+
+  Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

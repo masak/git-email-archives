@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  2 11:56:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 017FC27D8AE
+	for <tkil@scrye.com>; Mon,  2 May 2005 11:56:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261363AbVEBRx7 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 2 May 2005 13:53:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261484AbVEBRx5
+	(ORCPT <rfc822;git-outgoing>); Mon, 2 May 2005 13:53:57 -0400
+Received: from wproxy.gmail.com ([64.233.184.197]:60689 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261363AbVEBRxY convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 2 May 2005 13:53:24 -0400
+Received: by wproxy.gmail.com with SMTP id 49so830997wri
+        for <git@vger.kernel.org>; Mon, 02 May 2005 10:53:15 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=nHerKHJEa8m6kOp8Jiece8K0cAB5HIFIPc4ioo/YsVCoA8KNVF455eVE4gdfehB8/sIcnvUcbU+cIUlbJpZAvtXCufoMVT2WoObMQAoyQ/pOOtVoEc4qZ+E+F51a8t7NVtjs3HGNtOzE6BXuIiGBOPmJPKaOOwbtvBx1pw/Sm0w=
+Received: by 10.54.1.80 with SMTP id 80mr1138290wra;
+        Mon, 02 May 2005 10:53:15 -0700 (PDT)
+Received: by 10.54.17.58 with HTTP; Mon, 2 May 2005 10:53:15 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <54b5dbf505050210535f2c4937@mail.gmail.com>
+Date:	Mon, 2 May 2005 23:23:15 +0530
+From: AsterixTheGaul <asterixthegaul@gmail.com>
+Reply-To: AsterixTheGaul <asterixthegaul@gmail.com>
+To: linux-kernel@vger.kernel.org, git@vger.kernel.org
+Subject: Linus' Git (or cogito) tree
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.3
+Lines: 12
+Xref: brand.scrye.com linux.git:2357
+
+Hi,
+my cg-pull stopped working and I have
+"origin  rsync://kernel.org/pub/linux/kernel/people/torvalds/linux-2.6.git"
+as by branch. Does the location changed recently?
+
+thanks,
+Muthu.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

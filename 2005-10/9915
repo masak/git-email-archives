@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 10 14:37:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DD060198FA9
+	for <tkil@scrye.com>; Mon, 10 Oct 2005 14:37:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751213AbVJJUfe (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 10 Oct 2005 16:35:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751214AbVJJUfe
+	(ORCPT <rfc822;git-outgoing>); Mon, 10 Oct 2005 16:35:34 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:10961 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1751213AbVJJUfd (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 10 Oct 2005 16:35:33 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051010203516.QXUG29216.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 10 Oct 2005 16:35:16 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	git@vger.kernel.org, junkio@cox.net
+Subject: Re: [PATCH] Teach git-status about spaces in file names also on MacOSX
+References: <Pine.LNX.4.63.0510102212230.8106@wbgn013.biozentrum.uni-wuerzburg.de>
+Date:	Mon, 10 Oct 2005 13:35:31 -0700
+In-Reply-To: <Pine.LNX.4.63.0510102212230.8106@wbgn013.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Mon, 10 Oct 2005 22:13:37 +0200
+	(CEST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vd5md3yb0.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 13
+Xref: brand.scrye.com linux.git:9915
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> Not that I really understand what Kai's original patch really does, but on
+> my iBook, sed does not understand '\t' and consequently cuts of every file
+> name at the first "t" (or backslash...).
+
+Thanks; not Kai's fault but mine.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

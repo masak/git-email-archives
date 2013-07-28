@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 10 12:33:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 314B9174218
+	for <tkil@scrye.com>; Sat, 10 Sep 2005 12:33:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932087AbVIJSd1 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 10 Sep 2005 14:33:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932138AbVIJSd1
+	(ORCPT <rfc822;git-outgoing>); Sat, 10 Sep 2005 14:33:27 -0400
+Received: from smtp14.wxs.nl ([195.121.6.28]:17373 "EHLO smtp14.wxs.nl")
+	by vger.kernel.org with ESMTP id S932087AbVIJSd1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 10 Sep 2005 14:33:27 -0400
+Received: from greensroom.kotnet.org (ip54515aaa.direct-adsl.nl [84.81.90.170])
+ by smtp14.wxs.nl (iPlanet Messaging Server 5.2 Patch 2 (built Jul 14 2004))
+ with SMTP id <0IMM00KLZ672JP@smtp14.wxs.nl> for git@vger.kernel.org; Sat,
+ 10 Sep 2005 20:33:02 +0200 (CEST)
+Received: (qmail 25952 invoked by uid 500); Sat, 10 Sep 2005 18:33:01 +0000
+Date:	Sat, 10 Sep 2005 20:33:01 +0200
+From:	Sven Verdoolaege <skimo@kotnet.org>
+Subject: Re: [ANNOUNCE qgit-0.94]
+In-reply-to: <20050910171633.1179.qmail@web26303.mail.ukl.yahoo.com>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Cc:	git@vger.kernel.org, catalin.marinas@gmail.com
+Reply-to: skimo@liacs.nl
+Mail-followup-to: Marco Costalba <mcostalba@yahoo.it>, git@vger.kernel.org,
+ catalin.marinas@gmail.com
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20050910183301.GQ15165MdfPADPa@greensroom.kotnet.org>
+MIME-version: 1.0
+Content-type: text/plain; charset=us-ascii
+Content-transfer-encoding: 7BIT
+Content-disposition: inline
+User-Agent: Mutt/1.5.10i
+References: <20050910171633.1179.qmail@web26303.mail.ukl.yahoo.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.0.4
+Lines: 45
+Xref: brand.scrye.com linux.git:8250
+
+On Sat, Sep 10, 2005 at 10:16:33AM -0700, Marco Costalba wrote:
+> If you have problems with the sources (Debian users should set QTDIR before compile) 
+> you can download a binary: http://digilander.libero.it/mcostalba/qgit
+
+I'd prefer compiling it myself, but I get this error:
+
+bash-3.00$ make
+scons
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+g++ -O2 -DQT_THREAD_SUPPORT -D_REENTRANT -I/usr/include/qt3 -I/usr/lib/qt3/include -c -o src/annotate.o src/annotate.cpp
+src/annotate.cpp: In member function `void Annotate::run(const QString&, 
+   QStringList&, AnnotateHistory&)':
+src/annotate.cpp:60: error: `count' undeclared (first use this function)
+src/annotate.cpp:60: error: (Each undeclared identifier is reported only once 
+   for each function it appears in.)
+src/annotate.cpp: In member function `void 
+   Annotate::getReachability(ReachList&, const QString&, QStringList&)':
+src/annotate.cpp:161: error: `append' undeclared (first use this function)
+src/annotate.cpp:169: error: `last' undeclared (first use this function)
+src/annotate.cpp: In member function `QString Annotate::getRoot(const QString&, 
+   const ReachList&)':
+src/annotate.cpp:228: error: `count' undeclared (first use this function)
+src/annotate.cpp: In member function `void Annotate::printReachList(const 
+   ReachList&)':
+src/annotate.cpp:303: error: `count' undeclared (first use this function)
+src/annotate.cpp: In member function `QString Annotate::getAuthor(const 
+   QString&, QStringList&, int)':
+src/annotate.cpp:337: error: no matching function for call to `QString::remove(
+   char)'
+/usr/lib/qt3/include/qstring.h:497: error: candidates are: QString& 
+   QString::remove(unsigned int, unsigned int)
+scons: *** [src/annotate.o] Error 1
+scons: building terminated because of errors.
+make: *** [all] Error 2
+
+ReachList doesn't seem to be defined anywhere.
+
+skimo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

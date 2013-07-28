@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 19:03:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5BE341C94CA
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 19:03:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750800AbVIQBC7 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 21:02:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750801AbVIQBC7
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 21:02:59 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:16819 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750800AbVIQBC7 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 16 Sep 2005 21:02:59 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8H12oBo031047
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 16 Sep 2005 18:02:53 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8H12kFf022933;
+	Fri, 16 Sep 2005 18:02:48 -0700
+Date:	Fri, 16 Sep 2005 18:02:46 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: [Take 2] Make "git shortlog" understand raw logs
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509161758270.26803@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:8738
+
+
+This is a nicer fix for git-shortlog being unable to handle the raw log 
+format. Just use a more permissive regexp instead of doing two nearly 
+identical ones.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/git-shortlog.perl b/git-shortlog.perl
+--- a/git-shortlog.perl
++++ b/git-shortlog.perl
+@@ -108,7 +108,7 @@ sub changelog_input {
+ 		if ($pstate == 1) {
+ 			my ($email);
+ 
+-			next unless /^Author: (.*)<(.*)>.*$/;
++			next unless /^[Aa]uthor:? (.*)<(.*)>.*$/;
+ 	
+ 			$n_records++;
+ 	
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 08:18:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 30C281A42B0
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 08:18:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750975AbVIUOPz (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 10:15:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750977AbVIUOPz
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 10:15:55 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:58855 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750974AbVIUOPy (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Sep 2005 10:15:54 -0400
+Received: (qmail 21238 invoked by uid 2001); 21 Sep 2005 16:15:52 +0200
+Date:	Wed, 21 Sep 2005 16:15:52 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	jamal <hadi@cyberus.ca>
+Cc:	git@vger.kernel.org
+Subject: Re: cg-rm suggestion
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050921141552.GC17981@pasky.or.cz>
+References: <1126531426.6380.2.camel@localhost.localdomain>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1126531426.6380.2.camel@localhost.localdomain>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:9037
+
+Dear diary, on Mon, Sep 12, 2005 at 03:23:46PM CEST, I got a letter
+where jamal <hadi@cyberus.ca> told me that...
+> Folks,
+> 
+> I am not on the list so cc if you respond.
+> 
+> A small suggestion for cg-rm: Can you make the default not to physically
+> remove the file since that is more destructive?
+> Unless there is a way to recover it.
+> 
+> Let someone who wants to delete explicitly specify it. Or maybe even do
+> the rm -i like option of prompting.
+
+Yes, it was changed to only cg-rm -f physically removing the file.
+Thanks for the suggestion.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

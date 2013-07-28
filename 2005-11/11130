@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov  4 09:05:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 52324170A6A
+	for <tkil@scrye.com>; Fri,  4 Nov 2005 09:05:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161160AbVKDQFH (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 4 Nov 2005 11:05:07 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161161AbVKDQFH
+	(ORCPT <rfc822;git-outgoing>); Fri, 4 Nov 2005 11:05:07 -0500
+Received: from dtp.xs4all.nl ([80.126.206.180]:57394 "HELO abra2.bitwizard.nl")
+	by vger.kernel.org with SMTP id S1161160AbVKDQFF (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 4 Nov 2005 11:05:05 -0500
+Received: (qmail 3790 invoked by uid 501); 4 Nov 2005 17:05:03 +0100
+Date:	Fri, 4 Nov 2005 17:05:03 +0100
+From:	Erik Mouw <erik@harddisk-recovery.com>
+To:	git@vger.kernel.org
+Subject: Re: Tags not transferred with git pull?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051104160503.GC23790@harddisk-recovery.com>
+References: <20051104155314.GB23790@harddisk-recovery.nl> <20051104155914.GA9567@ferdyx.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051104155914.GA9567@ferdyx.org>
+Organization: Harddisk-recovery.com
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:11130
+
+On Fri, Nov 04, 2005 at 04:59:14PM +0100, Fernando J. Pereda wrote:
+> On Fri, Nov 04, 2005 at 04:53:14PM +0100, Erik Mouw wrote:
+> | Is it OK that the latest git (0.99.9c) doesn't get the tags
+> | (refs/tags/*) when doing a git pull? It's getting a bit of a nuisance
+> | to do a separate rsync to get them right.
+> 
+> As Linus explained in a message earlier, a git fetch --tags will do it.
+
+Ah, right. I got the impression that the latest git was supposed to do
+that automatically with a git pull.
+
+
+Erik
+
+-- 
++-- Erik Mouw -- www.harddisk-recovery.com -- +31 70 370 12 90 --
+| Lab address: Delftechpark 26, 2628 XH, Delft, The Netherlands
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

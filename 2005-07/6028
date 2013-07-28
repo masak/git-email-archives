@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jul 12 11:46:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CE8F1AF2BB
+	for <tkil@scrye.com>; Tue, 12 Jul 2005 11:46:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261594AbVGLRqI (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 12 Jul 2005 13:46:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261781AbVGLRqI
+	(ORCPT <rfc822;git-outgoing>); Tue, 12 Jul 2005 13:46:08 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:18061 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261594AbVGLRqH (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 12 Jul 2005 13:46:07 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6CHk5jA016088
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 12 Jul 2005 10:46:06 -0700
+Received: from shell0.pdx.osdl.net (localhost [127.0.0.1])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6CHk524023568;
+	Tue, 12 Jul 2005 10:46:05 -0700
+Received: (from chrisw@localhost)
+	by shell0.pdx.osdl.net (8.13.1/8.13.1/Submit) id j6CHk56t023565;
+	Tue, 12 Jul 2005 10:46:05 -0700
+Date:	Tue, 12 Jul 2005 10:46:05 -0700
+From: Chris Wright <chrisw@osdl.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: "Eric W. Biederman" <ebiederm@xmission.com>,
+	Chris Wright <chrisw@osdl.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Trial git RPM's..
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050712174605.GV19052@shell0.pdx.osdl.net>
+References: <Pine.LNX.4.58.0507101814210.17536@g5.osdl.org> <m1eka574c8.fsf@ebiederm.dsl.xmission.com> <Pine.LNX.4.58.0507110958400.17536@g5.osdl.org> <20050711210309.GT5324@shell0.pdx.osdl.net> <m1zmssyq0r.fsf@ebiederm.dsl.xmission.com> <Pine.LNX.4.58.0507120959550.17536@g5.osdl.org> <m1vf3gymi4.fsf@ebiederm.dsl.xmission.com> <Pine.LNX.4.58.0507121027120.17536@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0507121027120.17536@g5.osdl.org>
+User-Agent: Mutt/1.5.6i
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:6028
+
+* Linus Torvalds (torvalds@osdl.org) wrote:
+> On Tue, 12 Jul 2005, Eric W. Biederman wrote:
+> > The name of the tarball needs to be updated as well.
+> 
+> Yes, I noticed.
+> 
+> I ended up renaming the spec-file too.
+> 
+> Pushed out,
+
+Yup, looks good.
+-chris
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 23:58:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2FED322C68B
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 23:58:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965160AbVLOG5q (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Dec 2005 01:57:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964954AbVLOG5p
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Dec 2005 01:57:45 -0500
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:226
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S964952AbVLOG5p (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 15 Dec 2005 01:57:45 -0500
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1Emn3f-0000yu-UA
+	for git@vger.kernel.org; Thu, 15 Dec 2005 06:57:43 +0000
+From:	Alan Chandler <alan@chandlerfamily.org.uk>
+To:	git@vger.kernel.org
+Subject: Re: [ANNOUNCE] Cogito-0.16.2
+Date:	Thu, 15 Dec 2005 06:57:52 +0000
+User-Agent: KMail/1.9.1
+References: <20051214231019.GK22159@pasky.or.cz>
+In-Reply-To: <20051214231019.GK22159@pasky.or.cz>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200512150657.53622.alan@chandlerfamily.org.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:13675
+
+On Wednesday 14 December 2005 23:10, Petr Baudis wrote:
+...
+>   Also, Cogito is now very ineffective when cloning big-packed
+> repositories over the git protocol or over ssh, since git-fetch-pack
+> unpacks the objects on the local side, which bogs things down a lot and
+> makes the repository grow into enormous proportions - I'm not yet sure
+> if I will backport the fix to 0.16 since I want to be maximally careful
+> not to gravely break anything again and keep 0.16 as stable as possible.
+> (Hm. Call this "the Debian dilemma". ;-)
+
+Note sure what your Debian dilemma is.  Right now, Debian (Unstable) seems 
+broken, because cogito is still at 0.16.0 and hickups on the bash 3.1 issue 
+discussed in an earlier thread.  Having updated to the debian version from my 
+earlier self built version earlier this week, I immediately found I couldn't 
+commit.
+
+After waiting a day for the next release to filter through and it not doing 
+so, I had to rebuild my own version again - and as far as I am aware, despite 
+a new version of git-core arriving on my "update" this  morning, there has 
+been no new cogito package.
+
+
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+Open Source. It's the difference between trust and antitrust.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

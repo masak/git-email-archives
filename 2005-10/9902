@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 10 13:01:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B5A7B15EAEC
+	for <tkil@scrye.com>; Mon, 10 Oct 2005 13:01:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751100AbVJJTBd (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 10 Oct 2005 15:01:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751113AbVJJTBd
+	(ORCPT <rfc822;git-outgoing>); Mon, 10 Oct 2005 15:01:33 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:39145 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751100AbVJJTBc (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 10 Oct 2005 15:01:32 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 121AC13F05A; Mon, 10 Oct 2005 21:01:32 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id E2C69B4C4B; Mon, 10 Oct 2005 21:01:31 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CA6E5B4C33; Mon, 10 Oct 2005 21:01:31 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 51D0613F05A; Mon, 10 Oct 2005 21:01:31 +0200 (CEST)
+Date:	Mon, 10 Oct 2005 21:01:31 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: First cut at git port to Cygwin
+In-Reply-To: <434AB663.8050205@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510102100010.7688@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051005155457.GA30303@trixie.casa.cgf.cx> <20051005191741.GA25493@steel.home>
+ <20051005202947.GA6184@trixie.casa.cgf.cx> <81b0412b0510060205v4cd510c9wb4b06a3ed9242c8@mail.gmail.com>
+ <81b0412b0510060307q431b64edt4196553bce28346c@mail.gmail.com>
+ <81b0412b0510070544v3e7cf0b4n521db8ff7e4e335a@mail.gmail.com>
+ <Pine.LNX.4.64.0510070828270.31407@g5.osdl.org> <20051007205450.GA14827@steel.home>
+ <20051007212250.GA1423@steel.home> <4346E8AC.5030503@citi.umich.edu>
+ <20051007213952.GA8821@steel.home> <Pine.LNX.4.64.0510080900510.31407@g5.osdl.org>
+ <Pine.LNX.4.63.0510082023130.25971@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vr7avrgr2.fsf@assigned-by-dhcp.cox.net> <434AB663.8050205@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:9902
+
+Hi,
+
+On Mon, 10 Oct 2005, H. Peter Anvin wrote:
+
+> Junio C Hamano wrote:
+> > 
+> > PROT_WRITE is true, but we do MAP_PRIVATE, and if I recall
+> > correctly we do not write file via mmap -- at least we do not
+> > intend to.
+> > 
+> 
+> Then PROT_READ probably makes more sense?
+
+Not necessarily. Sometimes you need to annotate the data from the index, 
+and this does not need to be written back to the index file.
+
+> > Yes.  It might have been overkill that you supported writing
+> > changes back, though.
+> 
+> Not just overkill; if we do MAP_PRIVATE it's actively WRONG.
+
+See above.
+
+BTW, is there a mechanism to make sure that the index file is locked 
+between reading and writing?
+
+Ciao,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

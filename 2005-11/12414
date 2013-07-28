@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 20 22:32:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A009C29720D
+	for <tkil@scrye.com>; Sun, 20 Nov 2005 22:32:04 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932193AbVKUFbp (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 00:31:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932194AbVKUFbp
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 00:31:45 -0500
+Received: from dsl027-180-168.sfo1.dsl.speakeasy.net ([216.27.180.168]:61605
+	"EHLO sunset.davemloft.net") by vger.kernel.org with ESMTP
+	id S932193AbVKUFbo (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 00:31:44 -0500
+Received: from localhost ([127.0.0.1] ident=davem)
+	by sunset.davemloft.net with esmtp (Exim 4.54)
+	id 1Ee4HH-0001as-Q5; Sun, 20 Nov 2005 21:31:43 -0800
+Date:	Sun, 20 Nov 2005 21:31:29 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051120.213129.88244378.davem@davemloft.net>
+To:	ryan@michonline.com
+Cc:	git@vger.kernel.org, junkio@cox.net
+Subject: Re: [PATCH] Add Python version checks to the Makefile to
+ automatically set WITH_OWN_SUBPROCESS_PY
+From:	"David S. Miller" <davem@davemloft.net>
+In-Reply-To: <11325498823557-git-send-email-ryan@michonline.com>
+References: <20051120.202032.37639519.davem@davemloft.net>
+	<11325498823557-git-send-email-ryan@michonline.com>
+X-Mailer: Mew version 4.2.53 on Emacs 21.4 / Mule 5.0 (SAKAKI)
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 13
+Xref: brand.scrye.com linux.git:12414
+
+From: Ryan Anderson <ryan@michonline.com>
+Date: Mon, 21 Nov 2005 00:11:22 -0500
+
+> Also rearrange some path settings in the Makefile in the process.
+> 
+> Signed-off-by: Ryan Anderson <ryan@michonline.com>
+
+Looks good from here.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

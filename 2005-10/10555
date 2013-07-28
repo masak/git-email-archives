@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 24 15:56:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AF9E81C94F3
+	for <tkil@scrye.com>; Mon, 24 Oct 2005 15:56:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751307AbVJXV4F (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 24 Oct 2005 17:56:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751310AbVJXV4F
+	(ORCPT <rfc822;git-outgoing>); Mon, 24 Oct 2005 17:56:05 -0400
+Received: from iabervon.org ([66.92.72.58]:10760 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751307AbVJXV4E (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 24 Oct 2005 17:56:04 -0400
+Received: (qmail 9117 invoked by uid 1000); 24 Oct 2005 17:55:30 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 24 Oct 2005 17:55:30 -0400
+Date:	Mon, 24 Oct 2005 17:55:30 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Horst von Brand <vonbrand@inf.utfsm.cl>
+cc:	Nico -telmich- Schottelius <nico-linux-git@schottelius.org>,
+	Kay Sievers <kay.sievers@vrfy.org>,
+	Git Mailing List <git@vger.kernel.org>,
+	Christian Gierke <ch@gierke.de>,
+	Peter Portmann <peter.portmann@sygroup.ch>,
+	Junio C Hamano <junkio@cox.net>
+Subject: Re: gitweb: charset problem 
+In-Reply-To: <200510241356.j9ODuAHn005060@laptop11.inf.utfsm.cl>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510241743280.25300@iabervon.org>
+References: <200510241356.j9ODuAHn005060@laptop11.inf.utfsm.cl>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:10555
+
+On Mon, 24 Oct 2005, Horst von Brand wrote:
+
+> > But we also have another problem: Sometimes we have umlauts in the commit
+> > messages.  Those are also displayed incorrectly. When I switch to
+> > iso-8859-1 encoding in mozilla, the characters in the username and in the
+> > commit message are ok.
+> 
+> I believe the Emperor Penguin decreed messages have to be ASCII, or else
+> UTF-8. Please don't add to the mess by using non-portable encodings!
+
+Should we possibly reject non-UTF-8 input to commits?
+
+IIRC, we actually define that to be UTF-8, unlike most of the other stuff, 
+for which we don't actually insist on a policy.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

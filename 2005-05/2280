@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  1 11:33:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 88713187753
+	for <tkil@scrye.com>; Sun,  1 May 2005 11:33:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262621AbVEARdj (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 1 May 2005 13:33:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262628AbVEARdj
+	(ORCPT <rfc822;git-outgoing>); Sun, 1 May 2005 13:33:39 -0400
+Received: from iabervon.org ([66.92.72.58]:19719 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262621AbVEARdh (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 1 May 2005 13:33:37 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DSIJu-0001UO-00; Sun, 1 May 2005 13:33:30 -0400
+Date:	Sun, 1 May 2005 13:33:30 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] Make pull not assume anything about current objects
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0505011327160.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 24
+Xref: brand.scrye.com linux.git:2280
+
+Previously, pull assumed that, if you have a commit, you either have or
+don't want everything it references. Change this to actually check
+locally on everything you want, to be completely sure.
+
+Signed-off-by: Daniel Barkalow <barkalow@iabervon.org>
+Index: pull.c
+===================================================================
+--- 6f0f1d99169f9d90aa44e47d1bcff7b1dd4d8ea0/pull.c  (mode:100644 sha1:86a7b6901fe69a82c12c3470b456982ef52cebd0)
++++ 661b090ca8652d2cfa299b4cac3ffceebdd2b43c/pull.c  (mode:100644 sha1:90d2d41ed2c56580f72f020bc93c3e1b8a3befa5)
+@@ -48,8 +48,6 @@
+ 	if (get_history) {
+ 		struct commit_list *parents = obj->parents;
+ 		for (; parents; parents = parents->next) {
+-			if (has_sha1_file(parents->item->object.sha1))
+-				continue;
+ 			if (fetch(parents->item->object.sha1)) {
+ 				/* The server might not have it, and
+ 				 * we don't mind. 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

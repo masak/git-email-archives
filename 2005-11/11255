@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 07:37:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F25471357AB
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 07:37:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964833AbVKGOhN (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 09:37:13 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964829AbVKGOhN
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 09:37:13 -0500
+Received: from [202.125.80.34] ([202.125.80.34]:48961 "EHLO mail.esn.co.in")
+	by vger.kernel.org with ESMTP id S964833AbVKGOhM convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 7 Nov 2005 09:37:12 -0500
+Content-class: urn:content-classes:message
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+X-MimeOLE: Produced By Microsoft Exchange V6.5.7226.0
+Subject: GIT Vs CVS
+Date:	Mon, 7 Nov 2005 20:04:58 +0530
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <3AEC1E10243A314391FE9C01CD65429B13B2DA@mail.esn.co.in>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: Confirmation for subscribe git
+Thread-Index: AcXjp7QGsKg+/cktSZCyM8ma+C2WxgAAE6ag
+From:	"Mukund JB." <mukundjb@esntechnologies.co.in>
+To:	<git@vger.kernel.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:11255
+
+Dear All,
+
+I have been just aware of GIT. As an active Linux device driver developer, I would like to know more about it.
+I have read through the GIT documentation the git native site.http://git.or.cz/
+
+I find lot a similarities between GIT And Cvs.
+Can any elaborate on this? Can I use GIT instead of Cvs?
+
+Regards,
+Mukund Jampala
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

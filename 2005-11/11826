@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 14 11:59:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4213BCDF6C
+	for <tkil@scrye.com>; Mon, 14 Nov 2005 11:59:06 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751238AbVKNS6g (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 13:58:36 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751239AbVKNS6g
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 13:58:36 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:51427 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751238AbVKNS6g (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 14 Nov 2005 13:58:36 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAEIwYnO026462
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <git@vger.kernel.org>; Mon, 14 Nov 2005 10:58:35 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAEIwYpB023120
+	for <git@vger.kernel.org>; Mon, 14 Nov 2005 10:58:34 -0800
+Date:	Mon, 14 Nov 2005 10:58:34 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Command line hint of the day
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511141049410.3263@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:11826
+
+
+So I got a question about ppp in the kernel, and quite frankly, the things 
+I know about ppp can be engraved with a jack-hammer on a grain of rice.
+
+So what did I do?
+
+	git whatchanged $(git-ls-files *ppp*)
+
+actually does something useful. It will only look at files that are 
+_currently_ called *ppp*, so you'd not see files that have been deleted, 
+but it does the right thing for what I wanted.
+
+You can also do "git log" or "gitk" instead of "git whatchanged", but the 
+whatchanged thing has the advantage that it can run incrementally. Doing a 
+"git log" ends up figuring out _all_ the commits before it can display 
+them, since it also does the densification etc.
+
+Maybe we should have a git man-page section of "strange but useful 
+examples"? Things people do just because they are useful, but may not be 
+immediately obvious to somebody who comes from CVS-land and uses git as 
+just another old SCM?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

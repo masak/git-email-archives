@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 02:22:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A1E402481E5
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 02:22:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261405AbVDSIWc (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 04:22:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261410AbVDSIWb
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 04:22:31 -0400
+Received: from shiva.jussieu.fr ([134.157.0.129]:22247 "EHLO shiva.jussieu.fr")
+	by vger.kernel.org with ESMTP id S261405AbVDSIW1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 19 Apr 2005 04:22:27 -0400
+Received: from hydrogene.pps.jussieu.fr (hydrogene.pps.jussieu.fr [134.157.168.1])
+          by shiva.jussieu.fr (8.12.11/jtpda-5.4) with ESMTP id j3J8MN1A093053
+          ; Tue, 19 Apr 2005 10:22:23 +0200 (CEST)
+X-Ids:	166
+Received: from lanthane.pps.jussieu.fr (lanthane.pps.jussieu.fr [134.157.168.57])
+          by hydrogene.pps.jussieu.fr (8.13.3/jtpda-5.4) with ESMTP id j3J8MLY2010162
+          ; Tue, 19 Apr 2005 10:22:21 +0200
+Received: from jch by lanthane.pps.jussieu.fr with local (Exim 4.34)
+	id 1DNnzx-0001ju-HO; Tue, 19 Apr 2005 10:22:21 +0200
+To: Ray Lee <ray@madrabbit.org>
+Cc: darcs-devel@darcs.net, Git Mailing List <git@vger.kernel.org>
+Subject: Re: [darcs-devel] Darcs and git: plan of action
+References: <7ivf6lm594.fsf@lanthane.pps.jussieu.fr>
+	<20050418122011.GA13769@abridgegame.org>
+	<7iy8bf7fh2.fsf@lanthane.pps.jussieu.fr>
+	<1113874991.23938.113.camel@orca.madrabbit.org>
+From: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>
+Date:	Tue, 19 Apr 2005 10:22:21 +0200
+In-Reply-To: <1113874991.23938.113.camel@orca.madrabbit.org> (Ray Lee's
+ message of "Mon, 18 Apr 2005 18:43:11 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7i7jizyy4i.fsf@lanthane.pps.jussieu.fr>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.3 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-1.7.2 (shiva.jussieu.fr [134.157.0.166]); Tue, 19 Apr 2005 10:22:23 +0200 (CEST)
+X-Antivirus: scanned by sophie at shiva.jussieu.fr
+X-Miltered: at shiva.jussieu.fr with ID 4264BFBF.000 by Joe's j-chkmail (http://j-chkmail.ensmp.fr)!
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 19
+Xref: brand.scrye.com linux.git:767
+
+> > Aye, that will require some metadata on the git side (the hack,
+> > suggested by Linus, of using git hashes to notice moves won't work).
+
+> So, why won't it work?
+
+Because two files can legitimately have identical contents without
+being ``the same'' file from the VC system's point of view.
+
+In other words, two files may happen to have the same contents but
+have distinct histories.
+
+                                        Juliusz
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

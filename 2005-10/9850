@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct  8 21:44:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 079621612EB
+	for <tkil@scrye.com>; Sat,  8 Oct 2005 21:44:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932210AbVJIDne (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 8 Oct 2005 23:43:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932211AbVJIDne
+	(ORCPT <rfc822;git-outgoing>); Sat, 8 Oct 2005 23:43:34 -0400
+Received: from terminus.zytor.com ([192.83.249.54]:37357 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S932210AbVJIDnd
+	(ORCPT <rfc822;git@vger.kernel.org>); Sat, 8 Oct 2005 23:43:33 -0400
+Received: from [172.27.0.18] (c-67-180-238-27.hsd1.ca.comcast.net [67.180.238.27])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j993hLLC024907
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sat, 8 Oct 2005 20:43:22 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <434891DA.7070905@zytor.com>
+Date:	Sat, 08 Oct 2005 20:43:22 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Junio C Hamano <junkio@cox.net>
+CC:	Alex Riesen <raa.lkml@gmail.com>, git@vger.kernel.org
+Subject: Re: Seeing various mode changes on cygwin
+References: <20051008180023.GC28875@diku.dk>	<7vfyrbrgdw.fsf@assigned-by-dhcp.cox.net>	<20051008213612.GA5794@steel.home> <7vzmpjoa32.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vzmpjoa32.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:9850
+
+Junio C Hamano wrote:
+> Alex Riesen <raa.lkml@gmail.com> writes:
+> 
+>>These are not real attributes, cygwin emulates them from the names,
+>>like .exe will always be 0755, for example.
+> 
+> Ouch.  Is this true in general, or only on FAT-derived
+> filesystems?
+> 
+> We may need to worry about this on the core side after all.
+> Some people need to mount FAT even on Linux systems, 
+> 
+
+At least on Cygwin/NTFS, you can do chmod just fine.
+
+	-hpa
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

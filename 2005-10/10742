@@ -1,0 +1,98 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 27 21:01:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5B08C13C8E3
+	for <tkil@scrye.com>; Thu, 27 Oct 2005 21:01:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965072AbVJ1DAx (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 27 Oct 2005 23:00:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965073AbVJ1DAx
+	(ORCPT <rfc822;git-outgoing>); Thu, 27 Oct 2005 23:00:53 -0400
+Received: from fencepost.gnu.org ([199.232.76.164]:1256 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S965072AbVJ1DAw
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 27 Oct 2005 23:00:52 -0400
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EVKU0-00015P-OR
+	for git@vger.kernel.org; Thu, 27 Oct 2005 23:00:45 -0400
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EVKTz-0000C6-QZ
+	for git@vger.kernel.org; Thu, 27 Oct 2005 23:00:43 -0400
+Subject: [PATCH] fix testsuite to tolerate spaces in path
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Thu, 27 Oct 2005 23:00:43 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1130468443.2186.31.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 56
+Xref: brand.scrye.com linux.git:10742
+
+This patch allows the testsuite to run properly when the full path to
+the git sources contains spaces or other symbols that need to be quoted.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/t/t5300-pack-object.sh b/t/t5300-pack-object.sh
+index 96db98b..5b50536 100755
+--- a/t/t5300-pack-object.sh
++++ b/t/t5300-pack-object.sh
+@@ -49,7 +49,7 @@ test_expect_success \
+      git-unpack-objects <test-1-${packname_1}.pack"
+ 
+ unset GIT_OBJECT_DIRECTORY
+-cd $TRASH/.git2
++cd "$TRASH/.git2"
+ 
+ test_expect_success \
+     'check unpack without delta' \
+@@ -61,7 +61,7 @@ test_expect_success \
+ 	     return 1
+ 	 }
+      done'
+-cd $TRASH
++cd "$TRASH"
+ 
+ test_expect_success \
+     'pack with delta' \
+@@ -80,7 +80,7 @@ test_expect_success \
+      git-unpack-objects <test-2-${packname_2}.pack'
+ 
+ unset GIT_OBJECT_DIRECTORY
+-cd $TRASH/.git2
++cd "$TRASH/.git2"
+ test_expect_success \
+     'check unpack with delta' \
+     '(cd ../.git && find objects -type f -print) |
+@@ -91,7 +91,7 @@ test_expect_success \
+ 	     return 1
+ 	 }
+      done'
+-cd $TRASH
++cd "$TRASH"
+ 
+ rm -fr .git2
+ mkdir .git2
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

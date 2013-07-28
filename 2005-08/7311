@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 15 15:25:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C0AD52851FC
+	for <tkil@scrye.com>; Mon, 15 Aug 2005 15:25:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964977AbVHOVWh (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 15 Aug 2005 17:22:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964976AbVHOVWh
+	(ORCPT <rfc822;git-outgoing>); Mon, 15 Aug 2005 17:22:37 -0400
+Received: from pop.gmx.de ([213.165.64.20]:39808 "HELO mail.gmx.net")
+	by vger.kernel.org with SMTP id S964973AbVHOVWg (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 15 Aug 2005 17:22:36 -0400
+Received: (qmail invoked by alias); 15 Aug 2005 21:22:35 -0000
+Received: from p5496B7BE.dip0.t-ipconnect.de (EHLO linux) [84.150.183.190]
+  by mail.gmx.net (mp001) with SMTP; 15 Aug 2005 23:22:35 +0200
+X-Authenticated: #352111
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] Add --signoff and --verify option to git commit.
+Date:	Mon, 15 Aug 2005 23:21:16 +0200
+User-Agent: KMail/1.8.2
+References: <7vzmrmp5kw.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vzmrmp5kw.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200508152321.17075.Josef.Weidendorfer@gmx.de>
+X-Y-GMX-Trusted: 0
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:7311
+
+On Saturday 13 August 2005 11:08, Junio C Hamano wrote:
+> Also add --verify to make sure the lines you introduced are
+> clean, which is more useful in commit but not very much in
+> format-patch as it was originally implemented, because finding
+> botches at format-patch time is too late.
+
+I think that verification of/commenting on commits at/before commit time is a 
+perfect place for another hook script (or collection of verification 
+scripts).
+
+People probably want to check a new commit on identation/coding style on a 
+per-project manner. The hook also should be able to give warnings/hints by 
+adding text to the commit message (e.g. "please do not use 'fgetc'" / 
+"doublecheck quoting in system()", ...) without rejecting the commit as a 
+whole. It could even be allowed to edit the code before commit.
+
+These verification scripts should be used per default, and git-commit should 
+have an option to force bypassing verification.
+
+If I get some time, I can come up with a patch.
+
+Josef
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

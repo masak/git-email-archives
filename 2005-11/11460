@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 01:18:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D5DCC14347D
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 01:18:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751202AbVKJIRX (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 03:17:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751218AbVKJIRX
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 03:17:23 -0500
+Received: from zproxy.gmail.com ([64.233.162.192]:27922 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1751202AbVKJIRW convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 10 Nov 2005 03:17:22 -0500
+Received: by zproxy.gmail.com with SMTP id 14so366630nzn
+        for <git@vger.kernel.org>; Thu, 10 Nov 2005 00:17:21 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=RXLe7KFH5MwXPVuu7rtSU48AZnfHnrVzfrX4pKSGGh3MWAneOazKDTeIxj4bDy4VYEVzwJw7FcD3hvJbfFwuvsIrH48Y0nKUnRBldLkKPFA6jd7t5ZTU/HjrMz7EFuIeAg96ZU/PgID7W4X/X7BpPC0K7imPxlBAXecbwomhMTk=
+Received: by 10.36.221.32 with SMTP id t32mr338156nzg;
+        Thu, 10 Nov 2005 00:17:21 -0800 (PST)
+Received: by 10.36.47.8 with HTTP; Thu, 10 Nov 2005 00:17:21 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <cda58cb80511100017v12f8ec77v@mail.gmail.com>
+Date:	Thu, 10 Nov 2005 09:17:21 +0100
+From:	Franck <vagabon.xyz@gmail.com>
+To:	git@vger.kernel.org
+Subject: Where should I post questions on GIT usage ?
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 14
+Xref: brand.scrye.com linux.git:11460
+
+Hi,
+
+I'm starting using GIT, and I'm having a couple of basic questions to
+ask. Is it the correct place to post them or is there any other
+mailing list related to GIT usage ?
+
+Thanks
+--
+               Franck
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 28 23:17:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7EC33189BFA
+	for <tkil@scrye.com>; Fri, 28 Oct 2005 23:17:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751324AbVJ2FPo (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 29 Oct 2005 01:15:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751332AbVJ2FPn
+	(ORCPT <rfc822;git-outgoing>); Sat, 29 Oct 2005 01:15:43 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:40153 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1751324AbVJ2FPn (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 29 Oct 2005 01:15:43 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051029051457.NHWE2059.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 29 Oct 2005 01:14:57 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	c.shoemaker@cox.net
+Subject: Re: [PATCH] Minor clarifications in diffcore documentation
+References: <E1EVi8D-0002TT-Ik@localhost>
+cc:	git@vger.kernel.org
+Date:	Fri, 28 Oct 2005 22:15:41 -0700
+In-Reply-To: <E1EVi8D-0002TT-Ik@localhost> (c. shoemaker's message of "Sat, 29
+	Oct 2005 00:15:49 -0400")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64rg3nuq.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:10787
+
+c.shoemaker@cox.net writes:
+
+>  ------------------------------------------------
+>  :100644 100644 0123456... 1234567... M fileY
+> -:000000 100644 0000000... 0123456... A file0
+> +:000000 100644 0000000... bcd3456... A file0
+>  ------------------------------------------------
+>  
+>  the original contents of fileY and the resulting contents of
+> @@ -154,14 +165,14 @@ changed to:
+>  
+>  ------------------------------------------------
+>  :100644 100644 0123456... 1234567... M fileY
+> -:100644 100644 0123456... 0123456... C100 fileY file0
+> +:100644 100644 0123456... bcd3456... C100 fileY file0
+>  ------------------------------------------------
+
+
+I think with this change you wanted to say that a copy does not
+have to be a literal copy but a copy-edit.  But if that is the
+case, I suspect that the similarity index would be slightly less
+than 100.
+
+If I misunderstood the reason of this change please let me know.
+
+All patches, including this one, look fine to me.  Thanks.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

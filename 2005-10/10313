@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 16:38:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DC6EF285244
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 16:38:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751613AbVJSWhv (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 18:37:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751617AbVJSWhv
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 18:37:51 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:29326 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751608AbVJSWhu (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 19 Oct 2005 18:37:50 -0400
+Received: (qmail 9980 invoked by uid 2001); 20 Oct 2005 00:37:43 +0200
+Date:	Thu, 20 Oct 2005 00:37:43 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Cc:	Linus Torvalds <torvalds@osdl.org>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: git-send-pack segfaulting on DebianPPC (was: Re: cg-clone, tag objects and cg-push/git-push don't play nice)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051019223743.GQ30889@pasky.or.cz>
+References: <46a038f90510190202n60101c5cgf27bd714dce00513@mail.gmail.com> <Pine.LNX.4.64.0510190724000.3369@g5.osdl.org> <46a038f90510191356w56b78413p6b9fe5b67fc9ee74@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <46a038f90510191356w56b78413p6b9fe5b67fc9ee74@mail.gmail.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 42
+Xref: brand.scrye.com linux.git:10313
+
+Dear diary, on Wed, Oct 19, 2005 at 10:56:35PM CEST, I got a letter
+where Martin Langhoff <martin.langhoff@gmail.com> told me that...
+> To recap: repo is slightly broken because cg-fetch has fetched tag
+> objects, but hasn't followed them through to the commit objects they
+> refer to.
+
+That must be leftover of some old fetch, before cg-fetch got fixed wrt.
+this issue.
+
+> Internally cg-fetch is actually using git-ssh-fetch (I misreported it
+> using git-fetch-pack), which is working correctly. However, cg-fetch
+> attempts to optimize the fetch process, by not calling git-ssh-fetch
+> if it has the tagobj that the ref points to. How those tag objects get
+> there without commits in the first place I don't know. So I've removed
+> the optimization and life is much better.
+
+The "optimization" or something alike needs to be there at least for the
+user interface, so that we can actually say what tags are we
+downloading; besides, there can be a *lot* of tags. But I'm not sure how
+moot will this all be after Cogito moves to the remote peeking (Real
+Soon Now, promise ;-).
+
+> There is a second bug during the tag fetch. Some of the references
+> (created by git-cvsimport) are multiline, and break cg-fetch. It's
+> probably a bug in git-cvsimport, but I'm fixing cg-fetch to use head
+> -n1 instead of cat. I'll deal with git-cvsimport later.
+
+Eek. Did I miss something and are multiline refs meaningful now? If not,
+they are pretty bad and I'd imagine other parts of Cogito would be
+pretty confused about that. I'd call this a corrupted repository,
+tough. Perhaps a check should be added to fsck.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 11:20:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E0D6425B5CD
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 11:20:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261739AbVDTRRi (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 13:17:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261749AbVDTRRi
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 13:17:38 -0400
+Received: from mail.allianceoneinc.com ([65.213.221.36]:61445 "EHLO
+	mail.allianceoneinc.com") by vger.kernel.org with ESMTP
+	id S261739AbVDTRQl convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 20 Apr 2005 13:16:41 -0400
+Received: from epa20012 [192.168.17.155] by mail.allianceoneinc.com with ESMTP
+  (SMTPD32-8.14) id AE424C300B4; Wed, 20 Apr 2005 13:15:46 -0400
+From: "Andrew Timberlake-Newell" <Andrew.Timberlake-Newell@AllianceOneInc.com>
+To: <git@vger.kernel.org>
+Cc: "'Petr Baudis'" <pasky@ucw.cz>
+Subject: RE: missing: git api, reference, user manual and mission statement
+Date:	Wed, 20 Apr 2005 13:15:46 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <004e01c545cc$97d9b780$9b11a8c0@allianceoneinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
+X-Priority: 3 (Normal)
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook, Build 10.0.6626
+In-Reply-To: <20050419165809.GE12757@pasky.ji.cz>
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2180
+Importance: Normal
+X-IMAIL-SPAM-VALFROM: (8e4204c300b4b26c)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 33
+Xref: brand.scrye.com linux.git:982
+
+Petr Baudis graced us with:
+> Dear diary, on Tue, Apr 19, 2005 at 02:36:32PM CEST, I got a letter
+> where Klaus Robert Suetterlin <robert@mpe.mpg.de> told me that...
+> > 1) There is no clear (e.g. by name) distinction between ``git as done
+> > by Linus'', which is a kind of content addressable database with added
+> > semantics, and ``git as done by the rest of You'', which is a kind of
+> > SCM on top of Linuses stuff.
+> 
+> There is git and git-pasky (git-pasky is superset; therefore various
+> patches floating around either get to git-pasky or to both). I'm not
+> sure what else do you mean.
+
+This goes back to the question of whether to rename git-pasky to cogito.  
+
+Perhaps the crucial question is:  will the git plumbing be used for anything
+other than SCM?
+
+If so, then it could be useful to differentiate by program name, so that we
+would know whether another project was utilizing git-plumbing or git-SCM.
+
+If not, then there is effectively only one tool and the plumbing is a
+[crucial] portion thereof:  a git (SCM and the file system around which it
+was built).
+
+So what's the answer to the question?  Anyone planning to use git (the file
+system) outside of the SCM?
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

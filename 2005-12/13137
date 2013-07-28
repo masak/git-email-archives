@@ -1,0 +1,55 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  2 23:35:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E743724A60C
+	for <tkil@scrye.com>; Fri,  2 Dec 2005 23:35:39 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751179AbVLCGfT (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 3 Dec 2005 01:35:19 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751195AbVLCGfT
+	(ORCPT <rfc822;git-outgoing>); Sat, 3 Dec 2005 01:35:19 -0500
+Received: from lotus.CS.Berkeley.EDU ([128.32.36.222]:15257 "EHLO
+	lotus.CS.Berkeley.EDU") by vger.kernel.org with ESMTP
+	id S1751179AbVLCGfS (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 3 Dec 2005 01:35:18 -0500
+Received: from lotus.CS.Berkeley.EDU (localhost [127.0.0.1])
+	by lotus.CS.Berkeley.EDU (8.12.8/8.12.8) with ESMTP id jB36ZH6d003064
+	for <git@vger.kernel.org>; Fri, 2 Dec 2005 22:35:17 -0800 (PST)
+Received: from lotus.CS.Berkeley.EDU (ejr@localhost)
+	by lotus.CS.Berkeley.EDU (8.12.8/8.12.8/Submit) with ESMTP id jB36ZHAo003063
+	for <git@vger.kernel.org>; Fri, 2 Dec 2005 22:35:17 -0800 (PST)
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] Include Makefile.localdef in Makefile, if it exists. 
+In-reply-to: <Pine.LNX.4.63.0512030322410.19086@wbgn013.biozentrum.uni-wuerzburg.de> 
+Date:	Fri, 02 Dec 2005 22:35:17 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <3061.1133591717@lotus.CS.Berkeley.EDU>
+From:	Jason Riedy <ejr@EECS.Berkeley.EDU>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:13137
+
+And Johannes Schindelin writes:
+ - I wonder why you do not just override them in config.mak, which was 
+ - introduced just for that purpose...
+
+'Cause I'm a git and didn't notice it, thanks.  The prefix stuff 
+probably ought to be moved below the -include config.mak so 
+someone need only change $(prefix) and not the rest.  I might
+send along such a patch, along with a note about config.mak in
+INSTALL...
+
+Jason
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

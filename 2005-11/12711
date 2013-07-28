@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 24 17:53:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.8 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_12_24 autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DE902292EE7
+	for <tkil@scrye.com>; Thu, 24 Nov 2005 17:53:20 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932676AbVKYAwa (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 24 Nov 2005 19:52:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932677AbVKYAwa
+	(ORCPT <rfc822;git-outgoing>); Thu, 24 Nov 2005 19:52:30 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:47377 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S932676AbVKYAw3 convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 24 Nov 2005 19:52:29 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jAP0kTtT024737;
+	Fri, 25 Nov 2005 00:50:32 GMT
+In-Reply-To: <Pine.LNX.4.63.0511231546330.8191@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051123025001.15527.qmail@web31812.mail.mud.yahoo.com> <7v4q6483ms.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0511231546330.8191@wbgn013.biozentrum.uni-wuerzburg.de>
+Mime-Version: 1.0 (Apple Message framework v734)
+Content-Type: text/plain; charset=UTF-8; delsp=yes; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <D8B7EF65-9D0C-4706-B248-4B7C118C16BF@hawaga.org.uk>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Content-Transfer-Encoding: 8BIT
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: Re: Problem merging
+Date:	Thu, 24 Nov 2005 20:54:41 +1000
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-Mailer: Apple Mail (2.734)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:12711
+
+On 24 Nov 2005, at 00:49, Johannes Schindelin wrote:
+
+>
+> I think nobody is. Since there are infinitely many files having the  
+> same
+> SHA1 (pigeon-hole principle),
+>
+
+hmm... pigeon-hole principle is just that there exists two files that  
+have the same SHA-1 as each other... doesn't say anything about *all*  
+SHA-1s, though?
+
+-- 
+Ben • ベン • Бэн • 벤 • 班明
+http://www.hawaga.org.uk/ben/
+My email is high latency but best way to contact me. Alternatively,  
+SMS number(s) at above URL.
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

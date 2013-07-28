@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 26 10:24:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 162D22B74B3
+	for <tkil@scrye.com>; Fri, 26 Aug 2005 10:24:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965097AbVHZQYn (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 26 Aug 2005 12:24:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965098AbVHZQYn
+	(ORCPT <rfc822;git-outgoing>); Fri, 26 Aug 2005 12:24:43 -0400
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:31370 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S965097AbVHZQYn (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 26 Aug 2005 12:24:43 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050826162442.GCNM19494.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 26 Aug 2005 12:24:42 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	ebiederm@xmission.com (Eric W. Biederman)
+Cc:	git@vger.kernel.org
+Subject: Re: [ANNOUNCE] GIT 0.99.5
+References: <7vr7ci4u7q.fsf@assigned-by-dhcp.cox.net>
+	<m1y86ospej.fsf@ebiederm.dsl.xmission.com>
+Date:	Fri, 26 Aug 2005 09:24:41 -0700
+In-Reply-To: <m1y86ospej.fsf@ebiederm.dsl.xmission.com> (Eric W. Biederman's
+	message of "Fri, 26 Aug 2005 09:12:36 -0600")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7cgfyye.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:7807
+
+ebiederm@xmission.com (Eric W. Biederman) writes:
+
+> A nit but possibly an important for 1.0 there are
+> quite a few git commands that don't have man pages
+> or whose man pages are currently very poor.
+>
+> Getting the code sane and stable of course comes first
+> but if people can't figure out how to use git...
+
+I have been worried about that since I posted my first "last
+mile" message.  My excuse is that there are only 24 hours in a
+day.  Patches welcome.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

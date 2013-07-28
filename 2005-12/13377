@@ -1,0 +1,129 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  8 16:28:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.7 required=5.0 tests=AWL,BAYES_00,X_MAILER_SPAM 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2B0B016EE50
+	for <tkil@scrye.com>; Thu,  8 Dec 2005 16:28:15 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932720AbVLHX2H (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 18:28:07 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932718AbVLHX2H
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 18:28:07 -0500
+Received: from mxfep01.bredband.com ([195.54.107.70]:9636 "EHLO
+	mxfep01.bredband.com") by vger.kernel.org with ESMTP
+	id S932725AbVLHX2G (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 8 Dec 2005 18:28:06 -0500
+Received: from puritan.petwork ([213.112.43.250] [213.112.43.250])
+          by mxfep01.bredband.com with ESMTP
+          id <20051208232804.VENM676.mxfep01.bredband.com@puritan.petwork>;
+          Fri, 9 Dec 2005 00:28:04 +0100
+Received: from puritan (localhost [127.0.0.1])
+	by puritan.petwork (Postfix) with SMTP id 4E53AADFEC;
+	Fri,  9 Dec 2005 00:28:05 +0100 (CET)
+Cc:	Nikolai Weibull <nikolai@bitwi.se>
+Subject: [PATCH 4/17] Documentation/git-commit.txt: Add long options and -- to documentation.
+In-Reply-To: <11340844852030-git-send-email-mailing-lists.git@rawuncut.elitemail.org>
+X-Mailer: git-send-email
+Date:	Fri, 9 Dec 2005 00:28:05 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <11340844853670-git-send-email-mailing-lists.git@rawuncut.elitemail.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 83
+Xref: brand.scrye.com linux.git:13377
+
+Added the following long options to documentation:
+
+* --all
+* --signoff
+* --verify
+* --no-verify
+* --edit
+
+Also added documentation for the -- option for terminating option parsing.
+
+Signed-off-by: Nikolai Weibull <nikolai@bitwi.se>
+
+---
+
+ Documentation/git-commit.txt |   18 ++++++++++++------
+ 1 files changed, 12 insertions(+), 6 deletions(-)
+
+f0cc0137f124e36fd31acb8d0d543bdc84923586
+diff --git a/Documentation/git-commit.txt b/Documentation/git-commit.txt
+index 1edc278..b92cf48 100644
+--- a/Documentation/git-commit.txt
++++ b/Documentation/git-commit.txt
+@@ -7,7 +7,7 @@ git-commit - Record your changes
+ 
+ SYNOPSIS
+ --------
+-'git-commit' [-a] [-s] [-v] [(-c | -C) <commit> | -F <file> | -m <msg>] [-e] <file>...
++'git-commit' [-a] [-s] [-v] [(-c | -C) <commit> | -F <file> | -m <msg>] [-e] [--] <file>...
+ 
+ DESCRIPTION
+ -----------
+@@ -22,7 +22,7 @@ information.
+ 
+ OPTIONS
+ -------
+--a::
++-a|--all::
+ 	Update all paths in the index file.
+ 
+ -c or -C <commit>::
+@@ -39,23 +39,29 @@ OPTIONS
+ -m <msg>::
+ 	Use the given <msg> as the commit message.
+ 
+--s::
++-s|--signoff::
+ 	Add Signed-off-by line at the end of the commit message.
+ 
+--v::
++-v|--verify::
+ 	Look for suspicious lines the commit introduces, and
+ 	abort committing if there is one.  The definition of
+ 	'suspicious lines' is currently the lines that has
+ 	trailing whitespaces, and the lines whose indentation
+ 	has a SP character immediately followed by a TAB
+-	character.
++	character.  This is the default.
+ 
+--e::
++-n|--no-verify::
++	The opposite of `--verify`.
++
++-e|--edit::
+ 	The message taken from file with `-F`, command line with
+ 	`-m`, and from file with `-C` are usually used as the
+ 	commit log message unmodified.  This option lets you
+ 	further edit the message taken from these sources.
+ 
++--::
++	Do not interpret any more arguments as options.
++
+ <file>...::
+ 	Update specified paths in the index file before committing.
+ 
+-- 
+0.99.9l
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug  3 11:02:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C460D1A4601
+	for <tkil@scrye.com>; Wed,  3 Aug 2005 11:02:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262347AbVHCRCh (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 3 Aug 2005 13:02:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262348AbVHCRCg
+	(ORCPT <rfc822;git-outgoing>); Wed, 3 Aug 2005 13:02:36 -0400
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:38838 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S262347AbVHCRCb (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 3 Aug 2005 13:02:31 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050803170230.ILOU16890.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 3 Aug 2005 13:02:30 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: Re: Users of git-check-files?
+References: <Pine.LNX.4.63.0508030109210.21304@wgmdd8.biozentrum.uni-wuerzburg.de>
+	<Pine.LNX.4.58.0508021942500.3341@g5.osdl.org>
+	<7vvf2nk0h7.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0508030808530.3341@g5.osdl.org>
+	<7vr7dbhvci.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0508030913060.3341@g5.osdl.org>
+	<7vk6j3f044.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0508030944210.3258@g5.osdl.org>
+Date:	Wed, 03 Aug 2005 10:02:28 -0700
+In-Reply-To: <Pine.LNX.4.58.0508030944210.3258@g5.osdl.org> (Linus Torvalds's
+	message of "Wed, 3 Aug 2005 09:45:12 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7voe8fdkd7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 15
+Xref: brand.scrye.com linux.git:6751
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> Are you sure you have a good git version on master? I've never seen 
+> anything like that, and I push all the time..
+
+I have been esuspecting that it happens only because I rewind
+and rebase "pu", which you never do.  The thing is, even though
+I rewind "pu" all the time, it happens only occasionally.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

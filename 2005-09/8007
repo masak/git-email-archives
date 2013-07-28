@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep  2 04:10:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 85C6F1157D5
+	for <tkil@scrye.com>; Fri,  2 Sep 2005 04:10:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750962AbVIBKKP (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 2 Sep 2005 06:10:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751147AbVIBKKP
+	(ORCPT <rfc822;git-outgoing>); Fri, 2 Sep 2005 06:10:15 -0400
+Received: from [151.97.230.9] ([151.97.230.9]:13800 "EHLO ssc.unict.it")
+	by vger.kernel.org with ESMTP id S1750962AbVIBKKO (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 2 Sep 2005 06:10:14 -0400
+Received: (qmail 12063 invoked by uid 508); 2 Sep 2005 12:10:07 +0200
+Received: from unknown (HELO ssc.unict.it) (151.97.230.9)
+  by ssc.unict.it with SMTP; 2 Sep 2005 12:10:07 +0200
+Received: from zion.home.lan (localhost [127.0.0.1])
+	by zion.home.lan (Postfix) with ESMTP id E34011A568D;
+	Fri,  2 Sep 2005 11:56:53 +0200 (CEST)
+From:	Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+Subject: [PATCH] [PATCH] Doc: replace read-cache with git-read-tree.
+Date:	Fri, 02 Sep 2005 11:56:52 +0200
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050902095651.13237.59602.stgit@zion.home.lan>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 37
+Xref: brand.scrye.com linux.git:8007
+
+Replace references to "read-cache" with references to git-read-tree in the
+documentation. I chose that because reference say "see read-cache about
+stages", and stages are explained in git-read-tree.
+
+Signed-off-by: Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+---
+
+ Documentation/git-ls-files.txt |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/git-ls-files.txt b/Documentation/git-ls-files.txt
+--- a/Documentation/git-ls-files.txt
++++ b/Documentation/git-ls-files.txt
+@@ -88,7 +88,7 @@ For an unmerged path, instead of recordi
+ the dircache records up to three such pairs; one from tree O in stage
+ 1, A in stage 2, and B in stage 3.  This information can be used by
+ the user (or the porcelain) to see what should eventually be recorded at the
+-path. (see read-cache for more information on state)
++path. (see git-read-tree for more information on state)
+ 
+ 
+ Exclude Patterns
+@@ -180,7 +180,7 @@ An example:
+ 
+ See Also
+ --------
+-link:read-cache.html[read-cache]
++link:git-read-tree.html[git-read-tree]
+ 
+ 
+ Author
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 02:37:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2C8CF1C8031
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 02:37:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161130AbVIPIfR (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 04:35:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161131AbVIPIfR
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 04:35:17 -0400
+Received: from cam-admin0.cambridge.arm.com ([193.131.176.58]:12775 "EHLO
+	cam-admin0.cambridge.arm.com") by vger.kernel.org with ESMTP
+	id S1161130AbVIPIfP (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 16 Sep 2005 04:35:15 -0400
+Received: from cam-mail2.cambridge.arm.com (cam-mail2.cambridge.arm.com [10.1.127.39])
+	by cam-admin0.cambridge.arm.com (8.12.10/8.12.10) with ESMTP id j8G8YKSV021273;
+	Fri, 16 Sep 2005 09:34:20 +0100 (BST)
+Received: from ZIPPY.Emea.Arm.com (cam-exch1.emea.arm.com [10.1.255.57])
+	by cam-mail2.cambridge.arm.com (8.9.3/8.9.3) with ESMTP id JAA04520;
+	Fri, 16 Sep 2005 09:34:27 +0100 (BST)
+Received: from localhost.localdomain ([10.1.69.140]) by ZIPPY.Emea.Arm.com with Microsoft SMTPSVC(6.0.3790.211);
+	 Fri, 16 Sep 2005 09:34:26 +0100
+To:	Pierre Ossman <drzeus-list@drzeus.cx>
+Cc:	git@vger.kernel.org
+Subject: Re: Git and cogito uses different exclude files
+References: <432A7902.20603@drzeus.cx>
+From:	Catalin Marinas <catalin.marinas@gmail.com>
+Date:	Fri, 16 Sep 2005 09:34:19 +0100
+In-Reply-To: <432A7902.20603@drzeus.cx> (Pierre Ossman's message of "Fri, 16
+ Sep 2005 09:49:22 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <tnxbr2t9zsk.fsf@arm.com>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-OriginalArrivalTime: 16 Sep 2005 08:34:26.0513 (UTC) FILETIME=[72961C10:01C5BA99]
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:8664
+
+Pierre Ossman <drzeus-list@drzeus.cx> wrote:
+> 'git status' and 'cg-status'/'stg status' uses different locations for
+> the exclude files. git expects .git/info/exclude and cogito and stgit
+> expects .git/exclude. This is easily solved by a symlink but it could be
+> nice if common files have a single correct location. :)
+
+The latest StGIT snapshot uses .git/info/exclude. Probably next week I
+will make a new StGIT release.
+
+-- 
+Catalin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

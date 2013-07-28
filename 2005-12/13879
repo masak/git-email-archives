@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 11:30:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A2DC0E587D
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 11:30:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964788AbVLUS1f (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 13:27:35 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964791AbVLUS1e
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 13:27:34 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:25076 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S964788AbVLUS1d (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 13:27:33 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051221182638.PMS20875.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 21 Dec 2005 13:26:38 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	merlyn@stonehenge.com (Randal L. Schwartz)
+Subject: Re: Am I doing something wrong?
+References: <86k6dyxuke.fsf@blue.stonehenge.com>
+	<7v3bkmcp83.fsf@assigned-by-dhcp.cox.net>
+	<864q52xrm6.fsf@blue.stonehenge.com>
+	<7vmziub9yw.fsf@assigned-by-dhcp.cox.net>
+	<86zmmuwbzh.fsf@blue.stonehenge.com>
+cc:	git@vger.kernel.org
+Date:	Wed, 21 Dec 2005 10:27:27 -0800
+In-Reply-To: <86zmmuwbzh.fsf@blue.stonehenge.com> (Randal L. Schwartz's
+	message of "21 Dec 2005 10:17:54 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhd92b90w.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:13879
+
+merlyn@stonehenge.com (Randal L. Schwartz) writes:
+
+>>>>>> "Junio" == Junio C Hamano <junkio@cox.net> writes:
+>
+> Junio> I said I tried cloning from scratch and fetching into an old one
+> Junio> over HTTP and succeeded, did I not?  So it does not seem to be
+> Junio> the case either.
+>
+> Cloning from scratch probably worked differently than starting
+> from wherever I was.
+
+Yup, that's why I tried both.
+
+> ... However, I'm very clear on the symptoms... trying to start
+> from wherever I had last updated, to update to the current release,
+> failed when sucking from HTTP, but worked when sucking from GIT.
+
+I do not doubt you got a failure.  I just couldn't reproduce it
+easily by fetching into a copy of a stale repository.  Earlier I
+was suspecting mirroring lags (my successful trial was done
+within the last hour) but I do not think that is the case
+because your failure was also way after the mirroring should
+have happened.
+
+Will dig a bit more when able.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

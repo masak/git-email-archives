@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 14 15:57:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3633D27ECF5
+	for <tkil@scrye.com>; Mon, 14 Nov 2005 15:57:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932230AbVKNW5n (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 17:57:43 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932231AbVKNW5n
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 17:57:43 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:58532 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S932230AbVKNW5n
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 14 Nov 2005 17:57:43 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EbnGg-0001Xu-1M
+	for git@vger.kernel.org; Mon, 14 Nov 2005 17:57:42 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EbnGf-0001OC-CH; Mon, 14 Nov 2005 17:57:41 -0500
+Subject: [PATCH] cg-status: quote head name
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>, Petr Baudis <pasky@suse.cz>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Mon, 14 Nov 2005 17:57:41 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1132009061.24084.26.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:11850
+
+cg-status should quote head name to deal with branches that have active
+characters (e.g. spaces) in the name.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/cg-status b/cg-status
+index b67f505..2cb86be 100755
+--- a/cg-status
++++ b/cg-status
+@@ -124,8 +124,8 @@ if [ "$gitstatus" ]; then
+ 
+ 	echo "Heads:"
+ 	for head in $_git/refs/heads/*; do
+-		headsha1=$(cat $head)
+-		headname=$(basename $head)
++		headsha1=$(cat "$head")
++		headname=$(basename "$head")
+ 		[ "$headname" = "cg-seek-point" ] && continue
+ 		cf=" "; rf=" "
+ 		[ "$headname" = "$_git_head" ] && cf=">"
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 10:11:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3CEC71B3529
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 10:11:39 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751177AbVLLRLW (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 12:11:22 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751206AbVLLRLW
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 12:11:22 -0500
+Received: from iabervon.org ([66.92.72.58]:43269 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751177AbVLLRLW (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Dec 2005 12:11:22 -0500
+Received: (qmail 6569 invoked by uid 1000); 12 Dec 2005 12:12:12 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 12 Dec 2005 12:12:12 -0500
+Date:	Mon, 12 Dec 2005 12:12:12 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Allow saving an object from a pipe
+In-Reply-To: <7v64pwuyny.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512121210010.25300@iabervon.org>
+References: <Pine.LNX.4.64.0512101724290.25300@iabervon.org>
+ <7v64pwuyny.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:13517
+
+On Sat, 10 Dec 2005, Junio C Hamano wrote:
+
+> Daniel Barkalow <barkalow@iabervon.org> writes:
+> 
+> > In order to support getting data into git with scripts, this adds a
+> > --stdin option to git-hash-object, which will make it read from stdin.
+> 
+> Thanks, will apply.
+> 
+> To be honest, though, I am still debating myself about the merit
+> of not having to have a temporary file.  Because we need the
+> size of the blob available before starting to hash (i.e. we
+> cannot say "atend"), index_pipe ends up keeping the whole blob
+> data in memory, which is not much better than the caller storing
+> it in a temporary file and driving the normal hash-object from
+> the command line anyway.
+
+It's not much better for efficiency, but it's a whole lot easier to write 
+the script without having to worry about a temporary file, what could 
+happen to it while you're trying to use it, and making sure it gets 
+cleaned up afterwards. It can also save on disk writes, depending on where 
+you put it and how the system is configured.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 17 20:00:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1CAA1B49D5
+	for <tkil@scrye.com>; Sat, 17 Sep 2005 20:00:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751267AbVIRCAF (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Sep 2005 22:00:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751268AbVIRCAF
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Sep 2005 22:00:05 -0400
+Received: from inti.inf.utfsm.cl ([200.1.21.155]:58572 "EHLO inti.inf.utfsm.cl")
+	by vger.kernel.org with ESMTP id S1751267AbVIRCAC (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 17 Sep 2005 22:00:02 -0400
+Received: from inti.inf.utfsm.cl (localhost.localdomain [127.0.0.1])
+	by inti.inf.utfsm.cl (8.13.4/8.13.1) with ESMTP id j8I1Z34n023252;
+	Sat, 17 Sep 2005 21:35:05 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200509180135.j8I1Z34n023252@inti.inf.utfsm.cl>
+To:	Alan Chandler <alan@chandlerfamily.org.uk>
+cc:	git@vger.kernel.org
+Subject: Re: Newbie falls at first hurdle 
+In-Reply-To: Message from Alan Chandler <alan@chandlerfamily.org.uk> 
+   of "Sat, 17 Sep 2005 13:09:46 +0100." <200509171309.46893.alan@chandlerfamily.org.uk> 
+X-Mailer: MH-E 7.4.2; nmh 1.1; XEmacs 21.4 (patch 17)
+Date:	Sat, 17 Sep 2005 21:35:03 -0400
+From:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:8765
+
+Alan Chandler <alan@chandlerfamily.org.uk> wrote:
+
+[...]
+
+> I have already got a working directory (or rather a directory hierarchy)
+> of an application with files (combination of html and java), and I need
+> to start applying some control to it.  The Tutorial unfortunately does
+> not cover this case.  Nevertheless I have proceeded.
+
+The easiest way of doing this is using cogito (near where you found
+git). It automates some tasks using git as backendq, in this case it would
+only need:
+
+   cg-init
+-- 
+Dr. Horst H. von Brand                   User #22616 counter.li.org
+Departamento de Informatica                     Fono: +56 32 654431
+Universidad Tecnica Federico Santa Maria              +56 32 654239
+Casilla 110-V, Valparaiso, Chile                Fax:  +56 32 797513
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

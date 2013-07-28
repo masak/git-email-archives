@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 14 18:13:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BC82D2851FC
+	for <tkil@scrye.com>; Mon, 14 Nov 2005 18:13:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751298AbVKOBNE (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 20:13:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751304AbVKOBNE
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 20:13:04 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:43968 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S1751298AbVKOBND
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 14 Nov 2005 20:13:03 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EbpNe-0004vl-01
+	for git@vger.kernel.org; Mon, 14 Nov 2005 20:13:02 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EbpNc-0003uY-Og; Mon, 14 Nov 2005 20:13:00 -0500
+Subject: [PATCH]: cogito testsuite: use git-symbolic-ref
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>, Petr Baudis <pasky@suse.cz>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Mon, 14 Nov 2005 20:13:00 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1132017180.24084.39.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 58
+Xref: brand.scrye.com linux.git:11861
+
+cogito testsuite fails if git is compiled with USE_SYMLINK_HEAD=0.
+To fix it, use git-symbolic-ref instead of readlink.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/t/t9300-seek.sh b/t/t9300-seek.sh
+index d3fed11..a6f3a65 100755
+--- a/t/t9300-seek.sh
++++ b/t/t9300-seek.sh
+@@ -30,7 +30,7 @@ test_expect_success 'seeking to the firs
+ test_expect_success 'we should have .git/head-name == master' \
+ 	"[ $(cat .git/head-name) = master ]"
+ test_expect_success 'current branch should be cg-seek-point' \
+-	"[ $(basename $(readlink .git/HEAD)) = cg-seek-point ]"
++	"[ $(basename $(git-symbolic-ref HEAD)) = cg-seek-point ]"
+ test_expect_success 'current commit should be commit1' \
+ 	"[ $(cg-object-id -c) = $commit1 ]"
+ 
+@@ -47,14 +47,16 @@ test_expect_success 'identical should be
+ test_expect_success 'seeking to the second commit' \
+ 	"cg-seek $commit2"
+ test_expect_success 'we should not unseeked properly' \
+-	"([ -e .git/head-name ] && [ $(basename $(readlink .git/HEAD)) = cg-seek-point ])"
++	"([ -e .git/head-name ] &&
++	 [ $(basename $(git-symbolic-ref HEAD)) = cg-seek-point ])"
+ test_expect_success 'current commit should be commit2' \
+ 	"[ $(cg-object-id -c) = $commit2 ]"
+ 
+ test_expect_success 'seeking to the last (well, still second) commit' \
+ 	"cg-seek master"
+ test_expect_success 'we should be unseeked properly' \
+-	"([ ! -e .git/head-name ] && [ $(basename $(readlink .git/HEAD)) = master ])"
++	"([ ! -e .git/head-name ] &&
++	 [ $(basename $(git-symbolic-ref HEAD)) = master ])"
+ test_expect_success 'current commit should be commit2' \
+ 	"[ $(cg-object-id -c) = $commit2 ]"
+ 
+@@ -88,7 +90,8 @@ test_expect_success 'identical should be
+ test_expect_success 'unseeking' \
+ 	"cg-seek"
+ test_expect_success 'we should be unseeked properly' \
+-	"([ ! -e .git/head-name ] && [ $(basename $(readlink .git/HEAD)) = master ])"
++	"([ ! -e .git/head-name ] &&
++	 [ $(basename $(git-symbolic-ref HEAD)) = master ])"
+ test_expect_success 'current commit should be commit2' \
+ 	"[ $(cg-object-id -c) = $commit2 ]"
+ 
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

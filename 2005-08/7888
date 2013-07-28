@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 02:37:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 591412769B6
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 02:37:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750854AbVH2Ifs (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 04:35:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750861AbVH2Ifs
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 04:35:48 -0400
+Received: from flowerpot.kaijanaho.info ([80.68.88.155]:59396 "EHLO
+	flowerpot.kaijanaho.info") by vger.kernel.org with ESMTP
+	id S1750854AbVH2Ifr (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 29 Aug 2005 04:35:47 -0400
+Received: from [130.234.161.238] (dynamic-161-238.it.jyu.fi [::ffff:130.234.161.238])
+  (AUTH: PLAIN gaia, TLS: TLSv1/SSLv3,256bits,AES256-SHA)
+  by flowerpot.kaijanaho.info with esmtp; Mon, 29 Aug 2005 11:40:45 +0300
+  id 0005057C.4312CA0D.00001445
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4312C8D6.9010200@kaijanaho.info>
+Date:	Mon, 29 Aug 2005 11:35:34 +0300
+From:	Antti-Juhani Kaijanaho <antti-juhani@kaijanaho.info>
+User-Agent: Debian Thunderbird 1.0.6 (X11/20050802)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Martijn Kuipers <martijn.kuipers@gmail.com>
+CC:	Linus Torvalds <torvalds@osdl.org>,
+	Jason Riedy <ejr@EECS.Berkeley.EDU>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Spell __attribute__ correctly in cache.h.
+References: <19723.1125249085@lotus.CS.Berkeley.EDU> <Pine.LNX.4.58.0508281045060.3317@g5.osdl.org> <43120BC5.8060608@kaijanaho.info> <Pine.LNX.4.58.0508281245150.3317@g5.osdl.org> <4312C492.2010307@gmail.com>
+In-Reply-To: <4312C492.2010307@gmail.com>
+X-Enigmail-Version: 0.92.0.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:7888
+
+Martijn Kuipers wrote:
+> martijn@hobbes:~$ gcc-2.95 --std=c99 -pedantic -Wall -W -ofoo foo.c
+> cc1: unknown C standard `c99'
+
+This makes this test a little less useful.  Try with --std=c9x (GCC 2.95
+is old enough not to know the standard by the "official" name).
+
+According to GCC 3.0 C99 status page [1], 3.0 supported flexible array
+members.  There is no similar page for 2.95.
+
+-- 
+Antti-Juhani
+
+[1] http://gcc.gnu.org/gcc-3.0/c99status.html
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

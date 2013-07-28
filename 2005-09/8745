@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 22:35:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1C8FB161577
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 22:35:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750902AbVIQEfD (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Sep 2005 00:35:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750905AbVIQEfD
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Sep 2005 00:35:03 -0400
+Received: from ozlabs.org ([203.10.76.45]:19690 "EHLO ozlabs.org")
+	by vger.kernel.org with ESMTP id S1750903AbVIQEfB (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 17 Sep 2005 00:35:01 -0400
+Received: by ozlabs.org (Postfix, from userid 1010)
+	id 204F4682F4; Sat, 17 Sep 2005 14:35:00 +1000 (EST)
+Date:	Sat, 17 Sep 2005 14:32:39 +1000
+From:	Anton Blanchard <anton@samba.org>
+To:	git@vger.kernel.org
+Subject: [PATCH] bisect succeeds but has non zero exit code
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050917043239.GG14962@krispykreme>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 42
+Xref: brand.scrye.com linux.git:8745
+
+
+Hi,
+
+I was writing some scripts to automate a bisection search and noticed
+I could get a non zero exit code when the command succeeded:
+
+# git-bisect start
+# echo $?
+0
+
+# git-bisect good ef4cbee0b0d0f791bb593f99b702410f3c0efce6
+# echo $?
+1
+
+# git bisect bad 6d36ba629e0ef47a03d3703ee1d38143c25532a8
+Bisecting: 13 revisions left to test after this
+[1619cca2921f6927f4240e03f413d4165c7002fc] Partially revert "Fix time
+going twice as fast problem on ATI Xpress chipsets"
+# echo $?
+0
+
+It looks like bisect_next_check returns false and we return a non zero
+exit code. The following patch forces a good exit code in that case.
+
+Signed-off-by: Anton Blanchard <anton@samba.org>
+---
+
+--- git-bisect.sh.orig	2005-09-15 17:37:08.000000000 +1000
++++ git-bisect.sh	2005-09-17 14:24:30.000000000 +1000
+@@ -111,6 +111,7 @@
+ 
+ bisect_auto_next() {
+ 	bisect_next_check && bisect_next
++	true
+ }
+ 
+ bisect_next() {
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

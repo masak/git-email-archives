@@ -1,0 +1,96 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 15 12:48:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 8567129D79D
+	for <tkil@scrye.com>; Fri, 15 Apr 2005 12:48:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261928AbVDOSqr (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 15 Apr 2005 14:46:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261893AbVDOSqr
+	(ORCPT <rfc822;git-outgoing>); Fri, 15 Apr 2005 14:46:47 -0400
+Received: from sincerity-forever.csail.mit.edu ([128.30.67.31]:4278 "EHLO
+	sincerity-forever.csail.mit.edu") by vger.kernel.org with ESMTP
+	id S261907AbVDOSqI (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 15 Apr 2005 14:46:08 -0400
+Received: from catfish.lcs.mit.edu ([128.30.67.25] helo=cag.csail.mit.edu)
+	by sincerity-forever.csail.mit.edu with esmtp (Exim 3.36 #1 (Debian))
+	id 1DMVpL-0007uY-00; Fri, 15 Apr 2005 14:46:03 -0400
+Date:	Fri, 15 Apr 2005 14:45:55 -0400 (EDT)
+From: "C. Scott Ananian" <cscott@cscott.net>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: Re: space compression (again)
+In-Reply-To: <Pine.LNX.4.58.0504151117360.7211@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.61.0504151437100.27637@cag.csail.mit.edu>
+References: <Pine.LNX.4.61.0504151232160.27637@cag.csail.mit.edu>
+ <Pine.LNX.4.58.0504151117360.7211@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 55
+Xref: brand.scrye.com linux.git:206
+
+On Fri, 15 Apr 2005, Linus Torvalds wrote:
+
+> The problem with chunking is:
+> - it complicates a lot of the routines. Things like "is this file
+>   unchanged" suddenly become "is this file still the same set of chunks",
+>   which is just a _lot_ more code and a lot more likely to have bugs.
+
+The blob still has the same hash; therefore the file is still the same.
+Nothing looks inside blobs; they just want either the hash or the full 
+contents (if I understand the algorithms correctly).
+I agree it's more code, but I think it can be nicely layered.
+
+> - you have to find a blocking factor. I thought of just going it fixed
+>   chunks, and that just doesn't help at all.
+
+rsync uses a fixed chunk size, but this chunk can start at any offset (ie, 
+not constrained to fixed boundaries).  This means that adding a single 
+line to the file works like you'd expect, even though all the chunk 
+boundaries change.  [I think this is what you're talking about.]
+
+> - we already have wasted space due to the low-level filesystem (as
+>   opposed to "git") usually being block-based, which means that space
+>   utilization for small objects tends to suck. So you really want to
+>   prefer objects that are several kB (compressed), and a small block just
+>   wastes tons of space.
+
+Not on (say) reiserfs, and not over the network.  I'm proposing (at the 
+moment) easy conversion from chunked to unchunked disk representation,
+so that you can leave things unchunked if (for example) you know you're 
+running ext2 with a large block size.
+
+> - there _is_ a natural blocking factor already. That's what a file
+>   boundary really is within the project, and finding any other is really
+>   quite hard.
+
+Well, yes, it may be nontrivial.  But 'quite hard' depends on your 
+perspective, I guess.  Given a cache of existing chunks, it's just a 
+few table lookups. =)
+
+> So I'm personally 100% sure that it's not worth it. But I'm not opposed to
+> the _concept_: it makes total sense in the "filesystem" view, and is 100%
+> equivalent to having an inode with pointers to blocks. I just don't think
+> the concept plays out well in reality.
+
+So I guess I'll have to implement this and find out, won't I? =)
+  --scott
+
+AMLASH overthrow SDI Suharto HBDRILL SMOTH SUMAC SYNCARP kibo Blair 
+Diplomat Kojarena CIA cracking counter-intelligence CABOUNCE anthrax
+                          ( http://cscott.net/ )
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

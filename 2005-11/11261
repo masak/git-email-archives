@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 09:56:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 21D331358DA
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 09:56:28 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932246AbVKGQ4U (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 11:56:20 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932277AbVKGQ4U
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 11:56:20 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:64167 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932246AbVKGQ4T (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 7 Nov 2005 11:56:19 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jA7Gu9nO003076
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 7 Nov 2005 08:56:10 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jA7Gu7Br009394;
+	Mon, 7 Nov 2005 08:56:08 -0800
+Date:	Mon, 7 Nov 2005 08:56:07 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Fredrik Kuivinen <freku045@student.liu.se>
+cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Comments on recursive merge..
+In-Reply-To: <Pine.LNX.4.64.0511070837530.3193@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511070848440.3193@g5.osdl.org>
+References: <Pine.LNX.4.64.0511070837530.3193@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:11261
+
+
+
+On Mon, 7 Nov 2005, Linus Torvalds wrote:
+> 
+>   I just hit my first real rename conflict, and very timidly tried the 
+> "recursive" strategy in the hopes that I wouldn't need to do things by 
+> hand.
+> 
+> It resolved things beautifully. Good job. 
+
+Btw, one thing that it does is print out too much information.
+
+In particular, I had renames on both sides of the merge (in case anybody 
+wants to see which one I'm talking about: it's the current top-of-head 
+commit in the kernel archives: 333c47c847c90aaefde8b593054d9344106333b5).
+
+Now, renames that you've done yourself you really don't want to hear 
+about, at least if the other side didn't change anything in that file.
+
+Renames that the _other_ side has done (the one you're merging) you may or 
+may not want to know about, regardless of whether they happened to files 
+that are changed. But since "git pull" will do a "git-apply --stat" at the 
+end and show the renames there, I'd argue that the merge strategy itself 
+should be quiet about any renames that are trivial.
+
+So how about talking about renames only if you end up also doing a 
+file-level merge? As it is, doing the merge talked about renames that I 
+had merged earlier in my own branch, which is just confusing.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

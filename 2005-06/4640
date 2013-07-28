@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun  6 21:17:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0D5D16297
+	for <tkil@scrye.com>; Mon,  6 Jun 2005 21:17:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261764AbVFGDPx (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 6 Jun 2005 23:15:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261797AbVFGDPx
+	(ORCPT <rfc822;git-outgoing>); Mon, 6 Jun 2005 23:15:53 -0400
+Received: from fire.osdl.org ([65.172.181.4]:26599 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261764AbVFGDPj (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 6 Jun 2005 23:15:39 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j573FHjA011113
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 6 Jun 2005 20:15:17 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j573FG9c001400;
+	Mon, 6 Jun 2005 20:15:16 -0700
+Date:	Mon, 6 Jun 2005 20:17:21 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Daniel Barkalow <barkalow@iabervon.org>
+Cc: Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH 0/4] Writing refs in git-ssh-push
+In-Reply-To: <Pine.LNX.4.21.0506061616590.30848-100000@iabervon.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506062008560.2286@ppc970.osdl.org>
+References: <Pine.LNX.4.21.0506061616590.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 29
+Xref: brand.scrye.com linux.git:4640
+
+
+
+Two comments on git-ssh-push from a quick try-to-use-it-but-fail..
+
+ - hardcoding the name of the command on the other side kind of sucks. 
+   Especially when the user may end up having to install his own version
+   under his own subdirectory. You really want to have some way of saying 
+   "execute /home/user/bin/git-ssh-pull", and since it will depend on the 
+   site you're pushing to, it should probably be available as a cmd line 
+   option.
+
+   I have a
+
+	PATH=$PATH:~/bin
+
+   in my .bashrc, but sshd at the other end doesn't end up caring..
+
+ - the host/path parsing is pretty simplistic and just silly. Nobody I 
+   know uses that ssh://host/path format, people use the shorter host:path 
+   format.
+
+Both look pretty simple to fix, but now I'm going to put the kids to bed.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

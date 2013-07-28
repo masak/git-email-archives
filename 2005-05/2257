@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  1 02:41:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 213BCFC382
+	for <tkil@scrye.com>; Sun,  1 May 2005 02:41:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261551AbVEAIls (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 1 May 2005 04:41:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261556AbVEAIls
+	(ORCPT <rfc822;git-outgoing>); Sun, 1 May 2005 04:41:48 -0400
+Received: from alephnull.demon.nl ([212.238.201.82]:13783 "EHLO
+	xi.wantstofly.org") by vger.kernel.org with ESMTP id S261551AbVEAIlq
+	(ORCPT <rfc822;git@vger.kernel.org>); Sun, 1 May 2005 04:41:46 -0400
+Received: by xi.wantstofly.org (Postfix, from userid 500)
+	id D0F3C2B0EC; Sun,  1 May 2005 10:41:45 +0200 (MEST)
+Date:	Sun, 1 May 2005 10:41:45 +0200
+From: Lennert Buytenhek <buytenh@wantstofly.org>
+To: git@vger.kernel.org
+Subject: update-cache ./test.c
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050501084145.GA30692@xi.wantstofly.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4.1i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 21
+Xref: brand.scrye.com linux.git:2257
+
+Hi,
+
+update-cache seems to ignore paths containing path components
+starting with a dot:
+
+	pi% update-cache --add ./test.c
+	Ignoring path ./test.c
+	pi% update-cache --add test.c
+	pi%
+
+This is slightly annoying as 'find -type f | xargs update-cache --add'
+doesn't work because of this.  ('find * -type f | ...` does.)  Instead
+of ignoring the file, can we just strip off the leading "./" ?
+
+
+--L
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

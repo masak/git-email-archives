@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 20 08:16:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5B8D9285220
+	for <tkil@scrye.com>; Thu, 20 Oct 2005 08:16:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932152AbVJTOQA (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 20 Oct 2005 10:16:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932169AbVJTOQA
+	(ORCPT <rfc822;git-outgoing>); Thu, 20 Oct 2005 10:16:00 -0400
+Received: from qproxy.gmail.com ([72.14.204.194]:6931 "EHLO qproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932152AbVJTOQA convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 20 Oct 2005 10:16:00 -0400
+Received: by qproxy.gmail.com with SMTP id e12so324239qbe
+        for <git@vger.kernel.org>; Thu, 20 Oct 2005 07:15:59 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=ovYmKaTNZVRdImNV05jx2JJJutretLKERqwFgCSBcsMxJ55VC/jjeB6bYapCW6rDU26LOiFZ9hwaWPHibhX+YwN2XN9dD3cZy6Uh//3oB8YY6iaLTL4Kje8Kk7wwuREXShzoU19Sh2KjvC6iSpQdz7vT7jQwSmDgw+c5bGiQF78=
+Received: by 10.65.155.13 with SMTP id h13mr1525863qbo;
+        Thu, 20 Oct 2005 07:15:59 -0700 (PDT)
+Received: by 10.65.107.8 with HTTP; Thu, 20 Oct 2005 07:15:58 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <118833cc0510200715x2a17dcbfs53c824435b7381e3@mail.gmail.com>
+Date:	Thu, 20 Oct 2005 10:15:58 -0400
+From:	Morten Welinder <mwelinder@gmail.com>
+To:	"Randal L. Schwartz" <merlyn@stonehenge.com>
+Subject: Re: rsync update appears broken now
+Cc:	git@vger.kernel.org
+In-Reply-To: <86vezs9wy9.fsf@blue.stonehenge.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <86vezs9wy9.fsf@blue.stonehenge.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 8
+Xref: brand.scrye.com linux.git:10353
+
+I see the very same with an http pull.
+
+Morten
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

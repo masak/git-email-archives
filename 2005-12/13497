@@ -1,0 +1,53 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 11 12:41:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 05CC615D52F
+	for <tkil@scrye.com>; Sun, 11 Dec 2005 12:41:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750824AbVLKTgV (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Dec 2005 14:36:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750829AbVLKTgV
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Dec 2005 14:36:21 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:55293 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1750824AbVLKTgU (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 11 Dec 2005 14:36:20 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051211193434.MCLS17437.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 11 Dec 2005 14:34:34 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: Cogito limitation in tag names?
+References: <439C7CA9.4030404@zytor.com>
+cc:	git@vger.kernel.org
+Date:	Sun, 11 Dec 2005 11:36:18 -0800
+In-Reply-To: <439C7CA9.4030404@zytor.com> (H. Peter Anvin's message of "Sun,
+	11 Dec 2005 11:23:21 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpso3mnnx.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 9
+Xref: brand.scrye.com linux.git:13497
+
+Probably it can safely be updated to use check-ref-format, and I
+suspect that the only reason why it does not do so is because
+check-ref-format came later.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

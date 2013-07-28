@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 18 23:28:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2190A282D4F
+	for <tkil@scrye.com>; Sun, 18 Dec 2005 23:28:06 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750734AbVLSG11 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Dec 2005 01:27:27 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750737AbVLSG11
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Dec 2005 01:27:27 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:46481 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750734AbVLSG10 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Dec 2005 01:27:26 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBJ6RJDZ030221
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 18 Dec 2005 22:27:19 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBJ6RIK2012903;
+	Sun, 18 Dec 2005 22:27:18 -0800
+Date:	Sun, 18 Dec 2005 22:27:18 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	"Brown, Len" <len.brown@intel.com>, git@vger.kernel.org
+Subject: Re: using-topic-branches.txt
+In-Reply-To: <7vfyoplk0r.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512182225310.4827@g5.osdl.org>
+References: <F7DC2337C7631D4386A2DF6E8FB22B30056F93AC@hdsmsx401.amr.corp.intel.com>
+ <7vfyoplk0r.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.129 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:13807
+
+
+
+On Sun, 18 Dec 2005, Junio C Hamano wrote:
+
+> "Brown, Len" <len.brown@intel.com> writes:
+> 
+> > This works for me, but now it requires a password to update
+> > when before it did not.
+> 
+> You are right.  I do not have preference either way myself what
+> to put in this document.  However, the change stops recommending
+> rsync://, which is something I prefer to keep.
+
+Well, you can use "git://git.kernel.org/" for reading.
+
+Personally, I use master.kernel.org both for reading and writing, but I 
+end up using an ssh key with an empty passphrase.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

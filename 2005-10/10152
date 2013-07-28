@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 16 10:22:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9FD4E10568
+	for <tkil@scrye.com>; Sun, 16 Oct 2005 10:22:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751322AbVJPQWR (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 16 Oct 2005 12:22:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751325AbVJPQWR
+	(ORCPT <rfc822;git-outgoing>); Sun, 16 Oct 2005 12:22:17 -0400
+Received: from quark.didntduck.org ([69.55.226.66]:32952 "EHLO
+	quark.didntduck.org") by vger.kernel.org with ESMTP
+	id S1751322AbVJPQWQ (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 16 Oct 2005 12:22:16 -0400
+Received: from [192.168.1.2] (66-227-170-68.dhcp.aldl.mi.charter.com [66.227.170.68])
+	(authenticated)
+	by quark.didntduck.org (8.11.6/8.11.6) with ESMTP id j9GGLtI03005;
+	Sun, 16 Oct 2005 12:21:55 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43527E86.8000907@didntduck.org>
+Date:	Sun, 16 Oct 2005 12:23:34 -0400
+From:	Brian Gerst <bgerst@didntduck.org>
+User-Agent: Mail/News 1.4.1 (X11/20051008)
+MIME-Version: 1.0
+To:	Nick Hengeveld <nickh@reactrix.com>
+CC:	Daniel Barkalow <barkalow@iabervon.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [kernel.org users] Re: auto-packing on kernel.org? please?
+References: <Pine.LNX.4.64.0510131113490.15297@g5.osdl.org> <434EABFD.5070604@zytor.com> <434EC07C.30505@pobox.com> <Pine.LNX.4.64.0510131422161.23590@g5.osdl.org> <435264B1.2010204@de.bosch.com> <Pine.LNX.4.63.0510161122570.23242@iabervon.org> <20051016161244.GE5509@reactrix.com>
+In-Reply-To: <20051016161244.GE5509@reactrix.com>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:10152
+
+Nick Hengeveld wrote:
+> On Sun, Oct 16, 2005 at 11:44:46AM -0400, Daniel Barkalow wrote:
+> 
+>> This is the problem: it's impossible to download only a few objects from a 
+>> pack file from an HTTP server, because those don't exist on the server as 
+>> separate files.
+> 
+> Is it possible to determine the object locations inside the remote pack
+> file?  If so, it would be possible to use Range: headers to download
+> selected objects from a pack.
+> 
+
+Not possible because the entire pack is compressed.
+
+--
+				Brian Gerst
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

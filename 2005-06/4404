@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 11:02:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 968C128A8B6
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 11:02:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261202AbVFBRBk (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 13:01:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261206AbVFBRBk
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 13:01:40 -0400
+Received: from fire.osdl.org ([65.172.181.4]:63683 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261202AbVFBRBb (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 13:01:31 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j52H1PjA026144
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 2 Jun 2005 10:01:26 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j52H1OMg004235;
+	Thu, 2 Jun 2005 10:01:25 -0700
+Date:	Thu, 2 Jun 2005 10:03:29 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Handle deltified object correctly in git-*-pull family.
+In-Reply-To: <7v4qcg906f.fsf_-_@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506020959250.1876@ppc970.osdl.org>
+References: <7vy89ums2l.fsf@assigned-by-dhcp.cox.net> <7vis0xkjn4.fsf@assigned-by-dhcp.cox.net>
+ <7v4qcg906f.fsf_-_@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 40
+Xref: brand.scrye.com linux.git:4404
+
+
+
+On Thu, 2 Jun 2005, Junio C Hamano wrote:
+> 
+> *** Linus, this uses the new helper you wrote.  The interface is
+> *** much more pleasant to use.
+
+Can you update it for the fact that I split things up even more?
+
+In particular, see commit 5180cacc202bb20b15981469487eb8d6b0509997: "Split 
+up unpack_sha1_file() some more".
+
+You should be able to unpack a delta with just something like this:
+
+	int ret;
+	z_stream stream;
+	char hdr[100], type[10];
+	unsigned long size;
+
+	ret = unpack_sha1_header(&stream, map, mapsize, hdr, sizeof(hdr));
+	if (ret < Z_OK)
+		return NULL;
+	if (parse_sha1_header(hdr, type, &size) < 0)
+		return NULL;
+	if (strcmp("delta", type))
+		return NULL;
+	buffer = unpack_sha1_rest(&stream, hdr, size);
+	if (!buffer)
+		return NULL;
+	.. we now have the delta of size "size" in "buffer" ..
+
+ie it now has proper helper functions for every single stage in unpacking
+an object.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

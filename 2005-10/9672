@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct  4 09:06:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4084627BABB
+	for <tkil@scrye.com>; Tue,  4 Oct 2005 09:06:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932524AbVJDPEK (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 4 Oct 2005 11:04:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932525AbVJDPEJ
+	(ORCPT <rfc822;git-outgoing>); Tue, 4 Oct 2005 11:04:09 -0400
+Received: from paleosilicon.orionmulti.com ([209.128.68.66]:20887 "EHLO
+	paleosilicon.orionmulti.com") by vger.kernel.org with ESMTP
+	id S932524AbVJDPEI (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 4 Oct 2005 11:04:08 -0400
+X-Envelope-From: hpa@zytor.com
+Received: from [172.27.0.18] (c-67-180-239-42.hsd1.ca.comcast.net [67.180.239.42])
+	(authenticated bits=0)
+	by paleosilicon.orionmulti.com (8.12.10/8.12.10) with ESMTP id j94F3xJv027309
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 4 Oct 2005 08:04:00 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <434299DB.7020805@zytor.com>
+Date:	Tue, 04 Oct 2005 08:03:55 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Alex Riesen <raa.lkml@gmail.com>
+CC:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: First cut at git port to Cygwin
+References: <433B3B10.5050407@zytor.com> <81b0412b0510040531m441ca759k6d1f3fbf0cd248ce@mail.gmail.com>
+In-Reply-To: <81b0412b0510040531m441ca759k6d1f3fbf0cd248ce@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on paleosilicon.orionmulti.com
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:9672
+
+Alex Riesen wrote:
+> 
+> I noticed that rename(2) in my copy of cygwin (1.5.18-1) does not remove the
+> target and returns an error (probably EPERM, but I have reasons not to trust
+> strerror on that thing).
+> The repository was on FAT.
+> Taking "rename(2)" from cygwin's libiberty solved this (they unlink if link(2)
+> returns EEXIST).
+> 
+> PS: Does broken rename(2) qualify a system "not worthy to support"?
+
+I just tried this with Cygwin 1.5.18-1 and didn't have any such 
+problems.  I tried it on NTFS, FAT and Samba, using WinXP.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 16:44:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1A4502851FA
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 16:44:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751195AbVKRXmQ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 18:42:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751213AbVKRXmQ
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 18:42:16 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:33689 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1751195AbVKRXmQ (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 18:42:16 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051118234138.YGPY6244.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 18 Nov 2005 18:41:38 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	ltuikov@yahoo.com
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH rev-list.c] max-count in terms of intersection
+References: <20051118224233.50766.qmail@web31805.mail.mud.yahoo.com>
+Date:	Fri, 18 Nov 2005 15:42:12 -0800
+In-Reply-To: <20051118224233.50766.qmail@web31805.mail.mud.yahoo.com> (Luben
+	Tuikov's message of "Fri, 18 Nov 2005 14:42:33 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyptfrqj.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:12288
+
+Luben Tuikov <ltuikov@yahoo.com> writes:
+
+>> This makes sense, but I wonder if the same logic applies to
+>> max_age as well.  If we have clock-skewed commits that are
+>> skipped by the DENSE processing, we probably do not want them to
+>> be affecting what to do on the commits that matter.
+>
+> As far as I understand it, I think max-age is fine the way
+> it is.  After all, max-age depends on date/time which is
+> absolute (i.e. applies to commits in the whole set and in
+> the intersection just the same).
+
+It is recorded absolutely but what if committer's clock is
+broken on one commit but not others, and if you are not using
+the default sort_by_date() (e.g. --topo-order)?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

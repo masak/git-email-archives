@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov  3 10:09:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6130061C8A
+	for <tkil@scrye.com>; Thu,  3 Nov 2005 10:09:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030385AbVKCRF7 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 3 Nov 2005 12:05:59 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030387AbVKCRF7
+	(ORCPT <rfc822;git-outgoing>); Thu, 3 Nov 2005 12:05:59 -0500
+Received: from iabervon.org ([66.92.72.58]:27908 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1030385AbVKCRF6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 3 Nov 2005 12:05:58 -0500
+Received: (qmail 2526 invoked by uid 1000); 3 Nov 2005 12:05:42 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 3 Nov 2005 12:05:42 -0500
+Date:	Thu, 3 Nov 2005 12:05:42 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Peter Eriksen <s022018@student.dtu.dk>, git@vger.kernel.org,
+	Jon Loeliger <jdl@freescale.com>
+Subject: Re: Now What?
+In-Reply-To: <7v4q6uhx0a.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511031151070.25300@iabervon.org>
+References: <E1EXTw5-00063o-Gt@jdl.com> <20051103083840.GA28300@ebar091.ebar.dtu.dk>
+ <7v4q6uhx0a.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:11067
+
+On Thu, 3 Nov 2005, Junio C Hamano wrote:
+
+> "Peter Eriksen" <s022018@student.dtu.dk> writes:
+> 
+> > Here's one I've done too many times:
+> >
+> > ~/git/git-core]cat .git/remotes/origin
+> > URL: git://git.kernel.org/pub/scm/git/git.git
+> > Pull: master:origin
+> >
+> > ~/git/git-core]git-checkout maint
+> > ~/git/git-core]git pull
+> 
+> You are merging my master into your "maint", probably a copy of
+> my (previous) maint.
+
+I think the situation is that he really wanted to update master, but 
+forgot that he was on the maint branch. So now he's in a merge of things 
+he didn't actually want to merge and wants to get back to not having junk 
+all over the place (some files that need to be merged, some files that 
+have been merged, new files, removed files, etc).
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

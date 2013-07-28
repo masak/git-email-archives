@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 27 11:19:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F2474285206
+	for <tkil@scrye.com>; Tue, 27 Sep 2005 11:19:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965016AbVI0RTX (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 27 Sep 2005 13:19:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965020AbVI0RTX
+	(ORCPT <rfc822;git-outgoing>); Tue, 27 Sep 2005 13:19:23 -0400
+Received: from 195.37.26.69.virtela.com ([69.26.37.195]:31220 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S965016AbVI0RTW (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 27 Sep 2005 13:19:22 -0400
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id j8RHJCRJ004526;
+	Tue, 27 Sep 2005 10:19:12 -0700
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id j8RHJC5A004524;
+	Tue, 27 Sep 2005 10:19:12 -0700
+Date:	Tue, 27 Sep 2005 10:19:12 -0700
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH 2/3] Support for partial HTTP transfers
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050927171912.GC1377@reactrix.com>
+References: <20050926175204.GC9410@reactrix.com> <7vd5mvedcs.fsf@assigned-by-dhcp.cox.net> <20050927000931.GA15615@reactrix.com> <7vfyrr3vwp.fsf@assigned-by-dhcp.cox.net> <20050927153636.GA1377@reactrix.com> <7v1x3a309u.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v1x3a309u.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:9399
+
+On Tue, Sep 27, 2005 at 10:09:49AM -0700, Junio C Hamano wrote:
+
+> True.  What I meant by "interesting" is that two is reading from
+> what one is writing.
+
+Excellent point.  Given the potential for problems related to this
+issue or to compressed representation, would it make sense to enable
+partial transfers via a command-line option and leave the feature
+disabled by default?
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

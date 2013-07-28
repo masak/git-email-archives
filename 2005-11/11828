@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 14 12:03:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 27A2C28748D
+	for <tkil@scrye.com>; Mon, 14 Nov 2005 12:03:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751233AbVKNTCt (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 14:02:49 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751242AbVKNTCs
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 14:02:48 -0500
+Received: from 193.37.26.69.virtela.com ([69.26.37.193]:22198 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S1751233AbVKNTCs (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 14 Nov 2005 14:02:48 -0500
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id jAEJ2QEr006772;
+	Mon, 14 Nov 2005 11:02:26 -0800
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id jAEJ2QDP006770;
+	Mon, 14 Nov 2005 11:02:26 -0800
+Date:	Mon, 14 Nov 2005 11:02:26 -0800
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Petr Baudis <pasky@suse.cz>, git@vger.kernel.org
+Subject: Re: [PATCH] Show URL in the "Getting <foo> list" http-fetch messages
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051114190225.GA3793@reactrix.com>
+References: <20051112004958.21857.95728.stgit@machine.or.cz> <20051112005803.GZ30496@pasky.or.cz> <7vwtjeis09.fsf@assigned-by-dhcp.cox.net> <20051112172201.GF4051@reactrix.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051112172201.GF4051@reactrix.com>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:11828
+
+On Sat, Nov 12, 2005 at 09:22:02AM -0800, Nick Hengeveld wrote:
+
+> This should not be an issue with index requests because they are only
+> initiated from fetch().  The previous patch to load alternates on demand
+> added alternate handling to process_curl_messages() so that a 404 for an
+> object can be handled immediately rather than waiting for the fetch()
+> call for that object to notice.
+
+Seems like it might make sense to handle pack downloads immediately when
+an object is unavailable rather than waiting for the fetch() call.  It
+could prevent attempts to download any other objects inside that pack,
+although queued requests that activate while a pack is downloading
+would have to wait to see whether the download is successful.  If such
+an object also exists loose it would prevent a redundant download and if
+not it would at least prevent an unnecessary check and 404.
+
+Thoughts?
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

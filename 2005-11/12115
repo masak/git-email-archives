@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 09:05:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1A1DD2851FA
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 09:05:22 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932288AbVKQQEt (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 11:04:49 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932294AbVKQQEt
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 11:04:49 -0500
+Received: from run.smurf.noris.de ([192.109.102.41]:62907 "EHLO
+	server.smurf.noris.de") by vger.kernel.org with ESMTP
+	id S932288AbVKQQEt (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 11:04:49 -0500
+Received: from kiste.smurf.noris.de ([192.109.102.35] ident=mail)
+	by server.smurf.noris.de with smtp (Exim 4.50)
+	id 1EcmEI-00027q-Rg; Thu, 17 Nov 2005 17:03:57 +0100
+Received: (nullmailer pid 13873 invoked by uid 501);
+	Thu, 17 Nov 2005 16:03:18 -0000
+Date:	Thu, 17 Nov 2005 17:03:18 +0100
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	git@vger.kernel.org
+Subject: Re: "make test" fails with current HEAD
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051117160318.GE31613@kiste.smurf.noris.de>
+References: <pan.2005.11.17.15.31.56.755022@smurf.noris.de> <Pine.LNX.4.63.0511171652020.17402@wbgn013.biozentrum.uni-wuerzburg.de>
+Mime-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="IU5/I01NYhRvwH70"
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.63.0511171652020.17402@wbgn013.biozentrum.uni-wuerzburg.de>
+User-Agent: Mutt/1.5.9i
+From:	Matthias Urlichs <smurf@smurf.noris.de>
+X-Smurf-Spam-Score: -2.5 (--)
+X-Smurf-Whitelist: +relay_from_hosts
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 47
+Xref: brand.scrye.com linux.git:12115
+
+
+--IU5/I01NYhRvwH70
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Johannes Schindelin:
+> Does not fail here.
+>=20
+Does fail here...
+
+> Did you set your GIT_EXEC_PATH?
+>=20
+Yes. :-/
+
+I'll dig.
+--=20
+Matthias Urlichs   |   {M:U} IT Design @ m-u-it.de   |  smurf@smurf.noris.de
+Disclaimer: The quote was selected randomly. Really. | http://smurf.noris.de
+ - -
+"Today, the theory of evolution is an accepted fact for everyone but
+ a fundamentalist minority, whose objections are based not on reasoning
+ but on doctrinaire adherence to religious principles."
+           [Dr. James D. Watson, winner of the Nobel prize
+            for his co-discovery of the structure of DNA]
+
+--IU5/I01NYhRvwH70
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+
+iD8DBQFDfKnG8+hUANcKr/kRAqLBAJ0dFp8WJiurTKsou2ZIMTdncMIfpQCdEjtF
+mfiGGfDASXw0Ablm7RHAiO8=
+=ix4t
+-----END PGP SIGNATURE-----
+
+--IU5/I01NYhRvwH70--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

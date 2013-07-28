@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 12:57:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 554F22386C4
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 12:57:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751172AbVKJTzR (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 14:55:17 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751209AbVKJTzR
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 14:55:17 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:35727 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751172AbVKJTzP (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 10 Nov 2005 14:55:15 -0500
+Received: (qmail 25591 invoked from network); 10 Nov 2005 20:55:13 +0100
+Received: from localhost (HELO machine.or.cz) (xpasky@127.0.0.1)
+  by localhost with SMTP; 10 Nov 2005 20:55:13 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	<git@vger.kernel.org>
+Subject: [PATCH] Fix confusing git-update-ref error message
+Date:	Thu, 10 Nov 2005 20:55:13 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051110195513.25573.31064.stgit@machine.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:11505
+
+When git-update-ref has hit the "Ref %s changed to %s" error, I just stare
+at it, left puzzled. This patch attempts to reword that to a more useful
+and less confusing error message.
+
+Signed-off-by: Petr Baudis <pasky@suse.cz>
+---
+
+ update-ref.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/update-ref.c b/update-ref.c
+index 65dc3d6..d79dc52 100644
+--- a/update-ref.c
++++ b/update-ref.c
+@@ -42,7 +42,7 @@ int main(int argc, char **argv)
+ 
+ 	if (oldval) {
+ 		if (memcmp(currsha1, oldsha1, 20))
+-			die("Ref %s changed to %s", refname, sha1_to_hex(currsha1));
++			die("Ref %s is at %s but expected %s", refname, sha1_to_hex(currsha1), sha1_to_hex(oldsha1));
+ 		/* Nothing to do? */
+ 		if (!memcmp(oldsha1, sha1, 20))
+ 			exit(0);
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

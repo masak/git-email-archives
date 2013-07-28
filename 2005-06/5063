@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun 20 10:15:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2FCD81E4D93
+	for <tkil@scrye.com>; Mon, 20 Jun 2005 10:15:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261200AbVFTQO0 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 20 Jun 2005 12:14:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261357AbVFTQO0
+	(ORCPT <rfc822;git-outgoing>); Mon, 20 Jun 2005 12:14:26 -0400
+Received: from zealot.progeny.com ([216.37.46.162]:54729 "EHLO
+	morimoto.progeny.com") by vger.kernel.org with ESMTP
+	id S261200AbVFTQOY (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 20 Jun 2005 12:14:24 -0400
+Received: from dhcp-2-246.progeny.com (dhcp-2-246.progeny.com [192.168.2.246])
+	by morimoto.progeny.com (Postfix) with ESMTP id A4F1B636AF
+	for <git@vger.kernel.org>; Mon, 20 Jun 2005 11:14:23 -0500 (EST)
+Subject: Patch (apply) vs. Pull
+From: Darrin Thompson <darrint@progeny.com>
+To: git@vger.kernel.org
+Content-Type: text/plain
+Date:	Mon, 20 Jun 2005 11:19:25 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1119284365.3926.15.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.3 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:5063
+
+In trying to understand git I've adopted a mental model where everybody
+duplicates locally the remote history in which they are interested.
+These histories have various points in common, allowing for intelligent
+merging. That makes perfect sense to me, until I look at the list
+archives filled with patches.
+
+How exactly are these patches being generated? Is there a right-way(tm)
+which causes the recipient's a later pullers' histories to be
+intelligently handled in the future?
+
+TIA.
+
+--
+Darrin
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

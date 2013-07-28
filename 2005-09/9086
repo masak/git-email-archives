@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 22 02:36:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8220C24BBBF
+	for <tkil@scrye.com>; Thu, 22 Sep 2005 02:36:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751449AbVIVIfK (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Sep 2005 04:35:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751452AbVIVIfK
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Sep 2005 04:35:10 -0400
+Received: from mail.kroah.org ([69.55.234.183]:38595 "EHLO perch.kroah.org")
+	by vger.kernel.org with ESMTP id S1751449AbVIVIfI (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 22 Sep 2005 04:35:08 -0400
+Received: from [192.168.228.164] ([194.228.206.13])
+	(authenticated)
+	by perch.kroah.org (8.11.6/8.11.6) with ESMTP id j8M8W0w26854;
+	Thu, 22 Sep 2005 01:32:00 -0700
+Received: from greg by echidna.kroah.org with local (masqmail 0.2.19)
+ id 1EIMUZ-1oS-00; Thu, 22 Sep 2005 01:31:43 -0700
+Date:	Thu, 22 Sep 2005 01:31:42 -0700
+From:	Greg KH <greg@kroah.com>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	git@vger.kernel.org, kkeil@suse.de
+Subject: Re: [Core GIT] Long-term cherrypicking
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050922083142.GA6866@kroah.com>
+References: <20050921164015.GC21971@pasky.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050921164015.GC21971@pasky.or.cz>
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:9086
+
+On Wed, Sep 21, 2005 at 06:40:15PM +0200, Petr Baudis wrote:
+>   Hello,
+> 
+>   I've been working out some workflow possibilities with Karsten Keil at
+> the SuSE Labs conference, and I'd like to see your opinions. His
+> position does not seem unique at all, so I'm a bit surprised that noone
+> solved this before, or at least I didn't find any documentation about
+> this in the tutorial and howtos (or perhaps I missed it?).
+> 
+>   His situation is that he has some patches in the ISDN subsystem, a
+> public repository, but sends the patches over e-mail to Linus. So he is
+> something between the subsystem maintainer and individual developer in
+> the categories listed out in the tutorial. What should be his merging
+> strategy?
+
+Not to use git for this.
+
+Seriously, that's what I have switched to doing, and it's so much
+easier.  I use quilt to manage patches from the community, and Andrew
+pulls them into to the -mm releases, and all users can test them.  I
+keep them up to date with the git snapshots, which handles the different
+merge and fuzz issues very well.
+
+Then, when it's time to merge with Linus, I pick and choose the patches
+that I want to send off, create a git tree, add them to the tree, and
+send them off.
+
+It's ended up saving me a lot of time (I used to do what Karsten is
+trying to do with bitkeeper, and it had the same issues that he is
+running into) and would recommend this situation for anyone who wants to
+keep patches from being merged immediatly (like he is trying to do.)
+
+thanks,
+
+greg k-h
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 13 17:58:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3D1261DB0B2
+	for <tkil@scrye.com>; Sat, 13 Aug 2005 17:58:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751334AbVHMX5j (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 13 Aug 2005 19:57:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751340AbVHMX5j
+	(ORCPT <rfc822;git-outgoing>); Sat, 13 Aug 2005 19:57:39 -0400
+Received: from mail.autoweb.net ([198.172.237.26]:22721 "EHLO mail.autoweb.net")
+	by vger.kernel.org with ESMTP id S1751334AbVHMX5i (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 13 Aug 2005 19:57:38 -0400
+Received: from pcp01184054pcs.strl301.mi.comcast.net ([68.60.186.73] helo=michonline.com)
+	by mail.autoweb.net with esmtp (Exim 4.44)
+	id 1E45sM-0003NW-Oh; Sat, 13 Aug 2005 19:57:19 -0400
+Received: from mythical ([10.254.251.11] ident=Debian-exim)
+	by michonline.com with esmtp (Exim 3.35 #1 (Debian))
+	id 1E45sK-0004jz-00; Sat, 13 Aug 2005 19:57:16 -0400
+Received: from ryan by mythical with local (Exim 4.52)
+	id 1E45sK-0003H1-9G; Sat, 13 Aug 2005 19:57:16 -0400
+Date:	Sat, 13 Aug 2005 19:57:16 -0400
+From: Ryan Anderson <ryan@michonline.com>
+To: Matthias Urlichs <smurf@smurf.noris.de>
+Cc: David Lang <david.lang@digitalinsight.com>, git@vger.kernel.org
+Subject: Re: [PATCH] Debian packaging for 0.99.4
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050813235716.GB6844@mythryan2.michonline.com>
+References: <Pine.LNX.4.58.0508102200560.3295@g5.osdl.org> <E1E35vU-0004nP-JR@highlab.com> <Pine.LNX.4.58.0508110915210.3295@g5.osdl.org> <E1E3IOG-0005HO-AK@highlab.com> <20050811201558.GA2874@mars.ravnborg.org> <20050811202410.GB5411@kiste.smurf.noris.de> <42FBCD73.3090507@chandlerfamily.org.uk> <pan.2005.08.12.08.34.45.679778@smurf.noris.de> <Pine.LNX.4.62.0508120139230.19902@qynat.qvtvafvgr.pbz> <20050812103555.GG5411@kiste.smurf.noris.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050812103555.GG5411@kiste.smurf.noris.de>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 41
+Xref: brand.scrye.com linux.git:7221
+
+On Fri, Aug 12, 2005 at 12:35:55PM +0200, Matthias Urlichs wrote:
+> David Lang:
+> > after so many years of software development (and with the policy of never 
+> > having conflicting command names) what three letter combinations are still 
+> > avilable?
+> > 
+> Lots.
+> 
+> > I'm assuming that the much smaller pool of two letter commands was long 
+> > since exhausted, but if not what two letter commands are available?
+> > 
+> Lots of them, I hope, but all of them obscure.
+> 
+> We even have 25 one-letter commands that are free. My /usr/bin/ only has
+> 'w'. And if we run out, we could branch off into other alphabets;
+> unfortunately, not everybody has a quick way to type an ??. Or ??. Or ???. ;-)
+
+"gt" seems free on my machine here.  I haven't poke around at all the
+other ones that have slightly different sets of software, but searching
+on the Debian packages search engine:
+
+http://packages.debian.org/cgi-bin/search_contents.pl?word=%2Fusr%2Fbin%2Fgt&searchmode=searchfiles&case=insensitive&version=unstable&arch=i386
+
+cogito in Debian seems to have taken it already for git, anyway.
+
+We can make the conversion easy for people by providing this shell
+script for a few weeks:
+
+	#!/bin/sh
+	echo "Don't get a git - use gt!
+	gt $*
+
+-- 
+
+Ryan Anderson
+  sometimes Pug Majere
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

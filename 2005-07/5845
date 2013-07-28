@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jul  9 07:39:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4598A1830F6
+	for <tkil@scrye.com>; Sat,  9 Jul 2005 07:39:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261390AbVGINiH (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 9 Jul 2005 09:38:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261405AbVGINiH
+	(ORCPT <rfc822;git-outgoing>); Sat, 9 Jul 2005 09:38:07 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:7602 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S261390AbVGINiC (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 9 Jul 2005 09:38:02 -0400
+Received: from cpe-065-184-065-144.nc.res.rr.com ([65.184.65.144] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1DrFWh-0007xf-Hw; Sat, 09 Jul 2005 13:37:53 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42CFD32B.8060108@pobox.com>
+Date:	Sat, 09 Jul 2005 09:37:47 -0400
+From: Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.2-6 (X11/20050513)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: What broke snapshots now?
+References: <1120907336.8058.293.camel@baythorne.infradead.org>
+In-Reply-To: <1120907336.8058.293.camel@baythorne.infradead.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:5845
+
+David Woodhouse wrote:
+> Does git on master.kernel.org need to be updated to handle packed
+> objects?
+
+Yes.
+
+It's always fun when the on-disk format of the upstream 2.6.x kernel 
+repo changes without notice :/
+
+	Jeff
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

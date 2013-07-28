@@ -1,0 +1,116 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 17:29:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id F22601E7B1E
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 17:29:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261746AbVDSXXl (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 19:23:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261689AbVDSXXk
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 19:23:40 -0400
+Received: from sb0-cf9a48a7.dsl.impulse.net ([207.154.72.167]:5863 "EHLO
+	madrabbit.org") by vger.kernel.org with ESMTP id S261748AbVDSXV6
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 19 Apr 2005 19:21:58 -0400
+Received: from orca.madrabbit.org (orca.madrabbit.org [192.168.1.51])
+	by madrabbit.org (Postfix) with ESMTP
+	id A3BD44C0A1B; Tue, 19 Apr 2005 16:21:57 -0700 (PDT)
+Subject: Re: [darcs-devel] Darcs and git: plan of action
+From: Ray Lee <ray-lk@madrabbit.org>
+To: Tupshin Harper <tupshin@tupshin.com>
+Cc: darcs-devel@darcs.net, git@vger.kernel.org,
+	Kevin Smith <yarcs@qualitycode.com>
+In-Reply-To: <42658D95.7020404@tupshin.com>
+References: <20050418210436.23935.qmail@science.horizon.com>
+	 <1113869248.23938.94.camel@orca.madrabbit.org>
+	 <42645969.2090609@qualitycode.com>
+	 <1113874931.23938.111.camel@orca.madrabbit.org>
+	 <4264677A.9090003@qualitycode.com>
+	 <1113950442.29444.31.camel@orca.madrabbit.org>
+	 <42658D95.7020404@tupshin.com>
+Content-Type: text/plain
+Organization: http://madrabbit.org/
+Date:	Tue, 19 Apr 2005 16:21:56 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1113952916.29444.60.camel@orca.madrabbit.org>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 66
+Xref: brand.scrye.com linux.git:881
+
+On Tue, 2005-04-19 at 16:00 -0700, Tupshin Harper wrote:
+> Ray Lee wrote:
+> 
+> >Here's where we disagree. If you checkpoint your tree before the
+> >replace, and immediately after, the only differences in the
+> >source-controlled files would be due to the replace.
+> >
+> This is assuming that you only have one replace and no other operations 
+> recorded in the patch. If you have multiple replaces or a replace and a 
+> traditional diff  recorded in the same patch, then this is not true.
+
+I had a precondition on my argument (not quoted), that the code was
+checkpointed before and after. Obviously, a large set of changes in one
+patch is a problem. However, a darcs replace is (effectively) a commit
+on its own, so I was limiting myself to the same situation under a
+different system.
+
+> A more fundamental problem comes back to intent. If I have a file
+> "foo" before:
+> a1
+> a2
+> and after:
+> b1
+> b2
+> is that a "replace [_a-zA-Z0-9] a b foo" patch, or is that a
+> -a1
+> -a2
+> +b1
+> +b2
+> patch?
+
+Okay, so in reading the online darcs manual (yet) again, I now see that
+it allows regular expressions for the match and replace, which means
+multiple unique tokens could change atomically. (Does anyone actually
+*use* regexes? Sounds like a cannon that'd be hard to aim.)
+
+Regardless, I only care about code, not free text. If it's in a language
+that doesn't do some use-'em-as-you-need-'em duck typing spiel
+(<cough>python</cough), then the context of your patch (namely, the
+file) already has those tokens somewhere in them. And I bet that if
+*you* looked at that file, you could tell if it was a replace or a mere
+textual diff. Am I wrong?
+
+> Note that this comes down to heuristics, and no matter what you 
+> use, you will be wrong sometimes,  *and* the choice that is made can 
+> substantively affect the contents of the repository after additional 
+> patches are applied.
+
+Unless I'm missing something, the darcs replace patch can already do the
+wrong thing. If I do a replace patch on a variable introduced in a local
+tree, then do a darcs replace on it before committing it to a shared
+repository, and coder B introduces a variable of the same original name
+in my copy, then there's a chance that the replace patch will
+incorrectly apply upon his newly introduced variable. No?
+
+> It's provable that you can not.
+
+I'm still not seeing the problem, at least when it comes to ANSI C.
+
+Ray
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

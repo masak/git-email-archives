@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun  3 16:38:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 591A3179910
+	for <tkil@scrye.com>; Fri,  3 Jun 2005 16:38:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261154AbVFCWic (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 3 Jun 2005 18:38:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261155AbVFCWic
+	(ORCPT <rfc822;git-outgoing>); Fri, 3 Jun 2005 18:38:32 -0400
+Received: from gate.crashing.org ([63.228.1.57]:34526 "EHLO gate.crashing.org")
+	by vger.kernel.org with ESMTP id S261154AbVFCWi2 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 3 Jun 2005 18:38:28 -0400
+Received: from gaston (localhost [127.0.0.1])
+	by gate.crashing.org (8.12.8/8.12.8) with ESMTP id j53MUGZn031614;
+	Fri, 3 Jun 2005 17:30:17 -0500
+Subject: Re: qgit-0.3
+From: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To: Radoslaw Szkodzinski <astralstorm@gorzow.mm.pl>
+Cc: git@vger.kernel.org
+In-Reply-To: <42A04AAA.4080205@gorzow.mm.pl>
+References: <20050601111949.90043.qmail@web26303.mail.ukl.yahoo.com>
+	 <1117770909.31082.121.camel@gaston>  <42A04AAA.4080205@gorzow.mm.pl>
+Content-Type: text/plain
+Date:	Sat, 04 Jun 2005 08:37:22 +1000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1117838242.31082.165.camel@gaston>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_BQ,TW_IB,
+	TW_QG autolearn=no version=3.0.3
+Lines: 23
+Xref: brand.scrye.com linux.git:4492
+
+On Fri, 2005-06-03 at 14:18 +0200, Radoslaw Szkodzinski wrote:
+
+> It is buildable, but you need to install your own scons in the correct
+> paths, e.g.
+> on Gentoo:
+> 
+> emerge scons
+> And then build it by hand with:
+> ./configure
+> scons
+> 
+> Then you get bin/qgit which is ready to run and/or copy.
+
+Not on debian. Doesn't work with the disto's scons, says it can't find
+qt (and libqt3-dev is installed)
+
+Ben.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

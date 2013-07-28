@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 01:19:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2DD7D277C91
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 01:19:43 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932631AbVKBITi (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 03:19:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932639AbVKBITi
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 03:19:38 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:4846 "EHLO smtp-gw1.op5.se")
+	by vger.kernel.org with ESMTP id S932631AbVKBITi (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 2 Nov 2005 03:19:38 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 3BD926BD00
+	for <git@vger.kernel.org>; Wed,  2 Nov 2005 09:19:37 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43687699.8060609@op5.se>
+Date:	Wed, 02 Nov 2005 09:19:37 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [PATCH 1/4] Client side of user-relative paths, take two.
+References: <20051101225921.245595BF70@nox.op5.se> <7vpspj6h3n.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vpspj6h3n.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:10998
+
+Junio C Hamano wrote:
+> Andreas Ericsson <ae@op5.se> writes:
+> 
+> 
+>>+	if (protocol == PROTO_SSH && colon && (!path || colon < path)) {
+>>+		*colon = 0;
+>>+		path = colon + 1;
+>>+	}
+> 
+> 
+> I think "colon < path" is to cover "git://host.xz/foo/bar:baz"
+> case (i.e. funny directory name with an embedded colon); I think
+> you should reset colon to NULL if you do things differently
+> later depending on colon is set or not, like this part:
+> 
+> 
+>>+	/* null-terminate host part and point path to ~ for URL's like this:
+>>+	 *    ssh://host.xz/~user/repo
+>>+	 */
+>>+	if(!colon && *(path + 1) == '~')
+>>+		*path++ = '\0';
+>>+	else {
+>>+		colon = path;
+>>+		path = strdup(path);
+>>+		*colon = '\0';
+> 
+> 
+
+True. Should I update this patch or submit a new one fixing only this 
+specific issue?
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

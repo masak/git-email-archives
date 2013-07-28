@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 18:11:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F2B9B1BFF51
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 18:11:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932723AbVITALi (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 20:11:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932724AbVITALi
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 20:11:38 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:10891 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932723AbVITALi (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Sep 2005 20:11:38 -0400
+Received: (qmail 12286 invoked by uid 2001); 20 Sep 2005 02:11:36 +0200
+Date:	Tue, 20 Sep 2005 02:11:36 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	junkio@cox.net, git@vger.kernel.org
+Subject: [Terminology] Push vs. upload?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050920001136.GK18320@pasky.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:8921
+
+  Hello,
+
+  I've realized today that I "forgot" to rename cg-push to cg-upload, so
+I impulsively did so right away, but now I'm seeing that the core git
+still has git-push and no git-upload. This is confusing and appears to
+be quite inconsistent - push should be the opposite of pull, but pull is
+defined as fetch+merge, while push does just the anti-fetch ("upload")
+part. Yes, it does the subset protection, but git-fetch with remotes/
+seems to by default do the superset protection as well.
+
+  How should we call it, then?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

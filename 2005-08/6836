@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug  4 21:27:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 8595D27D988
+	for <tkil@scrye.com>; Thu,  4 Aug 2005 21:27:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262835AbVHED1m (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 4 Aug 2005 23:27:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262837AbVHED1m
+	(ORCPT <rfc822;git-outgoing>); Thu, 4 Aug 2005 23:27:42 -0400
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:251 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S262835AbVHED1m (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 4 Aug 2005 23:27:42 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050805032738.JWGP19627.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 4 Aug 2005 23:27:38 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: Petr Baudis <pasky@suse.cz>
+Cc: Kay Sievers <kay.sievers@vrfy.org>, git@vger.kernel.org
+Subject: Re: [RFC] git homepage
+References: <20050805012728.GO24479@pasky.ji.cz>
+	<7v64ulqh24.fsf@assigned-by-dhcp.cox.net>
+	<20050805021214.GQ24479@pasky.ji.cz>
+Date:	Thu, 04 Aug 2005 20:27:36 -0700
+In-Reply-To: <20050805021214.GQ24479@pasky.ji.cz> (Petr Baudis's message of
+	"Fri, 5 Aug 2005 04:12:14 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x59qd07.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 13
+Xref: brand.scrye.com linux.git:6836
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> Actually, HTTP should be working again now; but it's rather fresh yet so
+> we should keep it rsync anyway for a while yet for the users of older
+> GIT/Cogito versions.
+
+My point being rsync://rsync.kernel.org/ vs http://www.kernel.org/.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 28 09:03:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D16B12851FD
+	for <tkil@scrye.com>; Mon, 28 Nov 2005 09:03:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751174AbVK1QC0 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 28 Nov 2005 11:02:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751276AbVK1QC0
+	(ORCPT <rfc822;git-outgoing>); Mon, 28 Nov 2005 11:02:26 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:7317 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751174AbVK1QCZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 28 Nov 2005 11:02:25 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 1A65413FED0; Mon, 28 Nov 2005 17:02:23 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id F30F99F479; Mon, 28 Nov 2005 17:02:22 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id DE7099DB02; Mon, 28 Nov 2005 17:02:22 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 3EA5A13F00A; Mon, 28 Nov 2005 17:02:22 +0100 (CET)
+Date:	Mon, 28 Nov 2005 17:02:22 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Alex Riesen <raa.lkml@gmail.com>, git@vger.kernel.org,
+	Junio C Hamano <junkio@cox.net>
+Subject: Re: use binmode(STDOUT) in git-status
+In-Reply-To: <438B2859.6060109@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511281700100.11362@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <81b0412b0511272334w393434e7lad3e3b102e6c3e9e@mail.gmail.com>
+ <438B2859.6060109@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:12879
+
+Hi,
+
+On Mon, 28 Nov 2005, H. Peter Anvin wrote:
+
+> Alex Riesen wrote:
+> > Activision's Perl generates CRLF unless STDOUT is binmoded, which is
+> > inconsistent with other output of git-status.
+> > 
+> > ---
+> > I assume none _sane_ can want CRLF as line-ending...
+> 
+> Well, if it's a text file we probably should use platform-native line-ending,
+> and at least be tolerant of \r\n.
+
+Of course, here is the problem: git on Windows runs only using cygwin. You 
+can specify the line ending behaviour of cygwin (I think it is an env 
+variable). Activision Perl, being independent of cygwin, does not care 
+about that setting.
+
+So, to be accurate, you'd have to check what *cygwin* expects, and 
+depending on that execute binmode(STDOUT) or not.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 22:30:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 33D032F6F5
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 22:30:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750801AbVLMFaA (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 13 Dec 2005 00:30:00 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751267AbVLMFaA
+	(ORCPT <rfc822;git-outgoing>); Tue, 13 Dec 2005 00:30:00 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:59554 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750801AbVLMF37 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 13 Dec 2005 00:29:59 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBD5TmDZ022652
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 12 Dec 2005 21:29:49 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBD5Tl30004433;
+	Mon, 12 Dec 2005 21:29:47 -0800
+Date:	Mon, 12 Dec 2005 21:29:47 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	"Randal L. Schwartz" <merlyn@stonehenge.com>, git@vger.kernel.org
+Subject: Re: as promised, docs: git for the confused
+In-Reply-To: <7vzmn5bmlk.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512122124290.15597@g5.osdl.org>
+References: <20051209215414.14072.qmail@science.horizon.com>
+ <7vmzj9zwfu.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0512120827440.15597@g5.osdl.org>
+ <20051212195319.11d41269.tihirvon@gmail.com> <Pine.LNX.4.64.0512121010550.15597@g5.osdl.org>
+ <86y82qyrqs.fsf@blue.stonehenge.com> <20051213035842.GF10371@always.joy.eth.net>
+ <86d5k1y7dp.fsf@blue.stonehenge.com> <7vzmn5bmlk.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:13561
+
+
+
+On Mon, 12 Dec 2005, Junio C Hamano wrote:
+> 
+> The only Plumbing support is that ls-files takes --exclude-from=
+> and --exclude-per-directory= options.  It is up to the Porcelain
+> layer what names to use.
+
+The only _core_ plumbing support is the git-ls-files option, but some of 
+the git helper functions do use it. Notably, "git add" and "git status" 
+both use those options, which in turn then indirectly means that when 
+using "git commit" the commit message template won't list ignored files 
+etc.
+
+So the git "mini-porcelain" layer does in fact use .gitignore and friends. 
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

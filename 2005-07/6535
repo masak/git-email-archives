@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 29 01:37:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1C088735E7
+	for <tkil@scrye.com>; Fri, 29 Jul 2005 01:37:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262481AbVG2Hgy (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Jul 2005 03:36:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262482AbVG2Hgx
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Jul 2005 03:36:53 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:43019 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262481AbVG2Hgs (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Jul 2005 03:36:48 -0400
+Received: (qmail 29673 invoked by uid 2001); 29 Jul 2005 07:36:45 -0000
+Date:	Fri, 29 Jul 2005 09:36:44 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Catalin Marinas <catalin.marinas@gmail.com>,
+	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org,
+	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: [RFC] extending git-ls-files --exclude.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050729073644.GE24895@pasky.ji.cz>
+References: <20050721202309.8216.19338.stgit@h164.c77.b0.tor.eicat.ca> <7v3bq71rmb.fsf@assigned-by-dhcp.cox.net> <tnx1x5ryvn2.fsf@arm.com> <20050722192424.GB8556@mars.ravnborg.org> <7vy87yr2xh.fsf@assigned-by-dhcp.cox.net> <20050722205948.GE11916@pasky.ji.cz> <7vd5p73jlu.fsf@assigned-by-dhcp.cox.net> <20050728155210.GA17952@pasky.ji.cz> <7vack6mcd7.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vack6mcd7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:6535
+
+Dear diary, on Fri, Jul 29, 2005 at 07:04:36AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+>  * When checking a file to see if it is excluded, we first look
+>    at "exclude-from patterns" list, then "per directory
+>    patterns" list, and then "command line patterns list", in
+>    that order.  The last match wins [*1*].
+
+Hmm. What about just excluding the files according to the order of
+parameters on the command line?
+
+Here, the question is whether the GIT Core tools should provide full
+flexibility and friendness to custom use, or rather serve as tighter
+unifying layer for the porcelains, enforcing certain conventions. That's
+up to you to decide, obviously, but perhaps someone will want to use the
+exclude mechanisms for something else than the "classic" other files
+ignoring stuff, and generally more flexibility might be better. So I'd
+argue for codifying those conventions at the level of the porcelain
+users and not enforcing them in git-ls-files itself.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

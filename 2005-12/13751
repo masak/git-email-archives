@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec 16 15:13:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 829EE312460
+	for <tkil@scrye.com>; Fri, 16 Dec 2005 15:13:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932496AbVLPWNa (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Dec 2005 17:13:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932523AbVLPWNa
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Dec 2005 17:13:30 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:4508 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932496AbVLPWN3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 16 Dec 2005 17:13:29 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBGMCrDZ007439
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 16 Dec 2005 14:12:54 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBGMClgg014366;
+	Fri, 16 Dec 2005 14:12:48 -0800
+Date:	Fri, 16 Dec 2005 14:12:46 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Nicolas Pitre <nico@cam.org>
+cc:	Martin Langhoff <martin.langhoff@gmail.com>,
+	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [RFC] faking cvs annotate
+In-Reply-To: <Pine.LNX.4.64.0512161636150.26663@localhost.localdomain>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512161412310.3698@g5.osdl.org>
+References: <46a038f90512151713i118e58acia466d0f65ff91383@mail.gmail.com>
+ <Pine.LNX.4.63.0512160229140.6323@wbgn013.biozentrum.uni-wuerzburg.de>
+ <46a038f90512152037u66993aadg566a2a47abd279c9@mail.gmail.com>
+ <Pine.LNX.4.64.0512160843450.3060@g5.osdl.org>
+ <Pine.LNX.4.64.0512161636150.26663@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.129 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:13751
+
+
+
+On Fri, 16 Dec 2005, Nicolas Pitre wrote:
+
+> On Fri, 16 Dec 2005, Linus Torvalds wrote:
+> 
+> > But, for example:
+> > 
+> > 	[torvalds@g5 linux-history]$ time git-whatchanged drivers/char/Makefile > /dev/null 
+> > 	real    0m37.993s
+> > 	user    0m41.912s
+> > 	sys     0m0.400s
+> 
+> Hmmm... I'd like to have a system like that too, where reality is 
+> smaller than the sum of system and user time.  ;-)
+
+It's called "smp".
+
+You can buy then anywhere.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

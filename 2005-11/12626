@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 10:08:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C25C81B8207
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 10:08:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932109AbVKWRHj (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 12:07:39 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932110AbVKWRHj
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 12:07:39 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:10170 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932109AbVKWRHi (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 23 Nov 2005 12:07:38 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jANH7GnO029542
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 23 Nov 2005 09:07:16 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jANH7FlN012348;
+	Wed, 23 Nov 2005 09:07:15 -0800
+Date:	Wed, 23 Nov 2005 09:07:14 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Ryan Anderson <ryan@michonline.com>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Add git-graft-ripple, a tool for permanently grafting
+ history into a tree.
+In-Reply-To: <20051123135150.GA16995@mythryan2.michonline.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511230905570.13959@g5.osdl.org>
+References: <11326926501602-git-send-email-ryan@michonline.com>
+ <Pine.LNX.4.64.0511221652530.13959@g5.osdl.org> <20051123135150.GA16995@mythryan2.michonline.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12626
+
+
+
+On Wed, 23 Nov 2005, Ryan Anderson wrote:
+> 
+> I'm not entirely convinced this is a good idea, but there it is.
+
+Well, quite frankly, I think the whole graft-rippling is just wrong (why 
+do it? The grafts are fine, and after you've rippled, you'll never be able 
+to merge with somebody who didn't) but if you do it, I think you should 
+fix it up properly and have a resulting tree that is at least as good as 
+the original.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

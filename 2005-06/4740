@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  9 01:45:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3248E26E627
+	for <tkil@scrye.com>; Thu,  9 Jun 2005 01:45:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262321AbVFIHpQ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 9 Jun 2005 03:45:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262323AbVFIHpQ
+	(ORCPT <rfc822;git-outgoing>); Thu, 9 Jun 2005 03:45:16 -0400
+Received: from rproxy.gmail.com ([64.233.170.201]:44294 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262321AbVFIHpD convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Thu, 9 Jun 2005 03:45:03 -0400
+Received: by rproxy.gmail.com with SMTP id i8so16487rne
+        for <git@vger.kernel.org>; Thu, 09 Jun 2005 00:45:03 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=n71LrE1B4QG/DKgKAfcZJllp0VojT73tcFk6M7dGpZn51SkZWaTm6QUKtoZqPPx/BZoDWkubotV5PZRKwWRe5mOyMUiTbzCtbmRETivlwjZSXpx+pxwkHv8YRPGs2D7aLG4adUBUebbnTshUkzPtul8P1Jb6Af91GgM/vAHhg/E=
+Received: by 10.38.203.29 with SMTP id a29mr3000290rng;
+        Tue, 07 Jun 2005 02:59:55 -0700 (PDT)
+Received: by 10.38.104.42 with HTTP; Tue, 7 Jun 2005 02:59:53 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2cfc403205060702596dee7341@mail.gmail.com>
+Date:	Tue, 7 Jun 2005 19:59:53 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+Reply-To: jon@blackcubes.dyndns.org
+To: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Add support for --wrt-author, --author and --exclude-author switches to git-rev-list
+In-Reply-To: <2cfc403205060702594da21fb1@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20050607091523.14051.qmail@blackcubes.dyndns.org>
+	 <20050607094947.GC2676@pasky.ji.cz>
+	 <2cfc403205060702594da21fb1@mail.gmail.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.3
+Lines: 50
+Xref: brand.scrye.com linux.git:4740
+
+On 6/7/05, Petr Baudis <pasky@ucw.cz> wrote:
+> Dear diary, on Tue, Jun 07, 2005 at 11:15:23AM CEST, I got a letter
+> where Jon Seymour <jon.seymour@gmail.com> told me that...
+> > [PATCH] Add support for --wrt-author, --author and --exclude-author switches to git-rev-list
+> >
+> > This patch is a complete replacement for:
+> >       [PATCH] Add support for --wrt flag to git-rev-list
+> >
+> > This patch adds support for --wrt-author, --exclude-author and --author switches
+> > to git-rev-list.
+>
+> I'd prefer just --wrt-author and --exclude-author to take an argument on
+> their own.
+
+The reason I don't want to do this is that it doesn't really make
+sense in the context of the change to specify one author for
+--wrt-author and another for --exclude-author. In normal use --author
+defaults to GIT_AUTHOR_EMAIL or the locally derived user@host.domain.
+The  intention is simply to override this default derivation.
+
+>
+> (Note that I don't endorse this patch and the --wrt-author behaviour in
+> particular seems strange. I don't have enough time to comment on it
+> sensibly now, though. I'm just focusing on style here since I'd like to
+> still be able to read git's source code few weeks from now on.)
+
+The rationale for the change is as follows:
+
+During parallel development, one is aware of ones own
+changes...everyone else changes haven't happened yet as far as you are
+concerned. Only when they appear in a future merge that incorporates
+one's own changes do the other changes appear in your own workspace.
+
+As far as you are concerned, these changes occurred after you made
+your own - your changes were not dependent on those changes, only on
+those that came before. So the linearisation reflects that perceived
+ordering of changes.
+
+--wrt-author helps to reconstruct the merge-history from the
+perspective of each individual committer.
+
+Let me know if this doesn't explain the rationale completely enough
+for your understanding.
+
+jon.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

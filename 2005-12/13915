@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 17:28:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_24_48 autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8375E594D7
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 17:28:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965020AbVLVA0O (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 19:26:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965022AbVLVA0O
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 19:26:14 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:5648 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S965020AbVLVA0N convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Dec 2005 19:26:13 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jBM0Olrw012586;
+	Thu, 22 Dec 2005 00:25:40 GMT
+In-Reply-To: <20051218143439.GA7064@diku.dk>
+References: <20051211190931.GF2960@diku.dk> <EF827EE8-7B7A-4D19-A08D-8C67D6B74195@hawaga.org.uk> <20051218143439.GA7064@diku.dk>
+Mime-Version: 1.0 (Apple Message framework v746.2)
+Content-Type: text/plain; charset=UTF-8; delsp=yes; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <FB1B98E9-58B8-44BE-AC08-606C30A5F61A@hawaga.org.uk>
+Cc:	Git List <git@vger.kernel.org>
+Content-Transfer-Encoding: 8BIT
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: Re: [PATCH] cg-completion: improve options and command listing
+Date:	Tue, 20 Dec 2005 11:43:52 +0930
+To:	Jonas Fonseca <fonseca@diku.dk>
+X-Mailer: Apple Mail (2.746.2)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:13915
+
+
+On 19 Dec 2005, at 00:04, Jonas Fonseca wrote:
+>>
+>> I'm interested by what you mean by 'all sorts of garbage' - it seems
+>> ok on my machine.
+>
+> ~/src/cogito/cogito > __cg_cmdlist | head
+>         cg-add             Add files to the GIT repository.
+>         cg-clean           Clean unknown files from the working tree.
+>         cg-clone           Clone a remote GIT repository.
+
+I definitely don't get that here. Bleugh!
+
+> Else I was thinking of maybe adding --list parameter to cg-help to  
+> have
+> it list all known commands.
+
+One thing that seemed kinda neat that I saw somewhere (perhaps in  
+darcs?) is that it will tab complete only commands that would make  
+sense in the present location (so cg <tab> would perhaps only bring  
+up 'init' and 'help' in a non-git directory) - that would be rather  
+more invasive to implement, I expect.
+
+Another thing that has been mooted is autogenerating the completion  
+code based on USAGE info - I've had a hack about in the past with  
+that (its in the autogen branch in the gitcompletion repo on  
+hawaga.org.uk) but then I reached the point where it seemed too icky  
+for my tastes...
+
+-- 
+Ben • ベン • Бэн • 벤 • 班明
+http://www.hawaga.org.uk/ben/
+My email is high latency but best way to contact me. Alternatively,  
+SMS number(s) at above URL.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

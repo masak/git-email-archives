@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 23:58:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 28D4C23C687
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 23:58:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751009AbVHXF6k (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 24 Aug 2005 01:58:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750866AbVHXF6k
+	(ORCPT <rfc822;git-outgoing>); Wed, 24 Aug 2005 01:58:40 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:58574 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750770AbVHXF6j (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 24 Aug 2005 01:58:39 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7O5wajA002714
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 23 Aug 2005 22:58:36 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7O5wZBm029999;
+	Tue, 23 Aug 2005 22:58:35 -0700
+Date:	Tue, 23 Aug 2005 22:58:34 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Tony Luck <tony.luck@gmail.com>
+cc:	"tony.luck@intel.com" <tony.luck@intel.com>, git@vger.kernel.org
+Subject: Re: baffled again
+In-Reply-To: <12c511ca050823223333c41857@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508232258170.3317@g5.osdl.org>
+References: <200508232256.j7NMuR1q027892@agluck-lia64.sc.intel.com>
+ <12c511ca050823223333c41857@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:7695
+
+
+
+On Tue, 23 Aug 2005, Tony Luck wrote:
+> 
+> So GIT decides that the test branch has had a patch, and the release
+> branch hasn't ... and so it merges by keeping the version in test.
+> 
+> Plausible?
+
+Very. Sounds like what happened.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

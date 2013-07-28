@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  9 00:38:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2F7D3186BC1
+	for <tkil@scrye.com>; Fri,  9 Dec 2005 00:38:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750977AbVLIHgf (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 9 Dec 2005 02:36:35 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750718AbVLIHgf
+	(ORCPT <rfc822;git-outgoing>); Fri, 9 Dec 2005 02:36:35 -0500
+Received: from nproxy.gmail.com ([64.233.182.192]:6289 "EHLO nproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932408AbVLIHge convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Fri, 9 Dec 2005 02:36:34 -0500
+Received: by nproxy.gmail.com with SMTP id y25so311374nfb
+        for <git@vger.kernel.org>; Thu, 08 Dec 2005 23:36:33 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=R+iS7ijjgq9Fwc0QzZ7vmJ1TxpUN+BZxkJdvDUsRY8kiA5+E7KZGYQ2gOr0Vk2N1NI3aHGmRVR69wiAaujmf9a6BgCCsMsH4OuA53CFj2n5HSd9y9KAESefEruHVsPw5N3MTZuA9bwRLFmbBcUZHYmlyDrNwiXpPCQ8qzK91cUk=
+Received: by 10.49.5.7 with SMTP id h7mr391163nfi;
+        Thu, 08 Dec 2005 23:36:33 -0800 (PST)
+Received: by 10.48.248.18 with HTTP; Thu, 8 Dec 2005 23:36:33 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <81b0412b0512082336i674932bapd631d559e80cad79@mail.gmail.com>
+Date:	Fri, 9 Dec 2005 08:36:33 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Junio C Hamano <junkio@cox.net>
+Subject: Re: [PATCH] use "git init-db" in tests
+Cc:	git@vger.kernel.org
+In-Reply-To: <7v7jafcmev.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20051208202555.GA3046@steel.home>
+	 <7vu0dje2oi.fsf@assigned-by-dhcp.cox.net>
+	 <20051208210251.GB19423@steel.home>
+	 <7v7jafcmev.fsf@assigned-by-dhcp.cox.net>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:13409
+
+On 12/8/05, Junio C Hamano <junkio@cox.net> wrote:
+> > You do miss something. glibc will happily continue lookup if
+> > git-init-db in the top of the build directory is not executable, and
+> > it will take the next one it finds (and people _will_ have git-init-db
+> > in PATH).
+>
+> And the reason git-init-db we just built is not executable
+> is...?
+
+An accident? Like a filesystem not supporting executable permission?
+What is the reason to report success from the test run in that conditions?
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

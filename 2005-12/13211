@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec  5 11:43:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 39C9D218E66
+	for <tkil@scrye.com>; Mon,  5 Dec 2005 11:43:30 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932511AbVLESic (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Dec 2005 13:38:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932510AbVLESic
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Dec 2005 13:38:32 -0500
+Received: from lotus.CS.Berkeley.EDU ([128.32.36.222]:32409 "EHLO
+	lotus.CS.Berkeley.EDU") by vger.kernel.org with ESMTP
+	id S932509AbVLESib (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 5 Dec 2005 13:38:31 -0500
+Received: from lotus.CS.Berkeley.EDU (localhost [127.0.0.1])
+	by lotus.CS.Berkeley.EDU (8.12.8/8.12.8) with ESMTP id jB5IcV6d020354
+	for <git@vger.kernel.org>; Mon, 5 Dec 2005 10:38:31 -0800 (PST)
+Received: from lotus.CS.Berkeley.EDU (ejr@localhost)
+	by lotus.CS.Berkeley.EDU (8.12.8/8.12.8/Submit) with ESMTP id jB5IcVYG020353
+	for <git@vger.kernel.org>; Mon, 5 Dec 2005 10:38:31 -0800 (PST)
+To:	git@vger.kernel.org
+Subject: [PATCH] Document config.mak in INSTALL.
+Date:	Mon, 05 Dec 2005 10:38:30 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20348.1133807910@lotus.CS.Berkeley.EDU>
+From:	Jason Riedy <ejr@EECS.Berkeley.EDU>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:13211
+
+
+The existing config.mak should satisfy almost everyone...  You 
+can change the prefix and other vars catch the new setting 
+anyways.  I had forgotten that ?= acts as = (lazy value binding)
+and as not := (immediate value binding).
+
+Signed-off-by: E. Jason Riedy <ejr@cs.berkeley.edu>
+
+---
+
+ INSTALL |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+f03c45f49ffff74df1699444612ff7b3a75bd653
+diff --git a/INSTALL b/INSTALL
+index 63ccf62..916ddd4 100644
+--- a/INSTALL
++++ b/INSTALL
+@@ -87,3 +87,6 @@ Issues of note:
+    have all the libraries/tools needed, or you may have
+    necessary libraries at unusual locations.  Please look at the
+    top of the Makefile to see what can be adjusted for your needs.
++   You can place local settings in config.mak and the Makefile
++   will include them.  Note that config.mak is not distributed;
++   the name is reserved for local settings.
+-- 
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

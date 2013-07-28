@@ -1,0 +1,108 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 16:04:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.3 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F2893147F0F
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 16:04:01 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750913AbVKIXAz (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 18:00:55 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751054AbVKIXAy
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 18:00:54 -0500
+Received: from DELFT.AURA.CS.CMU.EDU ([128.2.206.88]:23261 "EHLO
+	delft.aura.cs.cmu.edu") by vger.kernel.org with ESMTP
+	id S1750913AbVKIXAx (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 9 Nov 2005 18:00:53 -0500
+Received: from jaharkes by delft.aura.cs.cmu.edu with local (Exim 3.36 #1 (Debian))
+	id 1EZyvw-00073t-00; Wed, 09 Nov 2005 18:00:48 -0500
+Date:	Wed, 9 Nov 2005 18:00:48 -0500
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: Problems with binary patches (pull) and spaces in filenames (gitk)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051109230048.GH31850@delft.aura.cs.cmu.edu>
+Mail-Followup-To: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+References: <20051109213730.GA23052@ebar091.ebar.dtu.dk> <7vfyq5bhi2.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vfyq5bhi2.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.9i
+From:	Jan Harkes <jaharkes@cs.cmu.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 66
+Xref: brand.scrye.com linux.git:11422
+
+On Wed, Nov 09, 2005 at 02:09:41PM -0800, Junio C Hamano wrote:
+> Another minor gitk gripe I have is that it does not look at
+> subdirectories of refs/{heads,tags}/ so I do not get labels to
+> my topic branch heads.
+
+I've been using the following gitk 'customization'. ISTR that it can be
+cleaned up a bit further and do everything in a single scan of the refs/
+subtree. I'll take another look at that tonight.
+
+Jan
+
+diff --git a/gitk b/gitk
+index a9d37d9..cd0b84f 100755
+--- a/gitk
++++ b/gitk
+@@ -237,16 +237,27 @@ proc parsecommit {id contents listed old
+ 			     $comname $comdate $comment]
+ }
+ 
++# recursively list all files in a directory
++proc listTree {root} {
++    set files [glob -nocomplain -directory $root -types f *]
++    set nodes [glob -nocomplain -directory $root -types d *]
++    foreach node $nodes {
++	set children [listTree $node]
++	set files [concat $files $children]
++    }
++    return $files
++}
++
+ proc readrefs {} {
+     global tagids idtags headids idheads tagcontents
+ 
+-    set tags [glob -nocomplain -types f [gitdir]/refs/tags/*]
++    set tags [listTree [gitdir]/refs/tags]
+     foreach f $tags {
+ 	catch {
+ 	    set fd [open $f r]
+ 	    set line [read $fd]
+ 	    if {[regexp {^[0-9a-f]{40}} $line id]} {
+-		set direct [file tail $f]
++		regexp {[gitdir]/refs/tags/(.*)} $f match direct
+ 		set tagids($direct) $id
+ 		lappend idtags($id) $direct
+ 		set tagblob [exec git-cat-file tag $id]
+@@ -271,13 +282,13 @@ proc readrefs {} {
+ 	    close $fd
+ 	}
+     }
+-    set heads [glob -nocomplain -types f [gitdir]/refs/heads/*]
++    set heads [listTree [gitdir]/refs/heads]
+     foreach f $heads {
+ 	catch {
+ 	    set fd [open $f r]
+ 	    set line [read $fd 40]
+ 	    if {[regexp {^[0-9a-f]{40}} $line id]} {
+-		set head [file tail $f]
++		regexp {[gitdir]/refs/heads/(.*)} $f match head
+ 		set headids($head) $line
+ 		lappend idheads($line) $head
+ 	    }
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

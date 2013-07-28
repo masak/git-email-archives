@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 14 01:13:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DF6C9FC2EC
+	for <tkil@scrye.com>; Sat, 14 May 2005 01:13:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262695AbVENHNV (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 14 May 2005 03:13:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262696AbVENHNU
+	(ORCPT <rfc822;git-outgoing>); Sat, 14 May 2005 03:13:20 -0400
+Received: from ozlabs.org ([203.10.76.45]:24206 "EHLO ozlabs.org")
+	by vger.kernel.org with ESMTP id S262695AbVENHNK (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 14 May 2005 03:13:10 -0400
+Received: by ozlabs.org (Postfix, from userid 1003)
+	id B2C0A67B1B; Sat, 14 May 2005 17:13:08 +1000 (EST)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <17029.40860.516486.308420@cargo.ozlabs.ibm.com>
+Date:	Sat, 14 May 2005 16:50:04 +1000
+From: Paul Mackerras <paulus@samba.org>
+To: Tejun Heo <htejun@gmail.com>
+Cc: git@vger.kernel.org
+Subject: Re: [ANNOUNCE] mtkdiff-20050514 (integrated w/ gitk)
+In-Reply-To: <20050514025815.GA5845@htj.dyndns.org>
+References: <20050514025815.GA5845@htj.dyndns.org>
+X-Mailer: VM 7.19 under Emacs 21.4.1
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_MT,TW_TK 
+	autolearn=no version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:3261
+
+Tejun Heo writes:
+
+>  This is mtkdiff-20050514.  I've modified gitk to invoke gitkdiff on
+> double click and right click.  If you double click on a commit mtkdiff
+> will show the commit.  If you right click on a commit while another
+> one is selected, mtkdiff will show the difference between the two
+> commits (as in bk revtool).  Also, I've modified gitk & gitkdiff to
+> show commit SHA1 in the info text when a commit is selected.
+
+Cute.  I was thinking along the same lines, but intending to use
+dirdiff to display the differences.  I'll make the diff viewer
+user-configurable, I think.  Also, I'm planning to put a bar with the
+sha1 and a search facility in the next version of gitk.
+
+Paul.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

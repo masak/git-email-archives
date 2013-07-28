@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 17:38:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7755AC59DA
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 17:38:35 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161047AbVKQAiU (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 19:38:20 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161048AbVKQAiU
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 19:38:20 -0500
+Received: from zproxy.gmail.com ([64.233.162.204]:837 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1161047AbVKQAiU convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 19:38:20 -0500
+Received: by zproxy.gmail.com with SMTP id q3so1831128nzb
+        for <git@vger.kernel.org>; Wed, 16 Nov 2005 16:38:19 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=hDTSosdeHQuREI5ivLoQQBi3NGuQEZdwuQ2T8SrmkSvIqDSJvG0svb8xZ2Q8dIoiaKBNmIKiYJkJQ9/w4O5ohOEtYCjpIcliHwUeWTZbBY5/zunglNWLkfBJZAr+EBFRnl5VnbDvQ3n24ip7stDZdVhM20/TXCZu3rggUCqZzt0=
+Received: by 10.65.183.3 with SMTP id k3mr1812826qbp;
+        Wed, 16 Nov 2005 16:38:19 -0800 (PST)
+Received: by 10.64.242.4 with HTTP; Wed, 16 Nov 2005 16:38:19 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90511161638l61d8a8bjbfbeaa92041298f7@mail.gmail.com>
+Date:	Thu, 17 Nov 2005 13:38:19 +1300
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Jeff Garzik <jgarzik@pobox.com>
+Subject: Re: [RFC] git email submissions
+Cc:	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <437B4472.1080401@pobox.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <437B4472.1080401@pobox.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:12067
+
+On 11/17/05, Jeff Garzik <jgarzik@pobox.com> wrote:
+> For people without _any_ hosting, it would be nice to give them a method
+> to submit some git changes via email.
+
+I'm sure SF.net will host GIT projects sooner or later. I'm planning
+on offering support on Eduforge.org as soon as I have some free time.
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

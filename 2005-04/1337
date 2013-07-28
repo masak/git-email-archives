@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 22 18:18:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CFE556616
+	for <tkil@scrye.com>; Fri, 22 Apr 2005 18:18:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261388AbVDWARZ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 22 Apr 2005 20:17:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261396AbVDWARZ
+	(ORCPT <rfc822;git-outgoing>); Fri, 22 Apr 2005 20:17:25 -0400
+Received: from ctb-mesg7.saix.net ([196.25.240.79]:62598 "EHLO
+	ctb-mesg7.saix.net") by vger.kernel.org with ESMTP id S261388AbVDWAPJ
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 22 Apr 2005 20:15:09 -0400
+Received: from gateway.lan (wblv-146-254-56.telkomadsl.co.za [165.146.254.56])
+	by ctb-mesg7.saix.net (Postfix) with ESMTP id DD3F629BA;
+	Sat, 23 Apr 2005 02:15:05 +0200 (SAST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by gateway.lan (Postfix) with ESMTP id EE5AE3A2430;
+	Sat, 23 Apr 2005 02:21:27 +0200 (SAST)
+Received: from gateway.lan ([127.0.0.1])
+ by localhost (gateway.lan [127.0.0.1]) (amavisd-new, port 10024) with ESMTP
+ id 18849-19; Sat, 23 Apr 2005 02:21:24 +0200 (SAST)
+Received: from nosferatu.lan (nosferatu.lan [192.168.0.2])
+	(using TLSv1 with cipher IDEA-CBC-SHA (128/128 bits))
+	(No client certificate requested)
+	by gateway.lan (Postfix) with ESMTP id 9F67F3A241A;
+	Sat, 23 Apr 2005 02:21:24 +0200 (SAST)
+Subject: [pasky] tags issue on mirrors
+From: Martin Schlemmer <azarah@nosferatu.za.org>
+Reply-To: azarah@nosferatu.za.org
+To: GIT Mailing Lists <git@vger.kernel.org>
+Cc: Petr Baudis <pasky@ucw.cz>
+Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=-h6OslA1EJzXd53/QVW1Z"
+Date:	Sat, 23 Apr 2005 02:19:07 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114215547.27940.14.camel@nosferatu.lan>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: by amavisd-new using ClamAV at nosferatu.za.org
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 39
+Xref: brand.scrye.com linux.git:1337
+
+
+--=-h6OslA1EJzXd53/QVW1Z
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Just check, you currently have:
+
+rsync://rsync.kernel.org/pub/scm/cogito/cogito.git/tags/tags
+
+Both with the same tag files.
+
+
+Cheers,
+
+--=20
+Martin Schlemmer
+
+
+--=-h6OslA1EJzXd53/QVW1Z
+Content-Type: application/pgp-signature; name=signature.asc
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+
+iD8DBQBCaZR7qburzKaJYLYRAhVeAJ97DXl3IJhf6EUnH4abfBcgza9xYgCfesr2
+DXU2IJ8EZofwMMWBR+80QDU=
+=cuzD
+-----END PGP SIGNATURE-----
+
+--=-h6OslA1EJzXd53/QVW1Z--
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

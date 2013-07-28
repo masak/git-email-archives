@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 09:08:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4181724B0FE
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 09:08:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932282AbVJaQII (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 11:08:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932333AbVJaQII
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 11:08:08 -0500
+Received: from mxfep02.bredband.com ([195.54.107.73]:43411 "EHLO
+	mxfep02.bredband.com") by vger.kernel.org with ESMTP
+	id S932282AbVJaQIH (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 31 Oct 2005 11:08:07 -0500
+Received: from puritan.petwork ([213.112.43.250] [213.112.43.250])
+          by mxfep02.bredband.com with ESMTP
+          id <20051031160801.HPCM16437.mxfep02.bredband.com@puritan.petwork>
+          for <git@vger.kernel.org>; Mon, 31 Oct 2005 17:08:01 +0100
+Received: by puritan.petwork (Postfix, from userid 1000)
+	id AAD38ADFE2; Mon, 31 Oct 2005 17:08:03 +0100 (CET)
+Date:	Mon, 31 Oct 2005 17:08:03 +0100
+From:	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+To:	git@vger.kernel.org
+Subject: Re: git objects directory
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051031160803.GB15802@puritan.petwork>
+Mail-Followup-To: git@vger.kernel.org
+References: <dk5dgq$isv$1@sea.gmane.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dk5dgq$isv$1@sea.gmane.org>
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:10853
+
+Lexington Luthor wrote:
+
+> Can someone please explain why git puts its objects in 256 
+> sub-directories of objects instead of directly in the objects directory 
+> itself? I am trying to learn git (actually cogito), but I still don't 
+> understand  why this structure is used.
+
+Because otherwise there would be a lot of objects (files) in the
+objects subdirectory, which would cause a lot of problems with many
+filesystems.
+
+Anyway, you best leave that directory be, but I understand your desire
+to understand :-).
+
+        nikolai
+
+-- 
+Nikolai Weibull: now available free of charge at http://bitwi.se/!
+Born in Chicago, IL USA; currently residing in Gothenburg, Sweden.
+main(){printf(&linux["\021%six\012\0"],(linux)["have"]+"fun"-97);}
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

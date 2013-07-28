@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 13 22:03:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_NUMERIC_HELO 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7E014B4F98
+	for <tkil@scrye.com>; Sun, 13 Nov 2005 22:03:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750916AbVKNFDP (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 00:03:15 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750917AbVKNFDO
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 00:03:14 -0500
+Received: from mail.networksolutionsemail.com ([205.178.146.50]:38599 "HELO
+	mail.networksolutionsemail.com") by vger.kernel.org with SMTP
+	id S1750915AbVKNFDO (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 14 Nov 2005 00:03:14 -0500
+Received: (qmail 24855 invoked by uid 78); 14 Nov 2005 05:03:06 -0000
+Received: from unknown (HELO webmail12) (205.178.146.50)
+  by 10.49.34.58 with SMTP; 14 Nov 2005 05:03:06 -0000
+Received: from 196.34.54.66 (unverified [196.34.54.66])
+          by webmail12 (VisualOffice 4.01)
+          with WEBMAIL id 26572;
+          Mon, 14 Nov 2005 05:03:06 +0000
+From:	"Craig Schlenter" <craig@codefountain.com>
+To:	"Josef Weidendorfer" <Josef.Weidendorfer@gmx.de>,
+	git@vger.kernel.org
+Cc:	"Petr Baudis" <pasky@suse.cz>
+Importance: Normal
+Sensitivity: Normal
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <W4340426396265721131944586@webmail12>
+X-Mailer: Mintersoft VisualOffice, Build 4.01.1003
+X-Originating-IP: [196.34.54.66]
+Date:	Mon, 14 Nov 2005 05:03:06 +0000
+Subject: Re:  Balanced packing strategy
+MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:11757
+
+Hi
+
+> From: Josef Weidendorfer [mailto:Josef.Weidendorfer@gmx.de]
+> [snip]
+> AFAICS, the git native protocol (which is nothing more than a pack itself
+> for each transfer) even has this problem, too: If you are updating every
+> day via git native, the sum of transfered bytes in a month will be a
+> multiple of one git transfer for all the month's changes.
+
+Interesting ... is this because in a bigger pack the compression will
+be better as there is probably more stuff to "delta" against?
+
+--Craig
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

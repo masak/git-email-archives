@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 30 16:17:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.8 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 32E21F6575
+	for <tkil@scrye.com>; Fri, 30 Sep 2005 16:17:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030468AbVI3WOq (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 30 Sep 2005 18:14:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932293AbVI3WOq
+	(ORCPT <rfc822;git-outgoing>); Fri, 30 Sep 2005 18:14:46 -0400
+Received: from fencepost.gnu.org ([199.232.76.164]:31949 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S932597AbVI3WOp
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 30 Sep 2005 18:14:45 -0400
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1ELT9O-0003dC-0X
+	for git@vger.kernel.org; Fri, 30 Sep 2005 18:14:42 -0400
+Received: from proski by dv.roinet.com with local (Exim 4.52)
+	id 1ELT9B-00028g-Fm; Fri, 30 Sep 2005 18:14:29 -0400
+Subject: Re: [PATCH] Support SPARSE in Makefile, better SPARSE_FLAGS
+From:	Pavel Roskin <proski@gnu.org>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+In-Reply-To: <433D8FA6.2080808@zytor.com>
+References: <1128026765.24397.46.camel@dv>
+	 <7vek779kg0.fsf@assigned-by-dhcp.cox.net> <1128087662.14543.14.camel@dv>
+	 <433D8FA6.2080808@zytor.com>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Fri, 30 Sep 2005 18:14:29 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1128118469.7352.15.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:9565
+
+On Fri, 2005-09-30 at 12:19 -0700, H. Peter Anvin wrote:
+> Pavel Roskin wrote:
+> > 
+> > I hate to say that, but a better alternative is to fix sparse to act
+> > like the native compiler by default (possibly with options to imitate
+> > other architectures or to be fully arch-neutral).
+> > 
+> 
+> $(CC) $(CFLAGS) -E -dM -x c /dev/null -o builtin.h
+> 
+> ... will output a file containing all the buildin macros that you can 
+> feed to sparse with -include.
+
+I know.  That's what I'm using in the wrapper (plus -m64 and some
+warnings).  But it should be the default.  Until then, hassle-free
+sparse support in the Makefile is only possible for the projects that
+already know the architecture (e.g. the Linux kernel).
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 20:32:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5F8BD198050
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 20:32:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261299AbVDTCcu (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 22:32:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261303AbVDTCcu
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 22:32:50 -0400
+Received: from cujo.runbox.com ([193.71.199.138]:63644 "EHLO cujo.runbox.com")
+	by vger.kernel.org with ESMTP id S261299AbVDTCct (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 19 Apr 2005 22:32:49 -0400
+Received: from [10.9.9.1] (helo=bolivar.runbox.com)
+	by greyhound.runbox.com with esmtp (Exim 4.34)
+	id 1DO51E-0001qJ-1o; Wed, 20 Apr 2005 04:32:48 +0200
+Received: from [70.18.250.120] (helo=[192.168.2.73])
+	by bolivar.runbox.com with asmtp (uid:258406) (Exim 4.34)
+	id 1DO51D-0000lI-PA; Wed, 20 Apr 2005 04:32:48 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4265BFC3.9080105@dwheeler.com>
+Date:	Tue, 19 Apr 2005 22:34:43 -0400
+From: "David A. Wheeler" <dwheeler@dwheeler.com>
+Reply-To: dwheeler@dwheeler.com
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Ingo Molnar <mingo@elte.hu>, git@vger.kernel.org
+Subject: Re: [script] ge: export commits as patches
+References: <20050419134843.GA19146@elte.hu> <20050419170320.GG12757@pasky.ji.cz> <20050419185607.GA26756@elte.hu> <20050419194108.GN12757@pasky.ji.cz>
+In-Reply-To: <20050419194108.GN12757@pasky.ji.cz>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Sender: 258406@vger.kernel.org
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 13
+Xref: brand.scrye.com linux.git:903
+
+Forget my earlier "aspatch" proposal, that's a lousy name.
+
+How about "mkpatch"?  Seems like a reasonable name for
+a command that makes a patch.  GNU Arch uses that command name.
+CVS & Subversion basically do this as part of "diff"
+(which is another possibility).
+
+--- David A. Wheeler
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

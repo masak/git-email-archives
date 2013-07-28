@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 08:10:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F05172851FC
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 08:10:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965157AbVINOKk (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 10:10:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965183AbVINOKk
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 10:10:40 -0400
+Received: from az33egw02.freescale.net ([192.88.158.103]:17551 "EHLO
+	az33egw02.freescale.net") by vger.kernel.org with ESMTP
+	id S965157AbVINOKk (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 14 Sep 2005 10:10:40 -0400
+Received: from az33smr01.freescale.net (az33smr01.freescale.net [10.64.34.199])
+	by az33egw02.freescale.net (8.12.11/az33egw02) with ESMTP id j8EEHxar006612;
+	Wed, 14 Sep 2005 07:17:59 -0700 (MST)
+Received: from [10.82.19.2] (cashmere.am.freescale.net [10.82.19.2])
+	by az33smr01.freescale.net (8.13.1/8.13.0) with ESMTP id j8EEEojr011290;
+	Wed, 14 Sep 2005 09:14:51 -0500 (CDT)
+Subject: Re: dumb transports not being welcomed..
+From:	Jon Loeliger <jdl@freescale.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Sam Ravnborg <sam@ravnborg.org>, Git List <git@vger.kernel.org>
+In-Reply-To: <7vpsrcwrc1.fsf@assigned-by-dhcp.cox.net>
+References: <7vek7s1xsh.fsf@assigned-by-dhcp.cox.net>
+	 <20050913211444.GA27029@mars.ravnborg.org>
+	 <7vacig1wrb.fsf@assigned-by-dhcp.cox.net>
+	 <7vpsrcwrc1.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1126707016.14036.14.camel@cashmere.sps.mot.com>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6 (1.4.6-2.ydl.1) 
+Date:	Wed, 14 Sep 2005 09:10:16 -0500
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:8517
+
+On Tue, 2005-09-13 at 17:11, Junio C Hamano wrote:
+
+> I just felt that it is a good habit to get into to prepare your
+> repositories in a shape usable even when served by an HTTP
+> server that is less forgiving than what kernel.org runs -- that
+> was what I felt "discouraging" about.
+
+Well, that is sort of just it, too.  Why not make the
+default, obvious, common repo prep mechanism do all
+the necessary steps for proper presentation?  Having
+to remember to do 6 steps just begs for an additional
+layer of scripting.
+
+>   This means either people are
+> not packing their repository (hence nobody complained), or
+> public are pulling over rsync transport (which slurps everything
+> in sight).  Both are good reasons to feel discouraged about.
+
+I confess, I've been using rsync as it is what appears
+to be able to reliably get a repository that works.
+
+jdl
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

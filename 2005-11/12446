@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 09:36:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9BAAF15F2C8
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 09:36:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932368AbVKUQet (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 11:34:49 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932376AbVKUQet
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 11:34:49 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:57730 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S932368AbVKUQet
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 11:34:49 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 191C06BD01
+	for <git@vger.kernel.org>; Mon, 21 Nov 2005 17:34:48 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4381F727.2090005@op5.se>
+Date:	Mon, 21 Nov 2005 17:34:47 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [RFC 2/2] Automatically transform .git/{branches,remotes} into
+ .git/config
+References: <Pine.LNX.4.63.0511211455120.13775@wbgn013.biozentrum.uni-wuerzburg.de> <200511211644.16789.Josef.Weidendorfer@gmx.de> <Pine.LNX.4.63.0511211653420.2569@wbgn013.biozentrum.uni-wuerzburg.de>
+In-Reply-To: <Pine.LNX.4.63.0511211653420.2569@wbgn013.biozentrum.uni-wuerzburg.de>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:12446
+
+Johannes Schindelin wrote:
+> 
+> What do people say? Is it useless to move that information into the 
+> config, where it can be queried/replaced/set/removed by the config "API", 
+
+You're thinking the wrong way around. "Is it useless so we should 
+refrain?" is not the same as "is it useful enough to do?".
+
+
+> or should we continue with two incompatible ad-hoc formats? (If that 
+> sounds biased, it was not meant to be.)
+> 
+
+I don't use Cogito myself so I'm not aware of what incompatibilities 
+there are. However, it's a user-friendliness layer, so it can choose to 
+do things differently if it wants to, but changing how the plumbing 
+works to match the porcelain seems wrong to me.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

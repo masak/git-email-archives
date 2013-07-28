@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 25 17:39:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C64483970D
+	for <tkil@scrye.com>; Tue, 25 Oct 2005 17:39:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932481AbVJYXj0 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 25 Oct 2005 19:39:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932482AbVJYXj0
+	(ORCPT <rfc822;git-outgoing>); Tue, 25 Oct 2005 19:39:26 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:10643 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932481AbVJYXjZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 25 Oct 2005 19:39:25 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id C37C613F1A1; Wed, 26 Oct 2005 01:39:24 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A76829ABB1; Wed, 26 Oct 2005 01:39:24 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 929699AB5F; Wed, 26 Oct 2005 01:39:24 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 7BE9E13F1A1; Wed, 26 Oct 2005 01:39:24 +0200 (CEST)
+Date:	Wed, 26 Oct 2005 01:39:24 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: [PATCH 1/4] git-init-db should error out with a message
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510260139000.30576@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:10626
+
+When the HEAD symref could not be created, it is helpful for the user to 
+know that.
+
+Signed-off-by: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+
+---
+
+ init-db.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+applies-to: 51f96562f1ef47cd9a09731e3f27445efaddbbe7
+159c632ef3cc7371aaa495c41afd5fd41e2d3f3f
+diff --git a/init-db.c b/init-db.c
+index aabc09f..2c27e18 100644
+--- a/init-db.c
++++ b/init-db.c
+@@ -192,7 +192,7 @@ static void create_default_files(const c
+ 	strcpy(path + len, "HEAD");
+ 	if (read_ref(path, sha1) < 0) {
+ 		if (create_symref(path, "refs/heads/master") < 0)
+-			exit(1);
++			die("Could not create HEAD symref!");
+ 	}
+ 	path[len] = 0;
+ 	copy_templates(path, len, template_path);
+---
+0.99.8.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

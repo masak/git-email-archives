@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May 11 05:02:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3DE146F30
+	for <tkil@scrye.com>; Wed, 11 May 2005 05:02:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261963AbVEKLBh (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 11 May 2005 07:01:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261967AbVEKLBf
+	(ORCPT <rfc822;git-outgoing>); Wed, 11 May 2005 07:01:35 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:59052 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S261965AbVEKLBS (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 11 May 2005 07:01:18 -0400
+Received: from nat-pool-stn.redhat.com ([62.200.124.98] helo=hades.cambridge.redhat.com)
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DVoxl-0006uJ-Rn; Wed, 11 May 2005 12:01:14 +0100
+Subject: Re: GIT compile error on Sun Sparc SB2000
+From: David Woodhouse <dwmw2@infradead.org>
+To: Alexey Nezhdanov <snake@penza-gsm.ru>
+Cc: Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <200505111141.27725.snake@penza-gsm.ru>
+References: <200505111141.27725.snake@penza-gsm.ru>
+Content-Type: text/plain
+Date:	Wed, 11 May 2005 12:01:12 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1115809273.16187.493.camel@hades.cambridge.redhat.com>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.4 (2.0.4-1.dwmw2.1) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:3017
+
+On Wed, 2005-05-11 at 11:41 +0400, Alexey Nezhdanov wrote:
+> /usr/bin/ld: skipping incompatible /usr/lib/libz.so when searching for -lz
+> /usr/bin/ld: skipping incompatible /usr/lib/libz.a when searching for -lz
+> /usr/bin/ld: cannot find -lz
+
+Libraries which are in /usr/lib as opposed to /usr/lib64 are presumably
+64-bit. Since the linker is claiming that they're incompatible, I assume
+your compiler is defaulting to 64-bit output. Try adding '-m32' to
+CFLAGS, or installing 64-bit libz.
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

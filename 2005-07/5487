@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul  1 00:18:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9E87115FD10
+	for <tkil@scrye.com>; Fri,  1 Jul 2005 00:18:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263231AbVGAGSL (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 1 Jul 2005 02:18:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263235AbVGAGSL
+	(ORCPT <rfc822;git-outgoing>); Fri, 1 Jul 2005 02:18:11 -0400
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:6081 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S263231AbVGAGSJ (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 1 Jul 2005 02:18:09 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050701061804.VSHD18672.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 1 Jul 2005 02:18:04 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] pack-objects: emit base before delta.
+References: <7vbr5nxe38.fsf@assigned-by-dhcp.cox.net>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 30 Jun 2005 23:18:02 -0700
+In-Reply-To: <7vbr5nxe38.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's message of "Thu, 30 Jun 2005 22:58:03 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64vvxd5x.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 13
+Xref: brand.scrye.com linux.git:5487
+
+>>>>> "JCH" == Junio C Hamano <junkio@cox.net> writes:
+
+JCH> This micro-optimizes the order of objects in a pack.  By
+JCH> emitting base objects before deltified ones, unpack-objects do
+JCH> not keep items on delta_list.
+
+Oops; "does not have to keep items" is what I meant.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

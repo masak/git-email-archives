@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun  8 14:12:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 452C5264652
+	for <tkil@scrye.com>; Wed,  8 Jun 2005 14:12:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261592AbVFHULx (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 8 Jun 2005 16:11:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261593AbVFHULx
+	(ORCPT <rfc822;git-outgoing>); Wed, 8 Jun 2005 16:11:53 -0400
+Received: from fire.osdl.org ([65.172.181.4]:3504 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261592AbVFHULv (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 8 Jun 2005 16:11:51 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j58KBljA017729
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 8 Jun 2005 13:11:47 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j58KBk68013347;
+	Wed, 8 Jun 2005 13:11:46 -0700
+Date:	Wed, 8 Jun 2005 13:13:52 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Jonas Fonseca <fonseca@diku.dk>, git@vger.kernel.org
+Subject: Re: [PATCH] git-diff-cache: handle pathspec beginning with a dash
+In-Reply-To: <20050608200612.GM982@pasky.ji.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506081312410.2286@ppc970.osdl.org>
+References: <20050606212700.GA3498@diku.dk> <20050608184709.GE982@pasky.ji.cz>
+ <Pine.LNX.4.58.0506081259580.2286@ppc970.osdl.org> <20050608200612.GM982@pasky.ji.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 21
+Xref: brand.scrye.com linux.git:4696
+
+
+
+On Wed, 8 Jun 2005, Petr Baudis wrote:
+> 
+> I see. Jonas mentioned on IRC that he forgot to Cc' you. I'm usually
+> going through everything on the mailing list, so if some patch stays out
+> for few days I'll start nagging. ;-)
+
+Even better, just forward it to me with the original author as "From:" at
+the top of the email, and an added sign-off by you, and it will show which
+path it took.
+
+I took the two patches you pointed out from the mailing list, so they're 
+in my archives now.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

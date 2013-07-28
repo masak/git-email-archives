@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 16:17:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6C80919B5F8
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 16:17:26 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932250AbVKJXRI (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 18:17:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932251AbVKJXRI
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 18:17:08 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:16821 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932250AbVKJXRH (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 10 Nov 2005 18:17:07 -0500
+Received: (qmail 315 invoked by uid 2001); 11 Nov 2005 00:17:04 +0100
+Date:	Fri, 11 Nov 2005 00:17:04 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Martin Coxall <quasi@cream.org>,
+	Zack Brown <zbrown@tumblerings.org>, git@vger.kernel.org
+Subject: Re: rsync deprecated but promoted?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051110231704.GB30496@pasky.or.cz>
+References: <20050925163201.GA29198@tumblerings.org> <4d4586301dca616f42880612fae01492@cream.org> <20050926133204.GB21019@pasky.or.cz> <Pine.LNX.4.58.0509260801430.3308@g5.osdl.org> <20050926163846.GD21019@pasky.or.cz> <Pine.LNX.4.58.0509260941340.3308@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0509260941340.3308@g5.osdl.org>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 52
+Xref: brand.scrye.com linux.git:11523
+
+Dear diary, on Mon, Sep 26, 2005 at 06:43:08PM CEST, I got a letter
+where Linus Torvalds <torvalds@osdl.org> said that...
+> 
+> 
+> On Mon, 26 Sep 2005, Petr Baudis wrote:
+> > 
+> > Actually, it would be nice to be able to tell git-fsck-objects to only
+> > verify objects which are referenced between given two commits (perhaps
+> > just make it support the ^object notation). Then I wouldn't mind running
+> > that after each rsync fetch in Cogito.
+> 
+> You can kind of do it.
+> 
+> Do
+> 
+> 	git-rev-list --objects $oldheads --not $newheads >& /dev/null
+> 	echo "$?"
+> 
+> and it _should_ largely work. Untested, of course, but I _hope_ that if 
+> any object is missing, git-rev-list should die with an error. And if it 
+> doesn't, I should fix it ;)
+
+It should obviously be
+
+	git-rev-list $(git-rev-parse $newheads --not $oldheads) >& /dev/null
+
+but it is indeed broken:
+
+	$ git-rev-list --objects ... ^... && echo ':)'
+	001439c6a797461c3e75018d95744d463077ae33
+	841e3297d8df764da417da81dbfe1044e24d4082
+	cf11a3d561e76c8ba273cb0bb62d46a4b2959c1f file
+	:)
+	$ git-cat-file -t cf11a3d561e76c8ba273cb0bb62d46a4b2959c1f
+	error: unable to find cf11a3d561e76c8ba273cb0bb62d46a4b2959c1f
+	fatal: git-cat-file cf11a3d561e76c8ba273cb0bb62d46a4b2959c1f: bad file
+
+Currently I just modified it so that I iterate through all the sha1s
+git-rev-list spits out, and test them by git-cat-file -t.
+
+Thanks for the hint,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

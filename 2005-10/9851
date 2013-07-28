@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct  9 00:47:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 92786240B4B
+	for <tkil@scrye.com>; Sun,  9 Oct 2005 00:47:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932227AbVJIGqx (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 9 Oct 2005 02:46:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932228AbVJIGqx
+	(ORCPT <rfc822;git-outgoing>); Sun, 9 Oct 2005 02:46:53 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:62145 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S932227AbVJIGqw (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 9 Oct 2005 02:46:52 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051009064635.BBQE11356.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 9 Oct 2005 02:46:35 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Alex Riesen <raa.lkml@gmail.com>, git@vger.kernel.org
+Subject: Re: Seeing various mode changes on cygwin
+References: <20051008180023.GC28875@diku.dk>
+	<7vfyrbrgdw.fsf@assigned-by-dhcp.cox.net>
+	<20051008213612.GA5794@steel.home>
+	<7vzmpjoa32.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0510081909250.31407@g5.osdl.org>
+Date:	Sat, 08 Oct 2005 23:46:49 -0700
+In-Reply-To: <Pine.LNX.4.64.0510081909250.31407@g5.osdl.org> (Linus Torvalds's
+	message of "Sat, 8 Oct 2005 19:19:35 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzljkx0m.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:9851
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> The more interesting issue is how to set the _flag_ that we should do 
+> this. We may have to add a config file, and it should be per-repository 
+> (ie something like ".git/config" or ".git/info/config"). Or do we just do 
+> yet another environment variable?
+
+Per-repository configuration file like .git/info/config sounds
+like the way to go.  Long time ago, the core never read any
+per-repository nor per-odb configuration file, but after grafts
+and then now alternates, we started doing it, and there is no
+reason to shy away from having an official configuration file
+mechanism.  Maybe recent HTTP related environment variables
+could also be folded into it.
+
+While we are at it, we may want to move things around to
+consolidate per-repository configuration into a single placek.
+Specifically, I have moving .git/remotes/ in mind.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

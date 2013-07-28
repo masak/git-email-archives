@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 25 16:30:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 57BF61614E2
+	for <tkil@scrye.com>; Tue, 25 Oct 2005 16:30:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932444AbVJYW3v (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 25 Oct 2005 18:29:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932447AbVJYW3v
+	(ORCPT <rfc822;git-outgoing>); Tue, 25 Oct 2005 18:29:51 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:21687 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932444AbVJYW3v (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 25 Oct 2005 18:29:51 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9PMTiFC023632
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 25 Oct 2005 15:29:44 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9PMTgUo001218;
+	Tue, 25 Oct 2005 15:29:43 -0700
+Date:	Tue, 25 Oct 2005 15:29:42 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: git-rev-list: make --dense the default (and introduce "--sparse")
+In-Reply-To: <Pine.LNX.4.64.0510251459070.10477@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510251525540.10477@g5.osdl.org>
+References: <Pine.LNX.4.64.0510251459070.10477@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:10619
+
+
+
+On Tue, 25 Oct 2005, Linus Torvalds wrote:
+> 
+> This actually does three things:
+> 
+>  - make "--dense" the default for git-rev-list. Since dense is a no-op if 
+>    no filenames are given, this doesn't actually change any historical 
+>    behaviour, but it's logically the right default (if we want to prune on 
+>    filenames, do it fully. The sparse "merge-only" thing may be useful, 
+>    but it's not what you'd normally expect)
+> 
+>  - make "git-rev-parse" show the default revision control before it shows 
+>    any pathnames.
+
+Btw, if it wasn't obvious, this has some subtle (and very nice) side 
+effects.
+
+For example, try this:
+
+	git log git-fetch.sh
+
+and notice how "git log" automagically became able to give per-file logs. 
+With _zero_ changes to git-log.sh itself ;)
+
+And same old rev-confusion-avoidance:
+
+	git log -- gitk
+
+to make clear that you want to get the log of "gitk the file", rather than 
+"gitk the branch".
+
+Magic. 
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

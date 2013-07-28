@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun 28 12:07:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 33445123694
+	for <tkil@scrye.com>; Tue, 28 Jun 2005 12:07:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262166AbVF1SFP (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 28 Jun 2005 14:05:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262160AbVF1SFP
+	(ORCPT <rfc822;git-outgoing>); Tue, 28 Jun 2005 14:05:15 -0400
+Received: from waste.org ([216.27.176.166]:35739 "EHLO waste.org")
+	by vger.kernel.org with ESMTP id S262179AbVF1SCG (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 28 Jun 2005 14:02:06 -0400
+Received: from waste.org (localhost [127.0.0.1])
+	by waste.org (8.13.4/8.13.4/Debian-3) with ESMTP id j5SI1vuM015076
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+	Tue, 28 Jun 2005 13:01:57 -0500
+Received: (from oxymoron@localhost)
+	by waste.org (8.13.4/8.13.4/Submit) id j5SI1vbV015073;
+	Tue, 28 Jun 2005 13:01:57 -0500
+Date:	Tue, 28 Jun 2005 11:01:57 -0700
+From: Matt Mackall <mpm@selenic.com>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Christopher Li <hg@chrisli.org>, Jeff Garzik <jgarzik@pobox.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>, mercurial@selenic.com
+Subject: Re: Mercurial vs Updated git HOWTO for kernel hackers
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050628180157.GI12006@waste.org>
+References: <42B9E536.60704@pobox.com> <20050623235634.GC14426@waste.org> <20050624064101.GB14292@pasky.ji.cz> <20050624123819.GD9519@64m.dyndns.org> <20050628150027.GB1275@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050628150027.GB1275@pasky.ji.cz>
+User-Agent: Mutt/1.5.9i
+X-Virus-Scanned: by amavisd-new
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 20
+Xref: brand.scrye.com linux.git:5332
+
+On Tue, Jun 28, 2005 at 05:00:27PM +0200, Petr Baudis wrote:
+> > Mercurial's undo is taking a snapshot of all the changed file's repo file length
+> > at every commit or pull.  It just truncate the file to original size and undo 
+> > is done.
+> 
+> "Trunactes"? That sounds very wrong... you mean replace with old
+> version? Anyway, what if the file has same length? It just doesn't make
+> much sense to me.
+
+Everything in Mercurial is an append-only log. A transaction journal
+records the original length of each log so that it can be restored on
+failure.
+
+-- 
+Mathematics is the supreme nostalgia of our time.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

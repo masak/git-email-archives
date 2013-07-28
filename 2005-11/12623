@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 08:10:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B18DAC9213
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 08:10:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750885AbVKWPIq (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 10:08:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750903AbVKWPIq
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 10:08:46 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:32416 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750865AbVKWPIp (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 23 Nov 2005 10:08:45 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id D7BA913FC0D; Wed, 23 Nov 2005 16:08:44 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id BEDD09F3D8; Wed, 23 Nov 2005 16:08:44 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id AAB1D9F3D5; Wed, 23 Nov 2005 16:08:44 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8625813FC0D; Wed, 23 Nov 2005 16:08:40 +0100 (CET)
+Date:	Wed, 23 Nov 2005 16:08:40 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Andreas Ericsson <ae@op5.se>
+Cc:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>, git@vger.kernel.org
+Subject: Re: Get rid of .git/branches/ and .git/remotes/?
+In-Reply-To: <438371E8.2030701@op5.se>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511231553390.8191@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0511201748440.14258@wbgn013.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.64.0511200935081.13959@g5.osdl.org> <200511210026.30280.Josef.Weidendorfer@gmx.de>
+ <200511221831.03954.Josef.Weidendorfer@gmx.de>
+ <Pine.LNX.4.63.0511221854120.27872@wbgn013.biozentrum.uni-wuerzburg.de>
+ <438371E8.2030701@op5.se>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:12623
+
+Hi,
+
+On Tue, 22 Nov 2005, Andreas Ericsson wrote:
+
+> Johannes Schindelin wrote:
+> > 
+> > 	git-config-set --get remote.origin.url
+> > 
+> 
+> So... "git-config-set" is used for both getting and setting? Why not just
+> "git-config --set" and "git-config --get" to make things a bit less confusing?
+
+I tried to do this more like a proof of a concept (Yeah, famous last 
+words...) and tried to be not so intrusive. There is already a config.c, 
+and to keep with the naming, this would have to move to config-lib.c to 
+make space for config.c which really is the source for git-config$(X).
+
+Should we rename config.c to config-lib.c, and config-set.c to config.c? 
+Personally, I think it too intrusive, but what the heck.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

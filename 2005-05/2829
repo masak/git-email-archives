@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  8 21:28:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DA49137846
+	for <tkil@scrye.com>; Sun,  8 May 2005 21:28:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263030AbVEID2W (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 8 May 2005 23:28:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263032AbVEID2W
+	(ORCPT <rfc822;git-outgoing>); Sun, 8 May 2005 23:28:22 -0400
+Received: from pop.gmx.de ([213.165.64.20]:1932 "HELO mail.gmx.net")
+	by vger.kernel.org with SMTP id S263030AbVEID2T (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 8 May 2005 23:28:19 -0400
+Received: (qmail invoked by alias); 09 May 2005 03:28:18 -0000
+Received: from p50906243.dip.t-dialin.net (EHLO dialup) [80.144.98.67]
+  by mail.gmx.net (mp029) with SMTP; 09 May 2005 05:28:18 +0200
+X-Authenticated: #271361
+Date:	Mon, 9 May 2005 05:28:14 +0200
+From: Edgar Toernig <froese@gmx.de>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+	GIT Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH Cogito] Make use of external editor work like CVS
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050509052814.617dceac.froese@gmx.de>
+In-Reply-To: <20050508210857.GL9495@pasky.ji.cz>
+References: <20050508155656.GV9495@pasky.ji.cz>
+	<1115568937.9031.129.camel@pegasus>
+	<20050508171209.GX9495@pasky.ji.cz>
+	<1115572667.9031.139.camel@pegasus>
+	<20050508173003.GY9495@pasky.ji.cz>
+	<1115574035.9031.145.camel@pegasus>
+	<20050508175156.GA9495@pasky.ji.cz>
+	<1115578658.8949.9.camel@pegasus>
+	<20050508200334.GG9495@pasky.ji.cz>
+	<1115584015.8949.43.camel@pegasus>
+	<20050508210857.GL9495@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Y-GMX-Trusted: 0
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:2829
+
+Petr Baudis wrote:
+>
+> > +               if ! [ $LOGMSG2 -nt $LOGMSG ]; then
+> > +                       rm $LOGMSG $LOGMSG2
+> > +                       die 'Commit message not modified, commit aborted'
+> > +               fi
+
+Just in case you come to a conclusion some day, how about changing the
+if-test to
+
+	if cmp -s $LOGMSG LOGMSG2; then
+
+?  :-)  IMHO much better then comparing only the date.
+
+Ciao, ET.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

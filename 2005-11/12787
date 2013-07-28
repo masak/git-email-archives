@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 26 21:25:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C53BE4688F
+	for <tkil@scrye.com>; Sat, 26 Nov 2005 21:25:16 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750848AbVK0EY4 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 26 Nov 2005 23:24:56 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750849AbVK0EY4
+	(ORCPT <rfc822;git-outgoing>); Sat, 26 Nov 2005 23:24:56 -0500
+Received: from zproxy.gmail.com ([64.233.162.205]:16559 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750847AbVK0EYz convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 26 Nov 2005 23:24:55 -0500
+Received: by zproxy.gmail.com with SMTP id 40so199975nzk
+        for <git@vger.kernel.org>; Sat, 26 Nov 2005 20:24:55 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=eBN5aRUIEiCPuENSVSLn9m3qvOgZ9npkUfdFv0AkDWpOlTCGQdeWAOI0E+q9tZhdAI/XxYRB9InIdTNmQDferoBjia9eomKsb/34hKrPbc1NOTXT3xpcjmQ9rcb1hIsO4NiXl7q/j2/yy2OP/esDLeduVthyoWxcCDoH7D6NYdk=
+Received: by 10.65.15.10 with SMTP id s10mr1317519qbi;
+        Sat, 26 Nov 2005 20:24:55 -0800 (PST)
+Received: by 10.64.242.12 with HTTP; Sat, 26 Nov 2005 20:24:55 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90511262024g4eca7dc2oa42d1f72febf9e27@mail.gmail.com>
+Date:	Sun, 27 Nov 2005 04:24:55 +0000
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Eric Wong <normalperson@yhbt.net>
+Subject: Re: [PATCH 7/9] Add the accurate changeset applyer
+Cc:	git list <git@vger.kernel.org>,
+	Martin Langhoff <martin@catalyst.net.nz>
+In-Reply-To: <20051124075504.GH4789@mail.yhbt.net>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20051112092336.GA16218@Muzzle>
+	 <46a038f90511170126l5f04f4e0ta578fc2cb375db68@mail.gmail.com>
+	 <20051124074605.GA4789@mail.yhbt.net>
+	 <20051124074739.GB4789@mail.yhbt.net>
+	 <20051124074857.GC4789@mail.yhbt.net>
+	 <20051124075027.GD4789@mail.yhbt.net>
+	 <20051124075133.GE4789@mail.yhbt.net>
+	 <20051124075243.GF4789@mail.yhbt.net>
+	 <20051124075355.GG4789@mail.yhbt.net>
+	 <20051124075504.GH4789@mail.yhbt.net>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12787
+
+On 11/24/05, Eric Wong <normalperson@yhbt.net> wrote:
+> And make it the default.
+
+Cheeky, but right ;-)
+
+Would it be a good idea to read the log entry and decide what kind of
+smarts do we need to apply the changeset? If the log entry looks
+plain, use process_patchset_fast(), else invoke $TLA?
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 31 17:37:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CED7E2B0984
+	for <tkil@scrye.com>; Sun, 31 Jul 2005 17:37:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262081AbVGaXgE (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 31 Jul 2005 19:36:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262122AbVGaXgA
+	(ORCPT <rfc822;git-outgoing>); Sun, 31 Jul 2005 19:36:00 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:17379 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262081AbVGaXeD (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 31 Jul 2005 19:34:03 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6VNXsjA018367
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 31 Jul 2005 16:33:54 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6VNXrIm008949;
+	Sun, 31 Jul 2005 16:33:53 -0700
+Date:	Sun, 31 Jul 2005 16:33:53 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Josef Weidendorfer <Josef.Weidendorfer@gmx.de>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Added hook in git-receive-pack
+In-Reply-To: <7viryqd0eo.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507311627280.14342@g5.osdl.org>
+References: <200507312117.43957.Josef.Weidendorfer@gmx.de>
+ <Pine.LNX.4.58.0507311305170.29650@g5.osdl.org> <7vr7ded8ax.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0507311549300.14342@g5.osdl.org> <7viryqd0eo.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:6664
+
+
+
+On Sun, 31 Jul 2005, Junio C Hamano wrote:
+> Linus Torvalds <torvalds@osdl.org> writes:
+> 
+> > No I'm not. Try all the machines behind my firewall.
+> 
+> Ah, that's true.  Do you push into them?
+
+Yup, I do. I have this thing that I don't do backups, but I end up having 
+redundancy instead, so I keep archives on my own machines and inside the 
+private osdl network, for example.
+
+Also, I suspect that anybody who uses the "CVS model" with git - ie a
+central repository - is not likely to export that central repository any
+way: it's the crown jewels, after all. Open source may not have that
+mindset, but I'm thinking of how I was forced to use CVS at Transmeta, for
+example:  the machine that had the CVS repo was certainly supposed to be
+very private indeed.
+
+In the "central repo model" you have another issue - you have potentially
+parallell pushes to different branches with no locking what-so-ever (and
+that's definitely _supposed_ to work), and I have this suspicion that the 
+"update for dumb servers" code isn't really safe in that setting anyway. I 
+haven't checked.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

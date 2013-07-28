@@ -1,0 +1,89 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 30 10:19:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0995D140782
+	for <tkil@scrye.com>; Sun, 30 Oct 2005 10:19:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751010AbVJ3RT5 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 30 Oct 2005 12:19:57 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751082AbVJ3RT5
+	(ORCPT <rfc822;git-outgoing>); Sun, 30 Oct 2005 12:19:57 -0500
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:27384 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S1751010AbVJ3RT4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 30 Oct 2005 12:19:56 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051030171912.HCHR11356.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 30 Oct 2005 12:19:12 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	merlyn@stonehenge.com (Randal L. Schwartz)
+Subject: Re: git-pull (or cg-fetch?) with exit status
+References: <86fyqjt9w9.fsf@blue.stonehenge.com>
+cc:	git@vger.kernel.org
+Date:	Sun, 30 Oct 2005 09:19:54 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3bmiudl1.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 47
+Xref: brand.scrye.com linux.git:10815
+
+merlyn@stonehenge.com (Randal L. Schwartz) writes:
+
+> Other than grep the output of the "pull" commands, I'd like to have a
+> flag added that will also set an exit status to "successful" if new
+> things were pulled.  That way, I can automate a "make install"
+> resulting from a successful new pull, ala:
+>
+>         git-pull --silent && make install
+
+How about this instead of your one-liner?
+
+	old_head=$(git-rev-parse --verify HEAD) &&
+        git-pull -n >/dev/null 2>&1 || exit
+        new_head=$(git-rev-parse --verify HEAD)
+	test "$old_head" = "$new_head" || make test install
+
+git-pull has at least 4 different possible outcomes, and its
+exit code talks about its success/failure right now.
+
+ 1. fetch did not succeed, so pull should result in failure. In
+    this case there is no change in your repository, and no
+    point rebuilding.
+
+ 2. fetch contacted the other end and concluded conversation
+    correctly.
+
+    2-a. There was no change upstream (or you were up-to-date --
+         the other side was behind you).  This is a successful
+         pull, but you probably do not want to rebuild.
+
+    2-b. There were changes upstream and we tried to merge.
+         Merge was successful.  This case you would want to
+         rebuild.
+
+    2-c. There were changes upstream and automerge failed.  You
+         cannot rebuild in this case.
+
+With your proposal we should need to exit non-zero in case 2-a
+when we are running with --silent.  This feels somewhat
+counter-intuitive if not wrong, even if it is only done under a
+particular flag.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

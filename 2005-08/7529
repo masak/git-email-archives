@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 18 19:04:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F2F55170841
+	for <tkil@scrye.com>; Thu, 18 Aug 2005 19:04:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964778AbVHSBEr (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 18 Aug 2005 21:04:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964780AbVHSBEr
+	(ORCPT <rfc822;git-outgoing>); Thu, 18 Aug 2005 21:04:47 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:59117 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S964778AbVHSBEr (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 18 Aug 2005 21:04:47 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050819010446.JRUF25443.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 18 Aug 2005 21:04:46 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Sam Ravnborg <sam@ravnborg.org>
+Cc:	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Teach applymbox to keep the Subject: line.
+References: <20050816214707.6842.qmail@web26302.mail.ukl.yahoo.com>
+	<7vek8t7bva.fsf@assigned-by-dhcp.cox.net>
+	<7vk6il2jz8.fsf_-_@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0508170830050.3553@g5.osdl.org>
+	<20050818172646.GA18459@mars.ravnborg.org>
+Date:	Thu, 18 Aug 2005 18:04:45 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyt6enyq.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_VN 
+	autolearn=ham version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:7529
+
+Sam Ravnborg <sam@ravnborg.org> writes:
+
+> I prefer to add it myself rather than to have it added automatically -
+> but mayve thats you me being a bit mistrusting.
+>
+> The only git- command I use today is git-applymbox.
+
+If you did not have that "add it myself" preference, I would
+have recommended the (not counting the flags) second parameter
+to git-applymbox.
+
+While we are on the topic of applymbox, currently it takes this
+form:
+
+$ applymbox [ -k ] [ -q ] (-c .dotest/msg_num | mail_archive) [Signoff_file]"
+
+It may make more sense to change it to:
+
+    applymbox [-k] [-q] [-s <signoff>] ( -c .dotest/<msg_num> | <mbox>... )
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

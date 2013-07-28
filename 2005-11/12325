@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 19 05:45:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0587C2851FC
+	for <tkil@scrye.com>; Sat, 19 Nov 2005 05:45:12 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751102AbVKSMo7 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 19 Nov 2005 07:44:59 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751413AbVKSMo7
+	(ORCPT <rfc822;git-outgoing>); Sat, 19 Nov 2005 07:44:59 -0500
+Received: from pne-smtpout1-sn1.fre.skanova.net ([81.228.11.98]:28296 "EHLO
+	pne-smtpout1-sn1.fre.skanova.net") by vger.kernel.org with ESMTP
+	id S1751102AbVKSMo7 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 19 Nov 2005 07:44:59 -0500
+Received: from [192.168.0.82] (213.66.95.18) by pne-smtpout1-sn1.fre.skanova.net (7.2.060.1)
+        id 437DDFC20002C44D; Sat, 19 Nov 2005 13:44:55 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437F1E67.8020302@etek.chalmers.se>
+Date:	Sat, 19 Nov 2005 13:45:27 +0100
+From:	=?ISO-8859-1?Q?Lukas_Sandstr=F6m?= <lukass@etek.chalmers.se>
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051015)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+CC:	Franck <vagabon.xyz@gmail.com>
+Subject: Re: [QUESTION] Access to a huge GIT repository.
+References: <cda58cb80511160424j1acac7c6j@mail.gmail.com>	 <Pine.LNX.4.64.0511160837000.13959@g5.osdl.org>	 <cda58cb80511170236p4a7e2baay@mail.gmail.com>	 <Pine.LNX.4.64.0511170817480.13959@g5.osdl.org>	 <cda58cb80511171347yef4f090g@mail.gmail.com>	 <Pine.LNX.4.64.0511171443000.13959@g5.osdl.org> <cda58cb80511190423w1e46bf5bu@mail.gmail.com>
+In-Reply-To: <cda58cb80511190423w1e46bf5bu@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 43
+Xref: brand.scrye.com linux.git:12325
+
+Franck wrote:
+> 2005/11/17, Linus Torvalds <torvalds@osdl.org>:
+> 
+>>>On Thu, 17 Nov 2005, Franck wrote:
+>>>
+>>>ok that's what I was trying to do by killing the parent object.  Now
+>>>when looking a the graph using gitk all old objects have been removed.
+>>>But I'm suprised because the git repository is the same size as it was
+>>>before pruning all old objects. Can you explain why ?
+>>
+>>make sure you re-pack if it was packed. "git prune" will not remove packs
+>>at all, so..
+>>
+> 
+> 
+> I just looked at git-prune script and it seems to remove unreachable
+> objects only in .git/objects/[0-9a-f][0-9a-f] directories, not in pack
+> files.
+> 
+> Then by running git-repack -a -d, I build a new small pack that
+> contains only latest objects, but then the script runs
+> git-redundant-pack script which erases the new small one since all its
+> objects are included in the old big one. Is that correct ? If so
+> git-redundant-pack script could return the oldest redundant ?
+> 
+> Thanks
+> --
+>                Franck
+
+The reason the old pack is kept instead of the new one is that it
+is a proper superset of the new one. 
+
+The "git-repack -a -d" case is fixed in Junios master, and I have sent out
+a patch which lets you pipe git-fsck-objects --full --unreachable to
+git-pack-redundant in the other cases, so the problem should hopefully
+be resolved shortly.
+
+/Lukas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

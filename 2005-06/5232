@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 24 23:26:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0A1122B294B
+	for <tkil@scrye.com>; Fri, 24 Jun 2005 23:26:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263341AbVFYFYS (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 25 Jun 2005 01:24:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263343AbVFYFYS
+	(ORCPT <rfc822;git-outgoing>); Sat, 25 Jun 2005 01:24:18 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:57781 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S263341AbVFYFYP (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 25 Jun 2005 01:24:15 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j5P5L0jA001786
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 24 Jun 2005 22:21:01 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j5P5KxjB000639;
+	Fri, 24 Jun 2005 22:21:00 -0700
+Date:	Fri, 24 Jun 2005 22:23:05 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Jeff Garzik <jgarzik@pobox.com>
+Cc: "David S. Miller" <davem@davemloft.net>, git@vger.kernel.org
+Subject: Re: kernel.org and GIT tree rebuilding
+In-Reply-To: <42BCE026.8050405@pobox.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506242208210.11175@ppc970.osdl.org>
+References: <20050624.212009.92584730.davem@davemloft.net> <42BCE026.8050405@pobox.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:5232
+
+
+
+On Sat, 25 Jun 2005, Jeff Garzik wrote:
+> 
+> This is all due to the rsync sweeps, which have to scan metric tons of 
+> inodes and dentries.  Orders of magnitude over the pre-git days.
+
+Well, the real solution is to use a git-aware protocol, not rsync.
+
+rsync is wonderful for prototyping, and I wanted to make the database 
+rsync'able for that reason, but it clearly doesn't scale.
+
+I think I'll make a "pack"/"unpack" pair that just packs all the necessary
+objects between two commits. Then you can basically sync the object file 
+by doing
+
+	git-pack OLD..NEW | ssh other-end git-unpack
+
+and you'd basically be done. It looks pretty easy to do, too..
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

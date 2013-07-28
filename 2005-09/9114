@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 22 08:43:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EA59327696B
+	for <tkil@scrye.com>; Thu, 22 Sep 2005 08:43:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030386AbVIVOl1 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Sep 2005 10:41:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030389AbVIVOl1
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Sep 2005 10:41:27 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:37508 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1030386AbVIVOl0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 22 Sep 2005 10:41:26 -0400
+Received: (qmail 13777 invoked by uid 2001); 22 Sep 2005 16:41:24 +0200
+Date:	Thu, 22 Sep 2005 16:41:24 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: GIT - breaking backward compatibility
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050922144124.GJ21019@pasky.or.cz>
+References: <7vpsr4cx0f.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vpsr4cx0f.fsf@assigned-by-dhcp.cox.net>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:9114
+
+Dear diary, on Tue, Sep 20, 2005 at 04:07:28AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+>  * Tools renaming plan calls for removal of the backward
+>    compatible command names (e.g. git-fsck-cache and
+>    git-update-cache) sometime in the future.  This is scheduled
+>    for 0.99.8 around beginning of October.  If somebody wants
+>    extended amnesty period, this can be pushed back but unless I
+>    hear otherwise...
+
+Actually, could we please keep the old git-ssh-* stuff for a bit
+(perhaps a lot) longer? The other renames are fine because people
+usually keep their git-core and porcelain versions in sync, but the
+git-ssh-* stuff is about network interoperability and you are forcing
+other people to upgrade their installations, which may be troublesome
+for them in the case their distribution didn't package the new stuff yet
+or whatever.  It's just two commands after all, so could we please have
+them for at least another month or so?
+
+Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

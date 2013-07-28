@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun  5 14:35:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6A1466DC1
+	for <tkil@scrye.com>; Sun,  5 Jun 2005 14:35:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261608AbVFEUe2 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 5 Jun 2005 16:34:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261609AbVFEUe2
+	(ORCPT <rfc822;git-outgoing>); Sun, 5 Jun 2005 16:34:28 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:23969 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261608AbVFEUeZ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 5 Jun 2005 16:34:25 -0400
+Received: (qmail 25983 invoked by uid 2001); 5 Jun 2005 20:34:22 -0000
+Date:	Sun, 5 Jun 2005 22:34:22 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: "C. Cooke" <ccooke@gkhs.net>
+Cc: git@vger.kernel.org
+Subject: Re: [COGITO PATCH] Small, simple and obvious cleanups (are they wanted at this stage?)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050605203422.GP17462@pasky.ji.cz>
+References: <429E0B08.5040603@gkhs.net> <20050605202527.GO17462@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050605202527.GO17462@pasky.ji.cz>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 26
+Xref: brand.scrye.com linux.git:4580
+
+Dear diary, on Sun, Jun 05, 2005 at 10:25:27PM CEST, I got a letter
+where Petr Baudis <pasky@ucw.cz> told me that...
+> Dear diary, on Wed, Jun 01, 2005 at 09:22:48PM CEST, I got a letter
+> where "C. Cooke" <ccooke@gkhs.net> told me that...
+> > This is a simple example - giving a nice error if you're in the wrong
+> > directory.
+> > 
+> > Is this sort of patch wanted? If so, I'm sure I can spare the time to
+> > look into some polishing.
+> 
+> Of course they are wanted. Thanks, applied.
+
+Ok, another thing I forgot to mention - I moved it to cg-Xlib so that
+it's checked everytime you run a command, unless the command says it
+does need a repository in order to run successfully (that's the case for
+cg-clone, cg-init and cg-help).
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

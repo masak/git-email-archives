@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep  8 16:07:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CA009174033
+	for <tkil@scrye.com>; Thu,  8 Sep 2005 16:07:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965007AbVIHWG4 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Sep 2005 18:06:56 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965026AbVIHWG4
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Sep 2005 18:06:56 -0400
+Received: from iabervon.org ([66.92.72.58]:29713 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S965007AbVIHWG4 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 8 Sep 2005 18:06:56 -0400
+Received: (qmail 32664 invoked by uid 1000); 8 Sep 2005 18:10:53 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 8 Sep 2005 18:10:53 -0400
+Date:	Thu, 8 Sep 2005 18:10:53 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: Multi-ancestor read-tree notes
+In-Reply-To: <7vy867te3f.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509081805280.23242@iabervon.org>
+References: <Pine.LNX.4.63.0509050049030.23242@iabervon.org>
+ <1126199765.3984.1.camel@localhost.localdomain> <Pine.LNX.4.63.0509081727560.23242@iabervon.org>
+ <7vy867te3f.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:8215
+
+On Thu, 8 Sep 2005, Junio C Hamano wrote:
+
+> Daniel Barkalow <barkalow@iabervon.org> writes:
+> 
+> > I assume that what you want is something to include everything from two 
+> > commits, which would give conflicts if a name is reused?
+> 
+> My understanding is that Darrin wants to do what Linus did when
+> he merged gitk into git.git.
+> 
+> Personally I think that is a specialized application and
+> something like the git-merge-projects script I posted as a
+> follow-up would be more appropriate than adding it to the
+> current merge discussion.
+
+Well, it's an easy addition to read-tree; just need a merge function which 
+takes two entries and adds the non-NULL one in stage 0, or adds both if 
+they both exist. git-merge-script probably shouldn't be the entry point to 
+it, of course, but that part isn't my area anyway.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

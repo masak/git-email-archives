@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 19:06:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3AA8D677A0
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 19:06:29 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932353AbVLMCGP (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 21:06:15 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932357AbVLMCGP
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 21:06:15 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:34277 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932353AbVLMCGO (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Dec 2005 21:06:14 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBD263DZ014950
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 12 Dec 2005 18:06:04 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBD260ca029935;
+	Mon, 12 Dec 2005 18:06:01 -0800
+Date:	Mon, 12 Dec 2005 18:05:59 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: Delitifier broken (Re: diff-core segfault)
+In-Reply-To: <Pine.LNX.4.64.0512121720150.15597@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512121758410.15597@g5.osdl.org>
+References: <1134404990.5928.4.camel@localhost.localdomain>
+ <7vmzj6i206.fsf@assigned-by-dhcp.cox.net> <7virtui1kj.fsf_-_@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0512121620380.26663@localhost.localdomain>
+ <7vek4igevq.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0512121529200.15597@g5.osdl.org>
+ <7vlkypdcsb.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0512121720150.15597@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 45
+Xref: brand.scrye.com linux.git:13553
+
+
+
+On Mon, 12 Dec 2005, Linus Torvalds wrote:
+> 
+>    As mentioned, pack-objects.c needs to check the size heuristics before 
+>    doing diff_delta() _anyway_, for performance reasons as well as simply 
+>    because the secondary use of diff_delta() is to estimate how big the 
+>    delta is, and it's always pointless to generate a delta that is 
+>    guaranteed to be bigger than the file (which is always the case with 
+>    either side being an empty file - the size difference will inevitably 
+>    be bigger than the size of the resulting file).
+
+Side note: this isn't technically entirely true. A binary diff that has a 
+source file that is empty could in theory be smaller than the destination 
+file simply because it may involve a certain amount of automatic 
+compression in the form of "insert 100 spaces" kind of diff encoding. I'm 
+not sure whether xdelta actually does something like that, but it's 
+certainly possible at least in theory.
+
+Of course, even if the delta in such a case may be smaller than the 
+resulting file, such a delta is still not interesting: even from a packing 
+angle, if the resulting file has patterns that makes it easy to generate a 
+small delta against an empty file, the fact is, such a regular end result 
+will _compress_ better than the delta will, assuming any decent 
+compression mechanism.
+
+So from a packing standpoint, generating the delta is still the wrong 
+thing to do - you're better off with just compressing the undeltified 
+result.
+
+And from a similarity-estimation standpoint, going from an empty file to 
+anything else is also obviously not interesting either. An empty file 
+cannot be "similar" to anything else (except perhaps another empty file, 
+and even that is a matter of taste).
+
+I just wanted to correct the technicality that delta's can certainly be 
+smaller than the result at least if the delta format allows for that kind 
+of encoding.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

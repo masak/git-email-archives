@@ -1,0 +1,102 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun 14 18:33:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C494D57551
+	for <tkil@scrye.com>; Tue, 14 Jun 2005 18:33:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261442AbVFOAdM (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 14 Jun 2005 20:33:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261446AbVFOAdM
+	(ORCPT <rfc822;git-outgoing>); Tue, 14 Jun 2005 20:33:12 -0400
+Received: from h-64-105-159-118.phlapafg.covad.net ([64.105.159.118]:4328 "EHLO
+	dv.roinet.com") by vger.kernel.org with ESMTP id S261442AbVFOAdG
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 14 Jun 2005 20:33:06 -0400
+Received: from dv.roinet.com (localhost.localdomain [127.0.0.1])
+	by dv.roinet.com (8.13.4/8.13.4) with ESMTP id j5F0X4YI013340;
+	Tue, 14 Jun 2005 20:33:04 -0400
+Received: (from proski@localhost)
+	by dv.roinet.com (8.13.4/8.13.4/Submit) id j5F0X3JK013337;
+	Tue, 14 Jun 2005 20:33:03 -0400
+X-Authentication-Warning: dv.roinet.com: proski set sender to proski@gnu.org using -f
+Subject: Re: [COGITO PATCH] Optimized print_help()
+From: Pavel Roskin <proski@gnu.org>
+To: Jonas Fonseca <fonseca@diku.dk>
+Cc: git <git@vger.kernel.org>
+In-Reply-To: <20050615000001.GB17152@diku.dk>
+References: <1118791576.3890.4.camel@dv>  <20050615000001.GB17152@diku.dk>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Tue, 14 Jun 2005 20:33:03 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1118795583.3890.27.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-8) 
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 56
+Xref: brand.scrye.com linux.git:4939
+
+On Wed, 2005-06-15 at 02:00 +0200, Jonas Fonseca wrote:
+> Shouldn't $toolpath be quoted here to make it safer? Although it seems
+> the make install don't handle irregular toolpaths at the moment.
+
+Sure.
+
+> > +	cat $toolpath | sed -n '3,/^$/s/^# *//p'
+> 
+> What about also removing UUOC from this line ...
+
+UUOC?  I had too look it up :-)
+
+It's not just "useless use of cat", but also useless use of redirection
+in both cases.  I guess sed can exit after it finishes processing the
+range (I don't know if it actually does), so feeding it the whole file
+is not need.
+
+OK, here's an improved patch.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/cg-Xlib b/cg-Xlib
+--- a/cg-Xlib
++++ b/cg-Xlib
+@@ -130,10 +130,11 @@ update_index () {
+ 
+ 
+ print_help () {
+-	which "cg-$1" >/dev/null 2>&1 || exit 1
+-	sed -n '/^USAGE=/,0s/.*"\(.*\)"/Usage: \1/p' < $(which cg-$1) 
++	local toolpath=$(which cg-$1 2>/dev/null)
++	[ -z "$toolpath" ] && exit 1
++	sed -n '/^USAGE=/,0s/.*"\(.*\)"/Usage: \1/p' "$toolpath"
+ 	echo
+-	cat $(which cg-$1) | sed -n '3,/^$/s/^# *//p'
++	sed -n '3,/^$/s/^# *//p' "$toolpath"
+ 	exit
+ }
+ 
+
+P.S. Maybe we could use "type" rather than "which" because the former is
+a shell built-in.  Or maybe we should hardcode the prefix on install.
+Anyway, it's out of scope of this patch.
+
+P.P.S. I hope that $toolpath doesn't start with "-".  I could add "--"
+to the sed command line, but I'm not sure if BSD sed would like it.
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

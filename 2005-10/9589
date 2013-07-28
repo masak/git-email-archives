@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct  1 10:43:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7FBF12B7080
+	for <tkil@scrye.com>; Sat,  1 Oct 2005 10:43:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750819AbVJAQly (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 1 Oct 2005 12:41:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750820AbVJAQly
+	(ORCPT <rfc822;git-outgoing>); Sat, 1 Oct 2005 12:41:54 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:49115 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750819AbVJAQlx (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 1 Oct 2005 12:41:53 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j91Gfg4s001653
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 1 Oct 2005 09:41:43 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j91Gffop023392;
+	Sat, 1 Oct 2005 09:41:42 -0700
+Date:	Sat, 1 Oct 2005 09:41:41 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Wolfgang Denk <wd@denx.de>
+cc:	Git Mailing List <git@vger.kernel.org>,
+	Junio C Hamano <junkio@cox.net>
+Subject: Re: Destructive side-effect of "cg-status"
+In-Reply-To: <20050930160353.F025C352B7B@atlas.denx.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510010934290.3378@g5.osdl.org>
+References: <20050930160353.F025C352B7B@atlas.denx.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.118 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 48
+Xref: brand.scrye.com linux.git:9589
+
+
+
+On Fri, 30 Sep 2005, Wolfgang Denk wrote:
+>
+> So far I  thought  "cg-status"  is  a  harmless  command  which  just
+> displays  some  status information. It ain't so. One of our engineers
+> reported a  corrupted  repository  after  I  ran  "cg-status"  in  his
+> directory:
+
+Well, it's not corrupted, but yes, the index file ends up unreadable.
+
+> That means, that "cg-status" actually *rewrote* .git/index,  with  me
+> (wd)  as  new  owner, and - ignoring my umask - with permissions that
+> prevent the original owner (sr) to access the file!
+
+The umask thing looks like a bug. Fixed thus.
+
+Also, arguably we should try to avoid writing the index file when not 
+necessary, although the fact is, that cg-status (and "git status") _do_ 
+need to actually keep it up-to-date in order to do the right thing. Also 
+true of some other programs that might otherwise appear to be read-only 
+(ie I've considered doing the same thing for "git diff").
+
+We used to have that optimization, but it was broken. I fixed it but 
+disabled it for fear of other bugs.
+
+But honoring umask would seem to be a no-brainer.
+
+		Linus
+
+----
+diff --git a/index.c b/index.c
+--- a/index.c
++++ b/index.c
+@@ -29,7 +29,7 @@ int hold_index_file_for_update(struct ca
+ 		signal(SIGINT, remove_lock_file_on_signal);
+ 		atexit(remove_lock_file);
+ 	}
+-	return open(cf->lockfile, O_RDWR | O_CREAT | O_EXCL, 0600);
++	return open(cf->lockfile, O_RDWR | O_CREAT | O_EXCL, 0666);
+ }
+ 
+ int commit_index_file(struct cache_file *cf)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

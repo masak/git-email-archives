@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 12:30:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 282DD6580
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 12:30:40 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262209AbVD1S2B (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 14:28:01 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262189AbVD1S07
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 14:26:59 -0400
+Received: from fire.osdl.org ([65.172.181.4]:62148 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262209AbVD1S0o (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Apr 2005 14:26:44 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3SIQfs4027510
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 28 Apr 2005 11:26:42 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3SIQeU8032668;
+	Thu, 28 Apr 2005 11:26:41 -0700
+Date:	Thu, 28 Apr 2005 11:28:40 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Git Mailing List <git@vger.kernel.org>,
+	Petr Baudis <pasky@ucw.cz>
+Subject: How to get bash to shut up about SIGPIPE?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504281121430.18901@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 51
+Xref: brand.scrye.com linux.git:2038
+
+
+Right now my major gripe with cogito is "cg-log" (which is actually the 
+only command I use right now, everything else I just do by hand with the 
+raw git archive) is that bash is being an ass about SIGPIPE, and when I 
+only look at the top part of the log, ie I do something like:
+
+	torvalds@ppc970:~/src/cogito> git log | head
+
+it spews out the ten first lines of the log, and then it spews about a 
+million lines (well, 20, but anyway) of crap:
+
+	/home/torvalds/bin/cg-log: line 87:  6338 Done                    echo -n $color$key $rest
+	      6339 Broken pipe             | sed "s/>.*/> ${pdate/+0000/$tz}/"
+	/home/torvalds/bin/cg-log: line 87:  6328 Done                    cat-file commit $commit
+	      6329 Broken pipe             | while read key rest; do
+	    case "$key" in 
+	        "author" | "committer")
+	            if [ "$key" = "author" ]; then
+	                color="$colauthor";
+	            else
+	                color="$colcommitter";
+	            fi; date=(${rest#*> }); sec=${date[0]}; tz=${date[1]}; dtz=${tz/+/}; lsec=$(expr $dtz / 100 \* 3600 + $dtz % 100 \* 60 + $sec); pdate="$(date -Rud "1970-01-01 UTC + $lsec sec" 2>/dev/null)"; if [ "$pdate" ]; then
+	                echo -n $color$key $rest | sed "s/>.*/> ${pdate/+0000/$tz}/"; echo $coldefault;
+	            else
+	                echo $color$key $rest $coldefault;
+	            fi
+	        ;;
+	        "")
+	            echo; sed -re '
+	                                        / 
+	*Signed-off-by:.*/Is//'$colsignoff'&'$coldefault'/
+	                                        s/./    &/
+	                                '
+	        ;;
+	        *)
+	            echo $colheader$key $rest $coldefault
+	        ;;
+	    esac;
+	done
+
+which is just incredibly annoying, since it makes the ten lines I actually 
+_wanted_ to get scroll off the screen..
+
+Damn bash. What's the magic incantation that says SHUT UP!?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

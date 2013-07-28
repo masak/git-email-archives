@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  2 01:00:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id AD20F24994E
+	for <tkil@scrye.com>; Mon,  2 May 2005 01:00:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261249AbVEBHAU (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 2 May 2005 03:00:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261288AbVEBHAU
+	(ORCPT <rfc822;git-outgoing>); Mon, 2 May 2005 03:00:20 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:27803 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S261249AbVEBHAQ
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 2 May 2005 03:00:16 -0400
+Received: from [172.27.0.18] (c-67-169-23-106.hsd1.ca.comcast.net [67.169.23.106])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j42708Zb030511
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 2 May 2005 00:00:09 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4275CFF8.5000503@zytor.com>
+Date:	Mon, 02 May 2005 00:00:08 -0700
+From: "H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+Cc: Kay Sievers <kay.sievers@vrfy.org>, git@vger.kernel.org
+Subject: Re: gitweb.pl on kernel.org non-functional
+References: <4275C582.7020602@lsrfire.ath.cx>
+In-Reply-To: <4275C582.7020602@lsrfire.ath.cx>
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.84, clamav-milter version 0.84e on localhost
+X-Virus-Status:	Clean
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:2336
+
+Rene Scharfe wrote:
+> Hi,
+> 
+> none of the projects linked on http://www.kernel.org/git/ seem to list
+> their commits anymore.  The repositories are still there, so it looks
+> like a glitch in gitweb.cgi.
+> 
+
+Indeed.  I have reverted the update.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

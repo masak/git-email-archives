@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May  3 13:57:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B577D12B7EE
+	for <tkil@scrye.com>; Tue,  3 May 2005 13:57:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261658AbVECTzx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 3 May 2005 15:55:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261657AbVECTzx
+	(ORCPT <rfc822;git-outgoing>); Tue, 3 May 2005 15:55:53 -0400
+Received: from prgy-npn1.prodigy.com ([207.115.54.37]:10894 "EHLO
+	oddball.prodigy.com") by vger.kernel.org with ESMTP id S261652AbVECTz3
+	(ORCPT <rfc822;git@vger.kernel.org>); Tue, 3 May 2005 15:55:29 -0400
+Received: from [127.0.0.1] (oddball.prodigy.com [127.0.0.1])
+	by oddball.prodigy.com (8.11.6/8.11.6) with ESMTP id j43JtBp07394;
+	Tue, 3 May 2005 15:55:15 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4277B778.5020206@tmr.com>
+Date:	Tue, 03 May 2005 13:40:08 -0400
+From: Bill Davidsen <davidsen@tmr.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.6) Gecko/20050319
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Valdis.Kletnieks@vt.edu
+Cc: Andrea Arcangeli <andrea@suse.de>,
+	Matt Mackall <mpm@selenic.com>, Linus Torvalds <torvalds@osdl.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+Subject: Re: Mercurial 0.4b vs git patchbomb benchmark 
+References: <20050430025211.GP17379@opteron.random> <200505021614.j42GEufG008441@turing-police.cc.vt.edu>
+In-Reply-To: <200505021614.j42GEufG008441@turing-police.cc.vt.edu>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 37
+Xref: brand.scrye.com linux.git:2485
+
+Valdis.Kletnieks@vt.edu wrote:
+> On Mon, 02 May 2005 11:49:32 EDT, Bill Davidsen said:
+> 
+>>Andrea Arcangeli wrote:
+>>
+>>>On Fri, Apr 29, 2005 at 01:39:59PM -0700, Matt Mackall wrote:
+> 
+> 
+>>>-#!/usr/bin/python
+>>>+#!/usr/bin/env python
+>>> #
+>>> # mercurial - a minimal scalable distributed SCM
+>>> # v0.4b "oedipa maas"
+>>
+>>Could you explain why this is necessary or desirable? I looked at what 
+>>env does, and I am missing the point of duplicating bash normal 
+>>behaviour regarding definition of per-process environment entries.
+> 
+> 
+> Most likely, his python lives elsewhere than /usr/bin, and the 'env' call
+> results in causing a walk across $PATH to find it....
+
+Assuming that he has env in a standard place... I hope this isn't going 
+to start some rash of efforts to make packages run on non-standard 
+toolchains, which add requirements for one tool to get around 
+misplacement of another.
+
+-- 
+    -bill davidsen (davidsen@tmr.com)
+"The secret to procrastination is to put things off until the
+  last possible moment - but no longer"  -me
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

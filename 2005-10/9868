@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 10 02:53:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,UPPERCASE_25_50 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 04B301589A7
+	for <tkil@scrye.com>; Mon, 10 Oct 2005 02:53:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750757AbVJJIxD (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 10 Oct 2005 04:53:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750772AbVJJIxD
+	(ORCPT <rfc822;git-outgoing>); Mon, 10 Oct 2005 04:53:03 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:10483 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S1750757AbVJJIxB (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 10 Oct 2005 04:53:01 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id ADBDF6E19BB; Mon, 10 Oct 2005 10:52:46 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 7FBB56E19B2; Mon, 10 Oct 2005 10:52:46 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 25F7E60FBD; Mon, 10 Oct 2005 10:53:00 +0200 (CEST)
+Date:	Mon, 10 Oct 2005 10:52:59 +0200
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: [PATCH] Fix cygwin install issues
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051010085259.GA18009@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 54
+Xref: brand.scrye.com linux.git:9868
+
+Support installing to paths including spaces.
+Remove any old .exe files so ln will succeed.
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+
+---
+
+diff --git a/Makefile b/Makefile
+index ac384c7..9ae0dfd 100644
+--- a/Makefile
++++ b/Makefile
+@@ -397,13 +397,13 @@ check:
+ ### Installation rules
+ 
+ install: $(PROGRAMS) $(SCRIPTS)
+-	$(INSTALL) -d -m755 $(DESTDIR)$(bindir)
+-	$(INSTALL) $(PROGRAMS) $(SCRIPTS) $(DESTDIR)$(bindir)
+-	$(INSTALL) git-revert $(DESTDIR)$(bindir)/git-cherry-pick
+-	sh ./cmd-rename.sh $(DESTDIR)$(bindir)
++	$(INSTALL) -d -m755 "$(DESTDIR)$(bindir)"
++	$(INSTALL) $(PROGRAMS) $(SCRIPTS) "$(DESTDIR)$(bindir)"
++	$(INSTALL) git-revert "$(DESTDIR)$(bindir)/git-cherry-pick"
++	sh ./cmd-rename.sh "$(DESTDIR)$(bindir)" "$X"
+ 	$(MAKE) -C templates install
+-	$(INSTALL) -d -m755 $(DESTDIR)$(GIT_PYTHON_DIR)
+-	$(INSTALL) $(PYMODULES) $(DESTDIR)$(GIT_PYTHON_DIR)
++	$(INSTALL) -d -m755 "$(DESTDIR)$(GIT_PYTHON_DIR)"
++	$(INSTALL) $(PYMODULES) "$(DESTDIR)$(GIT_PYTHON_DIR)"
+ 
+ install-doc:
+ 	$(MAKE) -C Documentation install
+diff --git a/cmd-rename.sh b/cmd-rename.sh
+index 34e7f49..c9d3171 100755
+--- a/cmd-rename.sh
++++ b/cmd-rename.sh
+@@ -1,9 +1,10 @@
+ #!/bin/sh
+ d="$1"
++X="$2"
+ test -d "$d" || exit
+ while read old new
+ do
+-	rm -f "$d/$old"
++	rm -f "$d/$old" "$d/$old$X"
+ 	if test -f "$d/$new"
+ 	then
+ 		ln -s "$new" "$d/$old" || exit
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

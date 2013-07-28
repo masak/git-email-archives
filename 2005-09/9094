@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 22 03:59:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4AF1524BD9B
+	for <tkil@scrye.com>; Thu, 22 Sep 2005 03:59:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751447AbVIVJ6s (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Sep 2005 05:58:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751460AbVIVJ6s
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Sep 2005 05:58:48 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:31197 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751447AbVIVJ6r (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 22 Sep 2005 05:58:47 -0400
+Received: (qmail 28062 invoked by uid 2001); 22 Sep 2005 11:58:45 +0200
+Date:	Thu, 22 Sep 2005 11:58:45 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+Cc:	Greg KH <greg@kroah.com>, git@vger.kernel.org, kkeil@suse.de
+Subject: Re: [Core GIT] Long-term cherrypicking
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050922095845.GE21019@pasky.or.cz>
+References: <20050921164015.GC21971@pasky.or.cz> <20050922083142.GA6866@kroah.com> <tnxpsr12zu0.fsf@arm.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <tnxpsr12zu0.fsf@arm.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:9094
+
+Dear diary, on Thu, Sep 22, 2005 at 11:53:27AM CEST, I got a letter
+where Catalin Marinas <catalin.marinas@gmail.com> told me that...
+> But what I understand from Petr's e-mail is that re-basing the patches
+> is not acceptable for a repository which is public. One option would
+> be to keep a private tree where the patches are re-based and a public
+> one which periodically pulls from Linus' tree and your private
+> one. Not sure how complicated the commit graph would look.
+
+It would be pretty ugly since the same patches would re-appear in the
+commit graph in another incarnations many times.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

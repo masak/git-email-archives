@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 14:15:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7AEA4170B71
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 14:15:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262263AbVD1UOj (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 16:14:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262262AbVD1UO3
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 16:14:29 -0400
+Received: from neapel230.server4you.de ([217.172.187.230]:37017 "EHLO
+	neapel230.server4you.de") by vger.kernel.org with ESMTP
+	id S262259AbVD1UN2 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 28 Apr 2005 16:13:28 -0400
+Received: from [10.0.1.3] (p508E4F7A.dip.t-dialin.net [80.142.79.122])
+	by neapel230.server4you.de (Postfix) with ESMTP id A5011B4;
+	Thu, 28 Apr 2005 22:13:26 +0200 (CEST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <427143E5.4080505@lsrfire.ath.cx>
+Date:	Thu, 28 Apr 2005 22:13:25 +0200
+From: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+User-Agent: Mozilla Thunderbird 1.0.2 (Windows/20050317)
+X-Accept-Language: de-DE, de, en-us, en
+MIME-Version: 1.0
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Git Mailing List <git@vger.kernel.org>,
+	Petr Baudis <pasky@ucw.cz>
+Subject: Re: How to get bash to shut up about SIGPIPE?
+References: <Pine.LNX.4.58.0504281121430.18901@ppc970.osdl.org> <42713379.7080107@lsrfire.ath.cx> <Pine.LNX.4.58.0504281217100.18901@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0504281217100.18901@ppc970.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 35
+Xref: brand.scrye.com linux.git:2049
+
+Linus Torvalds schrieb:
+> 
+> On Thu, 28 Apr 2005, Rene Scharfe wrote:
+> 
+>>I think you misspelled "cg-log". :-D
+> 
+> 
+> My fingers have a hard time learning new patterns, so I've got:
+> 
+> 	torvalds@ppc970:~/git> cat ~/bin/git   
+> 	#!/bin/sh
+> 	cmd="cg-$1"
+> 	shift
+> 	$cmd "$@"
+
+As a workaround, add this line after the shift to suppress the ugly
+messages:
+
+	[ "$cmd" = cg-log ] && exec 2>/dev/null
+
+> Defining "DONT_REPORT_SIGPIPE" in config-top.h when building bash gets rid
+> of it, but I really don't want to rebuild bash just because of this ;)
+
+Yes, I just compiled it and in the version from gnu.org this defaults to
+not being defined.  Man, am I glad my distro uncommented that line. :-)
+
+Looking briefly at the source there doesn't seem to be a way to turn it
+off besides this compile time setting.  I really wonder why..
+
+Rene
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

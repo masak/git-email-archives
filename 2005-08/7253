@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Aug 14 21:12:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0A62920D01E
+	for <tkil@scrye.com>; Sun, 14 Aug 2005 21:12:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932649AbVHODM1 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 14 Aug 2005 23:12:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932652AbVHODM1
+	(ORCPT <rfc822;git-outgoing>); Sun, 14 Aug 2005 23:12:27 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:32178 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932649AbVHODM0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 14 Aug 2005 23:12:26 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7F3COjA017678
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 14 Aug 2005 20:12:24 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7F3CMRT030610;
+	Sun, 14 Aug 2005 20:12:23 -0700
+Date:	Sun, 14 Aug 2005 20:12:22 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Matt Draisey <mattdraisey@sympatico.ca>
+cc:	git-list <git@vger.kernel.org>
+Subject: Re: symlinked directories in refs are now unreachable
+In-Reply-To: <1124073677.27393.15.camel@della.draisey.ca>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508142007440.3553@g5.osdl.org>
+References: <1124073677.27393.15.camel@della.draisey.ca>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:7253
+
+
+
+On Mon, 15 Aug 2005, Matt Draisey wrote:
+>
+> The behaviour of the symlinked in ref directories has changed from
+> earlier versions of git.
+
+Hmm.. There used to be a mix of lstat() (in receive-pack) and stat() (in 
+fsck-cache.c, and it got standardized in one function which used lstat.
+
+The reason for the lstat is really to try to avoid having especially the 
+remote protocols follow symlinks, but I guess it's not a very good reason, 
+so I don't think it would be wrong to just standardize refs.c to use 
+"stat()" instead.
+
+You might sent a patch to Junio..
+
+HOWEVER: symlinks for references really are pretty dangerous. We do things 
+like "echo new-id > .git/HEAD" and links (symlinks _or_ hardlinks) thus 
+really aren't safe. You're much better off copying those small files.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

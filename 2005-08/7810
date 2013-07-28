@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 26 12:14:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 596A92B74BF
+	for <tkil@scrye.com>; Fri, 26 Aug 2005 12:14:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965161AbVHZSOE (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 26 Aug 2005 14:14:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965164AbVHZSOE
+	(ORCPT <rfc822;git-outgoing>); Fri, 26 Aug 2005 14:14:04 -0400
+Received: from fmr14.intel.com ([192.55.52.68]:58302 "EHLO
+	fmsfmr002.fm.intel.com") by vger.kernel.org with ESMTP
+	id S965161AbVHZSOB convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 26 Aug 2005 14:14:01 -0400
+Received: from fmsfmr101.fm.intel.com (fmsfmr101.fm.intel.com [10.253.24.21])
+	by fmsfmr002.fm.intel.com (8.12.10/8.12.10/d: major-outer.mc,v 1.1 2004/09/17 17:50:56 root Exp $) with ESMTP id j7QIDl4F014029;
+	Fri, 26 Aug 2005 18:13:47 GMT
+Received: from fmsmsxvs040.fm.intel.com (fmsmsxvs040.fm.intel.com [132.233.42.124])
+	by fmsfmr101.fm.intel.com (8.12.10/8.12.10/d: major-inner.mc,v 1.2 2004/09/17 18:05:01 root Exp $) with SMTP id j7QIDlEC019737;
+	Fri, 26 Aug 2005 18:13:47 GMT
+Received: from fmsmsx332.amr.corp.intel.com ([132.233.42.148])
+ by fmsmsxvs040.fm.intel.com (SAVSMTP 3.1.7.47) with SMTP id M2005082611134600085
+ ; Fri, 26 Aug 2005 11:13:46 -0700
+Received: from fmsmsx312.amr.corp.intel.com ([132.233.42.227]) by fmsmsx332.amr.corp.intel.com with Microsoft SMTPSVC(6.0.3790.211);
+	 Fri, 26 Aug 2005 11:13:46 -0700
+Received: from scsmsx401.amr.corp.intel.com ([10.3.90.12]) by fmsmsx312.amr.corp.intel.com with Microsoft SMTPSVC(6.0.3790.211);
+	 Fri, 26 Aug 2005 11:13:46 -0700
+Content-class: urn:content-classes:message
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+X-MimeOLE: Produced By Microsoft Exchange V6.5.7226.0
+Subject: RE: [PATCH] Fix pulling into the same branch.
+Date:	Fri, 26 Aug 2005 11:13:45 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <B8E391BBE9FE384DAA4C5C003888BE6F043BA469@scsmsx401.amr.corp.intel.com>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: [PATCH] Fix pulling into the same branch.
+Thread-Index: AcWqaHr/x7SU/m2tSnaBJTAojxpBuQAAIXTg
+From:	"Luck, Tony" <tony.luck@intel.com>
+To:	"Junio C Hamano" <junkio@cox.net>,
+	"Johannes Schindelin" <Johannes.Schindelin@gmx.de>
+Cc:	<git@vger.kernel.org>, "Linus Torvalds" <torvalds@osdl.org>
+X-OriginalArrivalTime: 26 Aug 2005 18:13:46.0326 (UTC) FILETIME=[E65FE760:01C5AA69]
+X-Scanned-By: MIMEDefang 2.44
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:7810
+
+>I am tempted to move this logic to "git fetch" instead, because
+>it has the same issue.  Tony's "linus" branch example has been
+>updated to do a "git fetch" instead of "git pull" from the
+>earlier description in his howto, but if he happens to be on the
+>"linus" branch, he would still have this same problem.
+
+I don't spend much time on the linus branch (just to build an
+updated cscope database, etc.).  I never want to check anything
+in on that branch [sometime I should figure out how use the "hooks"
+to keep me from shooting myself in the foot here].
+
+>In the meantime, warning the user about the issue and suggesting
+>how to do the fast-forwarding of the working tree himself in the
+>warning message might be the safest and the most sensible thing
+>to do.
+
+Yes please ... a big fat warning with coloured flashing lights
+and explosions from the sound card.
+
+-Tony
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

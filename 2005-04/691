@@ -1,0 +1,52 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 18 16:45:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C36E7F580B
+	for <tkil@scrye.com>; Mon, 18 Apr 2005 16:45:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261152AbVDRWp0 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 18 Apr 2005 18:45:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261158AbVDRWp0
+	(ORCPT <rfc822;git-outgoing>); Mon, 18 Apr 2005 18:45:26 -0400
+Received: from rproxy.gmail.com ([64.233.170.204]:18702 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261152AbVDRWpY convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 18 Apr 2005 18:45:24 -0400
+Received: by rproxy.gmail.com with SMTP id 34so399456rns
+        for <git@vger.kernel.org>; Mon, 18 Apr 2005 15:45:24 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=cabgInOFBAtDRl/yGEcYKR86QH2h5Io15gTKb6Pv1tDIglJTN0cAW5sDxZUwsxOvxBm/Pg/rjE405RE3fmIJSWHi1HhrMo6cXdllljcds0dIHxH8m7Oz52Be7vsR7KZnziYPTGFezJPWvcg6nFzklJdaeL6puNijXBXS2HhMEzE=
+Received: by 10.38.8.31 with SMTP id 31mr2572209rnh;
+        Mon, 18 Apr 2005 15:45:24 -0700 (PDT)
+Received: by 10.38.8.41 with HTTP; Mon, 18 Apr 2005 15:45:23 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <40c1e84a05041815453e38a0d2@mail.gmail.com>
+Date:	Mon, 18 Apr 2005 22:45:23 +0000
+From: "Matt W." <omniscienced@gmail.com>
+Reply-To: "Matt W." <omniscienced@gmail.com>
+To: git@vger.kernel.org
+Subject: 
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,MISSING_SUBJECT,
+	RCVD_BY_IP autolearn=no version=3.0.2
+Lines: 6
+Xref: brand.scrye.com linux.git:691
+
+majordomo@vger.kernel.org
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

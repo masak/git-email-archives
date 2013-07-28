@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  9 09:02:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AE4D82021F3
+	for <tkil@scrye.com>; Tue,  9 Aug 2005 09:02:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964815AbVHIPBE (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 9 Aug 2005 11:01:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964821AbVHIPBD
+	(ORCPT <rfc822;git-outgoing>); Tue, 9 Aug 2005 11:01:03 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:8909 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S964815AbVHIPBB (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 9 Aug 2005 11:01:01 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j79F0ijA024316
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 9 Aug 2005 08:00:45 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j79F0hOq010089;
+	Tue, 9 Aug 2005 08:00:43 -0700
+Date:	Tue, 9 Aug 2005 08:00:43 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Clemens Koller <clemens.koller@anagramm.de>
+Cc: Wolfgang Denk <wd@denx.de>, git@vger.kernel.org
+Subject: Re: Cannot install git RPM
+In-Reply-To: <42F8AE6E.2020808@anagramm.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508090758110.3258@g5.osdl.org>
+References: <20050809104040.B9C61352B36@atlas.denx.de>
+ <20050809110705.6B1FF352B36@atlas.denx.de> <42F8AE6E.2020808@anagramm.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:6984
+
+
+
+On Tue, 9 Aug 2005, Clemens Koller wrote:
+> 
+> Over here - using a non-standard ELDK/LFS mixture, git depends at least on:
+>...
+> diffstat (ftp://invisible-island.net/diffstat/diffstat-1.39.tgz)
+
+Hmm.. This should not be true. Any "diffstat"s should be converted to use
+"git-apply --stat" instead.
+
+I don't find any diffstat users, so maybe you just remember it from "the 
+old days", and didn't realize that it's not needed any more.
+
+[ That said, anybody who wants to install git might as well install 
+  diffstat, it's a useful program in general, and works on more than just 
+  unified diffs ]
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

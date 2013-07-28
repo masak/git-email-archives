@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 15 15:25:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A9EA928520A
+	for <tkil@scrye.com>; Mon, 15 Aug 2005 15:25:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964976AbVHOVY2 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 15 Aug 2005 17:24:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964978AbVHOVY2
+	(ORCPT <rfc822;git-outgoing>); Mon, 15 Aug 2005 17:24:28 -0400
+Received: from iabervon.org ([66.92.72.58]:14340 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S964976AbVHOVY1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 15 Aug 2005 17:24:27 -0400
+Received: (qmail 22661 invoked by uid 1000); 15 Aug 2005 17:27:46 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 15 Aug 2005 17:27:46 -0400
+Date:	Mon, 15 Aug 2005 17:27:46 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: Cloning speed comparison
+In-Reply-To: <7vacjjx70u.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508151652290.21501@iabervon.org>
+References: <20050813015402.GC20812@pasky.ji.cz> <Pine.LNX.4.63.0508151321270.12816@iabervon.org>
+ <7vacjjx70u.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:7312
+
+On Mon, 15 Aug 2005, Junio C Hamano wrote:
+
+> Daniel Barkalow <barkalow@iabervon.org> writes:
+> 
+> > I should be able to get http-pull down to the neighborhood of 
+> > (current) ssh-pull; http-pull is that slow (when the source repository 
+> > isn't packed) because it's entirely sequential, rather than overlapping 
+> > requests like ssh-pull now does.
+> 
+> I like those prefetch() and process() code in pull.c very much.
+> 
+> I have been wondering if increasing parallelism more by
+> prefetching beyond the immediate parents of the current commit,
+> in "if (get_history)" part of process_commit().  Maybe it is not
+> worth it because doing a commit, its associated tree(s) and its
+> parents would already give us enough parallelism already.
+
+It is actually already maxing out the parallelism; it has a FIFO of 
+objects which it needs, and calls prefetch() when it enqueues an object 
+and fetch() when it dequeues it. It only cares about the dependancies for 
+this purpose, not the types.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

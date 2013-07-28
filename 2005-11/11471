@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 04:58:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2BBB931D2C3
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 04:58:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750792AbVKJL6K (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 06:58:10 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750793AbVKJL6K
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 06:58:10 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:45464 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1750792AbVKJL6J
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 10 Nov 2005 06:58:09 -0500
+Received: from nox.op5.se (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 6405C6BD0F
+	for <git@vger.kernel.org>; Thu, 10 Nov 2005 12:58:08 +0100 (CET)
+Received: by nox.op5.se (Postfix, from userid 500)
+	id 466765BB44; Thu, 10 Nov 2005 12:58:08 +0100 (CET)
+To:	git@vger.kernel.org
+Subject: [PATCH 2/2] git-clone: Allow cloning into directories other than child of current dir.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051110115808.466765BB44@nox.op5.se>
+Date:	Thu, 10 Nov 2005 12:58:08 +0100 (CET)
+From:	exon@op5.se (Andreas Ericsson)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:11471
+
+
+This patch adds -p to mkdir and an explicit check to see if the target
+directory exists (since mkdir -p doesn't throw an error if it does).
+
+Signed-off-by: Andreas Ericsson <ae@op5.se>
+
+---
+
+ git-clone.sh |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+applies-to: 28cfa6f299b27be02a24b6887f9b82b42c0e08cd
+48b959195a979b113e51e898ac878a0fd7cfb30a
+diff --git a/git-clone.sh b/git-clone.sh
+index 70cf7a2..4b98fb1 100755
+--- a/git-clone.sh
++++ b/git-clone.sh
+@@ -98,7 +98,8 @@ fi
+ dir="$2"
+ # Try using "humanish" part of source repo if user didn't specify one
+ [ -z "$dir" ] && dir=$(echo "$repo" | sed -e 's#/*\.git$##' -e 's#.*[/:]##')
+-mkdir "$dir" &&
++[ -e "$dir" ] && $(echo "$dir already exists."; usage)
++mkdir -p "$dir" &&
+ D=$(
+ 	(cd "$dir" && git-init-db && pwd)
+ ) &&
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

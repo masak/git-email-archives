@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 01:50:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6868FDDDFD
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 01:50:12 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932664AbVKBItw (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 03:49:52 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932663AbVKBItw
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 03:49:52 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:23424 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S932662AbVKBItv
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 2 Nov 2005 03:49:51 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id F34E46BD00
+	for <git@vger.kernel.org>; Wed,  2 Nov 2005 09:49:50 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43687DAE.2010604@op5.se>
+Date:	Wed, 02 Nov 2005 09:49:50 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: Clone a repository with only the objects needed for a single
+ tag
+References: <43681E47.4010203@ust.hk> <7vy847y1m2.fsf@assigned-by-dhcp.cox.net> <43687869.7060104@ust.hk>
+In-Reply-To: <43687869.7060104@ust.hk>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:11003
+
+Ben Lau wrote:
+> Hi Junio,
+> 
+>  It works!  Thanks a lot.
+> 
+>  However, it has a problem when involves the gitk/git-log.
+
+
+Both those programs use the history, which you don't have. With a 
+shallow repository like this some commands just won't work. git-*log and 
+gitk are among those.
+
+> 
+> git-log/gitk do not complains afterward, but it also make gitk shows 
+> nothing during run. Any solution?
+> 
+
+* Get a second machine with more disk-space and run the history tools 
+there. If you use it as mothership and push your commits to it you'll be 
+able to track your changes from the laptop as well.
+
+* Get a larger disk. They're not terribly expensive now adays.
+
+* Check out one tag (i.e. release) more than you need. Then you'll get 
+history back to that tag.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

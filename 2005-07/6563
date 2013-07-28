@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 29 06:30:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 940BC279006
+	for <tkil@scrye.com>; Fri, 29 Jul 2005 06:30:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262585AbVG2M3F (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Jul 2005 08:29:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262591AbVG2M3F
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Jul 2005 08:29:05 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:33295 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262585AbVG2M2q (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Jul 2005 08:28:46 -0400
+Received: (qmail 23031 invoked by uid 2001); 29 Jul 2005 12:28:44 -0000
+Date:	Fri, 29 Jul 2005 14:28:44 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: How is working on arbitrary remote heads supposed to work in Cogito (+ PATCH)?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050729122844.GA21909@pasky.ji.cz>
+References: <20050728183904.GA24948@pasky.ji.cz> <7v4qaeqrh3.fsf@assigned-by-dhcp.cox.net> <20050729070628.GA24895@pasky.ji.cz> <7vmzo6jbme.fsf@assigned-by-dhcp.cox.net> <20050729081051.GH24895@pasky.ji.cz> <7vek9igfgw.fsf@assigned-by-dhcp.cox.net> <20050729094046.GO24895@pasky.ji.cz> <Pine.LNX.4.58.0507291254100.5849@wgmdd8.biozentrum.uni-wuerzburg.de> <20050729111304.GS24895@pasky.ji.cz> <Pine.LNX.4.58.0507291424070.6247@wgmdd8.biozentrum.uni-wuerzburg.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0507291424070.6247@wgmdd8.biozentrum.uni-wuerzburg.de>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:6563
+
+Dear diary, on Fri, Jul 29, 2005 at 02:26:51PM CEST, I got a letter
+where Johannes Schindelin <Johannes.Schindelin@gmx.de> told me that...
+> Hi,
+> 
+> On Fri, 29 Jul 2005, Petr Baudis wrote:
+> 
+> > Dear diary, on Fri, Jul 29, 2005 at 12:57:50PM CEST, I got a letter
+> > where Johannes Schindelin <Johannes.Schindelin@gmx.de> told me that...
+> >
+> > > 	git-switch-tree remotehead
+> > > 	git-merge master
+> > > 	git-push remoteside remotehead
+> > >
+> > > which would have the further advantage of documenting what you really did
+> > > in the history.
+> >
+> > How would that document anything normal push wouldn't?
+> 
+> git-merge?
+
+You have to git-merge anyway if remote head is not your ancestor yet,
+otherwise the push cannot proceed.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

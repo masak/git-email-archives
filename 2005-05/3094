@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 12 00:14:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 582ADFC018
+	for <tkil@scrye.com>; Thu, 12 May 2005 00:14:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261184AbVELGOK (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 02:14:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261178AbVELGOK
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 02:14:10 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:20198 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S261184AbVELGOF (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 12 May 2005 02:14:05 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050512061404.YERX26972.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 12 May 2005 02:14:04 -0400
+To: Daniel Barkalow <barkalow@iabervon.org>
+Cc: git@vger.kernel.org, Petr Baudis <pasky@ucw.cz>,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [RFC] Support projects including other projects
+References: <Pine.LNX.4.21.0505120057250.30848-100000@iabervon.org>
+	<7v8y2lknsp.fsf@assigned-by-dhcp.cox.net>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 11 May 2005 23:14:03 -0700
+In-Reply-To: <7v8y2lknsp.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+ message of "Wed, 11 May 2005 22:37:10 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvf5pj7is.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 41
+Xref: brand.scrye.com linux.git:3094
+
+>>>>> "JCH" == Junio C Hamano <junkio@cox.net> writes:
+
+Daniel, I am sorry but I realize I completely misunderstood what
+you meant by "projects including other projects".  What you are
+trying to solve is the problem of feeding core GIT changes and
+pure Cogito changes separately to the upstream _within_ _the_
+_current_ _source_ _tree_ _structure_ of Cogito, isn't it?
+That's where your juggling index files and other complexity
+comes from, and I did not realize that was what you were talking
+about.  I should have realized it when you mentioned kbuild.
+
+Well, personally I do not think such project _overlays_ are
+worth supporting because it happens rarely, and to a certain
+extent it is simply an undisciplined way to organize the source
+tree.  Kbuild case may be justified, but I vaguely recall
+something very similar build infrastructure was used by busybox
+folks---it could be using just their own copy of kbuild for that
+matter.
+
+But as you said in a separate message, I agree that core GIT
+layer is meant to be independent from what Porcelain you put on
+it.  The relationship between Cogito and core GIT is not similar
+to kbuild and the kernel.  It is more like a random X11
+application and Xlib.  Having them in the same source tree,
+intermixed, is less than optimal.
+
+I would not be surprised when future, if not the next, Cogito
+release has source tree organized more like JIT sources,
+shipping git-pb and cogito in separate directories, managed by
+separate GIT_DIR.  That would make Pasky's life a lot simpler.
+
+And once the separation happens, the issue becomes just a simple
+package version matching every distribution does (e.g. Debian's
+binary package and library dependencies, or source Build-Depends
+dependencies), which is something already has been solved.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

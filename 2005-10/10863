@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 11:43:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 59C12170552
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 11:43:25 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932436AbVJaSnM (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 13:43:12 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932452AbVJaSnM
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 13:43:12 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:11512 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932436AbVJaSnM (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 31 Oct 2005 13:43:12 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051031184249.CMSB4527.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 31 Oct 2005 13:42:49 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Marcel Holtmann <marcel@holtmann.org>
+Subject: Re: Another problem with not existing directories
+References: <1130779234.5848.15.camel@blade>
+	<Pine.LNX.4.64.0510310929361.27915@g5.osdl.org>
+	<1130780772.5848.32.camel@blade>
+cc:	git@vger.kernel.org
+Date:	Mon, 31 Oct 2005 10:43:07 -0800
+In-Reply-To: <1130780772.5848.32.camel@blade> (Marcel Holtmann's message of
+	"Mon, 31 Oct 2005 18:46:12 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vk6ftil38.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:10863
+
+Marcel Holtmann <marcel@holtmann.org> writes:
+
+>> Are you sure you just don't have an old version of git on the other end?
+>
+> this might be possible, but then it is an old git on kernel.org. I never
+> installed any git by myself on it.
+
+I just tried this myself; master.kernel.org seems to have
+0.99.8f in /usr/bin/, which explains this symptom.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

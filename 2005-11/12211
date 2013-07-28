@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 03:35:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CBA312851FA
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 03:35:35 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161022AbVKRKf2 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 05:35:28 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161023AbVKRKf2
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 05:35:28 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:45468 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1161022AbVKRKf1 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 05:35:27 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A8A0413FFC5; Fri, 18 Nov 2005 11:35:26 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 871429F34D; Fri, 18 Nov 2005 11:35:26 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 7334C9CC6E; Fri, 18 Nov 2005 11:35:26 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6571A13FFC5; Fri, 18 Nov 2005 11:35:26 +0100 (CET)
+Date:	Fri, 18 Nov 2005 11:35:26 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Matthias Urlichs <smurf@smurf.noris.de>
+Cc:	git@vger.kernel.org
+Subject: Re: "make test" fails with current HEAD
+In-Reply-To: <pan.2005.11.18.08.56.22.908009@smurf.noris.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511181134080.8037@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <pan.2005.11.17.15.31.56.755022@smurf.noris.de>
+ <7v7jb6o1kl.fsf@assigned-by-dhcp.cox.net> <20051118075117.GK31613@kiste.smurf.noris.de>
+ <7vbr0imlha.fsf@assigned-by-dhcp.cox.net> <pan.2005.11.18.08.56.22.908009@smurf.noris.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:12211
+
+Hi,
+
+On Fri, 18 Nov 2005, Matthias Urlichs wrote:
+
+> So the trivial fix is to emit our own "Binary files FOO and BAR differ"
+> line if the exit status is 2.
+
+>From my diff man page:
+
+-- snip --
+DIAGNOSTICS
+       An  exit status of 0 means no differences were found, 1 means some 
+       differences were found, and 2 means trouble.
+-- snap --
+
+The exit value 2 is ambiguous for at least one version of GNU diff.
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

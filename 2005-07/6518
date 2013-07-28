@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul 28 20:24:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 45488E5160
+	for <tkil@scrye.com>; Thu, 28 Jul 2005 20:24:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262130AbVG2CYI (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Jul 2005 22:24:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262184AbVG2CYI
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Jul 2005 22:24:08 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:33775 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S262130AbVG2CYF (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 28 Jul 2005 22:24:05 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050729022354.UWHR8651.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 28 Jul 2005 22:23:54 -0400
+To: git@vger.kernel.org
+Cc: Linus Torvalds <torvalds@osdl.org>
+Subject: [PATCH] server-info: do not complain if a tag points at a non-commit.
+References: <Pine.LNX.4.58.0507271504071.3227@g5.osdl.org>
+	<7vack7q2k7.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0507271610010.3227@g5.osdl.org>
+	<7vll3rn4sj.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0507271813330.3227@g5.osdl.org>
+	<Pine.LNX.4.58.0507272244260.3227@g5.osdl.org>
+	<Pine.LNX.4.58.0507272249140.3227@g5.osdl.org>
+	<7vll3rjwld.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0507280040380.3227@g5.osdl.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 28 Jul 2005 19:24:03 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7diqri4.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 47
+Xref: brand.scrye.com linux.git:6518
+
+Linux 2.6 tree has one of those tree tags.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+
+ server-info.c |   15 +++++++++++----
+ 1 files changed, 11 insertions(+), 4 deletions(-)
+
+42fa3ca33f92381a73c08ab98dc4b54e6a6412cc
+diff --git a/server-info.c b/server-info.c
+--- a/server-info.c
++++ b/server-info.c
+@@ -2,6 +2,7 @@
+ #include "refs.h"
+ #include "object.h"
+ #include "commit.h"
++#include "tag.h"
+ #include "rev-cache.h"
+ 
+ /* refs */
+@@ -518,10 +519,16 @@ static int update_info_packs(int force)
+ /* rev-cache */
+ static int record_rev_cache_ref(const char *path, const unsigned char *sha1)
+ {
+-	struct commit *commit;
+-	if (!(commit = lookup_commit_reference(sha1)))
+-		return error("not a commit: %s", sha1_to_hex(sha1));
+-	return record_rev_cache(commit->object.sha1, NULL);
++	struct object *obj = parse_object(sha1);
++
++	if (!obj)
++		return error("ref %s has bad sha %s", path, sha1_to_hex(sha1));
++	while (obj && obj->type == tag_type)
++		obj = parse_object(((struct tag *)obj)->tagged->sha1);
++	if (!obj || obj->type != commit_type)
++		/* tag pointing at a non-commit */
++		return 0;
++	return record_rev_cache(obj->sha1, NULL);
+ }
+ 
+ static int update_info_revs(int force)
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

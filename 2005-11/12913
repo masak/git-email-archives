@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 28 23:21:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BAEB931D20B
+	for <tkil@scrye.com>; Mon, 28 Nov 2005 23:21:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751323AbVK2GUx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 01:20:53 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751326AbVK2GUx
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 01:20:53 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:18593 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S1751323AbVK2GUw
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 29 Nov 2005 01:20:52 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EgyrC-0000IB-Vj
+	for git@vger.kernel.org; Tue, 29 Nov 2005 01:20:51 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EgyrB-0004bc-EN
+	for git@vger.kernel.org; Tue, 29 Nov 2005 01:20:49 -0500
+Subject: [PATCH] git-clone --shared should imply --local
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Tue, 29 Nov 2005 01:20:49 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1133245249.27750.77.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:12913
+
+The "--shared" option to git-clone is silently ignored if "--local" is
+not specified.  The manual doesn't mention such dependency.  Make
+"--shared" imply "--local".
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/git-clone.sh b/git-clone.sh
+index c09979a..699205e 100755
+--- a/git-clone.sh
++++ b/git-clone.sh
+@@ -73,7 +73,7 @@ while
+ 	*,-n) no_checkout=yes ;;
+ 	*,-l|*,--l|*,--lo|*,--loc|*,--loca|*,--local) use_local=yes ;;
+         *,-s|*,--s|*,--sh|*,--sha|*,--shar|*,--share|*,--shared) 
+-          local_shared=yes ;;
++          local_shared=yes; use_local=yes ;;
+ 	*,-q|*,--quiet) quiet=-q ;;
+ 	1,-u|1,--upload-pack) usage ;;
+ 	*,-u|*,--upload-pack)
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 25 11:02:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id BC22D17045F
+	for <tkil@scrye.com>; Mon, 25 Apr 2005 11:02:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262654AbVDYRC0 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Apr 2005 13:02:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262668AbVDYRC0
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Apr 2005 13:02:26 -0400
+Received: from peer.sef.marchex.com ([66.150.8.204]:64522 "HELO
+	nosecone.marchex.com") by vger.kernel.org with SMTP id S262654AbVDYRCT
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 25 Apr 2005 13:02:19 -0400
+Received: (qmail 36793 invoked from network); 25 Apr 2005 17:02:18 -0000
+Received: from unknown (HELO axer.marchex.com) (10.101.11.64)
+  by nosecone.marchex.com with SMTP; 25 Apr 2005 17:02:18 -0000
+Subject: Re: [patch] fixup GECOS handling
+From: Kyle Hayes <kyle@marchex.com>
+Reply-To: kyle@marchex.com
+To: Andy Isaacson <adi@hexapodia.org>
+Cc: azarah@nosferatu.za.org, git@vger.kernel.org
+In-Reply-To: <20050422233012.GA27638@hexapodia.org>
+References: <1113820589.16288.5.camel@nosferatu.lan>
+	 <1113827713.5286.13.camel@localhost.localdomain>
+	 <1114179795.29271.18.camel@nosferatu.lan>
+	 <1114186599.31076.409.camel@axer.marchex.com>
+	 <20050422233012.GA27638@hexapodia.org>
+Content-Type: text/plain
+Organization: Marchex Inc.
+Date:	Mon, 25 Apr 2005 10:02:17 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114448538.13449.14.camel@axer.marchex.com>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.3 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 36
+Xref: brand.scrye.com linux.git:1596
+
+On Fri, 2005-04-22 at 16:30 -0700, Andy Isaacson wrote:
+> On Fri, Apr 22, 2005 at 09:16:39AM -0700, Kyle Hayes wrote:
+> > if(comma)
+> > 	if(semi)
+> > 		/* lastname, firstname; room #; phone # format */
+> > 		*semi  = 0;
+> > 	else
+> > 		*comma = 0;
+> > else if(semi)
+> > 	*semi = 0;
+> 
+> That's a really complicated way of writing
+> 
+> if(semi) *semi = 0;
+> else if(comma) *comma = 0;
+> 
+> (The two code fragments are precisely identical.  Mmmm, strength
+> reduction.)
+
+Indeed :-)
+
+As someone else noted, this was too complex.  As another person noted,
+this (like the SHA1 thread) has been thrashed around more than enough.
+
+Best,
+Kyle
+
+-- 
+Kyle Hayes <kyle@marchex.com>
+Marchex Inc.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

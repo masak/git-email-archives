@@ -1,0 +1,103 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jul 11 12:07:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6926A1114B2
+	for <tkil@scrye.com>; Mon, 11 Jul 2005 12:07:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262279AbVGKSD1 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 11 Jul 2005 14:03:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261795AbVGKRyM
+	(ORCPT <rfc822;git-outgoing>); Mon, 11 Jul 2005 13:54:12 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:65503 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261255AbVGKRxu (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 11 Jul 2005 13:53:50 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6BHrejA006033
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 11 Jul 2005 10:53:41 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6BHrXZp020664;
+	Mon, 11 Jul 2005 10:53:36 -0700
+Date:	Mon, 11 Jul 2005 10:53:32 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] rev-list: add "--full-objects" flag.
+In-Reply-To: <m1irzh74m0.fsf@ebiederm.dsl.xmission.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507111045380.17536@g5.osdl.org>
+References: <20050703234629.GF13848@pasky.ji.cz> <42CBC822.30701@didntduck.org>
+ <20050707144501.GG19781@pasky.ji.cz> <7vk6k2sfa4.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0507071158220.3293@g5.osdl.org> <20050707221443.GB7151@pasky.ji.cz>
+ <Pine.LNX.4.58.0507071549330.25104@g5.osdl.org> <7vll4ifbq8.fsf_-_@assigned-by-dhcp.cox.net>
+ <7vfyuqfa6r.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0507071657140.25104@g5.osdl.org>
+ <7vvf3mds9c.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0507071841010.25104@g5.osdl.org>
+ <7vy88ica8e.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0507071928220.25104@g5.osdl.org>
+ <m1pstrr8k1.fsf@ebiederm.dsl.xmission.com> <Pine.LNX.4.58.0507101517370.17536@g5.osdl.org>
+ <m1irzh74m0.fsf@ebiederm.dsl.xmission.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 50
+Xref: brand.scrye.com linux.git:5934
+
+
+
+On Mon, 11 Jul 2005, Eric W. Biederman wrote:
+> 
+> I'm having the worst time putting together a mental model of how git
+> works, and the documentation is spotty enough that it hasn't been
+> helpful.  So I am wading through the code.  It seems every time I turn
+> a corner there is another rough spot.
+
+Btw, I know I'm bad at writing docs, but what I _do_ enjoy doing is
+answering reasonably specific technical questions, and maybe somebody else
+can write docs by taking advantage of me that way.
+
+I tried to write the tutorial in a way that it also tries to explain how
+git works (not just a "do this", but a "you update the index file and then
+write the result out as a tree object"), but it obviously covers a fairly
+limited part of what git actually can do, and at the same time it doesn't
+go into a lot of detail.
+
+And part of that is not just my inability to write documentation, it's
+also that I just have the wrong "view" of the project, ie I probably just
+take a lot of things for granted and consider them obvious, even though
+they aren't, and then I probably occasionally explain things that aren't
+worth explaining, because either they _are_ obvious, or people just don't
+care and they are irrelevant.
+
+I'd love to see somebody write up more of a "this is how you use git" kind
+of tutorial, _and_ on the other hand more of a low-level explanation of
+the notion of an object store where objects refer to each other by their
+SHA1 names, and how that is represented in the filesystem and/or in packs. 
+
+Something with a few pictures would be great (ie screenshots of gitk, but
+also something that tries to just visually show hot tags point to commits
+that point to parents and trees, and trees pointing to other trees and
+then blobs).
+
+All things that I'm a complete idiot at, but that would help users 
+visualize what the heck git is actually _doing_, so that they don't just 
+parrot some magic command line that they don't understand, but can 
+actually reason about what they are doing.
+
+I think a lot of people do understand this, but yes, the docs are kind of 
+lacking.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

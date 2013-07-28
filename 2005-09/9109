@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 22 08:08:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5F69D26F312
+	for <tkil@scrye.com>; Thu, 22 Sep 2005 08:08:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030360AbVIVOFu (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Sep 2005 10:05:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030361AbVIVOFu
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Sep 2005 10:05:50 -0400
+Received: from [85.8.12.41] ([85.8.12.41]:10627 "EHLO smtp.drzeus.cx")
+	by vger.kernel.org with ESMTP id S1030360AbVIVOFt (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 22 Sep 2005 10:05:49 -0400
+Received: from [192.168.128.82] (alcatraz.cendio.se [::ffff:193.12.253.67])
+  (AUTH: PLAIN drzeus, TLS: TLSv1/SSLv3,256bits,AES256-SHA)
+  by smtp.drzeus.cx with esmtp; Thu, 22 Sep 2005 16:05:48 +0200
+  id 00062716.4332BA3C.00002883
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4332BA3E.2080607@drzeus.cx>
+Date:	Thu, 22 Sep 2005 16:05:50 +0200
+From:	Pierre Ossman <drzeus-list@drzeus.cx>
+User-Agent: Mozilla Thunderbird 1.0.6-5 (X11/20050818)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+CC:	git@vger.kernel.org
+Subject: Re: StGIT cannot import properly from stdin
+References: <433107C7.60901@drzeus.cx>	<b0943d9e05092101033dd5d366@mail.gmail.com>	<433290A5.5070008@drzeus.cx> <tnxhdcd2tfn.fsf@arm.com>
+In-Reply-To: <tnxhdcd2tfn.fsf@arm.com>
+X-Enigmail-Version: 0.90.1.0
+X-Enigmail-Supports: pgp-inline, pgp-mime
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 36
+Xref: brand.scrye.com linux.git:9109
+
+Catalin Marinas wrote:
+
+>
+>Unfortunately, if the '---' line is missing, it consumes all the input
+>lines. Is this the case with your patch?
+>
+>  
+>
+
+Nope. It consumes the correct ammount of lines. The problem is that I
+have to give it a kick (^D) to start things twice. The first for
+__parse_patch() and the second for _input(). I put some debug-prints in
+there and the for-loops will not start executing on the first complete
+line, only EOF.
+
+>>If you would cache the input to a file (or memory) you would remove both
+>>of these problems.
+>>    
+>>
+>
+>True, but it requires more work than simply writing the patch to a
+>file and reading it twice.
+>
+>  
+>
+
+If it supports everything when given a filename then shouldn't adding a
+preprocessing step to dump stdin to disk give the same code path?
+
+Rgds
+Pierre
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

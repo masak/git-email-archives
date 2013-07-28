@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  2 02:31:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 294D3AF0AA
+	for <tkil@scrye.com>; Fri,  2 Dec 2005 02:31:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751769AbVLBJ3X (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 2 Dec 2005 04:29:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751773AbVLBJ3X
+	(ORCPT <rfc822;git-outgoing>); Fri, 2 Dec 2005 04:29:23 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:46014 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1751769AbVLBJ3W
+	(ORCPT <rfc822;git@vger.kernel.org>); Fri, 2 Dec 2005 04:29:22 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP
+	id 742DA6BD03; Fri,  2 Dec 2005 10:29:21 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <439013F1.4070600@op5.se>
+Date:	Fri, 02 Dec 2005 10:29:21 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org, Carl Baldwin <cnb@fc.hp.com>
+Subject: Re: [RFC] Using sticky directories to control access to branches.
+References: <20051117170129.GA14013@hpsvcnb.fc.hp.com>	<7vfypumlu3.fsf@assigned-by-dhcp.cox.net>	<20051121180133.GA28171@hpsvcnb.fc.hp.com>	<20051201154222.GB18993@hpsvcnb.fc.hp.com> <7vwtio9u8f.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vwtio9u8f.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:13102
+
+Junio C Hamano wrote:
+> 
+> It _might_ make sense to have a contrib/examples subdirectory in
+> git.git project and keep a collection of examples like this.
+> 
+> Anybody else interested?
+> 
+
+I am. Ten thousand brains usually do a better job than one in thinking 
+up cool and nifty stuff. :)
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

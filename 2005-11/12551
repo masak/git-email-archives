@@ -1,0 +1,89 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 11:00:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6D76615F841
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 11:00:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965041AbVKVR5J (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 12:57:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965038AbVKVR5J
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 12:57:09 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:48103 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S965036AbVKVR4y (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 12:56:54 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A26A113FFC9; Tue, 22 Nov 2005 18:56:51 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 61D7DB52BD; Tue, 22 Nov 2005 18:56:51 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 03327B52B6; Tue, 22 Nov 2005 18:56:51 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CC1DC13FF9E; Tue, 22 Nov 2005 18:56:50 +0100 (CET)
+Date:	Tue, 22 Nov 2005 18:56:50 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+Cc:	git@vger.kernel.org
+Subject: Re: Get rid of .git/branches/ and .git/remotes/?
+In-Reply-To: <200511221831.03954.Josef.Weidendorfer@gmx.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511221854120.27872@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0511201748440.14258@wbgn013.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.64.0511200935081.13959@g5.osdl.org> <200511210026.30280.Josef.Weidendorfer@gmx.de>
+ <200511221831.03954.Josef.Weidendorfer@gmx.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 36
+Xref: brand.scrye.com linux.git:12551
+
+Hi,
+
+On Tue, 22 Nov 2005, Josef Weidendorfer wrote:
+
+>   [remote:origin]
+>     url = master.kernel.org:/pub/scm/git/git.git
+>     pull = master:origin
+> 
+> For this, the parser could return
+>     remote.url = master.kernel.org:/pub/scm/git/git.git for origin
+>     remote.pull = master:origin for origin
+> 
+> By introducing such a scheme, multi-value vars would fit perfectly
+> for use for .git/remotes or .git/branches.
+
+I don't know if you missed it, but hierarchical config keys were 
+introduced by b17e659dd4007cb1d3eb5ac32b524c0c5ab59601:
+
+[remote.origin]
+	url = master.kernel.org:/pub/scm/git/git.git
+	pull = master:origin
+
+is parsable by
+
+	git-config-set --get remote.origin.url
+
+now.
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

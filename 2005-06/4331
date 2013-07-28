@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun  1 00:52:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 48DC5F756A
+	for <tkil@scrye.com>; Wed,  1 Jun 2005 00:52:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261300AbVFAGwK (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 1 Jun 2005 02:52:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261304AbVFAGwK
+	(ORCPT <rfc822;git-outgoing>); Wed, 1 Jun 2005 02:52:10 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:16855 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S261300AbVFAGwF (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 1 Jun 2005 02:52:05 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050601065203.HIIG550.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 1 Jun 2005 02:52:03 -0400
+To: Nicolas Pitre <nico@cam.org>
+Cc: Linus Torvalds <torvalds@osdl.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: I want to release a "git-1.0"
+References: <Pine.LNX.4.58.0505301253070.1876@ppc970.osdl.org>
+	<Pine.LNX.4.62.0505301644430.5330@localhost.localdomain>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Tue, 31 May 2005 23:52:03 -0700
+In-Reply-To: <Pine.LNX.4.62.0505301644430.5330@localhost.localdomain> (Nicolas
+ Pitre's message of "Mon, 30 May 2005 16:49:33 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vacmapo18.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 14
+Xref: brand.scrye.com linux.git:4331
+
+I just remembered that I mentioned potential problems with non
+rsync pulls with delta objects, especially when the git-*-pull
+commands are used in "things only close to the tip" mode,
+i.e. without "-a" option.  Do you think we should do something
+about it before GIT 1.0 happens?  
+
+It may be enough if we just tell people not to deltify their
+public non-rsync repositories in the documentation.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

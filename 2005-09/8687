@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 11:08:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C1F2027B034
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 11:08:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161194AbVIPRIH (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 13:08:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161197AbVIPRIH
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 13:08:07 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:44470 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1161194AbVIPRIG (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 16 Sep 2005 13:08:06 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050916170805.OHOZ20473.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 16 Sep 2005 13:08:05 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Martin Atukunda <matlads@dsmagic.com>
+Subject: Re: Add uninstall target to Makefile
+References: <20050916125814.GA8084@igloo.ds.co.ug>
+cc:	git@vger.kernel.org
+Date:	Fri, 16 Sep 2005 10:08:04 -0700
+In-Reply-To: <20050916125814.GA8084@igloo.ds.co.ug> (Martin Atukunda's message
+	of "Fri, 16 Sep 2005 15:58:14 +0300")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfys5ndor.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 12
+Xref: brand.scrye.com linux.git:8687
+
+Martin Atukunda <matlads@dsmagic.com> writes:
+
+> Add the uninstall target to the Makefile.
+
+Sorry, I absolutely detest other peoples' Makefiles that has
+this target.  Why would anybody want this?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

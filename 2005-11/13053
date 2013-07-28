@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  1 08:44:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_48_96 autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4D4C014B19A
+	for <tkil@scrye.com>; Thu,  1 Dec 2005 08:44:20 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932282AbVLAPkJ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Dec 2005 10:40:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932284AbVLAPkI
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Dec 2005 10:40:08 -0500
+Received: from atlrel9.hp.com ([156.153.255.214]:22446 "EHLO atlrel9.hp.com")
+	by vger.kernel.org with ESMTP id S932282AbVLAPkH (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 1 Dec 2005 10:40:07 -0500
+Received: from smtp2.fc.hp.com (smtp.fc.hp.com [15.15.136.253])
+	by atlrel9.hp.com (Postfix) with ESMTP id CD48F34D67
+	for <git@vger.kernel.org>; Thu,  1 Dec 2005 10:40:06 -0500 (EST)
+Received: from hpsvcnb.fc.hp.com (hpsvcnb.fc.hp.com [15.6.94.42])
+	by smtp2.fc.hp.com (Postfix) with ESMTP id 64F3A41E623
+	for <git@vger.kernel.org>; Thu,  1 Dec 2005 15:40:06 +0000 (UTC)
+Received: by hpsvcnb.fc.hp.com (Postfix, from userid 21523)
+	id 4E9814095; Thu,  1 Dec 2005 08:40:06 -0700 (MST)
+Date:	Mon, 28 Nov 2005 09:33:56 -0700
+From:	Carl Baldwin <cnb@fc.hp.com>
+To:	git@vger.kernel.org
+Subject: [Question] Fetching a new branch from remote
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051128163356.GA8300@hpsvcnb.fc.hp.com>
+Mail-Followup-To: git@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Organization: Hewlett Packard
+X-Origin: hpsvcnb.fc.hp.com
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:13053
+
+Greetings,
+
+I have a short question about git fetch.  Say there is a new branch,
+call it 'new-branch' in a remote repository.  I am interested in this
+branch and want to fetch it to 'new-branch' in my local to track its
+progress.
+
+I would expect this to do it:
+
+% git fetch -f <url> new-branch
+
+But, it doesn't.
+
+Actually, I just noticed that this accomplishes the desired result...
+
+% git fetch <url> new-branch:new-branch
+
+I also just noticed that the man pages only says that '-f' works on
+tags.  Should it work on branches?  Either way, it wasn't clear to me
+how to fetch a new branch from a remote and store it under the same name
+locally.  In my opinion, git fetch -f should do this if given a
+branchname from the remote.
+
+Carl
+
+-- 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ Carl Baldwin                        Systems VLSI Laboratory
+ Hewlett Packard Company
+ MS 88                               work: 970 898-1523
+ 3404 E. Harmony Rd.                 work: Carl.N.Baldwin@hp.com
+ Fort Collins, CO 80525              home: Carl@ecBaldwin.net
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

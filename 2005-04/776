@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 03:10:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6202C13E0F8
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 03:10:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261320AbVDSJKm (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 05:10:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261419AbVDSJKm
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 05:10:42 -0400
+Received: from guft.superlucidity.net ([63.224.205.130]:50574 "EHLO
+	mail.guft.org") by vger.kernel.org with ESMTP id S261320AbVDSJJt
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 19 Apr 2005 05:09:49 -0400
+Received: (qmail 23333 invoked by uid 5006); 19 Apr 2005 02:09:47 -0700
+From: Zach Welch <zw@superlucidity.net>
+Subject: [PATCH 4/8] init-db.c: add INDEX_FILE_DIRECTORY support
+To: git@vger.kernel.org
+In-Reply-To: mailbox-23311-1113901779-711084@spoon
+Content-Type:	text/plain; charset=US-ASCII
+Lines:	40
+Content-Transfer-Encoding: 7BIT
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <mailbox-23311-1113901779-728644@spoon>
+Date:	Tue, 19 Apr 2005 02:09:39 -0700
+MIME-Version: 1.0
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 45
+Xref: brand.scrye.com linux.git:776
+
+This patch give init-db the ability for the index directory to be 
+overridden by the INDEX_FILE_DIRECTORY environment variable.
+
+This patch applies on top of:
+        [PATCH 0/8] init-db.c cleanup, add INDEX_FILE_DIRECTORY support
+        [PATCH 1/8] init-db.c: [RESEND] remove redundant getenv call
+        [PATCH 2/8] init-db.c: [RESEND] make init-db work with common objects
+        [PATCH 3/8] init-db.c: refactor directory creation
+ cache.h   |    3 +++
+ init-db.c |    5 +----
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+Signed-Off-By: Zach Welch <zw@superlucidity.net>
+
+
+--- a/cache.h	2005-04-18 21:13:36.000000000 -0700
++++ b/cache.h	2005-04-18 21:13:44.000000000 -0700
+@@ -81,6 +81,9 @@
+ struct cache_entry **active_cache;
+ unsigned int active_nr, active_alloc;
+ 
++#define INDEX_ENVIRONMENT "INDEX_FILE_DIRECTORY"
++#define DEFAULT_INDEX_ENVIRONMENT ".git"
++
+ #define DB_ENVIRONMENT "SHA1_FILE_DIRECTORY"
+ #define DEFAULT_DB_ENVIRONMENT ".git/objects"
+ 
+--- a/init-db.c	2005-04-18 21:21:02.000000000 -0700
++++ b/init-db.c	2005-04-18 21:15:14.000000000 -0700
+@@ -42,10 +42,7 @@
+ 	char *sha1_dir, *path;
+ 	int len, i;
+ 
+-	if (mkdir(".git", 0755) < 0) {
+-		perror("unable to create .git directory");
+-		exit(1);
+-	}
++	(void) init_dir(INDEX_ENVIRONMENT, DEFAULT_INDEX_ENVIRONMENT, "index", NULL);
+ 	sha1_dir = init_dir(DB_ENVIRONMENT, DEFAULT_DB_ENVIRONMENT, "storage", &len);
+ 	
+ 	path = malloc(len + 40);
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

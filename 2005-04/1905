@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 17:11:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1EDDCF7990
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 17:11:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262087AbVD0XLU (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Apr 2005 19:11:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262088AbVD0XLU
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Apr 2005 19:11:20 -0400
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:38342 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S262087AbVD0XLS (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 27 Apr 2005 19:11:18 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050427231115.LAVH19494.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 27 Apr 2005 19:11:15 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Make -s flag to show-diff a no-op.
+References: <7vfyxbeuwt.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0504271520150.18901@ppc970.osdl.org>
+	<7v64y7etko.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0504271600280.18901@ppc970.osdl.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 27 Apr 2005 16:11:16 -0700
+In-Reply-To: <Pine.LNX.4.58.0504271600280.18901@ppc970.osdl.org> (Linus
+ Torvalds's message of "Wed, 27 Apr 2005 16:05:02 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtqnddd7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 12
+Xref: brand.scrye.com linux.git:1905
+
+>>>>> "LT" == Linus Torvalds <torvalds@osdl.org> writes:
+
+LT> Well, if you give pathnames, it's always going to limit recursion to only 
+LT> those subdirectories that match one of them. 
+
+If that is the case then -p should imply -r.  Will fix it up.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

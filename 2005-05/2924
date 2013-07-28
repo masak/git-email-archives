@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  9 22:24:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6124A635A
+	for <tkil@scrye.com>; Mon,  9 May 2005 22:24:40 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261470AbVEJEXy (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 10 May 2005 00:23:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261519AbVEJEXy
+	(ORCPT <rfc822;git-outgoing>); Tue, 10 May 2005 00:23:54 -0400
+Received: from iabervon.org ([66.92.72.58]:56069 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261470AbVEJEXx (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 10 May 2005 00:23:53 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DVMHO-0007A9-00; Tue, 10 May 2005 00:23:34 -0400
+Date:	Tue, 10 May 2005 00:23:34 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Mark Allen <mrallen1@yahoo.com>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] minor Makefile and local-pull.c edits for Darwin
+In-Reply-To: <20050510021105.53984.qmail@web41213.mail.yahoo.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0505100019350.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:2924
+
+On Mon, 9 May 2005, Mark Allen wrote:
+
+> Darwin puts all of the openssl functionality into libcrypto not
+> libssl.
+
+Actually, the relevant openssl functionality is always in libcrypto, not
+libssl. It's just that ELF shared libraries include dependancies, and
+libssl pulls in libcrypto. If you change it, change it for everyone,
+rather than just Darwin.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

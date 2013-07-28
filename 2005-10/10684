@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 26 14:28:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5E04412B00E
+	for <tkil@scrye.com>; Wed, 26 Oct 2005 14:28:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964901AbVJZU1D (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 26 Oct 2005 16:27:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964904AbVJZU1D
+	(ORCPT <rfc822;git-outgoing>); Wed, 26 Oct 2005 16:27:03 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:27123 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S964901AbVJZU1B (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 26 Oct 2005 16:27:01 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051026202641.NRXA9394.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 26 Oct 2005 16:26:41 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Alex Riesen <fork0@users.sourceforge.net>
+Subject: Re: [PATCH 1/4] git-init-db should error out with a message
+References: <Pine.LNX.4.63.0510260139000.30576@wbgn013.biozentrum.uni-wuerzburg.de>
+	<20051026194520.GC8030@steel.home>
+cc:	git@vger.kernel.org
+Date:	Wed, 26 Oct 2005 13:27:00 -0700
+In-Reply-To: <20051026194520.GC8030@steel.home> (Alex Riesen's message of
+	"Wed, 26 Oct 2005 21:45:20 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3bmoc9d7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 36
+Xref: brand.scrye.com linux.git:10684
+
+Alex Riesen <fork0@users.sourceforge.net> writes:
+
+> Not just that. It would be interesting to give the user an option to
+> use the file references ("ref: refs/heads/master").
+
+Actually, the users should not have to care how HEAD reference
+is implemented.  It might make sense to use regular file symref
+regardless of platforms (i.e. never define USE_SYMLINK_HEAD on
+any platform).
+
+We support reading from either kind of symref, so if we did
+that, the only case that *could* matter form compatibility point
+of view is that repositories touched by the updated git is
+unusable for an ancient git that does not understand regular
+file symref.  From performance and simplicity point of view,
+however, using symlink when possible is better, and that is what
+Johannes' patch does.
+
+HOWEVER, I think "falling back" (both in Johannes' patch which
+is in the "master" branch, and your version) has a funny failure
+mode.  What happens when two processes try redirecting .git/HEAD
+simultaneously, possibly to different branch heads?  Both of
+them unlink(), one successfully does symlink(), and the other
+gets EEXIST and falls back to create regular file symref.
+
+Which is probably not so wrong; if this race matters, then you
+have bigger problem -- the user is doing 'git checkout' of
+different branches at the same time, or something silly like
+that.  But it does not feel quite right, either.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

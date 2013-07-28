@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  9 15:11:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 86F57196B58
+	for <tkil@scrye.com>; Tue,  9 Aug 2005 15:11:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964943AbVHIVJu (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 9 Aug 2005 17:09:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964968AbVHIVJu
+	(ORCPT <rfc822;git-outgoing>); Tue, 9 Aug 2005 17:09:50 -0400
+Received: from soundwarez.org ([217.160.171.123]:58296 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S964943AbVHIVJu (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 9 Aug 2005 17:09:50 -0400
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id CBC6E29F53; Tue,  9 Aug 2005 23:09:48 +0200 (CEST)
+Date:	Tue, 9 Aug 2005 23:09:48 +0200
+From: Kay Sievers <kay.sievers@vrfy.org>
+To: John Benes <smartcat99s@gmail.com>
+Cc: git@vger.kernel.org
+Subject: Re: gitweb - feature request
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050809210948.GA21162@vrfy.org>
+References: <20050809193104.GA10858@mars.ravnborg.org> <20050809195818.GA19284@vrfy.org> <20050809201836.GA11051@mars.ravnborg.org> <Pine.LNX.4.63.0508092224580.9849@wgmdd8.biozentrum.uni-wuerzburg.de> <20050809204347.GB11132@mars.ravnborg.org> <42F91759.8010008@gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42F91759.8010008@gmail.com>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_PM,TW_VN 
+	autolearn=no version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:7000
+
+On Tue, Aug 09, 2005 at 03:51:37PM -0500, John Benes wrote:
+> Sam Ravnborg wrote:
+> >> You have Firefox, don't you? Next time you surf to gitweb, right click on 
+> >> the funny yellow symbol in the lower right corner of your Firefox. It 
+> >> should say something like "Subscribe to...". Do it.
+> > 
+> > Unfortunately not on my firefox. 1.0.6 on gentoo.
+> > Puzzled...
+> 
+> I don't see it either with Firefox/1.0+ ID:2005080905.
+> 
+> For it to work, this code needs to be added to the HEAD (slightly modified)
+> 
+> <link rel="alternate" type="application/rss+xml" title="GIT Trees"
+> href="http://www.kernel.org/git/?a=opml" />
+
+Are you sure that firefox handles opml without a plugin?
+
+Kay
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

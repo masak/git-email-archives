@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 09:30:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DA114260A79
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 09:30:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261735AbVD0P3s (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Apr 2005 11:29:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261738AbVD0P3s
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Apr 2005 11:29:48 -0400
+Received: from fire.osdl.org ([65.172.181.4]:964 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261735AbVD0P3p (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 27 Apr 2005 11:29:45 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3RFTcs4015825
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 27 Apr 2005 08:29:39 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3RFTbuJ020057;
+	Wed, 27 Apr 2005 08:29:38 -0700
+Date:	Wed, 27 Apr 2005 08:31:37 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>
+Cc: darcs-devel@darcs.net, Git Mailing List <git@vger.kernel.org>
+Subject: Re: Darcs-git pulling from the Linux repo: a Linux VM question
+In-Reply-To: <7i7jionz5q.fsf@lanthane.pps.jussieu.fr>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504270823480.18901@ppc970.osdl.org>
+References: <7i7jionz5q.fsf@lanthane.pps.jussieu.fr>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 49
+Xref: brand.scrye.com linux.git:1842
+
+
+
+On Wed, 27 Apr 2005, Juliusz Chroboczek wrote:
+> 
+> So yes, in the longer term we need to fix Darcs.  For now, does anyone
+> know how I can tune the Linux VM to get a 720 MB process to run
+> reliably in 640 MB of main memory?
+
+I really think you're screwed. The only way you have even a _chance_ of
+getting it to work well is that if you have very nice access patterns to
+that 720MB, but my guess is that that simply isn't the case. You probably
+read most of it in once (and write out changes once, but I hope you at
+least notice the case of "nothing changed" so that probably is the smaller
+of your problems), and the fact is, you're going to have absolutely
+_horrible_ access patterns, since you'll end up not just with a 720MB
+process that doesn't have much locality, you'll end up with another 720MB
+that you needed to have in the page cache for the IO.
+
+The only way I can see to fix it short-term is to try to use "mmap()"  
+instead of "read()" to read the file data, and then try to avoid touching
+the mapping unless you _have_ to. In other words: if you actually need to
+_compare_ the data (which obviously reads from the mapping), you're
+screwed.
+
+Using mmap() will at least mean that the system can re-use the page cache 
+pages, though, so it should improve memory pressure a bit.
+
+> So what was it you said about self-tuning VM systems?
+
+The kernel tries to tune itself in the sense that it automatically 
+allocates the memory to user processes vs caching (page cache, directory 
+caching etc) and tunes itself quite well that way.
+
+But there's no way to tune for crappy access patterns and working sets
+bigger than the amount of RAM. Sorry. You really need to fix darcs.
+
+You _really_ shouldn't read in files that you don't absolutely need.  
+That's really the biggest point of git: using the sha1 for naming the
+objects is really all about "descrive the contents using 20 bytes instead
+of by reading the contents". Because reading the content _will_ be
+expensive. Even if you have 2GB of memory and you can keep it all cached,
+it will be horribly expensive.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

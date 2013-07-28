@@ -1,0 +1,108 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jul 11 18:51:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B329F65B1
+	for <tkil@scrye.com>; Mon, 11 Jul 2005 18:50:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262508AbVGKULp (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 11 Jul 2005 16:11:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262502AbVGKUIs
+	(ORCPT <rfc822;git-outgoing>); Mon, 11 Jul 2005 16:08:48 -0400
+Received: from iabervon.org ([66.92.72.58]:58629 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262524AbVGKUGR (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 11 Jul 2005 16:06:17 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1Ds4VQ-0008HK-00; Mon, 11 Jul 2005 16:03:56 -0400
+Date:	Mon, 11 Jul 2005 16:03:56 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Junio C Hamano <junkio@cox.net>, Petr Baudis <pasky@ucw.cz>,
+	git@vger.kernel.org
+Subject: Re: [PATCH 0/2] Support for packs in HTTP
+In-Reply-To: <Pine.LNX.4.58.0507111040251.17536@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0507111519380.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 69
+Xref: brand.scrye.com linux.git:5965
+
+On Mon, 11 Jul 2005, Linus Torvalds wrote:
+
+> 
+> 
+> On Mon, 11 Jul 2005, Daniel Barkalow wrote:
+> > On Sun, 10 Jul 2005, Linus Torvalds wrote:
+> > 
+> > > 
+> > > You really _mustn't_ try to create the pack directly to the
+> > > $GIT_DIR/objects/pack subdirectory - that would make git itself start
+> > > possibly using that pack before the index is all done, and that would be
+> > > just wrong and nasty.
+> > >
+> > > So you really should _always_ generate the pack somewhere else, and then 
+> > > move it (pack file first, index file second).
+> > 
+> > It's currently fine ignoring index files without corresponding
+> > pack files (sha1_file.c, line 470).
+> 
+> That doesn't help.
+
+Well, it means that the order you move them doesn't matter, because it
+will ignore the pair if either hasn't been moved.
+
+> Redgardless of which order you write them (and you _will_ write the 
+> pack-file first), you'll find that at some point you have both files, but 
+> one or the other isn't fully written, ie they are unusable.
+
+(Off topic: note that git-http-pull writes the _index_ first, because it
+fetches it to determine if it should fetch the pack)
+
+> And yes, you can handle that by always checking the SHA1 of the files when 
+> you open them, but the fact is, you shouldn't need to, just to use it. 
+> Checking the SHA1 of the pack-file in particular is very expensive (since 
+> it's potentially a huge file, and you don't even want to read all of it).
+
+IIRC, we check the size of the pack file and there are hashes around the
+ends of the two files which have to match; but this is a die() check, not
+an ignore check, so we just crash with a clear error message rather than
+doing crazy stuff (like reading from beyond the end of the mmap).
+
+> So that's what I decided the rule is: never ever have a partial file, and 
+> thus you can by definition use them immediately when you see both files.
+> 
+> But that requires that you write them under another name than the final 
+> one. And since you want that _anyway_ for other uses, you don't hide that 
+> inside "git-pack-objects", but you make it an exported interface.
+
+We should never write anything under the final name, anyway, for just this
+reason; we already use open/write/close/rename for objects, refs, and
+cache (maybe not working directory files, though). I think we're actually
+agreeing on this.
+
+My position is that the temporary location should be something like
+{final-name}.part, such that it doesn't match *.idx or *.pack beforehand
+(so it doesn't look like a complete file that you might want to send to
+someone) and it doesn't have to worry about EXDEV on the rename. Also, I
+would ideally like to be able to resume an interrupted download, which
+means that it would have to find the partial file in a predictable
+location, given what it's supposed to contain.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

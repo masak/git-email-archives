@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 21 13:57:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 97AF9115961
+	for <tkil@scrye.com>; Sat, 21 May 2005 13:57:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261437AbVEUT5P (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 21 May 2005 15:57:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261260AbVEUT5P
+	(ORCPT <rfc822;git-outgoing>); Sat, 21 May 2005 15:57:15 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:58539 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S261437AbVEUT5L (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 21 May 2005 15:57:11 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050521195711.SLCM8651.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 21 May 2005 15:57:11 -0400
+To: "Sean" <seanlkml@sympatico.ca>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH 3/3] - Convert git-checkout-cache to argp
+References: <2242.10.10.10.24.1116700408.squirrel@linux1>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Sat, 21 May 2005 12:57:10 -0700
+In-Reply-To: <2242.10.10.10.24.1116700408.squirrel@linux1> (seanlkml@sympatico.ca's
+ message of "Sat, 21 May 2005 14:33:28 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7voeb4gxnt.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:3691
+
+>>>>> "S" == Sean  <seanlkml@sympatico.ca> writes:
+
+S> Use argp to process command line arguments for git-checkout-cache.  Also,
+S> fix things up so that the order of options on the command line no longer
+S> matters.  To this end, the "-f" (--force) switch only applies to the
+S> individual files given on the command line.   A new forcing version of the
+S> "-a" (--all) switch is added as "-A" (--forceall).
+
+I do not like that change at all.  That would break existing
+scripts.
+
+Why not just say --force forces checkout even when it is used
+with -a?  I do not think anybody sane uses "-a -f" in their
+existing scripts nor from the command line.
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

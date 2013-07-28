@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 18 19:15:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 180C331D30D
+	for <tkil@scrye.com>; Tue, 18 Oct 2005 19:15:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932392AbVJSBOx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 18 Oct 2005 21:14:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751514AbVJSBOw
+	(ORCPT <rfc822;git-outgoing>); Tue, 18 Oct 2005 21:14:52 -0400
+Received: from terminus.zytor.com ([192.83.249.54]:58341 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1751479AbVJSBOw
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 18 Oct 2005 21:14:52 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j9J1EhFX013192
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 18 Oct 2005 18:14:44 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43559DFE.7060503@zytor.com>
+Date:	Tue, 18 Oct 2005 18:14:38 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Linus Torvalds <torvalds@osdl.org>
+CC:	Kay Sievers <kay.sievers@vrfy.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: gitweb.cgi
+References: <43546492.3020401@zytor.com> <20051018110725.GB6929@vrfy.org> <43552FC2.3000000@zytor.com> <Pine.LNX.4.64.0510181645200.3369@g5.osdl.org> <43559575.1060902@zytor.com> <Pine.LNX.4.64.0510181753340.3369@g5.osdl.org>
+In-Reply-To: <Pine.LNX.4.64.0510181753340.3369@g5.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:10245
+
+Linus Torvalds wrote:
+> 
+> On Tue, 18 Oct 2005, H. Peter Anvin wrote:
+> 
+>>It turns out that the default CacheSize is only 256K.  D'oh!  Fixed.
+>>
+>>I also changed the CacheDefaultExpire to 600 seconds.
+> 
+> 
+> Ok, that sounds like it should improve things. My quick tests didn't seem 
+> to show any difference, though. Do you need to re-load the apache module 
+> or something?
+> 
+
+Yes, but I did that.  It seems very strange when something hits the 
+cache.  A cgi script can apparently be run quite a few number of times 
+before mod_cache sees it globally.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

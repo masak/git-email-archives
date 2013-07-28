@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  2 16:24:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B139416F571
+	for <tkil@scrye.com>; Tue,  2 Aug 2005 16:24:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261453AbVHBWYo (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 2 Aug 2005 18:24:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261455AbVHBWYo
+	(ORCPT <rfc822;git-outgoing>); Tue, 2 Aug 2005 18:24:44 -0400
+Received: from az33egw02.freescale.net ([192.88.158.103]:13237 "EHLO
+	az33egw02.freescale.net") by vger.kernel.org with ESMTP
+	id S261453AbVHBWYo (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 2 Aug 2005 18:24:44 -0400
+Received: from az33smr02.freescale.net (az33smr02.freescale.net [10.64.34.200])
+	by az33egw02.freescale.net (8.12.11/az33egw02) with ESMTP id j72MUupj026649
+	for <git@vger.kernel.org>; Tue, 2 Aug 2005 15:30:56 -0700 (MST)
+Received: from [10.82.19.2] (cashmere.am.freescale.net [10.82.19.2])
+	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id j72MTOxW000029
+	for <git@vger.kernel.org>; Tue, 2 Aug 2005 17:29:24 -0500 (CDT)
+Subject: git-fsck-cache cleaning
+From: Jon Loeliger <jdl@freescale.com>
+To: Git List <git@vger.kernel.org>
+Content-Type: text/plain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1123021481.2614.6.camel@cashmere.sps.mot.com>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6 (1.4.6-2.ydl.1) 
+Date:	Tue, 02 Aug 2005 17:24:41 -0500
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_JD autolearn=ham 
+	version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:6716
+
+Hi GITers,
+
+So, after you dink around in a GIT tree for a while,
+and you discover little bloblets left around by using
+git-fsck-cache, what do you do?  How can you clean up
+afterwards?
+
+Specifically, I have a GIT tree that shows some dangling
+blobs that are unreferenced in my tree.  Not sure how the
+got there, but I've verified through git-cat-file that
+the contents of many of those blobs are actually validly
+represented in my tree.  Yet, fsck suggests they dangle.
+
+So, for each of the various fsck warnings, what can be
+done to clean things up and yet maintain integrity in
+the tree?  I have apparently unreferenced blobs.  I should
+be able to just "rm .git/objects/xx/<sha1>" and be done
+with them, right?  What about the other warnings?
+
+Thanks,
+jdl
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

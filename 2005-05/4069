@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 27 15:21:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 29E991704E2
+	for <tkil@scrye.com>; Fri, 27 May 2005 15:21:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262600AbVE0VUy (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 27 May 2005 17:20:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262605AbVE0VUy
+	(ORCPT <rfc822;git-outgoing>); Fri, 27 May 2005 17:20:54 -0400
+Received: from neapel230.server4you.de ([217.172.187.230]:30881 "EHLO
+	neapel230.server4you.de") by vger.kernel.org with ESMTP
+	id S262600AbVE0VUf (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 27 May 2005 17:20:35 -0400
+Received: by neapel230.server4you.de (Postfix, from userid 1000)
+	id 75BE339F; Fri, 27 May 2005 23:20:32 +0200 (CEST)
+Date:	Fri, 27 May 2005 23:20:32 +0200
+From: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] git-tar-tree: small doc update
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050527212032.GB17478@lsrfire.ath.cx>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 31
+Xref: brand.scrye.com linux.git:4069
+
+Update git-tar-tree documenation a teensy bit: document where the file
+times come from and correct author section.  I'll take the blame for
+that contraption, if you don't mind. ;)
+
+Signed-off-by: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+
+Index: Documentation/git-tar-tree.txt
+===================================================================
+--- fa5c736eeabbead4a4c024051d104930d836092a/Documentation/git-tar-tree.txt  (mode:100644)
++++ ff1cce79554723d915cb45315fda2d56a1c5ea04/Documentation/git-tar-tree.txt  (mode:100644)
+@@ -17,10 +17,14 @@
+ When <base> is specified it is added as a leading path as the files in the
+ generated tar archive.
+ 
++When the given ID is a tree ID then all the files in the archive get
++their mtime set to the current time.  When called with the ID of a commit
++object the commit time recorded therein is used instead.
++
+ 
+ Author
+ ------
+-Written by Linus Torvalds <torvalds@osdl.org>
++Written by Rene Scharfe.
+ 
+ Documentation
+ --------------
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

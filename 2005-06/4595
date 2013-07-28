@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun  5 17:26:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 94CD26DC1
+	for <tkil@scrye.com>; Sun,  5 Jun 2005 17:26:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261631AbVFEX00 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 5 Jun 2005 19:26:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261632AbVFEX00
+	(ORCPT <rfc822;git-outgoing>); Sun, 5 Jun 2005 19:26:26 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:30371 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261631AbVFEX0W (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 5 Jun 2005 19:26:22 -0400
+Received: (qmail 8654 invoked by uid 2001); 5 Jun 2005 23:26:20 -0000
+Date:	Mon, 6 Jun 2005 01:26:20 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: torvalds@osdl.org
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Make git-update-cache --force-remove regular
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050605232620.GU17462@pasky.ji.cz>
+References: <20050531165243.GD7013@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050531165243.GD7013@pasky.ji.cz>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 26
+Xref: brand.scrye.com linux.git:4595
+
+Dear diary, on Tue, May 31, 2005 at 06:52:43PM CEST, I got a letter
+where Petr Baudis <pasky@ucw.cz> told me that...
+> Make the --force-remove flag behave same as --add, --remove and
+> --replace. This means I can do
+> 
+> 	git-update-cache --force-remove -- file1.c file2.c
+> 
+> which is probably saner and also makes it easier to use in cg-rm.
+> 
+> Signed-off-by: Petr Baudis <pasky@ucw.cz>
+
+Can this go in, please? Currently it's the only delta between your and
+my git tree, so I'd like to get it merged so that Cogito works with
+stock git again.
+
+Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

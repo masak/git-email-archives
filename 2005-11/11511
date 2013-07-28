@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 13:34:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 240C21F5D91
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 13:34:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932073AbVKJUeQ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 15:34:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932074AbVKJUeQ
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 15:34:16 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:34015 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932073AbVKJUeP (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 10 Nov 2005 15:34:15 -0500
+Received: (qmail 32180 invoked by uid 2001); 10 Nov 2005 21:34:11 +0100
+Date:	Thu, 10 Nov 2005 21:34:11 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Fredrik Kuivinen <freku045@student.liu.se>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: Expected Behavior?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051110203411.GX30496@pasky.or.cz>
+References: <E1EZKOB-0002j5-VY@jdl.com> <7vwtjjllw4.fsf@assigned-by-dhcp.cox.net> <20051108210332.GB23265@c165.ib.student.liu.se> <7v7jbig6m7.fsf@assigned-by-dhcp.cox.net> <20051108225320.GB4805@c165.ib.student.liu.se> <7vmzkenzcx.fsf@assigned-by-dhcp.cox.net> <20051109081906.GA4960@c165.ib.student.liu.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051109081906.GA4960@c165.ib.student.liu.se>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 43
+Xref: brand.scrye.com linux.git:11511
+
+Dear diary, on Wed, Nov 09, 2005 at 09:19:06AM CET, I got a letter
+where Fredrik Kuivinen <freku045@student.liu.se> said that...
+> On Tue, Nov 08, 2005 at 09:50:54PM -0800, Junio C Hamano wrote:
+> > Fredrik Kuivinen <freku045@student.liu.se> writes:
+> > 
+> > >> Oops, I missed that part.  This is unsafe in theory, if you
+> > >> could overwrite existing file3_master or file3_dev.  Does that
+> > >> matter in practice?
+> > >
+> > > It wont overwrite any existing files. If there is a file named
+> > > 'file3_master' then the new file will be named 'file3_master_1' and if
+> > > that file also exists the new file will be named 'file3_master_2', and
+> > > so on.
+> > 
+> > Another thing to watch out is that a branch name could have a
+> > slash in it.  It might make more sense to just name the heads file3~2
+> > or file3~3 (with as many ~s repeated to avoid name clashes) like
+> > Pasky does.
+> > 
+> 
+> Oups, I haven't thought about that. I kind of like the idea that you
+> can see the branch name in the file names though. How about replacing
+> any slashes in the branch names with underscores? So the branch
+> 'foo/bar' will give rise to files with suffixes like '_foo_bar' and
+> '_foo_bar_<number>'.
+
+I like it too. :-)
+
+Now, this would look like file3~master in Cogito (or file3~~master in
+case of name conflict, etc.).
+
+Thanks for the idea,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

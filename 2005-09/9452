@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 28 22:58:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 535191D4CBB
+	for <tkil@scrye.com>; Wed, 28 Sep 2005 22:58:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751193AbVI2E6D (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 29 Sep 2005 00:58:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751196AbVI2E6D
+	(ORCPT <rfc822;git-outgoing>); Thu, 29 Sep 2005 00:58:03 -0400
+Received: from quark.didntduck.org ([69.55.226.66]:2469 "EHLO
+	quark.didntduck.org") by vger.kernel.org with ESMTP
+	id S1751193AbVI2E6C (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 29 Sep 2005 00:58:02 -0400
+Received: from [192.168.1.2] (66-227-170-68.dhcp.aldl.mi.charter.com [66.227.170.68])
+	(authenticated)
+	by quark.didntduck.org (8.11.6/8.11.6) with ESMTP id j8T4vxI07676;
+	Thu, 29 Sep 2005 00:57:59 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <433B7459.3040307@didntduck.org>
+Date:	Thu, 29 Sep 2005 00:58:01 -0400
+From:	Brian Gerst <bgerst@didntduck.org>
+User-Agent: Mozilla Thunderbird 1.0.6-5 (X11/20050818)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Kevin Leung <hysoka@gmail.com>
+CC:	git@vger.kernel.org
+Subject: Re: Edit log message after commit
+References: <dhfjcu$36f$1@sea.gmane.org>
+In-Reply-To: <dhfjcu$36f$1@sea.gmane.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:9452
+
+Kevin Leung wrote:
+> Hi,
+> 
+> Is there any method to edit the log message after committed? I couldn't 
+> find any information in Documentation and in git mailing list.
+
+The commit must be at the head, or else you can't change it without 
+breaking the chain of following commits.  If you are using Cogito, use 
+cg-admin-uncommit and then re-commit it.  Otherwise, create a new commit 
+object for the same tree and parent(s) as the old commit, with the new 
+message.  The new commit object is your new head.
+
+--
+				Brian Gerst
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

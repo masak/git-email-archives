@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 20 13:22:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 924A214B48D
+	for <tkil@scrye.com>; Sun, 20 Nov 2005 13:22:15 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750776AbVKTUV4 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 20 Nov 2005 15:21:56 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750795AbVKTUVz
+	(ORCPT <rfc822;git-outgoing>); Sun, 20 Nov 2005 15:21:55 -0500
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:7346 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S1750776AbVKTUVz (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 20 Nov 2005 15:21:55 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051120202050.TEAR26964.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 20 Nov 2005 15:20:50 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Kalle Valo <Kalle.Valo@iki.fi>
+Subject: Re: [PATCH] Support username and password inside URL
+References: <87u0e71zpx.fsf@litku.valo.iki.fi>
+	<873blriqh0.fsf@litku.valo.iki.fi>
+cc:	git@vger.kernel.org
+Date:	Sun, 20 Nov 2005 12:21:53 -0800
+In-Reply-To: <873blriqh0.fsf@litku.valo.iki.fi> (Kalle Valo's message of "Sun,
+	20 Nov 2005 12:05:47 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtj3xe72.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 48
+Xref: brand.scrye.com linux.git:12387
+
+Kalle Valo <Kalle.Valo@iki.fi> writes:
+
+> Currently usage of curl was so that netrc was mandatory and passwords in URL
+> weren't allowed. Change netrc to optional to make HTTP basic authentication
+> with username and password in URL also work.
+
+HTTP "basic"?  Let's at least say "digest" for starters ;-).
+
+I am modestly against letting users use auth-embedding URLs, and
+fairly strongly against encouraging users to do so.
+
+It is handy to have weak "authentication" in some situations.  I
+am not ashamed to admit that I've used security-by-obscurity
+myself, when I sent an email to a friend, saying:
+
+        Hi, I have some pictures I took during our last trip
+        together, but due to their size I am not attaching them
+        to this e-mail.  Please pick them up at:
+
+	        http://members.cox.net/junkio/r0ZIEF/5S54m/
+
+        Please drop me a note after picking them up, so that I
+        can clean-up the directory.
+
+Auth-embedding URLs are about as secure as the above URL, but it
+is worse because they may tempt you to reuse the same username
+password pair for other purposes later.
+
+If you are using the password protected URL yourself, I'd
+imagine having them in your netrc would not be such a big deal,
+so I suspect your expected usage is not for yourself, but more
+like giving a temporary, even one-shot, access to others like
+the above example, and making it more convenient for them (even
+in that case, if it is not one-shot but for repeated use, I'd
+imagine it would not be such a big deal to ask them to do
+appropriate netrc).  If that is what is going on here, then
+IMNSHO it would be better to make it clear that you are doing
+security-by-obscurity by not using username password pair, which
+makes you pretend that you are doing _some_ security.
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

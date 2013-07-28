@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 30 15:41:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9FE4820D3B7
+	for <tkil@scrye.com>; Tue, 30 Aug 2005 15:41:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932483AbVH3VlI (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 30 Aug 2005 17:41:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932484AbVH3VlI
+	(ORCPT <rfc822;git-outgoing>); Tue, 30 Aug 2005 17:41:08 -0400
+Received: from shadow.prohost.de ([216.71.84.228]:16208 "EHLO
+	shadow.prohost.de") by vger.kernel.org with ESMTP id S932483AbVH3VlH
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 30 Aug 2005 17:41:07 -0400
+Received: from blue (p54A208FA.dip0.t-ipconnect.de [84.162.8.250])
+	by shadow.prohost.de (8.11.6/8.11.6) with ESMTP id j7ULemA08180;
+	Tue, 30 Aug 2005 23:40:48 +0200
+Subject: Re: please pull ppc64-2.6.git
+From:	Christian Meder <chris@absolutegiganten.org>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Git Mailing List <git@vger.kernel.org>,
+	Paul Mackerras <paulus@samba.org>
+In-Reply-To: <Pine.LNX.4.58.0508291706230.3243@g5.osdl.org>
+References: <17170.25803.413408.44080@cargo.ozlabs.ibm.com>
+	 <Pine.LNX.4.58.0508291006440.3243@g5.osdl.org>
+	 <17171.39652.237263.484079@cargo.ozlabs.ibm.com>
+	 <Pine.LNX.4.58.0508291706230.3243@g5.osdl.org>
+Content-Type: text/plain
+Date:	Tue, 30 Aug 2005 23:40:48 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1125438048.9705.43.camel@localhost>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 34
+Xref: brand.scrye.com linux.git:7956
+
+On Mon, 2005-08-29 at 17:20 -0700, Linus Torvalds wrote:
+> 
+> On Tue, 30 Aug 2005, Paul Mackerras wrote:
+> > 
+> > What can one put in the alternates file?  Just an absolute path, or
+> > does a relative path or a URL work too?
+> 
+> Only an absolute path.
+> 
+> URL's fundamentally do not work, and relative paths end up being parsed as
+> relative to where-ever the user happens to be (and some commands will 
+> "chdir()" into the .git directory, while others will not).
+
+Is alternates unthinkable with URLs (e.g. remote alternates) i.e. broken
+by design or thinkable but not there yet ?
+
+Greetings,
+
+
+				Christian
+
+-- 
+Christian Meder, email: chris@absolutegiganten.org
+
+The Way-Seeking Mind of a tenzo is actualized 
+by rolling up your sleeves.
+
+                (Eihei Dogen Zenji)
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

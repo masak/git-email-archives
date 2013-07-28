@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 22 01:11:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C41B71B0C46
+	for <tkil@scrye.com>; Sun, 22 May 2005 01:11:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261755AbVEVHLN (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 22 May 2005 03:11:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261757AbVEVHLN
+	(ORCPT <rfc822;git-outgoing>); Sun, 22 May 2005 03:11:13 -0400
+Received: from dsl092-000-086.sfo1.dsl.speakeasy.net ([66.92.0.86]:26838 "EHLO
+	tumblerings.org") by vger.kernel.org with ESMTP id S261755AbVEVHLK
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 22 May 2005 03:11:10 -0400
+Received: from zbrown by tumblerings.org with local (Exim 4.50)
+	id 1DZkc6-0002Jg-Or
+	for git@vger.kernel.org; Sun, 22 May 2005 00:11:06 -0700
+Date:	Sun, 22 May 2005 00:11:06 -0700
+From: Zack Brown <zbrown@tumblerings.org>
+To: Git Mailing List <git@vger.kernel.org>
+Subject: seek request
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050522071106.GA8060@tumblerings.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 29
+Xref: brand.scrye.com linux.git:3717
+
+Hi folks,
+
+In Cogito, it would be nice to have a
+
+cg-seek +
+
+that would seek to the next archive state. This way, I could start off seeking
+back to the beginning of an archive, and quickly step forward, looking at files
+as I went, to the present.
+
+A corresponding
+cg-seek -
+would go the reverse direction, back toward the beginning of a project.
+
+I'm not sure how useful this would be for actual source code - I suspect any
+benefit would be minimal - but the benefit for documentation and text files,
+where the only way to test improvements is to read them by eye, would be
+significant.
+
+Be well,
+Zack
+
+-- 
+Zack Brown
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

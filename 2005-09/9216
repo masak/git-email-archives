@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 23 20:47:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,TW_PG autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9EB16244917
+	for <tkil@scrye.com>; Fri, 23 Sep 2005 20:47:05 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751369AbVIXCqz (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Sep 2005 22:46:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751376AbVIXCqz
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Sep 2005 22:46:55 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:1448 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751369AbVIXCqz (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 23 Sep 2005 22:46:55 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8O2km4s023461
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 23 Sep 2005 19:46:49 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8O2kl6U022026;
+	Fri, 23 Sep 2005 19:46:48 -0700
+Date:	Fri, 23 Sep 2005 19:46:47 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+cc:	Peter TB Brett <peter@peter-b.co.uk>,
+	Git Mailing List <git@vger.kernel.org>,
+	Davide Libenzi <davidel@xmailserver.org>
+Subject: Re: git 0.99.7b doesn't build on Cygwin
+In-Reply-To: <Pine.LNX.4.63.0509240305450.26220@wgmdd8.biozentrum.uni-wuerzburg.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509231935360.3308@g5.osdl.org>
+References: <ud5mznc1x.fsf@peter-b.co.uk>
+ <Pine.LNX.4.63.0509231537390.11109@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0509231647300.3308@g5.osdl.org>
+ <Pine.LNX.4.63.0509240305450.26220@wgmdd8.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.118 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 49
+Xref: brand.scrye.com linux.git:9216
+
+
+
+On Sat, 24 Sep 2005, Johannes Schindelin wrote:
+> 
+> BTW I am fairly convinced that the same issues would trouble a git-pull, 
+> once the networking is running, since the pack transfer relies on 
+> fork()ing.
+
+I'm not sure.
+
+Almost all other fork() users end up doing a more-or-less immediate 
+execve() after the fork. Yes, they do some other minor setup, but not a 
+whole lot.
+
+The diff.c fork() is somewhat different. It actually ends up doing malloc 
+and stdio IO before it actually gets to the exec(), so that one is more 
+likely to hit any bugs in the fork() implementation.
+
+Actually, looking a bit closer, the create_pack_file() thing also does 
+malloc inside the child, but at least there it would be trivial to move 
+that argument setup code into the parent.
+
+But looking at send_pack() or fetch_pack(), for example, they are both
+_very_ traditional fork()+exec() calls, with just a few close() calls in
+between.
+
+Looking a bit closer at the diff() usage, I actually think that we could 
+move the fork() closer to the exec - we'd just have to move it _into_ all 
+the different cases (ie you'd have two different fork() calls: one for 
+the "builtin" case, one for the external pgm case, but then the child in 
+both cases would be very simple).
+
+Oh. Actually, I wonder if we could mke them "vfork()" calls. Does anybody 
+know if cygwin has an easier time with vfork() + eventual exec? That 
+_should_ map better to a non-UNIX process model, so maybe we could do it 
+that way?
+
+> It sure would be nice to have a unified diff generator included, but I 
+> doubt that a reliable (=simple) one is easy to come by.
+
+Yeah, I looked at GNU diffutils, and I had to rinse out my eyes with soap 
+and water.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

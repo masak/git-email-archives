@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 24 00:14:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7767F2344DE
+	for <tkil@scrye.com>; Sun, 24 Jul 2005 00:14:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261919AbVGXGMm (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Jul 2005 02:12:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261922AbVGXGMm
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Jul 2005 02:12:42 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:28556 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S261919AbVGXGM1 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 24 Jul 2005 02:12:27 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050724061221.NMBZ17043.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 24 Jul 2005 02:12:21 -0400
+To: Alexey Nezhdanov <snake@penza-gsm.ru>
+Cc: Ryan Anderson <ryan@michonline.com>, git@vger.kernel.org
+Subject: Re: [PATCH] Deb Packaging fixes: Build against Mozilla libs for Debian, conflict with "git"
+References: <20050723073707.GA3255@mythryan2.michonline.com>
+	<20050723192335.GA24071@mythryan2.michonline.com>
+	<20050723192632.GB24071@mythryan2.michonline.com>
+	<200507240728.40158.snake@penza-gsm.ru>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Sat, 23 Jul 2005 23:12:22 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtngg2bd.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 49
+Xref: brand.scrye.com linux.git:6387
+
+Alexey Nezhdanov <snake@penza-gsm.ru> writes:
+
+> Satturday, 23 July 2005 23:26 Ryan Anderson wrote:
+>> -Depends: ${misc:Depends}, shellutils, diff, rsync, rcs
+>> +Depends: ${misc:Depends}, patch, diff, rsync, rcs, ssh
+> Did I missed something or you forgot about libcurl3 dependency?
+
+I think you are right.  In the build process, dh_shlibdeps is
+used and shlib:Depends is created to include the libcurl3 (among
+other things) in debian/git-core.substvars, but it is not
+actually used in the resulting binary package because the line
+misses ${shlibs:Depends} there.
+
+Ryan, would this change be enough?  I do not know what I am
+doing (${misc:Depends} is new to me), but this patch seems to
+fix it on my box.
+
+------------
+Make sure binary debian package depends on shlibs it uses.
+
+The "Depends:" line in debian/control lacked ${shlibs:Depends},
+which caused the resulting binary package not to depend on
+libcurl3 nor even libc6 ;-).
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+
+# - linus: Fix up applymbox script for the addition of "git-" prefix
+# + (working tree)
+diff --git a/debian/control b/debian/control
+--- a/debian/control
++++ b/debian/control
+@@ -7,7 +7,7 @@ Standards-Version: 3.6.1
+ 
+ Package: git-core
+ Architecture: any
+-Depends: ${misc:Depends}, shellutils, diff, rsync, rcs
++Depends: ${shlibs:Depends} ${misc:Depends}, shellutils, diff, rsync, rcs
+ Description: The git content addressable filesystem
+  GIT comes in two layers. The bottom layer is merely an extremely fast
+  and flexible filesystem-based database designed to store directory trees
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 16:34:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 68C4A321C24
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 16:34:03 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751267AbVK3XcZ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 18:32:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751260AbVK3XcY
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 18:32:24 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:45699 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751239AbVK3XcY (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 30 Nov 2005 18:32:24 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAUNWLnO005495
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 30 Nov 2005 15:32:21 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAUNWKLr015995;
+	Wed, 30 Nov 2005 15:32:21 -0800
+Date:	Wed, 30 Nov 2005 15:32:20 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Jon Loeliger <jdl@freescale.com>
+cc:	Git List <git@vger.kernel.org>
+Subject: Re: git bisect enhancements?
+In-Reply-To: <1133386585.30767.34.camel@cashmere.sps.mot.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511301526530.3099@g5.osdl.org>
+References: <1133386585.30767.34.camel@cashmere.sps.mot.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 49
+Xref: brand.scrye.com linux.git:13021
+
+
+
+On Wed, 30 Nov 2005, Jon Loeliger wrote:
+> 
+> So, I'm proposing something like:
+> 
+>     $ git bisect bump +<n>
+>     $ git bisect bump -<n>
+> 
+> To move the bisection point "up" or "down" a commit chain.
+> 
+> Am I off in the weeds?
+
+No, but we already have it.
+
+If you decide to select a new bisection point by hand, just do it. It's 
+called
+
+	git reset --hard <new-bisect-point>
+
+and it will simply move the bisect branch to the new point.
+
+Then, compile and test that, and use "git bisect good/bad" as necessary.
+
+Now, I agree that maybe I could have made that a bit more obvious, but it 
+should all work.
+
+Same goes for the case where "git bisect" selects a point that happens to 
+have a different problem than the one you were looking for. Instead of 
+saying "git bisect good" (or bad) and praying you got it right, just do 
+that "git bisect visualize" and select another point entirely, and do that 
+same "git reset --hard" thing, and leave the one you don't know about 
+alone.
+
+Of course, if you make a bad selection, you might have that problem again, 
+or more commonly, you'll just have to test more kernels because your 
+selection wasn't as close to "midway" as the one "git bisect" had selected 
+for you. But you'll get there eventually.
+
+[ Now, the _real_ problem with bisection is that some bugs simply cannot 
+  be bisected. If it's timing-related etc, it might be a bug that comes 
+  and goes, and then I'm afraid that git bisect won't really help you. ]
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

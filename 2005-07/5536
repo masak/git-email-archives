@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul  1 22:21:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A76481CB39
+	for <tkil@scrye.com>; Fri,  1 Jul 2005 22:21:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261739AbVGBEUz (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 2 Jul 2005 00:20:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261788AbVGBEUz
+	(ORCPT <rfc822;git-outgoing>); Sat, 2 Jul 2005 00:20:55 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:62417 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261739AbVGBEUt (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 2 Jul 2005 00:20:49 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j624KYjA028005
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 1 Jul 2005 21:20:35 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j624KOIo010838;
+	Fri, 1 Jul 2005 21:20:28 -0700
+Date:	Fri, 1 Jul 2005 21:22:30 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Mike Taht <mike.taht@timesys.com>,
+	Daniel Barkalow <barkalow@iabervon.org>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: "git-send-pack"
+In-Reply-To: <42C61351.10306@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507012119360.3019@ppc970.osdl.org>
+References: <Pine.LNX.4.21.0506301651250.30848-100000@iabervon.org>
+ <Pine.LNX.4.58.0506301412470.14331@ppc970.osdl.org> <42C46A3C.1070104@zytor.com>
+ <Pine.LNX.4.58.0506301514240.14331@ppc970.osdl.org> <42C482ED.1010306@zytor.com>
+ <Pine.LNX.4.58.0506301656570.14331@ppc970.osdl.org> <42C5D553.80905@timesys.com>
+ <Pine.LNX.4.58.0507011831060.2977@ppc970.osdl.org> <42C61351.10306@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:5536
+
+
+
+On Fri, 1 Jul 2005, H. Peter Anvin wrote:
+> 
+> Any reason not to simply append objects to an existing packfile?
+
+What happens when somebody screws up in the middle?
+
+The one thing I care about more than anything else is consistency. We are 
+careful about writing objects in the right order, and we can re-create the 
+state from the originator etc. But if we start appending stuff and 
+something goes wrong in the middle, I'm just not going to touch it. A 
+"truncate and hope for the best" algorithm? 
+
+Besides, the result is not a valid git archive any more. 
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

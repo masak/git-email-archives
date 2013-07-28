@@ -1,0 +1,50 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 14 13:24:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: *
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,RCVD_IN_NJABL_DUL,
+	RCVD_IN_SORBS_DUL autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2611C2A903C
+	for <tkil@scrye.com>; Mon, 14 Nov 2005 13:24:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932105AbVKNUYf (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 15:24:35 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932093AbVKNUYe
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 15:24:34 -0500
+Received: from 12-219-167-192.client.mchsi.com ([12.219.167.192]:59778 "EHLO
+	desertsol.com") by vger.kernel.org with ESMTP id S932105AbVKNUYc
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 14 Nov 2005 15:24:32 -0500
+Received: from [205.132.171.105] (helo=[29.6.1.62])
+	by desertsol.com with esmtpsa (TLSv1:RC4-SHA:128)
+	(Exim 4.50)
+	id 1EbksR-0006mp-3R; Mon, 14 Nov 2005 13:24:31 -0700
+In-Reply-To: <20051114164505.GF9131@raven.localdomain>
+References: <20051114164047.GB9131@raven.localdomain> <20051114164505.GF9131@raven.localdomain>
+Mime-Version: 1.0 (Apple Message framework v746.2)
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <972B451D-88B9-4ACB-A91C-BE7AAF12C206@desertsol.com>
+Cc:	git@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+From:	Kevin Geiss <kevin@desertsol.com>
+Subject: Re: [PATCH 1/1] git-cvsexportcommit.perl: Fix usage() output.
+Date:	Mon, 14 Nov 2005 13:24:21 -0700
+To:	Kevin Geiss <kevin@desertsol.com>
+X-Mailer: Apple Mail (2.746.2)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 7
+Xref: brand.scrye.com linux.git:11834
+
+this was supposed to be 1/4 of course.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

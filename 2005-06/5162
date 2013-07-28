@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun 23 06:26:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4A3FE228071
+	for <tkil@scrye.com>; Thu, 23 Jun 2005 06:26:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262286AbVFWMZv (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 23 Jun 2005 08:25:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262329AbVFWMZv
+	(ORCPT <rfc822;git-outgoing>); Thu, 23 Jun 2005 08:25:51 -0400
+Received: from rproxy.gmail.com ([64.233.170.207]:65334 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262278AbVFWMZn convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 23 Jun 2005 08:25:43 -0400
+Received: by rproxy.gmail.com with SMTP id 1so66258rny
+        for <git@vger.kernel.org>; Thu, 23 Jun 2005 05:25:43 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=bTlhJAW7e2jYu69XBNzCgIRUP3mU6p9JjjschjuM5IbjvA22Nh4iU0E6zbLcTDZ23iT7NWU8plvBZTqrntN/3aVTPi0tTrBgODFSKCia6sOc7O+vLRz8dMbG6mJxd/8u9KejRFV5Je5rSke9CHp6hcwRbofJ7Hk5KrNru0aUTOo=
+Received: by 10.11.119.2 with SMTP id r2mr67931cwc;
+        Thu, 23 Jun 2005 05:25:43 -0700 (PDT)
+Received: by 10.11.117.46 with HTTP; Thu, 23 Jun 2005 05:25:43 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <21d7e99705062305255b1ec58e@mail.gmail.com>
+Date:	Thu, 23 Jun 2005 22:25:43 +1000
+From: Dave Airlie <airlied@gmail.com>
+Reply-To: Dave Airlie <airlied@gmail.com>
+To: Jeff Garzik <jgarzik@pobox.com>
+Subject: Re: Updated git HOWTO for kernel hackers
+Cc: Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <42B9E536.60704@pobox.com>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <42B9E536.60704@pobox.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:5162
+
+> jgarzik helper scripts, not in official git distribution:
+> http://www.kernel.org/pub/linux/kernel/people/jgarzik/git-new-branch
+> http://www.kernel.org/pub/linux/kernel/people/jgarzik/git-changes-script
+> 
+
+Do you have some sort of magic bk-make-sum type util at all... 
+
+For sending trees to Linus I used to run bk-make-sum and gcapatch and
+then just throw my own stuff in the top of the mail ....
+
+I'm being lazy I probably could write it myself, but bk-make-sum was a
+very useful script for me...
+
+Dave.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 20 13:07:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B7CB027E4C7
+	for <tkil@scrye.com>; Tue, 20 Sep 2005 13:07:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965083AbVITTFT (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Sep 2005 15:05:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965088AbVITTFT
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Sep 2005 15:05:19 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:63443 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S965083AbVITTFS (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 20 Sep 2005 15:05:18 -0400
+Received: (qmail 1074 invoked by uid 2001); 20 Sep 2005 21:05:16 +0200
+Date:	Tue, 20 Sep 2005 21:05:16 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	root@master.kernel.org, Pavel Roskin <proski@gnu.org>,
+	"Randal L. Schwartz" <merlyn@stonehenge.com>
+Cc:	git <git@vger.kernel.org>
+Subject: Re: What's wrong with cogito repository today?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050920190516.GB28621@pasky.or.cz>
+References: <863bnzd2eu.fsf@blue.stonehenge.com> <1127233633.8374.26.camel@dv>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <863bnzd2eu.fsf@blue.stonehenge.com> <1127233633.8374.26.camel@dv>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 36
+Xref: brand.scrye.com linux.git:9007
+
+Dear diary, on Tue, Sep 20, 2005 at 06:27:13PM CEST, I got a letter
+where Pavel Roskin <proski@gnu.org> told me that...
+> Hello!
+
+Hello,
+
+> cogito repository is broken today:
+> 
+> $ git-fetch
+> Fetching refs/heads/master from http://www.kernel.org/pub/scm/cogito/cogito.git/ using http
+> Getting pack list
+> Getting alternates list
+> error: Unable to find 69ba00668be16e44cae699098694286f703ec61d under http://www.kernel.org/pub/scm/cogito/cogito.git//
+> 
+> Cannot obtain needed object 69ba00668be16e44cae699098694286f703ec61d
+> while processing commit 0000000000000000000000000000000000000000.
+
+this seems to be an issue with kernel.org mirroring, unfortunately
+apparently stuck up in the middle of mirroring Cogito. It is on
+master.kernel.org:
+
+-r--r--r--  2 pasky pasky 207 Sep 19 18:38 /pub/scm/cogito/cogito.git/objects/69/ba00668be16e44cae699098694286f703ec61d
+
+Kernel.org people, could you please have a look at the stalled rsync
+process? Thanks.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

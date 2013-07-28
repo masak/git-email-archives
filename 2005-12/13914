@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 17:08:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2E6FD1B16B6
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 17:08:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965015AbVLVAIK (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 19:08:10 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965018AbVLVAIK
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 19:08:10 -0500
+Received: from dsl027-180-168.sfo1.dsl.speakeasy.net ([216.27.180.168]:5584
+	"EHLO sunset.davemloft.net") by vger.kernel.org with ESMTP
+	id S965015AbVLVAIJ (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 19:08:09 -0500
+Received: from localhost.localdomain
+	([127.0.0.1] helo=localhost ident=davem)
+	by sunset.davemloft.net with esmtp (Exim 4.60)
+	(envelope-from <davem@davemloft.net>)
+	id 1EpE0B-0006Oh-Mz; Wed, 21 Dec 2005 16:08:11 -0800
+Date:	Wed, 21 Dec 2005 16:08:11 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051221.160811.129593851.davem@davemloft.net>
+To:	yoshfuji@linux-ipv6.org
+Cc:	junkio@cox.net, git@vger.kernel.org, matti.aarnio@zmailer.org
+Subject: Re: [PATCH] GIT: Support [address] in URLs
+From:	"David S. Miller" <davem@davemloft.net>
+In-Reply-To: <20051222.085917.60400643.yoshfuji@linux-ipv6.org>
+References: <20051222.080828.28117009.yoshfuji@linux-ipv6.org>
+	<20051221.152648.122640664.davem@davemloft.net>
+	<20051222.085917.60400643.yoshfuji@linux-ipv6.org>
+X-Mailer: Mew version 4.2.53 on Emacs 21.4 / Mule 5.0 (SAKAKI)
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:13914
+
+From: YOSHIFUJI Hideaki <yoshfuji@linux-ipv6.org>
+Date: Thu, 22 Dec 2005 08:59:17 +0900 (JST)
+
+> Can I help you somehow?
+> E.g. if you give me an account on vger, I happily try to find the way to
+> setup bayesian filter(s) on them.
+
+You are expert with Zmailer+Majordomo? :-)
+
+Sure, it is no problem to setup Bayesian filter with sendmail, qmail,
+Exim et al. with standard mailing list software.  But doing it with
+the Zmailer and Majordomo setup we have is non-trivial.
+
+Matti, non-ascii filtering really becomes big enough pain enough to
+fix.  I can do the leg work if you can provide some pointers and
+what you know so far.
+
+Thanks.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 24 13:05:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DF151311AD
+	for <tkil@scrye.com>; Mon, 24 Oct 2005 13:05:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750988AbVJXTFA (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 24 Oct 2005 15:05:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751075AbVJXTFA
+	(ORCPT <rfc822;git-outgoing>); Mon, 24 Oct 2005 15:05:00 -0400
+Received: from terminus.zytor.com ([192.83.249.54]:35818 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1750988AbVJXTE7
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 24 Oct 2005 15:04:59 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j9OJ4ocG020174
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 24 Oct 2005 12:04:51 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <435D304D.2070306@zytor.com>
+Date:	Mon, 24 Oct 2005 12:04:45 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Jeff Garzik <jgarzik@pobox.com>
+CC:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: RFE: git rm
+References: <435D2FE0.3060307@pobox.com>
+In-Reply-To: <435D2FE0.3060307@pobox.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:10548
+
+Jeff Garzik wrote:
+> 
+> It would be nice to say "git rm files..." and have two operations occur:
+> 
+> * list of files is passed to rm(1)
+> * list of files is passed to git-update-index --remove
+> 
+
+Install cogito and you have the above as "cg-rm".
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

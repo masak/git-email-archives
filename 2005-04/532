@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 16:34:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4EAAE12A0EB
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 16:34:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261528AbVDQWeN (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Apr 2005 18:34:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261531AbVDQWeN
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Apr 2005 18:34:13 -0400
+Received: from fire.osdl.org ([65.172.181.4]:6826 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261528AbVDQWeI (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 17 Apr 2005 18:34:08 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3HMXKs4024459
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 17 Apr 2005 15:33:21 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3HMXIxk011345;
+	Sun, 17 Apr 2005 15:33:19 -0700
+Date:	Sun, 17 Apr 2005 15:35:17 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: mingo@elte.hu, pasky@ucw.cz, simon@himi.org,
+	david.lang@digitalinsight.com, git@vger.kernel.org
+Subject: Re: Merge with git-pasky II.
+In-Reply-To: <E1DNI0G-0000bo-00@gondolin.me.apana.org.au>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504171530150.7211@ppc970.osdl.org>
+References: <E1DNI0G-0000bo-00@gondolin.me.apana.org.au>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 37
+Xref: brand.scrye.com linux.git:532
+
+
+
+On Mon, 18 Apr 2005, Herbert Xu wrote:
+> 
+> Sorry, it has already been shown that combining two difference hashes
+> doesn't necessarily provide the security that you would hope.
+
+Sorry, that's not true.
+
+Quite the reverse. Again, you bring up totally theoretical arguments. In 
+_practice_ it has indeed been shown that using two hashes _does_ catch 
+hash colissions.
+
+The trivial example is using md5 sums with a length. The "length" is a 
+rally bad "hash" of the file contents too. And the fact is, that simple 
+combination of hashes has proven to be more resistant to attack than the 
+hash itself. It clearly _does_ make a difference in practice.
+
+So _please_, can we drop the obviously bogus "in theory" arguments. They 
+do not matter. What matters is practice.
+
+And the fact is, in _theory_ we don't know if somebody may be trivially
+able to break any particular hash. But in practice we do know that it's
+less likely that you can break a combination of two totally unrelated
+hashes than you break one particular one.
+
+NOTE! I'm not actually arguing that we should do that. I'm actually
+arguing totally the reverse: I'm arguing that there is a fine line between
+being "very very careful" and being "crazy to the point of being
+incompetent".
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

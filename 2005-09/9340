@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 26 16:30:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 99B0A1E2B01
+	for <tkil@scrye.com>; Mon, 26 Sep 2005 16:30:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932493AbVIZW3r (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 26 Sep 2005 18:29:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932512AbVIZW3r
+	(ORCPT <rfc822;git-outgoing>); Mon, 26 Sep 2005 18:29:47 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:17874 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932515AbVIZW3q (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 26 Sep 2005 18:29:46 -0400
+Received: (qmail 17845 invoked by uid 2001); 27 Sep 2005 00:29:45 +0200
+Date:	Tue, 27 Sep 2005 00:29:45 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: Cogito: cg-clone doesn't like packed tag objects
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050926222944.GG26340@pasky.or.cz>
+References: <43348086.2040006@zytor.com> <20050924011833.GJ10255@pasky.or.cz> <20050926212536.GF26340@pasky.or.cz> <7virwna2oi.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7virwna2oi.fsf@assigned-by-dhcp.cox.net>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:9340
+
+Dear diary, on Tue, Sep 27, 2005 at 12:23:41AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> Petr Baudis <pasky@suse.cz> writes:
+> > .... But fetching the tags will cause all the commits
+> > connected to the tags getting slurped too, and we didn't want that.
+> 
+> What is the objective here?  If you fetch a tag without the
+> object being tagged (or commit without its tree), you will end
+> up with smaller object database but you would get yelled at by
+> git-fsck-objects.
+
+Yes - so you can't save the tag objects either, but then you'll re-slurp
+them again and again, which is kind of silly. Alternatively, you could
+actually make git-fsck-object silent about the case when an unreachable
+(not referenced in refs/) tag object references a non-existing object -
+perhaps unless --strict is passed to it. If you think the rest of my
+logic is ok, I think this change to facilitate this "tags caching" is
+not unreasonable.
+
+The alternative solution would be to have the tags cache with the tag
+objects separate of the main object database, but that'd be very dirty.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

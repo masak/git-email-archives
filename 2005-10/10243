@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 18 19:08:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CB13823A30A
+	for <tkil@scrye.com>; Tue, 18 Oct 2005 19:08:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751361AbVJSBH5 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 18 Oct 2005 21:07:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751479AbVJSBH5
+	(ORCPT <rfc822;git-outgoing>); Tue, 18 Oct 2005 21:07:57 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:1445 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751361AbVJSBH4 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 18 Oct 2005 21:07:56 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9J17sFC020764
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 18 Oct 2005 18:07:54 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9J17rIi009333;
+	Tue, 18 Oct 2005 18:07:53 -0700
+Date:	Tue, 18 Oct 2005 18:07:53 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	John Ellson <ellson@research.att.com>
+cc:	git@vger.kernel.org
+Subject: Re: Wanted - a file browser interface to git
+In-Reply-To: <dj45np$e88$1@sea.gmane.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510181806250.3369@g5.osdl.org>
+References: <dj45np$e88$1@sea.gmane.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:10243
+
+
+
+On Tue, 18 Oct 2005, John Ellson wrote:
+> 
+> An example is:  "I know that file xxx contained algorithm yyy at some point in
+> the past and now I'd like to browse back through the history of xxx to find
+> the exact details."
+
+You are aware of "git whatchanged -p xxx", right?
+
+Yeah, it's not graphical, and I agree that it might be very cool to have a 
+graphical version of it. But I thought I'd mention it even so. A 
+surprising number of people seem to have never realized, and at least for 
+me personally, it's one of the most common things I do.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  9 14:29:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9190A1C2147
+	for <tkil@scrye.com>; Tue,  9 Aug 2005 14:29:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964934AbVHIU1j (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 9 Aug 2005 16:27:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964935AbVHIU1j
+	(ORCPT <rfc822;git-outgoing>); Tue, 9 Aug 2005 16:27:39 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:44518 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S964934AbVHIU1j (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 9 Aug 2005 16:27:39 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0B36CE3290; Tue,  9 Aug 2005 22:27:38 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CC4A299362; Tue,  9 Aug 2005 22:27:37 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4148E9CC8D; Tue,  9 Aug 2005 22:27:37 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx68.rz.uni-wuerzburg.de [132.187.3.68])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 89C1AE327E; Tue,  9 Aug 2005 22:27:36 +0200 (CEST)
+Date:	Tue, 9 Aug 2005 22:27:36 +0200 (CEST)
+From: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To: Sam Ravnborg <sam@ravnborg.org>
+Cc: Kay Sievers <kay.sievers@vrfy.org>,
+	Kay Sievers <kay.sievers@vrfy.com>, git@vger.kernel.org
+Subject: Re: gitweb - feature request
+In-Reply-To: <20050809201836.GA11051@mars.ravnborg.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508092224580.9849@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <20050809193104.GA10858@mars.ravnborg.org> <20050809195818.GA19284@vrfy.org>
+ <20050809201836.GA11051@mars.ravnborg.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_VN 
+	autolearn=ham version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:6994
+
+Hi,
+
+On Tue, 9 Aug 2005, Sam Ravnborg wrote:
+
+> On Tue, Aug 09, 2005 at 09:58:18PM +0200, Kay Sievers wrote:
+> > 
+> > I was hoping people that want stuff like this would use a RSS reader. :)
+> Some day I will try to use such a beast...
+
+You have Firefox, don't you? Next time you surf to gitweb, right click on 
+the funny yellow symbol in the lower right corner of your Firefox. It 
+should say something like "Subscribe to...". Do it.
+
+Then, in you bookmark menu, you should see the entry, with a small arrow 
+to the right. Click on the entry...
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

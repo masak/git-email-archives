@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 16 05:01:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9432615F0F9
+	for <tkil@scrye.com>; Tue, 16 Aug 2005 05:01:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932236AbVHPLBT (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 16 Aug 2005 07:01:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932322AbVHPLBT
+	(ORCPT <rfc822;git-outgoing>); Tue, 16 Aug 2005 07:01:19 -0400
+Received: from thumbler.kulnet.kuleuven.ac.be ([134.58.240.45]:37533 "EHLO
+	thumbler.kulnet.kuleuven.ac.be") by vger.kernel.org with ESMTP
+	id S932236AbVHPLBT (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 16 Aug 2005 07:01:19 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by thumbler.kulnet.kuleuven.ac.be (Postfix) with ESMTP id 6D03C137B92
+	for <git@vger.kernel.org>; Tue, 16 Aug 2005 13:01:14 +0200 (CEST)
+Received: from smtp01.kuleuven.be (octavianus.kulnet.kuleuven.ac.be [134.58.240.71])
+	by thumbler.kulnet.kuleuven.ac.be (Postfix) with ESMTP id 9FD52137AED
+	for <git@vger.kernel.org>; Tue, 16 Aug 2005 13:01:13 +0200 (CEST)
+Received: from garage.linux.student.kuleuven.ac.be (garage.linux.student.kuleuven.be [193.190.253.84])
+	by smtp01.kuleuven.be (Postfix) with ESMTP id 89DA063D45
+	for <git@vger.kernel.org>; Tue, 16 Aug 2005 13:01:13 +0200 (CEST)
+Received: (qmail 7176 invoked by uid 500); 16 Aug 2005 11:07:25 -0000
+Date:	Tue, 16 Aug 2005 13:07:25 +0200
+From:	Sven Verdoolaege <skimo@kotnet.org>
+To:	Martin Langhoff <martin@ng.eduforge.org>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Add merge detection to git-cvsimport
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050816110725.GL11882MdfPADPa@garage.linux.student.kuleuven.ac.be>
+Reply-To: skimo@liacs.nl
+Mail-Followup-To: Martin Langhoff <martin@ng.eduforge.org>,
+	git@vger.kernel.org
+References: <20050816103527.F420A33010C@ng.eduforge.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050816103527.F420A33010C@ng.eduforge.org>
+User-Agent: Mutt/1.5.9i
+X-Virus-Scanned: by KULeuven Antivirus Cluster
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:7352
+
+On Tue, Aug 16, 2005 at 10:35:27PM +1200, Martin Langhoff wrote:
+> +
+> +sub get_headref($$) {
+
+If you want to check whether a ref is valid, then
+it is better to use git-rev-parse...
+
+> +    my $name    = shift;
+> +    my $git_dir = shift; 
+> +    my $sha;
+> +    
+> +    if (open(C,"$git_dir/refs/heads/$name")) {
+> +	chomp($sha = <C>);
+> +	close(C);
+> +	length($sha) == 40
+> +	    or die "Cannot get head id for $name ($sha): $!\n";
+
+... but if you're just going to die, then why not simply
+let git-commit-tree do the test ?
+
+> +				if ($mparent eq 'HEAD') { $mparent = 'origin'};
+
+Please don't hardcode 'origin' here.
+
+skimo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 20 01:05:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6A3C01542C2
+	for <tkil@scrye.com>; Thu, 20 Oct 2005 01:05:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751777AbVJTHEy (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 20 Oct 2005 03:04:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751778AbVJTHEy
+	(ORCPT <rfc822;git-outgoing>); Thu, 20 Oct 2005 03:04:54 -0400
+Received: from qproxy.gmail.com ([72.14.204.192]:12870 "EHLO qproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1751777AbVJTHEx convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 20 Oct 2005 03:04:53 -0400
+Received: by qproxy.gmail.com with SMTP id v40so267129qbe
+        for <git@vger.kernel.org>; Thu, 20 Oct 2005 00:04:52 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=JFLUPIDSSCXczF04CoSoMJJ9QKqKcTLtT8UHAG1s61juXKaeVySgxcEzEA2kHRp1QfT7CjNqLIAd34Z+f8fYZ7ElndeT8xV6fT+y+yA5/ViNiZoPPhQ+OqJTakWNBmwYVVjLOsInNp64dQ204FD+njK3qExmVUFxnCMmu2hwb3A=
+Received: by 10.64.232.15 with SMTP id e15mr1175562qbh;
+        Thu, 20 Oct 2005 00:04:52 -0700 (PDT)
+Received: by 10.64.232.18 with HTTP; Thu, 20 Oct 2005 00:04:52 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90510200004l67e2d19kf8e9a4c6190f44f@mail.gmail.com>
+Date:	Thu, 20 Oct 2005 20:04:52 +1300
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Git Mailing List <git@vger.kernel.org>, Petr Baudis <pasky@ucw.cz>,
+	Junio C Hamano <junkio@cox.net>
+Subject: Re: cg-merge should use git-merge
+In-Reply-To: <46a038f90510190421l50b2c12k495db23b62015782@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <46a038f90510161644l35119401rdc05c081506ae715@mail.gmail.com>
+	 <46a038f90510190421l50b2c12k495db23b62015782@mail.gmail.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:10344
+
+On 10/20/05, Martin Langhoff <martin.langhoff@gmail.com> wrote:
+> After using git-merge a few times by hand to test-drive the new merge
+> drivers, I'm sold on the idea, and I 'd like to have cg-merge use
+> git-merge directly.
+
+I started drafting a 5-minute proof-of-concept, and then it struck me:
+cg users aren't aware of the index. This is really important when you
+are merging and have to resolve a conflict over a dirty tree. git
+users know that the "clean" part of the merge is in the index, and
+they have to resolve a couple of files in their checkout, and update
+the index for those only before calling git-write-tree &
+git-commit-tree.
+
+Cogito users don't know about this magic at all, which is a bit of a
+problem. I can refuse to run cg-merge on a dirty tree to make things
+simpler, but that's cheating ;-)
+
+tagging "for later"...
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

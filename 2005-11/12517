@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 22:33:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D8790B4D8F
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 22:33:57 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932314AbVKVFds (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 00:33:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932328AbVKVFds
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 00:33:48 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:64409 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932314AbVKVFdr (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 22 Nov 2005 00:33:47 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAM5XinO000733
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 21 Nov 2005 21:33:44 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAM5Xf7x023634;
+	Mon, 21 Nov 2005 21:33:43 -0800
+Date:	Mon, 21 Nov 2005 21:33:41 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Chuck Lever <cel@citi.umich.edu>
+cc:	Catalin Marinas <catalin.marinas@gmail.com>, git@vger.kernel.org
+Subject: Re: Diffs "from" working directory
+In-Reply-To: <4382A972.1010801@citi.umich.edu>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511212124160.13959@g5.osdl.org>
+References: <200511201817.15780.blaisorblade@yahoo.it>  <20051120174359.GA24177@fieldses.org>
+  <Pine.LNX.4.64.0511201010490.13959@g5.osdl.org>  <20051120205855.GA30346@fieldses.org>
+  <4381287F.5080402@citi.umich.edu> <b0943d9e0511211328j7c062c07s@mail.gmail.com>
+ <4382A972.1010801@citi.umich.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:12517
+
+
+
+On Tue, 22 Nov 2005, Chuck Lever wrote:
+> 
+> for some reason i was under the impression that it would parse the
+> Signed-off-by: fields in the patch description, and take the first one as the
+> patch author.
+
+The first sign-off really isn't necessarily the author.
+
+It might be a company sign-off (many companies don't want any random 
+engineer to send out patches), but much more commonly it's a trivial patch 
+that somebody else signs off on, even if the original patcher didn't (see 
+case (b) in the sign-off-rules: you can sign of on somebody elses work if 
+you know it's under the GPL).
+
+So the fact that there was a sign-off procedure doesn't automatically mean 
+that the author will be the first sign-off person, although in _practice_ 
+that obviously would likely always be the most common case by far.
+
+(Another reason is that some people actually add the sign-offs above 
+previous ones. It happens, although if I notice, I try to point it out).
+
+So authorship really is totally separate from sign-off, and all _my_ tools 
+take the authorship from the first "From:" line at the top of the message 
+body or from the email itself.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 09:51:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0CF1D22F037
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 09:51:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751138AbVLUQvT (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 11:51:19 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751139AbVLUQvT
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 11:51:19 -0500
+Received: from blue.stonehenge.com ([209.223.236.162]:45928 "EHLO
+	blue.stonehenge.com") by vger.kernel.org with ESMTP
+	id S1751138AbVLUQvS (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 11:51:18 -0500
+Received: from localhost (localhost [127.0.0.1])
+	by blue.stonehenge.com (Postfix) with ESMTP id C06DF8F8DB
+	for <git@vger.kernel.org>; Wed, 21 Dec 2005 08:51:13 -0800 (PST)
+Received: from blue.stonehenge.com ([127.0.0.1])
+ by localhost (blue.stonehenge.com [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 06812-01-54 for <git@vger.kernel.org>;
+ Wed, 21 Dec 2005 08:51:13 -0800 (PST)
+Received: by blue.stonehenge.com (Postfix, from userid 1001)
+	id 25B938F8F9; Wed, 21 Dec 2005 08:51:13 -0800 (PST)
+To:	git <git@vger.kernel.org>
+Subject: Am I doing something wrong?
+x-mayan-date: Long count = 12.19.12.16.3; tzolkin = 8 Akbal; haab = 1 Kankin
+From:	merlyn@stonehenge.com (Randal L. Schwartz)
+Date:	21 Dec 2005 08:51:13 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <86k6dyxuke.fsf@blue.stonehenge.com>
+Lines:	18
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:13870
+
+
+localhost:~/MIRROR/git-GIT % cg-fetch
+Recovering from a previously interrupted fetch...
+Fetching head...
+Fetching objects...
+Getting alternates list for http://www.kernel.org/pub/scm/git/git.git/
+Getting pack list for http://www.kernel.org/pub/scm/git/git.git/
+error: Unable to find c2f3bf071ee90b01f2d629921bb04c4f798f02fa under http://www.kernel.org/pub/scm/git/git.git/
+
+Cannot obtain needed object c2f3bf071ee90b01f2d629921bb04c4f798f02fa
+while processing commit 0000000000000000000000000000000000000000.
+cg-fetch: objects fetch failed
+
+-- 
+Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+<merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

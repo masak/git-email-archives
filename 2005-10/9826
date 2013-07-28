@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct  8 00:47:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F0F411B8456
+	for <tkil@scrye.com>; Sat,  8 Oct 2005 00:47:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750783AbVJHGqI (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 8 Oct 2005 02:46:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750822AbVJHGqI
+	(ORCPT <rfc822;git-outgoing>); Sat, 8 Oct 2005 02:46:08 -0400
+Received: from devrace.com ([198.63.210.113]:38928 "EHLO devrace.com")
+	by vger.kernel.org with ESMTP id S1750783AbVJHGqH (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 8 Oct 2005 02:46:07 -0400
+Received: from tigra.home (p54A0E160.dip.t-dialin.net [84.160.225.96])
+	(authenticated bits=0)
+	by devrace.com (8.12.11/8.12.11) with ESMTP id j986wPQb083674;
+	Sat, 8 Oct 2005 01:58:26 -0500 (CDT)
+	(envelope-from fork0@users.sourceforge.net)
+Received: from steel.home ([192.168.1.2])
+	by tigra.home with esmtp (Exim 3.36 #1 (Debian))
+	id 1EO8Sz-0000nR-00; Sat, 08 Oct 2005 08:45:57 +0200
+Received: from raa by steel.home with local (Exim 4.42 #1 (Debian))
+	id 1EO8Sy-0001KB-GB; Sat, 08 Oct 2005 08:45:56 +0200
+Date:	Sat, 8 Oct 2005 08:45:55 +0200
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org, Kai Ruemmler <kai.ruemmler@gmx.net>
+Subject: Re: [RFC] embedded TAB and LF in pathnames
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051008064555.GA3831@steel.home>
+Reply-To: Alex Riesen <raa.lkml@gmail.com>
+References: <7vu0ftyvbc.fsf@assigned-by-dhcp.cox.net> <20051007232909.GB8893@steel.home> <7vpsqgyjrj.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vpsqgyjrj.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:9826
+
+Junio C Hamano, Sat, Oct 08, 2005 01:44:48 +0200:
+> > Junio C Hamano, Fri, Oct 07, 2005 21:35:19 +0200:
+> >> I have not made up my mind on the exact choice of the quoting
+> >> convention.  We could say '///' instead of '//', for example, or
+> >> even '//{LF}//' instead of '//0A' proposed above.  One thing I
+> >> am trying to avoid is "foo\nbar", which I suspect would be
+> >> unfriendly to the Cygwin folks.
+> >
+> > Being unhappy one of them, I think I'd better manage (even if by
+> > postprocessing the output).
+> >
+> > Please, don't make the common case ugly just because of that platform
+> > (insanely broken anyway).
+> 
+> You really have to realize that having LF and TAB in filenames
+> are *NOT* the common case, no matter which platform you are
+> talking about.
+> 
+
+Yes, but "//" in a path is quite common. Even "///" is not uncommon.
+
+How about copy ls' approach were possible?
+
+   -b, --escape, --quoting-style=escape
+          Quote  nongraphic  characters in file names using alphabetic and
+          octal backslash sequences like those used in C. This  option  is
+          the  same as -Q except that filenames are not surrounded by dou-
+          ble-quotes.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

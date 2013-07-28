@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 07:00:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4EEF519A03C
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 07:00:13 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751240AbVK3N7p (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 08:59:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751238AbVK3N7o
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 08:59:44 -0500
+Received: from baythorne.infradead.org ([81.187.2.161]:47253 "EHLO
+	baythorne.infradead.org") by vger.kernel.org with ESMTP
+	id S1751235AbVK3N7n (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 30 Nov 2005 08:59:43 -0500
+Received: from localhost ([127.0.0.1] helo=localhost.localdomain)
+	by baythorne.infradead.org with esmtpsa (Exim 4.54 #1 (Red Hat Linux))
+	id 1EhSUf-0004bO-Ks
+	for git@vger.kernel.org; Wed, 30 Nov 2005 13:59:33 +0000
+Subject: GIT_OBJECT_DIRECTORY handling broken on master.kernel.org?
+From:	David Woodhouse <dwmw2@infradead.org>
+To:	git@vger.kernel.org
+Content-Type: text/plain
+Date:	Wed, 30 Nov 2005 13:59:33 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1133359173.4117.68.camel@baythorne.infradead.org>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by baythorne.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:12990
+
+Daily kernel snapshots broke again. Trying to access, literally, "GIT_OBJECT_DIRECTORY".
+
+hera /home/dwmw2 $ export GIT_DIR=/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+hera /home/dwmw2 $ git-rev-parse --revs-only 00d7a7358e3f9f2575501674e604fe4c6700b365
+00d7a7358e3f9f2575501674e604fe4c6700b365
+hera /home/dwmw2 $ export GIT_OBJECT_DIRECTORY=/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/objects
+hera /home/dwmw2 $ git-rev-parse --revs-only 00d7a7358e3f9f2575501674e604fe4c6700b365
+fatal: Not a git repository: '/pub/scm/linux/kernel/git/torvalds/linux-2.6.git'
+hera /home/dwmw2 $ strace git-rev-parse --revs-only 00d7a7358e3f9f2575501674e604fe4c6700b365 2>&1 | tail
+access("/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/refs", X_OK) = 0
+lstat64("/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/HEAD", {st_mode=S_IFLNK|0777, st_size=17, ...}) = 0
+readlink("/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/HEAD", "refs/heads/master", 255) = 17
+access("GIT_OBJECT_DIRECTORY", X_OK)    = -1 ENOENT (No such file or directory)
+write(2, "fatal: ", 7fatal: )                  = 7
+write(2, "Not a git repository: \'/pub/scm/"..., 72Not a git repository: '/pub/scm/linux/kernel/git/torvalds/linux-2.6.git') = 72
+write(2, "\n", 1
+)                       = 1
+exit_group(128)                         = ?
+Process 30646 detached
+
+-- 
+dwmw2
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

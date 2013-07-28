@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 16:13:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 63B31147F0E
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 16:13:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751552AbVKIXMv (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 18:12:51 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751553AbVKIXMv
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 18:12:51 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:59571 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751550AbVKIXMu (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 18:12:50 -0500
+Received: (qmail 9365 invoked by uid 2001); 10 Nov 2005 00:12:48 +0100
+Date:	Thu, 10 Nov 2005 00:12:48 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Cc:	Fredrik Kuivinen <freku045@student.liu.se>,
+	Junio C Hamano <junkio@cox.net>,
+	Jon Loeliger <jdl@freescale.com>, git@vger.kernel.org
+Subject: Re: Expected Behavior?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051109231248.GL16061@pasky.or.cz>
+References: <E1EZKOB-0002j5-VY@jdl.com> <7vwtjjllw4.fsf@assigned-by-dhcp.cox.net> <20051108210332.GB23265@c165.ib.student.liu.se> <20051109112452.GD30496@pasky.or.cz> <46a038f90511091504l7218df18k251bec75491891e9@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <46a038f90511091504l7218df18k251bec75491891e9@mail.gmail.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:11426
+
+Dear diary, on Thu, Nov 10, 2005 at 12:04:11AM CET, I got a letter
+where Martin Langhoff <martin.langhoff@gmail.com> said that...
+> On 11/10/05, Petr Baudis <pasky@suse.cz> wrote:
+> > The world would be so much better if there would be just a _single_
+> > per-file automerger instead of three right now...
+> 
+> I don't quite agree with this. The multi-merger mechanism is something
+> (relatively) unique and powerful in GIT.
+
+I'm not talking about mechanism but about the recommended policy (if you
+have something better, fine, use it - just keep _one_ default one
+instead of three, since this doesn't have anything or much to do with
+the actual merge strategy). Besides,
+
+> Having fast+stupid, with fallback to slow+smart is an excellent
+> strategy, and having the mechanism in place means that if someone is
+> crazy enough to write a smarter merge script for a language or a
+> particular project (say, to ease the transition to a new directory
+> layout) it is entirely possible.
+
+what mechanism are you talking about? All the scripts have it hardcoded
+what to use, it seems - cg-Xmergefile, git-merge-one-file or some
+subroutine...
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 13:59:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 23D78DDBF7
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 13:59:27 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751208AbVLUU7S (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 15:59:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751213AbVLUU7S
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 15:59:18 -0500
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:231 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S1751208AbVLUU7R (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 15:59:17 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051221205727.JWEO17690.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 21 Dec 2005 15:57:27 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Pavel Roskin <proski@gnu.org>
+Subject: Re: [PATCH] off-by-one bugs found by valgrind
+References: <1135197348.3046.7.camel@dv>
+cc:	git@vger.kernel.org
+Date:	Wed, 21 Dec 2005 12:59:14 -0800
+In-Reply-To: <1135197348.3046.7.camel@dv> (Pavel Roskin's message of "Wed, 21
+	Dec 2005 15:35:48 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7865fq5.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:13889
+
+Pavel Roskin <proski@gnu.org> writes:
+
+> Insufficient memory is allocated in index-pack.c to hold the *.idx name.
+> One more byte should be allocated to hold the terminating 0.
+
+Thanks.
+
+> quote_c_style_counted() in quote.c uses a dangerous construct, when a
+> variable is incremented once and used twice in the same expression.
+
+Sorry, I do not follow you.  Isn't && a sequence point?
+
+> -	for (sp = name; (ch = *sp++) && (sp - name) <= namelen; ) {
+> -
+> +	for (sp = name; sp < name + namelen; sp++) {
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

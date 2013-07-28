@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 12 12:56:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4AF04BAE2E
+	for <tkil@scrye.com>; Thu, 12 May 2005 12:56:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261370AbVELSyW (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 14:54:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261373AbVELSyT
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 14:54:19 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:37336 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261368AbVELSyD (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 12 May 2005 14:54:03 -0400
+Received: (qmail 3514 invoked by uid 2001); 12 May 2005 18:53:58 -0000
+Date:	Thu, 12 May 2005 20:53:58 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Jan-Benedict Glaw <jbglaw@lug-owl.de>
+Cc: Brian Gerst <bgerst@didntduck.org>,
+	Matthias Urlichs <smurf@smurf.noris.de>, git@vger.kernel.org
+Subject: Re: [PATCH Cogito] cg-init breaks if . contains sub-dir
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050512185358.GB324@pasky.ji.cz>
+References: <20050509233904.GB878@osuosl.org> <pan.2005.05.10.03.41.15.683163@smurf.noris.de> <428043EB.7010004@didntduck.org> <20050510075227.GA8176@lug-owl.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050510075227.GA8176@lug-owl.de>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 25
+Xref: brand.scrye.com linux.git:3150
+
+Dear diary, on Tue, May 10, 2005 at 09:52:27AM CEST, I got a letter
+where Jan-Benedict Glaw <jbglaw@lug-owl.de> told me that...
+> On Tue, 2005-05-10 01:17:31 -0400, Brian Gerst <bgerst@didntduck.org> wrote:
+> > But it can handle symlinks:
+> > 
+> > 	find * -type f -o -type l -print0 | xargs -0r cg-add
+> 
+> This won't work because the explicit OR (-o) lower precedence compared
+> to the implicit AND between "-type l" and "-print0", thus this find
+> command will do print0 IFF the matched entry is a symlink. Use something
+> like this instead:
+> 
+> 	find * \( -type f -o tyle l \) -print0 | ...
+
+Thanks to all the four co-authors, applied.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

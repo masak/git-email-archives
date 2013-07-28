@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 24 00:50:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8BBE019A030
+	for <tkil@scrye.com>; Thu, 24 Nov 2005 00:50:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030563AbVKXHu2 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 24 Nov 2005 02:50:28 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030565AbVKXHu2
+	(ORCPT <rfc822;git-outgoing>); Thu, 24 Nov 2005 02:50:28 -0500
+Received: from hand.yhbt.net ([66.150.188.102]:58601 "EHLO mail.yhbt.net")
+	by vger.kernel.org with ESMTP id S1030564AbVKXHu1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 24 Nov 2005 02:50:27 -0500
+Received: by mail.yhbt.net (Postfix, from userid 500)
+	id 516432DC033; Wed, 23 Nov 2005 23:50:27 -0800 (PST)
+Date:	Wed, 23 Nov 2005 23:50:27 -0800
+From:	Eric Wong <normalperson@yhbt.net>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Cc:	git list <git@vger.kernel.org>,
+	Martin Langhoff <martin@catalyst.net.nz>
+Subject: [PATCH 3/9] fix -t tmpdir switch
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051124075027.GD4789@mail.yhbt.net>
+References: <20051112092336.GA16218@Muzzle> <46a038f90511170126l5f04f4e0ta578fc2cb375db68@mail.gmail.com> <20051124074605.GA4789@mail.yhbt.net> <20051124074739.GB4789@mail.yhbt.net> <20051124074857.GC4789@mail.yhbt.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051124074857.GC4789@mail.yhbt.net>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:12674
+
+set TMPDIR env correctly if -t <tmpdir> is passed from the command-line.
+setting TMPDIR => 1 as an argument to tempdir() has no effect otherwise
+
+Signed-off-by: Eric Wong <normalperson@yhbt.net>
+
+---
+
+ git-archimport.perl |    5 ++---
+ 1 files changed, 2 insertions(+), 3 deletions(-)
+
+applies-to: 015fcfae8cdd564f0993940c5bac303c41913b1a
+25aadaf3ebc18fcc3c7948dc831d3f93447b03b6
+diff --git a/git-archimport.perl b/git-archimport.perl
+index b7e2480..2ed2e3c 100755
+--- a/git-archimport.perl
++++ b/git-archimport.perl
+@@ -88,9 +88,8 @@ usage if $opt_h;
+ @ARGV >= 1 or usage();
+ my @arch_roots = @ARGV;
+ 
+-my ($tmpdir, $tmpdirname) = tempdir('git-archimport-XXXXXX', TMPDIR => 1, CLEANUP => 1);
+-my $tmp = $opt_t || 1;
+-$tmp = tempdir('git-archimport-XXXXXX', TMPDIR => 1, CLEANUP => 1);
++$ENV{'TMPDIR'} = $opt_t if $opt_t; # $ENV{TMPDIR} will affect tempdir() calls:
++my $tmp = tempdir('git-archimport-XXXXXX', TMPDIR => 1, CLEANUP => 1);
+ $opt_v && print "+ Using $tmp as temporary directory\n";
+ 
+ my @psets  = ();                # the collection
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

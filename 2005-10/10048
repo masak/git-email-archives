@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 12 18:54:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.1 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 58BB6F5763
+	for <tkil@scrye.com>; Wed, 12 Oct 2005 18:54:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932466AbVJMAxS (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 12 Oct 2005 20:53:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932483AbVJMAxS
+	(ORCPT <rfc822;git-outgoing>); Wed, 12 Oct 2005 20:53:18 -0400
+Received: from blue.stonehenge.com ([209.223.236.162]:49839 "EHLO
+	blue.stonehenge.com") by vger.kernel.org with ESMTP id S932466AbVJMAxQ
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 12 Oct 2005 20:53:16 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by blue.stonehenge.com (Postfix) with ESMTP id E773C8F7F6
+	for <git@vger.kernel.org>; Wed, 12 Oct 2005 17:53:03 -0700 (PDT)
+Received: from blue.stonehenge.com ([127.0.0.1])
+ by localhost (blue.stonehenge.com [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 29659-03-12 for <git@vger.kernel.org>;
+ Wed, 12 Oct 2005 17:53:03 -0700 (PDT)
+Received: by blue.stonehenge.com (Postfix, from userid 1001)
+	id 80B638F7FC; Wed, 12 Oct 2005 17:53:03 -0700 (PDT)
+To:	git@vger.kernel.org
+Subject: maybe breakage with latest git-pull and http protocol
+x-mayan-date: Long count = 12.19.12.12.13; tzolkin = 3 Ben; haab = 11 Yax
+From:	merlyn@stonehenge.com (Randal L. Schwartz)
+Date:	12 Oct 2005 17:53:03 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <867jciz18w.fsf@blue.stonehenge.com>
+Lines:	17
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:10048
+
+
+I updated git to d06b689a933f6d2130f8afdf1ac0ddb83eeb59ab,
+then compiled and installed.
+
+When I went to "git-pull" on my cogito archive (which I had edited
+to use HTTP instead of RSYNC), I got into trouble.  Unfortunately,
+I changed it to rsync to force cogito into a sane state before
+I realized that this would be a good bug report. :)
+
+This is perhaps just a heads-up that the recent git-pull might be
+broken with respect to http updates.
+
+-- 
+Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+<merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

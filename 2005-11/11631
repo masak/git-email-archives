@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 15:48:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 693EF227B34
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 15:48:50 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751293AbVKKWlr (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 17:41:47 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751283AbVKKWjj
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 17:39:39 -0500
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:918 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S1751286AbVKKWjb (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 11 Nov 2005 17:39:31 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051111223823.GSLK24014.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 11 Nov 2005 17:38:23 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@ucw.cz>, Daniel Barkalow <barkalow@iabervon.org>
+Cc:	git@vger.kernel.org
+Subject: Re: Strange merge conflicts against earlier merge.
+References: <46a038f90511091638k726d605r170717539225a712@mail.gmail.com>
+	<20051111075257.GA4765@c165.ib.student.liu.se>
+	<20051111114511.GQ30496@pasky.or.cz>
+	<7v64qzozyx.fsf@assigned-by-dhcp.cox.net>
+	<20051111173239.GU16061@pasky.or.cz>
+	<7v1x1nni78.fsf@assigned-by-dhcp.cox.net>
+	<20051111215620.GX16061@pasky.or.cz>
+Date:	Fri, 11 Nov 2005 14:39:28 -0800
+In-Reply-To: <20051111215620.GX16061@pasky.or.cz> (Petr Baudis's message of
+	"Fri, 11 Nov 2005 22:56:20 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vy83ukdwf.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:11631
+
+Petr Baudis <pasky@ucw.cz> writes:
+
+> 	16    anc1/anc2 anc1    anc2      no merge
+>
+> What ends up in the index at this moment as "stage 1"? anc1? anc2?
+> Two stage 1 entries? And what does git-merge-index do about this?
+
+I think we decided there is no single sensible resolution, and
+we leave stage 1 empty.
+
+Come to think of it, we should signal that we are punting by
+either exiting non-zero, or stuffing 0{40} SHA1 in stage1, so
+that we can distinguish the case with two sides adding things
+differently.  Daniel, what do you think?
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 00:19:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D37B928E459
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 00:19:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751340AbVK2HRh (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 02:17:37 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751341AbVK2HRg
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 02:17:36 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:32932 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S1751340AbVK2HRf
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 29 Nov 2005 02:17:35 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1Egzk6-0001qK-J3
+	for git@vger.kernel.org; Tue, 29 Nov 2005 02:17:34 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1Egzk3-0006FG-VS; Tue, 29 Nov 2005 02:17:31 -0500
+Subject: Re: [PATCH] git-clone --shared should imply --local
+From:	Pavel Roskin <proski@gnu.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git <git@vger.kernel.org>
+In-Reply-To: <7viruclymo.fsf@assigned-by-dhcp.cox.net>
+References: <1133245249.27750.77.camel@dv>
+	 <7viruclymo.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Tue, 29 Nov 2005 02:17:31 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1133248651.27750.82.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:12918
+
+On Mon, 2005-11-28 at 23:08 -0800, Junio C Hamano wrote:
+> Pavel Roskin <proski@gnu.org> writes:
+> 
+> > The "--shared" option to git-clone is silently ignored if "--local" is
+> > not specified.  The manual doesn't mention such dependency.  Make
+> > "--shared" imply "--local".
+> >
+> > Signed-off-by: Pavel Roskin <proski@gnu.org>
+> 
+> Hmph, then probably the manual should say it implies it...
+
+Actually, from the user point of view --local and --shared are
+alternatives to each other and to the default behavior.  --local copies
+files, --shared makes a reference.
+
+Saying that --shared implies --local could sound like git-clone would
+still copy all objects.
+
+My description was from the implementation point of view.
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

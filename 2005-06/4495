@@ -1,0 +1,110 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun  3 17:02:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 32CE1D637F
+	for <tkil@scrye.com>; Fri,  3 Jun 2005 17:02:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261152AbVFCXCp (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 3 Jun 2005 19:02:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261154AbVFCXCp
+	(ORCPT <rfc822;git-outgoing>); Fri, 3 Jun 2005 19:02:45 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:38636 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261152AbVFCXCl (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 3 Jun 2005 19:02:41 -0400
+Received: (qmail 16815 invoked by uid 2001); 3 Jun 2005 23:02:37 -0000
+Date:	Sat, 4 Jun 2005 01:02:37 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Use correct U*MAX.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050603230234.GC13093@pasky.ji.cz>
+References: <7vy89ums2l.fsf@assigned-by-dhcp.cox.net> <7vis0xkjn4.fsf@assigned-by-dhcp.cox.net> <7vwtpc7lju.fsf_-_@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vwtpc7lju.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 70
+Xref: brand.scrye.com linux.git:4495
+
+Dear diary, on Thu, Jun 02, 2005 at 06:47:33PM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> The largest "unsigned long" value is ULONG_MAX, not UINT_MAX.
+> 
+> Signed-off-by: Junio C Hamano <junkio@cox.net>
+> diff --git a/diff.c b/diff.c
+> --- a/diff.c
+> +++ b/diff.c
+> @@ -256,7 +256,7 @@ static struct sha1_size_cache *locate_si
+>  		first = next+1;
+>  	}
+>  	/* not found */
+> -	if (size == UINT_MAX)
+> +	if (size == ULONG_MAX)
+>  		return NULL;
+>  	/* insert to make it at "first" */
+>  	if (sha1_size_cache_alloc <= sha1_size_cache_nr) {
+> @@ -338,7 +338,7 @@ int diff_populate_filespec(struct diff_f
+>  		struct sha1_size_cache *e;
+>  
+>  		if (size_only) {
+> -			e = locate_size_cache(s->sha1, UINT_MAX);
+> +			e = locate_size_cache(s->sha1, ULONG_MAX);
+>  			if (e) {
+>  				s->size = e->size;
+>  				return 0;
+
+This one still applies, but it might be better to get rid of it
+altogether, like...
+
+[PATCH] Kill UINT_MAX usage in locate_size_cache()
+
+Use -1 instead of UINT_MAX to indicate that locate_size_cache() should
+do only the lookup and not create new stuff in case the looked up hash
+was not found.
+
+Signed-off-by: Petr Baudis <pasky@ucw.cz>
+
+diff --git a/diff.c b/diff.c
+--- a/diff.c
++++ b/diff.c
+@@ -256,7 +256,7 @@ static struct sha1_size_cache *locate_si
+ 		first = next+1;
+ 	}
+ 	/* not found */
+-	if (size == UINT_MAX)
++	if (size == -1)
+ 		return NULL;
+ 	/* insert to make it at "first" */
+ 	if (sha1_size_cache_alloc <= sha1_size_cache_nr) {
+@@ -337,7 +337,7 @@ int diff_populate_filespec(struct diff_f
+ 		struct sha1_size_cache *e;
+ 
+ 		if (size_only) {
+-			e = locate_size_cache(s->sha1, UINT_MAX);
++			e = locate_size_cache(s->sha1, -1);
+ 			if (e) {
+ 				s->size = e->size;
+ 				return 0;
+
+|
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

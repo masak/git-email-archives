@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun  8 03:02:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9A3A4286B50
+	for <tkil@scrye.com>; Wed,  8 Jun 2005 03:02:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262145AbVFHJC0 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 8 Jun 2005 05:02:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262147AbVFHJC0
+	(ORCPT <rfc822;git-outgoing>); Wed, 8 Jun 2005 05:02:26 -0400
+Received: from rproxy.gmail.com ([64.233.170.202]:6745 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262145AbVFHJCX convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 8 Jun 2005 05:02:23 -0400
+Received: by rproxy.gmail.com with SMTP id i8so215990rne
+        for <git@vger.kernel.org>; Wed, 08 Jun 2005 02:02:21 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=fqC3fGuj5+eh+irmMJc0DbW+Yo/9ilDwOiFE2kwtpUwo0qYvGrJsivDRefjz4vj4i/6x1XW4fCt0P51tkp42kRO2G643nNXtvKxH7F13cjFSSpuHg/lDQlIccIBWiHo0wzjKxySK7aNCkg+eFvceOHf0nQkAZoQ7ZNz9w8Kbdiw=
+Received: by 10.38.104.24 with SMTP id b24mr3572235rnc;
+        Wed, 08 Jun 2005 02:02:21 -0700 (PDT)
+Received: by 10.38.104.42 with HTTP; Wed, 8 Jun 2005 02:02:21 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2cfc4032050608020215152887@mail.gmail.com>
+Date:	Wed, 8 Jun 2005 19:02:21 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+Reply-To: jon@blackcubes.dyndns.org
+To: Radoslaw Szkodzinski <astralstorm@gorzow.mm.pl>
+Subject: Re: git-rev-list --merge-order hangs
+In-Reply-To: <2cfc403205060800337e1ecca0@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <42A69550.1030105@gorzow.mm.pl>
+	 <2cfc4032050608002258e58897@mail.gmail.com>
+	 <2cfc403205060800337e1ecca0@mail.gmail.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.3
+Lines: 19
+Xref: brand.scrye.com linux.git:4668
+
+Actually, one case that I may not have considered properly is a commit
+near the head that has no parents.
+
+      git-rev-list --parents v2.6.12-rc6-astorm1 ^v2.6.12-rc6
+
+should tell you if this case exists. Ideally such a case should not
+occur, but that isn't a logical certainity, so I should handle it
+better than I currently do.
+
+Please let me know if this may explain your case. 
+
+Regards,
+
+jon.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

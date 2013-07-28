@@ -1,0 +1,53 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 14 13:59:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 329B0FC57A
+	for <tkil@scrye.com>; Mon, 14 Nov 2005 13:59:00 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932119AbVKNU4j (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 15:56:39 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932124AbVKNU4j
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 15:56:39 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:17142 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S932119AbVKNU4i (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 14 Nov 2005 15:56:38 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051114205606.TEMC6244.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 14 Nov 2005 15:56:06 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Carl Baldwin <cnb@fc.hp.com>
+Subject: Re: [Question] info/grafts file.
+References: <20051114182019.GA19105@hpsvcnb.fc.hp.com>
+cc:	git@vger.kernel.org
+Date:	Mon, 14 Nov 2005 12:56:37 -0800
+In-Reply-To: <20051114182019.GA19105@hpsvcnb.fc.hp.com> (Carl Baldwin's
+	message of "Mon, 14 Nov 2005 11:20:19 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhdafx81m.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 9
+Xref: brand.scrye.com linux.git:11837
+
+Grafts are considered local preference, and not copied when
+cloned.  I am unsure this was a right decision, but that is how
+things are right now.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

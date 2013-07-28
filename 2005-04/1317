@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 22 16:43:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DAE086563
+	for <tkil@scrye.com>; Fri, 22 Apr 2005 16:43:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261257AbVDVWmy (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 22 Apr 2005 18:42:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261260AbVDVWmy
+	(ORCPT <rfc822;git-outgoing>); Fri, 22 Apr 2005 18:42:54 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:57761 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261257AbVDVWmw (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 22 Apr 2005 18:42:52 -0400
+Received: (qmail 24812 invoked by uid 2001); 22 Apr 2005 22:42:51 -0000
+Date:	Sat, 23 Apr 2005 00:42:51 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Martin Schlemmer <azarah@nosferatu.za.org>
+Cc: GIT Mailing Lists <git@vger.kernel.org>
+Subject: Re: [git pasky] tarball question
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050422224251.GE21204@pasky.ji.cz>
+References: <1114180303.29271.25.camel@nosferatu.lan>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1114180303.29271.25.camel@nosferatu.lan>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 33
+Xref: brand.scrye.com linux.git:1317
+
+Dear diary, on Fri, Apr 22, 2005 at 04:31:43PM CEST, I got a letter
+where Martin Schlemmer <azarah@nosferatu.za.org> told me that...
+> Hi,
+
+Hi,
+
+> I understand why you have the git-pasky-0.6.x.tar.bz2 tarballs with
+> the .git database included as well (btw, great stuff renaming it to
+> something more distributable), but its going to be a pita for users of
+> source based distro's like us (Gentoo), as well as our mirrors if it
+> gets much bigger. (Already asked r3pek to add it to portage).
+
+yes; that was actually the plan, it's just that my memory is so
+volatile...
+
+> How about ripping the .git directory from the next release, and just
+> have a un-numbered tarball (like you used to) that have the latest
+> snapshot of the .git directory for those that want to do git-pasky
+> development?  Should even make things easier your side, as you could
+> just do a cron to update it one a day/whatever.
+
+Does it actually make sense to keep a tarball with history? Just build
+git-pasky and do git init. (Or rsync it manually.)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

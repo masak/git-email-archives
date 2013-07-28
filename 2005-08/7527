@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 18 19:04:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 612871B0DEA
+	for <tkil@scrye.com>; Thu, 18 Aug 2005 19:04:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964777AbVHSBDf (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 18 Aug 2005 21:03:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964775AbVHSBDf
+	(ORCPT <rfc822;git-outgoing>); Thu, 18 Aug 2005 21:03:35 -0400
+Received: from rproxy.gmail.com ([64.233.170.200]:38023 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S964777AbVHSBDf convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 18 Aug 2005 21:03:35 -0400
+Received: by rproxy.gmail.com with SMTP id i8so416046rne
+        for <git@vger.kernel.org>; Thu, 18 Aug 2005 18:03:32 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=LrJCysNUXcr+7lbMMag9xOhmMGQpGcSL9f3KHn3ueh90pt92T8YV+3ZCxGTxMCo08NafdgPLxTiRV+2pB9jE+og0oe2VcdRrf/BnA0OWS0h4DsQt7WEGBHXJSzIP28vx+ljyjC4h8ByMdU+UVeJUlSWrbAuBq4om6hzJ1ecfOlc=
+Received: by 10.38.75.6 with SMTP id x6mr819933rna;
+        Thu, 18 Aug 2005 18:03:32 -0700 (PDT)
+Received: by 10.38.101.8 with HTTP; Thu, 18 Aug 2005 18:03:32 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f905081818034db50747@mail.gmail.com>
+Date:	Fri, 19 Aug 2005 13:03:32 +1200
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	GIT <git@vger.kernel.org>
+Subject: Re: Small team cogito/git setup
+In-Reply-To: <46a038f9050817211446684aac@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <46a038f9050817211446684aac@mail.gmail.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:7527
+
+On 8/18/05, Martin Langhoff <martin.langhoff@gmail.com> wrote:
+> We have a small team of 3, and our main activity is to run local
+
+To self: RTFM, specifically, Documentation/tutorial.txt 
+
+I had read it early on and either didn't get to the end of it, or had
+forgotten already.
+
+Apologies,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

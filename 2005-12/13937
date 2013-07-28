@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 07:00:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_12_24 autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1B97B19A02F
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 07:00:51 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964831AbVLVN7Q (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 08:59:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964861AbVLVN7Q
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 08:59:16 -0500
+Received: from inti.inf.utfsm.cl ([200.1.21.155]:62695 "EHLO inti.inf.utfsm.cl")
+	by vger.kernel.org with ESMTP id S964831AbVLVN7Q (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 22 Dec 2005 08:59:16 -0500
+Received: from laptop11.inf.utfsm.cl (laptop11.inf.utfsm.cl [200.1.19.198])
+	by inti.inf.utfsm.cl (8.13.1/8.13.1) with ESMTP id jBMDvp27012064
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 22 Dec 2005 10:57:52 -0300
+Received: from laptop11.inf.utfsm.cl (localhost.localdomain [127.0.0.1])
+	by laptop11.inf.utfsm.cl (8.13.5/8.13.5) with ESMTP id jBM0RetQ003481;
+	Wed, 21 Dec 2005 21:27:40 -0300
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200512220027.jBM0RetQ003481@laptop11.inf.utfsm.cl>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Pavel Roskin <proski@gnu.org>, git@vger.kernel.org
+Subject: Re: [PATCH] off-by-one bugs found by valgrind 
+In-Reply-To: Message from Junio C Hamano <junkio@cox.net> 
+   of "Wed, 21 Dec 2005 12:59:14 -0800." <7vr7865fq5.fsf@assigned-by-dhcp.cox.net> 
+X-Mailer: MH-E 7.4.2; nmh 1.1; XEmacs 21.4 (patch 18)
+Date:	Wed, 21 Dec 2005 21:27:40 -0300
+From:	Horst von Brand <vonbrand@inf.utfsm.cl>
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-2.0b5 (inti.inf.utfsm.cl [200.1.21.155]); Thu, 22 Dec 2005 10:57:52 -0300 (CLST)
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:13937
+
+Junio C Hamano <junkio@cox.net> wrote:
+> Pavel Roskin <proski@gnu.org> writes:
+
+[...]
+
+> > quote_c_style_counted() in quote.c uses a dangerous construct, when a
+> > variable is incremented once and used twice in the same expression.
+> 
+> Sorry, I do not follow you.  Isn't && a sequence point?
+> 
+> > -	for (sp = name; (ch = *sp++) && (sp - name) <= namelen; ) {
+> > -
+> > +	for (sp = name; sp < name + namelen; sp++) {
+
+Yes, it is, so it doesn't fix any bugs; but Pavel's version is definitely
+more readable.
+-- 
+Dr. Horst H. von Brand                   User #22616 counter.li.org
+Departamento de Informatica                     Fono: +56 32 654431
+Universidad Tecnica Federico Santa Maria              +56 32 654239
+Casilla 110-V, Valparaiso, Chile                Fax:  +56 32 797513
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

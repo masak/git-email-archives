@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 23:59:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4A3B62851FA
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 23:59:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964995AbVIOF7F (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 01:59:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965140AbVIOF7F
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 01:59:05 -0400
+Received: from paleosilicon.orionmulti.com ([209.128.68.66]:32229 "EHLO
+	paleosilicon.orionmulti.com") by vger.kernel.org with ESMTP
+	id S964995AbVIOF7E (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 15 Sep 2005 01:59:04 -0400
+X-Envelope-From: hpa@zytor.com
+Received: from [172.27.0.18] (c-67-180-239-42.hsd1.ca.comcast.net [67.180.239.42])
+	(authenticated bits=0)
+	by paleosilicon.orionmulti.com (8.12.10/8.12.10) with ESMTP id j8F5wuJv024578
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 14 Sep 2005 22:58:57 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43290DA0.3030402@zytor.com>
+Date:	Wed, 14 Sep 2005 22:58:56 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Paul Mackerras <paulus@samba.org>
+CC:	Linus Torvalds <torvalds@osdl.org>, Wayne Scott <wsc9tt@gmail.com>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: git-diff-tree rename detection bug
+References: <59a6e583050914094777c4fe96@mail.gmail.com>	<7vwtljjzc3.fsf@assigned-by-dhcp.cox.net>	<59a6e583050914114054b1564d@mail.gmail.com>	<Pine.LNX.4.58.0509141321180.26803@g5.osdl.org> <17192.56103.803096.526568@cargo.ozlabs.ibm.com>
+In-Reply-To: <17192.56103.803096.526568@cargo.ozlabs.ibm.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.86.2, clamav-milter version 0.86 on paleosilicon.orionmulti.com
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:8580
+
+Paul Mackerras wrote:
+> 
+> I assume you're compiling git as 32-bit executables on your G5.  I
+> don't see any reason why the git binaries would need to be 64-bit.
+> 
+
+Well, git seems to assume it can mmap() the entirety of any file under 
+its control, so a 64-bit git could handle larger files.
+
+Still, I'm using 32-bit git on ppc64.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

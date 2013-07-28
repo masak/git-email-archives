@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 31 13:59:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2503D27BDE1
+	for <tkil@scrye.com>; Wed, 31 Aug 2005 13:59:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751040AbVHaT6t (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 31 Aug 2005 15:58:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751041AbVHaT6t
+	(ORCPT <rfc822;git-outgoing>); Wed, 31 Aug 2005 15:58:49 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:31136 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S1751027AbVHaT6t (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 31 Aug 2005 15:58:49 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050831195847.GMVA6784.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 31 Aug 2005 15:58:47 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Jon Loeliger <jdl@freescale.com>
+Subject: Re: My Embarrasingly Stupid Git question....(*)
+References: <1125506707.13577.29.camel@cashmere.sps.mot.com>
+cc:	git@vger.kernel.org
+Date:	Wed, 31 Aug 2005 12:58:47 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vacixanew.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_JD 
+	autolearn=ham version=3.0.4
+Lines: 37
+Xref: brand.scrye.com linux.git:7976
+
+Jon Loeliger <jdl@freescale.com> writes:
+
+> (*) -- I knew I didn't need to bother the list with this
+>     question.  And that as soon as I asked for external help,
+>     the answer would become clear. Sorry to have bothered you.
+
+That's OK.  As I stated before, the primary motivation that got
+me involved in git was to help people who do Linux kernel, so
+any question regarding the Linus kernel tree extracted from a
+copy of his git repository is welcome here, at least to me.
+
+I do not know Cogito very well.  I keep the latest Cogito source
+around all the time so that I can figure things out whenever
+need arises by reading it.  Most of the time, I would not
+offhand know answers to questions like "what does cg-rm do and
+what's the difference between it and 'cvs rm'".
+
+Using the core GIT tools only, the sequence of what you did
+would have been:
+
+------------------------------------------------
+$ git clone <url> <dir> && cd <dir>
+$ git checkout -b jdl master
+$ rm include/asm-ppc/sockios.h
+$ rm include/asm-ppc/socket.h
+$ rm include/asm-ppc64/sockios.h
+$ rm include/asm-ppc64/socket.h
+$ git add include/asm-powerpc/sockios.h
+$ git add include/asm-powerpc/socket.h
+$ git commit -a -s
+------------------------------------------------
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

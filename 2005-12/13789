@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 18 11:35:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E58DA8556F
+	for <tkil@scrye.com>; Sun, 18 Dec 2005 11:35:16 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932700AbVLRSfE (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Dec 2005 13:35:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932704AbVLRSfE
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Dec 2005 13:35:04 -0500
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:24282 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S932700AbVLRSfC (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Dec 2005 13:35:02 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051218183335.RLGW17006.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 18 Dec 2005 13:33:35 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] diff: --abbrev option
+References: <7v3bks12n6.fsf@assigned-by-dhcp.cox.net>
+	<20051218001756.GS22159@pasky.or.cz>
+	<7vek4byuwg.fsf@assigned-by-dhcp.cox.net>
+	<20051218114522.GW22159@pasky.or.cz>
+Date:	Sun, 18 Dec 2005 10:35:01 -0800
+In-Reply-To: <20051218114522.GW22159@pasky.or.cz> (Petr Baudis's message of
+	"Sun, 18 Dec 2005 12:45:22 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v4q56qmne.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:13789
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> Ok, that's nice! :-) And if I'm going to machine-process this later,
+> I can just trim the trailing dots anyway. And it seems that I can give
+> --abbrev a number argument to specify the minimal abbreviation, even
+> cooler! :-)
+
+Well, it is not for machine consumption to begin with anyway.
+It is an optional toy ;-).
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

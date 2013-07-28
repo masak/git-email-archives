@@ -1,0 +1,127 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 21:56:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2475C12DEB4
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 21:56:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261901AbVD1D4S (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Apr 2005 23:56:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261902AbVD1D4S
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Apr 2005 23:56:18 -0400
+Received: from mail.autoweb.net ([198.172.237.26]:26754 "EHLO mail.autoweb.net")
+	by vger.kernel.org with ESMTP id S261901AbVD1D4G (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 27 Apr 2005 23:56:06 -0400
+Received: from pcp01184054pcs.strl301.mi.comcast.net ([68.60.186.73] helo=michonline.com)
+	by mail.autoweb.net with esmtp (Exim 4.44)
+	id 1DR07j-00069H-4P; Wed, 27 Apr 2005 23:55:35 -0400
+Received: from mythical ([10.254.251.11] ident=Debian-exim)
+	by michonline.com with esmtp (Exim 3.35 #1 (Debian))
+	id 1DR08v-0001T7-00; Wed, 27 Apr 2005 23:56:49 -0400
+Received: from ryan by mythical with local (Exim 4.50)
+	id 1DR07i-0002DR-H7; Wed, 27 Apr 2005 23:55:34 -0400
+Date:	Wed, 27 Apr 2005 23:55:34 -0400
+From: Ryan Anderson <ryan@michonline.com>
+To: Bram Cohen <bram@bitconjurer.org>
+Cc: Linus Torvalds <torvalds@osdl.org>,
+	Andrew Morton <akpm@osdl.org>, pasky@ucw.cz, davem@davemloft.net,
+	git@vger.kernel.org
+Subject: Re: [GIT]: Networking
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050428035534.GB30308@mythryan2.michonline.com>
+References: <Pine.LNX.4.58.0504261310120.18901@ppc970.osdl.org> <Pine.LNX.4.44.0504261332540.4678-100000@wax.eds.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.44.0504261332540.4678-100000@wax.eds.org>
+User-Agent: Mutt/1.5.6+20040907i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 79
+Xref: brand.scrye.com linux.git:1962
+
+On Tue, Apr 26, 2005 at 01:35:55PM -0700, Bram Cohen wrote:
+> Linus Torvalds wrote:
+> 
+> > On Tue, 26 Apr 2005, Andrew Morton wrote:
+> > >
+> > > With bk I was resolving that by just smashing the patches on top of each
+> > > other, ignoring the rejects and refreshing the topmost patch.  That
+> > > approach actually resolved this linus-vs-davem dupe as well.
+> >
+> > Oh, wow. I didn't realize that your scripts were quite _that_ stupid, and
+> > didn't actually take advantage of any automatic merges at all.
+> >
+> > If so, git should trivially do everything that BK ever did for you. Which
+> > is not saying a lot ;)
+> 
+> No version control system will do a particularly good job of merging
+> content which got passed around outside of the system. They can be made to
+> sort-of handle some simple cases well, but fundamentally too much
+> information is getting dropped.
+
+One thing to keep in mind, about the way Linux development works (and
+honestly, the way I think "git" development is currently working) is
+that one of the things the version control system has to provide an easy
+method to do is to abandon history that is messy.
+
+For example, I'm adding a new driver, "foobar".
+
+It uses the fancy quantum-bus, which is fairly new to the kernel.
+The bus driver is new, and I go off, work in my private tree for a
+month, fixing all kinds of quantum-entanglement related bugs, and
+committing as I go.
+
+I get everything working, and submit my driver.
+
+The quantum-bus maintainer replies and says, "Hey, I reworked the API so
+that you don't need to worry about all this quantum-entanglement stuff
+anymore, just call compensate_for_heisenberg() before doing the DMA."
+
+I swear for a day or two, and rework my driver, and resubmit it.
+
+Now, all that history I had, with the duplicated imlementation, and
+useless code is in my tree.
+
+The current (as I understand it) policy is, "We don't want that
+history."  This means that the developer will build a new tree (maybe),
+export his patch and reimport it into a clean tree, making a much
+simpler history graph.
+
+What Andrew is doing isn't too far from this, in concept, it's just a
+lot more complicated because he's pulling something insane, like 27
+seperate trees, plus several hundred stand alone patches.
+
+So, there's a *deliberate* desire to drop history and move some content
+around outside of version control.
+
+Now, the desire to pull a bunch of seperate trees, merge them, produce a
+diff that roughly pertains to what came in from each tree, and collect
+that as a patch series may be strange, but it seems to be working really
+well at the moment, for Linux development.
+
+> The solution is to get everyone using the same version control system,
+> which is actually quite a workable solution if (a) the version control
+> system in question is quite nice, and (b) there isn't some deep political
+> reason why many people will never agree to use it.
+
+Git (well, cogito, really) seems to be getting there awfully fast - I'm
+rather impressed with the speed of it, and annoyed that I haven't had
+the time to build up a test suite for merging!
+
+
+-- 
+
+Ryan Anderson
+  sometimes Pug Majere
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

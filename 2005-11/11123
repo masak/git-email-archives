@@ -1,0 +1,173 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov  4 08:01:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8E4FC1AE949
+	for <tkil@scrye.com>; Fri,  4 Nov 2005 08:00:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932069AbVKDPA0 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 4 Nov 2005 10:00:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932737AbVKDPA0
+	(ORCPT <rfc822;git-outgoing>); Fri, 4 Nov 2005 10:00:26 -0500
+Received: from jenny.ondioline.org ([66.220.1.122]:56850 "EHLO
+	jenny.ondioline.org") by vger.kernel.org with ESMTP id S932069AbVKDPA0
+	(ORCPT <rfc822;git@vger.kernel.org>); Fri, 4 Nov 2005 10:00:26 -0500
+Received: by jenny.ondioline.org (Postfix, from userid 10)
+	id 42B508CD5B; Fri,  4 Nov 2005 15:00:24 +0000 (GMT)
+Received: by briny.internal.ondioline.org (Postfix, from userid 1000)
+	id 75706F93E; Fri,  4 Nov 2005 14:57:16 +0000 (GMT)
+From:	Paul Collins <paul@briny.ondioline.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] v2: proxy-command support for git://
+References: <87fyqdbuab.fsf@briny.internal.ondioline.org>
+	<7v8xw5h898.fsf@assigned-by-dhcp.cox.net>
+Mail-Followup-To: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Date:	Fri, 04 Nov 2005 14:57:16 +0000
+In-Reply-To: <7v8xw5h898.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Thu, 03 Nov 2005 10:54:43 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <871x1wbgvn.fsf_-_@briny.internal.ondioline.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 130
+Xref: brand.scrye.com linux.git:11123
+
+Junio C Hamano <junkio@cox.net> writes:
+
+> Paul Collins <paul@briny.ondioline.org> writes:
+>
+>> * Where should git_use_proxy() look?  Some git configuration file?
+>>   An environment variable?  Both?  Somewhere else?
+>
+> My preference is put something in .git/config to describe which
+> proxy command (maybe the same one with different argument) to
+> use depending on where you are going.  When you have internal
+> hosts and external hosts you would want this to apply only to
+> external hosts.  Maybe you have two or more gateways and
+> depending on which external host you are going you may want to
+> use different proxied connection.  On top of the config file,
+> making it overridable from an environment variable would be
+> sensible.
+
+Here is an updated patch that first looks for GIT_PROXY_COMMAND in the
+environment and then git.proxycommand in the repository's
+configuration file.  I have left the calling convention the same --
+argv[1] is the host and argv[2] is the port.
+
+I've taken the hostname parsing verbatim from git_tcp_connect(), so it
+should now support an explicit port number and whatever that business
+with the square brackets is.  (Should I move this to a helper function?)
+
+Regarding internal vs. external hosts, the proxy command can simply
+run netcat locally to internal hosts, so perhaps that is sufficient.
+
+
+diff --git a/connect.c b/connect.c
+index c2badc7..43eec67 100644
+--- a/connect.c
++++ b/connect.c
+@@ -448,6 +448,73 @@ static int git_tcp_connect(int fd[2], co
+ 
+ #endif /* NO_IPV6 */
+ 
++static char *git_proxy_command = NULL;
++
++static int git_proxy_command_options(const char *var, const char *value)
++{
++	if (git_proxy_command == NULL) {
++		if (!strcmp(var, "git.proxycommand")) {
++			git_proxy_command = xmalloc(strlen(value) + 1);
++			strcpy(git_proxy_command, value);
++			return 0;
++		}
++	}
++
++	return git_default_config(var, value);
++}
++
++static int git_use_proxy(void)
++{
++	git_proxy_command = getenv("GIT_PROXY_COMMAND");
++	git_config(git_proxy_command_options);
++	return git_proxy_command != NULL;
++}
++
++static int git_proxy_connect(int fd[2], const char *prog, char *host, char *path)
++{
++	char *port = STR(DEFAULT_GIT_PORT);
++	char *colon, *end;
++	int pipefd[2][2];
++	pid_t pid;
++
++	if (host[0] == '[') {
++		end = strchr(host + 1, ']');
++		if (end) {
++			*end = 0;
++			end++;
++			host++;
++		} else
++			end = host;
++	} else
++		end = host;
++	colon = strchr(end, ':');
++
++	if (colon) {
++		*colon = 0;
++		port = colon + 1;
++	}
++
++	if (pipe(pipefd[0]) < 0 || pipe(pipefd[1]) < 0)
++		die("unable to create pipe pair for communication");
++	pid = fork();
++	if (!pid) {
++		dup2(pipefd[1][0], 0);
++		dup2(pipefd[0][1], 1);
++		close(pipefd[0][0]);
++		close(pipefd[0][1]);
++		close(pipefd[1][0]);
++		close(pipefd[1][1]);
++		execlp(git_proxy_command, git_proxy_command, host, port, NULL);
++		die("exec failed");
++	}
++	fd[0] = pipefd[0][0];
++	fd[1] = pipefd[1][1];
++	close(pipefd[0][1]);
++	close(pipefd[1][0]);
++	packet_write(fd[1], "%s %s\n", prog, path);
++	return pid;
++}
++
+ /*
+  * Yeah, yeah, fixme. Need to pass in the heads etc.
+  */
+@@ -482,8 +549,11 @@ int git_connect(int fd[2], char *url, co
+ 		}
+ 	}
+ 
+-	if (protocol == PROTO_GIT)
++	if (protocol == PROTO_GIT) {
++		if (git_use_proxy())
++			return git_proxy_connect(fd, prog, host, path);
+ 		return git_tcp_connect(fd, prog, host, path);
++	}
+ 
+ 	if (pipe(pipefd[0]) < 0 || pipe(pipefd[1]) < 0)
+ 		die("unable to create pipe pair for communication");
+
+
+-- 
+Dag vijandelijk luchtschip de huismeester is dood
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

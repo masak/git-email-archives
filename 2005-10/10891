@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 16:39:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A85EA198FE3
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 16:39:36 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964782AbVJaXiK (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 18:38:10 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964854AbVJaXiK
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 18:38:10 -0500
+Received: from iabervon.org ([66.92.72.58]:39686 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S964782AbVJaXiJ (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 31 Oct 2005 18:38:09 -0500
+Received: (qmail 23432 invoked by uid 1000); 31 Oct 2005 18:37:48 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 31 Oct 2005 18:37:48 -0500
+Date:	Mon, 31 Oct 2005 18:37:48 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Linus Torvalds <torvalds@osdl.org>
+cc:	Ben Greear <greearb@candelatech.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Question on GIT usage.
+In-Reply-To: <Pine.LNX.4.64.0510311520190.27915@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510311821410.25300@iabervon.org>
+References: <4362C700.6020901@candelatech.com> <Pine.LNX.4.64.0510311749080.25300@iabervon.org>
+ <Pine.LNX.4.64.0510311520190.27915@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 43
+Xref: brand.scrye.com linux.git:10891
+
+On Mon, 31 Oct 2005, Linus Torvalds wrote:
+
+> On Mon, 31 Oct 2005, Daniel Barkalow wrote:
+> > 
+> > The system will be unhappy if you commit to a branch that is checked out 
+> > elsewhere (because the head of that branch will change out from under the 
+> > checked out version), like having someone push to a repository with the 
+> > branch checked out.
+> 
+> Well, the good news is that a "git checkout -f" in the other trees will do 
+> the right thing (and only check out the files that have changed).
+> 
+> The bad news is that you need to remember to do that ;)
+
+If we wanted to make this work reliably, we could have a 
+"LAST_CHECKED_OUT" which has an actual hash (rather than being a link like 
+HEAD is), and gets set by the checkout. Then it would always know what 
+commit you have checked out, even if something causes HEAD to not match.
+
+I personally just never have the same branch checked out twice, so the 
+situation doesn't happen to me. It's easy enough to add additional 
+branches.
+
+Oh, that reminds me: is there a simple way to merge a branch with another 
+local branch or remote branch that's already up-to-date? E.g., I've 
+already fetched the latest git from kernel.org, built it, and installed 
+it. Now I want to merge my development branch with that. Last time I was 
+looking, I had to write the message for the merge myself, unlike "pull", 
+which takes care of that.
+
+Also, I have a repository on my server for one of my projects. I push from 
+my workstation to the "mainline" branch, and I have "deploy" checked out 
+(with some configuration changes that shouldn't propagate back). Then I 
+merge "mainline" into "deploy", build, and install. Same thing; I have to 
+write the "merge with mainline" argument myself.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

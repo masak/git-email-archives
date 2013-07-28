@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 19:59:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B67FA12A49F
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 19:59:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261253AbVDTB66 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 21:58:58 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261264AbVDTB66
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 21:58:58 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:42908 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S261253AbVDTB65 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 19 Apr 2005 21:58:57 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050420015855.UHIH7956.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 19 Apr 2005 21:58:55 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+Subject: Re: [RFC] Possible strategy cleanup for git add/remove/diff etc.
+References: <20050419035107.GB5554@pasky.ji.cz>
+	<7vacnumgot.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0504191846290.6467@ppc970.osdl.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Tue, 19 Apr 2005 18:58:55 -0700
+In-Reply-To: <Pine.LNX.4.58.0504191846290.6467@ppc970.osdl.org> (Linus
+ Torvalds's message of "Tue, 19 Apr 2005 18:51:06 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3btmmco0.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 15
+Xref: brand.scrye.com linux.git:902
+
+>>>>> "LT" == Linus Torvalds <torvalds@osdl.org> writes:
+
+LT> Is there any other reason why git-pasky wants to have a work file?
+
+Do you mean "why does a user wants to check things out in the
+working directory and make changes, possibly run compile tests
+before pushing the result to Linus?" ;-)  I'm confused what you
+mean by "a work file", I guess...
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

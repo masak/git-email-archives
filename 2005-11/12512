@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 22:03:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BAF0924A69C
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 22:03:48 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750980AbVKVFDj (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 00:03:39 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750984AbVKVFDi
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 00:03:38 -0500
+Received: from web31808.mail.mud.yahoo.com ([68.142.207.71]:43391 "HELO
+	web31808.mail.mud.yahoo.com") by vger.kernel.org with SMTP
+	id S1750977AbVKVFDi (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 00:03:38 -0500
+Received: (qmail 46452 invoked by uid 60001); 22 Nov 2005 05:03:37 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Message-ID:Received:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=QRwFsDhCeRGAPKRdJGhcgmHzRXStPCOsDz8dECG/WHDy1dcBcSqqftXgUWP8yG1eUK9VXHKiY4QFNvxB5M7Wq7U48SwaYFndBWhSglftccMUkVZnX7IBkLWYCXaA96PW3Da42OXcLu1ar9/pj76bQjX5OV4hKs7h8f8idpknQrY=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051122050337.46450.qmail@web31808.mail.mud.yahoo.com>
+Received: from [68.221.119.157] by web31808.mail.mud.yahoo.com via HTTP; Mon, 21 Nov 2005 21:03:37 PST
+Date:	Mon, 21 Nov 2005 21:03:37 -0800 (PST)
+From:	Luben Tuikov <ltuikov@yahoo.com>
+Reply-To: ltuikov@yahoo.com
+Subject: index manipulation -- how?
+To:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:12512
+
+I've a question:
+
+Suppose I've updated the index and there is
+several updates pending in it: several new
+files, and several updates, etc.
+
+That is a sequence of:
+git-update-index [options] <file>
+...
+
+My question is:
+How do I reverse a _single_ "git-update-index" operation?
+Be it --add or just an update.
+
+Thanks,
+    Luben
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

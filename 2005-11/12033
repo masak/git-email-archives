@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 12:16:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 822851EAAE9
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 12:16:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751499AbVKPTQE (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 14:16:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751504AbVKPTQE
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 14:16:04 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:45698 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1751501AbVKPTQB (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 14:16:01 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051116191450.JILC17437.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 16 Nov 2005 14:14:50 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Andrew Wozniak <awozniak@mc.com>
+Subject: Re: recent patch breaks the build ?
+References: <437B6997.8010903@mc.com>
+cc:	git@vger.kernel.org, Nick Hengeveld <nickh@reactrix.com>
+Date:	Wed, 16 Nov 2005 11:15:59 -0800
+In-Reply-To: <437B6997.8010903@mc.com> (Andrew Wozniak's message of "Wed, 16
+	Nov 2005 12:17:11 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64qs8kuo.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:12033
+
+Andrew Wozniak <awozniak@mc.com> writes:
+
+> Have just started using git for u-boot related development. After 
+> downloading git-snapshot-20051116 tarball and attempting a build under 
+> RH7.2, I get the following failure:
+
+Would this help?
+
+-- >8 --
+
+diff --git a/http-fetch.c b/http-fetch.c
+index 21cc1b9..45e97f9 100644
+--- a/http-fetch.c
++++ b/http-fetch.c
+@@ -902,16 +902,18 @@ static void fetch_alternates(char *base)
+ 	char *data;
+ 	struct active_request_slot *slot;
+ 	static struct alt_request alt_req;
+-	int num_transfers;
+ 
++#ifdef USE_CURL_MULTI
+ 	/* If another request has already started fetching alternates,
+ 	   wait for them to arrive and return to processing this request's
+ 	   curl message */
+ 	while (got_alternates == 0) {
++		int num_transfers;
+ 		curl_multi_perform(curlm, &num_transfers);
+ 		process_curl_messages();
+ 		process_request_queue();
+ 	}
++#endif
+ 
+ 	/* Nothing to do if they've already been fetched */
+ 	if (got_alternates == 1)
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

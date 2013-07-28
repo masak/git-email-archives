@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 10 16:37:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0B2D817D6BB
+	for <tkil@scrye.com>; Fri, 10 Jun 2005 16:37:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261303AbVFJWgY (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 10 Jun 2005 18:36:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261308AbVFJWgY
+	(ORCPT <rfc822;git-outgoing>); Fri, 10 Jun 2005 18:36:24 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:19358 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261303AbVFJWgS (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 10 Jun 2005 18:36:18 -0400
+Received: (qmail 28312 invoked by uid 2001); 10 Jun 2005 22:36:16 -0000
+Date:	Sat, 11 Jun 2005 00:36:16 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Pavel Roskin <proski@gnu.org>
+Cc: git <git@vger.kernel.org>
+Subject: Re: [COGITO PATCH] Improvements for cg and cg-help
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050610223616.GC22111@pasky.ji.cz>
+References: <1118330242.27441.15.camel@dv>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1118330242.27441.15.camel@dv>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 26
+Xref: brand.scrye.com linux.git:4813
+
+Dear diary, on Thu, Jun 09, 2005 at 05:17:22PM CEST, I got a letter
+where Pavel Roskin <proski@gnu.org> told me that...
+> Hello!
+
+Hello,
+
+> cg with any option before the command ("cg -foo cmd") should also run
+> cg-help.
+
+it shouldn't.
+
+> cg-help should print help for cg-help if specific help is not available,
+
+it shouldn't, it should report an error.
+
+The rest was applied, thanks.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+<Espy> be careful, some twit might quote you out of context..
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

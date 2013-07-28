@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 11 03:26:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DB3E6811BC
+	for <tkil@scrye.com>; Sun, 11 Sep 2005 03:26:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964833AbVIKJ0V (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Sep 2005 05:26:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964839AbVIKJ0V
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Sep 2005 05:26:21 -0400
+Received: from 202-0-36-112.cable.paradise.net.nz ([202.0.36.112]:9427 "EHLO
+	localhost.localdomain") by vger.kernel.org with ESMTP
+	id S964833AbVIKJ0U (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 11 Sep 2005 05:26:20 -0400
+Received: from aporo-debian (localhost.localdomain [127.0.0.1])
+	by localhost.localdomain (Postfix) with SMTP id 8D8028A72C;
+	Sun, 11 Sep 2005 21:26:05 +1200 (NZST)
+Cc:	Martin Langhoff <martin@catalyst.net.nz>
+Subject: [PATCH 2/5] archimport documentation tidyup
+In-Reply-To: <11264307651299-git-send-email-martin@catalyst.net.nz>
+X-Mailer: git-send-email
+Date:	Sun, 11 Sep 2005 21:26:05 +1200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1126430765435-git-send-email-martin@catalyst.net.nz>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: martin@catalyst.net.nz
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	martin@catalyst.net.nz
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.0.4
+Lines: 52
+Xref: brand.scrye.com linux.git:8273
+
+New "merges" headline, clarified some parts that were not easy to understand.
+
+Signed-off-by: Martin Langhoff <martin@catalyst.net.nz>
+
+
+---
+
+ Documentation/git-archimport.txt |    9 +++++----
+ 1 files changed, 5 insertions(+), 4 deletions(-)
+
+da341e8530b0d852c9b6910778df6b41cdee3e54
+diff --git a/Documentation/git-archimport.txt b/Documentation/git-archimport.txt
+--- a/Documentation/git-archimport.txt
++++ b/Documentation/git-archimport.txt
+@@ -3,7 +3,7 @@ git-archimport(1)
+ 
+ NAME
+ ----
+-git-archimport - Import an arch repository into git
++git-archimport - Import an Arch repository into GIT
+ 
+ 
+ SYNOPSIS
+@@ -16,8 +16,8 @@ DESCRIPTION
+ Imports a project from one or more Arch repositories. It will follow branches
+ and repositories within the namespaces defined by the <archive/branch>
+ parameters suppplied. If it cannot find the remote branch a merge comes from
+-it will just import it as a regular merge. If it can find it, it will perform
+-a merge whenever possible. 
++it will just import it as a regular commit. If it can find it, it will mark it 
++as a merge whenever possible (see discussion below). 
+ 
+ The script expects you to provide the key roots where it can start the import 
+ from an 'initial import' or 'tag' type of Arch commit. It will follow and import 
+@@ -34,8 +34,9 @@ know about the repositories you pass to 
+ For the initial import `git-archimport` expects to find itself in an empty 
+ directory. To follow the development of a project that uses Arch, rerun 
+ `git-archimport` with the same parameters as the initial import to perform incremental imports.
+-of a project using Arch.
+ 
++MERGES
++------
+ Patch merge data from Arch is used to mark merges in GIT as well. GIT 
+ does not care much about tracking patches, and only considers a merge when a
+ branch incorporates all the commits since the point they forked. The end result
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 15 01:53:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E5DDB22C7F7
+	for <tkil@scrye.com>; Thu, 15 Dec 2005 01:53:01 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965171AbVLOIwq (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Dec 2005 03:52:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965175AbVLOIwq
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Dec 2005 03:52:46 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:59302 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S965171AbVLOIwp (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 15 Dec 2005 03:52:45 -0500
+Received: (qmail 10096 invoked by uid 2001); 15 Dec 2005 09:52:42 +0100
+Date:	Thu, 15 Dec 2005 09:52:42 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Cc:	git@vger.kernel.org, Junio C Hamano <junkio@cox.net>
+Subject: Re: [PATCH] \n usage in stderr output
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051215085242.GO22159@pasky.or.cz>
+References: <81b0412b0512142347o6e9aaef8s227ad749f3e2a475@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <81b0412b0512142347o6e9aaef8s227ad749f3e2a475@mail.gmail.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:13678
+
+Dear diary, on Thu, Dec 15, 2005 at 08:47:30AM CET, I got a letter
+where Alex Riesen <raa.lkml@gmail.com> said that...
+> fprintf and die sometimes have missing/excessive "\n" in their arguments,
+> correct the strings where I think it would be appropriate.
+> 
+> Signed-off-by: Alex Riesen <raa.lkml@gmail.com>
+
+Why don't we just error() or die() at those places anyway?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

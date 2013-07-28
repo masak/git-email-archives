@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 17 13:11:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2C856E64E2
+	for <tkil@scrye.com>; Tue, 17 May 2005 13:11:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261746AbVEQTKq (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 17 May 2005 15:10:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261724AbVEQTKp
+	(ORCPT <rfc822;git-outgoing>); Tue, 17 May 2005 15:10:45 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:34718 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S261444AbVEQTKc (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 17 May 2005 15:10:32 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j4HJAUS8004859
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <git@vger.kernel.org>; Tue, 17 May 2005 19:10:30 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j4HJAUDa004858
+	for git@vger.kernel.org; Tue, 17 May 2005 21:10:30 +0200 (CEST)
+Date:	Tue, 17 May 2005 21:10:30 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: git@vger.kernel.org
+Subject: Re: [PATCH] improved delta support for git
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050517191029.GQ13508@cip.informatik.uni-erlangen.de>
+Mail-Followup-To: git@vger.kernel.org
+References: <Pine.LNX.4.62.0505112309480.5426@localhost.localdomain> <20050517182232.GM13508@cip.informatik.uni-erlangen.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050517182232.GM13508@cip.informatik.uni-erlangen.de>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 23
+Xref: brand.scrye.com linux.git:3435
+
+Hi,
+okay I got it. Fragmentation:
+
+before:
+	(medion) [/scratch/mutt/mutt-cvs] du -sh --apparent-size .git/objects/
+	49M     .git/objects/
+
+after:
+	(medion) [/scratch/mutt/mutt-cvs] du -sh --apparent-size .git/objects/
+	19M     .git/objects/
+
+cvs repository:
+
+	(faui00u) [~/work/git/yagf] du -sh --apparent-size ../../mutt/cvsrepository
+	33M     ../../mutt/cvsrepository
+
+Sincerely,
+	Thomas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 09:25:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EC2366E21
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 09:25:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262341AbVDXPYD (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 11:24:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262342AbVDXPYD
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 11:24:03 -0400
+Received: from soundwarez.org ([217.160.171.123]:29848 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S262341AbVDXPX6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Apr 2005 11:23:58 -0400
+Received: from dhcp-113.off.vrfy.org (c219006.adsl.hansenet.de [213.39.219.6])
+	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	(No client certificate requested)
+	by soundwarez.org (Postfix) with ESMTP id 3A2D224665;
+	Sun, 24 Apr 2005 17:23:57 +0200 (CEST)
+Subject: gitweb.pl
+From: Kay Sievers <kay.sievers@vrfy.org>
+To: git@vger.kernel.org
+Cc: Greg KH <greg@kroah.com>, "H. Peter Anvin" <hpa@zytor.com>
+Content-Type: text/plain
+Date:	Sun, 24 Apr 2005 17:23:57 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114356237.22541.21.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-1) 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 24
+Xref: brand.scrye.com linux.git:1501
+
+We have a new improved version of the git web-interface:
+  http://ehlo.org/~kay/gitweb.pl
+
+You can download it from:
+  ftp://ehlo.org/gitweb.pl
+
+
+gitweb exports now a simple RSS feed: :)
+  http://ehlo.org/~kay/gitweb.pl/linux-2.6/rss
+
+gitweb accepts now a whole path instead of only a name to a project.
+Example:
+  ftp://kernel.org/pub/scm/linux/kernel/git/gregkh/usb-2.6.git/
+gitweb-URL:
+  http://kernel.org/cgi-bin/gitweb.pl/pub/scm/linux/kernel/git/gregkh/usb-2.6.git/
+
+Thanks,
+Kay
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

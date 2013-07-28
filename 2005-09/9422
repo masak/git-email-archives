@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 28 09:19:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 660D327A0F3
+	for <tkil@scrye.com>; Wed, 28 Sep 2005 09:19:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751048AbVI1PSO (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 28 Sep 2005 11:18:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751067AbVI1PSO
+	(ORCPT <rfc822;git-outgoing>); Wed, 28 Sep 2005 11:18:14 -0400
+Received: from smtp13.wxs.nl ([195.121.6.27]:31200 "EHLO smtp13.wxs.nl")
+	by vger.kernel.org with ESMTP id S1751046AbVI1PSO (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 28 Sep 2005 11:18:14 -0400
+Received: from greensroom.kotnet.org (ip54515aaa.direct-adsl.nl [84.81.90.170])
+ by smtp13.wxs.nl (iPlanet Messaging Server 5.2 Patch 2 (built Jul 14 2004))
+ with SMTP id <0INJ003NK96C21@smtp13.wxs.nl> for git@vger.kernel.org; Wed,
+ 28 Sep 2005 17:18:13 +0200 (CEST)
+Received: (qmail 32082 invoked by uid 500); Wed, 28 Sep 2005 15:18:12 +0000
+Date:	Wed, 28 Sep 2005 17:18:12 +0200
+From:	Sven Verdoolaege <skimo@kotnet.org>
+Subject: Re: git cvsimport?
+In-reply-to: <20050928124029.1BF6D352B7B@atlas.denx.de>
+To:	Wolfgang Denk <wd@denx.de>
+Cc:	git@vger.kernel.org
+Reply-to: skimo@liacs.nl
+Mail-followup-to: Wolfgang Denk <wd@denx.de>, git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20050928151812.GS15165MdfPADPa@greensroom.kotnet.org>
+MIME-version: 1.0
+Content-type: text/plain; charset=us-ascii
+Content-transfer-encoding: 7BIT
+Content-disposition: inline
+User-Agent: Mutt/1.5.10i
+References: <20050928124029.1BF6D352B7B@atlas.denx.de>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:9422
+
+On Wed, Sep 28, 2005 at 02:40:29PM +0200, Wolfgang Denk wrote:
+> 
+> I have problems importing a CVS repository:
+> 
+> -> git cvsimport -v -d :pserver:denx@cvs.semihalf.com:/cvs -C /home/git/duts duts
+> cvs_direct initialized to CVSROOT /cvs
+> cvs rlog: Logging duts
+> cvs rlog: Logging duts/core
+> NOTICE: used alternate strip path /home/cvs/duts/core/duts
+> DONE; creating master branch
+> cp: cannot stat `/home/git/duts/.git/refs/heads/origin': No such file or directory
+> usage: git-read-tree (<sha> | -m [-u | -i] <sha1> [<sha2> [<sha3>]])
+> checkout failed: 256
+> -> git --version
+> git version 0.99.7
+> 
+> Am I doing anything wrong here?
+> 
+
+What does 
+
+cvsps -u -A --cvs-direct --root :pserver:denx@cvs.semihalf.com:/cvs duts
+
+say ?
+
+skimo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

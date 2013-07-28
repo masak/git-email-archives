@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 25 18:15:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5E6726E7F6
+	for <tkil@scrye.com>; Fri, 25 Nov 2005 18:15:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932372AbVKZBPF (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 25 Nov 2005 20:15:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751466AbVKZBPF
+	(ORCPT <rfc822;git-outgoing>); Fri, 25 Nov 2005 20:15:05 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:20450 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1751432AbVKZBPE (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 25 Nov 2005 20:15:04 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051126011424.XURO6244.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 25 Nov 2005 20:14:24 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: [PATCH 0/4] Repository format version check series.
+Date:	Fri, 25 Nov 2005 17:15:02 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7voe48gqg9.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 43
+Xref: brand.scrye.com linux.git:12748
+
+This series is what I've been cooking for the past several days,
+partly based on patch from Martin Atukunda but with hopefully
+smaller impact.
+
+[PATCH 1/4] Repository format version check.
+[PATCH 2/4] Check repository format version in enter_repo().
+[PATCH 3/4] init-db: check template and repository format.
+[PATCH 4/4] setup_git_directory(): check repository format version.
+
+The first in the series adds the core.repositoryformatversion
+configuration item.  The current repository format version is
+defined as version 0, and is the same as not having that in the
+configuration file.
+
+The second one adds a repository format version check to
+enter_repo().  This function is used to verify the path given by
+the user, either from the command line or over the network, is a
+valid git repository by daemon, upload-pack (which runs on the
+other end when you run fetch-pack or clone-pack), and
+receive-pack (which runs on the other end when you run
+send-pack).
+
+The third one makes sure we do not reinitialize a repository
+whose format version we do not understand, do not copy
+template files from unmatching version into a new repository,
+and record the repository format version in a newly created
+repository.
+
+The last bit in the series adds the same check code to
+setup_git_directory().  Along with the earlier change to
+git-sh-setup that uses git-var to verify the repository, this
+gives the shell scripts the same repository format version
+check.
+
+I'll push this out to the "master" sometime over the weekend,
+and hopefully merge it into "maint" and cut the next 1.0rc on
+Wednesday.  Let's hope that will be the last 1.0rc.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

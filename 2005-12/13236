@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec  5 16:30:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DF5C01025B5
+	for <tkil@scrye.com>; Mon,  5 Dec 2005 16:30:13 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964854AbVLEX31 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Dec 2005 18:29:27 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964860AbVLEX31
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Dec 2005 18:29:27 -0500
+Received: from mail.codeweavers.com ([216.251.189.131]:38845 "EHLO
+	mail.codeweavers.com") by vger.kernel.org with ESMTP
+	id S964854AbVLEX30 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 5 Dec 2005 18:29:26 -0500
+Received: from foghorn.codeweavers.com ([216.251.189.130] helo=[127.0.0.1])
+	by mail.codeweavers.com with esmtp (Exim 4.50)
+	id 1EjPln-0006FQ-5w
+	for git@vger.kernel.org; Mon, 05 Dec 2005 17:29:25 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4394CD68.8020500@codeweavers.com>
+Date:	Tue, 06 Dec 2005 08:29:44 +0900
+From:	Mike McCormack <mike@codeweavers.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.7) Gecko/20050414
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 216.251.189.130
+X-SA-Exim-Mail-From: mike@codeweavers.com
+Subject: Wine + GIT
+X-SA-Exim-Version: 4.2 (built Thu, 03 Mar 2005 10:44:12 +0100)
+X-SA-Exim-Scanned: Yes (on mail.codeweavers.com)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:13236
+
+Hi All,
+
+The Wine project has started maintaining a wine.git in parallel to the 
+Wine CVS.  To introduce Wine developers to GIT, we've put together a 
+short introduction on the Wine Wiki on using GIT to maintain patches. 
+You can find it at:
+
+http://wiki.winehq.org/GitWine
+
+Comments, flames, corrections and additions welcome :)
+
+Mike
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 17:41:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A20BB12D31D
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 17:41:29 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030260AbVLOAhV (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 19:37:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030265AbVLOAhU
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 19:37:20 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:54671 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S1030260AbVLOAhR (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 14 Dec 2005 19:37:17 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051215003630.SPBC20875.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 14 Dec 2005 19:36:30 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: new file leaked onto release branch
+References: <F7DC2337C7631D4386A2DF6E8FB22B30056B8748@hdsmsx401.amr.corp.intel.com>
+	<Pine.LNX.4.63.0512150034120.8992@wbgn013.biozentrum.uni-wuerzburg.de>
+cc:	git@vger.kernel.org
+Date:	Wed, 14 Dec 2005 16:37:15 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v7ja7ures.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:13654
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> So, it could have been
+>
+> 	git pull . 5165
+>
+> which mistakes 5165 for a short SHA1?
+
+I do not think git-pull would work on arbitrary SHA1
+expressions, so you should be safe.
+
+Interestingly...
+
+        $ git rev-parse 5165
+        error: short SHA1 5165 is ambiguous.
+        5165
+
+that short SHA1 is ambiguous.  But a branch name immediately
+under .git/refs/heads takes precedence:
+
+        $ git branch 5165 master
+        $ git rev-parse 5165 master
+        acd9b7b4e08a3f0f48afa922d8e371414cf2d3b2
+        acd9b7b4e08a3f0f48afa922d8e371414cf2d3b2
+
+And this makes it safer and unambiguous:
+
+        $ git branch -d 5165
+        Deleted branch 5165.
+        $ git branch bug/5165 master
+        $ git rev-parse bug/5165
+        acd9b7b4e08a3f0f48afa922d8e371414cf2d3b2
+
+We might want to detect collisions between SHA1 prefix and
+branch names, but I am not sure if it is worth it in practice.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

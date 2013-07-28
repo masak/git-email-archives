@@ -1,0 +1,102 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  8 18:14:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1CBD4171E70
+	for <tkil@scrye.com>; Mon,  8 Aug 2005 18:14:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932381AbVHIANz (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 8 Aug 2005 20:13:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932383AbVHIANz
+	(ORCPT <rfc822;git-outgoing>); Mon, 8 Aug 2005 20:13:55 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:44946 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932381AbVHIANy (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 8 Aug 2005 20:13:54 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 7E93EE32CF; Tue,  9 Aug 2005 02:13:53 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 66175992D4; Tue,  9 Aug 2005 02:13:53 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 5201B99287; Tue,  9 Aug 2005 02:13:53 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx68.rz.uni-wuerzburg.de [132.187.3.68])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 44179E32CF; Tue,  9 Aug 2005 02:13:53 +0200 (CEST)
+Date:	Tue, 9 Aug 2005 02:13:53 +0200 (CEST)
+From: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To: Junio C Hamano <junkio@cox.net>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: "git revert" (Re: pci_update_resource() getting called on sparc64)
+In-Reply-To: <Pine.LNX.4.63.0508090202140.3860@wgmdd8.biozentrum.uni-wuerzburg.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508090213170.4025@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <20050808.103304.55507512.davem@davemloft.net>
+ <Pine.LNX.4.58.0508081131540.3258@g5.osdl.org> <20050808160846.GA7710@kroah.com>
+ <20050808.123209.59463259.davem@davemloft.net> <20050808194249.GA6729@kroah.com>
+ <Pine.LNX.4.58.0508081249110.3258@g5.osdl.org> <Pine.LNX.4.58.0508081257190.3258@g5.osdl.org>
+ <7vd5oo40mq.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0508081357020.3258@g5.osdl.org>
+ <7voe882kds.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0508081444040.3258@g5.osdl.org>
+ <7vd5oo11wj.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0508090202140.3860@wgmdd8.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 44
+Xref: brand.scrye.com linux.git:6961
+
+[PATCH] Adapt git-cherry and git-rebase-script to latest changes of git commit
+
+Teach git-cherry and git-rebase-script to use the "-c" option, since
+"-m" means something different to git-commit-script now.
+
+Signed-off-by: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+
+---
+
+ git-cherry        |    2 +-
+ git-rebase-script |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+34d6840882e65109a17fa02bf2cefec269fd7637
+diff --git a/git-cherry b/git-cherry
+--- a/git-cherry
++++ b/git-cherry
+@@ -23,7 +23,7 @@ The output is intended to be used as:
+     while read commit
+     do
+         GIT_EXTERNAL_DIFF=git-apply-patch-script git-diff-tree -p "$commit" &&
+-	git-commit-script -m "$commit"
++	git-commit-script -c "$commit"
+     done
+ '
+ 
+diff --git a/git-rebase-script b/git-rebase-script
+--- a/git-rebase-script
++++ b/git-rebase-script
+@@ -37,7 +37,7 @@ do
+ 	esac
+ 	S=`cat "$GIT_DIR/HEAD"` &&
+         GIT_EXTERNAL_DIFF=git-apply-patch-script git-diff-tree -p $commit &&
+-	git-commit-script -m "$commit" || {
++	git-commit-script -c "$commit" || {
+ 		echo $commit >>$fail
+ 		git-read-tree --reset -u $S
+ 	}
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

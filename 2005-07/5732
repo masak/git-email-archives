@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul  6 20:58:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9BECC143D26
+	for <tkil@scrye.com>; Wed,  6 Jul 2005 20:58:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262218AbVGGCxz (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 6 Jul 2005 22:53:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261831AbVGGCwU
+	(ORCPT <rfc822;git-outgoing>); Wed, 6 Jul 2005 22:52:20 -0400
+Received: from rproxy.gmail.com ([64.233.170.197]:38284 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262218AbVGGCvy convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 6 Jul 2005 22:51:54 -0400
+Received: by rproxy.gmail.com with SMTP id i8so82054rne
+        for <git@vger.kernel.org>; Wed, 06 Jul 2005 19:51:53 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=eNekbEhM2DpQLZXzLokKk1ZFKvT5l3BaZyCiya7CYasGs7RF55IinBFYDQZUjypMx5hvLrIo9DZp2X8gOOmz8Juqh2e/o6n2DRQa/52xDufRx2p7a88nvqMhI58bzL4HYiJkXQTN2fI7ggL8d5dLKAqo3NbPWlK6njk5gD9EZTc=
+Received: by 10.38.65.70 with SMTP id n70mr423303rna;
+        Wed, 06 Jul 2005 19:51:53 -0700 (PDT)
+Received: by 10.38.104.42 with HTTP; Wed, 6 Jul 2005 19:51:53 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2cfc40320507061951563bdd76@mail.gmail.com>
+Date:	Thu, 7 Jul 2005 12:51:53 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+Reply-To: jon@blackcubes.dyndns.org
+To: Linus Torvalds <torvalds@osdl.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Summary Of Jon's Recent Patches
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:5732
+
+Hi,
+
+I've recently posted the following patches, in this order:
+
+These ones are tidy ups:
+
+[PATCH] Remove use of SHOWN flag
+[PATCH] Move SEEN flag into epoch.h, replace use of VISITED flag with SEEN flag
+[PATCH] Simplification - remove unnecessary list reversal from epoch.c
+
+This series contains a big fix, but assumes the tidy ups above have
+been applied:
+
+[PATCH 1/2] Fix --topo-order, --max-age interaction issue
+[PATCH 2/2] Add test case that shows --topo-order, --max-age break
+
+jon.
+-- 
+homepage: http://www.zeta.org.au/~jon/
+blog: http://orwelliantremors.blogspot.com/
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

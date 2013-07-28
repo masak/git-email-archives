@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  2 19:19:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C222F41634
+	for <tkil@scrye.com>; Fri,  2 Dec 2005 19:19:31 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751156AbVLCCSI (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 2 Dec 2005 21:18:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751163AbVLCCSH
+	(ORCPT <rfc822;git-outgoing>); Fri, 2 Dec 2005 21:18:07 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:45212 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751156AbVLCCSG (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 2 Dec 2005 21:18:06 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id B1CA013F8D4; Sat,  3 Dec 2005 03:18:02 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 98F5F9F50E; Sat,  3 Dec 2005 03:18:02 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 85AE19F41D; Sat,  3 Dec 2005 03:18:02 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id F279A13F8D4; Sat,  3 Dec 2005 03:18:01 +0100 (CET)
+Date:	Sat, 3 Dec 2005 03:18:01 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Alexey Dobriyan <adobriyan@gmail.com>, git@vger.kernel.org
+Subject: Re: git pull aborts in 50% of cases
+In-Reply-To: <4390B64E.20601@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512030316520.19086@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051202190412.GA10757@mipter.zuzino.mipt.ru> <43909963.60901@zytor.com>
+ <20051202211250.GA11384@mipter.zuzino.mipt.ru> <4390B64E.20601@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:13130
+
+Hi,
+
+On Fri, 2 Dec 2005, H. Peter Anvin wrote:
+
+> Alexey Dobriyan wrote:
+> > 
+> > Heisenbug :-\. I'll send IP next time.
+> > 
+> 
+> Actually, it turns out the two servers were running different versions; one
+> 0.99.9j and one 0.99.9k.  They're both running 0.99.9j now.
+> 
+> 0.99.9k is clearly bad.
+
+Huh? It could be slower, and it could therefore hit the maximum client 
+count faster, but it should not be bad.
+
+All changes to pull were done in a manner so as to be backward compatible. 
+In both ways.
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

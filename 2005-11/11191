@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 02:31:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D690C47369
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 02:31:39 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932332AbVKFJbV (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 04:31:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932348AbVKFJbV
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 04:31:21 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:48395 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S932332AbVKFJbU (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 6 Nov 2005 04:31:20 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jA69TeGT019182;
+	Sun, 6 Nov 2005 09:30:13 GMT
+In-Reply-To: <436D276F.7010302@slamail.org>
+References: <436D2269.6090605@slamail.org> <436D276F.7010302@slamail.org>
+Mime-Version: 1.0 (Apple Message framework v734)
+Content-Type: text/plain; charset=US-ASCII; delsp=yes; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <EC1099E0-0854-4361-9B61-E7728264985A@hawaga.org.uk>
+Content-Transfer-Encoding: 7bit
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: Re: git binary directory?
+Date:	Sun, 6 Nov 2005 19:56:16 +1100
+To:	Yaacov Akiba Slama <ya@slamail.org>, git@vger.kernel.org
+X-Mailer: Apple Mail (2.734)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:11191
+
+On 6 Nov 2005, at 08:43, Yaacov Akiba Slama wrote:
+
+> In addition custom tab completion can be quite easily added to bash  
+> and zsh.
+
+Anyone done this already for git? I've been slowly adding bits to  
+Paolo Giarrusso's bash/stg tab completion code to provide some  
+completion for cogito, but haven't got round to git yet.
+
+-- 
+Ben Clifford
+http://www.hawaga.org.uk/ben/
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

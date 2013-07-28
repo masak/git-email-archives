@@ -1,0 +1,112 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May 23 01:49:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 094B92B2C0A
+	for <tkil@scrye.com>; Mon, 23 May 2005 01:49:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261864AbVEWHsx (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 23 May 2005 03:48:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261863AbVEWHsx
+	(ORCPT <rfc822;git-outgoing>); Mon, 23 May 2005 03:48:53 -0400
+Received: from black.click.cz ([62.141.0.10]:35539 "EHLO click.cz")
+	by vger.kernel.org with ESMTP id S261864AbVEWHss (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 23 May 2005 03:48:48 -0400
+Received: from rokos.ack-prg.csas.cz (gprsh1.isp.t-mobile.cz [62.141.24.1])
+	by click.cz (8.12.9/8.12.9) with ESMTP id j4N7mf91002321
+	for <git@vger.kernel.org>; Mon, 23 May 2005 09:48:45 +0200 (MET DST)
+Received: from ip6-localhost (ip6-localhost [IPv6:::1])
+	by rokos.ack-prg.csas.cz (Postfix) with ESMTP id 37102F9004
+	for <git@vger.kernel.org>; Mon, 23 May 2005 09:48:31 +0200 (CEST)
+From: Michal Rokos <michal@rokos.info>
+To: git@vger.kernel.org
+Subject: [cogito] Sync objects only when needed...
+Date:	Mon, 23 May 2005 09:48:29 +0200
+User-Agent: KMail/1.8
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200505230948.29944.michal@rokos.info>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.0 required=5.0 tests=ABUSEAT,AWL,BAYES_00,
+	RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_SORBS_WEB autolearn=no version=3.0.3
+Lines: 69
+Xref: brand.scrye.com linux.git:3777
+
+Hello,
+
+during the day I'm usually connected via modem so syncing all the objects via rsync is painful.
+
+So, is there any reason to sync them even if remote and and local origin head are the same?
+
+ Michal
+
+PS: I'm off the list, so please CC me.
+
+Signed-off-by: Michal Rokos <michal@rokos.info>
+
+Index: cg-pull
+===================================================================
+--- ca5fef50fb68a3afbb35e1a48ac622f7a964f021/cg-pull  (mode:100755)
++++ uncommitted/cg-pull  (mode:100755)
+@@ -9,8 +9,14 @@
+ 
+ . ${COGITO_LIB}cg-Xlib
+ 
+-name=$1
++force=
+ 
++if [ "$1" == "-f" ]; then
++ force=1
++ shift
++fi
++
++name=$1
+ 
+ [ "$name" ] || { [ -s $_git/refs/heads/origin ] && name=origin; }
+ [ "$name" ] || die "where to pull from?"
+@@ -199,6 +205,22 @@
+ fi
+ [ "$rsyncerr" ] && die "unable to get the head pointer of branch $rembranch"
+ 
++new_head=$(cat "$_git/refs/heads/$name")
++
++if [ ! "$orig_head" ]; then
++ echo "New branch: $new_head"
++
++elif [ "$orig_head" != "$new_head" ]; then
++ echo "Tree change: $orig_head:$new_head"
++
++elif [ -n "$force" ]; then
++ echo "Update forced..."
++
++else
++ echo "Up to date."
++ exit
++fi
++
+ [ -d $_git_objects ] || mkdir -p $_git_objects
+ $pull "$name" "$uri" || die "objects pull failed"
+ 
+@@ -215,8 +237,6 @@
+ [ "$rsyncerr" ] && echo "unable to get tags list (non-fatal)" >&2
+ 
+ 
+-new_head=$(cat "$_git/refs/heads/$name")
+-
+ if [ ! "$orig_head" ]; then
+  echo "New branch: $new_head"
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

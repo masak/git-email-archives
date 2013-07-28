@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May  6 15:42:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 518DD11566A
+	for <tkil@scrye.com>; Fri,  6 May 2005 15:42:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261278AbVEFVkF (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 6 May 2005 17:40:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261282AbVEFVkF
+	(ORCPT <rfc822;git-outgoing>); Fri, 6 May 2005 17:40:05 -0400
+Received: from fire.osdl.org ([65.172.181.4]:20146 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261278AbVEFVix (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 6 May 2005 17:38:53 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j46LcmU3003263
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 6 May 2005 14:38:48 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j46Lcl7g032232;
+	Fri, 6 May 2005 14:38:47 -0700
+Date:	Fri, 6 May 2005 14:40:50 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Tweak git-diff-tree -v output further (take 2).
+In-Reply-To: <7vbr7ocfj7.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505061440180.2233@ppc970.osdl.org>
+References: <7vbr7ocfj7.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 17
+Xref: brand.scrye.com linux.git:2685
+
+
+
+On Fri, 6 May 2005, Junio C Hamano wrote:
+> 
+> The first hunk of this is a pure bugfix---it guards us against a
+> commit message that does not end with a newline.
+
+Why do you think it helps anything at all?
+
+We have a _length_ of buffer. We don't have any zero-termination.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

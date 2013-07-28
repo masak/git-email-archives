@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 00:23:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 619F4241D14
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 00:23:03 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030338AbVKWHWx (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 02:22:53 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030339AbVKWHWx
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 02:22:53 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:10382 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1030338AbVKWHWw
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 23 Nov 2005 02:22:52 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id CB43C6BCBE
+	for <git@vger.kernel.org>; Wed, 23 Nov 2005 08:22:51 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <438418CB.30509@op5.se>
+Date:	Wed, 23 Nov 2005 08:22:51 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] Add git-graft-ripple, a tool for permanently grafting
+ history into a tree.
+References: <11326926501602-git-send-email-ryan@michonline.com> <Pine.LNX.4.64.0511221652530.13959@g5.osdl.org>
+In-Reply-To: <Pine.LNX.4.64.0511221652530.13959@g5.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:12597
+
+Linus Torvalds wrote:
+> 
+> On Tue, 22 Nov 2005, Ryan Anderson wrote:
+> 
+>>Enhancements over the original example:
+>>
+>>	o Each newly created commit A' references A, and (A^1)' (The first try
+>>	referenced A^1 and (A^1)' but not A)
+>>
+>>	o Support for incrementally rewriting history is present.
+> 
+> 
+> How about the case of having commits that have pointers to other commits 
+> in the comments? 
+> 
+> For example, on the kernel do
+> 
+> 	gitk 19842d67340e4a8f616552d344e97fc7452aa37a
+> 
+> and see how gitk highlights the SHA1's in the commit message and makes 
+> hyperlinks to the commits they point to..
+> 
+
+For reference, gitweb does the same.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 09:12:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5595E285201
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 09:12:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965242AbVINPI5 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 11:08:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965240AbVINPI4
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 11:08:56 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:433 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965242AbVINPIz (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Sep 2005 11:08:55 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8EF8SBo024918
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 14 Sep 2005 08:08:29 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8EF8R7G006292;
+	Wed, 14 Sep 2005 08:08:28 -0700
+Date:	Wed, 14 Sep 2005 08:08:27 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Jeff Garzik <jgarzik@pobox.com>
+cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: does git prune packs?
+In-Reply-To: <432805E6.6030905@pobox.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509140808010.26803@g5.osdl.org>
+References: <432805E6.6030905@pobox.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:8521
+
+
+
+On Wed, 14 Sep 2005, Jeff Garzik wrote:
+> 
+> Does git-prune-packed eliminate packs that have been superceded by other 
+> packs?
+
+Nope. Pretty hard to do. Unless you just repack everything, at which point
+
+	git repack -a -d
+
+will do the right thing.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

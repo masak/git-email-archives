@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul  6 15:09:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6F5D01DF1B5
+	for <tkil@scrye.com>; Wed,  6 Jul 2005 15:09:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262573AbVGFVGR (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 6 Jul 2005 17:06:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262570AbVGFVCJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 6 Jul 2005 17:02:09 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:28617 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262509AbVGFU6c (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 6 Jul 2005 16:58:32 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j66KwKjA030915
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 6 Jul 2005 13:58:21 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j66KwJgs022775;
+	Wed, 6 Jul 2005 13:58:20 -0700
+Date:	Wed, 6 Jul 2005 13:58:19 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Greg KH <greg@kroah.com>
+Cc: git@vger.kernel.org
+Subject: Re: git-pull-script hates me
+In-Reply-To: <20050706204627.GA19481@kroah.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507061357130.4675@g5.osdl.org>
+References: <20050706203139.GA19198@kroah.com> <Pine.LNX.4.58.0507061335100.4159@g5.osdl.org>
+ <20050706204627.GA19481@kroah.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:5715
+
+
+
+On Wed, 6 Jul 2005, Greg KH wrote:
+> 
+> Ok, below is a patch for this.  It works, but then errors out with:
+> 	bash: git-upload-pack: command not found
+> 	fatal: unexpected EOF
+> 
+> So I'm guessing that I have to convince the server owner to update their
+> version of git too?
+
+The easiest way is to just build git on the other end yourself, and make
+sure you have
+
+	PATH=~/bin:$PATH
+
+in your .bashrc. That way you're not at the mercy of the sysadmin on the 
+other side.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

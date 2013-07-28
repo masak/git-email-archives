@@ -1,0 +1,104 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 21:54:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AB9D616B72B
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 21:54:26 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751342AbVKXExR (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 23:53:17 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751341AbVKXExR
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 23:53:17 -0500
+Received: from mailgate.cesmail.net ([216.154.195.36]:44706 "HELO
+	mailgate.cesmail.net") by vger.kernel.org with SMTP
+	id S1751342AbVKXExQ (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 23 Nov 2005 23:53:16 -0500
+Received: (qmail 22655 invoked from network); 24 Nov 2005 04:53:15 -0000
+Received: from unknown (HELO gamma.cesmail.net) (192.168.1.20)
+  by mailgate.cesmail.net with SMTP; 24 Nov 2005 04:53:15 -0000
+Received: (qmail 8151 invoked by uid 99); 24 Nov 2005 04:53:15 -0000
+Received: from static-68-161-241-229.ny325.east.verizon.net
+	(static-68-161-241-229.ny325.east.verizon.net [68.161.241.229]) by
+	webmail.spamcop.net (Horde) with HTTP for <proski@spamcop.net@cesmail.net>;
+	Wed, 23 Nov 2005 23:53:15 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051123235315.oht0zjidc4ccg8gs@webmail.spamcop.net>
+Date:	Wed, 23 Nov 2005 23:53:15 -0500
+From:	Pavel Roskin <proski@gnu.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Paul Mackerras <paulus@samba.org>, git@vger.kernel.org
+Subject: Re: [PATCH] gitk: UTF-8 support
+References: <1132719301.12227.5.camel@dv>
+	<7v64qi50sw.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7v64qi50sw.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+User-Agent: Internet Messaging Program (IMP) 4.0-cvs
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 55
+Xref: brand.scrye.com linux.git:12664
+
+Hello!
+
+Quoting Junio C Hamano <junkio@cox.net>:
+
+> Pavel Roskin <proski@gnu.org> writes:
+>
+> > Add gitencoding variable and set it to "utf-8".  Use it for converting
+> > git-rev-list output.
+>
+> Sounds good, but is it necessary?  Unless I am grossly mistaken,
+> I am opposed to this patch.
+>
+> When I run gitk with LANG and/or LC_CTYPE set to ja_JP.utf8 (I
+> suspect *whatever*.utf8 would work the same way) on git.git
+> repository, I see Lukas's name (originally in iso8859-1 but my
+> commit objects have it in utf8) and Yoshifuji-san's name
+> (iso2022 converted to utf8) just fine.
+
+I see.  I always use C locale.
+
+> And when I run gitk with LANG and/or LC_CTYPE set to ja_JP.ujis
+> (that is another name for EUC-JP) on a toy repository I have
+> commit log messages in EUC-JP (I am not recommending that, just
+> pointing out a possibility), I can see them just fine.  In that
+> test repository, setting locale to *.utf8 would not work.
+
+Then what would you do to work with a repository using utf-8 if the current
+locale is not utf-8?
+
+> So I suspect your change breaks projects that use local
+> encodings, without fixing or adding anything new.
+
+I'll be away from any sane OS until Monday, but I assume my patch should help
+those whose locale is set to an encoding other than utf-8 if they want to use a
+repository using utf-8.
+
+Anyway, I see your point.  Not ever git repository uses utf-8.  It is not
+enforced by git.
+
+So we have two solutions.  One is to enforce utf-8 locale in git and force all
+"offenders" to convert.  That's probably too intrusive for now.
+
+The other solution is to have a publicly available file under .git that would
+keep the encoding name for the metadata (user names, logs etc).  gitk could use
+that file now.  git could implement conversions a bit later.  Maybe git could
+warn about mismatching encoding as the first step.
+
+--
+Regards,
+Pavel Roskin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

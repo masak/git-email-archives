@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun  6 14:46:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 939D8238619
+	for <tkil@scrye.com>; Mon,  6 Jun 2005 14:46:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261639AbVFFUdQ (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 6 Jun 2005 16:33:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261666AbVFFUcS
+	(ORCPT <rfc822;git-outgoing>); Mon, 6 Jun 2005 16:32:18 -0400
+Received: from iabervon.org ([66.92.72.58]:47876 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261682AbVFFU3P (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 6 Jun 2005 16:29:15 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DfOC8-0006YB-00; Mon, 6 Jun 2005 16:27:36 -0400
+Date:	Mon, 6 Jun 2005 16:27:36 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Linus Torvalds <torvalds@osdl.org>, Petr Baudis <pasky@ucw.cz>,
+	Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: [PATCH 0/4] Writing refs in git-ssh-push
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0506061616590.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:4631
+
+This series adds -w to git-ssh-push (and git-ssh-pull, which is the same).
+
+ - Add code for reading and writing ref files
+ - Fix the environment variable for the path in rsh.c
+ - Add support for transferring references in pull.c
+ - Add support for refs in ssh protocol and options to invoke it
+
+I'll send documentation updates in another patch this evening.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

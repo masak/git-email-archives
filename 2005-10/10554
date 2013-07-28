@@ -1,0 +1,102 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 24 15:39:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2A3142B7000
+	for <tkil@scrye.com>; Mon, 24 Oct 2005 15:39:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751311AbVJXVjA (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 24 Oct 2005 17:39:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751314AbVJXVi7
+	(ORCPT <rfc822;git-outgoing>); Mon, 24 Oct 2005 17:38:59 -0400
+Received: from iabervon.org ([66.92.72.58]:35078 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751311AbVJXVi7 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 24 Oct 2005 17:38:59 -0400
+Received: (qmail 9056 invoked by uid 1000); 24 Oct 2005 17:38:25 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 24 Oct 2005 17:38:25 -0400
+Date:	Mon, 24 Oct 2005 17:38:25 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Jeff Garzik <jgarzik@pobox.com>, git@vger.kernel.org
+Subject: Re: RFE: git rm
+In-Reply-To: <7virvmodhz.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510241725370.25300@iabervon.org>
+References: <435D2FE0.3060307@pobox.com> <7virvmodhz.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 63
+Xref: brand.scrye.com linux.git:10554
+
+On Mon, 24 Oct 2005, Junio C Hamano wrote:
+
+> Jeff Garzik <jgarzik@pobox.com> writes:
+> 
+> > It would be nice to say "git rm files..." and have two operations occur:
+> >
+> > * list of files is passed to rm(1)
+> > * list of files is passed to git-update-index --remove
+> 
+> This is not a big problem *if* your index always matches the
+> HEAD tree (i.e. no intermediate git-update-index in between
+> commits) --- you can just say "rm -f files..." at the point of
+> removal, continue your work, and either pass these files from
+> the command line, or -a flag when running 'git commit'.
+> 
+> Running git-update-index in between commits is a valid thing to
+> do, and it helps reducing the clutter when viewing 'git diff' to
+> see what your changes look like since your last update-index.
+> The workflow would go like this:
+> 
+>     1$ git checkout
+>     ... work work work
+> 
+>     ... what have I done so far?
+>     2$ git diff
+>     ... the intermediate result looks OK, so record what we have
+>     ... done so far...
+>     3$ git-update-index --add --remove files...
+> 
+>     ... work work work
+>     ... go back to step 2 as many times as needed.
+> 
+>     ... now what is the sum of changes since the last commit?
+>     4$ git diff HEAD
+> 
+>     ... everything looks OK.  record the last bits and commit.
+>     5$ git-update-index --add --remove files...
+>     6$ git commit
+> 
+> Previously Linus stated that his index almost always matches the
+> HEAD tree, and I personally do not do intermediate update-index
+> ever myself, but I am curious how other people use git [*1*].
+> If some of you run update-index in between commits, "git rm
+> files..."  would make a lot of sense.
+
+I often do "git add something" when I happen to think of it, not 
+necessarily right before committing, which means that I have these files 
+changed in my index while working. I may quit this, however, now that git 
+status lists the ones I missed.
+
+Incidentally, the new git status entry for --others really ought to say 
+something different from "Ignored files", like "Exist but not tracked", 
+since it doesn't include the contents of .gitignore, which you'd expect to 
+be "Ignored". (And, of course, any files it lists are hardly being 
+ignored.)
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

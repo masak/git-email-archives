@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 13 17:40:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DC51FFC296
+	for <tkil@scrye.com>; Fri, 13 May 2005 17:40:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262626AbVEMXhZ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 13 May 2005 19:37:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262577AbVEMXfU
+	(ORCPT <rfc822;git-outgoing>); Fri, 13 May 2005 19:35:20 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:11914 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262635AbVEMXd6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 13 May 2005 19:33:58 -0400
+Received: (qmail 11860 invoked by uid 2001); 13 May 2005 23:33:54 -0000
+Date:	Sat, 14 May 2005 01:33:54 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Resurrect diff-tree-helper -R
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050513233354.GK32232@pasky.ji.cz>
+References: <7v7jij3htp.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0504301805300.2296@ppc970.osdl.org> <20050513224529.GF32232@pasky.ji.cz> <7vhdh691gs.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vhdh691gs.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 40
+Xref: brand.scrye.com linux.git:3242
+
+Dear diary, on Sat, May 14, 2005 at 12:59:31AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> Created: t/t2000-diff.sh (mode:100755)
+> +Mode changed: path0 (100644->100755)
+
+Great, so it's even worse than before. :/
+
+My issues:
+
+* Highly inconsistent format. Created has the "old-style" mode stuff
+while changed mode looks completely differently. If you look at the
+regular diffs, do you notice any format differences between creating
+a file and modifying it?
+
+	Actually, I think it should just always look as
+
+		@ Mode changed: A->B C
+
+	where either A or B may be empty (for file creation/deletion).
+	I can see no point in further Created/Deleted lines.
+
+* Filename not last. That'd be much friendlier to scripting, then you
+could just split the line by spaces and at a certain point slurp the
+rest and say that that would be a filename.
+
+* No special prefix. Even if you think I shouldn't grep (it makes no
+sense to me to redo half of the stuff when I already have something
+reusable done, for no apparent benefit), I feel quite uncomfortable with
+picking up and interpreting random pieces of surrounding text which
+aren't marked as special in any way.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

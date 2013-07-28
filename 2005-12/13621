@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 09:18:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_JD 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3ED8BDF17A
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 09:18:19 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964806AbVLNQP1 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 11:15:27 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964816AbVLNQP0
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 11:15:26 -0500
+Received: from az33egw02.freescale.net ([192.88.158.103]:29116 "EHLO
+	az33egw02.freescale.net") by vger.kernel.org with ESMTP
+	id S964806AbVLNQPZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 14 Dec 2005 11:15:25 -0500
+Received: from az33smr02.freescale.net (az33smr02.freescale.net [10.64.34.200])
+	by az33egw02.freescale.net (8.12.11/az33egw02) with ESMTP id jBEGPuwt001390
+	for <git@vger.kernel.org>; Wed, 14 Dec 2005 09:25:56 -0700 (MST)
+Received: from [10.82.19.2] (cashmere.am.freescale.net [10.82.19.2])
+	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id jBEGN5MZ015769
+	for <git@vger.kernel.org>; Wed, 14 Dec 2005 10:23:06 -0600 (CST)
+Subject: Re: [PATCH] Make git-send-pack exit with error when some refs cou
+	ldn't be pushed out
+From:	Jon Loeliger <jdl@freescale.com>
+To:	Git List <git@vger.kernel.org>
+In-Reply-To: <20051214023005.GS10680@pasky.or.cz>
+References: <20051214023005.GS10680@pasky.or.cz>
+Content-Type: text/plain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1134576909.2478.53.camel@cashmere.sps.mot.com>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6 (1.4.6-2.ydl.1) 
+Date:	Wed, 14 Dec 2005 10:15:09 -0600
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:13621
+
+On Tue, 2005-12-13 at 20:30, Petr Baudis wrote:
+
+> 
+> Jonas only reported it on IRC as weird cg-commit behaviour (which it
+
+Gah.  Are we IRCing now too these days?  Did I miss a step
+or an announcment?  I thought we were all doing a reasonably
+good job of communicating here on list...  And if I do need
+to sit-n-watch some IRC channel somewhere to get a complete
+git-fix, please let me know what it is! :-)
+
+Thanks,
+jdl
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 17 16:58:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2AD781BA87C
+	for <tkil@scrye.com>; Mon, 17 Oct 2005 16:58:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932362AbVJQW6a (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 17 Oct 2005 18:58:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932365AbVJQW6a
+	(ORCPT <rfc822;git-outgoing>); Mon, 17 Oct 2005 18:58:30 -0400
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:15499 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S932362AbVJQW63 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 17 Oct 2005 18:58:29 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051017225814.MQN4169.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 17 Oct 2005 18:58:14 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Blaisorblade <blaisorblade@yahoo.it>
+Subject: Re: git-checkout-index, flag ordering and --prefix kludgy handling
+References: <200510162114.27429.blaisorblade@yahoo.it>
+cc:	git@vger.kernel.org
+Date:	Mon, 17 Oct 2005 15:58:27 -0700
+In-Reply-To: <200510162114.27429.blaisorblade@yahoo.it>
+	(blaisorblade@yahoo.it's message of "Sun, 16 Oct 2005 21:14:26 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7voe5nycmk.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 49
+Xref: brand.scrye.com linux.git:10187
+
+Blaisorblade <blaisorblade@yahoo.it> writes:
+
+> I already knew that git-checkout-cache -a -f is wrong. But I
+> didn't know that
+>
+> git-checkout-index -a --prefix=/home/paolo/Uml/space.mnt/paolo/Linux-2.6.git/
+>
+> is.
+
+> At least, this should be documented in the man page;...
+
+
+How about a bit further clarification on top of what is there,
+like this?
+
+ ------------
+[PATCH] clarify that '-a' is really special in checkout-index.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+diff --git a/Documentation/git-checkout-index.txt b/Documentation/git-checkout-index.txt
+index 1ba6fb2..838059f 100644
+--- a/Documentation/git-checkout-index.txt
++++ b/Documentation/git-checkout-index.txt
+@@ -44,13 +44,15 @@ OPTIONS
+ --::
+ 	Do not interpret any more arguments as options.
+ 
+-Note that the order of the flags matters:
++Note that the order of the flags matters for `-a` flag:
+ 
+      git-checkout-index -a -f file.c
+ 
+ will first check out all files listed in the cache (but not overwrite
+ any old ones), and then force-checkout `file.c` a second time (ie that
+ one *will* overwrite any old contents with the same filename).
++In other words, `-a` means "operate as if names of all files were
++given here, with the flags given up to this point."
+ 
+ Also, just doing "git-checkout-index" does nothing. You probably meant
+ "git-checkout-index -a". And if you want to force it, you want
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 12:03:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_SV autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 76144F511D
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 12:03:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932154AbVKJTDK (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 14:03:10 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932157AbVKJTDK
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 14:03:10 -0500
+Received: from cpe-66-74-186-186.socal.res.rr.com ([66.74.186.186]:49353 "EHLO
+	mail.blackbean.org") by vger.kernel.org with ESMTP id S932154AbVKJTDI
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 10 Nov 2005 14:03:08 -0500
+Received: from home.blackbean.org (localhost.localdomain [127.0.0.1])
+	by mail.blackbean.org (8.13.4/8.13.4) with ESMTP id jAAJ38Kk008147
+	for <git@vger.kernel.org>; Thu, 10 Nov 2005 11:03:08 -0800
+Received: (from jim@localhost)
+	by home.blackbean.org (8.13.4/8.13.4/Submit) id jAAJ38Eb008144
+	for git@vger.kernel.org; Thu, 10 Nov 2005 11:03:08 -0800
+Date:	Thu, 10 Nov 2005 11:03:08 -0800
+From:	Jim Radford <radford@blackbean.org>
+To:	git@vger.kernel.org
+Subject: [PATCH] Add missing git-core and cvsps RPM dependencies
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051110190308.GA8012@blackbean.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4.2.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:11493
+
+Add missing git-core and cvsps RPM dependencies.
+
+Signed-off-by: Jim Radford <radford@blackbean.org>
+
+diff --git a/git-core.spec.in b/git-core.spec.in
+index 26846d0..ce9acd8 100644
+--- a/git-core.spec.in
++++ b/git-core.spec.in
+@@ -22,20 +22,21 @@ elsewhere for tools for ordinary humans 
+ %package svn
+ Summary:        Git tools for importing Subversion repositories.
+ Group:          Development/Tools
+-Requires:       subversion
++Requires:       git-core, subversion
+ %description svn
+ Git tools for importing Subversion repositories.
+ 
+ %package cvs
+ Summary:        Git tools for importing CVS repositories.
+ Group:          Development/Tools
+-Requires:       cvs
++Requires:       git-core, cvs, cvsps
+ %description cvs
+ Git tools for importing CVS repositories.
+ 
+ %package email
+ Summary:        Git tools for sending email.
+ Group:          Development/Tools
++Requires:       git-core
+ %description email
+ Git tools for sending email.
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

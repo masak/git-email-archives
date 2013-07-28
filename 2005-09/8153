@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep  6 20:18:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 14B082851FC
+	for <tkil@scrye.com>; Tue,  6 Sep 2005 20:18:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750703AbVIGCRc (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Sep 2005 22:17:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750706AbVIGCRb
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Sep 2005 22:17:31 -0400
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:41454 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S1750703AbVIGCRb (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 6 Sep 2005 22:17:31 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050907021731.OASD3414.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 6 Sep 2005 22:17:31 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: cg-update (cogito-0.13) bug: changed heads
+References: <431E03A5.6060709@zytor.com> <20050906231756.GC26934@pasky.ji.cz>
+	<431E24FF.2000700@zytor.com> <431E4409.50307@zytor.com>
+cc:	git@vger.kernel.org
+Date:	Tue, 06 Sep 2005 19:17:29 -0700
+In-Reply-To: <431E4409.50307@zytor.com> (H. Peter Anvin's message of "Tue, 06
+	Sep 2005 18:36:09 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhdcxbozq.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 21
+Xref: brand.scrye.com linux.git:8153
+
+"H. Peter Anvin" <hpa@zytor.com> writes:
+
+> H. Peter Anvin wrote:
+>>>
+> OK, now later in the day I could not reproduce this on another box. 
+> Either the situation was different enough, or I did something else wrong.
+
+One thing that comes to mind, which may or may not be relevant
+to your situation, is which branch you were on when you ran
+cg-update.  I cannot speak for Pasky and I do not use Cogito,
+but the 'git fetch' and 'git pull' commands that come with core
+GIT used to have a funny interaction of fetch attempting to
+update the branch head ref if your working tree happened to be
+on that branch, which was fixed some time ago.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

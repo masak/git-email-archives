@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  9 16:03:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EC94D255CC9
+	for <tkil@scrye.com>; Tue,  9 Aug 2005 16:03:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964988AbVHIWBu (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 9 Aug 2005 18:01:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964993AbVHIWBu
+	(ORCPT <rfc822;git-outgoing>); Tue, 9 Aug 2005 18:01:50 -0400
+Received: from main.gmane.org ([80.91.229.2]:32973 "EHLO ciao.gmane.org")
+	by vger.kernel.org with ESMTP id S964988AbVHIWBt (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 9 Aug 2005 18:01:49 -0400
+Received: from list by ciao.gmane.org with local (Exim 4.43)
+	id 1E2c8e-0005NV-Uu
+	for git@vger.kernel.org; Wed, 10 Aug 2005 00:00:00 +0200
+Received: from h-135-207-24-103.research.att.com ([135.207.24.103])
+        by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Wed, 10 Aug 2005 00:00:00 +0200
+Received: from ellson by h-135-207-24-103.research.att.com with local (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Wed, 10 Aug 2005 00:00:00 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: git@vger.kernel.org
+From: John Ellson <ellson@research.att.com>
+Subject:  Newbie question:  equiv of:  cvs co -p <filename>  ?
+Date:	Tue, 09 Aug 2005 17:59:14 -0400
+Lines:	13
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <ddb8vl$ifq$1@sea.gmane.org>
+Mime-Version:  1.0
+Content-Type:  text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding:  7bit
+X-Complaints-To: usenet@sea.gmane.org
+X-Gmane-NNTP-Posting-Host: h-135-207-24-103.research.att.com
+User-Agent: Mozilla Thunderbird 1.0.6-3 (X11/20050806)
+X-Accept-Language: en-us, en
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:7003
+
+How can we cat the latest committed state of a file to stdout?
+
+I hacked this:
+
+	#!/bin/bash
+	ID=`git-ls-files -s | grep $1 | cut -d ' ' -f 2`
+	TMP=`git-unpack-file $ID`
+	cat $TMP
+	rm $TMP
+
+but its really ugly!   It must be easier than this?
+
+John
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

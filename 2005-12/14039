@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 25 07:46:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_24_48 autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AFA4AA0440
+	for <tkil@scrye.com>; Sun, 25 Dec 2005 07:46:01 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750832AbVLYOpT (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 25 Dec 2005 09:45:19 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750835AbVLYOpT
+	(ORCPT <rfc822;git-outgoing>); Sun, 25 Dec 2005 09:45:19 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:8669 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750832AbVLYOpR (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 25 Dec 2005 09:45:17 -0500
+Received: by wrzx28.rz.uni-wuerzburg.de (Postfix, from userid 51)
+	id EC68F13FE1C; Sun, 25 Dec 2005 15:45:16 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4E83D140B78; Sat, 24 Dec 2005 13:45:50 +0100 (CET)
+Date:	Sat, 24 Dec 2005 13:45:50 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Eric Wong <normalperson@yhbt.net>
+Cc:	git list <git@vger.kernel.org>
+Subject: Re: [PATCH 3/4] add xmktime() function that always accounts for the
+ TZ env
+In-Reply-To: <20051224121339.GB3963@mail.yhbt.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512241344200.5891@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051224121007.GA19136@mail.yhbt.net> <20051224121339.GB3963@mail.yhbt.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:14039
+
+Hi,
+
+On Sat, 24 Dec 2005, Eric Wong wrote:
+
+> This function was added because mktime in dietlibc doesn't seem to
+> account for the TZ env.  Also, xmktime() now shares the same
+> always-summer bug TZ parsing elsewhere, so at least we can
+> be wrong about summer consistently.
+
+How about making this a compat function, which is used when the Makefile 
+variable MKTIME_IGNORES_TZ is set?
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

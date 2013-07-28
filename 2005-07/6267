@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul 20 21:58:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2D3211A696A
+	for <tkil@scrye.com>; Wed, 20 Jul 2005 21:58:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261348AbVGUD5w (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Jul 2005 23:57:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261605AbVGUD5w
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Jul 2005 23:57:52 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:16865 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S261348AbVGUD5v (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 20 Jul 2005 23:57:51 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050721035750.MMCI17043.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 20 Jul 2005 23:57:50 -0400
+To: Wolfgang Denk <wd@denx.de>
+Cc: git@vger.kernel.org
+Subject: Re: Should cg-mkpatch output be usable with cg-patch?
+References: <20050720234904.B3ED735267C@atlas.denx.de>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 20 Jul 2005 20:57:49 -0700
+In-Reply-To: <20050720234904.B3ED735267C@atlas.denx.de> (Wolfgang Denk's message of "Thu, 21 Jul 2005 01:49:04 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vackgerpe.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_MK 
+	autolearn=ham version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:6267
+
+Wolfgang Denk <wd@denx.de> writes:
+
+> I wander what I should do with "cg-mkpatch" generated output;  I  had
+> the  impression that this should be usable with "cg-patch", but these
+> are incompatible with each other. Forexample. if  a  commit  contains
+> permission changes, my generated patch may look like this:
+
+Yes, cg-patch does grok git extended diff headers, but does it
+by hand and missing corner cases like this is understandable.
+
+I only briefly looked at cg-patch, but I suspect that it can
+lose 90% lines of its code by just using "git-apply --index".
+
+I see cg-patch wants to be able to do reverse patch, which is
+not supported by git-apply currently.
+
+Do people find "cg-patch -R" useful?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 02:06:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 93B7C2851FC
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 02:06:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750821AbVIOIDo (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 04:03:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750843AbVIOIDo
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 04:03:44 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:39845 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1750818AbVIOIDm (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 15 Sep 2005 04:03:42 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050915080340.DCYI7185.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 15 Sep 2005 04:03:40 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	git@vger.kernel.org, davidk@lysator.liu.se,
+	Linus Torvalds <torvalds@osdl.org>,
+	Daniel Barkalow <barkalow@iabervon.org>
+Subject: Re: Tool renames.
+References: <200509050054.j850sC3D023778@laptop11.inf.utfsm.cl>
+	<Pine.LNX.4.58.0509050738340.3504@evo.osdl.org>
+	<46a038f90509051713389c62c8@mail.gmail.com>
+	<Pine.LNX.4.58.0509060013520.4316@evo.osdl.org>
+	<7vll2atz8a.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0509060057491.4316@evo.osdl.org>
+	<7vwtlusi9t.fsf@assigned-by-dhcp.cox.net>
+	<u5tek82bmlb.fsf@fidgit.hq.vtech>
+	<7v1x41g3c6.fsf@assigned-by-dhcp.cox.net>
+	<7vfysg2wvo.fsf_-_@assigned-by-dhcp.cox.net>
+	<43290D0F.9060408@zytor.com>
+Date:	Thu, 15 Sep 2005 01:03:39 -0700
+In-Reply-To: <43290D0F.9060408@zytor.com> (H. Peter Anvin's message of "Wed,
+	14 Sep 2005 22:56:31 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7bqahb8.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:8586
+
+"H. Peter Anvin" <hpa@zytor.com> writes:
+
+> I noticed you also renamed git-ssh-{push,pull}.  These tools rely on 
+> having the same names on both sides, so you have introduced a major 
+> version skew problem.
+
+True.  It seems that both myself and Daniel did not think that
+would be a major problem when we were discussing the tool
+renames.
+
+As a workaround, you could always say GIT_SSH_PULL='blah' and
+GIT_SSH_PUSH='bah' when you run either side to name what will be
+run on the other end.
+
+Now the interesting problem is if we should rename these
+environment variables ...
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

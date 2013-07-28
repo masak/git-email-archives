@@ -1,0 +1,115 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 15:33:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A94EC14B61F
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 15:33:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751299AbVIPVdG (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 17:33:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751302AbVIPVdG
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 17:33:06 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:62084 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751299AbVIPVdF (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 16 Sep 2005 17:33:05 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8GLWrBo018427
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 16 Sep 2005 14:32:54 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8GLWmaL014273;
+	Fri, 16 Sep 2005 14:32:50 -0700
+Date:	Fri, 16 Sep 2005 14:32:48 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+cc:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Improve git-rev-list memory usage further
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509161423400.26803@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 71
+Xref: brand.scrye.com linux.git:8726
+
+
+This avoids keeping tree entries around, and free's them as it traverses
+the list. This avoids building up a huge memory footprint just for these 
+small but very common allocations.
+
+Before:
+
+	[torvalds@g5 linux]$ /usr/bin/time git-rev-list --objects v2.6.12..HEAD | wc -l
+	11.65user 0.38system 0:12.65elapsed 95%CPU (0avgtext+0avgdata 0maxresident)k
+	0inputs+0outputs (0major+42934minor)pagefaults 0swaps
+	59124
+
+After:
+
+	[torvalds@g5 linux]$ /usr/bin/time git-rev-list --objects v2.6.12..HEAD | wc -l
+	12.28user 0.29system 0:12.57elapsed 99%CPU (0avgtext+0avgdata 0maxresident)k
+	0inputs+0outputs (0major+26718minor)pagefaults 0swaps
+	59124
+
+note how the minor fault numbers - which ends up being how many pages we 
+needed to map - go down from 42934 (167 MB) to 26718 (104 MB).
+
+That's still a honking big memory footprint, but it's about half of what
+it was just a day or two ago (and this is the object list for a pretty big
+update - almost 60,000 objects. Smaller updates need less memory).
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/rev-list.c b/rev-list.c
+--- a/rev-list.c
++++ b/rev-list.c
+@@ -147,11 +147,16 @@ static struct object_list **process_tree
+ 		die("bad tree object %s", sha1_to_hex(obj->sha1));
+ 	obj->flags |= SEEN;
+ 	p = add_object(obj, p, name);
+-	for (entry = tree->entries ; entry ; entry = entry->next) {
++	entry = tree->entries;
++	tree->entries = NULL;
++	while (entry) {
++		struct tree_entry_list *next = entry->next;
+ 		if (entry->directory)
+ 			p = process_tree(entry->item.tree, p, entry->name);
+ 		else
+ 			p = process_blob(entry->item.blob, p, entry->name);
++		free(entry);
++		entry = next;
+ 	}
+ 	return p;
+ }
+@@ -218,12 +223,15 @@ static void mark_tree_uninteresting(stru
+ 	if (parse_tree(tree) < 0)
+ 		die("bad tree %s", sha1_to_hex(obj->sha1));
+ 	entry = tree->entries;
++	tree->entries = NULL;
+ 	while (entry) {
++		struct tree_entry_list *next = entry->next;
+ 		if (entry->directory)
+ 			mark_tree_uninteresting(entry->item.tree);
+ 		else
+ 			mark_blob_uninteresting(entry->item.blob);
+-		entry = entry->next;
++		free(entry);
++		entry = next;
+ 	}
+ }
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

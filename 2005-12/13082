@@ -1,0 +1,55 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  1 17:16:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5A3AEB66C8
+	for <tkil@scrye.com>; Thu,  1 Dec 2005 17:16:13 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932578AbVLBAPN (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Dec 2005 19:15:13 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932580AbVLBAPM
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Dec 2005 19:15:12 -0500
+Received: from citi.umich.edu ([141.211.133.111]:53006 "EHLO citi.umich.edu")
+	by vger.kernel.org with ESMTP id S932578AbVLBAPL (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 1 Dec 2005 19:15:11 -0500
+Received: from dexter.citi.umich.edu (dexter.citi.umich.edu [141.211.133.33])
+	by citi.umich.edu (Postfix) with ESMTP id 67F891BACD;
+	Thu,  1 Dec 2005 19:15:11 -0500 (EST)
+From:	Chuck Lever <cel@citi.umich.edu>
+Subject: [PATCH] unneeded processing in forward_patches() ??
+Date:	Thu, 01 Dec 2005 19:11:41 -0500
+To:	catalin.marinas@gmail.com
+Cc:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051202001141.9140.23252.stgit@dexter.citi.umich.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:13082
+
+i was wondering why "stg push" takes so long to decide not to use
+fast-forward.
+
+it turns out that when forward_patches() has not been able to fast-
+forward any patches, it still does a git.switch() and rewrites the
+unapplied file even though nothing has changed.  on a big working
+directory, this 'no-op' can take a while.
+
+following is a simple patch that addresses the problem.  does this appear
+to be a reasonable optimization (in terms of correctness)?
+
+        -- Chuck Lever
+--
+corporate:    <cel at netapp dot com>
+personal:     <chucklever at bigfoot dot com>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

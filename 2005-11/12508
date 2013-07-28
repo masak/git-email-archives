@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 20:38:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2551B1A4418
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 20:38:46 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750907AbVKVDiV (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 22:38:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750926AbVKVDiV
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 22:38:21 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:15239 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750850AbVKVDiV (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 21 Nov 2005 22:38:21 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAM3cDnO028782
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 21 Nov 2005 19:38:13 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAM3cCii018934;
+	Mon, 21 Nov 2005 19:38:12 -0800
+Date:	Mon, 21 Nov 2005 19:38:12 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	linux@horizon.com
+cc:	git@vger.kernel.org
+Subject: Re: Get rid of .git/branches/ and .git/remotes/?
+In-Reply-To: <20051122032014.32539.qmail@science.horizon.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511211931350.13959@g5.osdl.org>
+References: <20051122032014.32539.qmail@science.horizon.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:12508
+
+
+
+On Mon, 21 Nov 2005, linux@horizon.com wrote:
+> 
+> Actually, most indentation-sensitive languages have a simpler solution:
+> they don't try to convert whitespace strings to a number like "horizontal
+> position"; they just compare strings.
+
+Yes, but that doesn't really change the problem: you can't _visually_ see 
+what is wrong in most editors (some editors end up showing tabs as 
+something that isn't quite whitespace, but that's also really irritating).
+
+This is like Makefiles: if you have spaces in the wrong place, it may all 
+_look_ fine, but the Makefile just doesn't work. Really irritating.
+
+And obviously using the file will show the problem (the parser will 
+complain with a nice line number and readable error, hopefully), but I 
+personally find that to just be too damn late. By then, you're already 
+irritated.
+
+So I like the notion of depending on indentation, but I just feel it falls 
+down in practice. 
+
+Of course, since I believe that tabs are always exactly 8 characters, I'd 
+also be perfectly happy to just declare that anybody who disagrees with me 
+is a moron and deserves to die (*).
+
+		Linus
+
+(*) That's obviously true of _anything_ that people disagree with me on,
+but at the same time, I have this nagging suspicion that it's just better 
+to not depend on indentation.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

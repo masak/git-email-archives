@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 16:27:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CC8A317D4CD
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 16:27:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261835AbVDTW0V (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 18:26:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261836AbVDTW0V
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 18:26:21 -0400
+Received: from fire.osdl.org ([65.172.181.4]:8388 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261835AbVDTW0E (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 20 Apr 2005 18:26:04 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3KMKEs4010755
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 20 Apr 2005 15:20:15 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3KMKDow032000;
+	Wed, 20 Apr 2005 15:20:13 -0700
+Date:	Wed, 20 Apr 2005 15:22:12 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: "C. Scott Ananian" <cscott@cscott.net>
+Cc: Petr Baudis <pasky@ucw.cz>, Tom Lord <lord@emf.net>,
+	gnu-arch-users@gnu.org, gnu-arch-dev@lists.seyza.com,
+	Git Mailing List <git@vger.kernel.org>, talli@museatech.net
+Subject: chunking (Re: [ANNOUNCEMENT] /Arch/ embraces `git')
+In-Reply-To: <Pine.LNX.4.61.0504201754450.2630@cag.csail.mit.edu>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504201510520.6467@ppc970.osdl.org>
+References: <200504201000.DAA04988@emf.net> <20050420213114.GF19112@pasky.ji.cz>
+ <Pine.LNX.4.61.0504201754450.2630@cag.csail.mit.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 35
+Xref: brand.scrye.com linux.git:1021
+
+
+
+On Wed, 20 Apr 2005, C. Scott Ananian wrote:
+> 
+> I'm hoping my 'chunking' patches will fix this.  This ought to reduce the 
+> size of the object store by (in effect) doing delta compression; rsync
+> will then Do The Right Thing and only transfer the needed deltas.
+> Running some benchmarks right now to see how well it lives up to this 
+> promise...
+
+What's the disk usage results? I'm on ext3, for example, which means that
+even small files invariably take up 4.125kB on disk (with the inode).
+
+Even uncompressed, most source files tend to be small. Compressed, I'm 
+seeing the median blob size being ~1.6kB in my trivial checks. That's 
+blobs only, btw.
+
+My point being that about 75% of all blobs already take up less than the
+minimal amount of space that most filesystems can sanely allocate. And I'm
+_not_ going to say "you have to use reiserfs" with git.
+
+So the disk fragmentation really does matter. It doesn't help to make a 
+file smaller than 4kB, it hurts - while that can be offset by sharing 
+chunks, it might not be.
+
+Also, while network performance is important, so is the handshaking on
+which objects to get. Lots of small objects potentially need lots of
+handshaking to figure out _which_ of the objects to do.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

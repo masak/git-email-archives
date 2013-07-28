@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 16 15:58:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7C2D6ED4C5
+	for <tkil@scrye.com>; Sun, 16 Oct 2005 15:58:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751289AbVJPV61 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 16 Oct 2005 17:58:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751308AbVJPV61
+	(ORCPT <rfc822;git-outgoing>); Sun, 16 Oct 2005 17:58:27 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:32390 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751289AbVJPV61 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 16 Oct 2005 17:58:27 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 248DA13EB7F; Sun, 16 Oct 2005 23:58:26 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 05B7BB4D67; Sun, 16 Oct 2005 23:58:26 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id DF6555987A; Sun, 16 Oct 2005 23:58:25 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4B46D13EB7F; Sun, 16 Oct 2005 23:58:25 +0200 (CEST)
+Date:	Sun, 16 Oct 2005 23:58:25 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Nick Hengeveld <nickh@reactrix.com>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Some curl versions lack curl_easy_duphandle()
+In-Reply-To: <20051016215018.GG5509@reactrix.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510162355480.26678@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0510150038550.2807@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vmzlbpbwu.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0510151348080.12307@wbgn013.biozentrum.uni-wuerzburg.de>
+ <20051016215018.GG5509@reactrix.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:10164
+
+Hi,
+
+On Sun, 16 Oct 2005, Nick Hengeveld wrote:
+
+> On Sat, Oct 15, 2005 at 01:50:16PM +0200, Johannes Schindelin wrote:
+> 
+> > +#if LIBCURL_VERSION_NUM < 0x070c04
+> > +#define NO_CURL_EASY_DUPHANDLE
+> > +#endif
+> 
+> Is that the correct version number?  I've been using 7.10.6 and 
+> curl_easy_duphandle() has been working fine.
+
+I looked into CVS to find when curl_easy_duphandle() was introduced, and 
+it was Nov 9, 2004. So I looked for the corresponding curl.h and found it 
+says 0x070c04. I will look again...
+
+Ciao,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

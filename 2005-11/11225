@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 15:43:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 594C1192FCE
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 15:43:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751258AbVKFWmV (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 17:42:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751262AbVKFWmU
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 17:42:20 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:44233 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751258AbVKFWmU (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 6 Nov 2005 17:42:20 -0500
+Received: (qmail 22809 invoked from network); 6 Nov 2005 23:42:18 +0100
+Received: from localhost (HELO machine.or.cz) (127.0.0.1)
+  by localhost with SMTP; 6 Nov 2005 23:42:18 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	<git@vger.kernel.org>
+Subject: [PATCH] Fix empty line processing in git-shortlog.perl
+Date:	Sun, 06 Nov 2005 23:42:18 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051106224218.22797.97260.stgit@machine.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 46
+Xref: brand.scrye.com linux.git:11225
+
+Faced with a commit such as
+
+	commit f1b2646c7f2713c3ea4bce120e1d0d8091808be4
+	Author: Adrian Bunk <bunk@r063144.stusta.swh.mhn.de>
+	Date:   Sun Nov 6 20:30:38 2005 +0100
+
+	    From: Michal Wronski <wrona@mat.uni.torun.pl>
+
+	    I've jchanged my email. Please apply this patch so as to everybody
+	    could send me a remarks about mqueuefs.
+
+	    Signed-off-by: Michal Wronski <Michal.Wronski@motorola.com>
+	    Signed-off-by: Adrian Bunk <bunk@stusta.de>
+
+git-shortlog.perl would produce a line with an empty commit title.
+
+This patch fixes that. I believe that just changing the last * to + in the
+original regexp would work, but Adrian says it doesn't fix it for him, and
+I believe this regexp is way clearer anyway. This is also the original
+regexp used before a24e658649170c99fdcb4aaa41545679ad02f755.
+
+Signed-off-by: Petr Baudis <pasky@suse.cz>
+---
+
+ git-shortlog.perl |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/git-shortlog.perl b/git-shortlog.perl
+index 0b14f83..7283159 100755
+--- a/git-shortlog.perl
++++ b/git-shortlog.perl
+@@ -94,7 +94,7 @@ sub changelog_input {
+ 
+ 		# skip to non-blank line
+ 		elsif ($pstate == 3) {
+-			next unless /^\s*?(.*)/;
++			next unless /^\s*?(\S.*)$/;
+ 
+ 			# skip lines that are obviously not
+ 			# a 1-line cset description
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

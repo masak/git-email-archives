@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun  8 12:18:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C80AB1F8993
+	for <tkil@scrye.com>; Wed,  8 Jun 2005 12:18:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261468AbVFHSRw (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 8 Jun 2005 14:17:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261471AbVFHSRw
+	(ORCPT <rfc822;git-outgoing>); Wed, 8 Jun 2005 14:17:52 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:60382 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261468AbVFHSRt (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 8 Jun 2005 14:17:49 -0400
+Received: (qmail 2317 invoked by uid 2001); 8 Jun 2005 18:17:47 -0000
+Date:	Wed, 8 Jun 2005 20:17:47 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Catalin Marinas <catalin.marinas@arm.com>
+Cc: git@vger.kernel.org
+Subject: Re: cogito-0.10 broken for cg-commit < logmessagefile
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050608181747.GA982@pasky.ji.cz>
+References: <20050608144632.A28042@flint.arm.linux.org.uk> <tnxhdg8g6e1.fsf@arm.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <tnxhdg8g6e1.fsf@arm.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 24
+Xref: brand.scrye.com linux.git:4686
+
+Dear diary, on Wed, Jun 08, 2005 at 06:28:22PM CEST, I got a letter
+where Catalin Marinas <catalin.marinas@arm.com> told me that...
+> Russell King <rmk@arm.linux.org.uk> wrote:
+> > The command in the subject prepends the log message with a blank line.
+> > This ain't good because it messes up commit messages as per Linus'
+> > requirements (the first line must be a summary.)
+> 
+> The patch below should fix the problem. There is no point in writing
+> the status information in a file which is read from stdin.
+
+Oh, yes. Thanks, applied.
+
+FYI, I plan to release 0.11.2 this evening. I'll try to go through some
+more queued patches before and update cg-log to fully use git-rev-list.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 11:00:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C8D041B30E1
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 11:00:22 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751150AbVLUSAI (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 13:00:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751153AbVLUSAH
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 13:00:07 -0500
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:36533 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1751150AbVLUSAG (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 13:00:06 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051221175829.PXYX17006.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 21 Dec 2005 12:58:29 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Marcel Holtmann <marcel@holtmann.org>
+Subject: Re: Problem with the dump HTTP transport
+References: <1135166574.26233.64.camel@localhost>
+cc:	git@vger.kernel.org
+Date:	Wed, 21 Dec 2005 09:59:57 -0800
+In-Reply-To: <1135166574.26233.64.camel@localhost> (Marcel Holtmann's message
+	of "Wed, 21 Dec 2005 13:02:54 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vu0d2baaq.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:13876
+
+Marcel Holtmann <marcel@holtmann.org> writes:
+
+> Cannot obtain needed object c2f3bf071ee90b01f2d629921bb04c4f798f02fa
+> while processing commit 0000000000000000000000000000000000000000.
+> cg-fetch: objects fetch failed
+>
+> Both, git and cogito, are the latest versions from yesterday. So it
+> seems every time you repack, you need to do something extra to keep the
+> dump HTTP transport happy.
+
+The last sentence is correct and I do that (the magic word is
+git-update-server-info, and that is done as part of git-repack
+automatically), but it does not seem to apply here.  It most
+likely is a mirroring delay.  That c2f3... object is the commit
+at the tip of the master branch, and the repository is fully
+packed right now (except v1.0.0 tag object which is loose).
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

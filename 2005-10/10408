@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 20 22:15:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,
+	DATE_IN_FUTURE_06_12 autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DBFB1106BFC
+	for <tkil@scrye.com>; Thu, 20 Oct 2005 22:15:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964818AbVJUEPZ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 21 Oct 2005 00:15:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964862AbVJUEPZ
+	(ORCPT <rfc822;git-outgoing>); Fri, 21 Oct 2005 00:15:25 -0400
+Received: from mx3.ust.hk ([143.89.13.11]:525 "EHLO mx3.ust.hk")
+	by vger.kernel.org with ESMTP id S964818AbVJUEPZ (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 21 Oct 2005 00:15:25 -0400
+Received: from [143.89.135.159] (atz113.rd.ust.hk [143.89.135.159])
+	by mx3.ust.hk (8.12.11/8.12.11) with ESMTP id j9L4EsND096329;
+	Fri, 21 Oct 2005 12:14:55 +0800 (HKT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43591421.9030400@ust.hk>
+Date:	Sat, 22 Oct 2005 00:15:29 +0800
+From:	Ben Lau <benlau@ust.hk>
+User-Agent: Debian Thunderbird 1.0.7 (X11/20051017)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+CC:	git@vger.kernel.org
+Subject: Re: How to create a new branch based on a tag?
+References: <435901F7.9020509@ust.hk> <46a038f90510202037l7dd40271qcc0634295e092068@mail.gmail.com>
+In-Reply-To: <46a038f90510202037l7dd40271qcc0634295e092068@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 49
+Xref: brand.scrye.com linux.git:10408
+
+Martin Langhoff wrote:
+
+>On 10/22/05, Ben Lau <benlau@ust.hk> wrote:
+>  
+>
+>>Hi,
+>>
+>>   I would like to create a branch of my own work based on a specific
+>>kernel version(i.e
+>>v2.6.11). I tried with:
+>>
+>> > git-branch my2.6.11 v2.6.11
+>>error: Object 5dc01c595e6c6ec9ccda4f6f69c131c0dd945f8c is a tree, not a
+>>commit
+>>fatal: Needed a single revision
+>>    
+>>
+>
+>What you're after is
+>
+>   git-rev-parse --verify <tagname>^0  > .refs/heads/mynewbranch
+>
+>"branches" are very lightweight -- it's a ref containing the SHA1 of
+>the commit you want it to be at. So if you find the SHA1 of the commit
+>in gitk or wherever, just
+>
+>  echo SHA1 > .refs/heads/mynewbranch
+>
+>and you're sorted. Do git-checkout to switch to it.
+>
+>cheers,
+>
+>
+>martin
+>  
+>
+The command complains:
+
+   >git-rev-parse --verify v2.6.11^
+   error: Object 5dc01c595e6c6ec9ccda4f6f69c131c0dd945f8c is a tree, not 
+a commit
+   fatal: Needed a single revision
+
+I think it need another way to convert a tag/tree object into a commit ?
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

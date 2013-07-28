@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 19:10:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 690B41DE4F1
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 19:10:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751441AbVH3BJz (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 21:09:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751442AbVH3BJz
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 21:09:55 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:50635 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S1751441AbVH3BJz (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 29 Aug 2005 21:09:55 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050830010953.ELYY8651.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 29 Aug 2005 21:09:53 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Robert Fitzsimons <robfitz@273k.net>, git@vger.kernel.org
+Subject: Re: [PATCH 1/9] Fix git patch header processing in git-apply.
+References: <11252426672473-git-send-email-robfitz@273k.net>
+	<7vslwtein3.fsf@assigned-by-dhcp.cox.net>
+	<20050829235823.GA19351@localhost>
+	<Pine.LNX.4.58.0508291744400.3243@g5.osdl.org>
+Date:	Mon, 29 Aug 2005 18:09:53 -0700
+In-Reply-To: <Pine.LNX.4.58.0508291744400.3243@g5.osdl.org> (Linus Torvalds's
+	message of "Mon, 29 Aug 2005 17:47:00 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vacj06xi6.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:7927
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> Hmm. Anything that depends on "--ignore-applied" is fundamentally broken
+> as an import tool. There's no way something like that can be valid, since
+> it inhently means that somebody is trying to apply a patch that simple
+> isn't applicable.
+>
+> Don't do this.
+
+I suspect that it is exported data that is broken, if
+this --ignore-applied flag is needed for importing something
+somebody exported.
+
+I, however, am not 100% convinced --ignore-applied is too
+dangerous to be useful in any conceivable use cases, at least
+not yet.  For example, you might be cherry-picking a change from
+a foreign branch with 'git-diff-tree -p other~45 | git apply',
+where the current branch may have already aquired part of the
+changes that foreign branch contains since 45 generations ago.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

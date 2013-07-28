@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 12:33:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BF69B1863E1
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 12:33:09 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965144AbVKVTav (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 14:30:51 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965145AbVKVTav
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 14:30:51 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:24716 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S965144AbVKVTau
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 14:30:50 -0500
+Received: from [192.168.1.19] (1-2-9-7a.gkp.gbg.bostream.se [82.182.116.44])
+	by smtp-gw1.op5.se (Postfix) with ESMTP
+	id EDB996BCBE; Tue, 22 Nov 2005 20:30:48 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <438371E8.2030701@op5.se>
+Date:	Tue, 22 Nov 2005 20:30:48 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>, git@vger.kernel.org
+Subject: Re: Get rid of .git/branches/ and .git/remotes/?
+References: <Pine.LNX.4.63.0511201748440.14258@wbgn013.biozentrum.uni-wuerzburg.de> <Pine.LNX.4.64.0511200935081.13959@g5.osdl.org> <200511210026.30280.Josef.Weidendorfer@gmx.de> <200511221831.03954.Josef.Weidendorfer@gmx.de> <Pine.LNX.4.63.0511221854120.27872@wbgn013.biozentrum.uni-wuerzburg.de>
+In-Reply-To: <Pine.LNX.4.63.0511221854120.27872@wbgn013.biozentrum.uni-wuerzburg.de>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12558
+
+Johannes Schindelin wrote:
+> 
+> 	git-config-set --get remote.origin.url
+> 
+
+So... "git-config-set" is used for both getting and setting? Why not 
+just "git-config --set" and "git-config --get" to make things a bit less 
+confusing?
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

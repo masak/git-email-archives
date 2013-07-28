@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 28 23:44:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 165C112B844
+	for <tkil@scrye.com>; Mon, 28 Nov 2005 23:44:09 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751329AbVK2Gna (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 01:43:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751331AbVK2Gna
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 01:43:30 -0500
+Received: from metronet39.infocom.co.ug ([217.113.73.39]:15623 "EHLO
+	entandikwa.ds.co.ug") by vger.kernel.org with ESMTP
+	id S1751329AbVK2Gna (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 29 Nov 2005 01:43:30 -0500
+Received: from igloo.ds.co.ug (igloo.ds.co.ug [192.168.129.66])
+	by entandikwa.ds.co.ug (Postfix) with ESMTP id 6DCA25253
+	for <git@vger.kernel.org>; Tue, 29 Nov 2005 09:44:36 +0300 (EAT)
+Received: from matlads by igloo.ds.co.ug with local (Exim 4.54)
+	id 1EgzCM-0002L5-OO
+	for git@vger.kernel.org; Tue, 29 Nov 2005 09:42:42 +0300
+Date:	Tue, 29 Nov 2005 09:42:42 +0300
+To:	git@vger.kernel.org
+Subject: Re: [PATCH 0/4] Repository format version check series.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051129064242.GA8978@igloo.ds.co.ug>
+Mail-Followup-To: git@vger.kernel.org
+References: <7voe48gqg9.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7voe48gqg9.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.11
+From:	Martin Atukunda <matlads@dsmagic.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:12915
+
+On Fri, Nov 25, 2005 at 05:15:02PM -0800, Junio C Hamano wrote:
+> This series is what I've been cooking for the past several days,
+> partly based on patch from Martin Atukunda but with hopefully
+> smaller impact.
+> 
+> [PATCH 1/4] Repository format version check.
+> [PATCH 2/4] Check repository format version in enter_repo().
+> [PATCH 3/4] init-db: check template and repository format.
+> [PATCH 4/4] setup_git_directory(): check repository format version.
+
+This is just to confirm that this patch series passed the tests on my
+end. Good work.
+
+- Martin -
+
+-- 
+Due to a shortage of devoted followers, the production of great leaders has been discontinued.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

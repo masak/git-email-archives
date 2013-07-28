@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 10:55:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 80F671635D2
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 10:55:20 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932086AbVLLRyu (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 12:54:50 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932087AbVLLRyu
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 12:54:50 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:15064 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S932086AbVLLRyu (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 12 Dec 2005 12:54:50 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051212175303.JJV17437.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 12 Dec 2005 12:53:03 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Subject: Re: patches between commits
+References: <7ac1e90c0512120731g3eacdcf0s7e9d1226c88dce73@mail.gmail.com>
+	<20051212173352.GA3007@steel.home>
+cc:	git@vger.kernel.org
+Date:	Mon, 12 Dec 2005 09:54:45 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vu0dei4ka.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:13522
+
+Alex Riesen <raa.lkml@gmail.com> writes:
+
+> Bahadir Balban, Mon, Dec 12, 2005 16:31:12 +0100:
+>> Suppose I have a HEAD branch, which is the latest. And I want to
+>> generate `individual' patches for each commit I did since the
+>> beginning of development for this branch.
+>
+> That is what I think "git format-patch <commit>" is for. It will
+> generate patches to bring "<commit>" to HEAD.
+
+Yes, but I think the real question Bahadir wants to know is what
+the <commit> parameter should be, if you want to export the
+whole history (I do not think there is any suitable argument to
+"format-patch" that does this).
+
+>> Secondly, is the sha1 of a tree what appears next to each commit when
+>> I type git-log? Is this the only command that lets us know the sha1's
+>> of commits?
+
+Depends on what you have, to ask the question "what are their
+object names?".
+
+ - I have this commit, how do I find out its object name?
+   E.g. I want to know the HEAD commit's object name, second to
+   the last commit on "test" branch.
+
+   $ git rev-parse --verify HEAD
+   $ git rev-parse --verify test^
+
+ - I have bunch of commits leading to the head of my "test"
+   branch.  What are they?
+
+   $ git rev-list test ;# unadorned list of object names and nothing else
+   $ git rev-list --pretty test ;# this is git-log
+   $ git whatchanged -m -M -p test ;# with patch in full glory
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

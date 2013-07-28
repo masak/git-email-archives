@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  8 12:47:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0B6DF191E9
+	for <tkil@scrye.com>; Mon,  8 Aug 2005 12:47:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932192AbVHHSrt (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 8 Aug 2005 14:47:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932193AbVHHSrt
+	(ORCPT <rfc822;git-outgoing>); Mon, 8 Aug 2005 14:47:49 -0400
+Received: from mail.murom.net ([213.177.124.17]:47811 "EHLO ns1.murom.ru")
+	by vger.kernel.org with ESMTP id S932192AbVHHSrt (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 8 Aug 2005 14:47:49 -0400
+Received: from [172.17.7.8] (helo=procyon.home)
+	by ns1.murom.ru with esmtp (Exim 4.42)
+	id 1E2Cf6-0008DT-E8; Mon, 08 Aug 2005 22:47:48 +0400
+Received: by procyon.home (Postfix, from userid 500)
+	id 0B20DE51111; Mon,  8 Aug 2005 22:46:58 +0400 (MSD)
+Date:	Mon, 8 Aug 2005 22:46:58 +0400
+From: Sergey Vlasov <vsu@altlinux.ru>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: [PATCH 4/4] Plug memory leak in git-pack-objects
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050808184658.GE5789@procyon.home>
+References: <20050808184332.GA5789@procyon.home>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050808184332.GA5789@procyon.home>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:6937
+
+[PATCH] Plug memory leak in git-pack-objects
+
+find_deltas() should free its temporary objects before returning.
+
+Signed-off-by: Sergey Vlasov <vsu@altlinux.ru>
+---
+
+ pack-objects.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+8b38f80b97affd0d9808b8f276a9e2e04bf03464
+diff --git a/pack-objects.c b/pack-objects.c
+--- a/pack-objects.c
++++ b/pack-objects.c
+@@ -382,6 +382,10 @@ static void find_deltas(struct object_en
+ 		if (idx >= window)
+ 			idx = 0;
+ 	}
++
++	for (i = 0; i < window; ++i)
++		free(array[i].data);
++	free(array);
+ }
+ 
+ int main(int argc, char **argv)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

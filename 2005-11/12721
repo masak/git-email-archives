@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 25 03:14:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4C36F160A39
+	for <tkil@scrye.com>; Fri, 25 Nov 2005 03:14:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751426AbVKYKMM (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 25 Nov 2005 05:12:12 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751427AbVKYKMM
+	(ORCPT <rfc822;git-outgoing>); Fri, 25 Nov 2005 05:12:12 -0500
+Received: from mxfep01.bredband.com ([195.54.107.70]:62683 "EHLO
+	mxfep01.bredband.com") by vger.kernel.org with ESMTP
+	id S1751426AbVKYKMK (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 25 Nov 2005 05:12:10 -0500
+Received: from puritan.petwork ([213.112.43.250] [213.112.43.250])
+          by mxfep01.bredband.com with ESMTP
+          id <20051125101209.YXGT26888.mxfep01.bredband.com@puritan.petwork>
+          for <git@vger.kernel.org>; Fri, 25 Nov 2005 11:12:09 +0100
+Received: by puritan.petwork (Postfix, from userid 1000)
+	id 7CC59ADFE5; Fri, 25 Nov 2005 11:12:09 +0100 (CET)
+Date:	Fri, 25 Nov 2005 11:12:09 +0100
+From:	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: git-send-mail in sh
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051125101209.GA8868@puritan.petwork>
+Mail-Followup-To: Git Mailing List <git@vger.kernel.org>
+References: <4386DD45.6030308@op5.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4386DD45.6030308@op5.se>
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:12721
+
+Andreas Ericsson wrote:
+
+> Finally giving up on git-send-email (I won't install the 6 perl-modules 
+> it requires and I don't know perl enough to remove the need for them), I 
+> hacked up a replacement in sh. It's more aptly named as well. ;)
+
+> It's better than the perl version because;
+> 1. It doesn't have any requirements other than normal unix-commands and 
+> "mail" being in the path.
+> 2. It can generate the patches on the fly, using git-format-patch.
+
+Great!
+
+> It's worse than the perl version because;
+> 1. It doesn't thread the patch-series (which I personally prefer anyway 
+> since it's easier to follow a thread on a particular patch that way).
+
+Not so great.  Why is it so much more difficult to have one more level
+of nesting?  It's annoying, but it's a lot less annoying than having 19
+separate threads that are all, in fact, related to each other.
+
+> 2. The patches sent within the same second arrive in random order.
+
+Perhaps adding a 'sleep 1' would help?  (The delay may be unacceptable
+to some people, though.)
+
+        nikolai
+
+-- 
+Nikolai Weibull: now available free of charge at http://bitwi.se/!
+Born in Chicago, IL USA; currently residing in Gothenburg, Sweden.
+main(){printf(&linux["\021%six\012\0"],(linux)["have"]+"fun"-97);}
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

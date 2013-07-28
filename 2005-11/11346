@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  8 13:57:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_QG autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4C1FCE5083
+	for <tkil@scrye.com>; Tue,  8 Nov 2005 13:57:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030277AbVKHUyk (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 8 Nov 2005 15:54:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030345AbVKHUyk
+	(ORCPT <rfc822;git-outgoing>); Tue, 8 Nov 2005 15:54:40 -0500
+Received: from posti6.jyu.fi ([130.234.4.43]:15515 "EHLO posti6.jyu.fi")
+	by vger.kernel.org with ESMTP id S1030277AbVKHUyj (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 8 Nov 2005 15:54:39 -0500
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by posti6.jyu.fi (8.13.4/8.13.4) with ESMTP id jA8Kscqu012398
+	for <git@vger.kernel.org>; Tue, 8 Nov 2005 22:54:38 +0200
+Received: from aragorn.kortex.jyu.fi (aragorn.kortex.jyu.fi [130.234.182.44])
+	by posti6.jyu.fi (8.13.4/8.13.4) with ESMTP id jA8KsWuZ012366
+	for <git@vger.kernel.org>; Tue, 8 Nov 2005 22:54:32 +0200
+Received: from [127.0.0.1] (aragorn.kortex.jyu.fi [127.0.0.1])
+	by aragorn.kortex.jyu.fi (Postfix) with ESMTP id 196733F1DB
+	for <git@vger.kernel.org>; Tue,  8 Nov 2005 22:54:32 +0200 (EET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43711088.6070701@cc.jyu.fi>
+Date:	Tue, 08 Nov 2005 22:54:32 +0200
+From:	lamikr <lamikr@cc.jyu.fi>
+User-Agent: Mozilla Thunderbird 1.0.2 (X11/20050322)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Diff between the non-head git work dir and non-git kernel sources
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: amavisd-new at cc.jyu.fi
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 48
+Xref: brand.scrye.com linux.git:11346
+
+Hi
+
+I am sorry if this a newbie question, but I have tried to read howtos 
+from the web without finding clear documentation or howto to following 
+kind of problem.
+
+I have checked out the omap git tree with command
+
+    git-clone rsync://source.mvista.com/git/linux-omap-2.6.git 
+linux-omap-2.6
+
+and now I am obviously having the omap kernel head in the linux-omap-2.6 
+working directory + hidden ".git" with commit history. In addition I 
+have my own "non git" development tree that is made on top of 
+traditional kernel snapshots. I however know that the sources in this 
+dir reflects to state in git history when following patch was committed
+
+    
+http://source.mvista.com/git/gitweb.cgi?p=linux-omap-2.6.git;a=commitdiff;h=d24aff0bd3e788d69a45a9d1b1eecda88d847a41
+
+I would now like to revert the sources in git working dir to state that 
+was after this d24aff0bd3e788d69a45a9d1b1eecda88d847a41 commit
+and then make the diff between that kernel source version and my non-git 
+source version and I am now trying to find out what is the "correct" way 
+of doing this.
+
+1) If understood the documentation correctly I could move the working 
+dir to contain the state after
+d24aff0bd3e788d69a45a9d1b1eecda88d847a41 commit in a following way
+a) open qgit and mark correct commit with "make tag mytag" command
+b) change the files in working dir to be same than during the "mytag" 
+commit time by using command git checkout -f mytag
+   
+Are there simpler method for doing this that uses commit id 
+d24aff0bd3e788d69a45a9d1b1eecda88d847a41 directly without need to make 
+tag or branch?
+
+2) Does git-diff support making the diff between git's working dir and 
+"my non" git kernel source dir.
+Or should I just just use normal diff and order that to ignore .git dir 
+and .gitignore files?
+
+Mika
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

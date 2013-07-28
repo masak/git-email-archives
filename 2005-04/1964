@@ -1,0 +1,54 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 22:18:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 68ED417449C
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 22:18:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261919AbVD1ER4 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 00:17:56 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261926AbVD1ERz
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 00:17:55 -0400
+Received: from nevyn.them.org ([66.93.172.17]:13530 "EHLO nevyn.them.org")
+	by vger.kernel.org with ESMTP id S261919AbVD1ERv (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Apr 2005 00:17:51 -0400
+Received: from drow by nevyn.them.org with local (Exim 4.50 #1 (Debian))
+	id 1DR0TG-0002A7-Br; Thu, 28 Apr 2005 00:17:50 -0400
+Date:	Thu, 28 Apr 2005 00:17:50 -0400
+From: Daniel Jacobowitz <dan@debian.org>
+To: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: kernel.org now has gitweb installed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050428041750.GA8239@nevyn.them.org>
+References: <42703E79.8050808@zytor.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42703E79.8050808@zytor.com>
+User-Agent: Mutt/1.5.8i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.2 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 14
+Xref: brand.scrye.com linux.git:1964
+
+On Wed, Apr 27, 2005 at 06:38:01PM -0700, H. Peter Anvin wrote:
+> http://www.kernel.org/git/
+
+Thanks!  Now all I crave is a version which can browse the file tree
+and file history; but I think we're almost ready for that...
+
+-- 
+Daniel Jacobowitz
+CodeSourcery, LLC
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

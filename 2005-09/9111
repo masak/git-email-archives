@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 22 08:33:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.2 required=5.0 tests=AWL,BAYES_00,
+	RCVD_IN_BL_SPAMCOP_NET autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A8E67131EDF
+	for <tkil@scrye.com>; Thu, 22 Sep 2005 08:33:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030363AbVIVOcq (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Sep 2005 10:32:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030370AbVIVOcq
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Sep 2005 10:32:46 -0400
+Received: from qproxy.gmail.com ([72.14.204.198]:12889 "EHLO qproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1030363AbVIVOcq convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 22 Sep 2005 10:32:46 -0400
+Received: by qproxy.gmail.com with SMTP id v40so58170qbe
+        for <git@vger.kernel.org>; Thu, 22 Sep 2005 07:32:43 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=gqPgKnOiY5fscq+iScAZ5ySa6m+1/wk1/zCmkA04ycTw+Kwe4ULXPliPlGTrcNIbtStjDbj3CoodR66t6abKR7fCJn50LrQDufeaP0m/pXezUr+RwH6TlsQBTDNSEJbBno0k/fqGc4LUxxhd8V/nPk6LKHsm8JWnz6t7Y8Zy0qI=
+Received: by 10.64.195.14 with SMTP id s14mr167339qbf;
+        Thu, 22 Sep 2005 07:32:43 -0700 (PDT)
+Received: by 10.64.203.14 with HTTP; Thu, 22 Sep 2005 07:32:43 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <72499e3b05092207326abadd91@mail.gmail.com>
+Date:	Thu, 22 Sep 2005 15:32:43 +0100
+From:	Robert Watson <robert.oo.watson@gmail.com>
+Reply-To: Robert Watson <robert.oo.watson@gmail.com>
+To:	git@vger.kernel.org
+Subject: uncommon shell code
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:9111
+
+Hi,
+
+I found the following shell code in git-tag.sh (and others):
+
+while case "$#" in 0) break ;; esac
+do
+  ...
+done
+
+Why not use the straight forward code:
+
+while test "$#" -ne 0
+do
+   ...
+done
+
+Are there any functional difference between them?
+
+Robertoo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

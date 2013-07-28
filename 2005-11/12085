@@ -1,0 +1,104 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 03:36:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A99F5C5B66
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 03:36:52 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750742AbVKQKgs (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 05:36:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750746AbVKQKgs
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 05:36:48 -0500
+Received: from zproxy.gmail.com ([64.233.162.198]:11111 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750742AbVKQKgr convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 05:36:47 -0500
+Received: by zproxy.gmail.com with SMTP id 18so1959672nzp
+        for <git@vger.kernel.org>; Thu, 17 Nov 2005 02:36:47 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=s8JwGHWhkjM/E21G9L+VrYj9cGGdiqIjcpPWhIUaok0NamOIsEKjCLJlfamtDdIUOSao0OESULVco36cbd6VW926FruG7zDmp6zLfWXqQSYWORXXbM/jmlnUHU9yA17G+eJtothJLta4yJRpVSAC8CzgCw1ERA2WIYteNCvxiBM=
+Received: by 10.36.132.11 with SMTP id f11mr7280556nzd;
+        Thu, 17 Nov 2005 02:36:47 -0800 (PST)
+Received: by 10.36.47.8 with HTTP; Thu, 17 Nov 2005 02:36:47 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <cda58cb80511170236p4a7e2baay@mail.gmail.com>
+Date:	Thu, 17 Nov 2005 11:36:47 +0100
+From:	Franck <vagabon.xyz@gmail.com>
+To:	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [QUESTION] Access to a huge GIT repository.
+Cc:	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <Pine.LNX.4.64.0511160837000.13959@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <cda58cb80511160424j1acac7c6j@mail.gmail.com>
+	 <Pine.LNX.4.64.0511160837000.13959@g5.osdl.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 55
+Xref: brand.scrye.com linux.git:12085
+
+Hi Linus
+
+2005/11/16, Linus Torvalds <torvalds@osdl.org>:
+>
+>
+> First off, "rsync://" will never do what you want. It uses rsync
+> (surprised surprise) to grab the objects, so since it has no clue what the
+> objects are, it has no choice but to just grab them all.
+>
+
+yes that was a bad example, actually I've tried several protocol
+including git protocol.
+
+> The fact that _some_ of the linux-mips repositories are based on mine
+> makes me suspect that all their 2.6-based ones are rooted like mine is,
+> but that may or may not be true.
+>
+
+hmm, don't think "linux mips" repository is rooted like yours. It
+seems that it has been imported from mips cvs repository which
+contains linux-mips history since 1995.
+
+> Just try your above command line with "git://" instead.
+>
+> (NOTE! Doing a full clone like the above is pretty expensive with git for
+> the server side, so it might take a while before it starts feeding you
+> stuff if it is under heavy load)
+>
+
+well I've already tried that but have renounced after waiting more
+than 4 hours ! I don't know if the server was under heavy load or if
+git protocol needs a lots of resources but it seems useless to setup a
+git dameon on it...
+
+> If you want to get rid of other branches, do:
+
+Sorry, I forget to tell that I have already tried what you suggested
+at first (except that I did not do a 'git repack -a -d') but it didn't
+work out (and that the reason why I tried the "kill father object"
+thing). Since I forgot the repack thing, I retried again, and it did
+last more than 4 hours to cpmplete all git commands. After that I run
+gitk --all to check that all old branch's objects have been removed
+but I can see all of them.
+
+I plan to take look at git code to understand how object removal is
+done, but until this do you have any ideas why this fails ?
+
+Thanks
+--
+               Franck
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

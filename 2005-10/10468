@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 22 15:09:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7CF0615E65B
+	for <tkil@scrye.com>; Sat, 22 Oct 2005 15:09:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751044AbVJVVJm (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 22 Oct 2005 17:09:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751173AbVJVVJm
+	(ORCPT <rfc822;git-outgoing>); Sat, 22 Oct 2005 17:09:42 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:10658 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751044AbVJVVJm (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 22 Oct 2005 17:09:42 -0400
+Received: (qmail 24229 invoked by uid 2001); 22 Oct 2005 23:09:39 +0200
+Date:	Sat, 22 Oct 2005 23:09:39 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	eschvoca <eschvoca@gmail.com>
+Cc:	git@vger.kernel.org
+Subject: Re: How do I clear the directory cache
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051022210939.GR30889@pasky.or.cz>
+References: <2b05065b0510170720n5333f03l1941e84c1288fc5d@mail.gmail.com> <20051020085931.GW30889@pasky.or.cz> <2b05065b0510202023i62ab7c03uea1381d76535dcc7@mail.gmail.com> <20051021105235.GF30889@pasky.or.cz> <2b05065b0510211340y9551767i53fe53c0dc14460a@mail.gmail.com> <20051021214326.GJ30889@pasky.or.cz> <2b05065b0510221220r5c498c28lcb00d8846f156686@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2b05065b0510221220r5c498c28lcb00d8846f156686@mail.gmail.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:10468
+
+Dear diary, on Sat, Oct 22, 2005 at 09:20:40PM CEST, I got a letter
+where eschvoca <eschvoca@gmail.com> told me that...
+> I think it would make a lot of sense to print out an error to stderr
+> if the file is
+> bad (maybe you already do).  From there it should be easy to capture stderr
+> and construct .gitignore.
+
+Yes, we already do.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,114 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 27 18:51:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 955D92AFE09
+	for <tkil@scrye.com>; Sun, 27 Nov 2005 18:51:31 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751216AbVK1Bv0 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 27 Nov 2005 20:51:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751218AbVK1Bv0
+	(ORCPT <rfc822;git-outgoing>); Sun, 27 Nov 2005 20:51:26 -0500
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:63643 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S1751216AbVK1BvZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 27 Nov 2005 20:51:25 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051128015126.TQBD25099.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 27 Nov 2005 20:51:26 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Timo Hirvonen <tihirvon@gmail.com>, git@vger.kernel.org
+Subject: [PATCH] bisect: quote pathnames for eval safety.
+References: <7voe48gqg9.fsf@assigned-by-dhcp.cox.net>
+	<7vek52e4ve.fsf@assigned-by-dhcp.cox.net>
+	<20051127151134.0eac7019.tihirvon@gmail.com>
+	<Pine.LNX.4.64.0511271106360.13959@g5.osdl.org>
+Date:	Sun, 27 Nov 2005 17:51:23 -0800
+In-Reply-To: <Pine.LNX.4.64.0511271106360.13959@g5.osdl.org> (Linus Torvalds's
+	message of "Sun, 27 Nov 2005 11:32:03 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzjp35gk.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 67
+Xref: brand.scrye.com linux.git:12835
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> Almost totally untested, and I guarantee that if your pathnames have 
+> spaces in them (or your GIT_DIR has spaces in it) this won't work. I don't 
+> know how to fix that, my shell programming isn't good enough.
+
+Like this?  I've placed the bisect patch with this in the
+proposed updates.
+
+---
+
+ git-bisect.sh |   16 ++++++++++++----
+ 1 files changed, 12 insertions(+), 4 deletions(-)
+
+applies-to: 7da44ab45773e0a424c1e08c838c1f6deeb6ceb2
+82c8f5bed2ae61f1f368cfca84f6b0194b1ad208
+diff --git a/git-bisect.sh b/git-bisect.sh
+index 2455f00..d4196f9 100755
+--- a/git-bisect.sh
++++ b/git-bisect.sh
+@@ -1,9 +1,16 @@
+ #!/bin/sh
+ . git-sh-setup
+ 
++sq() {
++    for x
++    do
++	echo "$x" | sed -e "s/'/'\\\\''/g" -e "s/^/'/" -e "s/\$/'/"
++    done
++}
++
+ usage() {
+     echo >&2 'usage: git bisect [start|bad|good|next|reset|visualize]
+-git bisect start		reset bisect state and start bisection.
++git bisect start [<pathspec>]	reset bisect state and start bisection.
+ git bisect bad [<rev>]		mark <rev> a known-bad revision.
+ git bisect good [<rev>...]	mark <rev>... known-good revisions.
+ git bisect next			find next bisection to test and check it out.
+@@ -56,8 +63,8 @@ bisect_start() {
+ 	rm -f "$GIT_DIR/refs/heads/bisect"
+ 	rm -rf "$GIT_DIR/refs/bisect/"
+ 	mkdir "$GIT_DIR/refs/bisect"
+-	echo "git-bisect start $@" >"$GIT_DIR/BISECT_LOG"
+-	echo "$@" > "$GIT_DIR/BISECT_NAMES"
++	sq git-bisect start "$@" >"$GIT_DIR/BISECT_LOG"
++	sq "$@" >"$GIT_DIR/BISECT_NAMES"
+ }
+ 
+ bisect_bad() {
+@@ -142,7 +149,8 @@ bisect_next() {
+ 
+ bisect_visualize() {
+ 	bisect_next_check fail
+-	gitk bisect/bad --not `cd "$GIT_DIR/refs" && echo bisect/good-*` -- $(cat $GIT_DIR/BISECT_NAMES)
++	not=`cd "$GIT_DIR/refs" && echo bisect/good-*`
++	eval gitk bisect/bad --not $not -- $(cat "$GIT_DIR/BISECT_NAMES")
+ }
+ 
+ bisect_reset() {
+---
+0.99.9.GIT
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

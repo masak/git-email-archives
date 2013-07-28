@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 16:42:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 07923320390
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 16:42:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965024AbVLNXj7 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 18:39:59 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965056AbVLNXj7
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 18:39:59 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:38630 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965024AbVLNXj6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Dec 2005 18:39:58 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBENdrDZ014476
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 14 Dec 2005 15:39:53 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBENdqe6013269;
+	Wed, 14 Dec 2005 15:39:52 -0800
+Date:	Wed, 14 Dec 2005 15:39:52 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Petr Baudis <pasky@suse.cz>
+cc:	"H. Peter Anvin" <hpa@zytor.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Tracking files across tree reorganizations
+In-Reply-To: <20051214223656.GJ22159@pasky.or.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512141538440.3292@g5.osdl.org>
+References: <43A08B8F.1000901@zytor.com> <20051214223656.GJ22159@pasky.or.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:13649
+
+
+
+On Wed, 14 Dec 2005, Petr Baudis wrote:
+> 
+> Linus is against it.
+> 
+> Cogito will do it anyway ;-), when someone sends me a nice patch or when
+> I get to it (probably not very soon). I imagine it like this:
+
+I warn people that if cogito starts polluting the commit messages too 
+much, I'll stop pulling from such trees.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

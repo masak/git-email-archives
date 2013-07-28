@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct  2 12:49:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DECA9264504
+	for <tkil@scrye.com>; Sun,  2 Oct 2005 12:49:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751141AbVJBStf (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 2 Oct 2005 14:49:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751142AbVJBStf
+	(ORCPT <rfc822;git-outgoing>); Sun, 2 Oct 2005 14:49:35 -0400
+Received: from xenotime.net ([66.160.160.81]:7049 "HELO xenotime.net")
+	by vger.kernel.org with SMTP id S1751141AbVJBStf (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 2 Oct 2005 14:49:35 -0400
+Received: from midway ([71.111.157.99]) by xenotime.net for <git@vger.kernel.org>; Sun, 2 Oct 2005 11:49:33 -0700
+Date:	Sun, 2 Oct 2005 11:49:32 -0700
+From:	"Randy.Dunlap" <rdunlap@xenotime.net>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Cc:	git@vger.kernel.org
+Subject: Re: Empty commit in linux tree
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051002114932.3c6c40b8.rdunlap@xenotime.net>
+In-Reply-To: <20051002113344.99131.qmail@web26312.mail.ukl.yahoo.com>
+References: <20051002113344.99131.qmail@web26312.mail.ukl.yahoo.com>
+Organization: YPO4
+X-Mailer: Sylpheed version 1.0.5 (GTK+ 1.2.10; i686-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:9611
+
+On Sun, 2 Oct 2005 04:33:44 -0700 (PDT) Marco Costalba wrote:
+
+> Commit  '[PATCH] Fix IXP2000 serial port resource range'
+> (69d37960b578be0a69383bd71d06c1fcfb86e8b9)
+>  in linux tree seems empty (also with gitweb).
+> 
+> Is this correct?
+
+It was noticed and fixed yesterday...
+
+See http://marc.theaimsgroup.com/?l=linux-kernel&m=112814775418942&w=2
+
+---
+~Randy
+You can't do anything without having to do something else first.
+-- Belefant's Law
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 18 04:01:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 10DC99EB39
+	for <tkil@scrye.com>; Thu, 18 Aug 2005 04:01:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932157AbVHRKA3 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 18 Aug 2005 06:00:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932155AbVHRKA3
+	(ORCPT <rfc822;git-outgoing>); Thu, 18 Aug 2005 06:00:29 -0400
+Received: from web26310.mail.ukl.yahoo.com ([217.146.176.21]:9319 "HELO
+	web26310.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S932157AbVHRKA2 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 18 Aug 2005 06:00:28 -0400
+Received: (qmail 80895 invoked by uid 60001); 18 Aug 2005 10:00:23 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=GZ1WBWgHhwBsc585mRmyb0xwao6lT/NEedGbXC18m1dVf9XAq4Lh4e7JBwhtMKJu015M24Oph5F0J3OwVd1fctyuMW+GkAbX2LO2KFU5Kn5enB49FRUnMpWtuearodolRLS4dyiWPzxUhoo0HC+IxP+FEi4VguVUXJRfm/pPNJs=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050818100023.80893.qmail@web26310.mail.ukl.yahoo.com>
+Received: from [151.42.103.149] by web26310.mail.ukl.yahoo.com via HTTP; Thu, 18 Aug 2005 03:00:23 PDT
+Date:	Thu, 18 Aug 2005 03:00:23 -0700 (PDT)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: [RFC] Patches exchange is bad?
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+Cc:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 46
+Xref: brand.scrye.com linux.git:7489
+
+Catalin Marinas wrote:
+
+>
+>The base of the StGIT stack in the HEAD repository (branch) should
+>always be the head of the MAIN repository. 
+
+That's the point I missed, now it's more clear.
+
+>
+>That's how you would normally do development on Linux using StGIT -
+>clone the mainline kernel, create patches in your StGIT tree and submit
+>them either via e-mail or ask the gatekeeper to pull directly from your
+>tree (assuming that you only push those patches that need to be merged).
+>Doing a 'stg pull' would retrieve the latest changes from the mainline
+>kernel (including the changes made by your patches which were merged
+>upstream).
+>
+
+If I uderstand correctly you never commit patches from StGIT stack directly
+in your base git repository, in this example git HEAD, but you always round 
+trip to MAIN. 
+
+Then you don't have two git repository: HEAD and MAIN
+
+Infact there is only one git repository, MAIN, cloned on your box and called HEAD and 
+with a StGIT stack added on top.
+
+>
+>Please let me know if this needs further clarification.
+>
+
+I think so. 
+Please, reading my notes above tell me if I thinking right ;-)
+
+Marco
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

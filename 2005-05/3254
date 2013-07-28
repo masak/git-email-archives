@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 13 20:39:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D5CFBFC2C4
+	for <tkil@scrye.com>; Fri, 13 May 2005 20:39:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262682AbVENCjn (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 13 May 2005 22:39:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262683AbVENCjn
+	(ORCPT <rfc822;git-outgoing>); Fri, 13 May 2005 22:39:43 -0400
+Received: from soundwarez.org ([217.160.171.123]:29068 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S262682AbVENCja (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 13 May 2005 22:39:30 -0400
+Received: from dhcp-188.off.vrfy.org (c211149.adsl.hansenet.de [213.39.211.149])
+	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	(No client certificate requested)
+	by soundwarez.org (Postfix) with ESMTP id 59CAD288A7;
+	Sat, 14 May 2005 04:39:29 +0200 (CEST)
+Subject: Re: gitweb wishlist
+From: Kay Sievers <kay.sievers@vrfy.org>
+To: Jan-Benedict Glaw <jbglaw@lug-owl.de>
+Cc: Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+In-Reply-To: <20050511093015.GK8176@lug-owl.de>
+References: <20050511012626.GL26384@pasky.ji.cz>
+	 <20050511093015.GK8176@lug-owl.de>
+Content-Type: text/plain
+Date:	Sat, 14 May 2005 04:39:30 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1116038370.9317.17.camel@dhcp-188.off.vrfy.org>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:3254
+
+On Wed, 2005-05-11 at 11:30 +0200, Jan-Benedict Glaw wrote:
+> On Wed, 2005-05-11 03:26:26 +0200, Petr Baudis <pasky@ucw.cz> wrote:
+> >   I would be very happy if you could extend the gitweb scripts a little.
+> > Basically, what I need is to have ability to create a permanent link to
+> > a given file in the repository, which stays same across revisions (as
+> > long as the file stays with the given name, obviously).
+> 
+> I've got another one. I'd like to see st_mtime on the file lists to see
+> when a file was last touched...
+
+We don't have that information in the trees. The date is only available
+in the commits and reading all commits or storing that information in a
+index or a database is beyond the scope of that simple cgi.
+
+Thanks,
+Kay
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

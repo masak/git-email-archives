@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 29 03:58:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 90611F5FFF
+	for <tkil@scrye.com>; Sun, 29 May 2005 03:58:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261300AbVE2J6L (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 29 May 2005 05:58:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261303AbVE2J6L
+	(ORCPT <rfc822;git-outgoing>); Sun, 29 May 2005 05:58:11 -0400
+Received: from coyote.holtmann.net ([217.160.111.169]:11194 "EHLO
+	mail.holtmann.net") by vger.kernel.org with ESMTP id S261300AbVE2J6H
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 29 May 2005 05:58:07 -0400
+Received: from pegasus (p5487DF90.dip.t-dialin.net [84.135.223.144])
+	by mail.holtmann.net (8.12.3/8.12.3/Debian-7.1) with ESMTP id j4T9xgSs018459
+	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NO);
+	Sun, 29 May 2005 11:59:43 +0200
+Subject: Re: [COGITO PATCH] fix "cg-Xnormid: command not found" error
+From: Marcel Holtmann <marcel@holtmann.org>
+To: YOSHIFUJI Hideaki / =?UTF-8?Q?=E5=90=89=E8=97=A4=E8=8B=B1?= =?UTF-8?Q?=E6=98=8E?= <yoshfuji@linux-ipv6.org>
+Cc: git@vger.kernel.org
+In-Reply-To: <20050529.121545.77345008.yoshfuji@linux-ipv6.org>
+References: <20050529.121545.77345008.yoshfuji@linux-ipv6.org>
+Content-Type: text/plain
+Date:	Sun, 29 May 2005 11:57:57 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1117360678.7072.53.camel@pegasus>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.85.1, clamav-milter version 0.85 on coyote.holtmann.net
+X-Virus-Status:	Clean
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 29
+Xref: brand.scrye.com linux.git:4139
+
+Hi,
+
+> Call cg-Xnormid with ${COGITO_LIB} to fix "cg-Xnormid: command not found"
+> error.
+
+I made the same patch, but when I used cg-diff to create the patch, I
+got two extra annoying lines at the top.
+
+commit-id: needs update
+tree-id: needs update
+Index: commit-id
+===================================================================
+--- c8e987e5e4608c1144293cd3f852210d70b572cb/commit-id  (mode:100755)
++++ uncommitted/commit-id  (mode:100755)
+
+I think the "needs update" lines came from "git-update-cache --refresh"
+and we don't really want them there. Should we simply direct the output
+to /dev/null or what?
+
+Regards
+
+Marcel
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

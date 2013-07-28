@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 28 09:17:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E73C62851FA
+	for <tkil@scrye.com>; Wed, 28 Dec 2005 09:17:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964853AbVL1QRI (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 28 Dec 2005 11:17:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932534AbVL1QRH
+	(ORCPT <rfc822;git-outgoing>); Wed, 28 Dec 2005 11:17:07 -0500
+Received: from purkki.valo.iki.fi ([80.68.90.206]:50951 "EHLO
+	purkki.valo.iki.fi") by vger.kernel.org with ESMTP id S932532AbVL1QRH
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 28 Dec 2005 11:17:07 -0500
+Received: from localhost
+	([127.0.0.1] helo=purkki.valo.iki.fi ident=kvalo)
+	by purkki.valo.iki.fi with esmtp (Exim 4.50)
+	id 1Erdz8-0005qA-6T
+	for git@vger.kernel.org; Wed, 28 Dec 2005 18:17:06 +0200
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] debian/ directory
+References: <7v64pbc4fh.fsf@assigned-by-dhcp.cox.net>
+	<20051228112018.19646.qmail@c226d15586b0bf.315fe32.mid.smarden.org>
+From:	Kalle Valo <Kalle.Valo@iki.fi>
+Date:	Wed, 28 Dec 2005 18:17:05 +0200
+In-Reply-To: <20051228112018.19646.qmail@c226d15586b0bf.315fe32.mid.smarden.org> (Gerrit
+ Pape's message of "Wed, 28 Dec 2005 12:20:18 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <87oe31urge.kvalo.fsf@purkki.valo.iki.fi>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:14091
+
+Gerrit Pape <pape@smarden.org> writes:
+
+>> different from what I have, so I'd like to avoid potential
+>> confusion and reduce work by the official maintainer and myself.
+>
+> Thanks.  The most notable change is that debhelper isn't used to do the
+> packaging stuff, and the build-dependency has been dropped; this is
+> after my personal preference.
+>
+> Below is the diff for reference, I think though it might be better if
+> you don't include the debian/ directory in the upstream package at all.
+
+One upside in Junio's debian packages is that they[1] work also in
+sarge[2]. If he stops building them, we sarge users will miss them.
+Any volunteers to maintain them, for example, through backports.org?
+
+[1] at least git-core and git-doc work
+[2] Debian 3.1
+
+-- 
+Kalle Valo
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

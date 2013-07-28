@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec  6 17:59:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1C50A6BFFE
+	for <tkil@scrye.com>; Tue,  6 Dec 2005 17:59:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030308AbVLGA6E (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Dec 2005 19:58:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030312AbVLGA6D
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Dec 2005 19:58:03 -0500
+Received: from wproxy.gmail.com ([64.233.184.200]:33612 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1030308AbVLGA6B convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Tue, 6 Dec 2005 19:58:01 -0500
+Received: by wproxy.gmail.com with SMTP id i27so204823wra
+        for <git@vger.kernel.org>; Tue, 06 Dec 2005 16:58:00 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=oYW4JX7AulQ6DQgbm6QmkHDNYhOjF8yARFlXIp5C4VOY6oz6Bk03wjPV4gju+gtT1JryrwGb2BPzazBWzmxM4VowWAGY2ADI3jYxjmlBIGaQ2Mrkl3ET0xTexWOEoIoKGJyzqoVq8zcuOMfhdp+EEy8oy/sRHx3xOKOjSfYh/YM=
+Received: by 10.65.53.6 with SMTP id f6mr1227453qbk;
+        Tue, 06 Dec 2005 16:58:00 -0800 (PST)
+Received: by 10.65.151.1 with HTTP; Tue, 6 Dec 2005 16:58:00 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <118833cc0512061658g474edf35m4b1038fb739f0468@mail.gmail.com>
+Date:	Tue, 6 Dec 2005 19:58:00 -0500
+From:	Morten Welinder <mwelinder@gmail.com>
+To:	Junio C Hamano <junkio@cox.net>
+Subject: Re: [PATCH] Add compat/setenv.c, use in git.c.
+Cc:	git@vger.kernel.org
+In-Reply-To: <7vwtih299f.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <7vslt67v9o.fsf@assigned-by-dhcp.cox.net>
+	 <14331.1133899163@lotus.CS.Berkeley.EDU>
+	 <118833cc0512061310r6398f812ia47a84d3cfad1564@mail.gmail.com>
+	 <7vwtih299f.fsf@assigned-by-dhcp.cox.net>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 10
+Xref: brand.scrye.com linux.git:13304
+
+> Are you suggesting it to be done like this?
+
+Precisely.
+
+Morten
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

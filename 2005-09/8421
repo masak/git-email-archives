@@ -1,0 +1,89 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 15:10:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C7DA9244C8B
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 15:10:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932247AbVILVIZ (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 17:08:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932244AbVILVIY
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 17:08:24 -0400
+Received: from [85.8.31.11] ([85.8.31.11]:61932 "EHLO mail6.wasadata.com")
+	by vger.kernel.org with ESMTP id S932247AbVILVIY (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 17:08:24 -0400
+Received: from c165 (unknown [85.8.2.189])
+	by mail6.wasadata.com (Postfix) with ESMTP
+	id A19644119; Mon, 12 Sep 2005 23:13:14 +0200 (CEST)
+Received: from ksorim by c165 with local (Exim 3.36 #1 (Debian))
+	id 1EEvXB-0001rM-00; Mon, 12 Sep 2005 23:08:13 +0200
+Date:	Mon, 12 Sep 2005 23:08:13 +0200
+From:	Fredrik Kuivinen <freku045@student.liu.se>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Fredrik Kuivinen <freku045@student.liu.se>,
+	Daniel Barkalow <barkalow@iabervon.org>,
+	Linus Torvalds <torvalds@osdl.org>, cel@citi.umich.edu,
+	git@vger.kernel.org
+Subject: Re: [RFH] Merge driver
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050912210813.GA6644@c165.ib.student.liu.se>
+References: <7v1x407min.fsf@assigned-by-dhcp.cox.net> <431F34FF.5050301@citi.umich.edu> <7vvf1cz64l.fsf@assigned-by-dhcp.cox.net> <4320536D.2010706@citi.umich.edu> <7v7jdrwlih.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0509081012540.3208@g5.osdl.org> <43207FE6.2030108@citi.umich.edu> <Pine.LNX.4.58.0509081131070.5940@g5.osdl.org> <432089D8.4060507@citi.umich.edu> <7v3boen0rb.fsf_-_@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v3boen0rb.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.6+20040907i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 43
+Xref: brand.scrye.com linux.git:8421
+
+On Fri, Sep 09, 2005 at 12:44:40AM -0700, Junio C Hamano wrote:
+
+...
+
+> *1* Fredrik, I have been wondering if we can just say that lack
+> of '-u' flag implies '-i'.  Is there a good reason that
+> 'git-read-tree -m O A B' without '-u' should care if working
+> tree is up to date for the paths involved?
+
+No, I don't think so. But it would be nice if one could use '-i'
+together with '-u'.
+
+The current git-merge-fredrik.py does not use '-i' together with '-u',
+but I plan to change that. Currently we assume that the index is
+uptodate when we start the merge. If the two branches have more than
+one common ancestor those ancestors are merged into a temporary tree,
+lets call it T, without touching the working directory.
+
+The final steps of the merge are currently the following steps (lets
+say we want to merge A with B):
+
+git-read-tree A
+git-update-cache --refresh
+git-read-tree -u -m T A B
+
+We need the second step because otherwise git-read-tree will complain
+that the cache isn't uptodate. But we _know_ that the contents are
+uptodate, so the second step is unnecessary and just eats time. So,
+instead of doing the above we should be able to do:
+
+git-read-tree A
+git-read-tree -u -i -m T A B
+
+I have a patch which implements this and it _seems_ to work fine. Is
+it reasonable to things this way or have I missed something?
+
+
+- Fredrik
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

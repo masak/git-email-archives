@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 27 08:19:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id BC1A36B48
+	for <tkil@scrye.com>; Fri, 27 May 2005 08:19:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261745AbVE0ORe (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 27 May 2005 10:17:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261751AbVE0ORe
+	(ORCPT <rfc822;git-outgoing>); Fri, 27 May 2005 10:17:34 -0400
+Received: from main.gmane.org ([80.91.229.2]:7112 "EHLO ciao.gmane.org")
+	by vger.kernel.org with ESMTP id S261745AbVE0ORX (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 27 May 2005 10:17:23 -0400
+Received: from root by ciao.gmane.org with local (Exim 4.43)
+	id 1DbfXP-0002Eq-1X
+	for git@vger.kernel.org; Fri, 27 May 2005 16:10:11 +0200
+Received: from c83-250-33-218.bredband.comhem.se ([83.250.33.218])
+        by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Fri, 27 May 2005 16:10:11 +0200
+Received: from danjel.mcgougan by c83-250-33-218.bredband.comhem.se with local (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Fri, 27 May 2005 16:10:11 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: git@vger.kernel.org
+From: Danjel McGougan <danjel.mcgougan@comhem.se>
+Subject:  Re: [PATCH] Fix ptrdiff_t vs. int
+Date:	Fri, 27 May 2005 15:51:58 +0200
+Lines:	10
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <d778gp$1er$1@sea.gmane.org>
+References:  <42971EB4.2050403@oberhumer.com>
+Mime-Version:  1.0
+Content-Type:  text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding:  7bit
+X-Complaints-To: usenet@sea.gmane.org
+X-Gmane-NNTP-Posting-Host: c83-250-33-218.bredband.comhem.se
+User-Agent: Mozilla Thunderbird 1.0.2 (Windows/20050317)
+X-Accept-Language: en-us, en
+In-Reply-To: <42971EB4.2050403@oberhumer.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:4024
+
+Markus F.X.J. Oberhumer wrote:
+> This trivial patch fixes an obvious ptrdiff_t vs. int mismatch. Which
+> makes we wonder why Linus isn't hitting this on his ppc64 - maybe it's
+> time to start using -Werror...
+> 
+
+I think the PPC calling convention is to use registers for the first few 
+parameters, so the bug probably will not surface on PPC64.
+
+/Danjel
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

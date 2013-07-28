@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 30 19:47:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EF641FC37A
+	for <tkil@scrye.com>; Sat, 30 Apr 2005 19:47:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261502AbVEABro (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 30 Apr 2005 21:47:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261503AbVEABrn
+	(ORCPT <rfc822;git-outgoing>); Sat, 30 Apr 2005 21:47:43 -0400
+Received: from nevyn.them.org ([66.93.172.17]:21154 "EHLO nevyn.them.org")
+	by vger.kernel.org with ESMTP id S261502AbVEABrb (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 30 Apr 2005 21:47:31 -0400
+Received: from drow by nevyn.them.org with local (Exim 4.50 #1 (Debian))
+	id 1DS3YM-0003yJ-Sg; Sat, 30 Apr 2005 21:47:26 -0400
+Date:	Sat, 30 Apr 2005 21:47:26 -0400
+From: Daniel Jacobowitz <dan@debian.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Resurrect diff-tree-helper -R
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050501014726.GA15220@nevyn.them.org>
+References: <7v7jij3htp.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0504301805300.2296@ppc970.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0504301805300.2296@ppc970.osdl.org>
+User-Agent: Mutt/1.5.8i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.2 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 59
+Xref: brand.scrye.com linux.git:2249
+
+On Sat, Apr 30, 2005 at 06:09:53PM -0700, Linus Torvalds wrote:
+> So it would be much nicer (I think) if mode changes are handled 
+> separately, with a simple separate line before the diff saying
+> 
+> 	"Mode change: %o->%o %s", oldmode, newmode, path
+> 
+> and not mess up the diff header. That way, you only see it when it
+> actually makes any difference, and it's more readable both for humans
+> _and_ machines as a result.
+> 
+> Normal "patch" will just ignore the extra lines before the diff anyway, so 
+> it won't matter there.
+> 
+> Comments?
+
+It sounds good - but could you efficiently collect them before any diff
+output?  If you have something like this, it'll be easy to read:
+
+Mode change: 644->755 foo.sh
+Mode change: 644->755 bar.sh
+
+--- ChangeLog
++++ ChangeLog
+@@ -1,0 +1,1 @@
++New line
+--- copyright
++++ copyright
+@@ -1,0 +1,1 @@
++New line
+
+
+But if you generate this then you might as well not generate the mode
+lines at all, for all a human looking at the diff is going to notice
+them:
+
+--- ChangeLog
++++ ChangeLog
+@@ -1,0 +1,1 @@
++New line
+Mode change: 644->755 foo.sh
+--- copyright
++++ copyright
+@@ -1,0 +1,1 @@
++New line
+Mode change: 644->755 bar.sh
+
+
+The latter is how diff does its "Only in" messages.  I never see them
+when I'm looking through a diff of any size; only via diffstat, where
+they're clearly disambiguated.
+
+-- 
+Daniel Jacobowitz
+CodeSourcery, LLC
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

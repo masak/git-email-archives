@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 11 01:49:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_FN 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5B4891C338B
+	for <tkil@scrye.com>; Tue, 11 Oct 2005 01:49:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751406AbVJKHto (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 11 Oct 2005 03:49:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751407AbVJKHto
+	(ORCPT <rfc822;git-outgoing>); Tue, 11 Oct 2005 03:49:44 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:60103 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751406AbVJKHto (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 11 Oct 2005 03:49:44 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 3847A13EFF3; Tue, 11 Oct 2005 09:49:43 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 2160D9E490; Tue, 11 Oct 2005 09:49:43 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0777C9E48D; Tue, 11 Oct 2005 09:49:43 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id B569913EFF3; Tue, 11 Oct 2005 09:49:42 +0200 (CEST)
+Date:	Tue, 11 Oct 2005 09:49:42 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: [PATCH] Support custom build options in config.mak
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510110948170.19774@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:9951
+
+With this patch, it is possible to store configuration options like
+NO_CURL=YesPlease or NO_OPENSSL=YesPlease into a file named
+config.mak, which will be included in the Makefile.
+
+Signed-off-by: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+
+---
+
+ Makefile |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+applies-to: 1abfad3540e705eb33e589a8e8cf2be781c89030
+94ca33678ce4f582d9bcbaa7baf9223e026c0b13
+diff --git a/Makefile b/Makefile
+index ea4332b..4e2fa7e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -213,6 +213,10 @@ ifneq (,$(findstring arm,$(uname_M)))
+ 	ARM_SHA1 = YesPlease
+ endif
+ 
++ifneq (,$(wildcard config.mak))
++include config.mak
++endif
++
+ ifndef NO_CURL
+ 	ifdef CURLDIR
+ 		# This is still problematic -- gcc does not want -R.
+---
+0.99.8.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

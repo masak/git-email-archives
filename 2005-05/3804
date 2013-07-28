@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May 23 19:19:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9AE08234CC1
+	for <tkil@scrye.com>; Mon, 23 May 2005 19:19:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261292AbVEXBQs (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 23 May 2005 21:16:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261331AbVEXBH3
+	(ORCPT <rfc822;git-outgoing>); Mon, 23 May 2005 21:07:29 -0400
+Received: from pimout4-ext.prodigy.net ([207.115.63.98]:10716 "EHLO
+	pimout4-ext.prodigy.net") by vger.kernel.org with ESMTP
+	id S261324AbVEXBGv (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 23 May 2005 21:06:51 -0400
+Received: from taniwha.stupidest.org (adsl-63-205-187-115.dsl.snfc21.pacbell.net [63.205.187.115])
+	by pimout4-ext.prodigy.net (8.12.10 milter /8.12.10) with ESMTP id j4O16cPA198044;
+	Mon, 23 May 2005 21:06:39 -0400
+Received: by taniwha.stupidest.org (Postfix, from userid 38689)
+	id 9F3B3528F22; Mon, 23 May 2005 18:06:38 -0700 (PDT)
+Date:	Mon, 23 May 2005 18:06:38 -0700
+From: Chris Wedgwood <cw@f00f.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] diff-raw format update take #2.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Gnus-Warning: This is a duplicate of message <893c1abb4647b2c536a14ab2cbcf2805.IBX@taniwha.stupidest.org>
+Message-ID:  <893c1abb4647b2c536a14ab2cbcf2805.IBX@taniwha.stupidest.org>
+References: <7vfywe769d.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0505230736180.2307@ppc970.osdl.org> <7vwtpp3hsa.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0505231156210.2307@ppc970.osdl.org> <7vy8a51uay.fsf_-_@assigned-by-dhcp.cox.net> <87bcada447378d0173a3c5f165c70b38.ANY@taniwha.stupidest.org> <7vhdgt1ncz.fsf@assigned-by-dhcp.cox.net> <046ec1d00820537103092ed264f81f65.IBX@taniwha.stupidest.org> <Pine.LNX.4.58.0505231747300.2307@ppc970.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0505231747300.2307@ppc970.osdl.org>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 21
+Xref: brand.scrye.com linux.git:3804
+
+On Mon, May 23, 2005 at 05:51:46PM -0700, Linus Torvalds wrote:
+
+> THAT is a much bigger problem than the raw diff format, since that
+> actually ends up interfering with interoperability.
+
+it's not hard to fix though, and like it or not filenames with spaces
+do occur and people do use them (personally i find them annoying but
+clearly other people like it)
+
+> The same goes for broken DOS CR-NL text-files, btw. If anybody ever
+> ports git to the crap that is DOS/Windows (and I assume NT does it
+> too), they'll have endless problems with interoperating with sane
+> systems.
+
+Normalize EOLs and if you like store and EOL-type attribute.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

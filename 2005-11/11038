@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 14:55:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_SV autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A3AF514316C
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 14:55:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965281AbVKBVw2 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 16:52:28 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965284AbVKBVw2
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 16:52:28 -0500
+Received: from [195.140.142.33] ([195.140.142.33]:49873 "EHLO
+	c1-033.cyaris.net") by vger.kernel.org with ESMTP id S965288AbVKBVw0
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 2 Nov 2005 16:52:26 -0500
+Received: from localhost ([127.0.33.1] helo=localhost.localdomain)
+	by c1-033.cyaris.net with esmtps (TLS-1.0:RSA_AES_256_CBC_SHA:32)
+	(Exim 4.50)
+	id 1EXQWc-0003cg-EU; Wed, 02 Nov 2005 22:52:15 +0100
+Received: from yaslama by localhost.localdomain with local (Exim 4.54)
+	id 1EXQWT-00050O-Vn; Wed, 02 Nov 2005 23:51:57 +0200
+Subject: [PATCH 6/7] Fix an error when a svn revision consists only of the creation of a new tag
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EXQWT-00050O-Vn@localhost.localdomain>
+From:	Yaacov Akiba Slama <ya@slamail.org>
+Date:	Wed, 02 Nov 2005 23:51:57 +0200
+To:	unlisted-recipients:; (no To-header on input)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:11038
+
+directory (/tags/this_is_a_tag).
+
+Signed-off-by: Yaacov Akiba Slama <ya@slamail.org>
+
+---
+
+ git-svnimport.perl |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+applies-to: 12064f4a47217c44cc28ffb5977ffcd245179b5f
+f8f37463ee4c3b24249192345f81a16c0dd74f66
+diff --git a/git-svnimport.perl b/git-svnimport.perl
+index ae82a7c..e97f470 100755
+--- a/git-svnimport.perl
++++ b/git-svnimport.perl
+@@ -648,6 +648,10 @@ sub commit {
+ 		die "Error running git-commit-tree: $?\n" if $?;
+ 	}
+ 
++	if (not defined $cid) {
++		$cid = $branches{"/"}{"LAST"};
++	}
++
+ 	if(not defined $dest) {
+ 		print "... no known parent\n" if $opt_v;
+ 	} elsif(not $tag) {
+@@ -664,6 +668,7 @@ sub commit {
+ 		# the tag was 'complex', i.e. did not refer to a "real" revision
+ 
+ 		$dest =~ tr/_/\./ if $opt_u;
++		$branch = $dest;
+ 
+ 		my $pid = open2($in, $out, 'git-mktag');
+ 		print $out ("object $cid\n".
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec  5 23:10:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CFC26255EDC
+	for <tkil@scrye.com>; Mon,  5 Dec 2005 23:10:36 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750798AbVLFGKX (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Dec 2005 01:10:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751023AbVLFGKW
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Dec 2005 01:10:22 -0500
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:60560 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1750798AbVLFGKV (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 6 Dec 2005 01:10:21 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051206060906.XSWD17006.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 6 Dec 2005 01:09:06 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Jon Loeliger <jdl@freescale.com>
+Subject: Re: [PATCH] Added documentation for few missing options.
+References: <E1EjV8R-00014y-Sg@jdl.com>
+cc:	git@vger.kernel.org
+Date:	Mon, 05 Dec 2005 22:10:19 -0800
+In-Reply-To: <E1EjV8R-00014y-Sg@jdl.com> (Jon Loeliger's message of "Mon, 05
+	Dec 2005 23:13:03 -0600")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vd5ka7o38.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 53
+Xref: brand.scrye.com linux.git:13245
+
+Jon Loeliger <jdl@freescale.com> writes:
+
+> More $ shell prompts in examples.
+> Minor English grammar improvements.
+> Added a few "See Also"s.
+> Use back-ticks on more command examples.
+>
+> Signed-off-by: Jon Loeliger <jdl@freescale.com>
+
+Thanks.  You deserve to add your own name to the Documentation
+section ;-).
+
+Mostly note to myself...
+
+> +EXAMPLES
+> +--------
+> +To update and refresh only the files already checked out::
+> ++
+> +----------------
+> +$ git-checkout-index -n -f -a && git-update-index --ignore-missing --refresh
+> +----------------
+
+These days, "git-checkout-index -n -u -f -a" may a preferred
+equivalent of the above.
+
+> +OPTIONS
+> +-------
+> +--template=<template_directory>::
+> +	Provide the directory in from which templates will be used.
+
+? "use templates stored in the named directory" ?
+
+> @@ -220,8 +222,8 @@ populated.  Here is an outline of how th
+>      matching "stage1" entry if it exists too.  .. all the normal
+>      trivial rules ..
+>  
+> -You would normally use "git-merge-index" with supplied
+> -"git-merge-one-file" to do this last step.  The script
+> +You would normally use `git-merge-index` with supplied
+> +`git-merge-one-file` to do this last step.  The script
+>  does not touch the files in the work tree, and the entire merge
+>  happens in the index file.  In other words, there is no need to
+>  worry about what is in the working directory, since it is never
+
+The above paragraph is way out of date, as of beginning of June
+2005.  The current merge-one-file does smudge the working tree
+during the merge.  I'll rewrite it.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

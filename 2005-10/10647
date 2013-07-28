@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 26 02:53:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1F78618237C
+	for <tkil@scrye.com>; Wed, 26 Oct 2005 02:53:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932595AbVJZIxG (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 26 Oct 2005 04:53:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932600AbVJZIxG
+	(ORCPT <rfc822;git-outgoing>); Wed, 26 Oct 2005 04:53:06 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:11673 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932595AbVJZIxF (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 26 Oct 2005 04:53:05 -0400
+Received: (qmail 20087 invoked by uid 2001); 26 Oct 2005 10:53:02 +0200
+Date:	Wed, 26 Oct 2005 10:53:02 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Towards CVS code-exchange and gateways
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051026085302.GF30889@pasky.or.cz>
+References: <46a038f90510251357l23886747s8024a4326ad4e392@mail.gmail.com> <46a038f90510252035yb4167e1w2ee54d82896e5906@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <46a038f90510252035yb4167e1w2ee54d82896e5906@mail.gmail.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:10647
+
+Dear diary, on Wed, Oct 26, 2005 at 05:35:41AM CEST, I got a letter
+where Martin Langhoff <martin.langhoff@gmail.com> told me that...
+> Update here: Sven sent me a cool 4 line shell script that has the
+> basics. Next thing I know, and I was dumped into a boring presentation
+> -- so I turned it into a more complete Perl script. Still incomplete &
+> extremely untested, but showing the basics.
+> 
+> Give me a couple more boring presentations and we'll be done ;-)
+
+Can I then import from the CVS incrementally later? I guess from the
+cvsimport code that it just tries to always import everything but the
+already imported commits get the same hashes so it magically imports
+"incrementally"... (The code could use some descriptive comments, it is
+rather spaggetish.)
+
+If someone really desperately needs this, BTW, you might be able to
+merge two Monotone branches (.git and .cvssync) to get two-way
+incremental GIT and CVS interface, and then do that through Monotone.
+;-))
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

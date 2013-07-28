@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec  3 01:07:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8F0C21FC757
+	for <tkil@scrye.com>; Sat,  3 Dec 2005 01:07:00 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751210AbVLCIGZ (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 3 Dec 2005 03:06:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751216AbVLCIGZ
+	(ORCPT <rfc822;git-outgoing>); Sat, 3 Dec 2005 03:06:25 -0500
+Received: from e176063253.adsl.alicedsl.de ([85.176.63.253]:64213 "EHLO
+	localhost.localdomain") by vger.kernel.org with ESMTP
+	id S1751210AbVLCIGZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 3 Dec 2005 03:06:25 -0500
+Received: from aj by localhost.localdomain with local (Exim 4.60)
+	(envelope-from <aj@andaco.de>)
+	id 1EiSPU-0005jo-PK; Sat, 03 Dec 2005 09:06:20 +0100
+Date:	Sat, 3 Dec 2005 09:06:20 +0100
+To:	linux@horizon.com
+Cc:	git@vger.kernel.org, torvalds@osdl.org
+Subject: Re: How can I specify a non-standard TCP port for a git+ssh connection?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051203080620.GA22032@andaco.de>
+References: <20051202193101.29853.qmail@science.horizon.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051202193101.29853.qmail@science.horizon.com>
+User-Agent: Mutt/1.5.11
+From:	Andreas Jochens <aj@andaco.de>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:13138
+
+On 05-Dec-02 14:31, linux@horizon.com wrote:
+> Actually, you don't need any git support.  ssh allows you to set up
+> "virtual hosts" with any combination of options you like.
+
+> So typing "ssh <virtual>" will have the effect of
+> ssh <whoever>@<physical> -p <nonstandard> -i <custom> -a
+
+This is a nice feature, of course. But I still have to edit a separate 
+config file. In some cases (e.g. scripts using ad hoc port forwarding) it 
+would be much easier if the non-standard port and maybe some other
+options could be specified directly on the git command line or 
+in .git/branches.
+
+Regards
+Andreas Jochens
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

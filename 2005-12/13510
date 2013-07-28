@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 08:34:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BCD4D170375
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 08:34:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751082AbVLLPc0 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 10:32:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751122AbVLLPc0
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 10:32:26 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:62888 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751082AbVLLPcY (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Dec 2005 10:32:24 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBCFW9DZ015901
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 12 Dec 2005 07:32:09 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBCFW83u000987;
+	Mon, 12 Dec 2005 07:32:08 -0800
+Date:	Mon, 12 Dec 2005 07:32:08 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Marcel Holtmann <marcel@holtmann.org>
+cc:	Petr Baudis <pasky@suse.cz>, git@vger.kernel.org
+Subject: Re: Latest cogito broken with bash-3.1
+In-Reply-To: <1134385342.1468.27.camel@blade>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512120725350.15597@g5.osdl.org>
+References: <1134220724.15125.4.camel@blade>  <20051211001106.GV22159@pasky.or.cz>
+ <1134289867.9541.9.camel@blade>  <20051212002631.GW22159@pasky.or.cz>
+ <1134379801.1468.5.camel@blade>  <20051212104039.GJ10680@pasky.or.cz>
+ <1134385342.1468.27.camel@blade>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:13510
+
+
+
+On Mon, 12 Dec 2005, Marcel Holtmann wrote:
+> 
+> I just verified that on my Ubuntu Dapper system where I had a copy of
+> the old bash package lying around. The bash-3.0 works fine, but the
+> bash-3.1 produces this error. So it is definitely bash related.
+
+It's been around forever, and it's a bash default installation issue. It's 
+just that all sane distributions will change the default.
+
+Sounds like debian forgot to do that when upgrading to bash-3.1.
+
+The magic incantation is hidden in the bash FAQ (E2):
+
+	You can build a version of bash that will not report SIGPIPE errors
+	by uncommenting the definition of DONT_REPORT_SIGPIPE in the file
+	config-top.h.
+
+and I still don't understand why it's not the default. Oh, well.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

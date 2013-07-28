@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec 23 19:15:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B2BAB21BB1
+	for <tkil@scrye.com>; Fri, 23 Dec 2005 19:15:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030228AbVLXCO3 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Dec 2005 21:14:29 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030603AbVLXCO3
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Dec 2005 21:14:29 -0500
+Received: from rocksdale.excelsior-online.org ([213.202.239.5]:37893 "EHLO
+	rocksdale.excelsior-online.org") by vger.kernel.org with ESMTP
+	id S1030228AbVLXCO2 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 23 Dec 2005 21:14:28 -0500
+Received: from [192.168.2.2] (p549546CF.dip.t-dialin.net [84.149.70.207])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by rocksdale.excelsior-online.org (Postfix) with ESMTP id A86BF28356
+	for <git@vger.kernel.org>; Sat, 24 Dec 2005 03:37:04 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43ACAE49.4000902@excelsior-online.org>
+Date:	Sat, 24 Dec 2005 03:11:21 +0100
+From:	Duncan Mac Leod <duncan@excelsior-online.org>
+Reply-To: duncan@excelsior-online.org
+Organization: EXCELSIOR developers Team
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051205)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: git repack throws -> error: unrecognized: ??
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:13995
+
+Hi!
+
+I have done the following operations on my git repository...
+
+duncan@firebird /var/git $ GIT_DIR=/var/git/myproject.git git fsck-objects
+duncan@firebird /var/git $ GIT_DIR=/var/git/myproject.git git prune
+duncan@firebird /var/git $ GIT_DIR=/var/git/myproject.git git count-objects
+42 objects, 616 kilobytes
+duncan@firebird /var/git $ GIT_DIR=/var/git/myproject.git git repack
+Packing 42 objects
+Pack pack-d715ebdf63391b054d9f058d59d3d3a4f6f2a12c created.
+error: unrecognized:
+
+The last one throws 'error: unrecognized:' - what does this mean?
+
+Under which circumstances is this error message fired?
+
+Did my git repository get corrupted?
+
+...and 'HAPPY HOLIDAYS' to all of you!
+
+Duncan
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

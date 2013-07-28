@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 17:16:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8C2AF28522D
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 17:16:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964912AbVKAAPo (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 19:15:44 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964914AbVKAAPo
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 19:15:44 -0500
+Received: from iabervon.org ([66.92.72.58]:58897 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S964912AbVKAAPn (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 31 Oct 2005 19:15:43 -0500
+Received: (qmail 23699 invoked by uid 1000); 31 Oct 2005 19:15:22 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 31 Oct 2005 19:15:22 -0500
+Date:	Mon, 31 Oct 2005 19:15:22 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	"Randal L. Schwartz" <merlyn@stonehenge.com>
+cc:	wa1ter@myrealbox.com, git@vger.kernel.org
+Subject: Re: git versus CVS (versus bk)
+In-Reply-To: <867jbtii85.fsf@blue.stonehenge.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510311905120.25300@iabervon.org>
+References: <Pine.LNX.4.64.0510301720390.14972@x2.ybpnyarg>
+ <Pine.LNX.4.64.0510301811390.27915@g5.osdl.org>
+ <Pine.LNX.4.63.0510311111340.2916@wbgn013.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.64.0510310804400.27915@g5.osdl.org> <Pine.LNX.4.64.0510311013200.11219@x2.ybpnyarg>
+ <867jbtii85.fsf@blue.stonehenge.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:10896
+
+On Mon, 31 Oct 2005, Randal L. Schwartz wrote:
+
+> >>>>> "wa1ter" == wa1ter  <wa1ter@myrealbox.com> writes:
+> 
+> wa1ter> Ahh -- the lightbulb just lit up.  Using CVS is just like
+> wa1ter> being married.  No wonder you hate it...
+> 
+> Now, hey hey.  I've met Tove.  She's very nice.  I doubt that Linus
+> would compare his marriage to her with CVS. :)
+
+He did say that CVS worked reasonably at Transmeta. He's probably just as 
+glad she's not married to the entire Linux development community...
+
+Being married is great, but it just doesn't scale past a dozen people who 
+trust each other and have rules on how they do things.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

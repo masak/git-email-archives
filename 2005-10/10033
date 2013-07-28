@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 12 12:10:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B575F2A94A8
+	for <tkil@scrye.com>; Wed, 12 Oct 2005 12:10:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751463AbVJLSKO (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 12 Oct 2005 14:10:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751485AbVJLSKO
+	(ORCPT <rfc822;git-outgoing>); Wed, 12 Oct 2005 14:10:14 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:56824 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1751463AbVJLSKN (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 12 Oct 2005 14:10:13 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051012180956.STBL29216.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 12 Oct 2005 14:09:56 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	git@vger.kernel.org,
+	"Martin Langhoff (CatalystIT)" <martin@catalyst.net.nz>
+Subject: Re: [PATCH] git-fetch --tags: deal with tags with spaces in them.
+References: <46a038f90510062014l7f5740e0l77fc53b50f822e8f@mail.gmail.com>
+	<46a038f90510082014i6b296f2bvbac56e25344cbdf2@mail.gmail.com>
+	<4349ED5D.6020703@catalyst.net.nz>
+	<7v4q7p927d.fsf@assigned-by-dhcp.cox.net>
+	<7vzmpgznfj.fsf_-_@assigned-by-dhcp.cox.net>
+	<7virw4zlod.fsf_-_@assigned-by-dhcp.cox.net>
+	<7vzmpgy4g4.fsf@assigned-by-dhcp.cox.net>
+	<7vk6gjl2uu.fsf@assigned-by-dhcp.cox.net> <434D2D8F.2020407@zytor.com>
+Date:	Wed, 12 Oct 2005 11:10:11 -0700
+In-Reply-To: <434D2D8F.2020407@zytor.com> (H. Peter Anvin's message of "Wed,
+	12 Oct 2005 08:36:47 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v4q7mip30.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:10033
+
+"H. Peter Anvin" <hpa@zytor.com> writes:
+
+> We can disallow whitespace, and we *have* to disallow at least newline 
+> due to the file format; I believe we should disallow all control 
+> characters (0-31, 127-159.)
+
+I agree.
+
+Currently SP, TAB, and LF are all we care about, and nothing
+else; NUL does not even count.  But if we are codifying a list
+of disallowed byte values, excluding all control characters is
+probably a sane thing to do, without introducing arbitrary and
+unnecessary limitation too much.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

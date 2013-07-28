@@ -1,0 +1,128 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec  4 18:20:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_IH 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1B9F52922DC
+	for <tkil@scrye.com>; Sun,  4 Dec 2005 18:20:51 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750718AbVLEBUk (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Dec 2005 20:20:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751314AbVLEBUk
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Dec 2005 20:20:40 -0500
+Received: from wproxy.gmail.com ([64.233.184.200]:20512 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750718AbVLEBUk convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Sun, 4 Dec 2005 20:20:40 -0500
+Received: by wproxy.gmail.com with SMTP id i3so1071683wra
+        for <git@vger.kernel.org>; Sun, 04 Dec 2005 17:20:39 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=FYxh5W64yjZTtvx0u8YbVb3umg12Jr3bG3tzC1c9oEgVHQ+ZvYjFiFfYvIzKqyHrSrkXlejEUX2qW+IejeA/OfHb+XFTUmor5+O+qcrv9t0snDVVlbz1grQ1+sL8MJwQI0C7ZxuoSVWnga61M6K4STUxs16q+Xw2DcoB9rDqkw4=
+Received: by 10.64.183.2 with SMTP id g2mr2412532qbf;
+        Sun, 04 Dec 2005 17:20:39 -0800 (PST)
+Received: by 10.65.163.9 with HTTP; Sun, 4 Dec 2005 17:20:39 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <40b2b7d90512041720i65f63ee1pcfe32d2c0c3c357b@mail.gmail.com>
+Date:	Mon, 5 Dec 2005 04:20:39 +0300
+From:	Artem Khodush <greenkaa@gmail.com>
+To:	Petr Baudis <pasky@suse.cz>
+Subject: Re: announce: git browser
+Cc:	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <20051205004238.GE22159@pasky.or.cz>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <40b2b7d90512041623g1e22fecai9470ffcb94f40a58@mail.gmail.com>
+	 <20051205004238.GE22159@pasky.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 80
+Xref: brand.scrye.com linux.git:13200
+
+On 12/5/05, Petr Baudis <pasky@suse.cz> wrote:
+
+> > See http://straytree.com/git-browser/GitBrowser.html?r=git
+>
+>   quite interesting! I always dreamt (not intensively enough to go
+> myself and do it) about gitweb having gitk-like visualization, possibly
+> this might help. ;-)
+>
+>   Couple of initial notes:
+>
+>   * I would find it much nicer if you wouldn't "squeeze" all the day's
+> (except merge) commits together, but left them separate. Possibly a
+> switch to squeeze them, but I'm really not sure if it's even useful to
+> have.
+
+Well it's easy to do, but then, in Linus tree, a single day would not fit
+on my screen :-) So 'squeezed' mode is helpful for me, at least,
+ to get big picture at a glance - in git tree, for example, I can see
+the 0.99.5 release branch to  begin and end on a single screen.
+
+
+>   * The line graphics etc. might be more colourful and prettier. ;-)
+
+And the question is: the colours are assigned to what:
+branches ? authors ? committers ? repositories ?
+
+
+>   * Then it could have a "gitk mode" where the time flows vertically and
+> author+title+time is shown in each line. It turns out that this might
+> not be the prettiest, but it's really the most informative and useful
+> view, IMHO.
+
+But in this view, you can have only the number-of-lines-on-the-screen
+commits visible. And with graphics done in javascript, scrolling is
+painfully slow, at least in mozilla. And I think that implementing
+quick search in a diagram will provide much more information
+than one can get by 'visual grep' :-). So I don't know, need to think
+a bit more .
+
+>   * When I click on the little black box, the commit window disappears
+> before I manage to click on anything inside; I would intuitively expect
+> the reverse behaviour - that this happens when I don't click on the box.
+> Or that clicking on the box does not matter. *shrug* The web interface
+> with those windows popping up admitelly makes my mind somewhat
+> uncomfortable, but it's hard to pin-point down why.
+
+Yep, the boxes intentionally are not clickable, I think it makes navigation
+easier, perhaps it could be made as a preference..
+
+
+>   * Possibly, the commit information could be shown in a dedicated
+> screen area altogether. It also wouldn't obscure the view of the actual
+> diagram, and it would be more visible that it cutely highlights the
+> appropriate box based on the current commit you have your cursor on.
+
+Yes I also think about it. Initially the boxes were semi-transparent so
+you could track the highlihgt under the box, it looked very nice,
+but that was too slow to be usable on my computer, and opera
+does not have that 'opacity' thing..
+
+>   * It looks too much like Feynman diagrams when the merge arrow
+> points slightly backwards; perhaps you could try to avoid that.
+
+If I find a way to do it without further complicating placement algorightm,
+maybe..
+
+>   * It doesn't seem to handle the UTF8 characters properly
+
+
+>   Quite nice for starters, though! The diff viewer looks pretty slick,
+> too.
+
+Thanks! Btw, I took the diff viewer pretty much unmodified from gitweb.
+
+Artem.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

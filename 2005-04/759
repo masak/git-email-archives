@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 18 23:31:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1E7E812B4EC
+	for <tkil@scrye.com>; Mon, 18 Apr 2005 23:31:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261328AbVDSFbU (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 01:31:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261326AbVDSFbU
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 01:31:20 -0400
+Received: from iabervon.org ([66.92.72.58]:63495 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261328AbVDSFbN (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 19 Apr 2005 01:31:13 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DNlKV-0004Qw-00; Tue, 19 Apr 2005 01:31:23 -0400
+Date:	Tue, 19 Apr 2005 01:31:22 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [1/4] Report info from trees
+In-Reply-To: <7vsm1nqr6x.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0504190123180.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 48
+Xref: brand.scrye.com linux.git:759
+
+On Mon, 18 Apr 2005, Junio C Hamano wrote:
+
+> ... what about names?  When somebody other than connectivity
+> checker walks a tree, it would be more likely than not that 
+> it wants to know what each entry is called, wound't it?
+
+Yes; just add the name to the tree_entry_list.
+
+> I can get the type of the object, either tree or blob, from
+> tree->object.type, so I do not think the single-bit are needed.
+
+You still need the mode bit (executable or not); also, the current code
+can't create an object without being told in advance what it is, so you
+need to use the directory bit.
+
+> Instead, how about something simpler like this?
+> 
+>     struct tree {
+>         struct object object; /* the tree node itself as an object */
+>         unsigned child_nr;
+>         unsigned child_alloc;
+>         struct {
+>             struct object *object;
+>             char *name;
+>         } **child;
+>     };
+
+I think the linked list is easier to deal with, and matches the other code
+better.
+
+> The tree->child[n].object would point at the same object as one
+> of the object_list elements in tree->object.refs chain (i.e. you
+> do not need to read the same object twice). 
+
+The object code handles causing lookup_* to return the same object every
+time, so this isn't an issue. Note that each struct object has to be
+embedded in a struct <type> of the appropriate type, which means that we
+can only create a struct object by either knowing what type it is supposed
+to be or actually reading the file to find out what it actually is.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

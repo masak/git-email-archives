@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 11 17:04:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D6C6B1D05E9
+	for <tkil@scrye.com>; Thu, 11 Aug 2005 17:04:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932534AbVHKXDo (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 11 Aug 2005 19:03:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932491AbVHKXDo
+	(ORCPT <rfc822;git-outgoing>); Thu, 11 Aug 2005 19:03:44 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:62218 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S932534AbVHKXDo (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 11 Aug 2005 19:03:44 -0400
+Received: (qmail 1901 invoked by uid 2001); 11 Aug 2005 23:03:43 -0000
+Date:	Fri, 12 Aug 2005 01:03:43 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: John Ellson <ellson@research.att.com>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] cg-cat   [was: Re: Newbie question:  equiv of:  cvs co -p <filename>  ? ]
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050811230343.GJ25280@pasky.ji.cz>
+References: <ddb8vl$ifq$1@sea.gmane.org> <Pine.LNX.4.58.0508091725120.3258@g5.osdl.org> <42FA1150.7090506@research.att.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42FA1150.7090506@research.att.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 46
+Xref: brand.scrye.com linux.git:7081
+
+Dear diary, on Wed, Aug 10, 2005 at 04:38:08PM CEST, I got a letter
+where John Ellson <ellson@research.att.com> told me that...
+> Linus Torvalds wrote:
+> >
+> >On Tue, 9 Aug 2005, John Ellson wrote:
+> >
+> >>I hacked this:
+> 
+> >No. ...
+> 
+> >So you could do something like ...
+> 
+> >(totally untested)
+> >
+> >		Linus
+> 
+> 
+> Thanks Linus, also Rene and Johannes.
+> 
+> I applied a bit of polish and testing and now I'm ready to offer
+> my first contribution to cogito.
+> 
+> 	cg-cat [-r rev] FILE
+> 
+> I hope that this is useful to others.
+
+Thanks, cleaned up and applied. I only renamed it to cg-admin-cat since
+I think it's indeed a bit obscure. Also, note the remarkable similarity:
+
+        cg-admin-cat       [-r TREE_ID] FILE...
+        cg-admin-ls        [-t TREE_ID] [PATH]
+
+What about joining those to cg-admin-dig or something? (Catting a
+directory or ls'ing file contents just feels wrong, although the first
+one would make some sense to people not acquainted with UNIX.)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

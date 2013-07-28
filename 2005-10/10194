@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 17 20:41:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CC6961BAE4F
+	for <tkil@scrye.com>; Mon, 17 Oct 2005 20:41:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932300AbVJRCl2 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 17 Oct 2005 22:41:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932390AbVJRCl2
+	(ORCPT <rfc822;git-outgoing>); Mon, 17 Oct 2005 22:41:28 -0400
+Received: from main.gmane.org ([80.91.229.2]:41143 "EHLO ciao.gmane.org")
+	by vger.kernel.org with ESMTP id S932300AbVJRCl1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 17 Oct 2005 22:41:27 -0400
+Received: from root by ciao.gmane.org with local (Exim 4.43)
+	id 1ERhOk-0001dw-T3
+	for git@vger.kernel.org; Tue, 18 Oct 2005 04:40:19 +0200
+Received: from pool-71-111-157-99.ptldor.dsl-w.verizon.net ([71.111.157.99])
+        by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Tue, 18 Oct 2005 04:40:18 +0200
+Received: from dwhistler by pool-71-111-157-99.ptldor.dsl-w.verizon.net with local (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Tue, 18 Oct 2005 04:40:18 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To:	git@vger.kernel.org
+From:	David Whistler <dwhistler@gmail.com>
+Subject:  Re: Scribblings for a cogito/git tutorial
+Date:	Tue, 18 Oct 2005 02:28:19 +0000 (UTC)
+Lines:	14
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID:  <loom.20051018T042052-760@post.gmane.org>
+References:  <200510171504.j9HF4stb006164@laptop11.inf.utfsm.cl>
+Mime-Version:  1.0
+Content-Type:  text/plain; charset=us-ascii
+Content-Transfer-Encoding:  7bit
+X-Complaints-To: usenet@sea.gmane.org
+X-Gmane-NNTP-Posting-Host: main.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 71.111.157.99 (Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.8) Gecko/20050511 Firefox/1.0.4 SUSE/1.0.4-1.1)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:10194
+
+Horst von Brand <vonbrand <at> inf.utfsm.cl> writes:
+
+> 
+> Comments, suggestions, patches are welcome! 
+> 
+> Repository of the script and supporting files is at
+> <http://pincoya.inf.utfsm.cl/Script.git>
+
+
+I can't read it.  Seems to be a recursive trick.
+
+Or did you mean to do that?
+
+-d
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

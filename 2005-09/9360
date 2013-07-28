@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 26 23:28:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8D72872B6F
+	for <tkil@scrye.com>; Mon, 26 Sep 2005 23:28:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964816AbVI0F2U (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 27 Sep 2005 01:28:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964817AbVI0F2U
+	(ORCPT <rfc822;git-outgoing>); Tue, 27 Sep 2005 01:28:20 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:45037 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S964816AbVI0F2T (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 27 Sep 2005 01:28:19 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050927052817.OMIN2059.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 27 Sep 2005 01:28:17 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Tom Prince <tom.prince@ualberta.net>
+Subject: Re: Cogito: cg-clone doesn't like packed tag objects
+References: <43348086.2040006@zytor.com> <20050924011833.GJ10255@pasky.or.cz>
+	<20050926212536.GF26340@pasky.or.cz>
+	<7virwna2oi.fsf@assigned-by-dhcp.cox.net>
+	<20050926222944.GG26340@pasky.or.cz>
+	<7vr7bb5d8w.fsf@assigned-by-dhcp.cox.net>
+	<8764snyufn.fsf@ualberta.net>
+cc:	git@vger.kernel.org, Petr Baudis <pasky@suse.cz>
+Date:	Mon, 26 Sep 2005 22:28:16 -0700
+In-Reply-To: <8764snyufn.fsf@ualberta.net> (Tom Prince's message of "Mon, 26
+	Sep 2005 23:02:36 -0600")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v4q875bbj.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:9360
+
+Tom Prince <tom.prince@ualberta.net> writes:
+
+> Junio C Hamano <junkio@cox.net> writes:
+>
+>> Now you completely lost me.  I really do not understand what you
+>> mean by tags caching and re-slurping.
+>
+> I think Petr is interested in the case where the user hasn't asked for a
+> particular tag. He wants to automatically grab all the tags in a repository,
+> or at least those that refer to a branch being downloaded.
+
+Ah, _automatically_ was the key.
+
+If all you had were tags and there were no branches (the "I
+could have done without maint branch"), that kind of automatic
+grabbing would not work well anyway.  I personally feel that is
+a lost cause.  The user can run 'git ls-remote' himself to find
+out if there are new tags on the remote side and ask for them if
+needed.
+
+Also, I feel names under refs/ is local to the repository, but
+if the tags are automatically grabbed, I presume they are stored
+directly under the same name in refs/tags as the remote side has
+them?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

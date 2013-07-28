@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 16:48:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9F3FB1709AC
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 16:48:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261829AbVDZWso (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 18:48:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261830AbVDZWso
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 18:48:44 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:31375 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S261829AbVDZWsk
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 26 Apr 2005 18:48:40 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j3QMm2Pb019026
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 26 Apr 2005 15:48:03 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <426EC51C.7090703@zytor.com>
+Date:	Tue, 26 Apr 2005 15:47:56 -0700
+From: "H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Thomas Gleixner <tglx@linutronix.de>, git@vger.kernel.org
+Subject: Re: Full linux-2.6 history?
+References: <20050426071723.GA15580@pasky.ji.cz>
+In-Reply-To: <20050426071723.GA15580@pasky.ji.cz>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 21
+Xref: brand.scrye.com linux.git:1795
+
+Petr Baudis wrote:
+>   Hello,
+> 
+>   I would like to ask about the status of the project to export the
+> linux-2.6 history from BitKeeper to GIT repository; it looked very
+> hopeful about a week or two ago, but got covered in silence soon.
+> Did Larry come upon you? ;-)
+> 
+>   I kept having people asking about this, so I would like to know.
+> 
+
+There is a human-readable log file of the linux-2.5 repo posted on the 
+sourcepuller site, http://www.sf.net/projects/sourcepuller
+
+	-hpa
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

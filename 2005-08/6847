@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug  5 09:50:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C77FC232211
+	for <tkil@scrye.com>; Fri,  5 Aug 2005 09:50:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263064AbVHEPmj (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 5 Aug 2005 11:42:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262296AbVHEPj3
+	(ORCPT <rfc822;git-outgoing>); Fri, 5 Aug 2005 11:39:29 -0400
+Received: from mraos.ra.phy.cam.ac.uk ([131.111.48.8]:8142 "EHLO
+	mraos.ra.phy.cam.ac.uk") by vger.kernel.org with ESMTP
+	id S261809AbVHEPjW (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 5 Aug 2005 11:39:22 -0400
+Received: from skye.ra.phy.cam.ac.uk ([131.111.48.158] ident=mail)
+	by mraos.ra.phy.cam.ac.uk with esmtp (Exim 4.43)
+	id 1E14Hj-0002nm-Sl; Fri, 05 Aug 2005 16:38:59 +0100
+Received: from sanjoy by skye.ra.phy.cam.ac.uk with local (Exim 3.35 #1)
+	id 1E14Hj-0001Nt-00; Fri, 05 Aug 2005 16:38:59 +0100
+To: Sam Ravnborg <sam@ravnborg.org>
+Cc: Greg KH <greg@kroah.com>, Junio C Hamano <junkio@cox.net>,
+	git@vger.kernel.org
+Subject: Re: bisect gives strange answer 
+In-Reply-To: Your message of "Thu, 04 Aug 2005 21:28:38 +0200."
+             <20050804192838.GB26714@mars.ravnborg.org> 
+Date:	Fri, 05 Aug 2005 16:38:59 +0100
+From: Sanjoy Mahajan <sanjoy@mrao.cam.ac.uk>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1E14Hj-0001Nt-00@skye.ra.phy.cam.ac.uk>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:6847
+
+> If you see any sort of evidence that this would hold true I really like
+> to know.
+
+I haven't found any evidence.  When I rebuilt the kernels from scratch
+(exporting them into an empty directory using cg-export), I got
+reliable data and bisected down to a patch that probably was a problem.
+
+I will redo those tests but rebuilding in place after each bisection
+(with -f added to all the git checkout uses in git-bisect-script) and
+see whether I get the same results.  If I don't, it could be due to
+git or git-bisect (but not so likely with the -f switch) or to the
+build system.  Will keep you and Junio posted.
+
+-Sanjoy
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

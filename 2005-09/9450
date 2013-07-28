@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 28 22:46:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.2 required=5.0 tests=AWL,BAYES_00,
+	RCVD_IN_BL_SPAMCOP_NET autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E61A124168C
+	for <tkil@scrye.com>; Wed, 28 Sep 2005 22:46:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751188AbVI2Eqw (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 29 Sep 2005 00:46:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751191AbVI2Eqw
+	(ORCPT <rfc822;git-outgoing>); Thu, 29 Sep 2005 00:46:52 -0400
+Received: from qproxy.gmail.com ([72.14.204.192]:64077 "EHLO qproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1751188AbVI2Eqv convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 29 Sep 2005 00:46:51 -0400
+Received: by qproxy.gmail.com with SMTP id c12so449377qbc
+        for <git@vger.kernel.org>; Wed, 28 Sep 2005 21:46:51 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=YAIRi75lIJif/WYp39X00+u390v4ZKYcQsmOjK9JqBN/K07lq1oshRKizdrktrx3jB5yENg+ujoG6WiqrkDJO44loKoMS697ZGE/zex5xdAQGnL67xbI9L5R7g3nH84mXZCp+rVLNUvm4E7eUPrtOtS2ECJ+q04CB94VIwyICMw=
+Received: by 10.64.180.3 with SMTP id c3mr135145qbf;
+        Wed, 28 Sep 2005 21:46:51 -0700 (PDT)
+Received: by 10.64.232.18 with HTTP; Wed, 28 Sep 2005 21:46:51 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f905092821462d08f86a@mail.gmail.com>
+Date:	Thu, 29 Sep 2005 16:46:51 +1200
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+Reply-To: Martin Langhoff <martin.langhoff@gmail.com>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: First cut at git port to Cygwin
+Cc:	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <433B3B10.5050407@zytor.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <433B3B10.5050407@zytor.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:9450
+
+On 9/29/05, H. Peter Anvin <hpa@zytor.com> wrote:
+> Another funny which I haven't been able to figure out yet is that 'gitk'
+> scrunches all its output up into a few pixels at the top of the window.
+>   If I maximize the window, I can manually resize most of the panes and
+> the output looks correct
+
+This is visible on OSX too, and someone's mentioned it's a Tk oddity
+with rootless X. Does it do the same if you run X with a root window?
+
+> I have set up a git-on-Cygwin temporary tree at:
+>
+> http://www.kernel.org/pub/scm/git/git-cygwin.git
+
+Getting a 404 on that. Doesn't show up on gitweb either. I guess I
+have to wait...
+
+Is there a way to get gitweb to "compare" branches using git-cherry? I
+often look at branches via git-web and it's impossible to tell what
+makes them unique...
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

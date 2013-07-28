@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 19 07:23:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id ADD576BE6
+	for <tkil@scrye.com>; Thu, 19 May 2005 07:23:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262489AbVESNXd (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 19 May 2005 09:23:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262491AbVESNXd
+	(ORCPT <rfc822;git-outgoing>); Thu, 19 May 2005 09:23:33 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:1474 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S262489AbVESNX3 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 19 May 2005 09:23:29 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j4JDNJS8027140
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 19 May 2005 13:23:19 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j4JDNIBs027139;
+	Thu, 19 May 2005 15:23:18 +0200 (CEST)
+Date:	Thu, 19 May 2005 15:23:18 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: GIT <git@vger.kernel.org>, Linus Torvalds <torvalds@osdl.org>
+Subject: [PATCH] Declare stacked variables before the first statement.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050519132318.GH12796@cip.informatik.uni-erlangen.de>
+Mail-Followup-To: GIT <git@vger.kernel.org>,
+	Linus Torvalds <torvalds@osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 29
+Xref: brand.scrye.com linux.git:3521
+
+[PATCH] Declare stacked variables before the first statement.
+
+Signed-off-by: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+
+--- a/diff.c
++++ b/diff.c
+@@ -83,7 +83,7 @@
+ 			 const char *name_b,
+ 			 struct diff_tempfile *temp)
+ {
+-	int i, next_at;
++	int i, next_at, cmd_size;
+ 	const char *diff_cmd = "diff -L'%s%s' -L'%s%s'";
+ 	const char *diff_arg  = "'%s' '%s'||:"; /* "||:" is to return 0 */
+ 	const char *input_name_sq[2];
+@@ -100,7 +100,7 @@
+ 	 * we use 2 spaces around diff-opts, and we need to count
+ 	 * terminating NUL, so we subtract 9 here.
+ 	 */
+-	int cmd_size = (strlen(diff_cmd) + strlen(diff_opts) +
++	cmd_size = (strlen(diff_cmd) + strlen(diff_opts) +
+ 			strlen(diff_arg) - 9);
+ 	for (i = 0; i < 2; i++) {
+ 		input_name_sq[i] = sq_expand(temp[i].name);
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

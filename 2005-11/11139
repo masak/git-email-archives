@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov  4 10:51:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 438E0194477
+	for <tkil@scrye.com>; Fri,  4 Nov 2005 10:51:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750767AbVKDRpm (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 4 Nov 2005 12:45:42 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750766AbVKDRpl
+	(ORCPT <rfc822;git-outgoing>); Fri, 4 Nov 2005 12:45:41 -0500
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:4027 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S1750765AbVKDRpk (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 4 Nov 2005 12:45:40 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051104174457.YYJI29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 4 Nov 2005 12:44:57 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Morten Welinder <mwelinder@gmail.com>
+Subject: Re: CFLAGS usage
+References: <118833cc0511040721w7f3990fbw631feaa6a4bda936@mail.gmail.com>
+cc:	git@vger.kernel.org
+Date:	Fri, 04 Nov 2005 09:45:38 -0800
+In-Reply-To: <118833cc0511040721w7f3990fbw631feaa6a4bda936@mail.gmail.com>
+	(Morten Welinder's message of "Fri, 4 Nov 2005 10:21:55 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7voe50wblp.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:11139
+
+Morten Welinder <mwelinder@gmail.com> writes:
+
+> Various stuff is being added to CFLAGS, but CFLAGS is not being used
+> after being composed in CFLAGS_ALL.
+
+True.
+
+We should move ALL_CFLAGS definition at the very end; is
+anything else needed?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

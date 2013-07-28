@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 23 17:09:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E429E6D15
+	for <tkil@scrye.com>; Sat, 23 Apr 2005 17:09:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262160AbVDWXJl (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 23 Apr 2005 19:09:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262166AbVDWXJk
+	(ORCPT <rfc822;git-outgoing>); Sat, 23 Apr 2005 19:09:40 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:60599 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262160AbVDWXJi (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 23 Apr 2005 19:09:38 -0400
+Received: (qmail 29342 invoked by uid 2001); 23 Apr 2005 23:09:37 -0000
+Date:	Sun, 24 Apr 2005 01:09:37 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: James Bottomley <James.Bottomley@SteelEye.com>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: git-changes-script to show inter tree changes
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050423230937.GF13222@pasky.ji.cz>
+References: <1114281792.5068.10.camel@mulgrave>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1114281792.5068.10.camel@mulgrave>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 29
+Xref: brand.scrye.com linux.git:1401
+
+Dear diary, on Sat, Apr 23, 2005 at 08:43:12PM CEST, I got a letter
+where James Bottomley <James.Bottomley@SteelEye.com> told me that...
+> One of the features I found most useful about bk changes was the ability
+> to see changes in my tree that weren't in the other tree (I use this to
+> keep track of what patches I actually have).
+> 
+> I've modified the gitlog script to take the -L and -R options (local
+> directories only; won't work on remotes like bk changes would) to add
+> this functionality.
+
+Linus isn't probably the right person to Cc on this, since this is
+git-pasky thing.  Can you please post it as a signed-off patch?
+
+I don't get what are you doing anyway. I don't know the "bk changes"
+tool. Can't you just do
+
+	git log theothertree yourtree
+
+?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

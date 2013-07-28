@@ -1,0 +1,117 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 19:45:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CD0DE276133
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 19:45:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932348AbVLMCpT (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 21:45:19 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751224AbVLMCpT
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 21:45:19 -0500
+Received: from relais.videotron.ca ([24.201.245.36]:49813 "EHLO
+	relais.videotron.ca") by vger.kernel.org with ESMTP
+	id S1751183AbVLMCpR (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 12 Dec 2005 21:45:17 -0500
+Received: from xanadu.home ([24.202.136.67]) by VL-MO-MR003.ip.videotron.ca
+ (Sun Java System Messaging Server 6.2-2.05 (built Apr 28 2005))
+ with ESMTP id <0IRF00E4N0ZGEI10@VL-MO-MR003.ip.videotron.ca> for
+ git@vger.kernel.org; Mon, 12 Dec 2005 21:45:16 -0500 (EST)
+Date:	Mon, 12 Dec 2005 21:45:16 -0500 (EST)
+From:	Nicolas Pitre <nico@cam.org>
+Subject: Re: Delitifier broken (Re: diff-core segfault)
+In-reply-to: <Pine.LNX.4.64.0512121758410.15597@g5.osdl.org>
+X-X-Sender: nico@localhost.localdomain
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <Pine.LNX.4.64.0512122114090.26663@localhost.localdomain>
+MIME-version: 1.0
+Content-type: TEXT/PLAIN; charset=US-ASCII
+Content-transfer-encoding: 7BIT
+References: <1134404990.5928.4.camel@localhost.localdomain>
+ <7vmzj6i206.fsf@assigned-by-dhcp.cox.net>
+ <7virtui1kj.fsf_-_@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0512121620380.26663@localhost.localdomain>
+ <7vek4igevq.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0512121529200.15597@g5.osdl.org>
+ <7vlkypdcsb.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0512121720150.15597@g5.osdl.org>
+ <Pine.LNX.4.64.0512121758410.15597@g5.osdl.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 66
+Xref: brand.scrye.com linux.git:13555
+
+On Mon, 12 Dec 2005, Linus Torvalds wrote:
+
+> 
+> 
+> On Mon, 12 Dec 2005, Linus Torvalds wrote:
+> > 
+> >    As mentioned, pack-objects.c needs to check the size heuristics before 
+> >    doing diff_delta() _anyway_, for performance reasons as well as simply 
+> >    because the secondary use of diff_delta() is to estimate how big the 
+> >    delta is, and it's always pointless to generate a delta that is 
+> >    guaranteed to be bigger than the file (which is always the case with 
+> >    either side being an empty file - the size difference will inevitably 
+> >    be bigger than the size of the resulting file).
+> 
+> Side note: this isn't technically entirely true. A binary diff that has a 
+> source file that is empty could in theory be smaller than the destination 
+> file simply because it may involve a certain amount of automatic 
+> compression in the form of "insert 100 spaces" kind of diff encoding. I'm 
+> not sure whether xdelta actually does something like that, but it's 
+> certainly possible at least in theory.
+
+xdelta doesn't.  It only has two functions currently:
+
+ 1) copy x bytes from offset y in source file to current position in 
+    destination file;
+
+ 2) paste the x following bytes straight from the delta stream to 
+    current position into the destination file.
+
+Of course in the GIT context files are buffers.
+
+However I added the possibility for (1) to use the destination file as 
+well as the "source" file for block copy in patch_delta().  However 
+diff_delta() currently doesn't use that capability.  But if it did then 
+the "insert 100 spaces" would be:
+
+	- paste \x20\x20\x20\x20 to dest
+	  (delta = 5 bytes, dest = 4 bytes)
+
+	- copy 4 bytes from offset 0 of dest to dest
+	  (delta = 7 bytes, dest = 8 bytes)
+
+	- copy 8 bytes from offset 0 of dest to dest
+	  (delta = 9 bytes, dest = 16 bytes)
+
+	- copy 16 bytes from offset 0 of dest to dest
+	  (delta = 11 bytes, dest = 32 bytes)
+
+	- copy 32 bytes from offset 0 of dest to dest
+	  (delta = 13 bytes, dest = 64 bytes)
+
+	- copy 36 bytes from offset 0 of dest to dest
+	  (delta = 15 bytes, dest = 100 bytes)
+
+And yet that could be optimized further with a better size for the 
+initial paste.  However adding that capability to diff_delta() might 
+make it significantly slower for still unknown gain for real life data.  
+But I should write the code some day.
+
+
+Nicolas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

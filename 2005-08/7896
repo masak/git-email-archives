@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 10:32:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B6CD42B1253
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 10:32:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751314AbVH2QRt (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 12:17:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751323AbVH2QRt
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 12:17:49 -0400
+Received: from zeus2.kernel.org ([204.152.191.36]:48802 "EHLO zeus2.kernel.org")
+	by vger.kernel.org with ESMTP id S1751319AbVH2QRr (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 29 Aug 2005 12:17:47 -0400
+Received: from eurodubx.europlex.local (mail.europlex.ie [83.141.76.10])
+	by zeus2.kernel.org (8.13.1/8.13.1) with ESMTP id j7TGHkgQ008070
+	for <git@vger.kernel.org>; Mon, 29 Aug 2005 09:17:47 -0700
+Received: from [10.100.10.207] ([10.100.10.207]) by eurodubx.europlex.local with Microsoft SMTPSVC(6.0.3790.211);
+	 Mon, 29 Aug 2005 17:14:07 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4313369B.5060508@eircom.net>
+Date:	Mon, 29 Aug 2005 17:23:55 +0100
+From:	"Bryan O'Donoghue" <typedef@eircom.net>
+User-Agent: Mozilla Thunderbird 1.0 (X11/20041206)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: cogito/git usage question
+References: <4312E74D.5020203@eircom.net> <Pine.LNX.4.58.0508290804570.3243@g5.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0508290804570.3243@g5.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+X-OriginalArrivalTime: 29 Aug 2005 16:14:07.0296 (UTC) FILETIME=[AE941C00:01C5ACB4]
+X-Virus-Scanned: ClamAV version 0.85, clamav-milter version 0.85 on zeus2
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 41
+Xref: brand.scrye.com linux.git:7896
+
+Linus Torvalds wrote:
+
+<snip>
+
+> 	git checkout -b bryan-mm v2.6.13-rc6
+> 
+> (mental footnote: pronounce it as "git checkout new branch 'bryan-mm' at
+> v2.6.13-rc3").
+> 
+> [ You can also do the exact same thing by
+> 
+> 	git branch bryan-mm v2.6.13-rc6
+> 	git checkout bryan-mm
+
+<snip>
+
+> And then you can switch between the different branches with just a simple
+> 
+> 	git checkout <branch>
+
+Having re-read your email, six times or so, I believe those two
+incantations finally make sense.
+
+If I'm understanding, I update to a given git repository, branch locally
+based on tags and then I can checkout a branch locally, to make that the
+active branch.
+
+Thank you for the input !
+
+
+Best,
+Bryan
+
+-- 
+"Fiery the angels fell. Deep thunder rolled around their shores, burning
+with the fires of Orc." -- Roy Batty, Blade Runner.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

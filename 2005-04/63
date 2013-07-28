@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 14 10:34:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EF2EF12E278
+	for <tkil@scrye.com>; Thu, 14 Apr 2005 10:34:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261537AbVDNQdd (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 14 Apr 2005 12:33:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261535AbVDNQdc
+	(ORCPT <rfc822;git-outgoing>); Thu, 14 Apr 2005 12:33:32 -0400
+Received: from iabervon.org ([66.92.72.58]:61959 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261543AbVDNQdN (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 14 Apr 2005 12:33:13 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DM7HJ-0006dR-00; Thu, 14 Apr 2005 12:33:17 -0400
+Date:	Thu, 14 Apr 2005 12:33:17 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Reorganize common code
+In-Reply-To: <Pine.LNX.4.21.0504131755550.30848-100000@iabervon.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0504141230310.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 53
+Xref: brand.scrye.com linux.git:63
+
+I forgot to include util.c. On my to-do list is something to make this
+more obvious.
+
+Signed-Off-By: Daniel Barkalow <barkalow@iabervon.org>
+
+Index: util.c
+===================================================================
+--- /dev/null  (tree:e8194c62bfc68725972a6847fa2c6d529ca64137)
++++ 420a52c504bf712cd898a11746a54ea4349a9386/util.c  (mode:100644 sha1:d1d497c6709503f71138e816b2599d5105cc4915)
+@@ -0,0 +1,37 @@
++#include "util.h"
++#include <stdarg.h>
++#include <stdio.h>
++#include <stdlib.h>
++
++void usage(const char *err)
++{
++	fprintf(stderr, "usage: %s\n", err);
++	exit(1);
++}
++
++static void report(const char *prefix, const char *err, va_list params)
++{
++	fputs(prefix, stderr);
++	vfprintf(stderr, err, params);
++	fputs("\n", stderr);
++}
++
++void die(const char *err, ...)
++{
++	va_list params;
++
++	va_start(params, err);
++	report("fatal: ", err, params);
++	va_end(params);
++	exit(1);
++}
++
++int error(const char *err, ...)
++{
++	va_list params;
++
++	va_start(params, err);
++	report("error: ", err, params);
++	va_end(params);
++	return -1;
++}
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

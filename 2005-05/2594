@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May  5 06:39:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 39AFCC0880
+	for <tkil@scrye.com>; Thu,  5 May 2005 06:39:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262086AbVEEMjS (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 5 May 2005 08:39:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262087AbVEEMjS
+	(ORCPT <rfc822;git-outgoing>); Thu, 5 May 2005 08:39:18 -0400
+Received: from simmts8.bellnexxia.net ([206.47.199.166]:60294 "EHLO
+	simmts8-srv.bellnexxia.net") by vger.kernel.org with ESMTP
+	id S262086AbVEEMjO (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 5 May 2005 08:39:14 -0400
+Received: from linux1 ([69.156.111.46]) by simmts8-srv.bellnexxia.net
+          (InterMail vM.5.01.06.10 201-253-122-130-110-20040306) with ESMTP
+          id <20050505123913.XMGS1623.simmts8-srv.bellnexxia.net@linux1>;
+          Thu, 5 May 2005 08:39:13 -0400
+Received: from linux1 (linux1.attic.local [127.0.0.1])
+	by linux1 (8.12.11/8.12.11) with ESMTP id j45CdAhl029480;
+	Thu, 5 May 2005 08:39:11 -0400
+Received: from 10.10.10.24
+        (SquirrelMail authenticated user sean)
+        by linux1 with HTTP;
+        Thu, 5 May 2005 08:39:12 -0400 (EDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <3018.10.10.10.24.1115296752.squirrel@linux1>
+In-Reply-To: <Pine.LNX.4.62.0505050231300.15451@qynat.qvtvafvgr.pbz>
+References: <Pine.LNX.4.21.0505041854040.30848-100000@iabervon.org>
+    <200505050709.43307.alan@chandlerfamily.org.uk>
+    <Pine.LNX.4.62.0505050231300.15451@qynat.qvtvafvgr.pbz>
+Date:	Thu, 5 May 2005 08:39:12 -0400 (EDT)
+Subject: Re: read-only git repositories
+From: "Sean" <seanlkml@sympatico.ca>
+To: "David Lang" <david.lang@digitalinsight.com>
+Cc: git@vger.kernel.org
+User-Agent: SquirrelMail/1.4.4-2
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+X-Priority: 3 (Normal)
+Importance: Normal
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 21
+Xref: brand.scrye.com linux.git:2594
+
+On Thu, May 5, 2005 5:51 am, David Lang said:
+
+> there are probably other uses and it seems like a fairly small
+> modification to add a hook to use if the object isn't found initially
+> that I thought I'd mention it to the group.
+>
+David,
+
+Great idea!  This seems like an option that naturally falls out of the git
+design.  You're right that there are lots of uses for it too; another
+would be to keep all local changes in an isolated object store for backup
+etc.
+
+Sean
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 14 09:32:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 997E2FC0E1
+	for <tkil@scrye.com>; Sat, 14 May 2005 09:32:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261416AbVENPcB (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 14 May 2005 11:32:01 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261418AbVENPcB
+	(ORCPT <rfc822;git-outgoing>); Sat, 14 May 2005 11:32:01 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:37018 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261416AbVENPb7 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 14 May 2005 11:31:59 -0400
+Received: (qmail 14291 invoked by uid 2001); 14 May 2005 15:31:58 -0000
+Date:	Sat, 14 May 2005 17:31:58 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Zack Brown <zbrown@tumblerings.org>
+Cc: git@vger.kernel.org
+Subject: Re: cg-log gives error on old tags
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050514153158.GO3905@pasky.ji.cz>
+References: <20050514151157.GB14184@tumblerings.org> <20050514151922.GC14184@tumblerings.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050514151922.GC14184@tumblerings.org>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:3296
+
+Dear diary, on Sat, May 14, 2005 at 05:19:22PM CEST, I got a letter
+where Zack Brown <zbrown@tumblerings.org> told me that...
+> I should add, I'm fully current with the cogito origin, with Junio's --author
+> patch on top.
+
+Hmm, works here. I forgot to update the tags immediately after the big
+rehashing, so you could get them from that time and rsync wouldn't
+overwrite them. Try deleting them from .git/refs/tags/ and re-pull.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

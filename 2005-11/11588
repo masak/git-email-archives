@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 07:24:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 00DB71B32B0
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 07:24:42 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750789AbVKKOWn (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 09:22:43 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750792AbVKKOWn
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 09:22:43 -0500
+Received: from mailout1.informatik.tu-muenchen.de ([131.159.0.18]:27880 "EHLO
+	mailout1.informatik.tu-muenchen.de") by vger.kernel.org with ESMTP
+	id S1750789AbVKKOWm (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 11 Nov 2005 09:22:42 -0500
+Received: from dhcp-3s-40.lrr.in.tum.de (dhcp-3s-40.lrr.in.tum.de [131.159.35.40])
+	by mail.in.tum.de (Postfix) with ESMTP id 3D0EE265E;
+	Fri, 11 Nov 2005 15:22:39 +0100 (MET)
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	Pavel Roskin <proski@gnu.org>
+Subject: Re: [PATCH] cg-pull to stop treating "master" specially, fix fetch_local for .git/HEAD
+Date:	Fri, 11 Nov 2005 15:22:37 +0100
+User-Agent: KMail/1.8.2
+Cc:	Petr Baudis <pasky@suse.cz>, git@vger.kernel.org
+References: <1124832796.23795.9.camel@dv> <200511110213.54846.Josef.Weidendorfer@gmx.de> <1131684784.31172.16.camel@dv>
+In-Reply-To: <1131684784.31172.16.camel@dv>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511111522.37979.Josef.Weidendorfer@gmx.de>
+X-Virus-Scanned: by amavisd-new/sophie/sophos at mailrelay2.informatik.tu-muenchen.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:11588
+
+On Friday 11 November 2005 05:53, Pavel Roskin wrote:
+> I'm not sure if we understand each other, but "recorded" refers to
+> automatically determined branch name.  If cg-clone can determine the
+> branch name, that name should be saved and used for updates.
+> 
+> Whether the branch name is saved in .git/branches/ using hash notation
+> (old style) or in .git/remotes/ (new style) is irrelevant.
+
+Yes.
+But for the conrete implementation it is relevant.
+
+AFAIK, there is not really a "new" and "old" style, but more the
+git way (attributes for remote repositories in .git/remotes) and the
+Cogito way (attributes for a remote branch).
+
+"Recording" talks about storing the name of the remote branch that
+maps to the local "origin" branch, so I would vote for storing this
+in .git/branches/origin.
+
+For cg-clone, this is no problem because cg-clone writes this file itself.
+Another thing is if you add later on a remote branch with cg-branch-add
+without specifying a concrete remote branch name. Do we want the
+record the branch name at the first cg-fetch for the future?
+
+> That's why I mentioned the idea of having a separate file to indicate
+> the default branch for export.
+
+Agree.
+
+Josef
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

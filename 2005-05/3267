@@ -1,0 +1,121 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 14 02:28:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D62B0FC30A
+	for <tkil@scrye.com>; Sat, 14 May 2005 02:28:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262492AbVENI2e (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 14 May 2005 04:28:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262660AbVENI2e
+	(ORCPT <rfc822;git-outgoing>); Sat, 14 May 2005 04:28:34 -0400
+Received: from s2.ukfsn.org ([217.158.120.143]:35747 "EHLO mail.ukfsn.org")
+	by vger.kernel.org with ESMTP id S262492AbVENI22 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 14 May 2005 04:28:28 -0400
+Received: from localhost (lucy.ukfsn.org [127.0.0.1])
+	by mail.ukfsn.org (Postfix) with ESMTP
+	id A5F3BE6D4F; Sat, 14 May 2005 09:26:56 +0100 (BST)
+Received: from mail.ukfsn.org ([127.0.0.1])
+ by localhost (lucy.ukfsn.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 03092-02; Sat, 14 May 2005 09:26:56 +0100 (BST)
+Received: from oak.dgreaves.com (modem-2954.leopard.dialup.pol.co.uk [217.135.155.138])
+	by mail.ukfsn.org (Postfix) with ESMTP
+	id F081CE6A8B; Sat, 14 May 2005 09:26:55 +0100 (BST)
+Received: from ash.dgreaves.com ([10.0.0.90])
+	by oak.dgreaves.com with esmtp (Exim 4.20)
+	id 1DWs0W-0007dy-P9; Sat, 14 May 2005 09:28:24 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4285B6A8.4080309@dgreaves.com>
+Date:	Sat, 14 May 2005 09:28:24 +0100
+From: David Greaves <david@dgreaves.com>
+User-Agent: Debian Thunderbird 1.0.2 (X11/20050331)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: GIT Mailing Lists <git@vger.kernel.org>
+Subject: Re: [PATCH] Ignore file filter
+References: <4283CAF8.3050304@dgreaves.com> <20050513231229.GI32232@pasky.ji.cz>
+In-Reply-To: <20050513231229.GI32232@pasky.ji.cz>
+X-Enigmail-Version: 0.91.0.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 69
+Xref: brand.scrye.com linux.git:3267
+
+Petr Baudis wrote:
+
+>Dear diary, on Thu, May 12, 2005 at 11:30:32PM CEST, I got a letter
+>where David Greaves <david@dgreaves.com> told me that...
+>  
+>
+>># This doesn't allow the -h which is the [ arg for symlinks...
+>>    
+>>
+>
+>But so is -L. And I'd just use -l...
+>  
+>
+OK
+
+>>#. ${COGITO_LIB}cg-Xlib
+>>_git=${GIT_DIR:-.git}
+>>    
+>>
+>
+>...but it makes no sense anyway I think to reinclude this stuff from a
+>cg-Xfile you are including from other scripts anyway.
+>  
+>
+cg-Xignore isn't included - only called.
+it's also just a library program.
+Also I don't think cg-Xlib should be doing arg handling.
+As an include it should provide an arg handling function that the
+scripts call.
+
+>>	    if [[ $file =~ $patt ]]; then
+>>    
+>>
+>
+>I'm sorry but this is really nothing my bash-2.05.0(1)-release supports.
+>We're already bash-only, but further reducing that to bash3 really won't
+>work. I *might* get convinced to add some bash2+-only feature, but only
+>if you'll be really good at explaining that it makes sense.
+>  
+>
+Ah
+OK
+I don't know how to do that.
+I was actually aiming for glob matching when I came upon this in the
+manpage.
+I just thought it was bash and didn't think to check what version it was
+introduced with.
+
+>Besides, I'd prefer just the shell globs in the ignore file, as it is
+>done in the rest of the world, and in all the real-world scenarios I've
+>seen, the globs were powerful enough.
+>
+>Also, how does this interact with git-ls-files --exclude and
+>.git/exclude? We would have two ignoring mechanisms...
+>
+>  
+>
+because one was cogito's and one was git's.
+Cogitos was supposed to have a more powerful, pattern based abroach.
+
+David
+
+-- 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun 13 14:24:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 449BD2B0841
+	for <tkil@scrye.com>; Mon, 13 Jun 2005 14:24:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261308AbVFMUV6 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 13 Jun 2005 16:21:58 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261299AbVFMUSL
+	(ORCPT <rfc822;git-outgoing>); Mon, 13 Jun 2005 16:18:11 -0400
+Received: from mail.timesys.com ([65.117.135.102]:47073 "EHLO
+	exchange.timesys.com") by vger.kernel.org with ESMTP
+	id S261289AbVFMURF (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 13 Jun 2005 16:17:05 -0400
+Received: owa.timesys.com 192.168.2.250 from 192.168.2.31 192.168.2.31 via HTTP with MS-WebStorage 6.0.6249
+Received: from jmcmullan by owa.timesys.com; 13 Jun 2005 16:17:02 -0400
+Subject: Re: [zooko@zooko.com: [Revctrl] colliding md5 hashes of
+	human-meaningful
+From: Jason McMullan <jason.mcmullan@timesys.com>
+To: GIT Mailling list <git@vger.kernel.org>
+In-Reply-To: <Pine.LNX.4.58.0506131305550.8487@ppc970.osdl.org>
+References: <20050613195038.9191.qmail@science.horizon.com>
+	 <Pine.LNX.4.58.0506131305550.8487@ppc970.osdl.org>
+Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=-JY3U8SyWQULMIDyBB7in"
+Date:	Mon, 13 Jun 2005 16:17:01 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1118693822.7564.59.camel@jmcmullan.timesys>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.4-3mdk 
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 42
+Xref: brand.scrye.com linux.git:4895
+
+
+--=-JY3U8SyWQULMIDyBB7in
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, 2005-06-13 at 13:08 -0700, Linus Torvalds wrote:
+> Ok, I have a better plan.
+>=20
+>  - you learn to fly by flapping your arms fast enough
+>  - you then learn to pee burning gasoline
+>  - then, you fly around New York, setting everybody you see on fire,
+> until=20
+>    people make you emperor.
+
+Can't... stop... laughing....
+
+
+"Cryptology - It's a comedy goldmine!"
+
+--=20
+Jason McMullan <jason.mcmullan@timesys.com>
+TimeSys Corporation
+
+
+--=-JY3U8SyWQULMIDyBB7in
+Content-Type: application/pgp-signature; name=signature.asc
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQBCrem98/0vJ5szK6kRAsbWAJ0ZoH2RnZq9yXsbcOXJ46zze+2iCQCgvch8
+MH+hF1/Ok7lf/ADUOXhSu6k=
+=qALS
+-----END PGP SIGNATURE-----
+
+--=-JY3U8SyWQULMIDyBB7in--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

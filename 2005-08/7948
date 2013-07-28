@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 30 11:31:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B71C11C20AA
+	for <tkil@scrye.com>; Tue, 30 Aug 2005 11:31:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751301AbVH3R3s (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 30 Aug 2005 13:29:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751300AbVH3R3s
+	(ORCPT <rfc822;git-outgoing>); Tue, 30 Aug 2005 13:29:48 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:63921 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751293AbVH3R3q (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 30 Aug 2005 13:29:46 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7UHTejA016582
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 30 Aug 2005 10:29:41 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7UHTddB014592;
+	Tue, 30 Aug 2005 10:29:40 -0700
+Date:	Tue, 30 Aug 2005 10:29:39 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Bisection visualization hint..
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508301026450.4293@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:7948
+
+
+I'm testing bisection to find a bug that causes my G5 to no longer boot, 
+and during the process have found this command line very nice:
+
+	gitk bisect/bad --not $(cd .git/refs ; ls bisect/good-*)
+
+it basically shows the state of bisection with the known bad commit as the 
+top, and cutting off all the good commits - so what you see are the 
+potential buggy commits.
+
+But it's not the nicest of command lines and depends on knowing how
+bisection works, so maybe we could make
+
+	git bisect visualize
+
+do this for us?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

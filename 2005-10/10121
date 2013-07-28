@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 15 05:01:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CCCDE27A137
+	for <tkil@scrye.com>; Sat, 15 Oct 2005 05:01:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751105AbVJOK77 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 15 Oct 2005 06:59:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751117AbVJOK77
+	(ORCPT <rfc822;git-outgoing>); Sat, 15 Oct 2005 06:59:59 -0400
+Received: from mta08-winn.ispmail.ntl.com ([81.103.221.48]:18830 "EHLO
+	mta08-winn.ispmail.ntl.com") by vger.kernel.org with ESMTP
+	id S1751105AbVJOK77 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 15 Oct 2005 06:59:59 -0400
+Received: from aamta12-winn.ispmail.ntl.com ([81.103.221.35])
+          by mta08-winn.ispmail.ntl.com with ESMTP
+          id <20051015105957.VWWO10357.mta08-winn.ispmail.ntl.com@aamta12-winn.ispmail.ntl.com>;
+          Sat, 15 Oct 2005 11:59:57 +0100
+Received: from cpc3-cmbg5-3-0-cust13.cmbg.cable.ntl.com ([81.104.194.13])
+          by aamta12-winn.ispmail.ntl.com with ESMTP
+          id <20051015105957.UDZB10626.aamta12-winn.ispmail.ntl.com@cpc3-cmbg5-3-0-cust13.cmbg.cable.ntl.com>;
+          Sat, 15 Oct 2005 11:59:57 +0100
+Subject: [ANNOUNCE] Stacked GIT 0.7.1
+From:	Catalin Marinas <catalin.marinas@gmail.com>
+To:	GIT <git@vger.kernel.org>
+Content-Type: text/plain
+Date:	Sat, 15 Oct 2005 11:59:51 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1129373992.7719.4.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:10121
+
+Stacked GIT 0.7.1 release is available from http://www.procode.org/stgit/
+
+This is a bug-fix/optimisation release, no new features were added.
+
+StGIT is a Python application providing similar functionality to Quilt
+(i.e. pushing/popping patches to/from a stack) on top of GIT. These
+operations are performed using GIT commands and the patches are stored
+as GIT commit objects, allowing easy merging of the StGIT patches into
+other repositories using standard GIT functionality.
+
+What's new in this release (the full ChangeLog is in the archive):
+
+      * 'push' command optimisation - git-apply will be tried first,
+        falling back to a three-way merge if it does not succeed
+      * escape punctuation in the parsed e-mail addresses to avoid
+        problems when passing the environment to the GIT commands
+
+-- 
+Catalin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

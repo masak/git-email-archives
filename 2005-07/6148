@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul 14 20:12:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C19821EC838
+	for <tkil@scrye.com>; Thu, 14 Jul 2005 20:12:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263156AbVGOCLU (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 14 Jul 2005 22:11:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263155AbVGOCLG
+	(ORCPT <rfc822;git-outgoing>); Thu, 14 Jul 2005 22:11:06 -0400
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:21214 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S263117AbVGOCKa (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 14 Jul 2005 22:10:30 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050715021025.IRXI19494.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 14 Jul 2005 22:10:25 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: Re: Is cogito really this inefficient
+References: <20050713135052.C6791@flint.arm.linux.org.uk>
+	<Pine.LNX.4.58.0507131325170.17536@g5.osdl.org>
+	<20050714083700.A26322@flint.arm.linux.org.uk>
+	<tnxu0ixoiuo.fsf@arm.com>
+	<20050714105938.A31383@flint.arm.linux.org.uk>
+	<Pine.LNX.4.58.0507140832490.19183@g5.osdl.org>
+	<Pine.LNX.4.58.0507141725280.19183@g5.osdl.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 14 Jul 2005 19:10:28 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vll48250r.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:6148
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> On Thu, 14 Jul 2005, Linus Torvalds wrote:
+>>
+>> I'll look into making diff-cache be more efficient. I normally don't use
+>> it myself, so I didn't bother (I use git-diff-files, which is way more
+>> efficient, but doesn't show the difference against the _tree_, it shows
+>> the difference against the index. Since cogito tries to hide the index
+>> from you, cogito can't very well use that).
+>
+> Ok, done.
+
+Wonderful.
+
+> Junio - I think this makes gitcore-pathspec pretty pointless, but I didn't
+> actually remove it. I guess "git-diff-helper" still uses it.
+
+And probably it shouldn't; diff-helper should be raw-to-patch
+converter, nothing more.
+
+Usually I'd volunteer to clean up the remaining mess (which was
+originally my mess anyway) myself, but since I'd already asked
+smurf to help cleaning up the diff option parsing, and recently
+I've suddenly got quite busy in the day job, so ...
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

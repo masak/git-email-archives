@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 11:42:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EF1D112A8DE
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 11:42:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964964AbVKOSlF (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 13:41:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964968AbVKOSlF
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 13:41:05 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:50862 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S964964AbVKOSlB (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 15 Nov 2005 13:41:01 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAFIdpnO025530
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 15 Nov 2005 10:39:52 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAFIdoBJ013282;
+	Tue, 15 Nov 2005 10:39:50 -0800
+Date:	Tue, 15 Nov 2005 10:39:50 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+cc:	git@vger.kernel.org, junkio@cox.net
+Subject: Re: [PATCH] Add config variable core.symrefsonly
+In-Reply-To: <Pine.LNX.4.63.0511151923120.1103@wbgn013.biozentrum.uni-wuerzburg.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511151028540.3945@g5.osdl.org>
+References: <Pine.LNX.4.63.0511151923120.1103@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: MULTIPART/MIXED; BOUNDARY="21872808-688111548-1132079462=:3945"
+Content-ID: <Pine.LNX.4.64.0511151031160.3945@g5.osdl.org>
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 51
+Xref: brand.scrye.com linux.git:11921
+
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--21872808-688111548-1132079462=:3945
+Content-Type: TEXT/PLAIN; CHARSET=ISO-8859-1
+Content-Transfer-Encoding: 8BIT
+Content-ID: <Pine.LNX.4.64.0511151031161.3945@g5.osdl.org>
+
+
+
+On Tue, 15 Nov 2005, Johannes Schindelin wrote:
+> 
+> 	Linus, is there any reason you don´t allow spaces, underscores
+> 	and dashes in the config variables?
+
+I much preferred being anal and maybe relaxing the rules later than being 
+permissive and accepting horrible crap.
+
+Spaces are definitely out, since we are trying to igore whitespace 
+everywhere, but underscores and dashes might be ok.
+
+However, the traditional way to do these kinds of things in ini files is 
+with PrettyCaps(tm), ie you'd do
+
+	[core]
+		SymRefsOnly = true
+
+rather than the C way.
+
+Let's face it, the C way is the only true way for a programming language, 
+but having case matter in something unimportant and human-readable like a 
+"ini" file is just bothersome, so PrettyCase(tm) actually makes sense 
+there.
+
+PrettyCase is for toys - unimportant things where it's more important to 
+say "we don't care" over saying "we need to be precise". So Pascal is PC. 
+It's a toy language. FAT is PC - it's a toy filesystem. And ini files are 
+PC: it's more important that a config file is human-readable than it is 
+that it's very precise and strict.
+
+Put another way: real programmers want strict rules, because they know 
+they'll be hurt without them. But _users_ need to be coddled. And ini 
+files aren't for programmers, they are for users.
+
+		Linus
+--21872808-688111548-1132079462=:3945--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

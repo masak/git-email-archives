@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 29 00:09:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 03B0314F308
+	for <tkil@scrye.com>; Thu, 29 Sep 2005 00:09:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750831AbVI2GID (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 29 Sep 2005 02:08:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751197AbVI2GID
+	(ORCPT <rfc822;git-outgoing>); Thu, 29 Sep 2005 02:08:03 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:41192 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S1750831AbVI2GIB (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 29 Sep 2005 02:08:01 -0400
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1EKraK-00023z-Cl
+	for git@vger.kernel.org; Thu, 29 Sep 2005 06:08:00 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <433B84BD.8030003@pobox.com>
+Date:	Thu, 29 Sep 2005 02:07:57 -0400
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Pull from one branch to another?
+Content-Type: multipart/mixed;
+ boundary="------------090407050300090404070503"
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 52
+Xref: brand.scrye.com linux.git:9457
+
+This is a multi-part message in MIME format.
+--------------090407050300090404070503
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+I currently use the attached script to merge the contents of one branch 
+into another branch, in my kernel trees:
+
+	$ cd /repo/netdev-2.6
+	$ git checkout -f sky2
+	$ ... merge patches ...
+	$ git checkout -f upstream
+	$ ... merge more patches ...
+	$ git checkout -f ALL
+	$ git-pull-branch upstream
+	$ git-pull-branch sky2
+
+End result:  'ALL' branch contains everything in 'sky2' and 'upstream' 
+branches.  I use the above for creating an all-inclusive branch that 
+users can test, and that Andrew Morton can pull into his -mm kernel tree.
+
+Right now, my git-pull-branch script (attached) simply calls 
+git-resolve-script, which nicely skips the fetch step and any 
+complications related to that.
+
+My question:  is this the best/right way to pull one branch into 
+another?  It's been working for me, for months, but...
+
+	Jeff
+
+
+
+
+--------------090407050300090404070503
+Content-Type: text/plain;
+ name="git-pull-branch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+ filename="git-pull-branch"
+
+#!/bin/sh
+
+git-resolve-script HEAD $1 "`pwd` branch '$1'"
+
+
+--------------090407050300090404070503--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 05:01:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME,
+	TW_SV autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9D48816A1EB
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 05:01:33 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161069AbVKRMBX (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 07:01:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161073AbVKRMBX
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 07:01:23 -0500
+Received: from vir.dspsrv.com ([193.120.211.34]:12955 "EHLO dspsrv.com")
+	by vger.kernel.org with ESMTP id S1161069AbVKRMBX (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 18 Nov 2005 07:01:23 -0500
+Received: from [145.36.48.101] (helo=localhost)
+	by dspsrv.com with asmtp (Exim 3.36 #1)
+	id 1Ed4vY-00072s-00
+	for git@vger.kernel.org; Fri, 18 Nov 2005 12:01:12 +0000
+Date:	Fri, 18 Nov 2005 13:01:42 +0100
+From:	timo@dspsrv.com
+To:	git@vger.kernel.org
+Subject: Re: master has some toys
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051118120016.GD1920@ELSAMSW37164>
+Mail-Followup-To: timo@dspsrv.com, git@vger.kernel.org
+References: <20051115144223.GA18111@diana.vm.bytemark.co.uk> <b0943d9e0511160311k725526d8v@mail.gmail.com> <7vr79g8mys.fsf@assigned-by-dhcp.cox.net> <7v7jb83w8m.fsf_-_@assigned-by-dhcp.cox.net> <81b0412b0511170029xac34cdbtddf74eb766281b3c@mail.gmail.com> <Pine.LNX.4.63.0511171207580.20898@wbgn013.biozentrum.uni-wuerzburg.de> <7vsltvwmlr.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0511171249550.737@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.63.0511171249550.737@wbgn013.biozentrum.uni-wuerzburg.de>
+\From:	Tim O'Callaghan <timo@dspsrv.com>
+User-Agent: mutt-ng/devel-r570 (CYGWIN_NT-5.0)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:12217
+
+On Thu, Nov 17, 2005 at 12:51:22PM +0100, Johannes Schindelin wrote:
+> Hi,
+> 
+> On Thu, 17 Nov 2005, Junio C Hamano wrote:
+> 
+> > It appears we'd better have something like this in the main
+> > Makefile, so people do not have to do it themselves everywhere?
+> 
+> I'd like to wait to have a reaction from other people. I vividly remember 
+> my eyes falling out of my sockets when somebody reported success on cygwin 
+> without NO_MMAP. If there is *any* cygwin version which fixes it, we 
+> should rather make people upgrade, no?
+> 
+
+It is not in the official Cygwin distribution yet. Though I've started the
+formalities, moving house as been taking all my spare time. So, the upgrade
+worries would be for those people tracking the main git repo. As they are
+almost certainly on this list, they should be aware of possible breakage.
+
+I've noted some breakage with git-archimport, git-svnimport and git-cvsimport,
+though i have not yet looked into it, some are due to the lack of necessary
+tools under Cygwin. I'm re-jigging my distro script to emulate the new package
+split and plan to distribute just the git 'core' stuff for the moment.
+
+I was wondering if anyone has scripts that i could use to test the
+svn/arch/CVS import/export for expected behavior?
+
+Tim.
+"However beautiful the strategy, you should occasionally look at the results."
+-- Winston Churchill
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

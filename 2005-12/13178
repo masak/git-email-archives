@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec  4 10:13:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.6 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,RCVD_IN_BL_SPAMCOP_NET autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 72366138587
+	for <tkil@scrye.com>; Sun,  4 Dec 2005 10:13:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932303AbVLDRMO (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Dec 2005 12:12:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932305AbVLDRMO
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Dec 2005 12:12:14 -0500
+Received: from mxfep02.bredband.com ([195.54.107.73]:39920 "EHLO
+	mxfep02.bredband.com") by vger.kernel.org with ESMTP
+	id S932303AbVLDRMM (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 4 Dec 2005 12:12:12 -0500
+Received: from ironport.bredband.com ([195.54.107.82] [195.54.107.82])
+          by mxfep02.bredband.com with ESMTP
+          id <20051204171206.ZJMJ17186.mxfep02.bredband.com@ironport.bredband.com>
+          for <git@vger.kernel.org>; Sun, 4 Dec 2005 18:12:06 +0100
+Received: from c-fa2b70d5.018-10-67626713.cust.bredbandsbolaget.se (HELO puritan.petwork) ([213.112.43.250])
+  by ironport.bredband.com with ESMTP; 04 Dec 2005 18:12:35 +0100
+X-BrightmailFiltered: true
+X-IronPort-AV: i="3.99,212,1131318000"; 
+   d="scan'208"; a="15353062:sNHT30191238"
+Received: by puritan.petwork (Postfix, from userid 1000)
+	id F19AAADFE5; Sun,  4 Dec 2005 18:12:06 +0100 (CET)
+Date:	Sun, 4 Dec 2005 18:12:06 +0100
+From:	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: gitk - ewww
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051204171206.GA8819@puritan.petwork>
+Mail-Followup-To: Git Mailing List <git@vger.kernel.org>
+References: <6CC092B0-101F-4D98-9761-B4E24A7CA35A@hawaga.org.uk> <Pine.LNX.4.64.0512032040240.3099@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.64.0512032040240.3099@g5.osdl.org>
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:13178
+
+Linus Torvalds wrote:
+
+> On Sun, 4 Dec 2005, Ben Clifford wrote:
+
+> > Screen shot is at:
+> > http://www/hawaga.org.uk/ben/tech/gitk-eww-1.png
+
+> What makes _me_ go "eww" in that screenshot is that tcl/tk doesn't do
+> anti-aliased fonts, but maybe that's just me, and that's apparently
+> 8.5 has that fixed (at a horrible performance impact, I'm sure, but
+> hey, one look at your screenshot and I'm saying "bring it on").
+
+Just use a slightly larger font and it should be fine.  The lower-right
+field, whatever that lists (changed files?) - I have never used gitk,
+uses anti-aliasing, and the only problem I see is that the
+commit-message listing uses a font that is way too small (or is badly
+designed).  The top pane is easily readable, although it could use a
+slightly larger point-size.
+
+Anti-aliasing is only a hack for displaying text on a screen.  It's not
+a substitute for choosing your fonts and point sizes with care.  A
+bitmapped font designed for small point-sizes will always look more
+crisp than a generic TTF at small point-sizes.
+
+        nikolai
+
+-- 
+Nikolai Weibull: now available free of charge at http://bitwi.se/!
+Born in Chicago, IL USA; currently residing in Gothenburg, Sweden.
+main(){printf(&linux["\021%six\012\0"],(linux)["have"]+"fun"-97);}
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

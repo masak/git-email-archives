@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 11 16:16:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AC03E1629B3
+	for <tkil@scrye.com>; Thu, 11 Aug 2005 16:16:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932444AbVHKWQh (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 11 Aug 2005 18:16:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932490AbVHKWQh
+	(ORCPT <rfc822;git-outgoing>); Thu, 11 Aug 2005 18:16:37 -0400
+Received: from sccrmhc12.comcast.net ([204.127.202.56]:28037 "EHLO
+	sccrmhc12.comcast.net") by vger.kernel.org with ESMTP
+	id S932444AbVHKWQh (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 11 Aug 2005 18:16:37 -0400
+Received: from highlab.com ([67.165.222.77])
+          by comcast.net (sccrmhc12) with ESMTP
+          id <20050811221632012005oo06e>; Thu, 11 Aug 2005 22:16:36 +0000
+Received: from seb (helo=highlab.com)
+	by highlab.com with local-esmtp (Exim 4.50)
+	id 1E3LNk-0005f0-11; Thu, 11 Aug 2005 16:18:36 -0600
+To: Alan Chandler <alan@chandlerfamily.org.uk>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Debian packaging for 0.99.4 
+In-reply-to: <42FBCD73.3090507@chandlerfamily.org.uk> 
+References: <pan.2005.08.10.22.11.25.242201@smurf.noris.de> <46a038f9050810155642bb5580@mail.gmail.com> <20050810233953.GV28270@kiste.smurf.noris.de> <E1E33Zb-0004dT-Bx@highlab.com> <46a038f90508102144358a4bcf@mail.gmail.com> <Pine.LNX.4.58.0508102200560.3295@g5.osdl.org> <E1E35vU-0004nP-JR@highlab.com> <Pine.LNX.4.58.0508110915210.3295@g5.osdl.org> <E1E3IOG-0005HO-AK@highlab.com> <20050811201558.GA2874@mars.ravnborg.org> <20050811202410.GB5411@kiste.smurf.noris.de> <42FBCD73.3090507@chandlerfamily.org.uk>
+Comments: In-reply-to Alan Chandler <alan@chandlerfamily.org.uk>
+   message dated "Thu, 11 Aug 2005 23:13:07 +0100."
+Date:	Thu, 11 Aug 2005 16:18:36 -0600
+From: Sebastian Kuzminsky <seb@highlab.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1E3LNk-0005f0-11@highlab.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_DP 
+	autolearn=ham version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:7075
+
+Alan Chandler <alan@chandlerfamily.org.uk> wrote:
+> Matthias Urlichs wrote:
+> > A small Debian-specific patch to rename the offending scripts (and drop
+> > the Conflicts: entries) is cheap.
+> 
+> Not sure I understand the proper use of dpkg-divert in Debian, but could 
+> _this_ git-core package perhaps ask the user which set of the two 
+> packages he wish to keep as git command and use dpkg-divert to change 
+> the other to another name to some other name?
+
+This may be a possibility.  I'm discussing the details of this kind of
+solution on the debian-devel list right now.
+
+Come join the fun!  I make a poor flame-conduit between the git list
+and the debian-devel list, cut out the middle man and save.  ;-)
+
+
+-- 
+Sebastian Kuzminsky
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

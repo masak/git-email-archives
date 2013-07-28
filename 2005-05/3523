@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 19 07:31:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9EB1B6BE6
+	for <tkil@scrye.com>; Thu, 19 May 2005 07:31:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262493AbVESNbK (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 19 May 2005 09:31:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262492AbVESNbK
+	(ORCPT <rfc822;git-outgoing>); Thu, 19 May 2005 09:31:10 -0400
+Received: from mx1.elte.hu ([157.181.1.137]:3730 "EHLO mx1.elte.hu")
+	by vger.kernel.org with ESMTP id S262493AbVESNbG (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 19 May 2005 09:31:06 -0400
+Received: from chiara.elte.hu (chiara.elte.hu [157.181.150.200])
+	by mx1.elte.hu (Postfix) with ESMTP id 723C9322FB7;
+	Thu, 19 May 2005 15:29:34 +0200 (CEST)
+Received: by chiara.elte.hu (Postfix, from userid 17806)
+	id 25BD21FC2; Thu, 19 May 2005 15:31:00 +0200 (CEST)
+Date:	Thu, 19 May 2005 15:30:55 +0200
+From: Ingo Molnar <mingo@elte.hu>
+To: Paul Mackerras <paulus@samba.org>
+Cc: git@vger.kernel.org
+Subject: Re: gitk-1.0 released
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050519133055.GA8076@elte.hu>
+References: <17036.36624.911071.810357@cargo.ozlabs.ibm.com> <20050519132411.GA29111@elte.hu>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050519132411.GA29111@elte.hu>
+User-Agent: Mutt/1.4.2.1i
+X-ELTE-SpamVersion: MailScanner 4.31.6-itk1 (ELTE 1.2) SpamAssassin 2.63 ClamAV 0.73
+X-ELTE-VirusStatus: clean
+X-ELTE-SpamCheck: no
+X-ELTE-SpamCheck-Details: score=-4.9, required 5.9,
+	autolearn=not spam, BAYES_00 -4.90
+X-ELTE-SpamLevel: 
+X-ELTE-SpamScore: -4
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:3523
+
+
+* Ingo Molnar <mingo@elte.hu> wrote:
+
+> - the ability to copy & paste from all the windows would be nice. (e.g. 
+>   in the bugreport above i had to type down the "Octopus merge .." text 
+>   instead of pasting it from gitk)
+
+scrap this one - the patch view window allows copy & paste, and the name 
+of the patch is included there too.
+
+	Ingo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

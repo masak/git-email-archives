@@ -1,0 +1,101 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 10:36:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0AABD101AB5
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 10:36:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261716AbVDTQfy (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 12:35:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261718AbVDTQfy
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 12:35:54 -0400
+Received: from dialin-145-254-143-183.arcor-ip.net ([145.254.143.183]:4225
+	"EHLO macavity") by vger.kernel.org with ESMTP id S261716AbVDTQfm
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 20 Apr 2005 12:35:42 -0400
+Received: from martin by macavity with local (Exim 4.34)
+	id 1DOI9A-0003n8-Op; Wed, 20 Apr 2005 18:33:52 +0200
+Date:	Wed, 20 Apr 2005 18:33:42 +0200
+From: Martin Uecker <muecker@gmx.de>
+To: Git Mailing List <git@vger.kernel.org>
+Cc: Martin Uecker <muecker@gmx.de>
+Subject: Re: WARNING! Object DB conversion (was Re: [PATCH] write-tree performance problems)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050420163342.GA14434@macavity>
+Mail-Followup-To: Martin Uecker <muecker@gmx.de>,
+	Git Mailing List <git@vger.kernel.org>
+References: <200504192049.21947.mason@suse.com> <Pine.LNX.4.58.0504192337120.6467@ppc970.osdl.org> <42660708.60109@zytor.com> <Pine.LNX.4.58.0504200144260.6467@ppc970.osdl.org> <2cfc403205042005116484231c@mail.gmail.com> <20050420132446.GA10126@macavity> <Pine.LNX.4.61.0504201025030.2630@cag.csail.mit.edu> <20050420151902.GA13175@macavity> <Pine.LNX.4.61.0504201121490.2630@cag.csail.mit.edu> <20050420155734.GA13575@macavity>
+Mime-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="GvXjxJ+pjyke8COw"
+Content-Disposition: inline
+In-Reply-To: <20050420155734.GA13575@macavity>
+User-Agent: Mutt/1.5.6+20040907i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.8 required=5.0 tests=AWL,BAYES_00,
+	RCVD_IN_SORBS_WEB autolearn=ham version=3.0.2
+Lines: 57
+Xref: brand.scrye.com linux.git:974
+
+
+--GvXjxJ+pjyke8COw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Apr 20, 2005 at 05:57:34PM +0200, Martin Uecker wrote:
+> On Wed, Apr 20, 2005 at 11:28:20AM -0400, C. Scott Ananian wrote:
+>=20
+> > Yes, I guess this is the detail I was going to abandon. =3D)
+> >=20
+> > I viewed the fact that the top-level hash was dependent on the exact ch=
+unk=20
+> > makeup a 'misfeature', because it doesn't allow easy interoperability w=
+ith=20
+> > existing non-chunked repos.
+>=20
+> I thought this as a misfeature too before I realized how
+> many advantages this has.
+
+To make it more clear: Ofcourse it is a bug if the
+hash depends on unimportant implementation details.
+
+But a hash which is calculated recusively from
+subhashes is a lot more usefull than a hash
+which can only be calculated from the entire data
+at once. And if this hash can be recalculated
+cheaply from subhashes even if some data was
+inserted somewhere this is an even more usefull
+thing.
+
+Martin
+
+--=20
+One night, when little Giana from Milano was fast asleep,
+she had a strange dream.
+
+
+--GvXjxJ+pjyke8COw
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.5 (GNU/Linux)
+
+iD8DBQFCZoRmYDJInvULMKYRAtSXAKCJ9lN4He0ubuH9v9bKjdXtvNbAGQCfZRNk
+SQfXfpyV9j7XOLfQT3QNlv4=
+=EgID
+-----END PGP SIGNATURE-----
+
+--GvXjxJ+pjyke8COw--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

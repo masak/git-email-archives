@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 11:11:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1B3B82AB4B5
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 11:11:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932118AbVIRRKk (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 13:10:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932119AbVIRRKk
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 13:10:40 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:5020 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932118AbVIRRKj (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 18 Sep 2005 13:10:39 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8IHAbBo005241
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 18 Sep 2005 10:10:37 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8IHAZvl022056;
+	Sun, 18 Sep 2005 10:10:36 -0700
+Date:	Sun, 18 Sep 2005 10:10:35 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Dmitry Torokhov <dtor_core@ameritech.net>
+cc:	git@vger.kernel.org
+Subject: Re: Garbage in .git directories???
+In-Reply-To: <200509172141.31591.dtor_core@ameritech.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509181009160.26803@g5.osdl.org>
+References: <200509172141.31591.dtor_core@ameritech.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_RW,TW_WX,
+	TW_XR autolearn=no version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:8780
+
+
+
+On Sat, 17 Sep 2005, Dmitry Torokhov wrote:
+> 
+> git clone rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git work
+> 
+> and it seems there is some garbage in .git directory:
+>
+> drwxrwxr-x    2 dtor dtor 4096 Sep 17 21:17 V?Cl?í®Ÿ?E ???#V?C??Å¿l??E#V?C??;H
+>                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+> The similar garbage(?) shows when I clone git's repository.
+> 
+> Is this expected?
+
+Absolutely not. And I don't see it when I try. What filesystem are you 
+running this on? Looks like something did a "mkdir()" with an 
+uninitialized pointer, but I don't see how that would happen.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

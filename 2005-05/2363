@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  2 12:40:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 89CCEFC3C2
+	for <tkil@scrye.com>; Mon,  2 May 2005 12:40:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261618AbVEBSjV (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 2 May 2005 14:39:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261631AbVEBSjV
+	(ORCPT <rfc822;git-outgoing>); Mon, 2 May 2005 14:39:21 -0400
+Received: from fire.osdl.org ([65.172.181.4]:23718 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261618AbVEBSjK (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 2 May 2005 14:39:10 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j42Id2s4027290
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 2 May 2005 11:39:02 -0700
+Received: from shell0.pdx.osdl.net (localhost [127.0.0.1])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j42Id2Fe011837;
+	Mon, 2 May 2005 11:39:02 -0700
+Received: (from chrisw@localhost)
+	by shell0.pdx.osdl.net (8.13.1/8.13.1/Submit) id j42Id287011836;
+	Mon, 2 May 2005 11:39:02 -0700
+Date:	Mon, 2 May 2005 11:39:02 -0700
+From: Chris Wright <chrisw@osdl.org>
+To: Horst von Brand <vonbrand@inf.utfsm.cl>
+Cc: Kay Sievers <kay.sievers@vrfy.org>, git@vger.kernel.org,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [PATCH] add git.spec and adapt Makefile for RPM build
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050502183902.GD5324@shell0.pdx.osdl.net>
+References: <kay.sievers@vrfy.org> <20050502145255.GA26439@vrfy.org> <200505021741.j42HfUZx013620@laptop11.inf.utfsm.cl>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200505021741.j42HfUZx013620@laptop11.inf.utfsm.cl>
+User-Agent: Mutt/1.5.6i
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 21
+Xref: brand.scrye.com linux.git:2363
+
+* Horst von Brand (vonbrand@inf.utfsm.cl) wrote:
+> Kay Sievers <kay.sievers@vrfy.org> said:
+> > On Mon, May 02, 2005 at 12:23:03PM +0200, Kay Sievers wrote:
+> > > Add support for building the rpm package directly from the git tree.
+> > 
+> > This version creates the git.spec from a git.spec.in with the version
+> > number from the Makefile.
+> 
+> Please don't. The spec file /controls/ the building of the package, it can't
+> be generated as part of the build process.
+
+It certainly can.  It simply means a structured release process.  IOW,
+the git.spec would be generated for a release tarball.
+
+thanks,
+-chris
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 16:06:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 222DC285220
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 16:06:04 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964884AbVJaXDb (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 18:03:31 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964881AbVJaXDb
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 18:03:31 -0500
+Received: from iabervon.org ([66.92.72.58]:44306 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S964883AbVJaXDa (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 31 Oct 2005 18:03:30 -0500
+Received: (qmail 23166 invoked by uid 1000); 31 Oct 2005 18:03:08 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 31 Oct 2005 18:03:08 -0500
+Date:	Mon, 31 Oct 2005 18:03:08 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Ben Greear <greearb@candelatech.com>
+cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Question on GIT usage.
+In-Reply-To: <4362C700.6020901@candelatech.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510311749080.25300@iabervon.org>
+References: <4362C700.6020901@candelatech.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:10888
+
+On Fri, 28 Oct 2005, Ben Greear wrote:
+
+> I have a kernel GIT tree to hold my developing patches...
+> 
+> I need to build this kernel for 4-5 different processors (c3, p2, p4, p4-smp,
+> etc).
+> 
+> Is there any clever way to have this one git repository keep these
+> other source trees in sync so that I can do incremental builds?
+
+The following is not at all standard; AFAICT, I'm the only person who does 
+it. But...
+
+You can have a single repository shared between multiple working trees, by 
+having the repository somewhere and making 
+.git/{objects,refs,info,remotes} be symlinks to the corresponding 
+directories in the repository. I've got a script to set this up, if you 
+want.
+
+The system will be unhappy if you commit to a branch that is checked out 
+elsewhere (because the head of that branch will change out from under the 
+checked out version), like having someone push to a repository with the 
+branch checked out.
+
+You need to think about this as there only being one repository that has 
+multiple working trees, rather than having working tree/repository pairs, 
+where the repositories are connected as an optimization; anything you do 
+in one of the working trees will automatically affect what the others see.
+
+This isn't official supported, but it actually works quite well, except 
+that things that should be shared are occasionally added to the .git 
+directory (like remotes not too long ago).
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

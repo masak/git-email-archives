@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 29 19:55:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E05351871E1
+	for <tkil@scrye.com>; Thu, 29 Sep 2005 19:55:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932370AbVI3By5 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 29 Sep 2005 21:54:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932397AbVI3By5
+	(ORCPT <rfc822;git-outgoing>); Thu, 29 Sep 2005 21:54:57 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:27789 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S932370AbVI3By4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 29 Sep 2005 21:54:56 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050930015450.CJTD2059.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 29 Sep 2005 21:54:50 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [howto] Kernel hacker's guide to git, updated
+References: <200509292317.j8TNHC7S022247@inti.inf.utfsm.cl>
+	<Pine.LNX.4.64.0509291742170.3378@g5.osdl.org>
+cc:	git@vger.kernel.org
+Date:	Thu, 29 Sep 2005 18:54:55 -0700
+In-Reply-To: <Pine.LNX.4.64.0509291742170.3378@g5.osdl.org> (Linus Torvalds's
+	message of "Thu, 29 Sep 2005 17:47:58 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtkzb9qo.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:9523
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> I put my git repo on 
+>
+> 	kernel.org:/pub/software/editors/uemacs/uemacs.git
+>
+> but it will take a moment to mirror out. 
+
+Wouldn't underneath pub/scm/ be more appropriate and gitweb
+friendly?
+
+> The thing is, it's not a wonderful editor. It's small, and good enough, 
+> but I really wished somebody wrote something that handled UTF-8, for 
+> example.
+
+Hmph.  I vaguely recall in my distant past when I was still in
+school, I did my own Japanization of microEmacs.  I wonder if
+yours share the same root -- I do not have the source of my
+version anymore so I have no way checking which ancient version
+I mucked with.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

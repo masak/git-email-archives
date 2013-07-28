@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 17 20:50:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 88DBB1DCCD0
+	for <tkil@scrye.com>; Sun, 17 Jul 2005 20:50:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261491AbVGRCuc (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Jul 2005 22:50:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261492AbVGRCuc
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Jul 2005 22:50:32 -0400
+Received: from smtp106.mail.sc5.yahoo.com ([66.163.169.226]:29017 "HELO
+	smtp106.mail.sc5.yahoo.com") by vger.kernel.org with SMTP
+	id S261491AbVGRCua (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 17 Jul 2005 22:50:30 -0400
+Received: (qmail 36273 invoked from network); 18 Jul 2005 02:50:29 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Received:From:To:Cc:Message-Id:Subject;
+  b=YAE983dqGFsKU+WKpa6tSHAKAE5o7YKP392qUboOMEy/CK0wjWWCEYfuC0Ng+iLDHlnvpOYhVq9P/1KOGHAkc/DcZZIaGcqGFdIFJkBWi+tdH0zwAoBunlXBsSW3rDERBEdGTT/fqkCqMQYPsINGtDrKhiGMhCtdT3/vSIjl6a8=  ;
+Received: from unknown (HELO bryan-larsens-ibook-g4.local) (bryanlarsen@70.26.43.137 with plain)
+  by smtp106.mail.sc5.yahoo.com with SMTP; 18 Jul 2005 02:50:29 -0000
+From: Bryan Larsen <bryanlarsen@yahoo.com>
+To: bryan.larsen@gmail.com
+Cc: Bryan Larsen <bryanlarsen@yahoo.com>, pasky@suse.cz,
+	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050718025024.11198.10556.sendpatchset@bryan-larsens-ibook-g4.local>
+Subject: [PATCH 0/6] cogito: compatibility with OS X
+Date:	Sun, 17 Jul 2005 22:50:30 -0400
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:6208
+
+This is a resend of my previous set of patches.
+
+I have updated these patches with Junio's suggestion.
+
+I have also added some documentation, a simple README.osx.
+
+Once you have applied these patches, could you choose one of these 4
+options, Junio?
+
+1) send me the result of "make Portfile" on next release
+2) attach the result of "make Portfile" to
+http://bugzilla.opendarwin.org/show_bug.cgi?id=3949 on next release
+3) upload Portfile's along with the .tar.gz's.
+4) tell me you're doing none of the above's, and I'll do the process
+manually.
+
+2 of these 5 patches are unchanged from the previous post.  I have
+attached them anyways to maintain the series.  Please let me know if
+this is poor etiquette.
+
+thanks,
+Bryan
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

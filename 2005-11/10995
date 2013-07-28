@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 00:26:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8A5E2277BB8
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 00:26:25 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932622AbVKBH0D (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 02:26:03 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932619AbVKBH0B
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 02:26:01 -0500
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:36004 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S932618AbVKBH0A (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 2 Nov 2005 02:26:00 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051102072517.DRJF776.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 2 Nov 2005 02:25:17 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: GIT 0.99.9b
+cc:	linux-kernel@vger.kernel.org, hpa@zytor.com
+Date:	Tue, 01 Nov 2005 23:25:59 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vbr13y0hk.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:10995
+
+The second maintenance release of 0.99.9 series is found at the
+usual place.  0.99.9a was purely to work around RPM build
+issues; this one contains all the good changes in the master
+branch -- mostly documentation updates, with some cvsimport
+fixes from Martin.
+
+The workaround for building RPMs has not changed since 0.99.9a,
+mainly because I haven't heard back if it was good enough for
+kernel.org consumption, or otherwise what changes are needed.
+
+Note that package split we discussed earlier is not something I
+consider "needed"; it is more like "nice to have before 1.0".  I
+am hoping 0.99.9b to hit kernel.org machines soon, so people do
+not have to be bitten by 0.99.8f glitches as reported for the
+last couple of days.
+
+That is, provided if the RPM workaround in 0.99.9a and this one
+is good enough to produce an installable package, of course.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

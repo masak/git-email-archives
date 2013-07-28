@@ -1,0 +1,55 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 27 00:03:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0AED127B35D
+	for <tkil@scrye.com>; Sat, 27 Aug 2005 00:03:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030322AbVH0GDj (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 27 Aug 2005 02:03:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030323AbVH0GDj
+	(ORCPT <rfc822;git-outgoing>); Sat, 27 Aug 2005 02:03:39 -0400
+Received: from iabervon.org ([66.92.72.58]:10514 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1030322AbVH0GDj (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 27 Aug 2005 02:03:39 -0400
+Received: (qmail 27042 invoked by uid 1000); 27 Aug 2005 02:07:17 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 27 Aug 2005 02:07:17 -0400
+Date:	Sat, 27 Aug 2005 02:07:17 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Comments in read-tree about #nALT
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508270151590.23242@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:7833
+
+I've gotten to the point of having all of the entries for a given path
+ready to put into the cache at the same, and now I want to convert the
+merge functions to take their data directly, rather than in the cache, so
+that they can take extra entries for extra ancestors.
+
+Part of threeway_merge, however, wants to search the rest of the cache for
+interfering entries in some cases, which would have to happen differently,
+because I won't have the cache completely filled out beforehand. I'm
+trying to figure out what the comments are talking about, and they seem to
+refer to a list of the possible cases. Is that list somewhere convenient?
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

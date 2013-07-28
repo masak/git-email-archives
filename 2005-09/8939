@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 19:54:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 580001D6FD5
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 19:54:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964829AbVITByO (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 21:54:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964831AbVITByO
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 21:54:14 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:65264 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S964829AbVITByN (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Sep 2005 21:54:13 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050920015408.HSHI11028.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 19 Sep 2005 21:54:08 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Subject: Re: [Terminology] Push vs. upload?
+References: <20050920001136.GK18320@pasky.or.cz>
+cc:	git@vger.kernel.org
+Date:	Mon, 19 Sep 2005 18:54:06 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3bo0fqrl.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 15
+Xref: brand.scrye.com linux.git:8939
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> ... push should be the opposite of pull, but pull is defined
+> as fetch+merge, ...
+
+It is my recollection that this exact "shouldn't push be
+opposite of pull" issue was raised when the list had the
+glossary discussion.  My impression was that the discussion
+settled on what we have right now...
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

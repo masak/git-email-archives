@@ -1,0 +1,52 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 24 13:03:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 59DF71A0C44
+	for <tkil@scrye.com>; Mon, 24 Oct 2005 13:03:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750928AbVJXTDA (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 24 Oct 2005 15:03:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750945AbVJXTDA
+	(ORCPT <rfc822;git-outgoing>); Mon, 24 Oct 2005 15:03:00 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:40138 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S1750928AbVJXTC7 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 24 Oct 2005 15:02:59 -0400
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1EU7b0-0001RZ-TE
+	for git@vger.kernel.org; Mon, 24 Oct 2005 19:02:59 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <435D2FE0.3060307@pobox.com>
+Date:	Mon, 24 Oct 2005 15:02:56 -0400
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: RFE: git rm
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 12
+Xref: brand.scrye.com linux.git:10547
+
+
+It would be nice to say "git rm files..." and have two operations occur:
+
+* list of files is passed to rm(1)
+* list of files is passed to git-update-index --remove
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 29 10:54:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9AA121E11A2
+	for <tkil@scrye.com>; Sat, 29 Oct 2005 10:54:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750843AbVJ2Qx4 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 29 Oct 2005 12:53:56 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750844AbVJ2Qx4
+	(ORCPT <rfc822;git-outgoing>); Sat, 29 Oct 2005 12:53:56 -0400
+Received: from eastrmmtao06.cox.net ([68.230.240.33]:27059 "EHLO
+	eastrmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S1750842AbVJ2Qx4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 29 Oct 2005 12:53:56 -0400
+Received: from localhost ([24.250.31.7]) by eastrmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051029165307.UNDM21663.eastrmmtao06.cox.net@localhost>;
+          Sat, 29 Oct 2005 12:53:07 -0400
+Received: from chris by localhost with local (Exim 4.43)
+	id 1EVtxr-0005Sp-65; Sat, 29 Oct 2005 12:53:55 -0400
+Date:	Sat, 29 Oct 2005 12:53:55 -0400
+From:	Chris Shoemaker <c.shoemaker@cox.net>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Documentation changes to recursive option for git-diff-tree
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051029165355.GB20990@pe.Belkin>
+References: <20051028170449.GA1446@pe.Belkin> <7vy84c291u.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vy84c291u.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:10793
+
+On Fri, Oct 28, 2005 at 10:20:45PM -0700, Junio C Hamano wrote:
+> I already took some patches from you, but I just noticed this...
+> 
+> Chris Shoemaker <c.shoemaker@cox.net> writes:
+> 
+> > Signed-off-by: Chris Shoemaker <c.shoemaker at cox.net>
+> 
+> I do not particularly like this spelling out "at".
+
+That resulted from GIT_AUTHOR_IDENT="c.shoemaker<at>cox.net".  I think
+I copied that format from somewhere, but I see now that the logs
+contain regular addresses.  I've changed it to just
+"c.shoemaker@cox.net".
+
+-chris
+
+> 
+> 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

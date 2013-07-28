@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 05:13:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 178D8135934
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 05:13:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932126AbVHWLNA (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 23 Aug 2005 07:13:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932127AbVHWLNA
+	(ORCPT <rfc822;git-outgoing>); Tue, 23 Aug 2005 07:13:00 -0400
+Received: from rproxy.gmail.com ([64.233.170.199]:54003 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932126AbVHWLM7 convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 23 Aug 2005 07:12:59 -0400
+Received: by rproxy.gmail.com with SMTP id i8so1133711rne
+        for <git@vger.kernel.org>; Tue, 23 Aug 2005 04:12:58 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=kPpwVK7qFQVtxza+iXa/N37CPfIiY23XRx21RMP01tOgUnvWahrK5V1TF6BkwRhYC2Y/+r5gCf+8mflT9p3z/fa8gBu4c47TAj4zjmH76oULSxtfcDLII1xYOC1XQ4EKApaIVgy1UYGdK5IESSYaT94z2PWZKxhFcGB9n18CMJ4=
+Received: by 10.38.75.28 with SMTP id x28mr380381rna;
+        Tue, 23 Aug 2005 04:12:58 -0700 (PDT)
+Received: by 10.38.101.8 with HTTP; Tue, 23 Aug 2005 04:12:58 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f905082304126e8ecd65@mail.gmail.com>
+Date:	Tue, 23 Aug 2005 23:12:58 +1200
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	GIT <git@vger.kernel.org>
+Subject: [RFC] cg-log -r order:matters
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 12
+Xref: brand.scrye.com linux.git:7641
+
+It's sometimes unclear which head is "ahead" of the other. If I get
+the order wrong, cg-log shows no log output. Is this expected?
+
+I was expecting a warning, or a reverse-ordered log. Or both. ;)
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

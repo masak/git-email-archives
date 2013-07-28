@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 22 09:55:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DE8A82B061F
+	for <tkil@scrye.com>; Thu, 22 Sep 2005 09:55:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030416AbVIVPwA (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Sep 2005 11:52:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030419AbVIVPwA
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Sep 2005 11:52:00 -0400
+Received: from colo.jdl.com ([66.118.10.122]:26027 "EHLO jdl.com")
+	by vger.kernel.org with ESMTP id S1030416AbVIVPv7 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 22 Sep 2005 11:51:59 -0400
+Received: from jdl (helo=jdl.com)
+	by jdl.com with local-esmtp (Exim 4.44)
+	id 1EITMb-0001CX-D4
+	for git@vger.kernel.org; Thu, 22 Sep 2005 10:51:58 -0500
+From:	Jon Loeliger <jdl@freescale.org>
+To:	git@vger.kernel.org
+Subject: PATCH Suggestion for Tutorial Change
+Date:	Thu, 22 Sep 2005 10:51:57 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EITMb-0001CX-D4@jdl.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:9122
+
+
+In the tutorial, there is a section entitled "Checking it out"
+that shows how to use diff log and whatchanged to insect some
+of the repository state.
+
+As the phrase "checkout" ususally carries some baggage WRT
+other revision control mechanism, I suggest that we re-title
+this section something like "Inspecting Changes".
+
+
+Signed-off-by: Jon Loeliger <jdl@freescale.com>
+---
+
+
+diff --git a/Documentation/tutorial.txt b/Documentation/tutorial.txt
+--- a/Documentation/tutorial.txt
++++ b/Documentation/tutorial.txt
+@@ -432,8 +432,8 @@ message headers, and a few one-liners th
+ commit itself (`git-commit`).
+
+
+-Checking it out
+----------------
++Inspecting Changes
++------------------
+
+ While creating changes is useful, it's even more useful if you can tell
+ later what changed. The most useful command for this is another of the
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

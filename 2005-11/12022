@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 10:41:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CD46D2851FE
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 10:41:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030251AbVKPRjJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 12:39:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030253AbVKPRjJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 12:39:09 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:53411 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1030251AbVKPRjH (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 16 Nov 2005 12:39:07 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAGHcnnO023030
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 16 Nov 2005 09:38:49 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAGHckD7003655;
+	Wed, 16 Nov 2005 09:38:48 -0800
+Date:	Wed, 16 Nov 2005 09:38:46 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Disallow empty pattern in "git grep"
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511160934480.13959@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 39
+Xref: brand.scrye.com linux.git:12022
+
+
+For some reason I've done a "git grep" twice with no pattern, which is 
+really irritating, since it just grep everything. If I actually wanted 
+that, I could do "git grep ^" or something.
+
+So add a "usage" message if the pattern is empty.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+
+Yeah, maybe we should allow an empty pattern, and just check the number of 
+arguments instead. However, the argument parsing isn't set up that way, so 
+this was the simple and ugly approach.
+
+So this will warn even for
+
+	git grep ""
+
+which might be otherwise be considered legal (but stupid).
+
+diff --git a/git-grep.sh b/git-grep.sh
+index e7a35eb..44c1613 100755
+--- a/git-grep.sh
++++ b/git-grep.sh
+@@ -39,5 +39,9 @@ while : ; do
+ 	esac
+ 	shift
+ done
++[ "$pattern" ] || {
++	echo >&2 "usage: 'git grep <pattern> [pathspec*]'"
++	exit 1
++}
+ git-ls-files -z "${git_flags[@]}" "$@" |
+ 	xargs -0 grep "${flags[@]}" -e "$pattern"
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 29 10:26:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3E8FB171A12
+	for <tkil@scrye.com>; Fri, 29 Apr 2005 10:26:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262833AbVD2QYp (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Apr 2005 12:24:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262826AbVD2QYc
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Apr 2005 12:24:32 -0400
+Received: from imap.gmx.net ([213.165.64.20]:20969 "HELO mail.gmx.net")
+	by vger.kernel.org with SMTP id S262820AbVD2QYO (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Apr 2005 12:24:14 -0400
+Received: (qmail invoked by alias); 29 Apr 2005 16:24:11 -0000
+Received: from p509052DC.dip.t-dialin.net (EHLO dialup) [80.144.82.220]
+  by mail.gmx.net (mp019) with SMTP; 29 Apr 2005 18:24:11 +0200
+X-Authenticated: #271361
+Date:	Fri, 29 Apr 2005 18:24:07 +0200
+From: Edgar Toernig <froese@gmx.de>
+To: Robert =?ISO-8859-1?Q?S=FCtterlin?= <robert@mpe.mpg.de>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH]: first take at cleanup of #include, xmalloc / xrealloc,
+ git status report usage.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050429182407.5f6afd15.froese@gmx.de>
+In-Reply-To: <bfbb1f23220e1918afe70d4cf3de24f5@mpe.mpg.de>
+References: <bfbb1f23220e1918afe70d4cf3de24f5@mpe.mpg.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
+X-Y-GMX-Trusted: 0
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 39
+Xref: brand.scrye.com linux.git:2116
+
+Robert Sütterlin wrote:
+>[...]
+> +static int
+> +create_directories(const char *path)
+>   {
+> -	int len = strlen(path);
+> -	char *buf = xmalloc(len + 1);
+> -	const char *slash = path;
+> +	char *buf = (char *)path;
+> +	char *slash = buf;
+> 
+>   	while ((slash = strchr(slash+1, '/')) != NULL) {
+> -		len = slash - path;
+> -		memcpy(buf, path, len);
+> -		buf[len] = 0;
+> -		mkdir(buf, 0755);
+> +		*slash = '\0';
+> +		if (0 != mkdir(buf, 0755))
+> +			return error("Unable to mkdir(``%s'', 0755)", buf);
+> +		*slash = '/';
+
+You need the temp buffer.  Simply casting the const away may
+shut up the compiler but it's not correct.
+
+> -		if (errno != EEXIST)
+> +		if (EEXIST != errno)
+
+Too much Star Wars?  Joda-speak?
+
+Ciao, ET.
+
+
+PS: the mkdir mode should be 0777 ...
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 23 12:49:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 002CF186E13
+	for <tkil@scrye.com>; Sun, 23 Oct 2005 12:49:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750963AbVJWStl (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 23 Oct 2005 14:49:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750979AbVJWStl
+	(ORCPT <rfc822;git-outgoing>); Sun, 23 Oct 2005 14:49:41 -0400
+Received: from inti.inf.utfsm.cl ([200.1.21.155]:52706 "EHLO inti.inf.utfsm.cl")
+	by vger.kernel.org with ESMTP id S1750963AbVJWStl (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 23 Oct 2005 14:49:41 -0400
+Received: from inti.inf.utfsm.cl (localhost.localdomain [127.0.0.1])
+	by inti.inf.utfsm.cl (8.13.5/8.13.1) with ESMTP id j9NFXhOv019272;
+	Sun, 23 Oct 2005 12:33:45 -0300
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200510231533.j9NFXhOv019272@inti.inf.utfsm.cl>
+To:	"Martin Langhoff (CatalystIT)" <martin@catalyst.net.nz>
+cc:	Dmitry Torokhov <dtor_core@ameritech.net>, git@vger.kernel.org,
+	Petr Baudis <pasky@suse.cz>
+Subject: Re: LCA2006 Git/Cogito tutorial 
+In-Reply-To: Message from "Martin Langhoff (CatalystIT)" <martin@catalyst.net.nz> 
+   of "Fri, 21 Oct 2005 15:59:06 +1300." <4358597A.6000306@catalyst.net.nz> 
+X-Mailer: MH-E 7.4.2; nmh 1.1; XEmacs 21.4 (patch 17)
+Date:	Sun, 23 Oct 2005 12:33:43 -0300
+From:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:10491
+
+Martin Langhoff (CatalystIT) <martin@catalyst.net.nz> wrote:
+
+[...]
+
+> If you combine the coolness of git-merge.sh with the fact that
+> cg-merge right now is buggy[*]... I'm starting to rely on doing
+> cg-fetch and running git-merge.sh by hand.
+> 
+> * I just merged your latest fixes, knowing that they'd conflict on
+> * cg-fetch, but the merge didn't say a thing a bout cg-fetch, and only
+> * complained like this:
+> 
+>     MERGE ERROR: : Not handling case  ->  ->
+> 
+> But there were no conflicts at all in the tree! It seems to be that
+> it's dropping the upstream changes it doesn't like.
+
+It happens when a new file with the same name appears in both parents. For
+example, we both see the need for a README file, and then I pull from you
+and try to merge into my version.
+-- 
+Dr. Horst H. von Brand                   User #22616 counter.li.org
+Departamento de Informatica                     Fono: +56 32 654431
+Universidad Tecnica Federico Santa Maria              +56 32 654239
+Casilla 110-V, Valparaiso, Chile                Fax:  +56 32 797513
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

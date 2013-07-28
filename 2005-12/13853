@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 20 19:48:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6858A1E7C51
+	for <tkil@scrye.com>; Tue, 20 Dec 2005 19:48:33 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932252AbVLUCsY (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Dec 2005 21:48:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932262AbVLUCsY
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Dec 2005 21:48:24 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:10426 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S932252AbVLUCsY
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 20 Dec 2005 21:48:24 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1Eotzi-0001Ki-Vr
+	for git@vger.kernel.org; Tue, 20 Dec 2005 21:46:23 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1Eou1c-0000xq-SF; Tue, 20 Dec 2005 21:48:20 -0500
+Subject: Random notes about qgit
+From:	Pavel Roskin <proski@gnu.org>
+To:	Marco Costalba <mcostalba@gmail.com>
+Cc:	git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Tue, 20 Dec 2005 21:48:20 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1135133300.3202.6.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:13853
+
+Hello, Marco!
+
+Here's some assorted notes about current qgit.
+
+Thanks for making the range dialog optional, but now I don't see any way
+to see the local changes unless I re-enable the dialog.  I think it
+should be an action activated from the menu - "diff local files to this
+revision".  Or maybe the "local" radio button in the diff pane.
+
+Current qgit seems to have another crash, also annotation related.  Run
+qgit on its own repository.  Select "Add range select dialog options",
+then double click on src/commitimpl.cpp in the file list.  Sometimes it
+works, sometimes it crashes like this:
+
+ASSERT getFileAnnotation: no revision
+9771bea705024b3d0a59e1b9144adf5d77ca82d1
+
+Sometimes you need to select other revisions and double click on other
+files.  Another assert I got was:
+
+ASSERT getFileAnnotation: no revision
+bbf2abcbcafc2e458343034c8f249ac4956ec4fb
+
+"git-cat-file commit" works fine on both revisions.  Just in case, I'm
+seeing this on x86_64.
+
+"View->Revision Diff" and "View->Archive Tree" work differently.  The
+former doesn't allow to turn the pane off.  I'd like it to work like
+"View->Archive Tree".  Neither can "Revision Diff" be closed from the
+popup menu.
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

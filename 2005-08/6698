@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  1 14:48:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D7E57D154B
+	for <tkil@scrye.com>; Mon,  1 Aug 2005 14:48:05 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261221AbVHAUqq (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 1 Aug 2005 16:46:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261268AbVHAUqL
+	(ORCPT <rfc822;git-outgoing>); Mon, 1 Aug 2005 16:46:11 -0400
+Received: from moutng.kundenserver.de ([212.227.126.187]:65227 "EHLO
+	moutng.kundenserver.de") by vger.kernel.org with ESMTP
+	id S261221AbVHAUpQ (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 1 Aug 2005 16:45:16 -0400
+Received: from p54A38EB2.dip0.t-ipconnect.de [84.163.142.178] (helo=[192.168.11.11])
+	by mrelayeu.kundenserver.de with ESMTP (Nemesis),
+	id 0MKwpI-1Dzh9v15EP-00059V; Mon, 01 Aug 2005 22:45:15 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42EE89DE.5060708@my-eitzenberger.de>
+Date:	Mon, 01 Aug 2005 22:45:18 +0200
+From: Holger Eitzenberger <holger@my-eitzenberger.de>
+User-Agent: Debian Thunderbird 1.0.2 (X11/20050715)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: git <git@vger.kernel.org>
+Subject: [PATCH 3/3] remove git-core.* files
+Content-Type: multipart/mixed;
+ boundary="------------030206000903050402060804"
+X-Provags-ID: kundenserver.de abuse@kundenserver.de login:8548cd0e00552bb75411ff34ad15700a
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 42
+Xref: brand.scrye.com linux.git:6698
+
+This is a multi-part message in MIME format.
+--------------030206000903050402060804
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+please see the notes of my first email, thx.
+
+/holger
+
+--------------030206000903050402060804
+Content-Type: text/x-patch;
+ name="rem-git-core-files.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+ filename="rem-git-core-files.patch"
+
+removed old git-core files (no longer needed).
+
+---
+commit 34772a631d1715ed85909e8bfb417ea5f8feffea
+tree 8fd83cf3377953b35e2933f240170f5602ca7d57
+parent f2d865a59091d712f9138dbb7b6df039b342844e
+author Holger Eitzenberger <holger@my-eitzenberger.de> Mon, 01 Aug 2005 23:31:23 +0200
+committer Holger Eitzenberger <holger@jonathan.my-eitzenberger.de> Mon, 01 Aug 2005 23:31:23 +0200
+
+ debian/git-core.doc-base |    0 
+ debian/git-core.install  |    0 
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+diff --git a/debian/git-core.doc-base b/debian/git-core.doc-base
+deleted file mode 100644
+diff --git a/debian/git-core.install b/debian/git-core.install
+deleted file mode 100644
+
+--------------030206000903050402060804--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

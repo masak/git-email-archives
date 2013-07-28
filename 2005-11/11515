@@ -1,0 +1,115 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 13:51:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 85C6315D9EE
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 13:51:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932101AbVKJUqq (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 15:46:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932105AbVKJUqq
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 15:46:46 -0500
+Received: from www.tuxrocks.com ([64.62.190.123]:1033 "EHLO tuxrocks.com")
+	by vger.kernel.org with ESMTP id S932100AbVKJUql (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 10 Nov 2005 15:46:41 -0500
+Received: from [192.168.30.20] (obelix.cs.byu.edu [128.187.81.137])
+	(authenticated bits=0)
+	by tuxrocks.com (8.13.1/8.13.1) with ESMTP id jAAKkUUn006606
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 10 Nov 2005 13:46:32 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4373B1A6.8000706@tuxrocks.com>
+Date:	Thu, 10 Nov 2005 13:46:30 -0700
+From:	Frank Sorenson <frank@tuxrocks.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Petr Baudis <pasky@suse.cz>, Git Mailing List <git@vger.kernel.org>
+Subject: [PATCH] cg-log: add --no-merges option to be passed to git-rev-list
+X-Enigmail-Version: 0.92.1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 73
+Xref: brand.scrye.com linux.git:11515
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+This patch allows cg-log to ignore merges.
+
+Signed-off-by: Frank Sorenson <frank@tuxrocks.com>
+
+ cg-log |   10 ++++++++--
+ 1 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/cg-log b/cg-log
+index 7d955e3..2cebf04 100755
+- --- a/cg-log
++++ b/cg-log
+@@ -58,6 +58,9 @@
+ #	by their author. This is also known as a "shortlog", suitable
+ #	e.g. for contribution summaries of announcements.
+ #
++# --no-merges::
++#	Don't display merges in the log.
++#
+ # -uUSERNAME::
+ #	List only commits where author or committer contains 'USERNAME'.
+ #	The search for 'USERNAME' is case-insensitive.
+@@ -255,6 +258,7 @@ user=
+ mergebase=
+ date_from=
+ date_to=
++no_merges=
+
+ while optparse; do
+ 	if optparse -c; then
+@@ -300,6 +304,8 @@ while optparse; do
+ 		summary=1
+ 	elif optparse --summary; then
+ 		shortlog=1
++	elif optparse --no-merges; then
++		no_merges="--no-merges"
+ 	else
+ 		optfail
+ 	fi
+@@ -315,9 +321,9 @@ if [ "$mergebase" ]; then
+ fi
+
+ if [ "$shortlog" ]; then
+- -	revls="git-rev-list --pretty=short $date_from $date_to"
++	revls="git-rev-list --pretty=short $no_merges $date_from $date_to"
+ else
+- -	revls="git-rev-list --pretty=raw $date_from $date_to"
++	revls="git-rev-list --pretty=raw $no_merges $date_from $date_to"
+ fi
+ revls="$revls $date_from $date_to"
+
+
+Frank
+- --
+Frank Sorenson - KD7TZK
+Systems Manager, Computer Science Department
+Brigham Young University
+frank@tuxrocks.com
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.7 (GNU/Linux)
+Comment: Using GnuPG with Fedora - http://enigmail.mozdev.org
+
+iD8DBQFDc7GmaI0dwg4A47wRAosOAJ4k7ObTH9dc0me1SEGZFib0KsceqQCdHxX8
+w7WXZzCR5dLKgyA0LV49YFU=
+=6kA3
+-----END PGP SIGNATURE-----
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

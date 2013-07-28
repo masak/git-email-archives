@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 20 04:44:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1C1F42851FA
+	for <tkil@scrye.com>; Sun, 20 Nov 2005 04:44:52 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750861AbVKTLoa (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 20 Nov 2005 06:44:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751147AbVKTLoa
+	(ORCPT <rfc822;git-outgoing>); Sun, 20 Nov 2005 06:44:30 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:31451 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750861AbVKTLo3 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 20 Nov 2005 06:44:29 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 56D6A1402F4; Sun, 20 Nov 2005 12:44:28 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 3C1C09F38A; Sun, 20 Nov 2005 12:44:28 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 27B099D8EA; Sun, 20 Nov 2005 12:44:28 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 018C31402F4; Sun, 20 Nov 2005 12:44:28 +0100 (CET)
+Date:	Sun, 20 Nov 2005 12:44:28 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Matthias Urlichs <smurf@smurf.noris.de>
+Cc:	git@vger.kernel.org
+Subject: Re: [RFC] Applying a graft to a tree and "rippling" the changes
+ through
+In-Reply-To: <20051120073244.GA7902@kiste.smurf.noris.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511201242210.27791@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051117230723.GD26122@nowhere.earth>
+ <Pine.LNX.4.63.0511180026080.18775@wbgn013.biozentrum.uni-wuerzburg.de>
+ <20051119140404.GD3393@nowhere.earth> <20051119141341.GE3393@nowhere.earth>
+ <Pine.LNX.4.63.0511191612350.4895@wbgn013.biozentrum.uni-wuerzburg.de>
+ <20051119170929.GF3393@nowhere.earth> <pan.2005.11.19.17.23.17.920228@smurf.noris.de>
+ <Pine.LNX.4.63.0511200217200.11653@wbgn013.biozentrum.uni-wuerzburg.de>
+ <20051120073244.GA7902@kiste.smurf.noris.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12369
+
+Hi,
+
+On Sun, 20 Nov 2005, Matthias Urlichs wrote:
+
+> Why not simply use info/grafts?
+
+'Cause you can't fetch a graft. But I agree, instead of telling somebody: 
+"I have this new branch which unifies history", you can send your friend a 
+oneliner which appends a graft.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

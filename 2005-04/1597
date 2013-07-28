@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 25 11:12:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 63454170465
+	for <tkil@scrye.com>; Mon, 25 Apr 2005 11:12:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262684AbVDYRMj (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Apr 2005 13:12:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262682AbVDYRMj
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Apr 2005 13:12:39 -0400
+Received: from lug-owl.de ([195.71.106.12]:15067 "EHLO lug-owl.de")
+	by vger.kernel.org with ESMTP id S262679AbVDYRMf convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 25 Apr 2005 13:12:35 -0400
+Received: by lug-owl.de (Postfix, from userid 1001)
+	id D049E190214; Mon, 25 Apr 2005 19:12:34 +0200 (CEST)
+Date:	Mon, 25 Apr 2005 19:12:34 +0200
+From: Jan-Benedict Glaw <jbglaw@lug-owl.de>
+To: Matthias-Christian Ott <matthias.christian@tiscali.de>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH GIT 0.6] make use of register variables & size_t
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050425171234.GP24187@lug-owl.de>
+Mail-Followup-To: Matthias-Christian Ott <matthias.christian@tiscali.de>,
+	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <426CD1F1.2010101@tiscali.de> <Pine.LNX.4.58.0504250751330.18901@ppc970.osdl.org> <426D21FE.3040401@tiscali.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <426D21FE.3040401@tiscali.de>
+X-Operating-System: Linux mail 2.6.10-rc2-bk5lug-owl 
+X-gpg-fingerprint: 250D 3BCF 7127 0D8C A444  A961 1DBD 5E75 8399 E1BB
+X-gpg-key: wwwkeys.de.pgp.net
+User-Agent: Mutt/1.5.6+20040907i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 24
+Xref: brand.scrye.com linux.git:1597
+
+On Mon, 2005-04-25 18:59:42 +0200, Matthias-Christian Ott <matthias.christian@tiscali.de> wrote:
+
+["register" variables]
+
+> Literature:
+
+> [2] Erik de Castro Lopo, Peter Aitken, Bradley L. Jones: Teach Yourself 
+> C for Linux Programming in 21 Days; SAMS Publishing; 1999
+
+Yeah, "register" is what you use after 21 days of programming
+pracitce...
+
+SCNR, JBG
+
+-- 
+Jan-Benedict Glaw       jbglaw@lug-owl.de    . +49-172-7608481             _ O _
+"Eine Freie Meinung in  einem Freien Kopf    | Gegen Zensur | Gegen Krieg  _ _ O
+ fuer einen Freien Staat voll Freier Bürger" | im Internet! |   im Irak!   O O O
+ret = do_actions((curr | FREE_SPEECH) & ~(NEW_COPYRIGHT_LAW | DRM | TCPA));
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

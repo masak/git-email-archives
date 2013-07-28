@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep  5 12:23:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A7D1B12A8A6
+	for <tkil@scrye.com>; Mon,  5 Sep 2005 12:23:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932357AbVIESX1 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Sep 2005 14:23:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932375AbVIESX1
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Sep 2005 14:23:27 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:64164 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932357AbVIESX0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 5 Sep 2005 14:23:26 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050905182323.JFES3588.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 5 Sep 2005 14:23:23 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	David =?iso-2022-jp-2?B?SxsuQRtOZWdlZGFs?= <davidk@lysator.liu.se>
+Subject: Re: Tool renames? was Re: First stab at glossary
+References: <200509050054.j850sC3D023778@laptop11.inf.utfsm.cl>
+	<Pine.LNX.4.58.0509050738340.3504@evo.osdl.org>
+	<u5tvf1feedt.fsf@lysator.liu.se>
+	<Pine.LNX.4.58.0509050902070.3568@evo.osdl.org>
+	<u5tk6hveawy.fsf@lysator.liu.se>
+cc:	git@vger.kernel.org, Linus Torvalds <torvalds@osdl.org>
+Date:	Mon, 05 Sep 2005 11:23:22 -0700
+In-Reply-To: <u5tk6hveawy.fsf@lysator.liu.se> (David
+ =?iso-2022-jp-2?B?SxsuQRtOZWdlZGFsJ3M=?= message of
+	"Mon, 05 Sep 2005 18:28:45 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vek835q79.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-2022-jp-2
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:8098
+
+David K.ANegedal <davidk@lysator.liu.se> writes:
+
+> If the "-script" part is supposed to be hidden from me, why do I keep
+> seeing it everywhere I turn?
+>
+>> So to users it doesn't matter, and to developers it _does_ matter (and 
+>> calling them ".pl" or ".sh" or something would be _bad_), why not please 
+>> the developers?
+>
+> I'm not suggesting we'd call them ".pl" or ".sh".
+
+Well, I was.  Here is what I had in mind.
+
+1. Introduce SCRIPT_SH and SCRIPT_PERL, and make
+   "SCRIPTS = $(SCRIPT_SH) $(SCRIPT_PERL)" in the Makefile.
+2. Install git-foo.sh as $(DEST)$(bin)/git-foo
+3. Documentation to describe git-foo command is Documentation/git-foo.txt
+
+I was planning to leave gitk source as gitk, not gitk.tcl nor
+gitk.wish nor gitk.sh for now, if only to help me merging from
+paurus.
+
+Depending on how people would react to the "why would people
+care what scripting language is the thing written in" comment by
+Linus, I may be persuaded otherwise though, in which case 1. is
+not needed, and 2. would lose '.sh', but 3. would not change.
+ 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

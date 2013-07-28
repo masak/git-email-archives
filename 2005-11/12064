@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 16:44:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D422A131E1E
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 16:44:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030564AbVKPXoI (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 18:44:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030565AbVKPXoI
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 18:44:08 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:60370 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1030564AbVKPXoG
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 18:44:06 -0500
+Received: from nox.op5.se (1-2-9-7b.gkp.gbg.bostream.se [82.182.116.45])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 3A19B6BD03
+	for <git@vger.kernel.org>; Thu, 17 Nov 2005 00:44:05 +0100 (CET)
+Received: by nox.op5.se (Postfix, from userid 500)
+	id 0B3C55BA81; Thu, 17 Nov 2005 00:38:29 +0100 (CET)
+To:	git@vger.kernel.org
+Subject: [PATCH] git-commit: Having $GIT_COMMITTER_NAME implies -s
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051116233829.0B3C55BA81@nox.op5.se>
+Date:	Thu, 17 Nov 2005 00:38:29 +0100 (CET)
+From:	exon@op5.se (Andreas Ericsson)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 44
+Xref: brand.scrye.com linux.git:12064
+
+
+I've been trying, in vain, to tell my colleagues to use the -s flag.
+With this patch I can at least fix up their .profile's myself.
+
+Signed-off-by: Andreas Ericsson <ae@op5.se>
+
+---
+
+ git-commit.sh |    6 ++----
+ 1 files changed, 2 insertions(+), 4 deletions(-)
+
+applies-to: a2fe76123d6f5b835d3312a70a02ed4d07e25f8e
+d32c78570e25a9718721937b1ee9051e950ad1fd
+diff --git a/git-commit.sh b/git-commit.sh
+index 41955e8..ff9502c 100755
+--- a/git-commit.sh
++++ b/git-commit.sh
+@@ -134,8 +134,7 @@ then
+ 	cat "$GIT_DIR/MERGE_MSG"
+ fi | git-stripspace >"$GIT_DIR"/COMMIT_EDITMSG
+ 
+-case "$signoff" in
+-t)
++if [ "$signoff" = t -o "$GIT_COMMITTER_NAME" ]; then
+ 	{
+ 		echo
+ 		git-var GIT_COMMITTER_IDENT | sed -e '
+@@ -143,8 +142,7 @@ t)
+ 			s/^/Signed-off-by: /
+ 		'
+ 	} >>"$GIT_DIR"/COMMIT_EDITMSG
+-	;;
+-esac
++fi
+ 
+ if [ -f "$GIT_DIR/MERGE_HEAD" ]; then
+ 	echo "#"
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

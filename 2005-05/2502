@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May  3 15:30:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3A371218D2B
+	for <tkil@scrye.com>; Tue,  3 May 2005 15:30:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261782AbVECVa1 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 3 May 2005 17:30:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261777AbVECVa1
+	(ORCPT <rfc822;git-outgoing>); Tue, 3 May 2005 17:30:27 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:54967 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S261757AbVECVaT (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 3 May 2005 17:30:19 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050503213016.NIGY23392.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 3 May 2005 17:30:16 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Andreas Gal <gal@uci.edu>, Kay Sievers <kay.sievers@vrfy.org>,
+	git@vger.kernel.org
+Subject: Re: git and symlinks as tracked content
+References: <1115145234.21105.111.camel@localhost.localdomain>
+	<Pine.LNX.4.58.0505031151240.26698@ppc970.osdl.org>
+	<Pine.LNX.4.58.0505031255000.30768@sam.ics.uci.edu>
+	<Pine.LNX.4.58.0505031304140.26698@ppc970.osdl.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Tue, 03 May 2005 14:30:16 -0700
+In-Reply-To: <Pine.LNX.4.58.0505031304140.26698@ppc970.osdl.org> (Linus
+ Torvalds's message of "Tue, 3 May 2005 13:05:36 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7got2tz.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 38
+Xref: brand.scrye.com linux.git:2502
+
+>>>>> "LT" == Linus Torvalds <torvalds@osdl.org> writes:
+
+LT> On Tue, 3 May 2005, Andreas Gal wrote:
+
+>> Yuck. Thats really ugly. Right now all files have a uniform
+>> touch to them.  For every hash you can locate the file,
+>> determine its type/tag, unpack it, and check the SHA1
+>> hash. The proposal above breaks all that. Why not just
+>> introduce a new object type "dev" and put major minor in
+>> there. It will still always hash to the same SHA1 hash value,
+>> but fits much better in the overall design.
+
+LT> Hey, I don't personally care that much. I don't see anybody using 
+LT> character device nodes in the kernel tree, and I don't think most SCM's 
+LT> support stuff like that anyway ;)
+
+LT> If you want to make it a blob (and have a use for it), go wild. 
+
+Introducing "dev" type, as Andreas suggests, is wrong.  This
+this should be done in the same way as you suggested for the
+symlink case.  Store a blob object with those chrdev or blkdev
+modes whose contents are of form:
+
+    major=14
+    minor=4
+    owner=root
+    group=audio
+    perm=0660
+
+This would impact the diff side least, and for the cache side it
+does not matter in storing and merging.  checkout-cache still
+needs to know about this.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

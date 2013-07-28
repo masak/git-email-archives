@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  2 14:45:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 66515412C4
+	for <tkil@scrye.com>; Fri,  2 Dec 2005 14:45:09 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750834AbVLBVnc (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 2 Dec 2005 16:43:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750823AbVLBVnc
+	(ORCPT <rfc822;git-outgoing>); Fri, 2 Dec 2005 16:43:32 -0500
+Received: from main.gmane.org ([80.91.229.2]:9101 "EHLO ciao.gmane.org")
+	by vger.kernel.org with ESMTP id S1750776AbVLBVnb (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 2 Dec 2005 16:43:31 -0500
+Received: from list by ciao.gmane.org with local (Exim 4.43)
+	id 1EiIfH-00038I-4X
+	for git@vger.kernel.org; Fri, 02 Dec 2005 22:41:59 +0100
+Received: from ip-66-80-53-59.lax.megapath.net ([66.80.53.59])
+        by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Fri, 02 Dec 2005 22:41:59 +0100
+Received: from junkio by ip-66-80-53-59.lax.megapath.net with local (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Fri, 02 Dec 2005 22:41:59 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To:	git@vger.kernel.org
+From:	Junio C Hamano <junkio@twinsun.com>
+Subject:  Re: git pull aborts in 50% of cases
+Date:	Fri, 2 Dec 2005 21:41:20 +0000 (UTC)
+Lines:	20
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID:  <loom.20051202T223152-226@post.gmane.org>
+References:  <20051202190412.GA10757@mipter.zuzino.mipt.ru> <43909963.60901@zytor.com> <20051202211250.GA11384@mipter.zuzino.mipt.ru> <4390B64E.20601@zytor.com>
+Mime-Version:  1.0
+Content-Type:  text/plain; charset=us-ascii
+Content-Transfer-Encoding:  7bit
+X-Complaints-To: usenet@sea.gmane.org
+X-Gmane-NNTP-Posting-Host: main.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 66.80.53.59 (Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.12) Gecko/20050915 Firefox/1.0.7)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:13119
+
+H. Peter Anvin <hpa <at> zytor.com> writes:
+
+> Actually, it turns out the two servers were running different versions; 
+> one 0.99.9j and one 0.99.9k.  They're both running 0.99.9j now.
+> 
+> 0.99.9k is clearly bad.
+
+This is troublesome, since I do not think it is hitting the one that was
+causing trouble for the snapshotting procedure, and I cannot seem to reproduce
+it with random set of flags and parameters myself.
+
+I know you run it with --inetd, but what other parameters do you run it with,
+and in what kind of environment?  Specifically:
+
+ - do you use whitelist, like "git-daemon --inetd --export-all /pub/scm"?
+ - if so, are any symlinks involved in /pub area?
+ - if so, does adding real path like /mnt/real/pub/scm for /pub/scm help?
+ - do you run with --strict-paths?
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun 12 03:36:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2279E1535B4
+	for <tkil@scrye.com>; Sun, 12 Jun 2005 03:36:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261938AbVFLJfR (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 12 Jun 2005 05:35:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261931AbVFLJe2
+	(ORCPT <rfc822;git-outgoing>); Sun, 12 Jun 2005 05:34:28 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:4533 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S261932AbVFLJeS (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 12 Jun 2005 05:34:18 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j5C9YDS8025458
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <git@vger.kernel.org>; Sun, 12 Jun 2005 09:34:13 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j5C9YD8Q025457
+	for git@vger.kernel.org; Sun, 12 Jun 2005 11:34:13 +0200 (CEST)
+Date:	Sun, 12 Jun 2005 11:34:13 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: GIT <git@vger.kernel.org>
+Subject: git-whatchanged doesn't display date human understandable
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050612093413.GR20432@cip.informatik.uni-erlangen.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:4869
+
+Hello,
+what option to I have to tweak to get timestamps human understandable
+again:
+
+git-whatchanged | head -5
+diff-tree 422dee18f8b39b4c14332afbdf75a5c519bdbed2 (from 16df05aa0464e5e17d4ef023b78bc7b98546cb9a)
+tree 2ed70720e7103ae700a9dceac55c77d562057467
+parent 16df05aa0464e5e17d4ef023b78bc7b98546cb9a
+author vrsieh <vrsieh> 1082362048 +0000
+committer vrsieh <vrsieh> 1082362048 +0000
+                          ~~~~~~~~~~~~~~~~
+
+This seems to happen with Linus git tree HEAD.
+
+	Thomas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 14:51:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4972D285215
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 14:51:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751329AbVJSUum (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 16:50:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751319AbVJSUum
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 16:50:42 -0400
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:20902 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S1751305AbVJSUul (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 19 Oct 2005 16:50:41 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051019205042.WUGO9260.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 19 Oct 2005 16:50:42 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: The git protocol and DoS
+References: <4356A5C5.5080905@zytor.com>
+cc:	git@vger.kernel.org
+Date:	Wed, 19 Oct 2005 13:50:40 -0700
+In-Reply-To: <4356A5C5.5080905@zytor.com> (H. Peter Anvin's message of "Wed,
+	19 Oct 2005 13:00:05 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzl544f3.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:10297
+
+"H. Peter Anvin" <hpa@zytor.com> writes:
+
+> It would, however, require a protocol change; I would like to hear what 
+> people think about this at this stac=ge.
+
+Well, it is full two days since a majorly visible git protocol
+enabled server has been announced, and you probably know what
+kind of hits you are getting (and please let us know if you have
+numbers, I am curious).  If we do a protocol change, earlier the
+better.  You already said that the kernel.org git is
+experimental.  Does anybody run git daemons and rely on the
+current protocol?
+
+I suspect it would not make *any* sense to have a backward
+compatible server that optionally allows this cookie exchange --
+attackers can just say "I am an older client".  OTOH, it
+probably makes sense to have an option on the client side to
+skip the cookie exchange stage.  I do not think autodetecting
+new/old server on the client side in connect.c is possible.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

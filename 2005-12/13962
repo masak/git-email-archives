@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 14:07:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A177C26D0FA
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 14:07:43 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030321AbVLVVGp (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 16:06:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030322AbVLVVGp
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 16:06:45 -0500
+Received: from devrace.com ([198.63.210.113]:25106 "EHLO devrace.com")
+	by vger.kernel.org with ESMTP id S1030321AbVLVVGo (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 22 Dec 2005 16:06:44 -0500
+Received: from tigra.home (p54A0F507.dip.t-dialin.net [84.160.245.7])
+	(authenticated bits=0)
+	by devrace.com (8.12.11/8.12.11) with ESMTP id jBML6MFk051787;
+	Thu, 22 Dec 2005 15:06:23 -0600 (CST)
+	(envelope-from fork0@users.sourceforge.net)
+Received: from steel.home ([192.168.1.2])
+	by tigra.home with esmtp (Exim 3.36 #1 (Debian))
+	id 1EpXdl-0005ed-00; Thu, 22 Dec 2005 22:06:21 +0100
+Received: from raa by steel.home with local (Exim 4.42 #1 (Debian))
+	id 1EpXdk-0001Du-NL; Thu, 22 Dec 2005 22:06:20 +0100
+Date:	Thu, 22 Dec 2005 22:06:20 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	Linus Torvalds <torvalds@osdl.org>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] whatchanged: customize diff-tree output
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051222210620.GA4679@steel.home>
+Reply-To: Alex Riesen <raa.lkml@gmail.com>
+References: <Pine.LNX.4.63.0512212336230.18908@wbgn013.biozentrum.uni-wuerzburg.de> <7vvexhr6rc.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0512212245440.4827@g5.osdl.org> <Pine.LNX.4.63.0512221200190.7112@wbgn013.biozentrum.uni-wuerzburg.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.63.0512221200190.7112@wbgn013.biozentrum.uni-wuerzburg.de>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:13962
+
+Johannes Schindelin, Thu, Dec 22, 2005 12:16:00 +0100:
+> > I'm certainly ok with the short format by default. And making it 
+> > configurable per repo sounds fine, although at the same time I wonder if 
+> > that perhaps confuses people more (something that works in one project one 
+> > way works subtly differently in another project..)
+> 
+> I cannot think of a saner way to have an overridable policy. Just provide 
+> a template config, and you're done. Everyone gets those flags per default, 
+> and if someone does not like it: go ahead, change it yourself!
+> 
+> Besides, you are usually calling git-whatchanged in your private working 
+> tree, where not many people can change the config.
+> 
+
+That's the point, isn't it? A script from ~user1/bin, which calls
+git-whatchanged suddenly stops working in ~user2/repo.
+Besides, how can user1 know what he has to specify to git-whatchanged
+(I assume the command line overrides .git/config) so that his script
+works everywhere?
+
+Maybe such configuration better left to environment variables?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 13:52:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: **
+X-Spam-Status: No, score=2.4 required=5.0 tests=ABUSEAT,BAYES_00 autolearn=no 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6DD0712D00B
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 13:52:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751245AbVJaUuc (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 15:50:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751278AbVJaUuc
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 15:50:32 -0500
+Received: from host54-33.pool8257.interbusiness.it ([82.57.33.54]:59870 "EHLO
+	zion.home.lan") by vger.kernel.org with ESMTP id S1751245AbVJaUub
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 31 Oct 2005 15:50:31 -0500
+Received: from zion.home.lan (localhost [127.0.0.1])
+	by zion.home.lan (Postfix) with ESMTP id 644ED1BA9C;
+	Mon, 31 Oct 2005 21:54:47 +0100 (CET)
+From:	Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+Subject: [PATCH] Add an option to delete a patch from a certain branch
+Date:	Mon, 31 Oct 2005 21:54:47 +0100
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+Cc:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051031205446.2341.98354.stgit@zion.home.lan>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:10878
+
+From: Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+
+Actually, simply adding the option is enough...
+Restrict print_crt_patch() to the case when we didn't specify --branch (as it's
+useless otherwise).
+
+Signed-off-by: Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+---
+
+ stgit/commands/delete.py |    8 +++++---
+ 1 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/stgit/commands/delete.py b/stgit/commands/delete.py
+--- a/stgit/commands/delete.py
++++ b/stgit/commands/delete.py
+@@ -32,8 +32,8 @@ be part of the unapplied list or be the 
+ case the command also popping it from the stack. Note that the
+ 'delete' operation is irreversible."""
+ 
+-options = []
+-
++options = [make_option('-b', '--branch',
++                       help = 'use BRANCH instead of the default one')]
+ 
+ def func(parser, options, args):
+     """Deletes a patch
+@@ -48,4 +48,6 @@ def func(parser, options, args):
+ 
+     crt_series.delete_patch(args[0])
+     print 'Patch "%s" successfully deleted' % args[0]
+-    print_crt_patch()
++
++    if not options.branch:
++        print_crt_patch()
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

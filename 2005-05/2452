@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May  3 09:52:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D505A1638E7
+	for <tkil@scrye.com>; Tue,  3 May 2005 09:52:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261768AbVECPvp (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 3 May 2005 11:51:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261796AbVECPvp
+	(ORCPT <rfc822;git-outgoing>); Tue, 3 May 2005 11:51:45 -0400
+Received: from sincerity-forever.csail.mit.edu ([128.30.67.31]:6104 "EHLO
+	sincerity-forever.csail.mit.edu") by vger.kernel.org with ESMTP
+	id S261768AbVECPvo (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 3 May 2005 11:51:44 -0400
+Received: from catfish.lcs.mit.edu ([128.30.67.25] helo=cag.csail.mit.edu)
+	by sincerity-forever.csail.mit.edu with esmtp (Exim 3.36 #1 (Debian))
+	id 1DSzg3-0007sN-00; Tue, 03 May 2005 11:51:15 -0400
+Date:	Tue, 3 May 2005 11:50:59 -0400 (EDT)
+From: "C. Scott Ananian" <cscott@cscott.net>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Alon Ziv <alonz@nolaviz.org>, git@vger.kernel.org
+Subject: Re: RFC: adding xdelta compression to git
+In-Reply-To: <Pine.LNX.4.58.0505022131380.3594@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.61.0505031146130.32767@cag.csail.mit.edu>
+References: <200505030657.38309.alonz@nolaviz.org>
+ <Pine.LNX.4.58.0505022131380.3594@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 29
+Xref: brand.scrye.com linux.git:2452
+
+On Mon, 2 May 2005, Linus Torvalds wrote:
+
+>> * Changes the repository format.
+>
+> It wouldn't necessarily. You should be able to do this with _zero_ changes
+> to existing objects what-so-ever.
+
+Yes.  The 'chunking' code I posted earlier does this, etc.  It's kinda odd 
+computing a SHA-1 including the 'blob <size>\0' header, even when your 
+representation doesn't use this type exactly, but it's no big deal.  I'm 
+still tinkering with this, btw; I can get modest improvements in 'real' disk 
+space used, but nothing earth-shattering (yet).  I'll post the list of 
+things I tried and how well they worked at some point, just to save people 
+the effort of retrying things.
+
+I've been working from the 'no knowledge of commit structure needed' 
+perspective; I think Chris Mason has been using the structure of the 
+commit object to guide delta-fication and showing more impressive 
+space savings.
+  --scott
+
+HTAUTOMAT Legion of Doom payment PBPRIME insurgent shortwave AVBUSY 
+Nader PBCABOOSE overthrow explosion Ortega STANDEL ECJOB Sigint FBI
+                          ( http://cscott.net/ )
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun 28 09:38:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 979EF31076
+	for <tkil@scrye.com>; Tue, 28 Jun 2005 09:38:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262042AbVF1PLS (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 28 Jun 2005 11:11:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262038AbVF1PLS
+	(ORCPT <rfc822;git-outgoing>); Tue, 28 Jun 2005 11:11:18 -0400
+Received: from octopus.dnsvelocity.com ([64.21.80.9]:28046 "EHLO
+	octopus.dnsvelocity.com") by vger.kernel.org with ESMTP
+	id S262036AbVF1PLE (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 28 Jun 2005 11:11:04 -0400
+Received: from nc-65-40-95-113.sta.sprint-hsd.net ([65.40.95.113] helo=[192.168.0.38])
+	by octopus.dnsvelocity.com with esmtpa (Exim 4.50)
+	id 1DnHjY-0001u5-95; Tue, 28 Jun 2005 15:10:44 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42C16877.6000909@aktzero.com>
+Date:	Tue, 28 Jun 2005 11:10:47 -0400
+From: Andrew Thompson <andrewkt@aktzero.com>
+User-Agent: Mozilla Thunderbird 1.0.2 (Windows/20050317)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Christopher Li <hg@chrisli.org>, mercurial@selenic.com,
+	Jeff Garzik <jgarzik@pobox.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Mercurial vs Updated git HOWTO for kernel hackers
+References: <42B9E536.60704@pobox.com> <20050623235634.GC14426@waste.org>	<20050624064101.GB14292@pasky.ji.cz>	<20050624123819.GD9519@64m.dyndns.org> <20050628150027.GB1275@pasky.ji.cz>
+In-Reply-To: <20050628150027.GB1275@pasky.ji.cz>
+Content-Type: multipart/mixed;
+ boundary="------------020209000102070105000101"
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - octopus.dnsvelocity.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [0 0] / [47 12]
+X-AntiAbuse: Sender Address Domain - aktzero.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 45
+Xref: brand.scrye.com linux.git:5319
+
+This is a multi-part message in MIME format.
+--------------020209000102070105000101
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Petr Baudis wrote:
+>>Mercurial's undo is taking a snapshot of all the changed file's repo file length
+>>at every commit or pull.  It just truncate the file to original size and undo 
+>>is done.
+> 
+> "Trunactes"? That sounds very wrong... you mean replace with old
+> version? Anyway, what if the file has same length? It just doesn't make
+> much sense to me.
+
+I believe this works because the files stored in a binary format that 
+appends new changesets onto the end. Thus, truncating the new stuff from 
+the end effectively removes the commit.
+
+-- 
+Andrew Thompson
+http://aktzero.com/
+
+--------------020209000102070105000101
+Content-Type: text/x-vcard; charset=utf-8;
+ name="andrewkt.vcf"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="andrewkt.vcf"
+
+begin:vcard
+fn:Andrew Thompson
+n:Thompson;Andrew
+email;internet:andrewkt@aktzero.com
+x-mozilla-html:FALSE
+url:http://aktzero.com/
+version:2.1
+end:vcard
+
+
+--------------020209000102070105000101--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

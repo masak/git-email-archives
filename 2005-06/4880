@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun 12 11:04:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2EFFC27E597
+	for <tkil@scrye.com>; Sun, 12 Jun 2005 11:04:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262649AbVFLREA (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 12 Jun 2005 13:04:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262650AbVFLREA
+	(ORCPT <rfc822;git-outgoing>); Sun, 12 Jun 2005 13:04:00 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:51407 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262649AbVFLRD4 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 12 Jun 2005 13:03:56 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j5CH3pjA030646
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 12 Jun 2005 10:03:51 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j5CH3oJi006237;
+	Sun, 12 Jun 2005 10:03:50 -0700
+Date:	Sun, 12 Jun 2005 10:05:56 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] apply.c: tolerate diff from a dirty but unchanged path
+In-Reply-To: <Pine.LNX.4.58.0506120900200.2286@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506121003450.2286@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0505261731050.17207@ppc970.osdl.org>
+ <7vsm091887.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0505270848220.17402@ppc970.osdl.org>
+ <7vk6lk5lxt.fsf_-_@assigned-by-dhcp.cox.net> <7v3bs82rwh.fsf@assigned-by-dhcp.cox.net>
+ <7vis13wth4.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0505291151250.10545@ppc970.osdl.org>
+ <7vpsusqxsy.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0506120900200.2286@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 27
+Xref: brand.scrye.com linux.git:4880
+
+
+
+On Sun, 12 Jun 2005, Linus Torvalds wrote:
+> 
+> I'll fix it up,
+
+One-liner fix checked in: we should ignore all git headers that are just a 
+single line. A valid git header is _always_ multiple lines: either you 
+have the "---/+++" lines of a diff, or you have the old/new lines of a 
+mode or name change.
+
+So the
+
+	if (git_hdr_len < 0)
+
+test of the return value of "parse_git_header()" was changed into
+
+	if (git_hdr_len <= len)
+
+and that cleanly solves the problem.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

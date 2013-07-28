@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May  3 17:19:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 426BE26DB54
+	for <tkil@scrye.com>; Tue,  3 May 2005 17:19:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261907AbVECXR7 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 3 May 2005 19:17:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261906AbVECXR7
+	(ORCPT <rfc822;git-outgoing>); Tue, 3 May 2005 19:17:59 -0400
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:53680 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S261905AbVECXQT (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 3 May 2005 19:16:19 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050503231618.XIHW7629.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 3 May 2005 19:16:18 -0400
+To: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Linus Torvalds <torvalds@osdl.org>, Andreas Gal <gal@uci.edu>,
+	Kay Sievers <kay.sievers@vrfy.org>, git@vger.kernel.org
+Subject: Re: git and symlinks as tracked content
+References: <1115145234.21105.111.camel@localhost.localdomain>
+	<Pine.LNX.4.58.0505031151240.26698@ppc970.osdl.org>
+	<Pine.LNX.4.58.0505031255000.30768@sam.ics.uci.edu>
+	<Pine.LNX.4.58.0505031304140.26698@ppc970.osdl.org>
+	<7vr7got2tz.fsf@assigned-by-dhcp.cox.net> <42780185.7010204@zytor.com>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Tue, 03 May 2005 16:16:16 -0700
+In-Reply-To: <42780185.7010204@zytor.com> (H. Peter Anvin's message of "Tue,
+ 03 May 2005 15:56:05 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x8nuchr.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:2521
+
+>>>>> "HPA" == H Peter Anvin <hpa@zytor.com> writes:
+
+HPA> Owner and permissions are part of the tree object, and apply to all
+HPA> file types.
+
+Huh?  I am confused...  Do you mean tree object should be
+changed to record these?  That would make the existing in-cache
+merging of files, which GIT was built for, quite interesting...
+
+Well, doing device nodes _is_ a tangent, so let's drop this
+discussion.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

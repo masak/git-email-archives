@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 26 03:51:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8C73612B606
+	for <tkil@scrye.com>; Sat, 26 Nov 2005 03:51:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750808AbVKZKvR (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 26 Nov 2005 05:51:17 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750817AbVKZKvR
+	(ORCPT <rfc822;git-outgoing>); Sat, 26 Nov 2005 05:51:17 -0500
+Received: from zproxy.gmail.com ([64.233.162.207]:40609 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750808AbVKZKvQ convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 26 Nov 2005 05:51:16 -0500
+Received: by zproxy.gmail.com with SMTP id 18so1900083nzp
+        for <git@vger.kernel.org>; Sat, 26 Nov 2005 02:51:15 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=AI4YH2hpdd8pPiPhasurR68W71K/vjgbxTAky9EMGCZzkPRLJdUnBP1wPm6/bhCLsXl5DUClryUPQ2bIKwXBA3MkA+7AT7XrDaDYliGqRWJAkfXrNuyoDq5E8+u2XWMhVmYIZDVzWzYmxrY3vIsRdkvRZhmgFm9gL5yEH8QWd5s=
+Received: by 10.65.61.11 with SMTP id o11mr2306003qbk;
+        Sat, 26 Nov 2005 02:51:14 -0800 (PST)
+Received: by 10.64.242.12 with HTTP; Sat, 26 Nov 2005 02:51:14 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90511260251x7c470c2esc6e87048cf8eda6b@mail.gmail.com>
+Date:	Sat, 26 Nov 2005 10:51:14 +0000
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [PATCH 1/9] archimport: first, make sure it still compiles
+Cc:	Eric Wong <normalperson@yhbt.net>, git list <git@vger.kernel.org>,
+	Martin Langhoff <martin@catalyst.net.nz>
+In-Reply-To: <Pine.LNX.4.64.0511241051170.13959@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20051112092336.GA16218@Muzzle>
+	 <46a038f90511170126l5f04f4e0ta578fc2cb375db68@mail.gmail.com>
+	 <20051124074605.GA4789@mail.yhbt.net>
+	 <20051124074739.GB4789@mail.yhbt.net>
+	 <Pine.LNX.4.64.0511241051170.13959@g5.osdl.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:12768
+
+On 11/24/05, Linus Torvalds <torvalds@osdl.org> wrote:
+>  I don't know about Junio, but if I were him, I'd have preferred that all
+> your patches had a
+>
+>         archimport: ..
+>
+> prefix in the subject line, not just the first one.
+
+Good catch -- I'll prefix them all as I merge them. If Junio pulls
+from my tree, he'll get them prefixed.
+
+cheers,
+
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

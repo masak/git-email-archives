@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul 13 21:11:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 383721F75BB
+	for <tkil@scrye.com>; Wed, 13 Jul 2005 21:11:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262865AbVGNDLF (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 13 Jul 2005 23:11:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262866AbVGNDLF
+	(ORCPT <rfc822;git-outgoing>); Wed, 13 Jul 2005 23:11:05 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:1219 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262865AbVGNDLE (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 13 Jul 2005 23:11:04 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6E3B3jA014698
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 13 Jul 2005 20:11:03 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6E3B277022098;
+	Wed, 13 Jul 2005 20:11:02 -0700
+Date:	Wed, 13 Jul 2005 20:11:02 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Git Mailing List <git@vger.kernel.org>
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: "git daemon"
+In-Reply-To: <Pine.LNX.4.58.0507131946540.17536@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507131956580.17536@g5.osdl.org>
+References: <Pine.LNX.4.58.0507131946540.17536@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 48
+Xref: brand.scrye.com linux.git:6088
+
+
+
+On Wed, 13 Jul 2005, Linus Torvalds wrote:
+> 
+> Anyway, this would be a _wonderful_ interface for read-only updates, ie 
+> people pulling from my (and other peoples) git repositories.
+
+I guess I should say what the interface is, so that people don't have to 
+read the sources to find out..
+
+On the server side:
+
+	# mark all repositories you want to export with the
+	# "git-daemon-export-ok" file in the .git directory..
+	#
+	# .. and let the port (9418) through any firewalls etc,
+	# of course
+
+	git-daemon >& logfile &
+
+(NOTE! "git-daemon" will not disassociate from any tty's or anything fancy 
+like that.)
+
+On the client side:
+
+	git pull git://servername/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+
+And you're done.
+
+(or "git clone", for that matter - I just fixed a one-liner that caused
+"clone" to not work, so make sure that you have a commit that says 'Fix
+the "close before dup" bug in clone-pack too').
+
+If you want to use a different port number (maybe 9418 is some really 133t 
+port, and google just doesn't know about it), you can give git-daemon a 
+"--port=x" command line argument, and you can use
+
+	git://servername:port/pathname
+
+on the client side. At least that was my intention, I didn't actually test 
+whether that worked (but the default port has been tested).
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

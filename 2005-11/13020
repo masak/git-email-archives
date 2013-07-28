@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 16:23:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,TW_FN,TW_PM autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 292D0297307
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 16:23:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751215AbVK3XXi (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 18:23:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751221AbVK3XXh
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 18:23:37 -0500
+Received: from marski.suomi.net ([212.50.131.142]:10442 "EHLO marski.suomi.net")
+	by vger.kernel.org with ESMTP id S1751215AbVK3XXh (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 30 Nov 2005 18:23:37 -0500
+Received: from spartak.suomi.net (spartak.suomi.net [212.50.140.227])
+ by marski.suomi.net (Sun Java System Messaging Server 6.2 (built Dec  2 2004))
+ with ESMTP id <0IQS00I0TJNCKN40@marski.suomi.net> for git@vger.kernel.org;
+ Thu, 01 Dec 2005 01:23:36 +0200 (EET)
+Received: from spam2.suomi.net (spam2.suomi.net [212.50.131.166])
+ by mailstore.suomi.net
+ (Sun Java System Messaging Server 6.2-3.04 (built Jul 15 2005))
+ with ESMTP id <0IQS004WCJSUAV50@mailstore.suomi.net>; Thu,
+ 01 Dec 2005 01:26:54 +0200 (EET)
+Received: from garlic.home.net (addr-82-128-203-211.suomi.net [82.128.203.211])
+	by spam2.suomi.net (Postfix) with SMTP id 9021711B531; Thu,
+ 01 Dec 2005 01:23:33 +0200 (EET)
+Date:	Thu, 01 Dec 2005 01:23:33 +0200
+From:	Timo Hirvonen <tihirvon@gmail.com>
+Subject: [PATCH] Move "-include config.mak" to end of configuration section
+To:	git@vger.kernel.org, Junio C Hamano <junkio@cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20051201012333.44bd81f2.tihirvon@gmail.com>
+MIME-version: 1.0
+X-Mailer: Sylpheed version 2.0.4 (GTK+ 2.8.7; i686-pc-linux-gnu)
+Content-type: text/plain; charset=US-ASCII
+Content-transfer-encoding: 7BIT
+X-OPOY-MailScanner-Information:	Please contact the OPOY for more information
+X-OPOY-MailScanner: Found to be clean
+X-OPOY-MailScanner-SpamCheck: not spam, SpamAssassin (score=-2.022,	required 5,
+ autolearn=not spam, AWL 0.58, BAYES_00 -2.60)
+X-OPOY-MailScanner-From: tihirvon@gmail.com
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:13020
+
+
+This makes it possible to define WITH_SEND_EMAIL etc. in config.mak.
+
+---
+
+ Makefile |    4 +---
+ 1 files changed, 1 insertions(+), 3 deletions(-)
+
+fe5fece83b2ab0d67a4277d851faf50ad944cff4
+diff --git a/Makefile b/Makefile
+index 984d167..c44f5da 100644
+--- a/Makefile
++++ b/Makefile
+@@ -75,7 +75,7 @@ RPMBUILD = rpmbuild
+ # explicitly what architecture to check for. Fix this up for yours..
+ SPARSE_FLAGS = -D__BIG_ENDIAN__ -D__powerpc__
+ 
+-
++-include config.mak
+ 
+ ### --- END CONFIGURATION SECTION ---
+ 
+@@ -254,8 +254,6 @@ ifneq (,$(findstring arm,$(uname_M)))
+ 	ARM_SHA1 = YesPlease
+ endif
+ 
+--include config.mak
+-
+ ifndef NO_CURL
+ 	ifdef CURLDIR
+ 		# This is still problematic -- gcc does not always want -R.
+-- 
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

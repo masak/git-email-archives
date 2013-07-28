@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 07:09:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4F438101668
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 07:09:43 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932135AbVKUOJQ (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 09:09:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932218AbVKUOJQ
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 09:09:16 -0500
+Received: from palinux.external.hp.com ([192.25.206.14]:28874 "EHLO
+	palinux.hppa") by vger.kernel.org with ESMTP id S932135AbVKUOJQ
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 09:09:16 -0500
+Received: by palinux.hppa (Postfix, from userid 26919)
+	id 18B584940D7; Mon, 21 Nov 2005 07:09:15 -0700 (MST)
+Date:	Mon, 21 Nov 2005 07:09:14 -0700
+From:	Matthew Wilcox <matthew@wil.cx>
+To:	git@vger.kernel.org
+Cc:	Linus Torvalds <torvalds@osdl.org>
+Subject: default update hook broken
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051121140914.GB1598@parisc-linux.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:12434
+
+
+There's two syntax errors and one good-netizen error in the hooks/update
+file created when cloning Linus' linux-2.6.git repo.  I don't know
+if that file is created fresh or if it gets pulled from Linus' tree.
+Here's a patch to fix it
+
+--- .git/hooks/update	2005-11-21 06:31:51.000000000 -0700
++++ /home/willy/replacement-update	2005-11-21 07:01:37.000000000 -0700
+@@ -8,14 +8,14 @@
+ # (2) make this file executable by "chmod +x update".
+ #
+ 
+-recipient="commit-list@mydomain.xz"
++recipient="commit-list@example.com"
+ 
+ if expr "$2" : '0*$' >/dev/null
+ then
+ 	echo "Created a new ref, with the following commits:"
+ 	git-rev-list --pretty "$3"
+ else
+-	$base=$(git-merge-base "$2" "$3")
++	base=$(git-merge-base "$2" "$3")
+ 	case "$base" in
+ 	"$2")
+ 		echo "New commits:"
+@@ -24,8 +24,7 @@
+ 		echo "Rebased ref, commits from common ancestor:"
+ 		;;
+ 	esac
+-fi
+-git-rev-list --pretty "$3" "^$base"
++	git-rev-list --pretty "$3" "^$base"
+ fi |
+ mail -s "Changes to ref $1" "$recipient"
+ exit 0
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

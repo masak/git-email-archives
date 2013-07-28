@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 29 07:31:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 50F64FC050
+	for <tkil@scrye.com>; Fri, 29 Apr 2005 07:31:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262648AbVD2Na0 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Apr 2005 09:30:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262639AbVD2NaN
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Apr 2005 09:30:13 -0400
+Received: from wproxy.gmail.com ([64.233.184.205]:38995 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262625AbVD2NXG convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 29 Apr 2005 09:23:06 -0400
+Received: by wproxy.gmail.com with SMTP id 68so1087069wra
+        for <git@vger.kernel.org>; Fri, 29 Apr 2005 06:23:00 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=axR02Oino1GDnWhbGrU491GBSINdNgRQsgxDumx1lidISfe4GqPU4I8+4x7640WUxW4crfcmJPwvop3zRK9RdVwK/UuISmEvDqiyeuO+4hX9bZdi9By/F6S28EyNVrH9NVkGH0lMu03RuSwXb6JtV30+4/yWEwSllr7KCsxonok=
+Received: by 10.54.78.9 with SMTP id a9mr1700192wrb;
+        Fri, 29 Apr 2005 06:23:00 -0700 (PDT)
+Received: by 10.54.89.3 with HTTP; Fri, 29 Apr 2005 06:23:00 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <e72f90b8050429062342724335@mail.gmail.com>
+Date:	Fri, 29 Apr 2005 15:23:00 +0200
+From: Tomasz bla Fortuna <tomaszfortuna@gmail.com>
+Reply-To: Tomasz bla Fortuna <tomaszfortuna@gmail.com>
+To: git@vger.kernel.org
+Subject: About gitweb.cgi bug
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP,
+	URI_REDIRECTOR autolearn=ham version=3.0.2
+Lines: 13
+Xref: brand.scrye.com linux.git:2104
+
+  Hi,
+I've found html injection bug:
+http://www.kernel.org/git/gitweb.cgi?p=%3Cimg%20src=%22http://af.gliwice.pl/p.png%22%3Ecogito%2Fcogito.git;a=log
+May lead to redirection to some pr0n sites using kernel.org address...
+but its nothing.
+
+Have a nice day,
+  Tomasz bla Fortuna
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

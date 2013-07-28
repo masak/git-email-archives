@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug  3 13:38:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id AA5F91E4241
+	for <tkil@scrye.com>; Wed,  3 Aug 2005 13:38:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262427AbVHCTiu (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 3 Aug 2005 15:38:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262428AbVHCTiu
+	(ORCPT <rfc822;git-outgoing>); Wed, 3 Aug 2005 15:38:50 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:52146 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262427AbVHCTit (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 3 Aug 2005 15:38:49 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j73JcijA015861
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 3 Aug 2005 12:38:45 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j73JciUH004025;
+	Wed, 3 Aug 2005 12:38:44 -0700
+Date:	Wed, 3 Aug 2005 12:38:44 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: Very limited pathspec wildcards..
+In-Reply-To: <7voe8ec08j.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508031234280.3258@g5.osdl.org>
+References: <Pine.LNX.4.58.0508031038320.3258@g5.osdl.org>
+ <7voe8ec08j.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:6771
+
+
+
+On Wed, 3 Aug 2005, Junio C Hamano wrote:
+> 
+> Wouldn't something like this work equally well?
+
+Nope, for several reasons:
+ - it's _horribly_ inefficient (ie it traverses directories that it 
+   doesn't need to)
+ - it shows all the changeset comments, regardless of whether they are 
+   releant or not. It just removes the diffs.
+
+Try it out.
+
+Junio, name-based filters _have_ to be done early. This is why
+"diffcore-pathspec" isn't used any more - it's _much_ too inefficient to
+do it later.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

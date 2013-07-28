@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 23 12:28:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7080A39D8
+	for <tkil@scrye.com>; Sun, 23 Oct 2005 12:28:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750794AbVJWS2F (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 23 Oct 2005 14:28:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750798AbVJWS2F
+	(ORCPT <rfc822;git-outgoing>); Sun, 23 Oct 2005 14:28:05 -0400
+Received: from smtp14.wxs.nl ([195.121.6.28]:14268 "EHLO smtp14.wxs.nl")
+	by vger.kernel.org with ESMTP id S1750794AbVJWS2E (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 23 Oct 2005 14:28:04 -0400
+Received: from greensroom.kotnet.org (ip54515aaa.direct-adsl.nl [84.81.90.170])
+ by smtp14.wxs.nl (iPlanet Messaging Server 5.2 Patch 2 (built Jul 14 2004))
+ with SMTP id <0IOT00550SMPL0@smtp14.wxs.nl> for git@vger.kernel.org; Sun,
+ 23 Oct 2005 20:28:01 +0200 (CEST)
+Received: (qmail 23829 invoked by uid 500); Sun, 23 Oct 2005 18:28:01 +0000
+Date:	Sun, 23 Oct 2005 20:28:01 +0200
+From:	Sven Verdoolaege <skimo@kotnet.org>
+Subject: Re: git and gitweb inconsistencies
+In-reply-to: <20051023173055.GA3019@pe.Belkin>
+To:	Chris Shoemaker <c.shoemaker@cox.net>
+Cc:	git@vger.kernel.org, Matthias Urlichs <smurf@smurf.noris.de>
+Reply-to: skimo@liacs.nl
+Mail-followup-to: Chris Shoemaker <c.shoemaker@cox.net>, git@vger.kernel.org,
+ Matthias Urlichs <smurf@smurf.noris.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20051023182800.GH8383MdfPADPa@greensroom.kotnet.org>
+MIME-version: 1.0
+Content-type: text/plain; charset=us-ascii
+Content-transfer-encoding: 7BIT
+Content-disposition: inline
+User-Agent: Mutt/1.5.10i
+References: <20051023001412.GA22679@pe.Belkin>
+ <20051023115939.GG8383MdfPADPa@greensroom.kotnet.org>
+ <20051023173055.GA3019@pe.Belkin>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:10487
+
+On Sun, Oct 23, 2005 at 01:30:55PM -0400, Chris Shoemaker wrote:
+> I foolishly assumed that the second time I ran git-cvsimport, with -C
+> /pub/scm/project/ it would be able to detect that I was using the
+> stand-alone GIT-DIR.  But, it obviously didn't.  I guess the solution
+> is use specify GIT_DIR everytime I run git-cvstimport.
+
+Since many of the core git tools try to detect the actual git dir,
+it might not be a bad idea for cvsimport to do this as well.
+It probably also shouldn't create a new git repository if the -i
+option has been specified.
+
+> So, it seems that git-web.cgi detects and prefers the stand-alone
+> directory structure, because I specify it in the projects_list file,
+> while git-cat-file, and git-update-ref default to using .git.
+
+gitweb just sets GIT_DIR and then the core git tools won't guess.
+
+skimo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

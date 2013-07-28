@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 09:07:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8D74C13442E
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 09:07:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932453AbVISPGn (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 11:06:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932454AbVISPGn
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 11:06:43 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:62628 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932453AbVISPGm (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Sep 2005 11:06:42 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8JF6YBo013386
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 19 Sep 2005 08:06:34 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8JF6SRF029850;
+	Mon, 19 Sep 2005 08:06:31 -0700
+Date:	Mon, 19 Sep 2005 08:06:28 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Joachim B Haga <cjhaga@fys.uio.no>
+cc:	git@vger.kernel.org
+Subject: Re: What to expect after GIT 0.99.7
+In-Reply-To: <85slw1rvne.fsf@riget.hn.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509190803270.9106@g5.osdl.org>
+References: <7vr7c02zgg.fsf@assigned-by-dhcp.cox.net> <7vwtleyml5.fsf@assigned-by-dhcp.cox.net>
+ <7vpsr6ymg3.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0509181829310.9106@g5.osdl.org>
+ <85slw1rvne.fsf@riget.hn.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:8867
+
+
+
+On Mon, 19 Sep 2005, Joachim B Haga wrote:
+>
+> Linus Torvalds <torvalds@osdl.org> writes:
+> 
+> > >   * strcasestr() in mailinfo.  We may need compat/strcasestr.c;
+> > 
+> > Totally untested, of course.
+> >
+> > +	int hlen = strlen(haystack) - nlen;
+> 
+> int hlen = strlen(haystack) - nlen + 1;
+
+Yeah. Duh.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

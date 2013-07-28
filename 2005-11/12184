@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 21:27:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 86A0C2851FA
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 21:27:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964824AbVKRE1p (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 23:27:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932508AbVKRE1p
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 23:27:45 -0500
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:6097 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S932478AbVKRE1o (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 23:27:44 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051118042744.IZTO25099.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 17 Nov 2005 23:27:44 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	John Benes <smartcat99s@gmail.com>
+Subject: Re: master has some toys
+References: <20051115144223.GA18111@diana.vm.bytemark.co.uk>
+	<b0943d9e0511160311k725526d8v@mail.gmail.com>
+	<7vr79g8mys.fsf@assigned-by-dhcp.cox.net>
+	<7v7jb83w8m.fsf_-_@assigned-by-dhcp.cox.net>
+	<81b0412b0511170029xac34cdbtddf74eb766281b3c@mail.gmail.com>
+	<7vy83ny450.fsf@assigned-by-dhcp.cox.net>
+	<81b0412b0511170236r28572db9i84dc271700ded79a@mail.gmail.com>
+	<7vwtj7wn7n.fsf@assigned-by-dhcp.cox.net> <437D2D14.5080205@gmail.com>
+	<7vfypur5jb.fsf@assigned-by-dhcp.cox.net> <437D5219.6060300@gmail.com>
+cc:	git@vger.kernel.org
+Date:	Thu, 17 Nov 2005 20:27:43 -0800
+In-Reply-To: <437D5219.6060300@gmail.com> (John Benes's message of "Thu, 17
+	Nov 2005 22:01:29 -0600")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v7jb6r35s.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12184
+
+John Benes <smartcat99s@gmail.com> writes:
+
+> diff --git a/file4 b/file4
+> index
+> edc575dec543a684da5007b43886ee32ecb381ae..adb07b7ad3fa2c63251b06d1d39cb90a
+> 85b860b4 100644
+> Files a/file4 and b/file4 differ
+
+Thanks.  This is the same problem as what Large Angly SCM
+reports.  What does your "diff --version" say?
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

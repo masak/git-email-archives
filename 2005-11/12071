@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 18:23:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8E200175600
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 18:23:11 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030583AbVKQBVQ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 20:21:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030585AbVKQBVQ
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 20:21:16 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:28554 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1030583AbVKQBVO (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 20:21:14 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051117012042.NRRJ6244.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 16 Nov 2005 20:20:42 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: master has some toys
+References: <20051115144223.GA18111@diana.vm.bytemark.co.uk>
+	<b0943d9e0511160311k725526d8v@mail.gmail.com>
+	<7vr79g8mys.fsf@assigned-by-dhcp.cox.net>
+Date:	Wed, 16 Nov 2005 17:21:13 -0800
+In-Reply-To: <7vr79g8mys.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Wed, 16 Nov 2005 10:30:19 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v7jb83w8m.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:12071
+
+Junio C Hamano <junkio@cox.net> writes:
+
+> Incidentally, for the last couple of days, I was working on
+> adding a very limited binary file diff support to "diff piped to
+> apply" pattern, and the result has been posted as "reworked
+> rebase" patches.  It is very limited in the sense that the diff
+> output does not attempt to be useful if the patch consumer does
+> not have both pre- and post-image blob, but for the use of
+> StGIT's internal patch replaying purposes that is not a concern,
+> so you might be interested in taking a look.
+
+Along with the git wrapper fixes and git-apply bugfix (it did
+not fail when it saw unapplicable binary patches), and
+cvsexportcommit fixes from Kevin Geiss, I have the "limited
+binary patch support" on the master branch.  The reworked rebase
+is still in proposed updates branch.
+
+I'll be offline for a couple of hours chaffering my wife.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

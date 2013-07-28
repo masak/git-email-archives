@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 18:25:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 063D2158783
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 18:25:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261579AbVDRAZS (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Apr 2005 20:25:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261581AbVDRAZS
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Apr 2005 20:25:18 -0400
+Received: from iabervon.org ([66.92.72.58]:18181 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261579AbVDRAZM (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 17 Apr 2005 20:25:12 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DNK4s-0000Jr-00; Sun, 17 Apr 2005 20:25:26 -0400
+Date:	Sun, 17 Apr 2005 20:25:26 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Linus Torvalds <torvalds@osdl.org>, Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: [RFC] General object parsing
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0504171958520.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 32
+Xref: brand.scrye.com linux.git:556
+
+After the fiasco with confusing struct revision for a struct commit, I've
+worked out something that makes more sense. I've actually ported
+fsck-cache, rev-tree, and my merge-base to it, so it should at least be
+comprehensive.
+
+The design is as follows:
+
+There is a struct object for each object in the database, although they
+are only created on demand. It contains the type and sha1 of the
+object, as well as a flag for whether the object contents have been read,
+more flags for general use, a list of objects which it references, and a
+flag for whether any objects reference it.
+
+Each struct object is embedded in a type-specific struct, which contains
+further information. For example, struct commit has the date, the parents,
+and the tree.
+
+Parsing objects is progressive; objects are created in an unread state
+(with no disk access), and functions can be called to parse each object as
+it is determined to be interesting. This should generally allow for only
+the necessary portions of a large set of object references to be read.
+
+Any comment on the design, or should I send my implementation?
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec  4 14:00:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_06_12 autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 53E5C27F0B3
+	for <tkil@scrye.com>; Sun,  4 Dec 2005 14:00:58 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932348AbVLDVAo (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Dec 2005 16:00:44 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932350AbVLDVAn
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Dec 2005 16:00:43 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:51985 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S932348AbVLDVAn convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 4 Dec 2005 16:00:43 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jB4L08it006869;
+	Sun, 4 Dec 2005 21:00:10 GMT
+In-Reply-To: <4392871B.1030300@zytor.com>
+References: <6CC092B0-101F-4D98-9761-B4E24A7CA35A@hawaga.org.uk> <Pine.LNX.4.64.0512032040240.3099@g5.osdl.org> <4392871B.1030300@zytor.com>
+Mime-Version: 1.0 (Apple Message framework v734)
+Content-Type: text/plain; charset=UTF-8; delsp=yes; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <408B7182-4EE2-45F8-ADC0-57108781B073@hawaga.org.uk>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Content-Transfer-Encoding: 8BIT
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: Re: gitk - ewww
+Date:	Sun, 4 Dec 2005 20:38:54 +1100
+To:	"H. Peter Anvin" <hpa@zytor.com>,
+	Linus Torvalds <torvalds@osdl.org>
+X-Mailer: Apple Mail (2.734)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:13181
+
+
+>> What makes _me_ go "eww" in that screenshot is that tcl/tk doesn't  
+>> do anti-aliased fonts, but maybe that's just me, and that's  
+>> apparently 8.5 has that fixed (at a horrible performance impact,  
+>> I'm sure, but hey, one look at your screenshot and I'm saying  
+>> "bring it on").
+>>
+>
+> It usually work OK for me, running on Fedora Core 4.
+>
+> Clearly, though, it's Tcl/Tk version dependent; especially since it  
+> looks absolutely *awful* on Cygwin.
+
+The Wish/About Tcl & Tk menu option reports tcl/tk 8.4.7 - so I'd  
+guess any changes made for 8.5 won't have arrived at this host yet.
+
+This is under Mac OS X 10.4.2.
+
+-- 
+Ben • ベン • Бэн • 벤 • 班明
+http://www.hawaga.org.uk/ben/
+My email is high latency but best way to contact me. Alternatively,  
+SMS number(s) at above URL.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

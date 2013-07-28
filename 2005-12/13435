@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec 10 03:56:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.8 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1525787DFD
+	for <tkil@scrye.com>; Sat, 10 Dec 2005 03:56:36 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965032AbVLJK4U (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 10 Dec 2005 05:56:20 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965044AbVLJK4U
+	(ORCPT <rfc822;git-outgoing>); Sat, 10 Dec 2005 05:56:20 -0500
+Received: from science.horizon.com ([192.35.100.1]:39751 "HELO
+	science.horizon.com") by vger.kernel.org with SMTP id S965032AbVLJK4T
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 10 Dec 2005 05:56:19 -0500
+Received: (qmail 9995 invoked by uid 1000); 10 Dec 2005 05:56:09 -0500
+Date:	10 Dec 2005 05:56:09 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051210105609.9994.qmail@science.horizon.com>
+From:	linux@horizon.com
+To:	junkio@cox.net, linux@horizon.com
+Subject: Re: as promised, docs: git for the confused
+Cc:	git@vger.kernel.org
+In-Reply-To: <7v7jadwfdj.fsf@assigned-by-dhcp.cox.net>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 47
+Xref: brand.scrye.com linux.git:13435
+
+> I do not necessarily agree with this claim that merging is the
+> whole story about index.  As the steps in the hello/example
+> tutorial demonstrate, index is used to build up what you will
+> commit incrementally, and you can use this facility to view your
+> changes incrementally.
+> 
+> Your workflow could be like this:
+
+(Good example)
+
+> This is sometimes very useful, and I suspect your comment about
+> "commit -a will take care of everything, so you do not need to
+> know about update-index" is coming from your ignoring this
+> aspect of update-index.
+
+Well, yes and no.  I'm quite aware that the index can be used that way,
+but I'm less certain it's a good idea.
+
+I have often wished for a very lightweight "snapshot" feature that I could
+(say) put in a Makefile at the end of every successful compile.  I don't
+want to share those snapshots with the world, and I'll delete them next
+"real" commit, but they'll help me recover if I fumble-finger something.
+
+Think of it as an undo feature.  (With, of course, additional features
+like the ability to see diffs between various stages.)
+
+You can use the index as a one-level undo feature in a similar way.
+Or maybe, since it's manual, its like hitting save from an editor.
+Either way, the fact that it's only one level means that I have to
+think about what I'm throwing away when I use it, which is somewhat
+annoying.
+
+
+Add that to the fact that it's unlike other version control systems
+(including cogito) which go straight from the working directory into
+the history, and I thought it better do downplay it.
+
+Certainly I think that people will *usually* just "git-commit -a" to
+commit their current version.  Edit, compile, test, commit.  Except in
+unusual cases, I want the commit to reflect what I just tested.
+
+Using git-update-index in the meantime is an optional extra.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

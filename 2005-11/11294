@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 19:22:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 167E92426AB
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 19:22:46 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030219AbVKHCMo (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 21:12:44 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030252AbVKHCMo
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 21:12:44 -0500
+Received: from mx1.redhat.com ([66.187.233.31]:1460 "EHLO mx1.redhat.com")
+	by vger.kernel.org with ESMTP id S1030219AbVKHCMm (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 7 Nov 2005 21:12:42 -0500
+Received: from int-mx1.corp.redhat.com (int-mx1.corp.redhat.com [172.16.52.254])
+	by mx1.redhat.com (8.12.11/8.12.11) with ESMTP id jA82CXL3016100
+	for <git@vger.kernel.org>; Mon, 7 Nov 2005 21:12:33 -0500
+Received: from devserv.devel.redhat.com (devserv.devel.redhat.com [172.16.58.1])
+	by int-mx1.corp.redhat.com (8.11.6/8.11.6) with ESMTP id jA82CXV08865
+	for <git@vger.kernel.org>; Mon, 7 Nov 2005 21:12:33 -0500
+Received: from nwo.kernelslacker.org (vpn83-122.boston.redhat.com [172.16.83.122])
+	by devserv.devel.redhat.com (8.12.11/8.12.11) with ESMTP id jA82CXRW014014
+	for <git@vger.kernel.org>; Mon, 7 Nov 2005 21:12:33 -0500
+Received: from nwo.kernelslacker.org (localhost.localdomain [127.0.0.1])
+	by nwo.kernelslacker.org (8.13.5/8.13.4) with ESMTP id jA82CWQt021112
+	for <git@vger.kernel.org>; Mon, 7 Nov 2005 21:12:32 -0500
+Received: (from davej@localhost)
+	by nwo.kernelslacker.org (8.13.5/8.13.5/Submit) id jA82CWGr021111
+	for git@vger.kernel.org; Mon, 7 Nov 2005 21:12:32 -0500
+X-Authentication-Warning: nwo.kernelslacker.org: davej set sender to davej@redhat.com using -f
+Date:	Mon, 7 Nov 2005 21:12:32 -0500
+From:	Dave Jones <davej@redhat.com>
+To:	git@vger.kernel.org
+Subject: git-rev-tree
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051108021232.GB10835@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4.2.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:11294
+
+Can someone remind me what the deprecated git-rev-tree command did,
+or how this should be fixed up to use newer git commands?
+
+I'm trying to get git-changes-script working, but all the
+variants I've found on the web use this deprecated tool.
+
+Any clues ?
+
+		Dave
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

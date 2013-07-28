@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  1 18:58:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D70CB25CF69
+	for <tkil@scrye.com>; Thu,  1 Dec 2005 18:58:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964776AbVLBB6Y (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Dec 2005 20:58:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964777AbVLBB6Y
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Dec 2005 20:58:24 -0500
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:22411 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S964776AbVLBB6X (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 1 Dec 2005 20:58:23 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051202015749.FFTA15695.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 1 Dec 2005 20:57:49 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	ltuikov@yahoo.com
+Subject: Re: resolve (merge) problems
+References: <7vhd9sb9ie.fsf@assigned-by-dhcp.cox.net>
+	<20051202015039.93047.qmail@web31811.mail.mud.yahoo.com>
+cc:	git@vger.kernel.org
+Date:	Thu, 01 Dec 2005 17:58:21 -0800
+In-Reply-To: <20051202015039.93047.qmail@web31811.mail.mud.yahoo.com> (Luben
+	Tuikov's message of "Thu, 1 Dec 2005 17:50:39 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpsog9s5e.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:13089
+
+Luben Tuikov <ltuikov@yahoo.com> writes:
+
+> Ok, if your patch below resolves the bug (please see my
+> other email just posted) please submit it.  (I'm hitting
+> this bug everytime there's a file deleted from the
+> kernel tree and I try to merge.)
+
+Sorry to hear that.  The patch I sent you is already pushed out
+and mirrored the public machines.
+
+The failure from '-s recursive' (lack of heapq) makes me suspect
+that your Python installation is too old.  The 'resolve' method
+you've been using should work fine for this case; otherwise
+replace '-s recursive' in the message from Linus with '-s
+resolve' for the 'git merge' commandline, like this:
+
+	$ git merge -s resolve "merge linus' tree" HEAD master
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 24 15:02:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 23FEC2B7159
+	for <tkil@scrye.com>; Wed, 24 Aug 2005 15:02:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932212AbVHXVBS (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 24 Aug 2005 17:01:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932213AbVHXVBS
+	(ORCPT <rfc822;git-outgoing>); Wed, 24 Aug 2005 17:01:18 -0400
+Received: from iabervon.org ([66.92.72.58]:63249 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S932212AbVHXVBS (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 24 Aug 2005 17:01:18 -0400
+Received: (qmail 23930 invoked by uid 1000); 24 Aug 2005 17:04:51 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 24 Aug 2005 17:04:51 -0400
+Date:	Wed, 24 Aug 2005 17:04:51 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Carl Baldwin <cnb@fc.hp.com>
+cc:	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [RFC] undo and redo
+In-Reply-To: <20050824204736.GA13194@hpsvcnb.fc.hp.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508241651420.23242@iabervon.org>
+References: <20050824172339.GA7083@hpsvcnb.fc.hp.com> <20050824181004.GA18790@hpsvcnb.fc.hp.com>
+ <Pine.LNX.4.58.0508241148480.3317@g5.osdl.org> <20050824195615.GA693@hpsvcnb.fc.hp.com>
+ <Pine.LNX.4.63.0508241634350.23242@iabervon.org> <20050824204736.GA13194@hpsvcnb.fc.hp.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:7721
+
+On Wed, 24 Aug 2005, Carl Baldwin wrote:
+
+> This is interesting.  Can a ref be to a tree rather than a commit?  And
+> it still works?  I guess it would.  I hadn't thought about that.
+
+Generally, each subdirectory of refs/ has refs to objects of the same
+type, and heads/ is commits, but other directories are other things. tags/
+is all tag objects, and you could have undo/ be trees.
+
+> Will prune preserve any tree mentioned in any file in refs?  How does
+> this work exactly?
+
+It keeps any object reachable from an object that there's a ref to in
+refs.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

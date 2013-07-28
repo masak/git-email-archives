@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 12 05:44:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2655AFC098
+	for <tkil@scrye.com>; Thu, 12 May 2005 05:44:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261504AbVELLof (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 07:44:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261502AbVELLoa
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 07:44:30 -0400
+Received: from host-80-95-32-178.leasedlines.sura.ru ([80.95.32.178]:18569
+	"HELO penza-gsm.ru") by vger.kernel.org with SMTP id S261492AbVELLo1
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 12 May 2005 07:44:27 -0400
+Received: (qmail 25916 invoked from network); 12 May 2005 11:44:25 -0000
+Received: from unknown (HELO snake) (192.168.0.20)
+  by fileserver.penza-gsm.ru with SMTP; 12 May 2005 11:44:24 -0000
+From: Alexey Nezhdanov <snake@penza-gsm.ru>
+To: Petr Baudis <pasky@ucw.cz>
+Subject: How to add new tree?
+Date:	Thu, 12 May 2005 15:44:23 +0400
+User-Agent: KMail/1.7.2
+Cc: git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200505121544.23902.snake@penza-gsm.ru>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:3116
+
+Hello.
+Probably a lame question but I can figure out how to add new directory to repo 
+neither with cogito nor with git.
+
+a simple example:
+=========
+$mkdir newdir
+$cg-add newdir
+cg-add: newdir does not exist
+$
+==========
+How can this be resolved?
+
+-- 
+Respectfully
+Alexey Nezhdanov
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

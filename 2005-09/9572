@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 30 20:46:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C4AEC17D472
+	for <tkil@scrye.com>; Fri, 30 Sep 2005 20:46:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750716AbVJACp5 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 30 Sep 2005 22:45:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750718AbVJACp5
+	(ORCPT <rfc822;git-outgoing>); Fri, 30 Sep 2005 22:45:57 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:3978 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S1750716AbVJACp5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 30 Sep 2005 22:45:57 -0400
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1ELXNs-0003rK-CX
+	for git@vger.kernel.org; Sat, 01 Oct 2005 02:45:56 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <433DF862.4020500@pobox.com>
+Date:	Fri, 30 Sep 2005 22:45:54 -0400
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: local clone much slower than remote clone
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 36
+Xref: brand.scrye.com linux.git:9572
+
+
+Case 1: remote clone
+
+time git clone 
+rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git 
+scsi-sas-2.6
+...
+real    3m36.432s
+user    0m0.584s
+sys     0m0.656s
+
+
+Case 2: local clone
+time git clone /spare/repo/linux-2.6 scsi-sas-2.6
+...
+Packing 99084 objects
+Unpacking 99084 objects
+...
+real    4m31.876s
+user    4m43.618s
+sys     0m40.047s
+
+
+Downloading an entire kernel tree over cable modem is almost a minute 
+faster than a local clone!  IMHO the local clone should just hardlink 
+the packs and objects, and be done with it.
+
+	Jeff
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

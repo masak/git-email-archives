@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  1 06:52:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 84C6325EFAA
+	for <tkil@scrye.com>; Thu,  1 Dec 2005 06:52:41 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932236AbVLANvS (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Dec 2005 08:51:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932240AbVLANvS
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Dec 2005 08:51:18 -0500
+Received: from smtp18.wxs.nl ([195.121.247.9]:60838 "EHLO smtp18.wxs.nl")
+	by vger.kernel.org with ESMTP id S932236AbVLANvR (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 1 Dec 2005 08:51:17 -0500
+Received: from greensroom.kotnet.org (ip54515aaa.direct-adsl.nl [84.81.90.170])
+ by smtp18.wxs.nl (iPlanet Messaging Server 5.2 Patch 2 (built Jul 14 2004))
+ with SMTP id <0IQT000S5NTE9P@smtp18.wxs.nl> for git@vger.kernel.org; Thu,
+ 01 Dec 2005 14:51:14 +0100 (CET)
+Received: (qmail 3106 invoked by uid 500); Thu, 01 Dec 2005 13:51:14 +0000
+Date:	Thu, 01 Dec 2005 14:51:13 +0100
+From:	Sven Verdoolaege <skimo@kotnet.org>
+Subject: Re: minor problems in git.c
+In-reply-to: <81b0412b0512010448u7fcdddacnd7de5df217ab3ca@mail.gmail.com>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Cc:	Robert Watson <robert.oo.watson@gmail.com>, git@vger.kernel.org,
+	Junio C Hamano <junkio@cox.net>
+Reply-to: skimo@liacs.nl
+Mail-followup-to: Alex Riesen <raa.lkml@gmail.com>,
+ Robert Watson <robert.oo.watson@gmail.com>, git@vger.kernel.org,
+ Junio C Hamano <junkio@cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20051201135113.GW8383MdfPADPa@greensroom.kotnet.org>
+MIME-version: 1.0
+Content-type: text/plain; charset=us-ascii
+Content-transfer-encoding: 7BIT
+Content-disposition: inline
+User-Agent: Mutt/1.5.10i
+References: <72499e3b0512010400i1de76ed2la22cd745f811007f@mail.gmail.com>
+ <81b0412b0512010448u7fcdddacnd7de5df217ab3ca@mail.gmail.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:13048
+
+On Thu, Dec 01, 2005 at 01:48:35PM +0100, Alex Riesen wrote:
+> @@ -283,16 +283,15 @@ int main(int argc, char **argv, char **e
+>  	len = strlen(git_command);
+>  	prepend_to_path(git_command, len);
+>  
+> -	strncat(&git_command[len], "/git-", sizeof(git_command) - len);
+> -	len += 5;
+> -	strncat(&git_command[len], argv[i], sizeof(git_command) - len);
+> +	snprintf(git_command + len, sizeof(git_command) - len, "/git-%s",
+> +		 argv[i]);
+
+Shouldn't you check the return value of snprintf
+
+>  	if (access(git_command, X_OK))
+>  		usage(exec_path, "'%s' is not a git-command", argv[i]);
+
+or use the (possibly) truncated version of the command in the error message ?
+
+skimo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

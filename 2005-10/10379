@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 20 17:41:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,TRACKER_ID 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6089A276652
+	for <tkil@scrye.com>; Thu, 20 Oct 2005 17:41:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932554AbVJTXlu (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 20 Oct 2005 19:41:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932555AbVJTXlu
+	(ORCPT <rfc822;git-outgoing>); Thu, 20 Oct 2005 19:41:50 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:3986 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932554AbVJTXlt (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 20 Oct 2005 19:41:49 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id D992813ECA4; Fri, 21 Oct 2005 01:41:48 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id BCA41B4E35; Fri, 21 Oct 2005 01:41:48 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A349EB4DCC; Fri, 21 Oct 2005 01:41:48 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 54AE613ECA4; Fri, 21 Oct 2005 01:41:48 +0200 (CEST)
+Date:	Fri, 21 Oct 2005 01:41:48 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio Hamano <junio@twinsun.com>
+Cc:	Linus Torvalds <torvalds@osdl.org>, junkio@cox.net,
+	git@vger.kernel.org
+Subject: Re: rsync update appears broken now
+In-Reply-To: <7vek6f220h.fsf@arte.twinsun.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510210140400.12723@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <86vezs9wy9.fsf@blue.stonehenge.com>
+ <81b0412b0510200608l61c00ed0yd4dbc00c313665fe@mail.gmail.com>
+ <Pine.LNX.4.64.0510201038320.3369@g5.osdl.org> <loom.20051020T220751-355@post.gmane.org>
+ <Pine.LNX.4.64.0510201432260.10477@g5.osdl.org> <7vek6f220h.fsf@arte.twinsun.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:10379
+
+Hi,
+
+On Thu, 20 Oct 2005, Junio Hamano wrote:
+
+> > At that point:
+> >
+> >>                -----(A) head merlyn and everybody
+> >>              /          pulled from kernel.org previously
+> >>   --- common ------------------------------------(B) head rebased and pushed
+> >>                                                      out by mistake
+> 
+> Mind telling me the (A) commit ID if you know it?
+
+ea5a65a59916503d2a14369c46b1023384d51645
+
+Also, people having merged with (A) would not have to undo that merge as 
+was suggested. The new (C) commit would contain the revert of (A).
+
+Ciao,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

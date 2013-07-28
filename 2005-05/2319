@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  1 19:16:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 44261138770
+	for <tkil@scrye.com>; Sun,  1 May 2005 19:16:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261396AbVEBBQY (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 1 May 2005 21:16:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261419AbVEBBQY
+	(ORCPT <rfc822;git-outgoing>); Sun, 1 May 2005 21:16:24 -0400
+Received: from fire.osdl.org ([65.172.181.4]:38893 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261396AbVEBBQW (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 1 May 2005 21:16:22 -0400
+Received: from midway.verizon.net (wbar2.sea1-4-5-049-023.sea1.dsl-verizon.net [4.5.49.23])
+	(authenticated bits=0)
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j421GIs3014648
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 1 May 2005 18:16:19 -0700
+Date:	Sun, 1 May 2005 18:16:13 -0700
+From: "Randy.Dunlap" <rddunlap@osdl.org>
+To: "Sean" <seanlkml@sympatico.ca>
+Cc: git@vger.kernel.org
+Subject: Re: Current git archive location
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050501181613.3b9c975d.rddunlap@osdl.org>
+In-Reply-To: <3860.10.10.10.24.1114996194.squirrel@linux1>
+References: <3860.10.10.10.24.1114996194.squirrel@linux1>
+Organization: OSDL
+X-Mailer: Sylpheed version 1.0.4 (GTK+ 1.2.10; i686-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:2319
+
+On Sun, 1 May 2005 21:09:54 -0400 (EDT) Sean wrote:
+
+| 
+| rsync://www.kernel.org/pub/linux/kernel/people/torvalds/git.git doesn't
+| seem to work anymore, where's the new location?  Even looking at
+| http://www.kernel.org/git/  it's not obvious where to pull it from.
+
+
+http://www.kernel.org/pub/scm/* contains multiple project gits.
+
+
+---
+~Randy
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

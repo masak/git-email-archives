@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 19:17:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D8BDC9E14E
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 19:17:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964939AbVKACRr (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 21:17:47 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964941AbVKACRr
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 21:17:47 -0500
+Received: from blue.stonehenge.com ([209.223.236.162]:36225 "EHLO
+	blue.stonehenge.com") by vger.kernel.org with ESMTP id S964939AbVKACRq
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 31 Oct 2005 21:17:46 -0500
+Received: from localhost (localhost [127.0.0.1])
+	by blue.stonehenge.com (Postfix) with ESMTP id D90938F344;
+	Mon, 31 Oct 2005 18:17:41 -0800 (PST)
+Received: from blue.stonehenge.com ([127.0.0.1])
+ by localhost (blue.stonehenge.com [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 09810-02-7; Mon, 31 Oct 2005 18:17:41 -0800 (PST)
+Received: by blue.stonehenge.com (Postfix, from userid 1001)
+	id 5D8128F345; Mon, 31 Oct 2005 18:17:41 -0800 (PST)
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Cc:	Joel Becker <Joel.Becker@oracle.com>,
+	Linus Torvalds <torvalds@osdl.org>,
+	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	walt <wa1ter@myrealbox.com>, git@vger.kernel.org
+Subject: Re: git versus CVS (versus bk)
+References: <Pine.LNX.4.64.0510301720390.14972@x2.ybpnyarg>
+	<Pine.LNX.4.64.0510301811390.27915@g5.osdl.org>
+	<Pine.LNX.4.63.0510311111340.2916@wbgn013.biozentrum.uni-wuerzburg.de>
+	<Pine.LNX.4.64.0510310804400.27915@g5.osdl.org>
+	<20051031195010.GM11488@ca-server1.us.oracle.com>
+	<46a038f90510311228v50743158q80d79e963bd503ce@mail.gmail.com>
+x-mayan-date: Long count = 12.19.12.13.12; tzolkin = 9 Eb; haab = 10 Zac
+From:	merlyn@stonehenge.com (Randal L. Schwartz)
+Date:	31 Oct 2005 18:17:41 -0800
+In-Reply-To: <46a038f90510311228v50743158q80d79e963bd503ce@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <86hdaxf6wq.fsf@blue.stonehenge.com>
+Lines:	16
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:10910
+
+>>>>> "Martin" == Martin Langhoff <martin.langhoff@gmail.com> writes:
+
+Martin> You can do a diff that spans all the commits and apply it with a new
+Martin> commit msg. With cogito:
+
+Martin>    cg-diff -r from:to | patch -p1
+
+What's the easiest way then to toss all that intermediate history?
+I'm thinking of the rcs "-o" switch that "outdates" any deltas in that
+range.
+
+-- 
+Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+<merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

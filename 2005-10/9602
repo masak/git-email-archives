@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct  2 04:13:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F416C14F058
+	for <tkil@scrye.com>; Sun,  2 Oct 2005 04:13:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751057AbVJBKNI (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 2 Oct 2005 06:13:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751059AbVJBKNI
+	(ORCPT <rfc822;git-outgoing>); Sun, 2 Oct 2005 06:13:08 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:6113 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S1751057AbVJBKNH (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 2 Oct 2005 06:13:07 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id 746956E1E07; Sun,  2 Oct 2005 12:13:03 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 2D8C86E18D9; Sun,  2 Oct 2005 12:13:03 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 9C7D560EF6; Sun,  2 Oct 2005 12:13:06 +0200 (CEST)
+Date:	Sun, 2 Oct 2005 12:13:06 +0200
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	Petr Baudis <pasky@ucw.cz>
+Cc:	git@vger.kernel.org
+Subject: [PATCH Cogito] Make cg more robust and user friendly
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051002101306.GB9219@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:9602
+
+Accept -h in addition to --help. Error out on unknown options. Convert to
+be a real bash script and slightly simplify the control flow, so we can use
+the 'type' builtin command for checking if the requested Cogito command
+exists in the PATH.
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+
+---
+commit 5e15803563ef00720541e89ae16a633ac8dfb7d7
+tree 90374bdbc77b04bc5bfa4365e291e3603b0a7099
+parent 20282cdd610ecef03c8c97853bc0749ef3ab32b3
+author Jonas Fonseca <fonseca@diku.dk> Thu, 29 Sep 2005 15:12:02 +0200
+committer Jonas Fonseca <fonseca@stud1-9.itu.dk> Thu, 29 Sep 2005 15:12:02 +0200
+
+ cg |   17 ++++++++++++-----
+ 1 files changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/cg b/cg
+--- a/cg
++++ b/cg
+@@ -1,9 +1,16 @@
+-#!/bin/sh
++#!/usr/bin/env bash
+ 
+-[ x"$1" = "x" ] && exec cg-help
+ cmd="$1"; shift
+-( [ x"$cmd" = x"--help" ] ) && exec cg-help
+-( [ x"$cmd" = x"--version" ] ) && exec cg-version
++case "$cmd" in
++-h|--help|"") cmd="help" ;;
++--version) cmd="version" ;;
++-*)
++	echo "cg: unknown option '$cmd' (try 'cg --help' or 'cg --version')" >&2
++	exit 1
++esac
+ 
+ exe="cg-$cmd"
+-exec $exe "$@"
++type -P "$exe" >/dev/null && exec "$exe" "$@"
++
++echo "cg: unknown command '$cmd' (try 'cg help')" >&2
++exit 1
+
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

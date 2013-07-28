@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun 21 15:22:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D9808189138
+	for <tkil@scrye.com>; Tue, 21 Jun 2005 15:22:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262345AbVFUVQa (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 21 Jun 2005 17:16:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262344AbVFUVGx
+	(ORCPT <rfc822;git-outgoing>); Tue, 21 Jun 2005 17:06:53 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:17316 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262342AbVFUVEP (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 21 Jun 2005 17:04:15 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j5LL43jA014575
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 21 Jun 2005 14:04:04 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j5LL42LG028366;
+	Tue, 21 Jun 2005 14:04:03 -0700
+Date:	Tue, 21 Jun 2005 14:06:08 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: "David S. Miller" <davem@davemloft.net>
+Cc: git@vger.kernel.org
+Subject: Re: ORIG_HEAD
+In-Reply-To: <20050620.221055.71088925.davem@davemloft.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506211404320.2268@ppc970.osdl.org>
+References: <20050620.221055.71088925.davem@davemloft.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 20
+Xref: brand.scrye.com linux.git:5085
+
+
+
+On Mon, 20 Jun 2005, David S. Miller wrote:
+> 
+> Is there a really good reason why git-pull-script runs are deleting
+> that file now?
+
+No. I've cleaned it up a bit, and codified the stuff we leave around.
+
+I also changed "git fetch" to write FETCH_HEAD instead of MERGE_HEAD, 
+because that's obviously what it is (it's perfectly fine to fetch things 
+for other reasons, like just checking what somebody else has, and you 
+might not ever intend to merge it anyway).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

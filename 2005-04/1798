@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 17:00:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B56D91709AB
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 17:00:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261835AbVDZW7S (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 18:59:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261834AbVDZW7S
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 18:59:18 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:30948 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S261835AbVDZW7A (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 26 Apr 2005 18:59:00 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id BD37B6E2BD0; Wed, 27 Apr 2005 00:58:03 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 387C46E2B32; Wed, 27 Apr 2005 00:58:01 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id AC9F161FDE; Wed, 27 Apr 2005 00:58:55 +0200 (CEST)
+Date:	Wed, 27 Apr 2005 00:58:55 +0200
+From: Jonas Fonseca <fonseca@diku.dk>
+To: pasky@ucw.cz
+Cc: git@vger.kernel.org
+Subject: [PATCH] cg-mkpatch: Show diffstat before the patch
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050426225855.GA28560@diku.dk>
+Mail-Followup-To: pasky@ucw.cz, git@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_MK 
+	autolearn=ham version=3.0.2
+Lines: 39
+Xref: brand.scrye.com linux.git:1798
+
+Show diffstat before the patch.
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+
+---
+commit a738ed98e4557877f8bcd3b992aa55579b22b9d1
+tree 2447d3a399200c8f736344822969f88f675612dd
+parent ed095b1a965517f1674b812a9978c60eb907e192
+author Jonas Fonseca <fonseca@diku.dk> 1114554627 +0200
+committer Jonas Fonseca <fonseca@diku.dk> 1114554627 +0200
+
+ cg-mkpatch |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletion(-)
+
+Index: cg-mkpatch
+===================================================================
+--- 6159f313b10f0cfcdfedd63d6fb044029fe46aaa/cg-mkpatch  (mode:100755 sha1:5ba423cbbb3e5f72cd7fb74f2873d49b60557f12)
++++ 2447d3a399200c8f736344822969f88f675612dd/cg-mkpatch  (mode:100755 sha1:25c67a29296730daeac00e43fd4c18cf914a1c87)
+@@ -23,7 +23,10 @@
+ 		echo $line >>$header
+ 	done
+ 	echo
+-	cg-diff -p -r $id
++	cg-diff -p -r $id > $header
++	cat $header | diffstat
++	echo
++	cat $header
+ 	rm $header
+ }
+ 
+
+
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

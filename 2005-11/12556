@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 12:14:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 911EF27605D
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 12:14:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965105AbVKVTMh (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 14:12:37 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965124AbVKVTMh
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 14:12:37 -0500
+Received: from mxfep02.bredband.com ([195.54.107.73]:16035 "EHLO
+	mxfep02.bredband.com") by vger.kernel.org with ESMTP
+	id S965105AbVKVTMg (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 14:12:36 -0500
+Received: from ironport.bredband.com ([195.54.107.82] [195.54.107.82])
+          by mxfep02.bredband.com with ESMTP
+          id <20051122191234.NJDE9142.mxfep02.bredband.com@ironport.bredband.com>
+          for <git@vger.kernel.org>; Tue, 22 Nov 2005 20:12:34 +0100
+Received: from c-fa2b70d5.018-10-67626713.cust.bredbandsbolaget.se (HELO puritan.petwork) ([213.112.43.250])
+  by ironport.bredband.com with ESMTP; 22 Nov 2005 20:11:51 +0100
+X-BrightmailFiltered: true
+X-IronPort-AV: i="3.97,362,1125871200"; 
+   d="scan'208"; a="12211269:sNHT33422472"
+Received: by puritan.petwork (Postfix, from userid 1000)
+	id D4CEAADFE5; Tue, 22 Nov 2005 20:12:34 +0100 (CET)
+Date:	Tue, 22 Nov 2005 20:12:34 +0100
+From:	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+To:	git@vger.kernel.org
+Subject: Re: Get rid of .git/branches/ and .git/remotes/?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051122191234.GA9040@puritan.petwork>
+Mail-Followup-To: git@vger.kernel.org
+References: <20051122041843.9436.qmail@science.horizon.com> <4382DFDA.6040306@op5.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4382DFDA.6040306@op5.se>
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:12556
+
+Andreas Ericsson wrote:
+
+> Excellent error messages aren't good enough. It's ok for Python, since
+> that's a programming language. We can expect infinitely more from
+> programmers than we can from users.
+
+A semi-related question: who is the target audience of git?  I get the
+feeling that most users will be programmers, so that's kind of a
+non-argument (even though I agree with your standpoint).
+
+Furthermore, does it really matter what format .git/config has now that
+we have git-config-set?  Shouldn't all access go through that command,
+so that we can change to some other format (YAML, XML, STUPIDABBR) if we
+so desire without breaking anything?
+
+Finally, a plain-text easy-to-edit format is great, and that's a good
+enough argument not to use indentation (as has already been pointed out,
+indentation is not always what it seems).
+
+        nikolai
+
+-- 
+Nikolai Weibull: now available free of charge at http://bitwi.se/!
+Born in Chicago, IL USA; currently residing in Gothenburg, Sweden.
+main(){printf(&linux["\021%six\012\0"],(linux)["have"]+"fun"-97);}
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

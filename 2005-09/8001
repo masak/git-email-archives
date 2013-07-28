@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep  2 02:24:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7B5F71B7A6A
+	for <tkil@scrye.com>; Fri,  2 Sep 2005 02:24:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750851AbVIBIXd (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 2 Sep 2005 04:23:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751120AbVIBIXd
+	(ORCPT <rfc822;git-outgoing>); Fri, 2 Sep 2005 04:23:33 -0400
+Received: from baythorne.infradead.org ([81.187.2.161]:50060 "EHLO
+	baythorne.infradead.org") by vger.kernel.org with ESMTP
+	id S1750851AbVIBIXc (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 2 Sep 2005 04:23:32 -0400
+Received: from localhost ([127.0.0.1] helo=localhost.localdomain)
+	by baythorne.infradead.org with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1EB6pK-00057E-Af; Fri, 02 Sep 2005 09:23:10 +0100
+Subject: Re: empty patch-2.6.13-git? patches on ftp.kernel.org
+From:	David Woodhouse <dwmw2@infradead.org>
+To:	Tomasz =?ISO-8859-1?Q?K=B3oczko?= <kloczek@rudy.mif.pg.gda.pl>
+Cc:	git@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Linus Torvalds <torvalds@osdl.org>
+In-Reply-To: <Pine.BSO.4.62.0508311527340.10416@rudy.mif.pg.gda.pl>
+References: <Pine.BSO.4.62.0508311527340.10416@rudy.mif.pg.gda.pl>
+Content-Type: text/plain; charset=UTF-8
+Date:	Fri, 02 Sep 2005 09:23:09 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1125649389.6928.19.camel@baythorne.infradead.org>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Content-Transfer-Encoding: 8bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by baythorne.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.4
+Lines: 37
+Xref: brand.scrye.com linux.git:8001
+
+On Wed, 2005-08-31 at 15:34 +0200, Tomasz K³oczko wrote:
+> Seems patches stored on ftp://ftp.kernel.org/pub/linux/kernel/v2.6/snapshots
+> are empty (only logs are correct):
+
+> -rw-r--r--    1 536      536            20 Aug 30 09:01 patch-2.6.13-git1.gz
+> -rw-r--r--    1 536      536            20 Aug 31 09:01 patch-2.6.13-git2.gz
+
+Hm. git-diff-cache now refuses to operate unless there's a local
+'.git/refs' directory, even when working with a separate object
+directory. So this doesn't work any more...
+
+	rm -rf tmp-empty-tree
+	mkdir -p tmp-empty-tree/.git
+	cd tmp-empty-tree
+
+	git-read-tree $CURCOMM
+	git-checkout-cache Makefile
+	perl -pi -e "s/EXTRAVERSION =.*/EXTRAVERSION = $EXTRAVERSION/" Makefile
+	git-diff-cache -m -p $RELTREE | gzip -9 > $STAGE/patch-$CURNAME.gz
+
+I've changed the script to create 'tmp-empty-tree/.git/refs' and
+replaced 2.6.13-git[12] with real patches.
+
+> Also it will be good move all patch-2.6.12* and patch-2.6.13-rc* files 
+> from this directory to old subdirectory.
+
+Done.
+
+-- 
+dwmw2
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

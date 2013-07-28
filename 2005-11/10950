@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 15:04:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=AWL,BAYES_00,PLING_QUERY 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EDC1A135A39
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 15:04:20 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751318AbVKAWDq (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 17:03:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751321AbVKAWDq
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 17:03:46 -0500
+Received: from iabervon.org ([66.92.72.58]:50957 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751318AbVKAWDq (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 1 Nov 2005 17:03:46 -0500
+Received: (qmail 23005 invoked by uid 1000); 1 Nov 2005 17:03:26 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 1 Nov 2005 17:03:26 -0500
+Date:	Tue, 1 Nov 2005 17:03:26 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: git-pull - strange (copy/rename) messages ?!
+In-Reply-To: <7vbr149sbs.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511011646070.25300@iabervon.org>
+References: <43678C73.1080601@excelsior-online.org>
+ <Pine.LNX.4.64.0511010801370.27915@g5.osdl.org> <7vbr149sbs.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 45
+Xref: brand.scrye.com linux.git:10950
+
+On Tue, 1 Nov 2005, Junio C Hamano wrote:
+
+> Linus Torvalds <torvalds@osdl.org> writes:
+> 
+> > Btw, Junio, I thought "git pull" was only supposed to do rename 
+> > detection, not copy detection.
+> 
+> Sorry, but what do you mean by "only rename detection but not
+> copy detection" in this case?
+> 
+> When you have "ce A B; ce A C; ce A D;... ; mv A Z", (ce is like
+> cp but "copy+edit") where B-Z are all new files and A disappears
+> from the result, trying to detect renames would end up detecting
+> copies without extra processing; B through Z are rename
+> destination candidates, and A is a rename source candidate
+> (there may be others), and it turns out that B-Z all look like
+> A.
+> 
+> Would it be easier to read if we say A was renamed to B, and A
+> was renamed to C, and A was renamed to D, ...?  I think the
+> current output is easier to understand than that.  B-Y gets
+> labelled as copy of A and Z gets labelled as rename.
+
+I think it's more confusing for the system to report Z differently from 
+other things, because there's nothing special about what it found, except 
+that Z happens to be last. I think it would be easiest to read as:
+
+Rename A =>
+  B (80%)
+  C (85%)
+  D (75%)
+  ...
+  Z (90%)
+
+(Although I don't know if the results come out of the system sorted that 
+way; obviously, if there are different removed things, mixing them 
+together would be ambiguous in this format)
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

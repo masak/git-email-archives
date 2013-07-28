@@ -1,0 +1,102 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec  7 23:07:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9D8AF31B065
+	for <tkil@scrye.com>; Wed,  7 Dec 2005 23:07:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751123AbVLHGHm (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 01:07:42 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751189AbVLHGHm
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 01:07:42 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:1736 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1751123AbVLHGHl (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 8 Dec 2005 01:07:41 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051208060559.GZIZ17437.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 8 Dec 2005 01:05:59 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Mark Allen <mrallen1@yahoo.com>
+Subject: [PATCH] Make sure we use compat/subprocess.py with Python 2.3 while running tests.
+References: <20051207181225.67737.qmail@web34304.mail.mud.yahoo.com>
+	<7vslt4rb4v.fsf@assigned-by-dhcp.cox.net>
+cc:	git@vger.kernel.org
+Date:	Wed, 07 Dec 2005 22:07:39 -0800
+In-Reply-To: <7vslt4rb4v.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Wed, 07 Dec 2005 10:54:24 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr78oktp0.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 57
+Xref: brand.scrye.com linux.git:13351
+
+Otherwise the test will not succeed without installing.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+
+---
+
+  Junio C Hamano <junkio@cox.net> writes:
+
+  > Mark Allen <mrallen1@yahoo.com> writes:
+  >
+  >> So, basically the problem is that the subprocess.py module is
+  >> in the compat directory, and by default (I think)..
+  >
+  > Ah, you are right.
+  >
+  > Just like we fix PATH and GIT_EXEC_PATH during the test
+  > execution, we need to do something with PYTHONPATH environment
+  > variable (this one is _without_ underscore), I think.
+
+  This seems to fix it for me.
+
+ t/test-lib.sh |   13 ++++++++++++-
+ 1 files changed, 12 insertions(+), 1 deletions(-)
+
+49ccb0877f64308662669a09db7b221419c13d0a
+diff --git a/t/test-lib.sh b/t/test-lib.sh
+index f2eccd7..0539dac 100755
+--- a/t/test-lib.sh
++++ b/t/test-lib.sh
+@@ -172,7 +172,18 @@ test_done () {
+ # t/ subdirectory and are run in trash subdirectory.
+ PATH=$(pwd)/..:$PATH
+ GIT_EXEC_PATH=$(pwd)/..
+-export GIT_EXEC_PATH
++export PATH GIT_EXEC_PATH
++
++# Similarly use ../compat/subprocess.py if our python does not
++# have subprocess.py on its own.
++PYTHON=`sed -e '1{
++	s/^#!//
++	q
++}' ../git-merge-recursive` &&
++"$PYTHON" -c 'import subprocess' 2>/dev/null || {
++	PYTHONPATH=$(pwd)/../compat
++	export PYTHONPATH
++}
+ 
+ # Test repository
+ test=trash
+-- 
+0.99.9.GIT
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

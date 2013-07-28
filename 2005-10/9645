@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct  3 15:29:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 94D4B12AAA8
+	for <tkil@scrye.com>; Mon,  3 Oct 2005 15:29:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932522AbVJCV2v (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 3 Oct 2005 17:28:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932696AbVJCV2v
+	(ORCPT <rfc822;git-outgoing>); Mon, 3 Oct 2005 17:28:51 -0400
+Received: from iabervon.org ([66.92.72.58]:772 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S932522AbVJCV2s (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 3 Oct 2005 17:28:48 -0400
+Received: (qmail 29984 invoked by uid 1000); 3 Oct 2005 17:33:29 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 3 Oct 2005 17:33:29 -0400
+Date:	Mon, 3 Oct 2005 17:33:29 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: What to expect after 0.99.8
+In-Reply-To: <7vmzlqnwmw.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510031709360.23242@iabervon.org>
+References: <7v7jcvxxrl.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0510031522590.23242@iabervon.org> <7vmzlqnwmw.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:9645
+
+On Mon, 3 Oct 2005, Junio C Hamano wrote:
+
+> Daniel Barkalow <barkalow@iabervon.org> writes:
+> 
+> > Are these all before 1.0, or are some of them supposed to happen 
+> > eventually but later?
+> 
+> The latter.
+
+Good. It would be nice to mark things as being post-1.0 or not.
+
+> > I'd also like to add:
+> >
+> >  * Accept patches to fetch multiple objects by HTTP in parallel.
+> >
+> > I think this may be necessary to get good performance without rsync for 
+> > repositories hosted without specific git support.
+> 
+> Surely.  I'd love to see you work with Nick Hengeveld on this
+> one, perhaps even before 1.0.  Looking out the fetch.c code, I
+> think you already have set up a reasonable "work queue" during
+> the last round, with a lot of simplification thanks to Sergey,
+> and parallel fetching would be a very nice addition.
+
+The code in ssh-fetch already does parallel fetching, actually (only over 
+one connection, but requests are sent before responses are read), so 
+multiple requests are in progress at the same time.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

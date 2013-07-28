@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 12 09:33:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D02266122
+	for <tkil@scrye.com>; Fri, 12 Aug 2005 09:33:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750833AbVHLPcN (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 12 Aug 2005 11:32:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751099AbVHLPcN
+	(ORCPT <rfc822;git-outgoing>); Fri, 12 Aug 2005 11:32:13 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:16817 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S1750833AbVHLPcM (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 12 Aug 2005 11:32:12 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050812153209.RQTM17043.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 12 Aug 2005 11:32:09 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: [PATCH] Use "-script" postfix for scripts
+References: <Pine.LNX.4.63.0508121526050.25606@wgmdd8.biozentrum.uni-wuerzburg.de>
+Cc: git@vger.kernel.org
+Date:	Fri, 12 Aug 2005 08:32:08 -0700
+In-Reply-To: <Pine.LNX.4.63.0508121526050.25606@wgmdd8.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Fri, 12 Aug 2005 15:28:27 +0200
+	(CEST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtmrxjbb.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 36
+Xref: brand.scrye.com linux.git:7114
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> For consistency reasons, the names of all scripts should end in "-script".
+>
+> This may be a bit controversial (people might find it unnecessary). 
+> Subject to discussion.
+
+I have never liked the original -script name convention.  It
+only meant that they are implemented as scripts (as opposed to
+those on the $(PROG) Makefile variable), but the end users who
+end up typing their names from the command line, and to a lesser
+degree the people who use them in their scripts, should not care
+how they are implemented to begin with.
+
+And to cope with long names and make things look a bit more
+familiar to CVS migrants, "git" wrapper was invented to supply
+the -script suffix to grok "git whatever", but just in case if
+something was _not_ implemented as a script, it ends up needing
+to try "git-whatever" in addition to "git-whatever-script".  The
+patch alleviates the "git" problem for "git-whatchanged" and
+friends whose names currently do not end with -script, but it
+still does not help "git apply", for example.  I like the
+general direction of making things consistent, but I wonder if
+we can become consistent by losing -script suffix, not adding to
+the ones that lack it.
+
+And as you imply, this kind of change inevitable breaks people's
+scripts.  But I do agree with you that we should do something
+about it, so it may be better to break them sooner rather than
+later, as long as we make sure we break them just once.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

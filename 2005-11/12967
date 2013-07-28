@@ -1,0 +1,108 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 18:28:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 716645E7A9
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 18:28:09 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750768AbVK3B1T (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 20:27:19 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750771AbVK3B1T
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 20:27:19 -0500
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:18581 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S1750768AbVK3B1T (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 29 Nov 2005 20:27:19 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051130012633.KSQN20441.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 29 Nov 2005 20:26:33 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	linux@horizon.com
+Subject: Re: git-name-rev off-by-one bug
+References: <20051130001503.28498.qmail@science.horizon.com>
+	<7v4q5v5536.fsf@assigned-by-dhcp.cox.net>
+cc:	git@vger.kernel.org
+Date:	Tue, 29 Nov 2005 17:27:17 -0800
+In-Reply-To: <7v4q5v5536.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Tue, 29 Nov 2005 16:53:17 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr78z3oy2.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 63
+Xref: brand.scrye.com linux.git:12967
+
+Junio C Hamano <junkio@cox.net> writes:
+
+> linux@horizon.com writes:
+>
+>> I'm wondering if this isn't a philosophical issue.
+>
+> I do not think so....
+> ...
+> This is the message from Linus that announced the current
+> behaviour:
+>
+> 	http://marc.theaimsgroup.com/?l=git&m=111826424425624
+
+Replying to myself.  In the message, Linus talks about being
+able to do (diff-cache is an old name for diff-index):
+
+	git-diff-files -p xyzzy ;# to compare with our version
+        git-diff-cache -p MERGE_HEAD xyzzy ;# to compare with his
+
+But because of the "index before merge has to match HEAD" rule,
+the first one could have been written as:
+
+	git-diff-index -p HEAD xyzzy ;# to compare with ours
+
+So in that sense, I suspect it may not be too bad if we just
+changed merge-one-file with the patch at the end.
+
+However, git-diff-index HEAD without paths restriction would
+show everything the merge brought in, not just the conflicting
+path, so in that sense it may make things slightly harder for
+the end user to use.
+
+---
+
+diff --git a/git-merge-one-file.sh b/git-merge-one-file.sh
+index c3eca8b..df6dd67 100755
+--- a/git-merge-one-file.sh
++++ b/git-merge-one-file.sh
+@@ -79,11 +79,12 @@ case "${1:-.}${2:-.}${3:-.}" in
+ 		;;
+ 	esac
+ 
+-	# We reset the index to the first branch, making
+-	# git-diff-file useful
+-	git-update-index --add --cacheinfo "$6" "$2" "$4"
+-		git-checkout-index -u -f -- "$4" &&
+-		merge "$4" "$orig" "$src2"
++	# Leave the conflicts in stages; failed merge result can be
++	# seen by "git-diff-index HEAD" or "git-diff-index MERGE_HEAD"
++	rm -fr "$4" &&
++	    git-cat-file blob "$2" >"$4" &&
++	    case "$6" in *?7??) chmod +x "$4" ;; esac &&
++	    merge "$4" "$orig" "$src2"
+ 	ret=$?
+ 	rm -f -- "$orig" "$src2"
+ 
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

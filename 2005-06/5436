@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun 30 10:13:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EF3BF17454C
+	for <tkil@scrye.com>; Thu, 30 Jun 2005 10:13:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262983AbVF3QMr (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 30 Jun 2005 12:12:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262835AbVF3QMr
+	(ORCPT <rfc822;git-outgoing>); Thu, 30 Jun 2005 12:12:47 -0400
+Received: from run.smurf.noris.de ([192.109.102.41]:15496 "EHLO
+	server.smurf.noris.de") by vger.kernel.org with ESMTP
+	id S263000AbVF3QMA (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 30 Jun 2005 12:12:00 -0400
+Received: from kiste.smurf.noris.de ([192.109.102.35] ident=mail)
+	by server.smurf.noris.de with smtp (Exim 4.50)
+	id 1Do1ci-000816-9g; Thu, 30 Jun 2005 18:11:00 +0200
+Received: (nullmailer pid 7932 invoked by uid 501);
+	Thu, 30 Jun 2005 16:10:43 -0000
+Date:	Thu, 30 Jun 2005 18:10:43 +0200
+To: Sven Verdoolaege <skimo@liacs.nl>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] cvsimport: rewritten in Perl
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050630161043.GR10850@kiste.smurf.noris.de>
+References: <pan.2005.06.28.19.23.08.307486@smurf.noris.de> <20050630150239.GA20928@pc117b.liacs.nl> <20050630152125.GO10850@kiste.smurf.noris.de> <20050630154453.GA26808@pc117b.liacs.nl>
+Mime-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="OQpOxDqDax7rN7YB"
+Content-Disposition: inline
+In-Reply-To: <20050630154453.GA26808@pc117b.liacs.nl>
+User-Agent: Mutt/1.5.6+20040907i
+From: Matthias Urlichs <smurf@smurf.noris.de>
+X-Smurf-Spam-Score: -2.5 (--)
+X-Smurf-Whitelist: +relay_from_hosts
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 43
+Xref: brand.scrye.com linux.git:5436
+
+
+--OQpOxDqDax7rN7YB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Sven Verdoolaege:
+> Presumably you have an extraneous "\n" somewhere.
+>=20
+Strange.
+That must have crept in when I switched from cg-commit to git-commit-tree.
+
+I'll find it. However, you don't actually need to re-import your
+existing CVS->GIT trees; as long as the dates and the branch names
+match, my script will continue where the other left off.
+
+--=20
+Matthias Urlichs   |   {M:U} IT Design @ m-u-it.de   |  smurf@smurf.noris.de
+Disclaimer: The quote was selected randomly. Really. | http://smurf.noris.de
+ - -
+You do not have mail.
+
+--OQpOxDqDax7rN7YB
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+
+iD8DBQFCxBmD8+hUANcKr/kRArDHAKCGSZtnDN1DeKCZjLlBnqvy3OsWNACfY8LS
+CEzxQB7AibrEn9dFz5dInIY=
+=1SW4
+-----END PGP SIGNATURE-----
+
+--OQpOxDqDax7rN7YB--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 13:11:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AA12A261A1A
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 13:11:43 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750796AbVKFULQ (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 15:11:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750941AbVKFULQ
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 15:11:16 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:28544 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1750796AbVKFULP (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 6 Nov 2005 15:11:15 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051106201049.ZQER9394.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 6 Nov 2005 15:10:49 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Jon Loeliger <jdl@freescale.com>
+Subject: Re: Documentation Directions
+References: <E1EYoQE-0002QX-VM@jdl.com>
+cc:	git@vger.kernel.org
+Date:	Sun, 06 Nov 2005 12:11:13 -0800
+In-Reply-To: <E1EYoQE-0002QX-VM@jdl.com> (Jon Loeliger's message of "Sun, 06
+	Nov 2005 11:35:14 -0600")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vek5ty1su.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:11216
+
+Jon Loeliger <jdl@freescale.com> writes:
+
+> Couple of questions regarding documentation direction:
+>
+> - Is the plan to update all docs to use $GIT_DIR instead of .git?
+
+I personally feel we should use less (not more) $GIT_DIR in the
+documentation and casual mention of things under .git/ directory
+should say .git/ instead, with the understanding that the reader
+have already learned that there is a way to override it if the
+user chooses to do so.
+
+> - Do we intend on adding explicit support for '--help' on most,
+>   if not all, of the git commands?
+
+I think that would be very helpful.
+
+>     - Do you want to standardize on using a '$' prompt
+>       for all the example command executions samples?
+
+Ah, I see you recently added a couple of Csh style '%' prompt.
+Also I suspect that some examples in earlier tutorial do not
+even have any prompt.
+
+You are right -- being consistent would be nice.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

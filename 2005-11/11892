@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 05:29:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 77A672851FA
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 05:29:46 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932420AbVKOM3U (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 07:29:20 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932422AbVKOM3U
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 07:29:20 -0500
+Received: from nhugin.diku.dk ([130.225.96.140]:8158 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S932420AbVKOM3U (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 15 Nov 2005 07:29:20 -0500
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id 1A76D6DFD6D; Tue, 15 Nov 2005 13:28:54 +0100 (CET)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id DBBD76DF8C8; Tue, 15 Nov 2005 13:28:53 +0100 (CET)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id EEF5A6133A; Tue, 15 Nov 2005 13:29:18 +0100 (CET)
+Date:	Tue, 15 Nov 2005 13:29:18 +0100
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: [PATCH] Fix git(1) link to git-index-pack
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051115122918.GC13925@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:11892
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+---
+
+ I noticed this broken link in the git docs @ kernel.org ...
+
+diff --git a/Documentation/git.txt b/Documentation/git.txt
+index 7045f3f..bd389bd 100644
+--- a/Documentation/git.txt
++++ b/Documentation/git.txt
+@@ -67,7 +67,7 @@ gitlink:git-commit-tree[1]::
+ gitlink:git-hash-object[1]::
+ 	Computes the object ID from a file.
+ 
+-gitlink:git-index-pack.html[1]::
++gitlink:git-index-pack[1]::
+ 	Build pack index file for an existing packed archive.
+ 
+ gitlink:git-init-db[1]::
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

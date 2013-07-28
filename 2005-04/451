@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 09:19:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2590FD9C23
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 09:19:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261326AbVDQPTy (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Apr 2005 11:19:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261329AbVDQPTy
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Apr 2005 11:19:54 -0400
+Received: from mx1.elte.hu ([157.181.1.137]:43700 "EHLO mx1.elte.hu")
+	by vger.kernel.org with ESMTP id S261326AbVDQPTv (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 17 Apr 2005 11:19:51 -0400
+Received: from chiara.elte.hu (chiara.elte.hu [157.181.150.200])
+	by mx1.elte.hu (Postfix) with ESMTP id 4ED5931D8B0;
+	Sun, 17 Apr 2005 17:18:22 +0200 (CEST)
+Received: by chiara.elte.hu (Postfix, from userid 17806)
+	id D39DF1FC2; Sun, 17 Apr 2005 17:19:01 +0200 (CEST)
+Date:	Sun, 17 Apr 2005 17:18:58 +0200
+From: Ingo Molnar <mingo@elte.hu>
+To: Brad Roberts <braddr@puremagic.com>
+Cc: Linus Torvalds <torvalds@osdl.org>, Petr Baudis <pasky@ucw.cz>,
+	Simon Fowler <simon@himi.org>,
+	David Lang <david.lang@digitalinsight.com>, git@vger.kernel.org
+Subject: Re: Re: Merge with git-pasky II.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050417151858.GA5745@elte.hu>
+References: <20050417145232.GA5289@elte.hu> <Pine.LNX.4.44.0504170804130.2625-100000@bellevue.puremagic.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.44.0504170804130.2625-100000@bellevue.puremagic.com>
+User-Agent: Mutt/1.4.2.1i
+X-ELTE-SpamVersion: MailScanner 4.31.6-itk1 (ELTE 1.2) SpamAssassin 2.63 ClamAV 0.73
+X-ELTE-VirusStatus: clean
+X-ELTE-SpamCheck: no
+X-ELTE-SpamCheck-Details: score=-4.9, required 5.9,
+	autolearn=not spam, BAYES_00 -4.90
+X-ELTE-SpamLevel: 
+X-ELTE-SpamScore: -4
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 35
+Xref: brand.scrye.com linux.git:451
+
+
+* Brad Roberts <braddr@puremagic.com> wrote:
+
+> While I agree that a hash collision is bad and certainly worth 
+> preventing during new object creation, for it to actually implant a 
+> trojan in a build successfully it'd have to meet even more criteria 
+> than you've layed out. It'd have to...
+
+>   - provide all the public symbols the shadowed object provided so that it
+>     would still build and link successfully
+
+that's not a problem. Most modules dont provide public symbols.  
+Especially not drivers. Generally it's the modules that _dont_ have any 
+global impact that get reviewed less stringently - an attacker would 
+thus choose them for psychological reasons anyway.
+
+>   - be shadowing an object that's part of an active tree
+>
+> Shadowing an object that's not part of the working tree means 
+> something on another branch or obsoleted some time in the past is 
+> still db corruption, but not nearly as big an issue from a trojan 
+> standpoint.
+
+it's not DB corruption, it's a feature of GIT: it's a content _cache_, 
+new and old alike. Nothing in GIT says that old objects in the 
+repository (which are still very much part of history) cannot be revived 
+in newer trees. (in fact it regularly happens - e.g. if a fix is undone 
+manually.)
+
+	Ingo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

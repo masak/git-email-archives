@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jul 25 00:20:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3F2B920D20A
+	for <tkil@scrye.com>; Mon, 25 Jul 2005 00:20:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261747AbVGYGTj (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Jul 2005 02:19:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261732AbVGYGRc
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Jul 2005 02:17:32 -0400
+Received: from mail.autoweb.net ([198.172.237.26]:43469 "EHLO mail.autoweb.net")
+	by vger.kernel.org with ESMTP id S261853AbVGYGRS (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 25 Jul 2005 02:17:18 -0400
+Received: from pcp01184054pcs.strl301.mi.comcast.net ([68.60.186.73] helo=michonline.com)
+	by mail.autoweb.net with esmtp (Exim 4.44)
+	id 1DwwH6-0006WM-S3; Mon, 25 Jul 2005 02:17:16 -0400
+Received: from mythical ([10.254.251.11] ident=Debian-exim)
+	by michonline.com with esmtp (Exim 3.35 #1 (Debian))
+	id 1DwwPm-00038T-00; Mon, 25 Jul 2005 02:26:14 -0400
+Received: from ryan by mythical with local (Exim 4.52)
+	id 1DwwH6-0006Hv-Ah; Mon, 25 Jul 2005 02:17:16 -0400
+Date:	Mon, 25 Jul 2005 02:17:16 -0400
+From: Ryan Anderson <ryan@michonline.com>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] Update the documentation for git-tag-script to reflect current behavior.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050725061716.GE6098@mythryan2.michonline.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6+20040907i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 48
+Xref: brand.scrye.com linux.git:6403
+
+
+Signed-off-by: Ryan Anderson <ryan@michonline.com>
+---
+
+ Documentation/git-tag-script.txt |   12 ++++++++----
+ 1 files changed, 8 insertions(+), 4 deletions(-)
+
+8f1801c948cbf1187a192df1656709689ba46d61
+diff --git a/Documentation/git-tag-script.txt b/Documentation/git-tag-script.txt
+--- a/Documentation/git-tag-script.txt
++++ b/Documentation/git-tag-script.txt
+@@ -4,18 +4,22 @@ v0.1, May 2005
+ 
+ NAME
+ ----
+-git-tag-script - An example script to create a tag object signed with GPG
++git-tag-script -  Create a tag object signed with GPG
+ 
+ 
+ 
+ SYNOPSIS
+ --------
+-'git-tag-script'
++'git-tag-script' [-s] [-f] <name>
+ 
+ DESCRIPTION
+ -----------
+-This is an example script that uses "git-mktag" to create a tag object
+-signed with GPG.
++Adds a "tag" reference in .git/refs/tags/
++
++Unless "-f" is given, the tag must not yet exist in ".git/refs/tags"
++
++If "-s" is passed, the user will be prompted for a tag message, and a GnuPG
++signed tag object will be created as well.
+ 
+ 
+ Author
+
+-- 
+
+Ryan Anderson
+  sometimes Pug Majere
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

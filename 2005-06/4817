@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 10 18:35:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1805915FCFB
+	for <tkil@scrye.com>; Fri, 10 Jun 2005 18:35:05 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261494AbVFKAd1 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 10 Jun 2005 20:33:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261495AbVFKAd1
+	(ORCPT <rfc822;git-outgoing>); Fri, 10 Jun 2005 20:33:27 -0400
+Received: from rproxy.gmail.com ([64.233.170.193]:53377 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261494AbVFKAdN convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 10 Jun 2005 20:33:13 -0400
+Received: by rproxy.gmail.com with SMTP id y7so285317rne
+        for <git@vger.kernel.org>; Fri, 10 Jun 2005 17:33:13 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=Yozj3omMQjaU0VTi2ycjpDxupbNrivi+j2JHN86Sh4il179q9Gc4zt+iphStwuEzq3SCpG4uS5AvPKI8UkITJWhM2x+6R/OVEx6ssHzOswS7HDx2HFWAlXecBj5DxaOTQ356glV3fHv1l1j8MQuhFyoUT2VmQqPsjwoRRYyjlxo=
+Received: by 10.38.101.40 with SMTP id y40mr628050rnb;
+        Fri, 10 Jun 2005 17:33:13 -0700 (PDT)
+Received: by 10.38.104.42 with HTTP; Fri, 10 Jun 2005 17:33:13 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2cfc403205061017334cd01097@mail.gmail.com>
+Date:	Sat, 11 Jun 2005 10:33:13 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+Reply-To: jon@blackcubes.dyndns.org
+To: Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: qgit-0.4
+Cc: Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <20050610183537.39108.qmail@web26301.mail.ukl.yahoo.com>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20050610183537.39108.qmail@web26301.mail.ukl.yahoo.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP,
+	TW_QG autolearn=no version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:4817
+
+Marco,
+
+Not being tremendously familar with either Python or scons, perhaps
+you could tell me what I need to do to resolve this error message
+
+$> ./configure
++scons was found, that's excellent+
+scons: Reading SConscript files ...
+ 
+scons: *** No tool named 'qt': No module named qt
+File "SConstruct", line 4, in ?
+
+jon.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

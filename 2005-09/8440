@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 16:51:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A72A42851FF
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 16:51:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932331AbVILWug (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 18:50:36 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932333AbVILWug
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 18:50:36 -0400
+Received: from soundwarez.org ([217.160.171.123]:57735 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S932331AbVILWug (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 18:50:36 -0400
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id 968F959114; Tue, 13 Sep 2005 00:50:32 +0200 (CEST)
+Date:	Tue, 13 Sep 2005 00:50:32 +0200
+From:	Kay Sievers <kay.sievers@vrfy.org>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: hmm, can't we give the "root" a parent?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050912225032.GA8360@vrfy.org>
+References: <20050912181101.GA22221@vrfy.org> <Pine.LNX.4.58.0509121123280.3242@g5.osdl.org> <20050912195947.GA28502@vrfy.org> <Pine.LNX.4.58.0509121316030.3266@g5.osdl.org> <20050912210006.GA32211@vrfy.org> <Pine.LNX.4.58.0509121438150.3266@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0509121438150.3266@g5.osdl.org>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 43
+Xref: brand.scrye.com linux.git:8440
+
+On Mon, Sep 12, 2005 at 02:42:16PM -0700, Linus Torvalds wrote:
+> 
+> 
+> On Mon, 12 Sep 2005, Kay Sievers wrote:
+> > 
+> > Everthing that walk from one commit to another, uses git-rev-list, sure.
+> > But in the commit view, and the commitdiff the "parent" link and the parent
+> > that is passed to diff is read from the commit itself.
+> > 
+> > > (So instead of trying to parse the parent info from the header of the 
+> > > commit, just do "git-rev-list --pretty --parents" and parse that).
+> > 
+> > I need only one parent:
+> >   git-rev-list --parents --max-count=1 <id>
+> 
+> Who don't you use that to show the comments too? 
+> 
+> So instead of doing
+> 
+> 	git-cat-file commit <id>
+> 
+> (or whatever you do), just do
+> 
+> 	git-rev-list --parents --pretty=raw --max-count=1 <id>
+
+That would be nice, if I could convert everthing to this output format.
+
+But why does --pretty=raw mangle the text with spaces?
+Well the output of this  weird word combination may be "pretty" but definitely
+not "raw". :)
+
+And I would prefer --pretty=raw with '\0' termination instead of '\n' so I can
+replace the output from --header with --pretty=raw and can still use the same
+parsing routine.
+
+Thanks,
+Kay
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

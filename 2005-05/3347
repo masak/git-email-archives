@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 15 12:07:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id BCA42665F
+	for <tkil@scrye.com>; Sun, 15 May 2005 12:07:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261180AbVEOSH1 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 15 May 2005 14:07:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261181AbVEOSH1
+	(ORCPT <rfc822;git-outgoing>); Sun, 15 May 2005 14:07:27 -0400
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:57514 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S261180AbVEOSHY (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 15 May 2005 14:07:24 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050515180721.IETC20235.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 15 May 2005 14:07:21 -0400
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Resurrect diff-tree-helper -R
+References: <Pine.LNX.4.58.0504301805300.2296@ppc970.osdl.org>
+	<20050513224529.GF32232@pasky.ji.cz>
+	<7vhdh691gs.fsf@assigned-by-dhcp.cox.net>
+	<20050513233354.GK32232@pasky.ji.cz>
+	<7vmzqy7k47.fsf@assigned-by-dhcp.cox.net>
+	<7voebe63zs.fsf@assigned-by-dhcp.cox.net>
+	<20050514150356.GK3905@pasky.ji.cz>
+	<7vu0l5zsb4.fsf@assigned-by-dhcp.cox.net>
+	<20050514233538.GY3905@pasky.ji.cz>
+	<7vr7g9uhsl.fsf@assigned-by-dhcp.cox.net>
+	<20050515093040.GC13024@pasky.ji.cz>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Sun, 15 May 2005 11:07:22 -0700
+In-Reply-To: <20050515093040.GC13024@pasky.ji.cz> (Petr Baudis's message of
+ "Sun, 15 May 2005 11:30:40 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v8y2guzvp.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 13
+Xref: brand.scrye.com linux.git:3347
+
+>>>>> "PB" == Petr Baudis <pasky@ucw.cz> writes:
+
+PB> ... But what I dislike
+PB> more is that the diff output is now visually inconsistent - some diffs
+PB> are separated by a newline and some aren't.
+
+That is already fixed in the second patch.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

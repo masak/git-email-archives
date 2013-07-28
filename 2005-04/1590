@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 25 09:13:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1B3C8170430
+	for <tkil@scrye.com>; Mon, 25 Apr 2005 09:13:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262662AbVDYPNN (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Apr 2005 11:13:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262665AbVDYPNN
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Apr 2005 11:13:13 -0400
+Received: from shiva.jussieu.fr ([134.157.0.129]:58594 "EHLO shiva.jussieu.fr")
+	by vger.kernel.org with ESMTP id S262662AbVDYPNF (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 25 Apr 2005 11:13:05 -0400
+Received: from hydrogene.pps.jussieu.fr (hydrogene.pps.jussieu.fr [134.157.168.1])
+          by shiva.jussieu.fr (8.12.11/jtpda-5.4) with ESMTP id j3PFD1Xa089749
+          ; Mon, 25 Apr 2005 17:13:01 +0200 (CEST)
+X-Ids:	168
+Received: from lanthane.pps.jussieu.fr (lanthane.pps.jussieu.fr [134.157.168.57])
+          by hydrogene.pps.jussieu.fr (8.13.3/jtpda-5.4) with ESMTP id j3PFCxd8015340
+          ; Mon, 25 Apr 2005 17:12:59 +0200
+Received: from jch by lanthane.pps.jussieu.fr with local (Exim 4.34)
+	id 1DQ5Gd-0003pl-28; Mon, 25 Apr 2005 17:12:59 +0200
+To: darcs-devel@darcs.net, Git Mailing List <git@vger.kernel.org>
+Subject: Re: A darcs that can pull from git
+References: <7ipswjbybx.fsf@lanthane.pps.jussieu.fr>
+	<20050425133116.GG11667@abridgegame.org>
+From: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>
+Date:	Mon, 25 Apr 2005 17:12:59 +0200
+In-Reply-To: <20050425133116.GG11667@abridgegame.org> (David Roundy's
+ message of "Mon, 25 Apr 2005 09:31:20 -0400")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7i4qdusxdw.fsf@lanthane.pps.jussieu.fr>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.3 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-1.7.2 (shiva.jussieu.fr [134.157.0.168]); Mon, 25 Apr 2005 17:13:01 +0200 (CEST)
+X-Antivirus: scanned by sophie at shiva.jussieu.fr
+X-Miltered: at shiva.jussieu.fr with ID 426D08FD.001 by Joe's j-chkmail (http://j-chkmail.ensmp.fr)!
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 40
+Xref: brand.scrye.com linux.git:1590
+
+>>   http://www.pps.jussieu.fr/~jch/software/files/darcs-git-20050424.darcs
+
+> First off, you need to include a license header in the git files indicating
+> that unlike the rest of darcs, they may only be distributed under GPL v2.
+
+Linus, could you please suggest a suitable license statement to
+include in whichever files of yours we choose to include in Darcs?  Is
+David's suggestion (stock GPL boilerplate with ``or any later
+version'' removed) okay with you?
+
+> Any chance you can host a gettable repository?
+
+The last tag in darcs-unstable is 1.0.0rc2, which prevents me from
+publishing a partial repository in my web space.  Perhaps you could
+pull a recent tag into darcs-unstable?
+
+> If not, I'd be happy to give you an account on darcs.net on which
+> you could host darcs-git.
+
+That would be great (let me know if you need an ssh public key).
+
+> Do you have any plans/ideas for allowing pulls directly from a
+> remote git repository?
+
+I haven't thought about it yet.  Does anyone have any ideas about how
+to efficiently pull from git without a complete local copy?
+
+I'll reply to the more technical points below on darcs-devel -- no
+point in spamming the kind folks on git@ any further, especially as
+they probably know about
+
+  http://www.abridgegame.org/pipermail/darcs-devel/
+
+                                        Juliusz
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

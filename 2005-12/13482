@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 11 01:31:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 47020316152
+	for <tkil@scrye.com>; Sun, 11 Dec 2005 01:31:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751340AbVLKIa6 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Dec 2005 03:30:58 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751343AbVLKIa6
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Dec 2005 03:30:58 -0500
+Received: from mx4.ust.hk ([143.89.13.26]:31237 "EHLO mx4.ust.hk")
+	by vger.kernel.org with ESMTP id S1751340AbVLKIa6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 11 Dec 2005 03:30:58 -0500
+Received: from [221.125.13.158] ([221.125.13.158])
+	(authenticated bits=0)
+	by mx4.ust.hk (8.12.11/8.12.11) with ESMTP id jBB8UoQk019304
+	for <git@vger.kernel.org>; Sun, 11 Dec 2005 16:30:55 +0800 (HKT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <439BE3B9.3040308@ust.hk>
+Date:	Sun, 11 Dec 2005 16:30:49 +0800
+From:	Ben Lau <benlau@ust.hk>
+User-Agent: Debian Thunderbird 1.0.7 (X11/20051017)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Branches merging by only overwrite files 
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:13482
+
+Hi,
+
+    I am looking for a solution to merge two branches but do not perform 
+file level merge. Instead, I wish the result file is the copy from any 
+one of the branches.
+
+    For example, assumes it has two branches A and B,  some of the files 
+are modified in both of them. In this case, `/usr/bin/merge` could not 
+be execated, it just have to choose the revision from branch A and 
+discards all the changes from B. For the rest of files, it just simply 
+choose the newest copy from A or B.
+
+    How can I perform this action?
+
+Thanks in advance.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

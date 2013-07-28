@@ -1,0 +1,96 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 26 07:36:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id ABF6927E086
+	for <tkil@scrye.com>; Mon, 26 Sep 2005 07:36:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751493AbVIZNcN (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 26 Sep 2005 09:32:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751633AbVIZNcN
+	(ORCPT <rfc822;git-outgoing>); Mon, 26 Sep 2005 09:32:13 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:37060 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751628AbVIZNcM (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 26 Sep 2005 09:32:12 -0400
+Received: (qmail 18645 invoked by uid 2001); 26 Sep 2005 15:32:04 +0200
+Date:	Mon, 26 Sep 2005 15:32:04 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Martin Coxall <quasi@cream.org>
+Cc:	Zack Brown <zbrown@tumblerings.org>, git@vger.kernel.org
+Subject: Re: rsync deprecated but promoted?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050926133204.GB21019@pasky.or.cz>
+References: <20050925163201.GA29198@tumblerings.org> <4d4586301dca616f42880612fae01492@cream.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4d4586301dca616f42880612fae01492@cream.org>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 56
+Xref: brand.scrye.com linux.git:9296
+
+Dear diary, on Sun, Sep 25, 2005 at 09:06:37PM CEST, I got a letter
+where Martin Coxall <quasi@cream.org> told me that...
+> On 25 Sep 2005, at 17:32, Zack Brown wrote:
+> >Hi folks,
+> >
+> >When I use cogito, it gives a warning saying the rsync method is 
+> >deprecated and
+> >will be removed in the future. But when I visit kernel.org/git, the 
+> >page says to
+> >use an rsync URL with cg-clone.
+> >
+> >Maybe kernel.org should be updated?
+> >
+> 
+> It does seem to be sending out a confusing message to us users too, 
+> since an initial clone of Linus's tree with rsync is on my machine 10x 
+> faster than an http clone, so it seems to be sending out something of a 
+> confused/confusing message re: rsync.
+> 
+> Am I right in thinking it's because rsync didn't originally have pack 
+> support, but now it does, Petr has simply forgotten to deprecate the 
+> deprecation message?
+
+Nope. rsync always did packs, I actually un-deprecated it for the time
+period when HTTP didn't. The thing is, rsync is bad - it will happily
+put duplicate, redundant, and especially unwanted data to your
+repository, especially when the shared GIT repositories happen. HTTP and
+git-daemon are much better access methods in this regard - actually, I
+still like HTTP the most:
+
++ Works everywhere - no special setup, no dedicated service, firewalls
+and proxies won't stop it
++ Works properly, i.e. only getting stuff you want, unlike rsync
++ Replicates packs setup - would be even better if it would kill objects
+and packs which the new pack makes redundant
+
+	It would be best to have some smarter git-prune-packed, which
+	would process just a single pack. The other alternative would be
+	that it would prune packs being subsets of other packs as well,
+	but that scaled bad. I will write another mail about that.
+
+- It is slow. Actually, I think it should be much faster for incremental
+fetches, and the initial fetch should take about the same time if you
+use packs. But the question is, did we already hit the limit? Are we
+using HTTP keepalive connections, do we parallelize the requests?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

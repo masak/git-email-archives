@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul 21 14:01:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E82A81477AC
+	for <tkil@scrye.com>; Thu, 21 Jul 2005 14:01:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261861AbVGUUBB (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 21 Jul 2005 16:01:01 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261862AbVGUUBB
+	(ORCPT <rfc822;git-outgoing>); Thu, 21 Jul 2005 16:01:01 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:33222 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261861AbVGUUA6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 21 Jul 2005 16:00:58 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6LK0sjA027864
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 21 Jul 2005 13:00:55 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6LK0pBP021794;
+	Thu, 21 Jul 2005 13:00:53 -0700
+Date:	Thu, 21 Jul 2005 13:00:51 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Ryan Anderson <ryan@michonline.com>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH/RFC] Add git-changelog-script to show the changes between
+ two commits
+In-Reply-To: <20050721194138.GP20369@mythryan2.michonline.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507211256460.6074@g5.osdl.org>
+References: <20050721063143.GO20369@mythryan2.michonline.com>
+ <20050721194138.GP20369@mythryan2.michonline.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:6276
+
+
+
+On Thu, 21 Jul 2005, Ryan Anderson wrote:
+>
+> Nevermind, I apparently wanted:
+> 	git-whatchanged HEAD ^$LAST_RELEASED_COMMIT
+
+Yes. And since git-whatchanged uses git-rev-parse, and can thus use the 
+extended git commit format, including ranges, you can literally write the 
+above as
+
+	git-whatchanged $LAST_RELEASED_COMMIT..
+
+(or, if you only care about the log, not the actual diff lines, use the 
+faster and simpler
+
+	git log $LAST_RELEASED_COMMIT..
+
+which will also show you merges - something git-whatchanged doesn't do).
+
+You can also use the "--pretty" format specializers, so
+
+	git log --pretty=short $LAST_RELEASED_COMMIT..
+
+will do exactly what you'd expect it to do.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

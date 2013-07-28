@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 26 12:54:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A1AD62B74BF
+	for <tkil@scrye.com>; Fri, 26 Aug 2005 12:54:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030191AbVHZSwd (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 26 Aug 2005 14:52:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030190AbVHZSwd
+	(ORCPT <rfc822;git-outgoing>); Fri, 26 Aug 2005 14:52:33 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:22250 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1030188AbVHZSwc (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 26 Aug 2005 14:52:32 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050826185232.OJXT12158.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 26 Aug 2005 14:52:32 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Cc:	git@vger.kernel.org
+Subject: Re: Fix: remove generated template files
+References: <20050826182624.86421.qmail@web26306.mail.ukl.yahoo.com>
+Date:	Fri, 26 Aug 2005 11:52:31 -0700
+In-Reply-To: <20050826182624.86421.qmail@web26306.mail.ukl.yahoo.com> (Marco
+	Costalba's message of "Fri, 26 Aug 2005 11:26:24 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vll2obkeo.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 16
+Xref: brand.scrye.com linux.git:7814
+
+Marco Costalba <mcostalba@yahoo.it> writes:
+
+> 01168c6044e7ebb570e851b4707b4fe0c7f40c15
+> diff --git a/templates/blt/description b/templates/blt/description
+
+Could I please see output of the following command in your
+repository?
+
+  $ git whatchanged 01168c6044e7ebb570e851b4707b4fe0c7f40c15 templates/
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

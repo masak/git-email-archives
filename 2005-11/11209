@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 10:35:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_JD 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C5E2C261445
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 10:35:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932188AbVKFRfU (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 12:35:20 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932214AbVKFRfU
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 12:35:20 -0500
+Received: from colo.jdl.com ([66.118.10.122]:48316 "EHLO jdl.com")
+	by vger.kernel.org with ESMTP id S932188AbVKFRfT (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 6 Nov 2005 12:35:19 -0500
+Received: from jdl (helo=jdl.com)
+	by jdl.com with local-esmtp (Exim 4.44)
+	id 1EYoQE-0002QX-VM
+	for git@vger.kernel.org; Sun, 06 Nov 2005 11:35:15 -0600
+To:	git@vger.kernel.org
+From:	Jon Loeliger <jdl@freescale.com>
+Subject: Documentation Directions
+Date:	Sun, 06 Nov 2005 11:35:14 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EYoQE-0002QX-VM@jdl.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:11209
+
+Couple of questions regarding documentation direction:
+
+- Is the plan to update all docs to use $GIT_DIR instead of .git?
+
+- Do we intend on adding explicit support for '--help' on most,
+  if not all, of the git commands?  In some cases (git-branch)
+  a -*) case tacitly catches --help and usage()'s it.  In other
+  cases (git-pull) this can't be done as -*) passes options
+  on to git-fetch.  I think that we should catch --help directly
+  so that it doesn't emit git-fetch's *) catch-all usage:
+
+    % git pull --help
+    usage: git-fetch-pack [-q] [-v] [--exec=upload-pack] [host:]directory <refs>...
+    Fetch failure: --help
+
+- Do you want to head in the per-man-page-"Now What?" direction
+  as suggested by Junio?
+
+Thanks,
+jdl
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

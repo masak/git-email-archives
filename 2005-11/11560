@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 00:54:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3355E1696C9
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 00:54:13 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932192AbVKKHwq (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 02:52:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932193AbVKKHwq
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 02:52:46 -0500
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:49033
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S932192AbVKKHwp (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 11 Nov 2005 02:52:45 -0500
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1EaTiG-0008Iw-Ql; Fri, 11 Nov 2005 07:52:44 +0000
+From:	Alan Chandler <alan@chandlerfamily.org.uk>
+To:	Petr Baudis <pasky@suse.cz>
+Subject: type in cg-merge?
+Date:	Fri, 11 Nov 2005 07:52:53 +0000
+User-Agent: KMail/1.8.2
+Cc:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511110752.53249.alan@chandlerfamily.org.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:11560
+
+I am just reading the code in cg-merge to see how it works (taking your advice 
+to see how to re-write my history properly - see early threads about this 
+subject)
+
+At line there is an echo 0 that looks suspiciously like it should be an exit 
+0.
+
+Of course I may just have egg on my face - its my first attempt at looking at 
+the code.
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+Open Source. It's the difference between trust and antitrust.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

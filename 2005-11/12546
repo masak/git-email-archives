@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 10:13:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8C4D82920A8
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 10:13:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965016AbVKVRMZ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 12:12:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965020AbVKVRMY
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 12:12:24 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:41932 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965019AbVKVRMW (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 22 Nov 2005 12:12:22 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAMH5mnO029968
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 22 Nov 2005 09:05:49 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAMH5iXE016460;
+	Tue, 22 Nov 2005 09:05:45 -0800
+Date:	Tue, 22 Nov 2005 09:05:44 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+cc:	Chuck Lever <cel@citi.umich.edu>, Carl Baldwin <cnb@fc.hp.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: auto-packing on kernel.org? please?
+In-Reply-To: <b0943d9e0511220613h5978a600l@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511220904040.13959@g5.osdl.org>
+References: <Pine.LNX.4.64.0510131113490.15297@g5.osdl.org> 
+ <20051121190151.GA2568@hpsvcnb.fc.hp.com>  <Pine.LNX.4.64.0511211110480.13959@g5.osdl.org>
+  <4382AC11.5090209@citi.umich.edu>  <Pine.LNX.4.64.0511212134330.13959@g5.osdl.org>
+ <b0943d9e0511220613h5978a600l@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:12546
+
+
+
+On Tue, 22 Nov 2005, Catalin Marinas wrote:
+>
+> > The preferred way would be to just list the references somewhere under
+> > .git/refs/stgit, in which case fsck and repack should pick them up
+> > automatically (so clearly stgit doesn't do that right now ;).
+> 
+> I thought about adding .git/refs/patches/<branch>/* files
+> corresponding to the every StGIT patch. Are the above git commands
+> looking at all depths in the .git/refs/ directory?
+
+Yes. Or at least they're supposed to. If they are not, it's a bug 
+regardless, and we'll fix it.
+
+> The 'git repack -a' command would include the applied patches in the
+> newly created pack but leave out the unapplied ones. It would be even
+> better to leave all of them out since the StGIT patches are frequently
+> changed but an independent mechanism for this would complicate GIT -
+> 'git repack' shouldn't pack any of the objects found in
+> .git/refs/patches/, even if they are reachable via .git/refs/heads/*
+> (and maybe call the patches directory something like
+> .git/refs/unpackable or volatile).
+
+If we have some default location (and .git/refs/patches/ sounds good), we 
+can make git do the right thing - find them for git-fsck-objects, and 
+ignore them for git-repack.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

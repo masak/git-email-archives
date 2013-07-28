@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 03:06:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 63CE9171FCC
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 03:06:27 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751017AbVK2KFx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 05:05:53 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751040AbVK2KFx
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 05:05:53 -0500
+Received: from vir.dspsrv.com ([193.120.211.34]:59322 "EHLO dspsrv.com")
+	by vger.kernel.org with ESMTP id S1750949AbVK2KFx (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 29 Nov 2005 05:05:53 -0500
+Received: from [145.36.48.101] (helo=localhost)
+	by dspsrv.com with asmtp (Exim 3.36 #1)
+	id 1Eh2My-0003IL-00
+	for git@vger.kernel.org; Tue, 29 Nov 2005 10:05:52 +0000
+Date:	Tue, 29 Nov 2005 11:05:50 +0100
+From:	Tim O'Callaghan <timo@dspsrv.com>
+To:	git@vger.kernel.org
+Subject: Re: use binmode(STDOUT) in git-status
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051129100550.GA2124@ELSAMSW37164>
+Mail-Followup-To: Tim O'Callaghan <timo@dspsrv.com>, git@vger.kernel.org
+References: <81b0412b0511272334w393434e7lad3e3b102e6c3e9e@mail.gmail.com> <7vd5kkvd3q.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vd5kkvd3q.fsf@assigned-by-dhcp.cox.net>
+User-Agent: mutt-ng/devel-r570 (CYGWIN_NT-5.0)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:12925
+
+On Mon, Nov 28, 2005 at 10:31:05AM -0800, Junio C Hamano wrote:
+> Alex Riesen <raa.lkml@gmail.com> writes:
+> 
+> > Activision's Perl generates CRLF unless STDOUT is binmoded, which is
+> > inconsistent with other output of git-status.
+> 
+> I do not think this is a kind of patch that I should accept to
+> apply to the generic part of the codepath, even if on sane
+> platforms binmode() could be a no-op.
+> 
+> You should not have to say binmode() when you are emitting plain
+> text (otherwise you have to say that everywhere which is
+> madness).  I presume the Cygwin version uses Perl from Cygwin
+> and would not have this problem?
+> 
+> If that is the case, maybe this patch should be maintained out
+> of tree by the maintainer of Windows port of git that does _not_
+> use Cygwin but ActiveState.
+>
+
+You could also check `perl -v` for the phrase "built for cygwin". I am not
+sure how much of an issue this is though, because native windows support is
+going to be a bit tricky without Cygwin as you also need (ba)sh, sed, grep,
+etc.
+
+Tim.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

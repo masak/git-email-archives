@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jun  4 08:38:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 96F61667A
+	for <tkil@scrye.com>; Sat,  4 Jun 2005 08:38:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261315AbVFDOih (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 4 Jun 2005 10:38:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261351AbVFDOih
+	(ORCPT <rfc822;git-outgoing>); Sat, 4 Jun 2005 10:38:37 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:57086 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S261315AbVFDOic (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 4 Jun 2005 10:38:32 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id BC7F56E149B; Sat,  4 Jun 2005 16:37:51 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 8706B6E12DE; Sat,  4 Jun 2005 16:37:51 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 9672D61FE0; Sat,  4 Jun 2005 16:38:31 +0200 (CEST)
+Date:	Sat, 4 Jun 2005 16:38:31 +0200
+From: Jonas Fonseca <fonseca@diku.dk>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: [PATCHSET] cg-log cleanups and enhancements
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050604143831.GD12615@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:4513
+
+The patchset contains the following 10 patches:
+
+  [PATCH 1/10] Cleanup conversion to human readable date
+  [PATCH 2/10] Separate handling of tree and parent in commit headers
+  [PATCH 3/10] Separate handling of author and committer in commit headers
+  [PATCH 4/10] First parse all commit header entries then print them
+  [PATCH 5/10] Move printing of the commit info line inside the loop
+  [PATCH 6/10] Remove the catch all rule
+  [PATCH 7/10] Move log printing to separate function
+  [PATCH 8/10] Move the username matching inside the loop
+  [PATCH 9/10] Move file matching inside the loop.
+  [PATCH 10/10] Add -s option to show log summary
+
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

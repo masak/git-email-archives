@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct  6 08:39:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5BDF6161024
+	for <tkil@scrye.com>; Thu,  6 Oct 2005 08:39:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751043AbVJFOjO (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 6 Oct 2005 10:39:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751053AbVJFOjN
+	(ORCPT <rfc822;git-outgoing>); Thu, 6 Oct 2005 10:39:13 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:38587 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751043AbVJFOjM (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 6 Oct 2005 10:39:12 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j96Ed44s017811
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 6 Oct 2005 07:39:04 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j96Ed3vl003458;
+	Thu, 6 Oct 2005 07:39:03 -0700
+Date:	Thu, 6 Oct 2005 07:39:02 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Alex Riesen <raa.lkml@gmail.com>
+cc:	git@vger.kernel.org, Andy Isaacson <adi@hexapodia.org>,
+	Junio C Hamano <junkio@cox.net>
+Subject: Re: clone: I'm only doing a max of 256 requests
+In-Reply-To: <81b0412b0510060641g3a3c6e02m6827370dd61b5ea6@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510060737160.31407@g5.osdl.org>
+References: <20051005191300.GC17475@hexapodia.org> 
+ <Pine.LNX.4.64.0510051541300.31407@g5.osdl.org>
+ <81b0412b0510060641g3a3c6e02m6827370dd61b5ea6@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.119 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:9762
+
+
+
+On Thu, 6 Oct 2005, Alex Riesen wrote:
+> On 10/6/05, Linus Torvalds <torvalds@osdl.org> wrote:
+> >
+> >         git ls-remote http://www.linux-mips.org/pub/scm/linux.git | wc -l
+> >
+> 
+> Which, btw, failed for me, when I tried to run it home (which has no 
+> .git in it yet). Do the scripts git-ls-remote.sh and git-parse-remote.sh 
+> really need .git/...?
+
+Good point. No they don't. You should be able to run "git ls-remote" 
+outside of a local git directory.
+
+> Just in case they don't, the attached patch removes the die("Not a git archive")
+
+Junio, please apply.
+
+(It still wants the "git-sh-setup" part if only because it uses "die()" in 
+another place).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

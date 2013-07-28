@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 14:32:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C0D45285243
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 14:32:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751253AbVHQUcA (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 16:32:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751254AbVHQUcA
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 16:32:00 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:58076 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751253AbVHQUcA (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 17 Aug 2005 16:32:00 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7HKVojA001112
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 17 Aug 2005 13:31:51 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7HKVn2V008302;
+	Wed, 17 Aug 2005 13:31:50 -0700
+Date:	Wed, 17 Aug 2005 13:31:49 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: [PATCH 1/2] Export relative path handling "prefix_path()" function
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508171331060.3553@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 40
+Xref: brand.scrye.com linux.git:7464
+
+
+Not all programs necessarily have a pathspec array of pathnames, some of
+them (like git-update-cache) want to do things one file at a time.  So
+export the single-path interface too.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+
+ cache.h |    1 +
+ setup.c |    2 +-
+ 2 files changed, 2 insertions(+), 1 deletions(-)
+
+c06157a36e49182c34e1e92aa7b329bde5dca3f9
+diff --git a/cache.h b/cache.h
+--- a/cache.h
++++ b/cache.h
+@@ -142,6 +142,7 @@ extern char *get_graft_file(void);
+ 
+ extern const char **get_pathspec(const char *prefix, char **pathspec);
+ extern const char *setup_git_directory(void);
++extern char *prefix_path(const char *prefix, int len, char *path);
+ 
+ #define alloc_nr(x) (((x)+16)*3/2)
+ 
+diff --git a/setup.c b/setup.c
+--- a/setup.c
++++ b/setup.c
+@@ -1,6 +1,6 @@
+ #include "cache.h"
+ 
+-static char *prefix_path(const char *prefix, int len, char *path)
++char *prefix_path(const char *prefix, int len, char *path)
+ {
+ 	char *orig = path;
+ 	for (;;) {
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

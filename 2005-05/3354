@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 15 13:48:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4781F6795
+	for <tkil@scrye.com>; Sun, 15 May 2005 13:48:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261157AbVEOTrr (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 15 May 2005 15:47:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261207AbVEOTrr
+	(ORCPT <rfc822;git-outgoing>); Sun, 15 May 2005 15:47:47 -0400
+Received: from 213-239-205-147.clients.your-server.de ([213.239.205.147]:14498
+	"EHLO mail.tglx.de") by vger.kernel.org with ESMTP id S261157AbVEOTro
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 15 May 2005 15:47:44 -0400
+Received: from mail.tec.linutronix.de (unknown [192.168.0.1])
+	by mail.tglx.de (Postfix) with ESMTP id A997265C003;
+	Sun, 15 May 2005 21:47:31 +0200 (CEST)
+Received: from tglx.tec.linutronix.de (tglx.tec.linutronix.de [192.168.0.68])
+	by mail.tec.linutronix.de (Postfix) with ESMTP id A725F2829A;
+	Sun, 15 May 2005 21:47:44 +0200 (CEST)
+Subject: Re: git-rev-list  in local commit order
+From: Thomas Gleixner <tglx@linutronix.de>
+Reply-To: tglx@linutronix.de
+To: Sean <seanlkml@sympatico.ca>
+Cc: git@vger.kernel.org
+In-Reply-To: <4127.10.10.10.24.1116107046.squirrel@linux1>
+References:   <4127.10.10.10.24.1116107046.squirrel@linux1>
+Content-Type: text/plain
+Organization: linutronix
+Date:	Sun, 15 May 2005 21:48:53 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1116186533.11872.152.camel@tglx>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 28
+Xref: brand.scrye.com linux.git:3354
+
+On Sat, 2005-05-14 at 17:44 -0400, Sean wrote:
+> Attached is a preliminary hackish patch to sort git-rev-list in local
+> commit order. 
+
++unsigned long sha1_local_date(const unsigned char *sha1)
++{
++       struct stat st;
++       if (find_sha1_file(sha1, &st))
++               return st.st_mtime;
++       return 0;
++}
+
+Do you really want to base workflow and history information on file
+times ?
+
+
+File times are local and completely error prone in distributed
+environments. 
+
+
+tglx
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

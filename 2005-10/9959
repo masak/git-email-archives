@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 11 08:59:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E5D92AC4AC
+	for <tkil@scrye.com>; Tue, 11 Oct 2005 08:59:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932113AbVJKO5b (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 11 Oct 2005 10:57:31 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932120AbVJKO5a
+	(ORCPT <rfc822;git-outgoing>); Tue, 11 Oct 2005 10:57:30 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:46779 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932117AbVJKO53 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 11 Oct 2005 10:57:29 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9BEvH4s016130
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Oct 2005 07:57:17 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9BEvG9w010278;
+	Tue, 11 Oct 2005 07:57:16 -0700
+Date:	Tue, 11 Oct 2005 07:57:16 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Martin Langhoff <martin@catalyst.net.nz>
+cc:	git@vger.kernel.org
+Subject: Re: [PATCH] cg-tag - add support for longer commit messages
+In-Reply-To: <11289987493327-git-send-email-martin@catalyst.net.nz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510110754110.14597@g5.osdl.org>
+References: <11289987493327-git-send-email-martin@catalyst.net.nz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.123 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:9959
+
+
+
+On Tue, 11 Oct 2005, Martin Langhoff wrote:
+>
+> Added an -m switch that points to a filename which contains a (potentially
+> long) tag message.
+
+At least core git has "-m 'message'" and "-F 'file'" (with long versions 
+being "--message" and "--file" respectively) for this kind of thing in 
+"git commit". Maybe it would be good to make that the standard interface.
+
+When scripting, using a separate file is often inconvenient, and giving 
+the message as an argument much nicer. So you do often want both.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

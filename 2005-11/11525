@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 16:30:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DD20C2E001
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 16:30:50 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932270AbVKJX2Y (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 18:28:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932273AbVKJX2X
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 18:28:23 -0500
+Received: from pop.gmx.de ([213.165.64.20]:47789 "HELO mail.gmx.net")
+	by vger.kernel.org with SMTP id S932270AbVKJX2X (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 10 Nov 2005 18:28:23 -0500
+Received: (qmail invoked by alias); 10 Nov 2005 23:28:21 -0000
+Received: from p5496BEC1.dip0.t-ipconnect.de (EHLO [192.168.178.21]) [84.150.190.193]
+  by mail.gmx.net (mp008) with SMTP; 11 Nov 2005 00:28:21 +0100
+X-Authenticated: #352111
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] cg-pull to stop treating "master" specially, fix fetch_local for .git/HEAD
+Date:	Fri, 11 Nov 2005 00:26:18 +0100
+User-Agent: KMail/1.8.2
+Cc:	Pavel Roskin <proski@gnu.org>, Petr Baudis <pasky@suse.cz>
+References: <1124832796.23795.9.camel@dv>
+In-Reply-To: <1124832796.23795.9.camel@dv>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511110026.18324.Josef.Weidendorfer@gmx.de>
+X-Y-GMX-Trusted: 0
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:11525
+
+On Tuesday 23 August 2005 23:33, Pavel Roskin wrote:
+> Hello!
+> 
+> This patch changes cg-pull so that if the branch is not specified, it
+> takes origin's .git/HEAD without first trying .git/refs/heads/master.
+> This removes preferential treatment of the "master" branch, allowing the
+> upstream to use another name for the default branch.  To get the master
+> branch, users would have to append "#master" to the URL.
+
+I think this is wrong.
+
+Why would anybody want to fetch the current upstream HEAD at cg-pull
+time? If you do this, and you have no control on the upstream
+repository, "origin" will jump randomly around after cg-pull, depending
+on the current HEAD of the origin repository.
+
+Besides, this is a incompatible change in cg-pull behavior: I am sure that
+a lot of people did a cg-clone in the past without any specific remote branch,
+and expect that cg-pull will update their origin to the remote "master".
+Now, if they update to a new Cogito with this patch, the next cg-pull
+sometimes will rebase their origin to another random branch, depending
+on remote HEAD ?!
+
+Or am I missing something here?
+
+Josef
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

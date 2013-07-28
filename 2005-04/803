@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 08:58:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 76D9613855B
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 08:58:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261583AbVDSOyV (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 10:54:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261586AbVDSOyV
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 10:54:21 -0400
+Received: from fire.osdl.org ([65.172.181.4]:21647 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261583AbVDSOx7 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 19 Apr 2005 10:53:59 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3JErls4016533
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 19 Apr 2005 07:53:47 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3JErkEj013123;
+	Tue, 19 Apr 2005 07:53:46 -0700
+Date:	Tue, 19 Apr 2005 07:55:44 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: David Roundy <droundy@abridgegame.org>
+Cc: darcs-devel@darcs.net, Git Mailing List <git@vger.kernel.org>
+Subject: Re: [darcs-devel] Darcs and git: plan of action
+In-Reply-To: <20050419104252.GA28269@abridgegame.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504190749030.19286@ppc970.osdl.org>
+References: <7ivf6lm594.fsf@lanthane.pps.jussieu.fr> <20050418122011.GA13769@abridgegame.org>
+ <Pine.LNX.4.58.0504180832330.7211@ppc970.osdl.org> <20050419104252.GA28269@abridgegame.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 39
+Xref: brand.scrye.com linux.git:803
+
+
+
+On Tue, 19 Apr 2005, David Roundy wrote:
+> 
+> Would a small amount of human-readable change information be acceptable in
+> the free-form comment area? In the rename thread I got the impression this
+> would be okay for renames.  For example,
+> 
+> rename foo bar
+
+Sure. That's human-readable and meaningful, as in "it actually makes sense 
+as a commit comment regardless of any darcs issues". As does:
+
+> replace [_a-zA-Z0-9] old_variable new_variable file/path
+
+which is almost so (a human would have written "rename old to new", but
+the above isn't _that_ different).
+
+HOWEVER, then the requirement would be that we'd never have complex
+combinations of the above. Ie having 2-5 lines of something like that is
+"human-readable". Having 10+ lines of the above is not. See?
+
+I have this suspicion that the "replace" thing often ends up being done on
+dozens of files, and I don't want to have dozens of lines of stuff that
+ends up really being machine-readable. But if it's ok to depend on the
+content changes (you _do_ see which files changed) together with a single
+line of "replace [token-def] xxx yyy", then hell yes - I consider that to
+be useful information even outside of git.
+
+(In other words: if it looks like something a careful human _could_ have
+written, it's certainly ok. But if it looks like something a careful human
+would have used a script to generate 40 entries of, it's bad).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

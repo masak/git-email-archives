@@ -1,0 +1,110 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct  2 04:56:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 933FB11D042
+	for <tkil@scrye.com>; Sun,  2 Oct 2005 04:56:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751072AbVJBK4D (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 2 Oct 2005 06:56:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751075AbVJBK4D
+	(ORCPT <rfc822;git-outgoing>); Sun, 2 Oct 2005 06:56:03 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:46565 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S1751072AbVJBK4C (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 2 Oct 2005 06:56:02 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id 39D836DFFDB; Sun,  2 Oct 2005 12:55:58 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id F289F6DFF9D; Sun,  2 Oct 2005 12:55:57 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 6F7DA60EF6; Sun,  2 Oct 2005 12:56:01 +0200 (CEST)
+Date:	Sun, 2 Oct 2005 12:56:01 +0200
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	Petr Baudis <pasky@ucw.cz>
+Cc:	git@vger.kernel.org
+Subject: [PATCH Cogito] Fix README asciidoc formatting
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051002105601.GB9934@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 67
+Xref: brand.scrye.com linux.git:9605
+
+Add empty lines after code blocks to switch back to normal text.
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+
+---
+
+BTW, what about adding some notatation info for those boxes? It looks
+very creative for an introduction document.
+
+commit ca52918a9a6e02e55d878d8f5e68672432940337
+tree 60d270e8b45beeee9361b13284ff2eefec746fd6
+parent 9356837de630644323c800e2accad2618d7393f9
+author Jonas Fonseca <fonseca@diku.dk> Sun, 02 Oct 2005 12:45:03 +0200
+committer Jonas Fonseca <fonseca@antimatter.(none)> Sun, 02 Oct 2005 12:45:03 +0200
+
+ README |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+diff --git a/README b/README
+--- a/README
++++ b/README
+@@ -305,11 +305,13 @@ will `cg-clone` do?
+ 
+ 	+--------+
+ 	+--------+
++
+ First it creates an empty repository
+ 
+ 	+--------+
+ 	$  origin<
+ 	+--------+
++
+ Then it creates an 'origin' head, and will copy all the history from the
+ remote repository's 'master' head there. So this head exists to reflect
+ the state of the remote repository. The important point is that it is
+@@ -325,6 +327,7 @@ head and possibly push to it.
+ 	|  master<
+ 	$  origin<
+ 	+--------+
++
+ Finally it copied over the 'origin' head to the 'master' head, which will
+ from now as your current head represent your local development in the
+ repository.
+@@ -337,6 +340,7 @@ will it do?
+ 	|  master<
+ 	$  origin< < < < <
+ 	+--------+
++
+ First, it will populate your 'origin' head with the new commits from the
+ remote's 'master' head.
+ 
+@@ -344,6 +348,7 @@ remote's 'master' head.
+ 	|  master<-M-.
+ 	$  origin>---'
+ 	+--------+
++
+ Then, it will merge those new commits to your 'master' head.
+ 
+ Now let's imagine that there is also another head 'unoji' on the other side
+
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

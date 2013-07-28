@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 09:30:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0317F29D0D6
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 09:30:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261687AbVDTPaZ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 11:30:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261688AbVDTPaZ
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 11:30:25 -0400
+Received: from fire.osdl.org ([65.172.181.4]:35230 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261687AbVDTPaU (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 20 Apr 2005 11:30:20 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3KFUFs4004001
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 20 Apr 2005 08:30:15 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3KFUE3A009259;
+	Wed, 20 Apr 2005 08:30:14 -0700
+Date:	Wed, 20 Apr 2005 08:32:13 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH 1/4] Accept commit in some places when tree is needed.
+In-Reply-To: <7vis2ikmj0.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504200826360.6467@ppc970.osdl.org>
+References: <7vis2ikmj0.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 27
+Xref: brand.scrye.com linux.git:964
+
+
+
+On Tue, 19 Apr 2005, Junio C Hamano wrote:
+> 
+> This patch lifts the tree-from-tree-or-commit logic from
+> diff-cache.c and moves it to sha1_file.c, which is a common
+> library source for the SHA1 storage part.
+
+I don't think that's a good interface. It changes the sha1 passed into it: 
+that may actually be nice, since you may want to know what it changed to, 
+but I think you'd want to have that as an (optional) separate 
+"sha1_result" parameter. 
+
+Also, the "type" or "size" things make no sense to have as a parameter 
+at all.
+
+IOW, it was fine when it was an internal hacky thing in diff-cache, but 
+once it's promoted to be a real library function it should definitely be 
+cleaned up to have sane interfaces that make sense in general, and not 
+just within the original context.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

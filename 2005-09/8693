@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 12:12:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7A6A61C946C
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 12:12:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161223AbVIPSLt (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 14:11:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161222AbVIPSLt
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 14:11:49 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:43968 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1161223AbVIPSLr (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 16 Sep 2005 14:11:47 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8GI8ABo003418
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 16 Sep 2005 11:08:11 -0700
+Received: from shell0.pdx.osdl.net (localhost [127.0.0.1])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8GI8A0d004224;
+	Fri, 16 Sep 2005 11:08:10 -0700
+Received: (from chrisw@localhost)
+	by shell0.pdx.osdl.net (8.13.1/8.13.1/Submit) id j8GI8Aui004223;
+	Fri, 16 Sep 2005 11:08:10 -0700
+Date:	Fri, 16 Sep 2005 11:08:10 -0700
+From:	Chris Wright <chrisw@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Martin Atukunda <matlads@dsmagic.com>, git@vger.kernel.org
+Subject: Re: Add uninstall target to Makefile
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050916180810.GK8041@shell0.pdx.osdl.net>
+References: <20050916125814.GA8084@igloo.ds.co.ug> <7vfys5ndor.fsf@assigned-by-dhcp.cox.net> <20050916175402.GC22825@tuxdriver.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050916175402.GC22825@tuxdriver.com>
+User-Agent: Mutt/1.5.6i
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:8693
+
+* John W. Linville (linville@tuxdriver.com) wrote:
+> > Sorry, I absolutely detest other peoples' Makefiles that has
+> > this target.  Why would anybody want this?
+> 
+> Is this a serious question?  To uninstall the binaries e.g. if you
+> installed them in the wrong place?
+
+Of course package manager will do better at this, but it is useful to be
+able to uninstall.  However, I don't think Martin's external script with
+all the filenames hardcoded is the right approach.  There are $(PROG)
+and $(SCRIPTS) which already know all these filenames.
+
+thanks,
+-chris
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

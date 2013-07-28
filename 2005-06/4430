@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 15:33:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2BBCB2AB287
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 15:33:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261346AbVFBV3G (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 17:29:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261368AbVFBV0c
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 17:26:32 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:26583 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261231AbVFBVYl (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 17:24:41 -0400
+Received: (qmail 15663 invoked by uid 2001); 2 Jun 2005 21:24:36 -0000
+Date:	Thu, 2 Jun 2005 23:24:36 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Michael Frank <msfrank@syntaxjockey.com>
+Cc: git@vger.kernel.org
+Subject: Re: [COGITO PATCH] mirroring repositories
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050602212436.GI32189@pasky.ji.cz>
+References: <1117402883.8536.5.camel@localhost.localdomain>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1117402883.8536.5.camel@localhost.localdomain>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 27
+Xref: brand.scrye.com linux.git:4430
+
+Dear diary, on Sun, May 29, 2005 at 11:41:23PM CEST, I got a letter
+where Michael Frank <msfrank@syntaxjockey.com> told me that...
+> The attached patch adds the two programs cg-mirror-add and
+> cg-mirror-sync.  Say you do all of your work on your laptop and you want
+> to make a mirror of your repository available to the public.  You
+> specify the location of the mirror with cg-mirror-add:
+> 
+> $ cg-mirror-add scp://my.server:/var/www/repos/project.git
+> 
+> which locally creates the file .git/mirrors.  Whenever you want to
+> upload your changes, you run cg-mirror-sync.
+
+FWIW, I think this is the wrong approach - full-blown pushing makes much
+more sense since it's a full superset of mirroring and it's more
+universal, and not *that* more complicated to do (basically just the
+HEAD stuff - and I think the race conditions around that don't matter
+that much in the real life if you take some basic crude protections).
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

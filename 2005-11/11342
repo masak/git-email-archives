@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  8 12:31:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 649F52381AD
+	for <tkil@scrye.com>; Tue,  8 Nov 2005 12:31:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965280AbVKHTaO (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 8 Nov 2005 14:30:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965284AbVKHTaO
+	(ORCPT <rfc822;git-outgoing>); Tue, 8 Nov 2005 14:30:14 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:24996 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S965280AbVKHTaM (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 8 Nov 2005 14:30:12 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051108192947.KTR4527.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 8 Nov 2005 14:29:47 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	Jon Loeliger <jdl@freescale.com>, git@vger.kernel.org
+Subject: Re: git-pull.sh's bad mode
+In-Reply-To: <20051108163546.GC1431@pasky.or.cz> (Petr Baudis's message of
+	"Tue, 8 Nov 2005 17:35:46 +0100")
+References: <E1EZUK2-0005EG-56@jdl.com>
+	<7v4q6njecr.fsf@assigned-by-dhcp.cox.net>
+	<20051108163546.GC1431@pasky.or.cz>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+Date:	Tue, 08 Nov 2005 11:30:10 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhdaney4d.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:11342
+
+Petr Baudis <pasky@suse.cz> writes:
+
+>> Makefile installs git-pull with executable bit set anyway, so it
+>> really does not matter.
+>
+> But it should definitely be fixed. E.g. I actually personally use (for
+> Cogito development) git-core which I never make install (I have
+> system-wide git-core installation which is just whatever is the latest
+> version Gentoo ships, and I use that for non-Cogito development).
+> It would be painful if this mode of usage wouldn't be supported.
+
+You could perhaps do "make" without install and set PATH to
+include the source directory (you need to do a bit more if we
+ever update templates/ directory and you would want to try it). 
+
+The point is that git-pull was generated with +x from
+git-pull.sh, and the mode bits of git-pull.sh (source) does not
+matter anymore.  It used to matter back when we called them
+git-*-script but not these days.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

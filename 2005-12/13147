@@ -1,0 +1,151 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec  3 09:27:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_QG autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 098053292E
+	for <tkil@scrye.com>; Sat,  3 Dec 2005 09:27:30 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932069AbVLCQY4 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 3 Dec 2005 11:24:56 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751292AbVLCQYz
+	(ORCPT <rfc822;git-outgoing>); Sat, 3 Dec 2005 11:24:55 -0500
+Received: from smtp104.mail.sc5.yahoo.com ([66.163.169.223]:63896 "HELO
+	smtp104.mail.sc5.yahoo.com") by vger.kernel.org with SMTP
+	id S1751289AbVLCQYy (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 3 Dec 2005 11:24:54 -0500
+Received: (qmail 53025 invoked from network); 3 Dec 2005 16:24:42 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Received:Message-ID:Date:From:User-Agent:X-Accept-Language:MIME-Version:To:CC:Subject:Content-Type:Content-Transfer-Encoding;
+  b=uCGFjUN/ussK5unskGn1QLdbQ8QZghn/1AOp2ldpYw/eU8FMKPKDKJwrsqGcx09TLnAe4tM8xkvsOPnqe2M4v4/4DXZtVeFBziGsd0MKiDWxZbgqUKfyX5Dx+JNAYr11Rt0QqsLqeOgr0dI+p8KIpf7NLYXsQJblODMzgbHi7sk=  ;
+Received: from unknown (HELO ?10.0.0.13?) (mcostalba@151.56.86.36 with plain)
+  by smtp104.mail.sc5.yahoo.com with SMTP; 3 Dec 2005 16:24:41 -0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4391C6B8.7010507@yahoo.it>
+Date:	Sat, 03 Dec 2005 17:24:24 +0100
+From:	Marco Costalba <mcostalba@yahoo.it>
+User-Agent: Mozilla Thunderbird 1.0.6-7.2.20060mdk (X11/20050322)
+X-Accept-Language: it, it-it, en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+CC:	junkio@cox.net, paulus@samba.org
+Subject: gitk does not recognizes ISO-8859-15
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 106
+Xref: brand.scrye.com linux.git:13147
+
+Cannot use ISO-8859-15 according to IANA character-sets encoding file
+(http://www.iana.org/assignments/character-sets):
+
+
+[marco@costalba git]$ git-repo-config i18n.commitencoding ISO-8859-15
+[marco@costalba git]$ gitk
+Error in startup script: unknown encoding "ISO-8859-15"
+     while executing
+"fconfigure $commfd -blocking 0 -translation lf -encoding $gitencoding"
+     (procedure "getcommits" line 34)
+     invoked from within
+"getcommits $revtreeargs"
+     (file "/home/marco/bin/gitk" line 3743)
+[marco@costalba git]$ git-repo-config i18n.commitencoding ISO_8859-15
+[marco@costalba git]$ gitk
+Error in startup script: unknown encoding "ISO_8859-15"
+     while executing
+"fconfigure $commfd -blocking 0 -translation lf -encoding $gitencoding"
+     (procedure "getcommits" line 34)
+     invoked from within
+"getcommits $revtreeargs"
+     (file "/home/marco/bin/gitk" line 3743)
+
+
+Finally, after some trials, I found the Tcl/Tk recognized name is "iso8859-15".
+This does not seems a standard name and worst ;-)  it is different from the Qt 
+internal name "ISO8859-15".
+
+I would like to use the qgit text codec selector to save the encoding in the 
+repository config file (using git-repo-config i18n.commitencoding). But to do 
+this I must do not break gitk.
+
+Qt can reconize IANA names and also the following "internal" names (only the 
+first part, before " --") that user can choose with codec selector combobox:
+
+  Latin1
+  Big5 -- Chinese
+  Big5-HKSCS -- Chinese
+  eucJP -- Japanese
+  eucKR -- Korean
+  GB2312 -- Chinese
+  GBK -- Chinese
+  GB18030 -- Chinese
+  JIS7 -- Japanese
+  Shift-JIS -- Japanese
+  TSCII -- Tamil
+  utf8 -- Unicode, 8-bit
+  utf16 -- Unicode
+  KOI8-R -- Russian
+  KOI8-U -- Ukrainian
+  ISO8859-1 -- Western
+  ISO8859-2 -- Central European
+  ISO8859-3 -- Central European
+  ISO8859-4 -- Baltic
+  ISO8859-5 -- Cyrillic
+  ISO8859-6 -- Arabic
+  ISO8859-7 -- Greek
+  ISO8859-8 -- Hebrew, visually ordered
+  ISO8859-8-i -- Hebrew, logically ordered
+  ISO8859-9 -- Turkish
+  ISO8859-10
+  ISO8859-13
+  ISO8859-14
+  ISO8859-15 -- Western
+  IBM 850
+  IBM 866
+  CP874
+  CP1250 -- Central European
+  CP1251 -- Cyrillic
+  CP1252 -- Western
+  CP1253 -- Greek
+  CP1254 -- Turkish
+  CP1255 -- Hebrew
+  CP1256 -- Arabic
+  CP1257 -- Baltic
+  CP1258
+  Apple Roman
+  TIS-620 -- Thai
+
+
+So here we arrive. I see two ways to deal with this:
+
+1) *solution* make gitk use IANA names
+
+2) *workaround* get from somewhere the list of Tcl/Tk recognized codec names and 
+teach qgit to do the map from IANA when setting a codec with "git-repo-config 
+i18n.commitencoding"
+
+
+In both cases I need your help ;-)
+
+Thanks
+Marco
+
+	
+
+	
+		
+___________________________________ 
+Yahoo! Mail: gratis 1GB per i messaggi e allegati da 10MB 
+http://mail.yahoo.it
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

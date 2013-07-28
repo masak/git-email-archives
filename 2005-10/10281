@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 07:59:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8A3C12851FA
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 07:59:40 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750975AbVJSN7c (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 09:59:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750983AbVJSN7c
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 09:59:32 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:20625 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750975AbVJSN7b (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 19 Oct 2005 09:59:31 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9JDxTFC016446
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 19 Oct 2005 06:59:30 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9JDxSJe001716;
+	Wed, 19 Oct 2005 06:59:29 -0700
+Date:	Wed, 19 Oct 2005 06:59:28 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+cc:	Kay Sievers <kay.sievers@vrfy.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: gitweb.cgi
+In-Reply-To: <43559DFE.7060503@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510190655230.3369@g5.osdl.org>
+References: <43546492.3020401@zytor.com> <20051018110725.GB6929@vrfy.org>
+ <43552FC2.3000000@zytor.com> <Pine.LNX.4.64.0510181645200.3369@g5.osdl.org>
+ <43559575.1060902@zytor.com> <Pine.LNX.4.64.0510181753340.3369@g5.osdl.org>
+ <43559DFE.7060503@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:10281
+
+
+
+On Tue, 18 Oct 2005, H. Peter Anvin wrote:
+> 
+> Yes, but I did that.  It seems very strange when something hits the cache.  A
+> cgi script can apparently be run quite a few number of times before mod_cache
+> sees it globally.
+
+Well, I tried again this morning, and _boy_ is it better. The "projects" 
+thing came up immediately, no waiting. 
+
+Maybe it just took a while for the mod_cache thing to take effect as 
+Apache swarm members time out? 
+
+Or maybe it's just that the west coast is really quiet at 7AM.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

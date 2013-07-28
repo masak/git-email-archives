@@ -1,0 +1,114 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 10 16:40:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CB677BAE51
+	for <tkil@scrye.com>; Sun, 10 Jul 2005 16:40:40 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261966AbVGJWjc (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 10 Jul 2005 18:39:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262147AbVGJWgu
+	(ORCPT <rfc822;git-outgoing>); Sun, 10 Jul 2005 18:36:50 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:40587 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261966AbVGJWgI (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 10 Jul 2005 18:36:08 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6AMa3jA019691
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 10 Jul 2005 15:36:03 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6AMa1Rd004932;
+	Sun, 10 Jul 2005 15:36:02 -0700
+Date:	Sun, 10 Jul 2005 15:36:01 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: "Eric W. Biederman" <ebiederm@xmission.com>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] rev-list: add "--full-objects" flag.
+In-Reply-To: <m1pstrr8k1.fsf@ebiederm.dsl.xmission.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507101517370.17536@g5.osdl.org>
+References: <20050703234629.GF13848@pasky.ji.cz> <42CBC822.30701@didntduck.org>
+ <20050707144501.GG19781@pasky.ji.cz> <7vk6k2sfa4.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0507071158220.3293@g5.osdl.org> <20050707221443.GB7151@pasky.ji.cz>
+ <Pine.LNX.4.58.0507071549330.25104@g5.osdl.org> <7vll4ifbq8.fsf_-_@assigned-by-dhcp.cox.net>
+ <7vfyuqfa6r.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0507071657140.25104@g5.osdl.org>
+ <7vvf3mds9c.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0507071841010.25104@g5.osdl.org>
+ <7vy88ica8e.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0507071928220.25104@g5.osdl.org>
+ <m1pstrr8k1.fsf@ebiederm.dsl.xmission.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 62
+Xref: brand.scrye.com linux.git:5899
+
+
+
+On Sat, 9 Jul 2005, Eric W. Biederman wrote:
+> 
+> The current intelligent fetch currently has a problem that it cannot
+> be used to bootstrap a repository.  If you don't have an ancestor
+> of what you are fetching you can't fetch it.
+
+Sure you can.
+
+See the current "git clone". It's actually quite good, it's a pleasure to 
+use now that it gives updates on how much it has done.
+
+Just do
+
+	git clone src dest
+
+to try it out. It starts out silent (for big repositories) because it 
+takes a while to get the whole rev list, but once it gets going it's quite 
+nice and gives a nice progress report..
+
+It uses the exact same server side code that "git-fetch-pack" does (ie it
+just starts "git-upload-pack" on the server).
+
+Now, one thing you cannot do is to start a totally new _project_ on the
+server side. In order to do a "git-send-pack", you need to first create a
+directory and do a "git-init-db" on the remote side.
+
+So to create a new project, what you need to do is
+
+	src$ ssh target
+
+	target$ mkdir new-project
+	target$ cd new-project
+	target$ git-init-db
+	target$ exit
+
+	src$ git-send-pack target:new-project master
+
+and you've now sent your "master" branch to the new project at 
+"target:new-project".
+
+You can even populate multiple branches at a time: just list them all (you
+do have to list them, because by default "git-send-pack" will update the
+_common_ branches, and since the other end is empty, there obviously are
+no common branches to start with).
+
+Ahh, you should even be able to automate the sending of all branches by
+doing
+
+	git-send-pack target:new-project $(cd .git ; find refs -type f)
+
+I think - that will end up being equivalent to a "reverse clone".
+
+The smart clients are doing pretty damn well, I think.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 16:50:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A77B41A0ADC
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 16:50:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030415AbVJEWuJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 18:50:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030417AbVJEWuJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 18:50:09 -0400
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:34465
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S1030415AbVJEWuH (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 5 Oct 2005 18:50:07 -0400
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1ENI5O-0000cx-P7
+	for git@vger.kernel.org; Wed, 05 Oct 2005 23:50:06 +0100
+From:	Alan Chandler <alan@chandlerfamily.org.uk>
+To:	git@vger.kernel.org
+Subject: Confused as to the correct syntax
+Date:	Wed, 5 Oct 2005 23:50:07 +0100
+User-Agent: KMail/1.8.2
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200510052350.07217.alan@chandlerfamily.org.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:9735
+
+The man page for git-rev-parse talks about the way to specify commits back 
+from a named commit object.  The following text in this man page tries to 
+explain it, but it has confused me more
+
+"A  suffix  ~<n>  to  a  revision parameter means the commit object that is 
+the <n>th generation grand-parent of the named commit object, following only 
+the first parent. I.e. rev~3 is equivalent to rev^ which is equivalent to 
+rev11^1."
+
+
+Why is rev~3 equivalent to rev^,  surely it is equivalent to rev^^^
+
+Why is rev~3 equivalent to rev11^1, should that not be rev^1^1^1
+
+I don't understand the syntax here - so was looking it up in the man page. Is 
+there an error in the page or have I misunderstood something.
+
+
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+Open Source. It's the difference between trust and antitrust.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

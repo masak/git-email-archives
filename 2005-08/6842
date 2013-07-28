@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug  5 08:12:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3B5202276FD
+	for <tkil@scrye.com>; Fri,  5 Aug 2005 08:12:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263032AbVHEOK5 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 5 Aug 2005 10:10:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263028AbVHEOK4
+	(ORCPT <rfc822;git-outgoing>); Fri, 5 Aug 2005 10:10:56 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:33956 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S263032AbVHEOKr (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 5 Aug 2005 10:10:47 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j75EAdjA030779
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 5 Aug 2005 07:10:40 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j75EAdMP015900;
+	Fri, 5 Aug 2005 07:10:39 -0700
+Date:	Fri, 5 Aug 2005 07:10:39 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Paul Mackerras <paulus@samba.org>
+Cc: git@vger.kernel.org
+Subject: Re: Display of merges in gitk
+In-Reply-To: <17130.56620.137642.941175@cargo.ozlabs.ibm.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508050658260.3258@g5.osdl.org>
+References: <17130.56620.137642.941175@cargo.ozlabs.ibm.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 40
+Xref: brand.scrye.com linux.git:6842
+
+
+
+On Fri, 29 Jul 2005, Paul Mackerras wrote:
+>
+> I have reworked the way gitk displays merges.
+
+Ok, goodie. It works fine in my environment, with most merges showing up 
+as not interesting. But a merge like
+
+	3e0777b8fa96f7073ed5d13d3bc1d573b766bef9
+
+shows an example of where there was actually both real content merges, and 
+some real clashes.
+
+However, most of the content merges were trivial, and they often hide the 
+real clashes. For example, if you click on that merge, a _lot_ of it looks 
+like it might be clashes, even though most of it was auto-merged. This is 
+not really a problem, but I get the feeling that it could be improved 
+somehow - maybe a button that hides the parts that don't have clashes? 
+
+
+> In the usual case of two parents, lines from the first parent are in red
+> and lines from the second parent are in blue.  Lines in the result that
+> don't correspond to either parent are in bold black.
+
+To get the alternate output, maybe something like:
+ - run "merge" on the original/parent1/parent2 (the same way the
+   git-merge-one-file-script does)
+ - anything that merged fine is in black (regardless of which parent it 
+   came from), and then mark the merge rejects are in red/blue depending 
+   on parent?
+
+I don't know how doable that would be.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

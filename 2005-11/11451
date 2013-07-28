@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 19:05:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E07FC147F11
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 19:05:09 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751379AbVKJCDk (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 21:03:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751431AbVKJCDk
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 21:03:40 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:30732 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S1751379AbVKJCDj convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 21:03:39 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jAA23Wfv018477;
+	Thu, 10 Nov 2005 02:03:33 GMT
+In-Reply-To: <20051109222338.GK16061@pasky.or.cz>
+References: <Pine.LNX.4.60.0510251222510.8565@mundungus.clifford.ac> <200510251642.46169.blaisorblade@yahoo.it> <A44A02AA-BDA8-4623-825E-288F1107A5ED@hawaga.org.uk> <20051109222338.GK16061@pasky.or.cz>
+Mime-Version: 1.0 (Apple Message framework v734)
+Content-Type: text/plain; charset=UTF-8; delsp=yes; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <40549FF6-EB51-4756-B9B9-31724F701300@hawaga.org.uk>
+Content-Transfer-Encoding: 8BIT
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: Re: latest stg/git commandline completions code
+Date:	Thu, 10 Nov 2005 13:03:37 +1100
+To:	Git Mailing List <git@vger.kernel.org>
+X-Mailer: Apple Mail (2.734)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:11451
+
+
+On 10 Nov 2005, at 09:23, Petr Baudis wrote:
+
+> Dear diary, on Tue, Nov 08, 2005 at 11:16:28AM CET, I got a letter
+> where Ben Clifford <benc@hawaga.org.uk> told me that...
+>
+>> I've added some stuff to this to do a few cogito, gitk and (one) git
+>> completions, split into different files. I thought I might as well
+>> toss what I have out for anyone interested to play with.
+
+btw, I got the repository for this working (it was working all along,  
+it seems)...
+
+cg clone http://www.hawaga.org.uk/gitcompletion.git
+
+-- 
+Ben ベン Бэн
+http://www.hawaga.org.uk/ben/
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

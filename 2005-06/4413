@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 13:14:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3AE83233AAD
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 13:14:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261231AbVFBTOU (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 15:14:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261250AbVFBTOU
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 15:14:20 -0400
+Received: from iabervon.org ([66.92.72.58]:53511 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261231AbVFBTOR (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 15:14:17 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1Ddv7H-0005DO-00; Thu, 2 Jun 2005 15:12:31 -0400
+Date:	Thu, 2 Jun 2005 15:12:31 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Tony Lindgren <tony@atomide.com>,
+	Matthias Urlichs <smurf@smurf.noris.de>,
+	Thomas Glanzmann <sithglan@stud.uni-erlangen.de>,
+	Nicolas Pitre <nico@cam.org>, git@vger.kernel.org
+Subject: Re: [SCRIPT] cg-rpush & locking
+In-Reply-To: <Pine.LNX.4.58.0506020741480.1876@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0506021452030.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 25
+Xref: brand.scrye.com linux.git:4413
+
+On Thu, 2 Jun 2005, Linus Torvalds wrote:
+
+> The real reason I'd prefer to not do locking is that _if_ the remote tree
+> is actually more than just a CVS-like "public repository", ie if somebody
+> actually does _development_ in the remote tree (hey, it may be crazy, but
+> git makes this usage pattern possible), then we should eventually plan on
+> having all of the regular "git-commit-script" and "git-pull-script" etc
+> _also_ do locking, since they also change HEAD.
+
+It might be okay to have a single tree to which is applied patches from
+emails sent by non-maintainers, pulls from non-maintainers with accessible
+repositories, and pushes from home repositories of maintainers. It makes
+sense to deal well with different ways to get refined commits into the
+public repository. Of course, you probably don't want to carry out merges
+there, so the cases where pull or commit loses the race are quite
+different; you want to throw it back to the author for rebasing.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

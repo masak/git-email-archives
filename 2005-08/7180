@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 13 05:01:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4A93A9B34E
+	for <tkil@scrye.com>; Sat, 13 Aug 2005 05:01:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751325AbVHMLA4 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 13 Aug 2005 07:00:56 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751326AbVHMLA4
+	(ORCPT <rfc822;git-outgoing>); Sat, 13 Aug 2005 07:00:56 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:25608 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S1751325AbVHMLAz (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 13 Aug 2005 07:00:55 -0400
+Received: (qmail 6312 invoked by uid 2001); 13 Aug 2005 11:00:51 -0000
+Date:	Sat, 13 Aug 2005 13:00:51 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Dave Jones <davej@redhat.com>, git@vger.kernel.org
+Subject: Re: Fwd: Re: git checkout -f branch doesn't remove extra files
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050813110050.GA5608@pasky.ji.cz>
+References: <20050813041737.GB25236@redhat.com> <Pine.LNX.4.58.0508122151120.19049@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0508122151120.19049@g5.osdl.org>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 45
+Xref: brand.scrye.com linux.git:7180
+
+Dear diary, on Sat, Aug 13, 2005 at 07:05:11AM CEST, I got a letter
+where Linus Torvalds <torvalds@osdl.org> told me that...
+> If you really want a temporary tree, what you do is something like
+> 
+> 	git-checkout-cache --prefix=tmp-dir/ -f -a
+> 
+> and when you're done, you just do
+> 
+> 	rm -rf tmp-dir
+> 
+> and you're done.
+> 
+> NOTE NOTE NOTE! In the above, the order of the parameters is really really 
+> important! "-a" takes effect when it is seen, so it needs to be last. 
+> Also, the "--prefix" thing really _really_ needs the slash at the end, 
+> because it's literally used to prefix the pathname.
+> 
+> HOWEVER, if all you want to do is just a tar-file, then there's a better 
+> solution. It's called
+> 
+> 	snap=git-snapshot-$(date +"%Y%m%d")
+> 	git-tar-tree HEAD $snap | gzip -9 > $snap.tar.gz
+> 
+> which is even easier, and a hell of a lot more efficient.
+
+To put my two cents too, Cogito has cg-export for this:
+
+	cg-export tmp-dir
+
+to export to a temporary directory and
+
+	cg-export git-snapshot.tar.gz
+
+to export to a gzipped tarball (it can also do .tar, .tgz and .tar.bz2).
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

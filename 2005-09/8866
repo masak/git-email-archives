@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 09:03:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6C277299223
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 09:03:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932450AbVISPAe (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 11:00:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932451AbVISPAe
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 11:00:34 -0400
+Received: from qproxy.gmail.com ([72.14.204.196]:45479 "EHLO qproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932450AbVISPAd convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Sep 2005 11:00:33 -0400
+Received: by qproxy.gmail.com with SMTP id v40so183143qbe
+        for <git@vger.kernel.org>; Mon, 19 Sep 2005 08:00:29 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=G0Kbx6BetVsnuXlFvcS7nbgfU4MiLBrUxO8tYE9oZ6n9RA707/Advw8pcy23242R+LtRCUC48vGe7DRDNQphXSJAmdIls1VJQQQrvHwapYWwxSb1EdHolJUXq2vVvmJZjWdsZqaL7CFGEbFGRLqyOophHpQJCvpSBXRP8ajHRHo=
+Received: by 10.64.180.14 with SMTP id c14mr46751qbf;
+        Mon, 19 Sep 2005 08:00:29 -0700 (PDT)
+Received: by 10.64.184.10 with HTTP; Mon, 19 Sep 2005 08:00:29 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <d120d50005091908001e8339fd@mail.gmail.com>
+Date:	Mon, 19 Sep 2005 10:00:29 -0500
+From:	Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Reply-To: dtor_core@ameritech.net
+To:	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: Garbage in .git directories???
+Cc:	git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.58.0509190747210.9106@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <200509172141.31591.dtor_core@ameritech.net>
+	 <Pine.LNX.4.58.0509181009160.26803@g5.osdl.org>
+	 <200509181254.14646.dtor_core@ameritech.net>
+	 <200509182333.58227.dtor_core@ameritech.net>
+	 <Pine.LNX.4.58.0509190747210.9106@g5.osdl.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,RCVD_BY_IP,
+	RCVD_IN_BL_SPAMCOP_NET autolearn=no version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:8866
+
+On 9/19/05, Linus Torvalds <torvalds@osdl.org> wrote:
+> 
+> 
+> On Sun, 18 Sep 2005, Dmitry Torokhov wrote:
+> >
+> > Couple more points - just using rsync to get the data (without using git)
+> > does not not produce that wierd directory, only got clone does.
+> 
+> Does a plain "git-init-db" in a newly created empty directory do the same?
+> There was a bug (a long time ago)  that created garbage instead of the
+> template files, I think.
+> 
+
+Will test once get home...
+
+> Also, is there something inside of the garbage subdirectory?
+> 
+
+No, they are always empty.
+
+-- 
+Dmitry
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

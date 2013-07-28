@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May 11 22:54:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 59BD01982E0
+	for <tkil@scrye.com>; Wed, 11 May 2005 22:54:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261344AbVELExO (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 00:53:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261340AbVELExF
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 00:53:05 -0400
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:36326 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S261336AbVELExA (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 12 May 2005 00:53:00 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050512045257.CGAF19494.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 12 May 2005 00:52:57 -0400
+To: Daniel Barkalow <barkalow@iabervon.org>
+Cc: git@vger.kernel.org, Petr Baudis <pasky@ucw.cz>,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [RFC] Support projects including other projects
+References: <Pine.LNX.4.21.0505112350420.30848-100000@iabervon.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 11 May 2005 21:52:57 -0700
+In-Reply-To: <Pine.LNX.4.21.0505112350420.30848-100000@iabervon.org> (Daniel
+ Barkalow's message of "Thu, 12 May 2005 00:23:40 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vk6m5kpue.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 30
+Xref: brand.scrye.com linux.git:3088
+
+I think that the core of your idea of recording "required
+version" of the depended project (core GIT) in the depending
+project (Cogito) is a very sound one.  GNU Arch folks do
+something similar in their "package-framework" stuff.  
+
+I however do not think that belongs to the core GIT nor even to
+Cogito for that matter.  To me, it feels like this is a pure
+build infrastructure issue.
+
+I think you could arrange something like that with today's core
+GIT tools, like this:
+
+ - Tweak Cogito Makefile so that pure Cogito and core GIT are
+   housed in separate subdirectories;
+
+ - Add "required-git-pb" file to Cogito source as a tracked
+   source file, and record the required version of git-pb there;
+
+ - Arrange Cogito Makefile to make sure the subtree that has the
+   core GIT side meets "required-git-pb" constraints.  The
+   constraints could be "at least contains this one", "exactly
+   this one".  The policy would be differnt from a depending
+   project to another.  What happens if the requirements are not
+   met is also up to the policy of that depending project.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

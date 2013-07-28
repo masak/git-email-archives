@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Aug  7 00:01:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EB7AC14BEEB
+	for <tkil@scrye.com>; Sun,  7 Aug 2005 00:01:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751113AbVHGGAX (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 7 Aug 2005 02:00:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751114AbVHGGAX
+	(ORCPT <rfc822;git-outgoing>); Sun, 7 Aug 2005 02:00:23 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:48834 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S1751113AbVHGGAW (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 7 Aug 2005 02:00:22 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050807060020.JBZF15197.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 7 Aug 2005 02:00:20 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: git@vger.kernel.org
+Subject: GIT 0.99.4 (preview)
+References: <7v8xzfde7t.fsf@assigned-by-dhcp.cox.net>
+Date:	Sat, 06 Aug 2005 23:00:20 -0700
+In-Reply-To: <7v8xzfde7t.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Fri, 05 Aug 2005 18:52:06 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7d6z3pn.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:6890
+
+I said:
+
+> My tentative plan is for 0.99.4 to finish send-pack, 0.99.5
+> to enhance fetch-pack, 0.99.6 to finish the first pass for the
+> documentation updates and stabilizing the binary packaging.
+
+Ok, I am almost ready to push 0.99.4 out.  Here is what I have
+in the public repository.
+
+  - The branches master & pu are as usual.  Modulo bugs, I
+    consider send-pack enhancement finished.
+
+  - There is an "rc" branch whose Makefile already says 0.99.4.
+    I've been working on Debian and RPM packaging issues today,
+    with help from Chris Wright and H Peter Anvin, in this
+    branch.
+
+The plan is to stabilize the binary packaging issues in the "rc"
+branch, and ordinary feature updates and bugfixes in "master" or
+"pu" branch as usual.  When things are ready, "rc" and "master"
+will be merged, 0.99.4 gets created and tagged, and "master" and
+"pu" will continue from there.
+
+I would appreciate if folks familiar with binary packaging,
+especially RPM, give final sanity checks on what is currently in
+"rc" branch.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

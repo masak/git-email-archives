@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec  5 22:22:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 92AF319779C
+	for <tkil@scrye.com>; Mon,  5 Dec 2005 22:22:33 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964810AbVLFFVl (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Dec 2005 00:21:41 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964827AbVLFFVk
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Dec 2005 00:21:40 -0500
+Received: from www.jdl.com ([66.118.10.122]:17637 "EHLO jdl.com")
+	by vger.kernel.org with ESMTP id S964810AbVLFFVk (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 6 Dec 2005 00:21:40 -0500
+Received: from jdl (helo=jdl.com)
+	by jdl.com with local-esmtp (Exim 4.44)
+	id 1EjVGk-00015M-Np
+	for git@vger.kernel.org; Mon, 05 Dec 2005 23:21:39 -0600
+From:	Jon Loeliger <jdl@freescale.com>
+To:	git@vger.kernel.org
+Subject: Some Documentation/Usage Notes
+Date:	Mon, 05 Dec 2005 23:21:38 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EjVGk-00015M-Np@jdl.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:13244
+
+
+Note to $self -- here are some tidbits ToDo:
+
+o   --help  doesn't work on:
+        git-hash-object
+	git-init-db
+	git-write-tree
+
+o   There is an odd <any-file-on-the-filesystem> argment named
+    in the git-hash-object documentation.  Would <file> be better
+    and more consistent?  Or is there some subtlety that I am missing?
+
+o   Someone might want to check my --template=<dir> description
+    on git-init-db, or make it clearer.
+
+o   Work towards moving uniform description of all environment
+    variables in one includable/referenceable Documentation/ file?
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug  5 13:50:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 766B820D136
+	for <tkil@scrye.com>; Fri,  5 Aug 2005 13:50:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262817AbVHETuS (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 5 Aug 2005 15:50:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262828AbVHETuS
+	(ORCPT <rfc822;git-outgoing>); Fri, 5 Aug 2005 15:50:18 -0400
+Received: from iabervon.org ([66.92.72.58]:43536 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262823AbVHETuP (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 5 Aug 2005 15:50:15 -0400
+Received: (qmail 24644 invoked by uid 1000); 5 Aug 2005 15:53:19 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 5 Aug 2005 15:53:19 -0400
+Date:	Fri, 5 Aug 2005 15:53:19 -0400 (EDT)
+From: barkalow@iabervon.org
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: Terminology
+In-Reply-To: <Pine.LNX.4.58.0508051104510.3258@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.62.0508051531400.23721@iabervon.org>
+References: <Pine.LNX.4.58.0507311541340.29235@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <7vhdeaj05n.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0508051655480.8418@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0508051104510.3258@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.0.4
+Lines: 31
+Xref: brand.scrye.com linux.git:6855
+
+On Fri, 5 Aug 2005, Linus Torvalds wrote:
+
+> On Fri, 5 Aug 2005, Johannes Schindelin wrote:
+> 
+> >   - The files under $GIT_DIR/refs record object names, and are
+> >     called "refs".  What is under refs/heads/ are called "heads",
+> >     refs/tags/ "tags".  Typically, they are either object names
+> >     of commit objects or tag objects that resolve to commit
+> >     objects, but a tag can point at any object.
+> > 
+> > The tutorial never calls them "refs", but instead "references".
+> 
+> It might be worth saying explicitly that a reference is nothing but the 
+> same thing as a "object name" aka "sha1".
+
+Well, it's an object name stored in a file. This adds a layer of 
+indirection and a meaningful name.
+
+> So I'd vote for making the suggested definition official: "fetch" means
+> fetching the data, and "pull" means "fetch + merge". 
+
+So what's the converse of "fetch" (to rename git-ssh-push to)? 
+Maybe "ship"?
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

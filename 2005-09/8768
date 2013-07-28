@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 17 21:19:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 188B32426A2
+	for <tkil@scrye.com>; Sat, 17 Sep 2005 21:19:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751286AbVIRDSw (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Sep 2005 23:18:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751287AbVIRDSw
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Sep 2005 23:18:52 -0400
+Received: from mx1.redhat.com ([66.187.233.31]:10722 "EHLO mx1.redhat.com")
+	by vger.kernel.org with ESMTP id S1751286AbVIRDSv (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 17 Sep 2005 23:18:51 -0400
+Received: from int-mx1.corp.redhat.com (int-mx1.corp.redhat.com [172.16.52.254])
+	by mx1.redhat.com (8.12.11/8.12.11) with ESMTP id j8I3Iclw003196;
+	Sat, 17 Sep 2005 23:18:38 -0400
+Received: from devserv.devel.redhat.com (devserv.devel.redhat.com [172.16.58.1])
+	by int-mx1.corp.redhat.com (8.11.6/8.11.6) with ESMTP id j8I3IcV26566;
+	Sat, 17 Sep 2005 23:18:38 -0400
+Received: from nwo.kernelslacker.org (vpn83-125.boston.redhat.com [172.16.83.125])
+	by devserv.devel.redhat.com (8.12.11/8.12.11) with ESMTP id j8I3IcfI014766;
+	Sat, 17 Sep 2005 23:18:38 -0400
+Received: from nwo.kernelslacker.org (localhost.localdomain [127.0.0.1])
+	by nwo.kernelslacker.org (8.13.4/8.13.4) with ESMTP id j8I3IcLR028295;
+	Sat, 17 Sep 2005 23:18:38 -0400
+Received: (from davej@localhost)
+	by nwo.kernelslacker.org (8.13.4/8.13.4/Submit) id j8I3IbiO028294;
+	Sat, 17 Sep 2005 23:18:37 -0400
+X-Authentication-Warning: nwo.kernelslacker.org: davej set sender to davej@redhat.com using -f
+Date:	Sat, 17 Sep 2005 23:18:37 -0400
+From:	Dave Jones <davej@redhat.com>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Git Mailing List <git@vger.kernel.org>,
+	Junio C Hamano <junkio@cox.net>
+Subject: Re: Fix archive-destroying "git repack -a -d" bug
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050918031837.GB23405@redhat.com>
+References: <Pine.LNX.4.58.0509171839590.26803@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0509171839590.26803@g5.osdl.org>
+User-Agent: Mutt/1.4.2.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:8768
+
+On Sat, Sep 17, 2005 at 06:46:40PM -0700, Linus Torvalds wrote:
+ > 
+ > Using "git repack -a -d" can destroy your git archive if you use it twice 
+ > in succession.
+ > 
+ > Why? Because the new pack will be called the same as the old pack. And we 
+ > delete the old packs _after_ we've moved the new pack to the .git/objects/ 
+ > directory, which means that we'll delete the new pack too!
+
+Hmm, I'm sure I've done this several times in my x86info git repo
+(http://www.codemonkey.org.uk/projects/x86info/x86info.git)
+
+It seems to look ok to git-fsck-cache though. Would that pick up
+any breakage if present ?
+
+Running git-whatchanged, the history seems to go all the way
+back to the beginning of its cvs doppelganger.
+
+		Dave
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

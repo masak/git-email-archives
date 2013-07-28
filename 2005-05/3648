@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 20 21:19:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9DEDB11377C
+	for <tkil@scrye.com>; Fri, 20 May 2005 21:19:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261644AbVEUDSz (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 20 May 2005 23:18:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261648AbVEUDSz
+	(ORCPT <rfc822;git-outgoing>); Fri, 20 May 2005 23:18:55 -0400
+Received: from fire.osdl.org ([65.172.181.4]:32394 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261646AbVEUDSy (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 20 May 2005 23:18:54 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j4L3IijA017308
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 20 May 2005 20:18:45 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j4L3IhaD015925;
+	Fri, 20 May 2005 20:18:44 -0700
+Date:	Fri, 20 May 2005 20:20:49 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Nicolas Pitre <nico@cam.org>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] show changed tree objects with recursive git-diff-tree
+In-Reply-To: <Pine.LNX.4.62.0505202131520.4397@localhost.localdomain>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505202019330.2206@ppc970.osdl.org>
+References: <Pine.LNX.4.62.0505202131520.4397@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:3648
+
+
+
+On Fri, 20 May 2005, Nicolas Pitre wrote:
+>
+> When -p is not used, git-diff-tree currently shows changed tree objects
+> but only when not recursive.  This patch makes the recursive output
+> show tree objects as well.
+
+That sounds wrong. That would seem to make diff-helper confused, no? 
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

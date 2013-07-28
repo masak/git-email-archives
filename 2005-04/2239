@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 30 10:39:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0A37B170DB1
+	for <tkil@scrye.com>; Sat, 30 Apr 2005 10:39:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261280AbVD3QjK (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 30 Apr 2005 12:39:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261282AbVD3QjK
+	(ORCPT <rfc822;git-outgoing>); Sat, 30 Apr 2005 12:39:10 -0400
+Received: from smtp-roam.Stanford.EDU ([171.64.10.152]:9923 "EHLO
+	smtp-roam.Stanford.EDU") by vger.kernel.org with ESMTP
+	id S261280AbVD3QjF (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 30 Apr 2005 12:39:05 -0400
+Received: from [10.0.0.2] (luto.Stanford.EDU [128.12.71.50])
+	(authenticated bits=0)
+	by smtp-roam.Stanford.EDU (8.12.11/8.12.11) with ESMTP id j3UGd2g4020457
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+	Sat, 30 Apr 2005 09:39:02 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4273B4A6.10103@myrealbox.com>
+Date:	Sat, 30 Apr 2005 09:39:02 -0700
+From: Andy Lutomirski <luto@myrealbox.com>
+User-Agent: Mozilla Thunderbird 1.0 (Windows/20041206)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: [PATCH] cg-add only checks if the first file exists
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 50
+Xref: brand.scrye.com linux.git:2239
+
+[apologies for possible dupe -- my mailer freaked out]
+
+Doing:
+cg-add foo bar
+fails if foo doesn't exist but doesn't check for bar.  It also gives 
+misleading reports to stdout.
+
+I've fixed it at rsync://www.luto.us/cogito.git
+
+Patch attached below as well.
+
+--
+Changed cg-add to check each added file for existence.
+
+---
+commit 9eb8efee632b6270a436d8088315856712bb5b32
+tree cba76f974b1840640ccfa14b0118e1dc4a704876
+parent 49612c471eebd26efe926a71752e254c1cdc382d
+author Andy Lutomirski <luto@myrealbox.com> 1114878247 -0700
+committer Andy Lutomirski <luto@myrealbox.com> 1114878247 -0700
+
+Index: cg-add
+===================================================================
+--- c3aa1e6b53cc59d5fbe261f3f859584904ae3a63/cg-add  (mode:100755 
+sha1:83f0b13f41599104d741ac91c7aa81497cd37d5f)
++++ cba76f974b1840640ccfa14b0118e1dc4a704876/cg-add  (mode:100755 
+sha1:c84792450cec279f7b3eb1dec03b69ac07dbe9d9)
+@@ -10,10 +10,12 @@
+
+  [ "$1" ] || die "usage: cg-add FILE..."
+
+-if [ -f "$1" ]; then
+-       echo "Adding file $1"
+-else
+-       die "$1 does not exist"
+-fi
++for i in "$@"; do
++       if [ -f "$i" ]; then
++              echo "Adding file $i"
++       else
++              die "$i does not exist"
++       fi
++done
+
+  update-cache --add -- "$@"
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

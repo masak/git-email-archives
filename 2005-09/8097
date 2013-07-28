@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep  5 12:13:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 27065CB444
+	for <tkil@scrye.com>; Mon,  5 Sep 2005 12:13:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932372AbVIESNJ (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Sep 2005 14:13:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932375AbVIESNJ
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Sep 2005 14:13:09 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:60819 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S932372AbVIESNI (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 5 Sep 2005 14:13:08 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050905181307.XCAO8185.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 5 Sep 2005 14:13:07 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Horst von Brand <vonbrand@inf.utfsm.cl>,
+	Daniel Barkalow <barkalow@iabervon.org>,
+	Tim Ottinger <tottinge@progeny.com>, git@vger.kernel.org
+Subject: Re: Tool renames? was Re: First stab at glossary
+References: <200509050054.j850sC3D023778@laptop11.inf.utfsm.cl>
+	<Pine.LNX.4.58.0509050738340.3504@evo.osdl.org>
+Date:	Mon, 05 Sep 2005 11:13:05 -0700
+In-Reply-To: <Pine.LNX.4.58.0509050738340.3504@evo.osdl.org> (Linus Torvalds's
+	message of "Mon, 5 Sep 2005 07:41:30 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7c35qoe.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 21
+Xref: brand.scrye.com linux.git:8097
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> ... and I don't see _any_ point to naming 
+> by what _kind_ of interpreter you use. Why would _anybody_ care whether 
+> something is written in perl vs shell?
+
+One possibility that comes to mind is to again help developers
+who use an editor that is syntax-aware and looks *only* at
+filename suffix to figure out which language syntax to use
+(Emacs is not one of them -- it knows how to read #! line).
+
+Another is, although we do not currently do it, to make the
+Makefile simpler if/when we start to do the interpreter line
+munging ("#!/usr/bin/perl -> #!/usr/local/bin/perl") before
+install time.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

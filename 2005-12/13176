@@ -1,0 +1,101 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec  4 02:21:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 87D0E9FC5A
+	for <tkil@scrye.com>; Sun,  4 Dec 2005 02:21:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751332AbVLDJVP (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Dec 2005 04:21:15 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751339AbVLDJVP
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Dec 2005 04:21:15 -0500
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:26579 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S1751332AbVLDJVP (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 4 Dec 2005 04:21:15 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051204092039.JUSY15695.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 4 Dec 2005 04:20:39 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [ANNOUNCE] GIT 0.99.9l aka 1.0rc4
+Date:	Sun, 04 Dec 2005 01:21:13 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vy831p69i.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 61
+Xref: brand.scrye.com linux.git:13176
+
+GIT 0.99.9l aka 1.0rc4 is found at a new location.
+
+RPM
+	http://kernel.org:/pub/software/git/RPMS/
+
+Debian [*1*]
+	http://kernel.org:/pub/software/git/debian/
+
+This is mostly fixes, with some improvements.  As I said on the
+git list earlier, no more major feature/semantics changes after
+this is expected until 1.0.
+
+Highlights are:
+
+ - After a conflicting merge, the index file is left unmerged.
+   As before, after such conflicting merge, "git diff" can be
+   used to view the differences between the half-merged file and
+   "our" branch version by default, but now you can say "git
+   diff --base" and "git diff --theirs" to view the differences
+   since the merge-base version and the other branch's version,
+   respectively.
+
+ - git-daemon and other git native protocols allow user-relative
+   paths (e.g. git://host/~user/repo).  git-daemon's path
+   whitelist check used to be done with the realpath (i.e. what
+   getcwd() returns) in 0.99.9k and later "master" branch
+   versions, but it was changed back to check against what the
+   requester asked.
+
+ - The commands have been future-proofed so that they refuse to
+   operate on repositories from future unknown versions, to
+   avoid corrupting them by mistake.
+
+ - Bisect can take pathspec to cut down the number of revisions
+   that need to be tested.
+
+ - Many low-level commands have been updated to work better from
+   subdirectories (much of the barebone porcelain wrappers that
+   deal with the whole repository or the whole tree still need
+   to be run from the top level, though).
+
+ - Merge used to fail when it removed a file (fixed).
+
+ - When only GIT_OBJECT_DIRECTORY was exported things broke
+   since 0.99.9k (fixed).
+
+ - Comes with updated gitk.
+
+[Footnote]
+
+*1* It appears Debian finally has an official maintainer, so I
+am inclined to stop building and supplying the debs starting
+from the next version --- one less thing to worry about for me.
+I hope the Debian side splits the packages along the same line
+as we do RPMs.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

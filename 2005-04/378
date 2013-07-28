@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 16 18:43:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D0CD01983E9
+	for <tkil@scrye.com>; Sat, 16 Apr 2005 18:43:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261222AbVDQAmK (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 16 Apr 2005 20:42:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261224AbVDQAmK
+	(ORCPT <rfc822;git-outgoing>); Sat, 16 Apr 2005 20:42:10 -0400
+Received: from iabervon.org ([66.92.72.58]:22788 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261222AbVDQAl5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 16 Apr 2005 20:41:57 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DMxrZ-0000Qr-00; Sat, 16 Apr 2005 20:42:13 -0400
+Date:	Sat, 16 Apr 2005 20:42:13 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Paul Jackson <pj@sgi.com>
+Cc: git@vger.kernel.org, Linus Torvalds <torvalds@osdl.org>,
+	Petr Baudis <pasky@ucw.cz>
+Subject: Re: [PATCH] Use libcurl to use HTTP to get repositories
+In-Reply-To: <20050416172952.3bf34bab.pj@sgi.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0504162033060.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 23
+Xref: brand.scrye.com linux.git:378
+
+On Sat, 16 Apr 2005, Paul Jackson wrote:
+
+> > Needs libcurl post 7.7 or so.
+> 
+> That could be mentioned in the README, which has a list of 'Software
+> requirements.'  Actually, zlib-devel and openssl should be on this list
+> as well.  My laziness got in the way of my sending in a patch for that.
+
+I'm working off of Linus's tree when not working on scripts, and it
+doesn't have that section at all. Should I submit patches to the pasky
+tree? (I'm actually tempted to have my own public tree, now that I
+wouldn't have to set up anonymous rsync access, aside from the
+bootstrapping issue; then I could let people pull and merge instead of
+applying patches.)
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

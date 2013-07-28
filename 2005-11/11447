@@ -1,0 +1,95 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 17:42:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9EC85147F19
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 17:42:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751131AbVKJAih (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 19:38:37 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751132AbVKJAih
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 19:38:37 -0500
+Received: from zproxy.gmail.com ([64.233.162.192]:64967 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1751131AbVKJAig convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 19:38:36 -0500
+Received: by zproxy.gmail.com with SMTP id j2so289735nzf
+        for <git@vger.kernel.org>; Wed, 09 Nov 2005 16:38:35 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=ahLpU3wWSTp8/Cb+dwUdU25pt6uKlBNi/1OIxOYPGfpRaQABAzq7l0vqoZMkKKii4WcVtvKe5nCr2srZTFk7DiowOvIRGfWIO/IkD5jOt0nz63fjpvjfZPmYliXbKt74I+dHDHIvHKMKI9Og0CAJ9178AcH9GNky4XLVrQOKyYQ=
+Received: by 10.65.15.15 with SMTP id s15mr153704qbi;
+        Wed, 09 Nov 2005 16:38:35 -0800 (PST)
+Received: by 10.64.242.4 with HTTP; Wed, 9 Nov 2005 16:38:35 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90511091638k726d605r170717539225a712@mail.gmail.com>
+Date:	Thu, 10 Nov 2005 13:38:35 +1300
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Strange merge conflicts against earlier merge.
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 51
+Xref: brand.scrye.com linux.git:11447
+
+We are working with a series of closely related heads, and merging
+among them. I am sometimes finding merge conflicts that I don't think
+I should be seeing. Assuming two branches, 'local' and 'remote', where
+local has with remote before (*), and I have no conflicting changes in
+local...
+
+ 1 - pull and merge from remote. The merge touches file A, B and C
+ 2 - on local, develop on unrelated files O,P,Q, commit
+ 3 - pull and merge from remote. The merge touches file B, C and D. I
+am sometimes seeing conflicts on file B and C, which was never touched
+on local.
+
+* - In the case i have, the ancestry before the merge is a bit
+convoluted. AFAIK, this shouldn't affect us going forward. Both
+branches have a common ancestor, though, and are now merging often
+from remote to local.
+
+We are using cogito for this, although on step 3 I have also tested
+with git-merge.sh and I get the same result.  It could still be a
+problem related to how the merge on step 1 is recording the merge.
+
+For an example, clone
+http://locke.catalyst.net.nz/git/moodle.git#mdl-artena-tairawhiti and
+register also the
+http://locke.catalyst.net.nz/git/moodle.git#mdl-local branch. Create
+two heads:
+
+ master: 214e6374d49e6d014f0ba6f159d585a3fe468909
+ remote: 05059be73c9e09e22b98bc796be35c595e551ed6
+
+On git-merge 'testing merge' master remote you'll see conflicts over
+mod/quiz/editlib.php -- doing the same with cg-merge gets an
+additional conflict on mod/quiz/export.php. Neither of those files
+were ever modified on local -- however, both merges brought in changes
+to the same lines of code.
+
+I suspect this is because the merge itself is being considered a
+commit on the local branch. Fair enough -- git has no way of ensuring
+that I haven't slipped in a few changes of mine in the merge. OTOH,
+it's pretty unexpected to see this on files that are not one char
+different from the 'remote' branch. Am I doing something wrong?
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

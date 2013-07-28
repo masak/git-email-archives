@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  9 08:20:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E4BBA273015
+	for <tkil@scrye.com>; Thu,  9 Jun 2005 08:20:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262410AbVFIOUm (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 9 Jun 2005 10:20:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262411AbVFIOUm
+	(ORCPT <rfc822;git-outgoing>); Thu, 9 Jun 2005 10:20:42 -0400
+Received: from www.tuxrocks.com ([64.62.190.123]:780 "EHLO tuxrocks.com")
+	by vger.kernel.org with ESMTP id S262410AbVFIOUe (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 9 Jun 2005 10:20:34 -0400
+Received: from [10.0.0.10] (sorenson.dsl.csolutions.net [216.190.206.130])
+	(authenticated bits=0)
+	by tuxrocks.com (8.13.1/8.13.1) with ESMTP id j59EKUML012106
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 9 Jun 2005 08:20:31 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42A8502D.4030508@tuxrocks.com>
+Date:	Thu, 09 Jun 2005 08:20:29 -0600
+From: Frank Sorenson <frank@tuxrocks.com>
+User-Agent: Mozilla Thunderbird 1.0.2 (X11/20050317)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Fix cogito handling of timezones
+References: <42A7BA17.5050707@tuxrocks.com> <20050609082949.GC29665@pasky.ji.cz>
+In-Reply-To: <20050609082949.GC29665@pasky.ji.cz>
+X-Enigmail-Version: 0.91.0.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 31
+Xref: brand.scrye.com linux.git:4764
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Petr Baudis wrote:
+
+> It looks ok, but shouldn't this be
+> +		lsec=$(($sec + $dtz % 100 * 60 $sign $dtz / 100 * 3600))
+
+Ah, yes, of course.  I see that Dan Holmsand has also sent a patch (3/6)
+to fix this.  I haven't tested his very much, but it looks like a
+cleaner and more comprehensive solution.  Sigh.
+
+Frank
+- -- 
+Frank Sorenson - KD7TZK
+Systems Manager, Computer Science Department
+Brigham Young University
+frank@tuxrocks.com
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.6 (GNU/Linux)
+Comment: Using GnuPG with Thunderbird - http://enigmail.mozdev.org
+
+iD8DBQFCqFAtaI0dwg4A47wRAlaEAJ0Ui38Yrwp7r0QUseI5/7n4kbnRaACfZBv0
+M5TClhJuvD2y7fz/Fm9pNes=
+=SOdU
+-----END PGP SIGNATURE-----
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

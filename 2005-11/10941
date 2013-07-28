@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 12:37:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_HG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1ACAD1C9320
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 12:37:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751203AbVKAThb (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 14:37:31 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751212AbVKAThb
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 14:37:31 -0500
+Received: from [85.8.31.11] ([85.8.31.11]:12672 "EHLO mail6.wasadata.com")
+	by vger.kernel.org with ESMTP id S1751203AbVKAThb (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 1 Nov 2005 14:37:31 -0500
+Received: from c165 (unknown [85.8.2.189])
+	by mail6.wasadata.com (Postfix) with ESMTP id 1E5CF4103
+	for <git@vger.kernel.org>; Tue,  1 Nov 2005 20:45:23 +0100 (CET)
+Received: from ksorim by c165 with local (Exim 3.36 #1 (Debian))
+	id 1EX1wj-0004KU-00
+	for <git@vger.kernel.org>; Tue, 01 Nov 2005 20:37:25 +0100
+Date:	Tue, 1 Nov 2005 20:37:25 +0100
+From:	Fredrik Kuivinen <freku045@student.liu.se>
+To:	git@vger.kernel.org
+Subject: [ANNOUNCE] (H)gct 0.3
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051101193724.GC5711@c165.ib.student.liu.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6+20040907i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:10941
+
+Hi,
+
+Version 0.3 of (H)gct, a GUI enabled commit tool for Git and
+Mercurial, has been released and can be downloaded from
+http://www.cyd.liu.se/~freku045/gct/ct-0.3.tar.gz
+
+Thanks to Vincent Danjean there are Debian packages available at
+http://dept-info.labri.fr/~danjean/deb.html#commit-tool
+
+Screen shots and a Git repository with a gitweb interface are
+available at the project homepage, http://www.cyd.liu.se/~freku045/gct
+
+
+The major changes compared to v0.2 are:
+
+* File filter, show only file names which contain a specified string.
+* Make ignoring files actually work.
+* A new option, --one-shot, which makes (h)gct exit after the first
+  commit.
+* Support for new versions of git.
+* An Hg extension which makes hgct better integrated with Hg. See
+  README.HG for details.
+
+
+- Fredrik
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

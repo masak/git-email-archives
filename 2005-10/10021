@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 12 08:33:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8624ADF5BA
+	for <tkil@scrye.com>; Wed, 12 Oct 2005 08:33:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964793AbVJLOdS (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 12 Oct 2005 10:33:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964794AbVJLOdS
+	(ORCPT <rfc822;git-outgoing>); Wed, 12 Oct 2005 10:33:18 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:21440 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S964793AbVJLOdS (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 12 Oct 2005 10:33:18 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 5869313EE76; Wed, 12 Oct 2005 16:33:17 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 3F6F49ECB6; Wed, 12 Oct 2005 16:33:17 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 29E7A9ECB2; Wed, 12 Oct 2005 16:33:17 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0F69C13EE76; Wed, 12 Oct 2005 16:33:17 +0200 (CEST)
+Date:	Wed, 12 Oct 2005 16:33:17 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Sergey Vlasov <vsu@altlinux.ru>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Add git-index-pack utility
+In-Reply-To: <20051012135405.CDE55E005E3@center4.mivlgu.local>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510121632040.6307@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051012173426.56fd5c1c.vsu@altlinux.ru>
+ <20051012135405.CDE55E005E3@center4.mivlgu.local>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 13
+Xref: brand.scrye.com linux.git:10021
+
+Hi,
+
+you cheated! You use mmap(), not lseek()! Note that mmap() is more 
+efficient only if the platform provides mmap()...
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

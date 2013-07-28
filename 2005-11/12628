@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 10:20:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B86CD27E209
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 10:20:51 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751214AbVKWRUf (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 12:20:35 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751256AbVKWRUf
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 12:20:35 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:61117 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751214AbVKWRUe (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 23 Nov 2005 12:20:34 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jANHKTnO030105
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 23 Nov 2005 09:20:30 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jANHKSCS012841;
+	Wed, 23 Nov 2005 09:20:29 -0800
+Date:	Wed, 23 Nov 2005 09:20:28 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Nico -telmich- Schottelius <nico-linux-git@schottelius.org>
+cc:	Git ML <git@vger.kernel.org>
+Subject: Re: files are disappearing in git
+In-Reply-To: <20051123142303.GJ22568@schottelius.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511230917130.13959@g5.osdl.org>
+References: <20051123142303.GJ22568@schottelius.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:12628
+
+
+
+On Wed, 23 Nov 2005, Nico -telmich- Schottelius wrote:
+> 
+> I've the problem that some files (a directory with 3 files) is simply 'away':
+> 
+> - We added it once
+> - In current tree it's away
+> - pasky aided me in irc to find the commit where it is gone with git bisect
+> --> very nice tool
+> - the commit, after which the directory was gone did NOT modify this directory
+> - though the directory is gone
+> 
+> What should I do know to find out what's the reason git 'forgot' that directory?
+
+I bet somebody just messed up the index before that commit. So the commit 
+probably _did_ modify the directory, though some incorrect patching or 
+some scripting bug.
+
+If you can guess at all what went on at around that commit (what else 
+happened there?) that might help. Was it a merge? If those three files 
+existed in the base commit of the merge but not in one of the branches, 
+then the merge would have assumed that the branch just deleted it.
+
+Is the tree public so that we can look at it and perhaps make a guess from 
+what happened around it?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

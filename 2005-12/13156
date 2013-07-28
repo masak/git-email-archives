@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec  3 12:57:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EC0F53145B7
+	for <tkil@scrye.com>; Sat,  3 Dec 2005 12:57:12 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750918AbVLCT5E (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 3 Dec 2005 14:57:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750902AbVLCT5E
+	(ORCPT <rfc822;git-outgoing>); Sat, 3 Dec 2005 14:57:04 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:2712 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750918AbVLCT5D (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 3 Dec 2005 14:57:03 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jB3JucDZ019089
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 3 Dec 2005 11:56:38 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jB3JubFH007416;
+	Sat, 3 Dec 2005 11:56:37 -0800
+Date:	Sat, 3 Dec 2005 11:56:37 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+cc:	Junio C Hamano <junkio@cox.net>,
+	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	git@vger.kernel.org
+Subject: Re: [RFC] daemon whitelist handling (Re: git pull aborts in 50% of
+ cases)
+In-Reply-To: <4391F4DD.2060002@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512031156070.3099@g5.osdl.org>
+References: <20051202190412.GA10757@mipter.zuzino.mipt.ru> <43909963.60901@zytor.com>
+ <20051202211250.GA11384@mipter.zuzino.mipt.ru> <4390B64E.20601@zytor.com>
+ <Pine.LNX.4.63.0512030316520.19086@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vu0dq29wg.fsf@assigned-by-dhcp.cox.net> <43911D9E.5030803@zytor.com>
+ <7vpsoezf6y.fsf@assigned-by-dhcp.cox.net> <7vzmnivuz8.fsf_-_@assigned-by-dhcp.cox.net>
+ <4391F4DD.2060002@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:13156
+
+
+
+On Sat, 3 Dec 2005, H. Peter Anvin wrote:
+> 
+> At the very least, if you insist on using getcwd() names, you should
+> pre-canonicalize the whitelist, too.
+
+That would probably solve the problem and sounds like the right 
+user-friendly solution.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 18:02:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AACAB1F5906
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 18:02:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750703AbVKMBCc (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 20:02:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750727AbVKMBCc
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 20:02:32 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:35049 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750703AbVKMBCb (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 12 Nov 2005 20:02:31 -0500
+Received: (qmail 7599 invoked by uid 2001); 13 Nov 2005 02:02:30 +0100
+Date:	Sun, 13 Nov 2005 02:02:30 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	git@vger.kernel.org
+Subject: [ANNOUNCE] Cogito-0.16rc2
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051113010230.GL30496@pasky.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 42
+Xref: brand.scrye.com linux.git:11712
+
+  Hello,
+
+  I'm announcing the release of Cogito version 0.16rc2, the human-friendly
+version control UI for Linus' GIT tool. Share and enjoy at:
+
+	http://www.kernel.org/pub/software/scm/cogito/
+
+  Compared to rc1, this carries few bugfixes, a minor feature or two,
+some small documentation updates, extended testsuites etc.
+
+  The new stuff includes:
+
+  * Curl is used instead of wget for HTTP heads fetching
+  * Handle multiple merge bases (leaving the decision on the user)
+  * cg-init -m'msg' support
+
+  * Fix a long-standing bug with some stale files not being removed
+    during large fast-forwards
+  * Non-symlink HEADs are now fetched from properly
+  * cg-commit -f now really works
+  * Local fetching should work even without GNU cp now
+  * Some fetch progressbar fixes
+
+  * Few tiny improvements
+  * Several new tests
+  * Small documentation updates
+
+  If I will get no more bugreports during the next few days, this will
+become 0.16 final.
+
+  Happy hacking,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

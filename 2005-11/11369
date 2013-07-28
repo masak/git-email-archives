@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  8 18:21:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B3BCA2B72F4
+	for <tkil@scrye.com>; Tue,  8 Nov 2005 18:21:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030323AbVKIBUk (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 8 Nov 2005 20:20:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030360AbVKIBUk
+	(ORCPT <rfc822;git-outgoing>); Tue, 8 Nov 2005 20:20:40 -0500
+Received: from pne-smtpout2-sn1.fre.skanova.net ([81.228.11.159]:1705 "EHLO
+	pne-smtpout2-sn1.fre.skanova.net") by vger.kernel.org with ESMTP
+	id S1030323AbVKIBUj (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 8 Nov 2005 20:20:39 -0500
+Received: from [192.168.0.82] (213.66.95.18) by pne-smtpout2-sn1.fre.skanova.net (7.2.060.1)
+        id 436FB1AD000616EE; Wed, 9 Nov 2005 02:20:37 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43714EFB.5070705@etek.chalmers.se>
+Date:	Wed, 09 Nov 2005 02:20:59 +0100
+From:	=?ISO-8859-1?Q?Lukas_Sandstr=F6m?= <lukass@etek.chalmers.se>
+Organization: Chalmers
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051015)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+CC:	junkio@cox.net,
+	=?ISO-8859-1?Q?Lukas_Sandstr=F6m?= <lukass@etek.chalmers.se>
+Subject: [PATCH 0/4] Add git-pack-intersect
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:11369
+
+This patch series adds git-pack-intersect. It finds redundant packs
+by calculating the union of all objects present in .git/objects/pack
+and then computing the smallest set of packs which contain all the
+objects in this union.
+
+It is quite fast, if I may say so myself. On my AMD3200+ it manages
+to minimize a linux-2.6 repository with 9 pack files totaling 430MB
+in ~0.7 seconds. The remaining packfiles total 102MB, which is a nice
+reduction.
+
+git-fsck-objects reports no errors after pruning, but the algorithm is 
+not proven correct so backups might be in order before this gets more
+testing.
+
+/Lukas
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

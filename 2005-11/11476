@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 07:44:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 57A2D7F29E
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 07:44:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750877AbVKJOnI (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 09:43:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750966AbVKJOnI
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 09:43:08 -0500
+Received: from jdl.com ([66.118.10.122]:54998 "EHLO jdl.com")
+	by vger.kernel.org with ESMTP id S1750877AbVKJOnH (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 10 Nov 2005 09:43:07 -0500
+Received: from jdl (helo=jdl.com)
+	by jdl.com with local-esmtp (Exim 4.44)
+	id 1EaDdh-0007qo-E2
+	for git@vger.kernel.org; Thu, 10 Nov 2005 08:42:58 -0600
+From:	Jon Loeliger <jdl@freescale.com>
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] Add --pretty=fuller
+In-Reply-To: 43730EBD.90307@op5.se
+Date:	Thu, 10 Nov 2005 08:42:57 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EaDdh-0007qo-E2@jdl.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:11476
+
+
+Andreas wrote:
+
+> --show-author=date,timestamp,name
+> --show-committer=name,time
+> --show=name,date (for both author and committer)
+> 
+> or some such, with --pretty=<something> just a short-hand for those 
+> show-options?
+
+Which just looks like a candidate for the [log]
+section of the config file to me.  Or is the "git log"
+output needing to be standardized enough that this
+level of flexability is a bad idea?  Dunno.
+
+jdl
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

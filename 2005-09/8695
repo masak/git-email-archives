@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 12:23:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C516C1BA455
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 12:23:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161225AbVIPSXn (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 14:23:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161226AbVIPSXn
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 14:23:43 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:61406 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1161225AbVIPSXm
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 16 Sep 2005 14:23:42 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j8GINLa1009909
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 16 Sep 2005 11:23:22 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <432B0D97.2030903@zytor.com>
+Date:	Fri, 16 Sep 2005 11:23:19 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Linus Torvalds <torvalds@osdl.org>
+CC:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: git-daemon --inetd
+References: <43290EFF.3070604@zytor.com> <Pine.LNX.4.58.0509150829090.26803@g5.osdl.org> <7vbr2tqwl0.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0509161027460.26803@g5.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0509161027460.26803@g5.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.86.2, clamav-milter version 0.86 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:8695
+
+Linus Torvalds wrote:
+> 
+> Well, the symbolic names are much nicer and more readable. So it would be 
+> better to do the uid/gid translation early, and change the "chroot" thing 
+> to be done after all that.
+> 
+> It gets a bit messy.. Easy enough to just save a "const char *new_root",
+> but then you have to split up the "set_user_group()" to be two functions,
+> around the actual chroot(), since the chroot needs to be done while we're
+> still root.
+> 
+
+Actually, initgroups() and setgroups(), and setgid() for that matter, 
+can be done before the chroot().  The only thing that needs to remain 
+until the end is setuid().
+
+At one time I played around in tftp-hpa with trying to get Linux to keep 
+only CAP_SYS_CHROOT around, but I think I gave up on it.  The way Linux 
+capabilities play with the rest of the permission system isn't very 
+useful :(
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

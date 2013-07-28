@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 04:12:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.7 required=5.0 tests=AWL,BAYES_00,
+	RCVD_IN_BL_SPAMCOP_NET autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6A8992851FA
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 04:12:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030276AbVKPLL5 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 06:11:57 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030279AbVKPLL5
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 06:11:57 -0500
+Received: from xproxy.gmail.com ([66.249.82.198]:49002 "EHLO xproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1030276AbVKPLL5 convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 06:11:57 -0500
+Received: by xproxy.gmail.com with SMTP id i30so1640941wxd
+        for <git@vger.kernel.org>; Wed, 16 Nov 2005 03:11:56 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=cSRQthhBuMrTMn41nhj5y9yIcOVSlsvhRhKuet9byFC2XkVhwpuO87t9AquXRn/Pl5Ntw5jG5jgYE8WJ3a1pA5OyXH7dp0dVdNNix1G2F5F2Iujh1uHFVjrpQExuCwJ+ZsS9IMJoJpplFXhJYmp+zGo3bQbA78uJM9wUnz1jRIs=
+Received: by 10.70.54.2 with SMTP id c2mr3852552wxa;
+        Wed, 16 Nov 2005 03:11:56 -0800 (PST)
+Received: by 10.70.27.12 with HTTP; Wed, 16 Nov 2005 03:11:56 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <b0943d9e0511160311k725526d8v@mail.gmail.com>
+Date:	Wed, 16 Nov 2005 11:11:56 +0000
+From:	Catalin Marinas <catalin.marinas@gmail.com>
+To:	=?ISO-8859-1?Q?Karl_Hasselstr=F6m?= <kha@treskal.com>
+Subject: Re: stgit truncates binary files to zero length when applying patches
+Cc:	git@vger.kernel.org
+In-Reply-To: <20051115144223.GA18111@diana.vm.bytemark.co.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8BIT
+Content-Disposition: inline
+References: <20051115144223.GA18111@diana.vm.bytemark.co.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:12010
+
+On 15/11/05, Karl Hasselström <kha@treskal.com> wrote:
+> When applying patches and not fast-forwarding, stgit truncates the
+> binary files to zero length:
+
+I've never tried binaries with StGIT before. When pushing a patch, if
+a merge is needed (like in your case, the base of the foo patch has
+changed), StGIT first tries "git-diff-tree | git-apply" for speed
+reasons. If this fails, it falls back to a three-way merge.
+
+Unfortunately, git-apply doesn't fail for patches including binary
+files and simply creates an empty file. I think git-apply should be
+changed to fail to apply this kind of patches.
+
+--
+Catalin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

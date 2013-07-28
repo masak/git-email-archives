@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 28 09:31:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4257DC9161
+	for <tkil@scrye.com>; Mon, 28 Nov 2005 09:30:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751284AbVK1QaD (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 28 Nov 2005 11:30:03 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751285AbVK1QaB
+	(ORCPT <rfc822;git-outgoing>); Mon, 28 Nov 2005 11:30:01 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:924 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751284AbVK1QaA (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 28 Nov 2005 11:30:00 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 931C913FEBD; Mon, 28 Nov 2005 17:29:59 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 79C1C9F473; Mon, 28 Nov 2005 17:29:59 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6807B9DB02; Mon, 28 Nov 2005 17:29:59 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CB08313FEC1; Mon, 28 Nov 2005 17:29:58 +0100 (CET)
+Date:	Mon, 28 Nov 2005 17:29:58 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [RFC 2/2] Automatically transform .git/{branches,remotes} into
+ .git/config
+In-Reply-To: <7vfyph1ebq.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511281728110.11362@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0511211455120.13775@wbgn013.biozentrum.uni-wuerzburg.de>
+ <20051127125945.GD22159@pasky.or.cz> <Pine.LNX.4.63.0511280248020.12343@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vfyph1ebq.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:12882
+
+Hi,
+
+On Sun, 27 Nov 2005, Junio C Hamano wrote:
+
+> Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+> 
+> > I only realized that we -- in the good tradition of UNIX -- have many 
+> > different formats for different configurations: Some configurations are in 
+> > .gitignore, some are in .git/branches/, some in .git/remotes/, some in 
+> > .git/config, and even some in environment variables!
+> 
+> Can you live with something like this?
+> 
+>  - we will add new ones to config, now we have it;
+> 
+>  - we will not deprecate existing ones outside of config for some time;
+> 
+>  - we will not duplicate/move existing ones into config at least
+>    for now to keep our work less complicated;
+> 
+>  - we would revisit deprecating things outside config file
+>    sometime later after 1.0 stabilizes, and that's when we will
+>    talk about moving these things into config.
+
+I can very well live with this!
+
+As a first step, we could support getting the remote information from 
+.git/config after testing .git/branches/ and .git/remotes/?
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

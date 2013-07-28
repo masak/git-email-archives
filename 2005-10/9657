@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct  4 01:23:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 86A52EDEC6
+	for <tkil@scrye.com>; Tue,  4 Oct 2005 01:23:34 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932461AbVJDHXN (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 4 Oct 2005 03:23:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932463AbVJDHXN
+	(ORCPT <rfc822;git-outgoing>); Tue, 4 Oct 2005 03:23:13 -0400
+Received: from xproxy.gmail.com ([66.249.82.194]:31380 "EHLO xproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932461AbVJDHXM convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Tue, 4 Oct 2005 03:23:12 -0400
+Received: by xproxy.gmail.com with SMTP id i30so305440wxd
+        for <git@vger.kernel.org>; Tue, 04 Oct 2005 00:23:11 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=D3iKVT/rIb1qdaKF5/G9VxCkMNEKY7M85QaXhOA2F90wYHvSEXui8x4cfp6pls+auEFuD3y8uiscHJhdFcNEaUzrzkcXSvhB39GReH+HwNCvj/mP2uHQlGvMK2ZulyWkQAiko8gH8IsTY3SZq9gu3oEngc2GOFu961voO4TlZrw=
+Received: by 10.70.62.5 with SMTP id k5mr676272wxa;
+        Tue, 04 Oct 2005 00:23:11 -0700 (PDT)
+Received: by 10.70.31.3 with HTTP; Tue, 4 Oct 2005 00:23:11 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <b0943d9e0510040023h287b9d44w@mail.gmail.com>
+Date:	Tue, 4 Oct 2005 08:23:11 +0100
+From:	Catalin Marinas <catalin.marinas@gmail.com>
+Reply-To: Catalin Marinas <catalin.marinas@gmail.com>
+To:	Blaisorblade <blaisorblade@yahoo.it>
+Subject: Re: StGit command completions - and Git ones?
+Cc:	git@vger.kernel.org
+In-Reply-To: <200510021303.44960.blaisorblade@yahoo.it>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <200510021303.44960.blaisorblade@yahoo.it>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:9657
+
+On 02/10/05, Blaisorblade <blaisorblade@yahoo.it> wrote:
+> I noticed in your TODO you talk about adding command line completions. I've
+> been doing it for my needs, and the thing is still very incomplete, even if
+> it's not a "XXX hack hack hack", and I wanted to send this first draft.
+
+Thanks, I will have a look at it.
+
+FYI, the tla-contrib package has a script which automatically
+generates the bash completion script from the help messages (well,
+only for tla, but can be adapted).
+
+--
+Catalin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

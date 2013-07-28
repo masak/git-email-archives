@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 10 06:05:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A7458635A
+	for <tkil@scrye.com>; Tue, 10 May 2005 06:05:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261620AbVEJME6 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 10 May 2005 08:04:58 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261622AbVEJME6
+	(ORCPT <rfc822;git-outgoing>); Tue, 10 May 2005 08:04:58 -0400
+Received: from simmts5.bellnexxia.net ([206.47.199.163]:16081 "EHLO
+	simmts5-srv.bellnexxia.net") by vger.kernel.org with ESMTP
+	id S261620AbVEJME4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 10 May 2005 08:04:56 -0400
+Received: from linux1 ([69.156.111.46]) by simmts5-srv.bellnexxia.net
+          (InterMail vM.5.01.06.10 201-253-122-130-110-20040306) with ESMTP
+          id <20050510120455.GFW1614.simmts5-srv.bellnexxia.net@linux1>;
+          Tue, 10 May 2005 08:04:55 -0400
+Received: from linux1 (linux1.attic.local [127.0.0.1])
+	by linux1 (8.12.11/8.12.11) with ESMTP id j4AC4pNj016749;
+	Tue, 10 May 2005 08:04:52 -0400
+Received: from 10.10.10.24
+        (SquirrelMail authenticated user sean)
+        by linux1 with HTTP;
+        Tue, 10 May 2005 08:04:54 -0400 (EDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4385.10.10.10.24.1115726694.squirrel@linux1>
+In-Reply-To: <Pine.LNX.4.21.0505100040320.30848-100000@iabervon.org>
+References: <Pine.LNX.4.21.0505100040320.30848-100000@iabervon.org>
+Date:	Tue, 10 May 2005 08:04:54 -0400 (EDT)
+Subject: Re: [RFD] Overlapping projects
+From: "Sean" <seanlkml@sympatico.ca>
+To: "Daniel Barkalow" <barkalow@iabervon.org>
+Cc: git@vger.kernel.org
+User-Agent: SquirrelMail/1.4.4-2
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+X-Priority: 3 (Normal)
+Importance: Normal
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 30
+Xref: brand.scrye.com linux.git:2948
+
+On Tue, May 10, 2005 12:56 am, Daniel Barkalow said:
+> It seems to me like projects like cogito which are based on a core which
+> is itself a project and which is also part of other projects would benefit
+> from some sort of support.
+>
+> In particular, it would be nice if Linus could pull the changes to the
+> core without getting the wrapper programs at all.
+>
+> I'm thinking something like having a head for cogito and a head for git in
+> the same repository, where the trees for git only have the core files, and
+> the commits for cogito have, in addition to a tree with only the
+> cogito-specific files, a reference to a git commit that they include.
+>
+> It seems to me like this area contains a brilliant idea that I haven't
+> had so far, and maybe someone can come up with it.
+>
+
+That sounds like a great idea and shouldn't need any brilliant ideas to
+implement.  Just need to push a little more multi-head handling down into 
+ git.  The Cogito build process could then include a checkout of the
+git-core branch.  Would be much cleaner than the way it is handled now.
+
+Sean
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

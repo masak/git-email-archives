@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec 23 04:07:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6FEB72851FA
+	for <tkil@scrye.com>; Fri, 23 Dec 2005 04:07:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030488AbVLWLHV (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Dec 2005 06:07:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030491AbVLWLHV
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Dec 2005 06:07:21 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:34471 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1030488AbVLWLHT (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 23 Dec 2005 06:07:19 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id AA50313F1B5; Fri, 23 Dec 2005 12:07:18 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 92EAF9E407; Fri, 23 Dec 2005 12:07:18 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 80C6D9C185; Fri, 23 Dec 2005 12:07:18 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6873913F1B5; Fri, 23 Dec 2005 12:07:18 +0100 (CET)
+Date:	Fri, 23 Dec 2005 12:07:18 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Introduce core.sharedrepository
+In-Reply-To: <Pine.LNX.4.63.0512231141410.28090@wbgn013.biozentrum.uni-wuerzburg.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512231206590.18905@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0512222313070.12044@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vaceshi18.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0512222356540.12681@wbgn013.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.63.0512230003560.12795@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vbqz89o0y.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0512231141410.28090@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:13981
+
+Hi,
+
+On Fri, 23 Dec 2005, Johannes Schindelin wrote:
+
+> Hi,
+> 
+> On Fri, 23 Dec 2005, Junio C Hamano wrote:
+> 
+> > I've merged up your patches yesterday after some churning and
+> > they are in the pu branch.  I hope I did not break them too much
+> > ;-).
+> 
+> Looks good. Will test.
+
+Tested. Looks even better.
+
+Ciao,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

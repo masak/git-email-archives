@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 18:27:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DE47F1709B7
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 18:27:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261863AbVD0A1U (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 20:27:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261865AbVD0A1U
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 20:27:20 -0400
+Received: from fire.osdl.org ([65.172.181.4]:36499 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261863AbVD0A1S (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 26 Apr 2005 20:27:18 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3R0RDs4009691
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 26 Apr 2005 17:27:13 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3R0RChr020150;
+	Tue, 26 Apr 2005 17:27:13 -0700
+Date:	Tue, 26 Apr 2005 17:29:12 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] diff-cache/tree compatible output for show-diff (take
+ 2).
+In-Reply-To: <Pine.LNX.4.58.0504261719230.18901@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504261725470.18901@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0504232202340.19877@ppc970.osdl.org>
+ <7v1x8zsamn.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0504251832480.18901@ppc970.osdl.org>
+ <7vy8b5mawy.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0504261534590.18901@ppc970.osdl.org>
+ <7vd5shm94l.fsf@assigned-by-dhcp.cox.net> <7vy8b5ksqi.fsf_-_@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0504261719230.18901@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 27
+Xref: brand.scrye.com linux.git:1812
+
+
+
+On Tue, 26 Apr 2005, Linus Torvalds wrote:
+>
+> [ "U" for "unmerged" ]
+> 
+> Btw, diff-cache definitely _can_ output this form, so we probably should 
+> make diff-cache do so too, to match, no?
+
+Actually, we should decide on what diff-tree-helper does before that. 
+Right now it always either calls out to the external diff program, or it 
+says "cannot parse".
+
+It's possible that an external "diff" program might actually want to know
+about unmerged files (maybe people don't actually do "diff", but something
+else altogether), so one approach might be to just make that an option.
+
+The other approach is to just have something like "<pathname> is unmerged"
+as output from diff-tree-helper. That isn't quite as flexible, but it sure 
+is simpler..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

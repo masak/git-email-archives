@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  8 16:28:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.4 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,X_MAILER_SPAM autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1021516EE54
+	for <tkil@scrye.com>; Thu,  8 Dec 2005 16:28:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932739AbVLHX2X (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 18:28:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932736AbVLHX2W
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 18:28:22 -0500
+Received: from mxfep02.bredband.com ([195.54.107.73]:19662 "EHLO
+	mxfep02.bredband.com") by vger.kernel.org with ESMTP
+	id S932732AbVLHX2P (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 8 Dec 2005 18:28:15 -0500
+Received: from ironport.bredband.com ([195.54.107.82] [195.54.107.82])
+          by mxfep02.bredband.com with ESMTP
+          id <20051208232814.VWYT17186.mxfep02.bredband.com@ironport.bredband.com>
+          for <git@vger.kernel.org>; Fri, 9 Dec 2005 00:28:14 +0100
+Received: from c-fa2b70d5.018-10-67626713.cust.bredbandsbolaget.se (HELO puritan.petwork) ([213.112.43.250])
+  by ironport.bredband.com with ESMTP; 09 Dec 2005 00:28:33 +0100
+X-BrightmailFiltered: true
+X-IronPort-AV: i="3.99,232,1131318000"; 
+   d="scan'208"; a="16674753:sNHT37480869"
+Received: from puritan (localhost [127.0.0.1])
+	by puritan.petwork (Postfix) with SMTP id BC1D8ADFF7;
+	Fri,  9 Dec 2005 00:28:05 +0100 (CET)
+Cc:	Nikolai Weibull <nikolai@bitwi.se>
+Subject: [PATCH 12/17] Documentation/git-ls-remote.txt: Add -h and -t.
+In-Reply-To: <11340844853961-git-send-email-mailing-lists.git@rawuncut.elitemail.org>
+X-Mailer: git-send-email
+Date:	Fri, 9 Dec 2005 00:28:05 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <11340844853230-git-send-email-mailing-lists.git@rawuncut.elitemail.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:13387
+
+-h and -t are aliases for --heads and --tags to git-ls-remote.
+
+Signed-off-by: Nikolai Weibull <nikolai@bitwi.se>
+
+---
+
+ Documentation/git-ls-remote.txt |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+763853d9c9f2b9c0f5c76138f081d13640a24666
+diff --git a/Documentation/git-ls-remote.txt b/Documentation/git-ls-remote.txt
+index c0a80d4..66fe60f 100644
+--- a/Documentation/git-ls-remote.txt
++++ b/Documentation/git-ls-remote.txt
+@@ -17,7 +17,7 @@ Displays the references other repository
+ 
+ OPTIONS
+ -------
+---heads --tags::
++-h|--heads, -t|--tags::
+ 	Limit to only refs/heads and refs/tags, respectively.
+ 	These options are _not_ mutually exclusive; when given
+ 	both, references stored in refs/heads and refs/tags are
+-- 
+0.99.9l
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

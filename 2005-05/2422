@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  2 22:23:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 145FEFC6A7
+	for <tkil@scrye.com>; Mon,  2 May 2005 22:23:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261381AbVECEXL (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 3 May 2005 00:23:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261380AbVECEXI
+	(ORCPT <rfc822;git-outgoing>); Tue, 3 May 2005 00:23:08 -0400
+Received: from fire.osdl.org ([65.172.181.4]:4044 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261381AbVECEXA (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 3 May 2005 00:23:00 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j434Mss4007161
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 2 May 2005 21:22:54 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j434MroF007300;
+	Mon, 2 May 2005 21:22:53 -0700
+Date:	Mon, 2 May 2005 21:24:54 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Matt Mackall <mpm@selenic.com>
+Cc: Bill Davidsen <davidsen@tmr.com>,
+	Morten Welinder <mwelinder@gmail.com>, Sean <seanlkml@sympatico.ca>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+Subject: Re: Mercurial 0.4b vs git patchbomb benchmark
+In-Reply-To: <20050503000011.GA22038@waste.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505022123270.3594@ppc970.osdl.org>
+References: <20050429165232.GV21897@waste.org> <427650E7.2000802@tmr.com>
+ <Pine.LNX.4.58.0505021457060.3594@ppc970.osdl.org> <20050502223002.GP21897@waste.org>
+ <Pine.LNX.4.58.0505021540070.3594@ppc970.osdl.org> <20050503000011.GA22038@waste.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:2422
+
+
+
+On Mon, 2 May 2005, Matt Mackall wrote:
+> 
+> It's still simple in Mercurial, but more importantly Mercurial _won't
+> need it_. Dropping history is a work-around, not a feature.
+
+Side note: this is what Larry thought about BK too. Until three years had
+passed, and the ChangeSet file was many megabytes in size. Even slow
+growth ends up being big growth in the end..
+
+We had been talking about pruning the BK history as long back as a year 
+ago.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

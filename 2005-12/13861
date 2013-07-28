@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 00:12:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2E2301026C2
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 00:12:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932299AbVLUHMI (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 02:12:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932300AbVLUHMI
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 02:12:08 -0500
+Received: from smtp100.mail.sc5.yahoo.com ([216.136.174.138]:38260 "HELO
+	smtp100.mail.sc5.yahoo.com") by vger.kernel.org with SMTP
+	id S932299AbVLUHMH (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 02:12:07 -0500
+Received: (qmail 85006 invoked from network); 21 Dec 2005 07:12:04 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Received:Message-ID:Date:From:User-Agent:X-Accept-Language:MIME-Version:To:CC:Subject:References:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+  b=XtawNiEy5/yV0GmWxYnvNq5gbTDAHkInx5GJvE26DpDdeeAx1mdRvW9vs0HYbfPrvssAZ1pM20N53qBVnHEm05YaTf5bYIk/UwieFYmVFg9ADalyPs6VQ0SdBKJJwqZfXGEzwgIDIDVfYJHd6gjiarFvfVlpM0jDR5hMGBmJViM=  ;
+Received: from unknown (HELO ?10.0.0.13?) (mcostalba@151.44.24.188 with plain)
+  by smtp100.mail.sc5.yahoo.com with SMTP; 21 Dec 2005 07:12:03 -0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43A9003A.8010408@yahoo.it>
+Date:	Wed, 21 Dec 2005 08:11:54 +0100
+From:	Marco Costalba <mcostalba@yahoo.it>
+User-Agent: Mozilla Thunderbird 1.0.6-7.2.20060mdk (X11/20050322)
+X-Accept-Language: it, it-it, en-us, en
+MIME-Version: 1.0
+To:	Pavel Roskin <proski@gnu.org>
+CC:	Marco Costalba <mcostalba@gmail.com>, git <git@vger.kernel.org>
+Subject: Re: [PATCH] gqit: enable compiler warnings
+References: <1135131068.1183.6.camel@dv>
+In-Reply-To: <1135131068.1183.6.camel@dv>
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:13861
+
+Pavel Roskin wrote:
+> The "-O2" flag should be separated from the threading support.  Besides,
+> it belongs to CCFLAGS (compile flags common to C and C++), not to
+> CPPFLAGS (preprocessor flags).  While at that, enable all warnings by
+> -Wall, except those about non-virtual destructors, which are "inherited"
+> from Qt.  Portability is not affected since -O2 was already
+> gcc-specific.
+> 
+> Signed-off-by: Pavel Roskin <proski@gnu.org>
+> 
+Thanks applied.
+
+		
+___________________________________ 
+Yahoo! Messenger: chiamate gratuite in tutto il mondo 
+http://it.messenger.yahoo.com
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 18 18:07:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 96C052851FA
+	for <tkil@scrye.com>; Sun, 18 Dec 2005 18:07:00 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030208AbVLSBGt (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Dec 2005 20:06:49 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030209AbVLSBGt
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Dec 2005 20:06:49 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:5637 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S1030208AbVLSBGt (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Dec 2005 20:06:49 -0500
+Received: from mundungus.clifford.ac (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jBJ13HIa026926
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 19 Dec 2005 01:03:17 GMT
+Received: from localhost (benc@localhost)
+	by mundungus.clifford.ac (8.13.3/8.13.3/Submit) with ESMTP id jBJ134qa026920;
+	Mon, 19 Dec 2005 01:03:10 GMT
+X-Authentication-Warning: mundungus.clifford.ac: benc owned process doing -bs
+Date:	Mon, 19 Dec 2005 01:03:04 +0000 (GMT)
+From:	Ben Clifford <benc@hawaga.org.uk>
+To:	Jonas Fonseca <fonseca@diku.dk>
+cc:	Git List <git@vger.kernel.org>, Petr Baudis <pasky@ucw.cz>
+Subject: Re: [PATCH] cg-completion: improve options and command listing
+In-Reply-To: <20051218143439.GA7064@diku.dk>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.60.0512190102330.13536@mundungus.clifford.ac>
+References: <20051211190931.GF2960@diku.dk> <EF827EE8-7B7A-4D19-A08D-8C67D6B74195@hawaga.org.uk>
+ <20051218143439.GA7064@diku.dk>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:13796
+
+On Sun, 18 Dec 2005, Jonas Fonseca wrote:
+
+> Else I was thinking of maybe adding --list parameter to cg-help to have
+> it list all known commands.
+
+yeah, that would be nice.
+
+-- 
+http://www.hawaga.org.uk/ben/
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

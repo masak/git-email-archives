@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 30 22:40:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1D04C2288A1
+	for <tkil@scrye.com>; Fri, 30 Sep 2005 22:40:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750728AbVJAEkZ (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 1 Oct 2005 00:40:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750729AbVJAEkY
+	(ORCPT <rfc822;git-outgoing>); Sat, 1 Oct 2005 00:40:24 -0400
+Received: from zproxy.gmail.com ([64.233.162.203]:42567 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750728AbVJAEkY convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Sat, 1 Oct 2005 00:40:24 -0400
+Received: by zproxy.gmail.com with SMTP id 13so46704nzn
+        for <git@vger.kernel.org>; Fri, 30 Sep 2005 21:40:23 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=CsVSjMAHXbfzWmG6XsEiA/ASCI9ak1sXljFIFTCJjB+yQnN5NNn16lLTraPEfjj8mkR/VsaCdR021mNock/FteANEN/6t66uCvgs/txMaeXdOYk57zYb6tBeLk+d9P3NQfZR1pfKsdggUhmzGUSM3U2uH3k70cW3mPEOwYRXk1c=
+Received: by 10.36.227.68 with SMTP id z68mr2929116nzg;
+        Fri, 30 Sep 2005 21:40:23 -0700 (PDT)
+Received: by 10.36.58.18 with HTTP; Fri, 30 Sep 2005 21:40:23 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <12c511ca0509302140o4263020bsc337594609175173@mail.gmail.com>
+Date:	Fri, 30 Sep 2005 21:40:23 -0700
+From:	Tony Luck <tony.luck@gmail.com>
+Reply-To: Tony Luck <tony.luck@gmail.com>
+To:	git@vger.kernel.org
+Subject: time to update with new packs
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:9575
+
+I see that Linus made a new incremental pack when he
+released 2.6.14-rc3 ... so to be nice to the kernel.org
+mirroring daemons I should make use of them.
+
+After the excitement I had last time with packs and trying to
+make use of alternate directories, I thought I'd check the
+process before I touched anything.
+
+1) Link the new pack files from Linus' objects/pack directory
+to my objects/pack directory.
+
+2) $ GIT_DIR=. git prune-packed # in my directory
+
+3) $ GIT_DIR=. git update-server-info # ditto
+
+Ok?
+
+-Tony
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

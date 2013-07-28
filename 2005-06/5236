@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jun 25 03:03:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7764B2B08AE
+	for <tkil@scrye.com>; Sat, 25 Jun 2005 03:03:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263324AbVFYJDJ (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 25 Jun 2005 05:03:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263368AbVFYJDJ
+	(ORCPT <rfc822;git-outgoing>); Sat, 25 Jun 2005 05:03:09 -0400
+Received: from web26308.mail.ukl.yahoo.com ([217.146.176.19]:52353 "HELO
+	web26308.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S263324AbVFYJDD (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 25 Jun 2005 05:03:03 -0400
+Received: (qmail 5603 invoked by uid 60001); 25 Jun 2005 09:03:02 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=iWZd1ud/g0ISznqFihacikFq4tGbE39kWbKda476II5PCcZUM72SqJx1FuykmDTEmiqt4yg6RfwnvMN1nMXGAztlox5fEim6JfhyMWzGAWkAxYq+s9dSPEfRLaPSSiSDP9ZTZc9HfB5VlZ/KpmILg7mUDwipqE16fMvsZnefs/c=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050625090302.5601.qmail@web26308.mail.ukl.yahoo.com>
+Received: from [151.42.53.104] by web26308.mail.ukl.yahoo.com via HTTP; Sat, 25 Jun 2005 02:03:02 PDT
+Date:	Sat, 25 Jun 2005 02:03:02 -0700 (PDT)
+From: Marco Costalba <mcostalba@yahoo.it>
+Subject: qgit-0.61
+To: git@vger.kernel.org
+Cc: mingo@elte.hu, berkus@gmail.com
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.0.4
+Lines: 51
+Xref: brand.scrye.com linux.git:5236
+
+Here is qgit-0.61
+
+This is mainly a fix release with some work in annotation code.
+
+Changelog from qgit-0.6:
+
+- improve annotation algorithm to detect annotations behind merges
+
+- qgit arguments parsing: switch to use git-rev-parse
+
+- added find function in file viewer
+
+- double click in annotate shows revision
+
+- set Monospace font in file and diff viewer (suggested by Radoslaw Szkodzinski)
+
+- added filter on path in main view
+
+- pretty format annotation header
+
+- fixed annotate alignement
+
+- detect also cogito type tags, i.e. tags shown with cg-tag-ls
+
+Download from:
+http://prdownloads.sourceforge.net/qgit/qgit-0.61.tar.bz2?download
+
+Annotation code should be much improved now, but still experimental. 
+I need more time to workout all corner cases ( and there are a lot ;-) )
+
+
+And now a wish:
+
+If may I ask, should be possible to add the object type and name, togheter with sha
+in git-rev-list --objects output?
+This new option looks very promising to speed up my startup loading.
+
+
+Thanks
+Marco
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 15 13:58:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0964E6655
+	for <tkil@scrye.com>; Sun, 15 May 2005 13:58:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261152AbVEOT6A (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 15 May 2005 15:58:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261211AbVEOT6A
+	(ORCPT <rfc822;git-outgoing>); Sun, 15 May 2005 15:58:00 -0400
+Received: from simmts6.bellnexxia.net ([206.47.199.164]:40395 "EHLO
+	simmts6-srv.bellnexxia.net") by vger.kernel.org with ESMTP
+	id S261152AbVEOT55 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 15 May 2005 15:57:57 -0400
+Received: from linux1 ([69.156.111.46]) by simmts6-srv.bellnexxia.net
+          (InterMail vM.5.01.06.10 201-253-122-130-110-20040306) with ESMTP
+          id <20050515195757.WPKH11463.simmts6-srv.bellnexxia.net@linux1>;
+          Sun, 15 May 2005 15:57:57 -0400
+Received: from linux1 (linux1.attic.local [127.0.0.1])
+	by linux1 (8.12.11/8.12.11) with ESMTP id j4FJvtxZ007358;
+	Sun, 15 May 2005 15:57:56 -0400
+Received: from 10.10.10.24
+        (SquirrelMail authenticated user sean)
+        by linux1 with HTTP;
+        Sun, 15 May 2005 15:57:56 -0400 (EDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4971.10.10.10.24.1116187076.squirrel@linux1>
+In-Reply-To: <1116186533.11872.152.camel@tglx>
+References: <4127.10.10.10.24.1116107046.squirrel@linux1>
+    <1116186533.11872.152.camel@tglx>
+Date:	Sun, 15 May 2005 15:57:56 -0400 (EDT)
+Subject: Re: git-rev-list  in local commit order
+From: "Sean" <seanlkml@sympatico.ca>
+To: tglx@linutronix.de
+Cc: git@vger.kernel.org
+User-Agent: SquirrelMail/1.4.4-2
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+X-Priority: 3 (Normal)
+Importance: Normal
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 41
+Xref: brand.scrye.com linux.git:3356
+
+On Sun, May 15, 2005 3:48 pm, Thomas Gleixner said:
+> On Sat, 2005-05-14 at 17:44 -0400, Sean wrote:
+>> Attached is a preliminary hackish patch to sort git-rev-list in local
+>> commit order.
+>
+> +unsigned long sha1_local_date(const unsigned char *sha1)
+> +{
+> +       struct stat st;
+> +       if (find_sha1_file(sha1, &st))
+> +               return st.st_mtime;
+> +       return 0;
+> +}
+>
+> Do you really want to base workflow and history information on file
+> times ?
+
+The local commit order just isn't all that important in many situations. 
+And for situations where it is important, this proposal seems completely
+adequate.   Mind you, the patch in question is complete crap.
+
+> File times are local and completely error prone in distributed
+> environments.
+
+I disagree that they're inherently error prone, steps can be taken to make
+them as secure as you desire.  Also, many people just will not care about
+this local-commit-time as they will simply be tracking a remote
+repository.   For applications like David Woodhouse's need to present the
+newest commits first on a web page, this is _completely_ adequate.   I've
+yet to see an intended use for this information that isn't completely
+handled by this proposal.  Afterall, most people using git are getting by
+just fine without such a facility today.
+
+Regards,
+Sean
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

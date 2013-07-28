@@ -1,0 +1,100 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May 16 10:25:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1DB7023AB0F
+	for <tkil@scrye.com>; Mon, 16 May 2005 10:25:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261733AbVEPQYE (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 16 May 2005 12:24:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261734AbVEPQYE
+	(ORCPT <rfc822;git-outgoing>); Mon, 16 May 2005 12:24:04 -0400
+Received: from s2.ukfsn.org ([217.158.120.143]:61319 "EHLO mail.ukfsn.org")
+	by vger.kernel.org with ESMTP id S261733AbVEPQXu (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 16 May 2005 12:23:50 -0400
+Received: from localhost (lucy.ukfsn.org [127.0.0.1])
+	by mail.ukfsn.org (Postfix) with ESMTP
+	id C932CE6DA5; Mon, 16 May 2005 17:23:38 +0100 (BST)
+Received: from mail.ukfsn.org ([127.0.0.1])
+ by localhost (lucy.ukfsn.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 12460-01; Mon, 16 May 2005 17:23:38 +0100 (BST)
+Received: from oak.dgreaves.com (modem-780.lion.dialup.pol.co.uk [217.135.163.12])
+	by mail.ukfsn.org (Postfix) with ESMTP
+	id 0DD14E6DA2; Mon, 16 May 2005 17:23:38 +0100 (BST)
+Received: from ash.dgreaves.com ([10.0.0.90])
+	by oak.dgreaves.com with esmtp (Exim 4.20)
+	id 1DXi5V-00054V-Vo; Mon, 16 May 2005 17:05:01 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4288C4AD.6060004@dgreaves.com>
+Date:	Mon, 16 May 2005 17:05:01 +0100
+From: David Greaves <david@dgreaves.com>
+User-Agent: Debian Thunderbird 1.0.2 (X11/20050331)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Matthias Urlichs <smurf@smurf.noris.de>
+Cc: git@vger.kernel.org
+Subject: Re: [RFD] Ignore rules
+References: <4283CAF8.3050304@dgreaves.com> <20050513231229.GI32232@pasky.ji.cz> <4285B6A8.4080309@dgreaves.com> <7vy8ai2nb6.fsf@assigned-by-dhcp.cox.net> <20050514142421.GG3905@pasky.ji.cz> <42861584.6020601@dgreaves.com> <20050514153027.GN3905@pasky.ji.cz> <7vsm0py8vz.fsf@assigned-by-dhcp.cox.net> <2cfc4032050514181127c02e43@mail.gmail.com> <pan.2005.05.16.09.35.22.73817@smurf.noris.de>
+In-Reply-To: <pan.2005.05.16.09.35.22.73817@smurf.noris.de>
+X-Enigmail-Version: 0.91.0.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 48
+Xref: brand.scrye.com linux.git:3392
+
+Matthias Urlichs wrote:
+
+>Hi, Jon Seymour wrote:
+>
+>  
+>
+>>a. pushing the ignore logic into the core git tools such as git-ls-files
+>>
+>>b. including the current ignore .* rule as a default ignore rule that
+>>can be overridden by a .gitignore file
+>>    
+>>
+>
+>I'd say YES to both.
+>
+>My preferred ignore file logic would be:
+>
+>- stop at first match (that's more efficient)
+>  
+>
+more efficient true - but then surely 98% of the time you have to check
+_all_ patterns since files aren't generally ignored.
+And the ability to override earlier matches makes life much easier.
+So I say no shortcuts, last pattern to match decides ignore/accept status
+
+>- !pattern prevents exclusion of matching files
+>- bash-style shell globs, except that ...
+>  - a pattern that starts with / is a regexp
+>  - * doesn't cross directory boundaries, but ** does
+>  
+>
+>- I don't need a per-repository (i.e. non-checked-in/propagated)
+>  ignore file.
+>
+I agree.
+But for the sake of checking a couple of files it makes sense to define
+a complete set of locations.
+
+David
+
+
+-- 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

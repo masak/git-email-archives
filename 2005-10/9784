@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct  6 18:52:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3B4BA175BA1
+	for <tkil@scrye.com>; Thu,  6 Oct 2005 18:52:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751275AbVJGAwU (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 6 Oct 2005 20:52:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751271AbVJGAwU
+	(ORCPT <rfc822;git-outgoing>); Thu, 6 Oct 2005 20:52:20 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:60301 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1751266AbVJGAwT (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 6 Oct 2005 20:52:19 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051007005143.PYFF29216.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 6 Oct 2005 20:51:43 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Nick Hengeveld <nickh@reactrix.com>
+Subject: Re: [PATCH] Add support for parallel HTTP transfers
+References: <20051005214447.GF15593@reactrix.com>
+	<Pine.LNX.4.63.0510061550510.23242@iabervon.org>
+	<20051007000041.GH15593@reactrix.com>
+cc:	git@vger.kernel.org
+Date:	Thu, 06 Oct 2005 17:51:53 -0700
+In-Reply-To: <20051007000041.GH15593@reactrix.com> (Nick Hengeveld's message
+	of "Thu, 6 Oct 2005 17:00:41 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7virwa5ety.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:9784
+
+Nick Hengeveld <nickh@reactrix.com> writes:
+
+> About that "-r" arg - seems like it should be something else as -r is
+> used elsewhere in git to enable recursion.  "-c" was my first thought,
+> but that's used to fetch commit objects.
+
+Well, I'd suggest just to hardcode a reasonable value to be a
+good net citizen, and not make it configurable.  Four, perhaps?
+
+OTOH, we may want to have an option to disable parallel from the
+command line (I think -r 1 would mean that with yours).
+
+If we really want to have the number of parallel configurable,
+and -r implies recursive as you say, maybe '-j' to mimic
+parallel make?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

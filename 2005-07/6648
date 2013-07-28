@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 31 07:52:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 822369E192
+	for <tkil@scrye.com>; Sun, 31 Jul 2005 07:52:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261761AbVGaNw1 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 31 Jul 2005 09:52:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263218AbVGaNw1
+	(ORCPT <rfc822;git-outgoing>); Sun, 31 Jul 2005 09:52:27 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:15579 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S261761AbVGaNw0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 31 Jul 2005 09:52:26 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP id 93525E1CE2
+	for <git@vger.kernel.org>; Sun, 31 Jul 2005 15:52:25 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP id 78DB591B52
+	for <git@vger.kernel.org>; Sun, 31 Jul 2005 15:52:25 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP id 493EA91B50
+	for <git@vger.kernel.org>; Sun, 31 Jul 2005 15:52:25 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx68.rz.uni-wuerzburg.de [132.187.3.68])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP id 33B9BE1CE2
+	for <git@vger.kernel.org>; Sun, 31 Jul 2005 15:52:25 +0200 (CEST)
+Date:	Sun, 31 Jul 2005 15:52:25 +0200 (CEST)
+From: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To: git@vger.kernel.org
+Subject: Terminology
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507311541340.29235@wgmdd8.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 31
+Xref: brand.scrye.com linux.git:6648
+
+Hi,
+
+the other day I got confused by the terminology. Maybe I'm not the only
+one:
+
+The GIT equivalent of a CVS branch is sometimes called a branch
+(git-new-branch), sometimes a tree (git-switch-tree), and sometimes a
+head (which seems counterintuitive to CVS people: they only have one
+HEAD; pun(s) intended).
+
+What is worse: a tree often refers to something different, namely a
+directory structure corresponding to a certain commit (which SVN people
+would call revision). And in $GIT_DIR/branches, short cuts for remote
+addresses are stored (and therefore I would have preferred
+$GIT_DIR/remotes).
+
+Maybe we should decide on a common terminology before kicking out 1.0, and
+look through all files in Documentation/ to have a consistent vocabulary.
+And poor me does not get confused no more.
+
+Ciao,
+Dscho
+
+--
+Git-R-Done
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

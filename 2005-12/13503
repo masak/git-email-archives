@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 11 18:12:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 800691094CA
+	for <tkil@scrye.com>; Sun, 11 Dec 2005 18:12:28 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750802AbVLLBMN (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Dec 2005 20:12:13 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750973AbVLLBMN
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Dec 2005 20:12:13 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:5065 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750802AbVLLBMN (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 11 Dec 2005 20:12:13 -0500
+Received: (qmail 4730 invoked by uid 2001); 12 Dec 2005 02:12:10 +0100
+Date:	Mon, 12 Dec 2005 02:12:10 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	git@vger.kernel.org
+Cc:	linux-kernel@vger.kernel.org
+Subject: [ANNOUNCE] Cogito-0.16.1
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051212011210.GC12373@pasky.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 47
+Xref: brand.scrye.com linux.git:13503
+
+  Hello,
+
+  this is Cogito version 0.16.1, the next stable release of the
+human-friendly version control UI for the Linus' GIT tool. Share
+and enjoy at:
+
+	http://www.kernel.org/pub/software/scm/cogito/
+
+  This crispy new release gives you a few minor to medium bugfixes and
+a significant cg-patch speedup. You can reach it as the "v0.16" branch
+of the Cogito repository. Note that this is just the stable branch, more
+interesting stuff is happenning (and especially going to happen) on the
+master development branch; if everything goes well, I might release
+cogito-0.17rc1 at the end of this week).
+
+  So the new stuff since 0.16 is:
+
+Jonas Fonseca:
+      cg-merge: Improve the hook description
+      cg-status: handle subdirs when listing heads
+
+Petr Baudis:
+      Fix cg-admin-setuprepo warning on missing post-update hook
+      Initial cg-push to a remote branch wouldn't work properly
+      Fix cg-object-id <singleletter>
+      Fix unsafe sed usage in scripts
+      cg-clean -n will just pretend to remove stuff
+      Make cg-clean whitespace-safe
+	If you use filenames with spaces _and_ cg-clean (or cg-clean
+	at all, after all), you should certainly upgrade!
+      bash-3.1-related fixes
+      Fix broken cg-log FILE in subdirectory
+      Drastically speed up cg-patch
+      cogito-0.16.1
+
+  Happy hacking,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

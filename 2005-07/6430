@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jul 25 18:18:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 61B19AF6C0
+	for <tkil@scrye.com>; Mon, 25 Jul 2005 18:18:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261535AbVGZASV (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Jul 2005 20:18:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261521AbVGZASV
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Jul 2005 20:18:21 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:44247 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S261535AbVGZAST (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 25 Jul 2005 20:18:19 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050726001810.DUX550.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 25 Jul 2005 20:18:10 -0400
+To: Catalin Marinas <catalin.marinas@gmail.com>,
+	Petr Baudis <pasky@suse.cz>
+Cc: git@vger.kernel.org
+Subject: Updating diff-raw status letter to 'A' for added files.
+References: <20050721202309.8216.19338.stgit@h164.c77.b0.tor.eicat.ca>
+	<7v3bq71rmb.fsf@assigned-by-dhcp.cox.net> <tnx1x5ryvn2.fsf@arm.com>
+	<20050722204120.GD11916@pasky.ji.cz>
+	<7vr7dqpmm4.fsf@assigned-by-dhcp.cox.net>
+	<20050722212725.GJ11916@pasky.ji.cz>
+	<7v8xzyh1ak.fsf@assigned-by-dhcp.cox.net>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Mon, 25 Jul 2005 17:18:16 -0700
+In-Reply-To: <7v8xzyh1ak.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's message of "Fri, 22 Jul 2005 16:24:35 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpst6fmif.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 12
+Xref: brand.scrye.com linux.git:6430
+
+Since both of you seem to be in favor of using 'A' instead of
+'N' for added files in the diff-raw output, here are two patches
+requesting for test.
+
+  [PATCH] Use symbolic constants for diff-raw status indicators.
+  [PATCH] diff-raw: Use 'A' instead of 'N' for added files.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

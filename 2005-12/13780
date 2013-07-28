@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec 17 23:33:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 83C0E1D7BA0
+	for <tkil@scrye.com>; Sat, 17 Dec 2005 23:33:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030192AbVLRGcF (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Dec 2005 01:32:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030194AbVLRGcE
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Dec 2005 01:32:04 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:43474 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1030192AbVLRGcC (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 18 Dec 2005 01:32:02 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBI6VuDZ022347
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 17 Dec 2005 22:31:56 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBI6Vt91002044;
+	Sat, 17 Dec 2005 22:31:55 -0800
+Date:	Sat, 17 Dec 2005 22:31:55 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Nicolas Pitre <nico@cam.org>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: bad git pull
+In-Reply-To: <Pine.LNX.4.64.0512172310060.26663@localhost.localdomain>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512172231160.3698@g5.osdl.org>
+References: <68948ca0512151537v2d8f22c8x962c55bd507af8cf@mail.gmail.com>
+ <7vzmn2kjw1.fsf@assigned-by-dhcp.cox.net> <7vu0d9lxx9.fsf@assigned-by-dhcp.cox.net>
+ <118833cc0512161007k38fdd15w2dcdf0c93f26d29e@mail.gmail.com>
+ <7vfyoshmp6.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0512161347490.3698@g5.osdl.org>
+ <118833cc0512161637v1d180f9fh66a7dc6d3fe11d2b@mail.gmail.com>
+ <Pine.LNX.4.64.0512161701400.3698@g5.osdl.org> <7vy82kbiho.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0512162342010.3698@g5.osdl.org> <7v4q582htm.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0512171601430.26663@localhost.localdomain>
+ <7v8xujyuna.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0512172310060.26663@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.129 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:13780
+
+
+
+On Sat, 17 Dec 2005, Nicolas Pitre wrote:
+> 
+> ORIG suggests "origin" to me
+
+It's meant to be short for ORIGinal, not ORIGin. That's how I wrote it and 
+have always read it ;)
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

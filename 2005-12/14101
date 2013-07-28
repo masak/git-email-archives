@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 29 23:13:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0843F2F0A7
+	for <tkil@scrye.com>; Thu, 29 Dec 2005 23:13:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751174AbVL3GNc (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 30 Dec 2005 01:13:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751176AbVL3GNc
+	(ORCPT <rfc822;git-outgoing>); Fri, 30 Dec 2005 01:13:32 -0500
+Received: from tomts10.bellnexxia.net ([209.226.175.54]:62878 "EHLO
+	tomts10-srv.bellnexxia.net") by vger.kernel.org with ESMTP
+	id S1751174AbVL3GNc (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 30 Dec 2005 01:13:32 -0500
+Received: from [192.168.2.3] ([67.70.2.178]) by tomts10-srv.bellnexxia.net
+          (InterMail vM.5.01.06.13 201-253-122-130-113-20050324) with ESMTP
+          id <20051230061328.GQKS14963.tomts10-srv.bellnexxia.net@[192.168.2.3]>
+          for <git@vger.kernel.org>; Fri, 30 Dec 2005 01:13:28 -0500
+Subject: local git push bug wrt GIT_OBJECT_DIRECTORY
+From:	Matt Draisey <matt@draisey.ca>
+To:	git@vger.kernel.org
+Content-Type: text/plain
+Date:	Fri, 30 Dec 2005 01:08:20 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1135922900.2103.37.camel@della.draisey.ca>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.4 
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [0]
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:14101
+
+Using git-send-pack to push to a local repository will propagate the
+environment variable GIT_OBJECT_DIRECTORY to git-receive-pack.
+git-receive-pack correctly ignores GIT_DIR (as opposed to what the
+documentation says) but, unfortunately, honours GIT_OBJECT_DIRECTORY.
+
+It's not clear to me whether the correct behaviour is for git-send-pack
+to clean up its environment before it execs or for git-receive-pack to
+ignore most GIT variables.
+
+Interposing a short script with env -i or env -uGIT_OBJECT_DIRECTORY is
+the easiest workaround.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

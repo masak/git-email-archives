@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May  5 16:33:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 29E5026E1E6
+	for <tkil@scrye.com>; Thu,  5 May 2005 16:33:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262099AbVEEWcI (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 5 May 2005 18:32:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261976AbVEEWcI
+	(ORCPT <rfc822;git-outgoing>); Thu, 5 May 2005 18:32:08 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:11234 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S262099AbVEEWb4
+	(ORCPT <rfc822;git@vger.kernel.org>); Thu, 5 May 2005 18:31:56 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j45MViM0032595
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 5 May 2005 15:31:44 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <427A9ECB.8070409@zytor.com>
+Date:	Thu, 05 May 2005 15:31:39 -0700
+From: "H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Pavel Roskin <proski@gnu.org>
+Cc: git <git@vger.kernel.org>
+Subject: Re: Please rename cg-X* to something else
+References: <1115329026.3838.8.camel@dv.roinet.com>
+In-Reply-To: <1115329026.3838.8.camel@dv.roinet.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.84, clamav-milter version 0.84e on localhost
+X-Virus-Status:	Clean
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 24
+Xref: brand.scrye.com linux.git:2616
+
+Pavel Roskin wrote:
+> Hello!
+> 
+> Since cg-X* scripts are not supposed to be used by the end users, I
+> suggest that we rename them so something not starting with "cg-" or even
+> "cg" so that tab completion in bash doesn't show them.  I suggest "_cgX"
+> instead of "cg-X"
+> 
+> In the long term, the internal scripts should go to
+> $prefix/share/cogito, but it would require generating other scripts from
+> templates to substitute $prefix, which could be inconvenient at this
+> stage.
+> 
+
+$prefix/libexec/cogito rather...
+
+Pattern-substituting in bulk isn't really very hard.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

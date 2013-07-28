@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 14:33:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9039126EA95
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 14:33:11 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932227AbVLLVbM (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 16:31:12 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932202AbVLLVbM
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 16:31:12 -0500
+Received: from wproxy.gmail.com ([64.233.184.196]:6423 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932184AbVLLVbK convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 12 Dec 2005 16:31:10 -0500
+Received: by wproxy.gmail.com with SMTP id i23so1625475wra
+        for <git@vger.kernel.org>; Mon, 12 Dec 2005 13:31:09 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=VjvCcqj+9KMyHtBbAt4BAe20ILKq8VKkWDhqrw8FJ2MIAyTHc+HHt02bXGOEQ5raF6Lbhe5ahiXp68FR/HeDd0HtkX02T70HyHomN1OAzgoEJn4pB2mXta9l/8i0zaExY1NZWlL+DrVr9hbdWed6ysDGJKLxs7WfZbIrHWtLjv0=
+Received: by 10.65.135.6 with SMTP id m6mr84398qbn;
+        Mon, 12 Dec 2005 13:31:08 -0800 (PST)
+Received: by 10.65.240.20 with HTTP; Mon, 12 Dec 2005 13:31:08 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <68948ca0512121331x13bfb691t62224d02ced04a27@mail.gmail.com>
+Date:	Mon, 12 Dec 2005 16:31:08 -0500
+From:	Don Zickus <dzickus@gmail.com>
+To:	git@vger.kernel.org
+Subject: branching and supporting a tagged kernel version
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:13533
+
+Hello,
+
+I was trying to see if I can use git for a particular way of
+supporting a kernel and was hoping for some feedback if this approach
+would work.
+
+Basically I wanted to branch off of 2.6.14 and support personal
+patches.  However over time I would like to be able to merge in
+hand-pick commits from upstream.
+
+So my questions (for now) are:
+
+1) what is the easiest way to branch off on a tagged version (in this
+case 2.6.14)?  I didn't quite understand what <starting point>
+referred to in the git-branch docs.
+
+2) is there a way to get a list of commits from upstream that are not
+in my branch and then selectively apply them?  Yes, I understand the
+potential merge mess...
+
+Thanks,
+Don
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

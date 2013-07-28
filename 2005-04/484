@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 12:12:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 88277D6519
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 12:12:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261387AbVDQSMO (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Apr 2005 14:12:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261388AbVDQSMO
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Apr 2005 14:12:14 -0400
+Received: from cujo.runbox.com ([193.71.199.138]:52931 "EHLO cujo.runbox.com")
+	by vger.kernel.org with ESMTP id S261387AbVDQSMK (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 17 Apr 2005 14:12:10 -0400
+Received: from [10.9.9.1] (helo=bolivar.runbox.com)
+	by greyhound.runbox.com with esmtp (Exim 4.34)
+	id 1DNEFX-0000jK-Nf; Sun, 17 Apr 2005 20:12:03 +0200
+Received: from [70.17.101.238] (helo=[192.168.2.73])
+	by bolivar.runbox.com with asmtp (uid:258406) (Exim 4.34)
+	id 1DNEFX-0006No-9e; Sun, 17 Apr 2005 20:12:03 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4262A767.4040300@dwheeler.com>
+Date:	Sun, 17 Apr 2005 14:13:59 -0400
+From: "David A. Wheeler" <dwheeler@dwheeler.com>
+Reply-To: dwheeler@dwheeler.com
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Russell King <rmk@arm.linux.org.uk>,
+	Git Mailing List <git@vger.kernel.org>, Peter Anvin <hpa@zytor.com>,
+	Andrew Morton <akpm@osdl.org>
+Subject: Re: Re-done kernel archive - real one?
+References: <Pine.LNX.4.58.0504161543590.7211@ppc970.osdl.org> <20050417170539.B13233@flint.arm.linux.org.uk> <Pine.LNX.4.58.0504170937020.7211@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0504170937020.7211@ppc970.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Sender: 258406@vger.kernel.org
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 28
+Xref: brand.scrye.com linux.git:484
+
+On Sun, 17 Apr 2005, Russell King wrote:
+>>BTW, there appears to be "errors" in the history committed thus far.
+>>I'm not sure where this came from though.  Some of them could be
+>>UTF8 vs ASCII issues, ....> 
+...
+>>One thing which definitely needs to be considered is - what character
+>>encoding are the comments to be stored as?
+
+Linus Torvalds replied:
+> To git, it's just a byte stream, and you can have binary comments if you
+> want to. I personally would prefer to move towards UTF eventually, but I
+> really don't think it matters a whole lot as long as 99.9% of everything
+> we'd see there is still 7-bit ascii.
+
+I would _heartily_ recommend moving towards UTF-8 as the
+internal charset for all comments.  Alternatives are possible
+(e.g., recording the charset in the header), but they're
+incredibly messy.  Even if you don't normally work in UTF-8,
+it's pretty easy to set most editors up to read & write UTF-8.
+Having the data stored as a constant charset eliminates
+a raft of error-prone code.
+
+--- David A. Wheeler
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

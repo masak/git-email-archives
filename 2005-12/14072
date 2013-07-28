@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 27 12:19:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 63FBD186993
+	for <tkil@scrye.com>; Tue, 27 Dec 2005 12:19:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751133AbVL0TTH (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 27 Dec 2005 14:19:07 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751135AbVL0TTH
+	(ORCPT <rfc822;git-outgoing>); Tue, 27 Dec 2005 14:19:07 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:25241 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751133AbVL0TTF (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 27 Dec 2005 14:19:05 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBRJIxDZ006813
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 27 Dec 2005 11:19:00 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBRJIwxS028143;
+	Tue, 27 Dec 2005 11:18:59 -0800
+Date:	Tue, 27 Dec 2005 11:18:58 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Jon Nelson <jnelson-git@jamponi.net>
+cc:	git@vger.kernel.org
+Subject: Re: cannot handle more than 29 refs
+In-Reply-To: <Pine.LNX.4.63.0512270840410.6812@gheavc.wnzcbav.cig>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512271113290.14098@g5.osdl.org>
+References: <Pine.LNX.4.63.0512270840410.6812@gheavc.wnzcbav.cig>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.129 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 36
+Xref: brand.scrye.com linux.git:14072
+
+
+
+On Tue, 27 Dec 2005, Jon Nelson wrote:
+> 
+> I get this message whenever I use --tags with git-pull with certain 
+> repositories.
+
+You shouldn't "pull" tags. You should just "fetch" them.
+
+The error message comes from the fact that the pull is a "fetch + merge", 
+and the merge logic tries to figure out what the common parent is with 
+"git-show-branch". And the common parent finding is limited to 29 commits.
+
+(Which is a very reasonable limit: the normal case is 2, and doing an 
+octopus-merge with more than four or five parents is already insane. Much 
+less 30 parents).
+
+> The git repository is one, and so is my local repository. 
+> I googled and got nothing. I grepped the git archive and got only 
+> show-branch.c.  Can this be safely ignored? Is it a known shortcoming, 
+> or something else entirely?
+
+Well, it's a known shortcoming, but it really ends up being a sign of you 
+doing the wrong thing and trying to merge all the tags together. The merge 
+would almost certainly fail, btw, regardless of anything else.
+
+Junio - I think we should make "git pull" refuse to merge more than one 
+head. If somebody wants to do an octopus merge, they can use "git merge" 
+instead. Hmm?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

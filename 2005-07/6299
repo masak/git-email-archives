@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 22 15:01:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2BAFE11E443
+	for <tkil@scrye.com>; Fri, 22 Jul 2005 15:01:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262170AbVGVVAw (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 22 Jul 2005 17:00:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262171AbVGVVAw
+	(ORCPT <rfc822;git-outgoing>); Fri, 22 Jul 2005 17:00:52 -0400
+Received: from mta09-winn.ispmail.ntl.com ([81.103.221.49]:7791 "EHLO
+	mta09-winn.ispmail.ntl.com") by vger.kernel.org with ESMTP
+	id S262170AbVGVVAu (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 22 Jul 2005 17:00:50 -0400
+Received: from aamta12-winn.ispmail.ntl.com ([81.103.221.35])
+          by mta09-winn.ispmail.ntl.com with ESMTP
+          id <20050722210049.JQVO25008.mta09-winn.ispmail.ntl.com@aamta12-winn.ispmail.ntl.com>;
+          Fri, 22 Jul 2005 22:00:49 +0100
+Received: from cpc1-cmbg5-3-0-cust179.cmbg.cable.ntl.com ([81.104.192.179])
+          by aamta12-winn.ispmail.ntl.com with ESMTP
+          id <20050722210048.GYPU9998.aamta12-winn.ispmail.ntl.com@cpc1-cmbg5-3-0-cust179.cmbg.cable.ntl.com>;
+          Fri, 22 Jul 2005 22:00:48 +0100
+Subject: Re: [PATCH 1/1] Tell vim the textwidth is 75.
+From: Catalin Marinas <catalin.marinas@gmail.com>
+To: Sam Ravnborg <sam@ravnborg.org>
+Cc: Junio C Hamano <junkio@cox.net>,
+	Bryan larsen <bryanlarsen@yahoo.com>, git@vger.kernel.org
+In-Reply-To: <20050722192424.GB8556@mars.ravnborg.org>
+References: <20050721202309.8216.19338.stgit@h164.c77.b0.tor.eicat.ca>
+	 <7v3bq71rmb.fsf@assigned-by-dhcp.cox.net> <tnx1x5ryvn2.fsf@arm.com>
+	 <20050722192424.GB8556@mars.ravnborg.org>
+Content-Type: text/plain
+Date:	Fri, 22 Jul 2005 22:00:46 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1122066046.7042.1.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_VN,TW_XT 
+	autolearn=no version=3.0.4
+Lines: 20
+Xref: brand.scrye.com linux.git:6299
+
+On Fri, 2005-07-22 at 19:24 +0000, Sam Ravnborg wrote:
+> > I would use a neutral commit template, only that it should have a
+> > neutral prefix as well for the lines to be removed (neither STG nor CG
+> > but GIT maybe). The $GIT_DIR/commit-template is fine as a file name.
+> 
+> How about $GIT_DIR/commit-template-`basename $EDITOR`
+> Then we could have different templates for vim, emacs, kade etc.
+
+I'm not sure this is worth the hassle since a person usually sticks with
+one editor, I don't see why one would use different $EDITOR variables
+with the same project.
+
+-- 
+Catalin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

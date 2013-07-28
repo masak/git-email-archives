@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 29 23:59:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DE257187242
+	for <tkil@scrye.com>; Thu, 29 Sep 2005 23:59:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932558AbVI3F65 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 30 Sep 2005 01:58:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932559AbVI3F65
+	(ORCPT <rfc822;git-outgoing>); Fri, 30 Sep 2005 01:58:57 -0400
+Received: from paleosilicon.orionmulti.com ([209.128.68.66]:20459 "EHLO
+	paleosilicon.orionmulti.com") by vger.kernel.org with ESMTP
+	id S932558AbVI3F64 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 30 Sep 2005 01:58:56 -0400
+X-Envelope-From: hpa@zytor.com
+Received: from [172.27.0.18] (c-67-180-239-42.hsd1.ca.comcast.net [67.180.239.42])
+	(authenticated bits=0)
+	by paleosilicon.orionmulti.com (8.12.10/8.12.10) with ESMTP id j8U5wfJv027913
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 29 Sep 2005 22:58:42 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <433CD412.8020409@zytor.com>
+Date:	Thu, 29 Sep 2005 22:58:42 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	"H. Peter Anvin" <hpa@zytor.com>
+CC:	Junio C Hamano <junkio@cox.net>, Pavel Roskin <proski@gnu.org>,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Fix gcc-4 warning in accept() call
+References: <1128027901.24397.57.camel@dv> <7vachv9kbq.fsf@assigned-by-dhcp.cox.net> <433CD2E7.5090909@zytor.com>
+In-Reply-To: <433CD2E7.5090909@zytor.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on paleosilicon.orionmulti.com
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:9532
+
+H. Peter Anvin wrote:
+> Junio C Hamano wrote:
+> 
+>> Pavel Roskin <proski@gnu.org> writes:
+>>
+>>
+>>> gcc-4 warns about sign mismatch in pointers.  Third argument in accept()
+>>> is socklen_t, which is unsigned.  Since Linus doesn't like socklen_t
+>>> (see commit 7fa090844f7d1624c7d1ffc621aae6aec84a1110), let's use
+>>> unsigned int.
+>>
+>>
+>> Based on the list comments, I'd drop this patch -- it appears
+>> that gcc-4 warning is useless in this case.
+>>
+> 
+> No, it's not.  The proper type, if you don't use socklen_t, is int, not 
+> unsigned int.
+> 
+
+Apparently I'm wrong; socklen_t is unsigned int at least on glibc for 
+i386.  I'll shut up now.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

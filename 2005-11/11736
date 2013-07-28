@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 13 12:36:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DD9772851FA
+	for <tkil@scrye.com>; Sun, 13 Nov 2005 12:36:48 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750862AbVKMTfi (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 13 Nov 2005 14:35:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750969AbVKMTfi
+	(ORCPT <rfc822;git-outgoing>); Sun, 13 Nov 2005 14:35:38 -0500
+Received: from host20-103.pool873.interbusiness.it ([87.3.103.20]:35550 "EHLO
+	zion.home.lan") by vger.kernel.org with ESMTP id S1750862AbVKMTfh
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 13 Nov 2005 14:35:37 -0500
+Received: from zion.home.lan (localhost [127.0.0.1])
+	by zion.home.lan (Postfix) with ESMTP id 7023323717;
+	Sun, 13 Nov 2005 20:42:26 +0100 (CET)
+From:	Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+Subject: [PATCH] Stgit - gitmergeonefile.py: handle removal vs. changes
+Date:	Sun, 13 Nov 2005 20:42:25 +0100
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+Cc:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051113194225.20447.57910.stgit@zion.home.lan>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 54
+Xref: brand.scrye.com linux.git:11736
+
+I just got a "removal vs. changed" conflict, which is unhandled by StGit. That
+is taken from git-merge-one-file resolver, but is bad, as stg resolved does not
+handle unmerged entries (and probably it should be fixed too).
+
+Sample patch included, but some thought must be done on it (see the comments I
+left in).
+
+Signed-off-by: Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+---
+
+ gitmergeonefile.py |   24 ++++++++++++++++++++++++
+ 1 files changed, 24 insertions(+), 0 deletions(-)
+
+diff --git a/gitmergeonefile.py b/gitmergeonefile.py
+index 1cba193..9344d33 100755
+--- a/gitmergeonefile.py
++++ b/gitmergeonefile.py
+@@ -180,6 +180,30 @@ if orig_hash:
+             os.remove(path)
+         __remove_files()
+         sys.exit(os.system('git-update-index --remove -- %s' % path))
++    # file deleted in one and changed in the other
++    else:
++        # Do something here - we must at least merge the entry in the cache,
++        # instead of leaving it in U(nmerged) state. In fact, stg resolved
++        # does not handle that.
++
++        # Do the same thing cogito does - remove the file in any case.
++        os.system('git-update-index --remove -- %s' % path)
++
++        #if file1_hash:
++            ## file deleted upstream and changed in the patch. The patch is
++            ## probably going to move the changes elsewhere.
++
++            #os.system('git-update-index --remove -- %s' % path)
++        #else:
++            ## file deleted in the patch and changed upstream. We could re-delete
++            ## it, but for now leave it there - and let the user check if he
++            ## still wants to remove the file.
++
++            ## reset the cache to the first branch
++            #os.system('git-update-index --cacheinfo %s %s %s'
++                      #% (file1_mode, file1_hash, path))
++        __conflict()
++
+ # file does not exist in origin
+ else:
+     # file added in both
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

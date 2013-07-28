@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  1 13:29:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 83BBC1D6152
+	for <tkil@scrye.com>; Sun,  1 May 2005 13:29:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262653AbVEAT3R (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 1 May 2005 15:29:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262655AbVEAT3R
+	(ORCPT <rfc822;git-outgoing>); Sun, 1 May 2005 15:29:17 -0400
+Received: from iabervon.org ([66.92.72.58]:49159 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262653AbVEAT3N (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 1 May 2005 15:29:13 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DSK7p-0005vI-00; Sun, 1 May 2005 15:29:09 -0400
+Date:	Sun, 1 May 2005 15:29:09 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: git@vger.kernel.org
+Cc: Linus Torvalds <torvalds@osdl.org>, Petr Baudis <pasky@ucw.cz>
+Subject: Complete http-pull; where should it go?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0505011508270.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 35
+Xref: brand.scrye.com linux.git:2285
+
+I've been working on http-pull, and I've made it able to download the
+target commit from ...git/refs/<dir>/<name> (instead of making you figure
+it out yourself), and also write the target it looks up to your local
+.git/refs/<w-d>/<w-n> (which doesn't have to be at all related to the
+source one. In fact, I just got the latest Linus tree with:
+
+git-http-pull -t -w heads/linus heads/master \
+  http://www.kernel.org/pub/scm/git/git.git/
+git-read-tree $(cat .git/refs/heads/linus)
+git-checkout-cache -a
+git-update-cache --refresh
+
+(and I didn't get any of the history, although I could have if I wanted
+to; and I could get it now if I decided I needed it).
+
+My question is, where does this belong? It's based on adding to the core
+as it has been the knowledge that .git/refs/*/* consists of hex-format
+hash files, both locally and on remote servers. I think this level of
+information belongs in the plumbing; at least, if people are to be able to
+use different git-based systems to access the same repositories, they have
+to agree. And there seems to be that much agreement, and so it makes sense
+to make it part of the core.
+
+(For that matter, people seem to agree that refs/heads/ has heads, and
+refs/heads/master is the one you want to pull if you don't know
+otherwise; I didn't include this information at all)
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

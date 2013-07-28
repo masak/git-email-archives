@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 12:29:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_LX autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C0F8F11FAB5
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 12:29:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751095AbVKFT3B (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 14:29:01 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751097AbVKFT3B
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 14:29:01 -0500
+Received: from mail12.bluewin.ch ([195.186.19.61]:48585 "EHLO
+	mail12.bluewin.ch") by vger.kernel.org with ESMTP id S1751095AbVKFT3A
+	(ORCPT <rfc822;git@vger.kernel.org>); Sun, 6 Nov 2005 14:29:00 -0500
+Received: from [192.168.1.33] (83.77.94.62) by mail12.bluewin.ch (Bluewin 7.2.068.1)
+        id 435F84AF002C64E9 for git@vger.kernel.org; Sun, 6 Nov 2005 19:28:59 +0000
+From:	alxneit <ivo.alxneit@psi.ch>
+To:	git <git@vger.kernel.org>
+Subject: expat.h missing
+Date:	Sun, 6 Nov 2005 21:39:04 +0100
+User-Agent: KMail/1.7.2
+MIME-Version: 1.0
+Content-Type: multipart/signed;
+  boundary="nextPart1828835.2dkGyjdeUF";
+  protocol="application/pgp-signature";
+  micalg=pgp-sha1
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511062139.15622.ivo.alxneit@psi.ch>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:11215
+
+--nextPart1828835.2dkGyjdeUF
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+Nick Hengevelds patch to add support for pushing to a remote repository usi=
+ng=20
+HTTP/DAV (58e60dd203362ecb9fdea765dcc2eb573892dbaf)
+introduces "#include expat.h" in http-push.c. this file seems to be missing.
+
+=2D-=20
+Dr. Ivo Alxneit
+Laboratory for Solar Technology   phone: +41 56 310 4092
+Paul Scherrer Institute             fax: +41 56 310 2688
+CH-5232 Villigen                   http://solar.web.psi.ch
+Switzerland                   gnupg key: 0x515E30C7
+
+--nextPart1828835.2dkGyjdeUF
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+
+iD8DBQBDbmnzAd7CE1FeMMcRAkwaAJ4yaGozptPW04TCGQSZIiQGmI5s/wCfbmV1
+HyV1QKIH8v9Mtl0O71PBSnY=
+=0b0b
+-----END PGP SIGNATURE-----
+
+--nextPart1828835.2dkGyjdeUF--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

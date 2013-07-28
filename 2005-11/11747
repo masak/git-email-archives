@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 13 17:29:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 63F652851FD
+	for <tkil@scrye.com>; Sun, 13 Nov 2005 17:29:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750808AbVKNA3b (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 13 Nov 2005 19:29:31 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750809AbVKNA3b
+	(ORCPT <rfc822;git-outgoing>); Sun, 13 Nov 2005 19:29:31 -0500
+Received: from [202.37.90.137] ([202.37.90.137]:59085 "EHLO xena.matysik.co.nz")
+	by vger.kernel.org with ESMTP id S1750808AbVKNA3a (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 13 Nov 2005 19:29:30 -0500
+Received: from localhost (localhost [127.0.0.1])
+	by xena.matysik.co.nz (Postfix) with ESMTP id 19BDD189C69;
+	Mon, 14 Nov 2005 13:29:16 +1300 (NZDT)
+Received: from xena.matysik.co.nz ([127.0.0.1])
+ by localhost (xena.matysik.co.nz [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 06953-10; Mon, 14 Nov 2005 13:29:15 +1300 (NZDT)
+Received: from [202.37.90.142] (joxer.matysik.co.nz [202.37.90.142])
+	by xena.matysik.co.nz (Postfix) with ESMTP id 31759189C30;
+	Mon, 14 Nov 2005 13:29:15 +1300 (NZDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4377DA5D.9090002@matysik.co.nz>
+Date:	Mon, 14 Nov 2005 13:29:17 +1300
+From:	Thomas Matysik <thomas@matysik.co.nz>
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051011)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH 1/2] Add expat and expat-devel dependencies (for http-push)
+ to RPM spec.
+References: <4376C797.3050600@matysik.co.nz> <Pine.LNX.4.64.0511130942490.3263@g5.osdl.org>
+In-Reply-To: <Pine.LNX.4.64.0511130942490.3263@g5.osdl.org>
+X-Enigmail-Version: 0.92.0.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: by amavisd-new at matysik.co.nz
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:11747
+
+Linus Torvalds wrote:
+> 
+> Quite frankly, I'd really prefer to see the git-core-http as a separate 
+> package.
+> 
+> I think it's ludicrous that people want to split out gitk (because it 
+> wants tcl/tk), but that we then add all of these really obscure 
+> dependencies for the http part. 
+
+Well, splitting out http occurred to me, but personally I don't have a
+problem with installing expat (I'd need it eventually anyway) and I
+figured anyone who did have a problem would say something.  ;-)
+
+The reason for this patch is that the RPM currently fails to build
+without expat-dev.
+
+The reason for wanting to split out gitk is that, for a machine where I
+will never run gitk, I think the following dependency list is ludicrous:
+
+ fontconfig
+ freetype
+ tcl
+ tk
+ xorg-x11-Mesa-libGL
+ xorg-x11-libs
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

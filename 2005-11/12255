@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 13:36:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6CF03285205
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 13:36:15 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161197AbVKRUfG (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 15:35:06 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161198AbVKRUfF
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 15:35:05 -0500
+Received: from gaz.sfgoth.com ([69.36.241.230]:42222 "EHLO gaz.sfgoth.com")
+	by vger.kernel.org with ESMTP id S1161197AbVKRUfB (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 18 Nov 2005 15:35:01 -0500
+Received: from gaz.sfgoth.com (localhost.sfgoth.com [127.0.0.1])
+	by gaz.sfgoth.com (8.12.10/8.12.10) with ESMTP id jAIKoJi0045640;
+	Fri, 18 Nov 2005 12:50:19 -0800 (PST)
+	(envelope-from mitch@gaz.sfgoth.com)
+Received: (from mitch@localhost)
+	by gaz.sfgoth.com (8.12.10/8.12.6/Submit) id jAIKoJes045639;
+	Fri, 18 Nov 2005 12:50:19 -0800 (PST)
+	(envelope-from mitch)
+Date:	Fri, 18 Nov 2005 12:50:19 -0800
+From:	Mitchell Blank Jr <mitch@sfgoth.com>
+To:	Paolo Teti <paolo.teti@gmail.com>
+Cc:	git@vger.kernel.org
+Subject: Re: [ANNOUNCE] gitfs pre-release 0.03
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051118205019.GH87234@gaz.sfgoth.com>
+References: <20051118124532.GG87234@gaz.sfgoth.com> <34a7ae040511180620v5f6ac014g@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <34a7ae040511180620v5f6ac014g@mail.gmail.com>
+User-Agent: Mutt/1.4.2.1i
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-1.2.2 (gaz.sfgoth.com [127.0.0.1]); Fri, 18 Nov 2005 12:50:19 -0800 (PST)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12255
+
+Paolo Teti wrote:
+> A question: the gitFS in your intent has to became a "clone" of the
+> Rational MultiVersion File System?
+
+Well, I guess I can't give a real solid answer since I've never used
+Rational and I'm only vaguely aware of its capabilities.  However I think
+the answer is "no".  My personal belief is that the filesystem abstraction
+isn't a good fit to be the main interface to an SCM, especially git.
+That's why I'm currently working on just visualizing the contents of the
+git repository and I'll add features on top of that as they seem to make
+sense.
+
+-Mitch
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

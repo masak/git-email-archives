@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 00:48:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3936BF550C
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 00:48:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750791AbVHWGs0 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 23 Aug 2005 02:48:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750792AbVHWGs0
+	(ORCPT <rfc822;git-outgoing>); Tue, 23 Aug 2005 02:48:26 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:27084 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750791AbVHWGsZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 23 Aug 2005 02:48:25 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id D4917137314; Tue, 23 Aug 2005 08:48:24 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id B9F63B0C0F; Tue, 23 Aug 2005 08:48:24 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8508DB0C0D; Tue, 23 Aug 2005 08:48:24 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx67.rz.uni-wuerzburg.de [132.187.3.67])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 68B27137314; Tue, 23 Aug 2005 08:48:24 +0200 (CEST)
+Date:	Tue, 23 Aug 2005 08:48:26 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To:	Jeff Carr <jcarr@linuxmachines.com>
+Cc:	git@vger.kernel.org
+Subject: Re: git-ls-new-files & make patch, pull, etc.
+In-Reply-To: <430A84D1.2050206@linuxmachines.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508230846180.26600@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <430A84D1.2050206@linuxmachines.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 43
+Xref: brand.scrye.com linux.git:7638
+
+Hi,
+
+On Mon, 22 Aug 2005, Jeff Carr wrote:
+
+> patch:
+> 	git-diff-files -p
+
+"git diff"
+
+> push:
+> 	git-send-pack `cat .git/branches/origin`
+
+"git push origin" (or maybe "git push HEAD:origin")
+
+> pull:
+> 	git-pull-script `cat .git/branches/origin`
+> 	git-read-tree -m HEAD
+> 	git-checkout-cache -q -f -u -a
+
+"git pull origin"
+
+> commit:
+> 	vi changelog.txt
+> 	GIT_AUTHOR_NAME="$(GIT_AUTHOR_NAME)" \
+> 	GIT_AUTHOR_EMAIL="$(GIT_AUTHOR_EMAIL)" \
+> 	git-commit-tree `git-write-tree` -p $(HEAD) < changelog.txt > .git/HEAD
+> 	rm changelog.txt
+
+"git commit"
+
+> add_all:
+> 	./git-ls-new-files |xargs -n 1 git-update-cache --add
+
+"git add $(git ls-files --others)"
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

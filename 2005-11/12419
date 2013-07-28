@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 01:26:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6FB9A1744F1
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 01:26:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932206AbVKUI0Y (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 03:26:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932212AbVKUI0X
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 03:26:23 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:16845 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932206AbVKUI0X (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 03:26:23 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 162421403A8; Mon, 21 Nov 2005 09:26:20 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 97295B528B; Mon, 21 Nov 2005 09:26:19 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 80793B528F; Mon, 21 Nov 2005 09:26:18 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 06E6C1403AD; Mon, 21 Nov 2005 09:26:18 +0100 (CET)
+Date:	Mon, 21 Nov 2005 09:26:17 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	"David S. Miller" <davem@davemloft.net>
+Cc:	ryan@michonline.com, git@vger.kernel.org, junkio@cox.net
+Subject: Re: [PATCH] Add Python version checks to the Makefile to automatically
+ set WITH_OWN_SUBPROCESS_PY
+In-Reply-To: <20051120.213129.88244378.davem@davemloft.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511210925570.27634@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051120.202032.37639519.davem@davemloft.net>
+ <11325498823557-git-send-email-ryan@michonline.com>
+ <20051120.213129.88244378.davem@davemloft.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12419
+
+Hi,
+
+On Sun, 20 Nov 2005, David S. Miller wrote:
+
+> From: Ryan Anderson <ryan@michonline.com>
+> Date: Mon, 21 Nov 2005 00:11:22 -0500
+> 
+> > Also rearrange some path settings in the Makefile in the process.
+> > 
+> > Signed-off-by: Ryan Anderson <ryan@michonline.com>
+> 
+> Looks good from here.
+
+Not from here... I don't have it ;-) Care to share?
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

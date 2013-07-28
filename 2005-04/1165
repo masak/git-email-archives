@@ -1,0 +1,49 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 21 14:40:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 83B7028B044
+	for <tkil@scrye.com>; Thu, 21 Apr 2005 14:40:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261866AbVDUUkW (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 21 Apr 2005 16:40:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261867AbVDUUkW
+	(ORCPT <rfc822;git-outgoing>); Thu, 21 Apr 2005 16:40:22 -0400
+Received: from emf.emf.net ([205.149.0.19]:18436 "EHLO emf.net")
+	by vger.kernel.org with ESMTP id S261866AbVDUUkT (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 21 Apr 2005 16:40:19 -0400
+Received: (from lord@localhost) by emf.net (K/K) id NAA06407; Thu, 21 Apr 2005 13:39:02 -0700 (PDT)
+Date:	Thu, 21 Apr 2005 13:39:02 -0700 (PDT)
+From: Tom Lord <lord@emf.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200504212039.NAA06407@emf.net>
+To: duchier@ps.uni-sb.de
+Cc: gnu-arch-users@gnu.org, gnu-arch-dev@lists.seyza.com,
+	git@vger.kernel.org
+In-reply-to: <867jixata5.fsf@speedy.lifl.fr> (message from Denys Duchier on Thu, 21 Apr 2005 02:05:22 +0200)
+Subject: Re: [Gnu-arch-users] Re: [GNU-arch-dev] [ANNOUNCEMENT] /Arch/
+	embraces `git'
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 13
+Xref: brand.scrye.com linux.git:1165
+
+
+   > [your 0:3/4:7 directory hierarchy is horked]
+
+Absolutely.  Made a dumb mistake the night I wrote that spec
+and embarassed that I initially defended it.   I had an arithmetic
+error.   Thanks, this time, for your persistence in pointing it out.
+
+-t
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug  3 09:09:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 420E92B2D46
+	for <tkil@scrye.com>; Wed,  3 Aug 2005 09:09:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262303AbVHCPJq (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 3 Aug 2005 11:09:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262309AbVHCPJp
+	(ORCPT <rfc822;git-outgoing>); Wed, 3 Aug 2005 11:09:45 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:35804 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262303AbVHCPJp (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 3 Aug 2005 11:09:45 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j73F9XjA028844
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 3 Aug 2005 08:09:33 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j73F9Wpb022685;
+	Wed, 3 Aug 2005 08:09:32 -0700
+Date:	Wed, 3 Aug 2005 08:09:32 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: Users of git-check-files?
+In-Reply-To: <7vvf2nk0h7.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508030808530.3341@g5.osdl.org>
+References: <Pine.LNX.4.63.0508030109210.21304@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0508021942500.3341@g5.osdl.org> <7vvf2nk0h7.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 15
+Xref: brand.scrye.com linux.git:6743
+
+
+
+On Tue, 2 Aug 2005, Junio C Hamano wrote:
+> 
+> How about git-rev-tree?  Does anybody care?
+
+Yeah, probably not. git-rev-list does so much more than git-rev-tree ever 
+did.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

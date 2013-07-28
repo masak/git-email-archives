@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 12 03:42:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0F9BC268E48
+	for <tkil@scrye.com>; Fri, 12 Aug 2005 03:41:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750929AbVHLJlg (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 12 Aug 2005 05:41:36 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750951AbVHLJlg
+	(ORCPT <rfc822;git-outgoing>); Fri, 12 Aug 2005 05:41:36 -0400
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:21218 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S1750929AbVHLJlf (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 12 Aug 2005 05:41:35 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050812094135.SZJH16890.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 12 Aug 2005 05:41:35 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: git@vger.kernel.org
+Subject: [PATCH] Clean generated files a bit more.
+Date:	Fri, 12 Aug 2005 02:41:34 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v8xz75w6p.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_DP,TW_ZX 
+	autolearn=no version=3.0.4
+Lines: 34
+Xref: brand.scrye.com linux.git:7105
+
+Also attempt to build a source package for debian.
+---
+
+ Makefile |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+b263f24ce4f12dd39cfcd922c56a32292c6232c9
+diff --git a/Makefile b/Makefile
+--- a/Makefile
++++ b/Makefile
+@@ -238,14 +238,14 @@ rpm: dist
+ deb: dist
+ 	rm -rf $(GIT_TARNAME)
+ 	tar zxf $(GIT_TARNAME).tar.gz
++	dpkg-source -b $(GIT_TARNAME)
+ 	cd $(GIT_TARNAME) && fakeroot debian/rules binary
+ 
+ ### Cleaning rules
+ 
+ clean:
+ 	rm -f *.o mozilla-sha1/*.o ppc/*.o $(PROG) $(LIB_FILE)
+-	rm -f $(GIT_TARNAME).tar.gz git-core.spec
+-	rm -f git-core_$(GIT_VERSION)-*.deb git-tk_$(GIT_VERSION)-*.deb
++	rm -f git-core.spec *.deb *.dsc *.tar.gz 
+ 	rm -rf $(GIT_TARNAME)
+ 	$(MAKE) -C tools/ clean
+ 	$(MAKE) -C Documentation/ clean
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

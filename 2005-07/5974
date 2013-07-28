@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jul 11 19:04:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 95D53614F
+	for <tkil@scrye.com>; Mon, 11 Jul 2005 19:04:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261796AbVGLBCS (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 11 Jul 2005 21:02:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261931AbVGLBCG
+	(ORCPT <rfc822;git-outgoing>); Mon, 11 Jul 2005 21:02:06 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:41873 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261796AbVGLBBA (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 11 Jul 2005 21:01:00 -0400
+Received: (qmail 25589 invoked by uid 2001); 12 Jul 2005 01:00:58 -0000
+Date:	Tue, 12 Jul 2005 03:00:58 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: git@vger.kernel.org
+Subject: [ANNOUNCE] Cogito 0.12.1
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050712010058.GE5981@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 35
+Xref: brand.scrye.com linux.git:5974
+
+  Hello,
+
+  here is Cogito 0.12.1, another desperate attempt to keep pace with
+'@' or Linus, the named Human Master Coder. (Linus, the Human Master
+Coder, mumbles arcane do { formulae } while (0)!  Some kind of force
+seems to attack your mind.  Everything suddenly looks so different...
+You are confused.)  Visit the greater spellbook vault at
+
+	http://www.kernel.org/pub/software/scm/cogito
+
+or re-attune yourself to the git plane (in case you are already
+connected to the mana flow of Cogito) for updated powerful
+counter-magick.
+
+  Most of it is upstream stuff. Otherwise, almost everything are
+bugfixes and updates to deal better with the mighty pack stuff.
+Important bugfixes is fixed parent-id (cg-admin-uncommit, subsequently)
+and massive pull fixes w.r.t. pulling from packed repositories and
+cross-filesystem local pull.
+
+  Oh, don't get used too much to the new cg-info script's semantics,
+I want to move the functionality to cg-status; I just forgot to do it
+before tagging the release and only remembered it now.
+
+  May the sun always shine on you,
+
+-- 
+			Petr "the High Elven Codethrower" Baudis
+Stuff: http://pasky.or.cz/
+You play too little rogue-like RPG games, apparently.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 31 02:59:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D1DEA20D71A
+	for <tkil@scrye.com>; Wed, 31 Aug 2005 02:59:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932303AbVHaI6w (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 31 Aug 2005 04:58:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932491AbVHaI6w
+	(ORCPT <rfc822;git-outgoing>); Wed, 31 Aug 2005 04:58:52 -0400
+Received: from poros.telenet-ops.be ([195.130.132.44]:52408 "EHLO
+	poros.telenet-ops.be") by vger.kernel.org with ESMTP
+	id S932303AbVHaI6v (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 31 Aug 2005 04:58:51 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by poros.telenet-ops.be (Postfix) with SMTP
+	id C15ED3BC28B; Wed, 31 Aug 2005 10:58:48 +0200 (MEST)
+Received: from localhost (d54C3B9F1.access.telenet.be [84.195.185.241])
+	by poros.telenet-ops.be (Postfix) with ESMTP
+	id 9058B3BC04B; Wed, 31 Aug 2005 10:58:48 +0200 (MEST)
+Date:	Wed, 31 Aug 2005 10:59:00 +0200
+From:	Jan Veldeman <jan.veldeman@gmail.com>
+To:	Catalin Marinas <catalin.marinas@gmail.com>,
+	Daniel Barkalow <barkalow@iabervon.org>
+Cc:	git@vger.kernel.org
+Subject: Re: [RFC] Stgit - patch history / add extra parents
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050831085900.GA5764@fanta>
+References: <20050818195753.GA9066@fanta> <tnx64u2p81k.fsf@arm.com> <20050819194832.GA8562@fanta> <1124572356.7512.21.camel@localhost.localdomain> <20050821094059.GA5453@fanta> <Pine.LNX.4.63.0508221707520.23242@iabervon.org> <tnxvf1wd24m.fsf@arm.com> <Pine.LNX.4.63.0508231304130.23242@iabervon.org> <1125438074.6961.20.camel@localhost.localdomain>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1125438074.6961.20.camel@localhost.localdomain>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 14
+Xref: brand.scrye.com linux.git:7964
+
+Catalin, Daniel,
+
+thank you both for your input.
+I'll try your recommendations (when time is available ;-) and see how it
+goes.
+
+Best regards,
+Jan
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

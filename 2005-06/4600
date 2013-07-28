@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun  5 18:43:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 07E526DEB
+	for <tkil@scrye.com>; Sun,  5 Jun 2005 18:43:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261152AbVFFAnA (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 5 Jun 2005 20:43:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261154AbVFFAnA
+	(ORCPT <rfc822;git-outgoing>); Sun, 5 Jun 2005 20:43:00 -0400
+Received: from fire.osdl.org ([65.172.181.4]:60334 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261152AbVFFAm6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 5 Jun 2005 20:42:58 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j560gqjA002676
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 5 Jun 2005 17:42:52 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j560gp92031431;
+	Sun, 5 Jun 2005 17:42:51 -0700
+Date:	Sun, 5 Jun 2005 17:44:56 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: jon@blackcubes.dyndns.org
+Cc: git@vger.kernel.org, jon.seymour@gmail.com
+Subject: Re: [PATCH] Modify git-rev-list ... in merge order [ repost with
+ bug fixes ]
+In-Reply-To: <20050605134733.3123.qmail@blackcubes.dyndns.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506051741190.1876@ppc970.osdl.org>
+References: <20050605134733.3123.qmail@blackcubes.dyndns.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 25
+Xref: brand.scrye.com linux.git:4600
+
+
+
+On Sun, 5 Jun 2005 jon@blackcubes.dyndns.org wrote:
+>  
+> -static void show_commit(struct commit *commit)
+> +static int show_commit(struct commit *commit)
+
+Ick. You've mixed "show_commit()" to be three totally independent things
+ - deciding whether to show at all
+ - showing the commit in traditional format
+ - showing the commit tree in the new "break" format
+
+I really hate functions that do totally unrelated things, and I'm so much 
+happier with the new show_commit() than the old "everything in one big 
+function" thing, that I'm unhappy about mixing the thing up again.
+
+Please leave show_commit() to just show the commit, and make the other 
+decisions be independent of that.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,100 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 12:44:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6F6C31CA2B1
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 12:44:31 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965153AbVKVTkx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 14:40:53 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965151AbVKVTkx
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 14:40:53 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:25996 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S965150AbVKVTkw
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 14:40:52 -0500
+Received: from [192.168.1.19] (1-2-9-7a.gkp.gbg.bostream.se [82.182.116.44])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id CFC146BCBE
+	for <git@vger.kernel.org>; Tue, 22 Nov 2005 20:40:50 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43837442.9060602@op5.se>
+Date:	Tue, 22 Nov 2005 20:40:50 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+Cc:	git@vger.kernel.org
+Subject: Re: Question about handling of heterogeneous repositories
+References: <81b0412b0511220850w429d2f36lafe9de7ce19ce8f@mail.gmail.com>
+In-Reply-To: <81b0412b0511220850w429d2f36lafe9de7ce19ce8f@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+To:	unlisted-recipients:; (no To-header on input)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 57
+Xref: brand.scrye.com linux.git:12560
+
+Alex Riesen wrote:
+> Hi,
+> 
+> it is sometimes the case that a project consists of parts which are
+> unrelated to each other, and only thing in common between them is that
+> they all are used in that particular project. For example a program
+> uses some library and the developer(s) of that program would like to
+> have the source of that library somewhere close. Well, for this simple
+> example one could just use two repositories, laid close to each other
+> in a directory, like project/lib and project/prog.
+> Now, if I make the example a bit more complex and say, that the
+> developers of the program are the developers in that project and
+> change everything under project/ directory, including
+> project/library/. They are also good people and ready to give the
+> changes to the library upstream.
+> 
+> How do they achieve that, without sending project/ and project/program/?
+> 
+> For everyone who have an experience with ClearCase or Perforce (I'm
+> sorry for mentioning it) it is what the "mappings" are often used for:
+> a project is build together from different parts, which can be worked
+> on separately.
+> 
+> I'm trying to introduce git at work, but have to prepare myself for
+> possible questions first, and this is one of them :)
+> 
+
+We do like this;
+
+core
+core/gui
+core/lib
+
+$ cat .gitignore
+gui
+lib
+
+This is also nice because it lets the gui maintainers have the gui as 
+the root with the core and lib parts as subdirectories. Everyone has 
+their own responsibility checked out at top-level with other pieces 
+below it. It's easy enough to script a pull of all repos so everyone's 
+up to sync and everybody's happy.
+
+It would certainly be nicer to have git ignore directories that have the 
+".git" directory (so long as it's not the top of the repo, that is), but 
+I haven't had the energy to fix that when there's already a solution 
+that's simple enough and quite adequate.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May  4 09:15:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CC52E6617
+	for <tkil@scrye.com>; Wed,  4 May 2005 09:15:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261882AbVEDPOi (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 4 May 2005 11:14:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261879AbVEDPOh
+	(ORCPT <rfc822;git-outgoing>); Wed, 4 May 2005 11:14:37 -0400
+Received: from aibo.runbox.com ([193.71.199.94]:34511 "EHLO cujo.runbox.com")
+	by vger.kernel.org with ESMTP id S261882AbVEDPOd (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 4 May 2005 11:14:33 -0400
+Received: from [10.9.9.110] (helo=snoopy.runbox.com)
+	by greyhound.runbox.com with esmtp (Exim 4.34)
+	id 1DTLZy-0000xt-2n; Wed, 04 May 2005 17:14:26 +0200
+Received: from [129.246.254.14] (helo=[129.246.80.140])
+	by snoopy.runbox.com with asmtp (uid:258406) (Exim 4.34)
+	id 1DTLZx-0001wn-Om; Wed, 04 May 2005 17:14:25 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4278E6D4.6060807@dwheeler.com>
+Date:	Wed, 04 May 2005 11:14:28 -0400
+From: "David A. Wheeler" <dwheeler@dwheeler.com>
+User-Agent: Mozilla Thunderbird 1.0.2 (Windows/20050317)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Pavel Roskin <proski@gnu.org>, git <git@vger.kernel.org>,
+	Joel.Becker@oracle.com
+Subject: Re: commit-id fails after cg-init
+References: <1115150585.28520.11.camel@dv> <20050503211301.GA15995@pasky.ji.cz>
+In-Reply-To: <20050503211301.GA15995@pasky.ji.cz>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Sender: 258406@vger.kernel.org
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 32
+Xref: brand.scrye.com linux.git:2550
+
+Joel Becker said:
+
+> Well, cg-init in this case creates no objects.  I'd say,
+>instead, it should create an empty tree object (representing a project
+>with no files) and commit that.  That would be your initial commit, and
+>would put something valid in heads/master.
+
+That would actually make sense; commits would go all the way
+back to the "empty tree" as the ultimate initial tree.
+
+There's an interesting side-effect of this; I _think_ it's
+fine but it might be worth thinking through. If all
+new projects start with an empty tree, that creates a
+"common root" that all projects can appeal to.
+That means that in theory a merge between any two project root
+trees can eventually find a common ancestor: the empty tree.
+I _think_ that's okay... is it?
+
+That also means that empty directories will end up with the
+"empty tree" as well.  Is there a risk of multiple empty directories
+causing problems later?  As far as I can tell, there aren't
+any problems with that, and does seem logically sound.
+
+--- David A. Wheeler
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

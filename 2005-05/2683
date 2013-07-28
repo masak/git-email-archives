@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May  6 15:13:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 8E6691F0046
+	for <tkil@scrye.com>; Fri,  6 May 2005 15:13:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261232AbVEFUze (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 6 May 2005 16:55:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261249AbVEFUze
+	(ORCPT <rfc822;git-outgoing>); Fri, 6 May 2005 16:55:34 -0400
+Received: from neapel230.server4you.de ([217.172.187.230]:25019 "EHLO
+	neapel230.server4you.de") by vger.kernel.org with ESMTP
+	id S261232AbVEFUza (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 6 May 2005 16:55:30 -0400
+Received: by neapel230.server4you.de (Postfix, from userid 1000)
+	id 1C7B4307; Fri,  6 May 2005 22:55:29 +0200 (CEST)
+Date:	Fri, 6 May 2005 22:55:29 +0200
+From: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH 0/5] git-tar-tree: add symlink support
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050506205529.GA19518@lsrfire.ath.cx>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 19
+Xref: brand.scrye.com linux.git:2683
+
+Since symlinks can be stored inside GIT, git-tar-tree should properly
+handle them, too.  The first three patches do a bit of cleanup to make
+adding symlink support easier.  The fourth patch actually dirties the
+code, also to make the fifth one easier. :)  I just couldn't think of a
+better way to split the changes and a combined patch of 4&5 did too much
+at once.
+
+If a link target is longer than 100 chars than an extended header is
+created.  Because of the way git-tar-tree handles extended headers that
+means the sum of path and target of a symlink must be less than about
+490 chars.  This is not a limitation of the archive format, so we can
+fix it later.
+
+Rene
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

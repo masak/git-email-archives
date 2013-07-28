@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 14:55:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_SV 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7B4DE14316F
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 14:55:11 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965285AbVKBVwY (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 16:52:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965284AbVKBVwY
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 16:52:24 -0500
+Received: from [195.140.142.33] ([195.140.142.33]:44497 "EHLO
+	c1-033.cyaris.net") by vger.kernel.org with ESMTP id S965285AbVKBVwV
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 2 Nov 2005 16:52:21 -0500
+Received: from localhost ([127.0.33.1] helo=localhost.localdomain)
+	by c1-033.cyaris.net with esmtps (TLS-1.0:RSA_AES_256_CBC_SHA:32)
+	(Exim 4.50)
+	id 1EXQWb-0003cb-5j; Wed, 02 Nov 2005 22:52:10 +0100
+Received: from yaslama by localhost.localdomain with local (Exim 4.54)
+	id 1EXQWT-000504-Qw; Wed, 02 Nov 2005 23:51:57 +0200
+Subject: [PATCH 1/7] Using svn pools seems to solve the memory leak problem
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EXQWT-000504-Qw@localhost.localdomain>
+From:	Yaacov Akiba Slama <ya@slamail.org>
+Date:	Wed, 02 Nov 2005 23:51:57 +0200
+To:	unlisted-recipients:; (no To-header on input)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 42
+Xref: brand.scrye.com linux.git:11041
+
+Signed-off-by: Yaacov Akiba Slama <ya@slamail.org>
+
+---
+
+ git-svnimport.perl |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+applies-to: b12655de9a371d7d16f7e8318da8c5b0099c39bd
+4356b879b425644c436eacb6d43b523bab960704
+diff --git a/git-svnimport.perl b/git-svnimport.perl
+index 45b6a19..5bf9ef2 100755
+--- a/git-svnimport.perl
++++ b/git-svnimport.perl
+@@ -112,7 +112,9 @@ sub file {
+ 		    DIR => File::Spec->tmpdir(), UNLINK => 1);
+ 
+ 	print "... $rev $path ...\n" if $opt_v;
+-	eval { $self->{'svn'}->get_file($path,$rev,$fh); };
++	my $pool = SVN::Pool->new();
++	eval { $self->{'svn'}->get_file($path,$rev,$fh,$pool); };
++	$pool->clear;
+ 	if($@) {
+ 		return undef if $@ =~ /Attempted to get checksum/;
+ 		die $@;
+@@ -674,7 +676,9 @@ sub commit_all {
+ }
+ 
+ while(++$current_rev <= $svn->{'maxrev'}) {
+-	$svn->{'svn'}->get_log("/",$current_rev,$current_rev,$current_rev,1,1,\&_commit_all,"");
++	my $pool=SVN::Pool->new;
++	$svn->{'svn'}->get_log("/",$current_rev,$current_rev,1,1,1,\&_commit_all,$pool);
++	$pool->clear;
+ 	commit_all();
+ 	if($opt_l and not --$opt_l) {
+ 		print STDERR "Stopping, because there is a memory leak (in the SVN library).\n";
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

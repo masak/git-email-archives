@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov  3 21:43:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BD89C1F6254
+	for <tkil@scrye.com>; Thu,  3 Nov 2005 21:43:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161021AbVKDEmU (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 3 Nov 2005 23:42:20 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161039AbVKDEmU
+	(ORCPT <rfc822;git-outgoing>); Thu, 3 Nov 2005 23:42:20 -0500
+Received: from mail.dvmed.net ([216.237.124.58]:53685 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S1161021AbVKDEmT (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 3 Nov 2005 23:42:19 -0500
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1EXtP3-0001wS-Cg; Fri, 04 Nov 2005 04:42:17 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <436AE6A3.4040103@pobox.com>
+Date:	Thu, 03 Nov 2005 23:42:11 -0500
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+CC:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: RFC: GIT networked storage
+References: <7vwtjp2h59.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vwtjp2h59.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Bad-Reply: References and In-Reply-To but no 'Re:' in Subject.
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:11112
+
+
+Here's an experiment I've been dying to try.
+
+The current "tracker-less" BitTorrent[1] employs a distributed hash 
+table[2] called Kademlia, where the total content is spread across a 
+bunch of computers on the network.  I kinda prefer TANGLE[3] to Kademlia.
+
+Anyway, I was thinking that it would be a neat experiment to add simple 
+TANGLE-like peer-to-peer code, to enable git to query "the git network 
+hash table" for content.
+
+Comments, or any pre-code-creation objections?
+How easy is it to add a new storage backend to git?
+
+To restrict unlimited uploading, I'm thinking that I'll want the system 
+to fall back to {www,git,rsync}.kernel.org as the original source of 
+content.  [though the code will obviously be generic, and not hardcode 
+*.kernel.org policy]
+
+Thanks,
+
+	Jeff
+
+
+
+[1] http://www.bittorrent.com/trackerless.html
+[2] http://www.etse.urv.es/~cpairot/dhts.html
+[3] http://www.nicemice.net/amc/research/tangle/
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

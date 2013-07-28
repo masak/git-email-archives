@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 29 14:08:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C6C671E2491
+	for <tkil@scrye.com>; Thu, 29 Sep 2005 14:08:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030238AbVI2UDV (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 29 Sep 2005 16:03:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030236AbVI2UDV
+	(ORCPT <rfc822;git-outgoing>); Thu, 29 Sep 2005 16:03:21 -0400
+Received: from mx1.redhat.com ([66.187.233.31]:31690 "EHLO mx1.redhat.com")
+	by vger.kernel.org with ESMTP id S1030202AbVI2UDU (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 29 Sep 2005 16:03:20 -0400
+Received: from int-mx1.corp.redhat.com (int-mx1.corp.redhat.com [172.16.52.254])
+	by mx1.redhat.com (8.12.11/8.12.11) with ESMTP id j8TK30JW001312;
+	Thu, 29 Sep 2005 16:03:00 -0400
+Received: from devserv.devel.redhat.com (devserv.devel.redhat.com [172.16.58.1])
+	by int-mx1.corp.redhat.com (8.11.6/8.11.6) with ESMTP id j8TK2sV02236;
+	Thu, 29 Sep 2005 16:02:54 -0400
+Received: from nwo.kernelslacker.org (vpn-4-5.stuttgart.redhat.com [10.32.4.5])
+	by devserv.devel.redhat.com (8.12.11/8.12.11) with ESMTP id j8TK2rn6028956;
+	Thu, 29 Sep 2005 16:02:54 -0400
+Received: from nwo.kernelslacker.org (localhost.localdomain [127.0.0.1])
+	by nwo.kernelslacker.org (8.13.5/8.13.4) with ESMTP id j8TK2qi1002388;
+	Thu, 29 Sep 2005 16:02:52 -0400
+Received: (from davej@localhost)
+	by nwo.kernelslacker.org (8.13.5/8.13.5/Submit) id j8TK2qO8002387;
+	Thu, 29 Sep 2005 16:02:52 -0400
+X-Authentication-Warning: nwo.kernelslacker.org: davej set sender to davej@redhat.com using -f
+Date:	Thu, 29 Sep 2005 16:02:52 -0400
+From:	Dave Jones <davej@redhat.com>
+To:	Jeff Garzik <jgarzik@pobox.com>
+Cc:	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [howto] Kernel hacker's guide to git, updated
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050929200252.GA31516@redhat.com>
+Mail-Followup-To: Dave Jones <davej@redhat.com>,
+	Jeff Garzik <jgarzik@pobox.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>
+References: <433BC9E9.6050907@pobox.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <433BC9E9.6050907@pobox.com>
+User-Agent: Mutt/1.4.2.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:9493
+
+On Thu, Sep 29, 2005 at 07:03:05AM -0400, Jeff Garzik wrote:
+ > 
+ > Just updated my KHGtG to include the latest goodies available in 
+ > git-core, the Linux kernel standard SCM tool:
+ > 
+ > 	http://linux.yyz.us/git-howto.html
+ > 
+ > Several changes in git-core have made working with git a lot easier, so 
+ > be sure to re-familiarize yourself with the development process.
+ > 
+ > Comments, corrections, and notes of omission welcome.  This document 
+ > mainly reflects my typical day-to-day git activities, and may not be 
+ > very applicable outside of kernel work.
+
+You wrote..
+
+$ git clone rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git linux-2.6
+$ cd linux-2.6
+$ rsync -a --verbose --stats --progress \
+  rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/ \
+  .git/
+
+Could be just..
+
+$ git clone rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git linux-2.6
+$ cd linux-2.6
+$ git pull
+
+Likewise, in the next section, git pull doesn't need an argument
+if pulling from the repo it cloned.
+
+		Dave
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

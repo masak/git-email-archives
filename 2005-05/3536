@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 19 11:00:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B8C1514F7F6
+	for <tkil@scrye.com>; Thu, 19 May 2005 11:00:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261153AbVESRAF (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 19 May 2005 13:00:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261155AbVESRAF
+	(ORCPT <rfc822;git-outgoing>); Thu, 19 May 2005 13:00:05 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:51140 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S261153AbVESRAB (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 19 May 2005 13:00:01 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050519170001.XSCF23392.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 19 May 2005 13:00:01 -0400
+To: Nicolas Pitre <nico@cam.org>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Deltification library work by Nicolas Pitre.
+References: <7vwtpv1pd4.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.62.0505191019180.20274@localhost.localdomain>
+	<Pine.LNX.4.58.0505190736020.2322@ppc970.osdl.org>
+	<Pine.LNX.4.62.0505191104410.20274@localhost.localdomain>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 19 May 2005 09:59:59 -0700
+In-Reply-To: <Pine.LNX.4.62.0505191104410.20274@localhost.localdomain> (Nicolas
+ Pitre's message of "Thu, 19 May 2005 11:14:04 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vekc3178w.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 14
+Xref: brand.scrye.com linux.git:3536
+
+>>>>> "NP" == Nicolas Pitre <nico@cam.org> writes:
+
+NP> In fact I think the code in that file might be simplified even further 
+NP> eventually, at which point there  might not be much of the original code 
+NP> left anymore and the license switched to GPL v2.
+
+I am afraid that kind of code transformation would not change
+the copyright issues.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

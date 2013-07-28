@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 19 02:03:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 830F8F31C9
+	for <tkil@scrye.com>; Mon, 19 Dec 2005 02:03:13 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932206AbVLSJC4 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Dec 2005 04:02:56 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932584AbVLSJC4
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Dec 2005 04:02:56 -0500
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:32719 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S932206AbVLSJCz (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Dec 2005 04:02:55 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051219090126.DVBX17838.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 19 Dec 2005 04:01:26 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Cc:	Paul Serice <paul@serice.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Fix race and deadlock when sending pack
+References: <43A628F6.1060807@serice.net>
+	<Pine.LNX.4.64.0512190130450.25300@iabervon.org>
+Date:	Mon, 19 Dec 2005 01:02:53 -0800
+In-Reply-To: <Pine.LNX.4.64.0512190130450.25300@iabervon.org> (Daniel
+	Barkalow's message of "Mon, 19 Dec 2005 01:49:44 -0500 (EST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvexlihmq.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 48
+Xref: brand.scrye.com linux.git:13809
+
+Daniel Barkalow <barkalow@iabervon.org> writes:
+
+> ... I don't think that it's actually a 
+> good idea to have output to stdout from hooks go to git-send-pack's 
+> stdout, since we may want to have git-send-pack report some sort of 
+> information of its own to stdout,...
+
+I admit that I haven't thought things through yet, but I do not
+offhand think of an argument against Paul's patch (a scenario
+that may be broken by the patch, that is), so I am inclined to
+take it, perhaps after hearing about the cpfd() thing I
+mentioned in the previous response to Paul.
+
+It is conceivable that we may want to later extend the protocol
+so that the receiver can tell the sender the result of what
+happened to each of the ref-update request.  Right now, the
+sender refuses to listen to what receiver says after it learns
+the current object names, but after pack transfer finishes and
+receiver decides what to do with each ref update request, we
+might want to add status, like this:
+
+	# Tell the pusher what commits we have and what their names are
+	R: SHA1 name
+	R: ...
+	R: SHA1 name
+	R: # flush -- it's your turn
+	# Tell the puller what the pusher wants to happen
+	S: old-SHA1 new-SHA1 name
+	S: old-SHA1 new-SHA1 name
+	S: ...
+	S: # flush -- done with the list
+	S: XXXXXXX --- packfile contents.
+	# current protocol exchange ends here, but we could add...
+
+        # ... what happened to each ref-update request.
+	R: name OK
+        R: name FAIL
+        R: ...
+
+If we do something like this, we might want to say why things
+failed on "FAIL" line, and the output from hooks/update that
+prevented the ref-update would probably belong there.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

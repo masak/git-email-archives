@@ -1,0 +1,106 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 06:11:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E3A4D1FD235
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 06:11:15 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751209AbVK3NKx (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 08:10:53 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751210AbVK3NKx
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 08:10:53 -0500
+Received: from science.horizon.com ([192.35.100.1]:9258 "HELO
+	science.horizon.com") by vger.kernel.org with SMTP id S1751209AbVK3NKx
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 30 Nov 2005 08:10:53 -0500
+Received: (qmail 28150 invoked by uid 1000); 30 Nov 2005 08:10:45 -0500
+Date:	30 Nov 2005 08:10:45 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051130131045.28149.qmail@science.horizon.com>
+From:	linux@horizon.com
+To:	git@vger.kernel.org
+Subject: More merge questions
+Cc:	junkio@cox.net, linux@horizon.com
+In-Reply-To: <7vwtiqzljr.fsf@assigned-by-dhcp.cox.net>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 71
+Xref: brand.scrye.com linux.git:12987
+
+I'm working my way through a thorough understanding of merging.
+
+First I got git-read-tree's 3-way merge down to 6 conditionals, where
+a missing entry is considered equal to a missing entry, and a missing
+index entry is considered clean.
+
+a) If stage2 == stage3, use stage2
+b) If stage1 == stage3, use stage2
+c) If the index entry exists and is dirty (working dir changes), FAIL
+d) If stage1 == stage2, use stage3
+e) If trivial-only, FAIL
+f) Return unmerged result for 3-way resolution by git-merge-index.
+
+Case c is needed so you don't change the world out from under
+your working directory changes.  You could move it earlier and
+make things strictire, but that's the minimal restriction.
+
+Then I started thinking about 2-way merge, and how that differed
+from a 3-way merge where stage2 was the previous index contents.
+
+If you apply the same rules (with trivial-only true), the only differences
+to the big 22-case table in the git-read-tree docs are:
+
+3) This says that if stage1 and state3 exist, use stage3.
+   3-way says if they're equal, delete the file, while if they're
+   unequal, it's fail.
+
+If 3-way git-merge-index were allowed, then the conditions that would
+change to do it are cases 8 and 12.
+
+The full list of cases and the conditional that applies, is:
+
+0) a
+1) d
+2) a
+3) see above.  It's b or e by my logic, but d by the table.
+
+4) b
+5) b
+6) a
+7) a
+8) e
+9) c
+
+10) d
+11) c
+12) e
+13) c
+
+14) a or b
+15) a or b
+
+16) e
+17) c
+18) a
+19) a
+20) d
+21) c
+
+Given that it all matches up so nicely, I'd like to honestly ask if
+case 3 of the conditions is correct.  I'd think that if I deleted
+a file form te index, and the file wasn't changed on the head I'm
+tracking, the right resolution is to keep it deleted.  Why override
+my deletion?
+
+Sorry if this is a dumb question, but it's not obvious to me.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

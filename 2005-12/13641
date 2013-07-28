@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 15:18:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 98A7DD1DF4
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 15:18:25 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965016AbVLNWQP (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 17:16:15 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965021AbVLNWQP
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 17:16:15 -0500
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:7856 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S965016AbVLNWQP (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 14 Dec 2005 17:16:15 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051214221538.TOIU3131.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 14 Dec 2005 17:15:38 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	"Brown, Len" <len.brown@intel.com>
+Subject: Re: new file leaked onto release branch
+References: <F7DC2337C7631D4386A2DF6E8FB22B30056B86DD@hdsmsx401.amr.corp.intel.com>
+cc:	git@vger.kernel.org
+Date:	Wed, 14 Dec 2005 14:16:13 -0800
+In-Reply-To: <F7DC2337C7631D4386A2DF6E8FB22B30056B86DD@hdsmsx401.amr.corp.intel.com>
+	(Len Brown's message of "Wed, 14 Dec 2005 17:06:54 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwti7wcia.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:13641
+
+"Brown, Len" <len.brown@intel.com> writes:
+
+> I'm not stuck by this problem, since I created a new release
+> branch based before the funny merge and it seems to be
+> working properly.  I'm sorry I can't re-create the problem
+> again.  Next time something like this happens and I notice it
+> I'll be sure to keep the ingredients for the failure on hand.
+
+Thanks.
+
+BTW, are 5165, 3410, 5452, 5571... topic branch names?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

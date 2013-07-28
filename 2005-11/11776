@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 14 03:47:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CB24912E38C
+	for <tkil@scrye.com>; Mon, 14 Nov 2005 03:47:11 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751073AbVKNKrF (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 05:47:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751075AbVKNKrE
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 05:47:04 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:63424 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1751073AbVKNKrE
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 14 Nov 2005 05:47:04 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id CAF506BCBE
+	for <git@vger.kernel.org>; Mon, 14 Nov 2005 11:47:02 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43786B26.703@op5.se>
+Date:	Mon, 14 Nov 2005 11:47:02 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] Bugfix: stop if directory already exists
+References: <200511131503.32078.Josef.Weidendorfer@gmx.de> <7vpsp3zjwm.fsf@assigned-by-dhcp.cox.net> <437858A1.9010007@op5.se> <200511141136.19192.Josef.Weidendorfer@gmx.de>
+In-Reply-To: <200511141136.19192.Josef.Weidendorfer@gmx.de>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 36
+Xref: brand.scrye.com linux.git:11776
+
+Josef Weidendorfer wrote:
+> On Monday 14 November 2005 10:28, Andreas Ericsson wrote:
+> 
+>>But we name them differently, as hpa pointed out some week ago.
+>>
+>>When I see "usage: <prog> <command>" I expect to find the info in "man 
+>><prog>". Soon, this will work to get the right page
+>>
+>>	git --help <command>
+> 
+> 
+> This is a nice feature, but still needs educating the user.
+
+This feature goes away with the huge man-page.
+
+> I think that the idea of a huge git man page is not that bad; for sure,
+> it can be created automatically.
+> 
+> A huge man page helps searching a command name (Ah, what was the
+> command to see commit logs per file?  What is the counterpart of
+> "cvs update" called?).
+> 
+
+This is already implemented (sort of), but perhaps have both? Or 
+pointers to the other man-pages from the "git" one (as is already sort 
+of done).
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 13:59:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A87CF158BA1
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 13:59:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750738AbVKOU7V (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 15:59:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750743AbVKOU7V
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 15:59:21 -0500
+Received: from wproxy.gmail.com ([64.233.184.193]:49569 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750738AbVKOU7U convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 15:59:20 -0500
+Received: by wproxy.gmail.com with SMTP id i2so1478599wra
+        for <git@vger.kernel.org>; Tue, 15 Nov 2005 12:59:17 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=bmTWVeS2loPVq2LhzEEjGVAGjZnOGCSNmEIY7AETwb3DZzTWoeS/9oXkIxTZQzGO6IdJjlhtlOI7Q850WJz0C0USn5DD5TTEyrz1WAx8clY07ygH6acmDzfsaRtkdDyhTLJPT34UjivCjPCWP6/it3rniNogO2w7EpPagvsb0NQ=
+Received: by 10.65.218.2 with SMTP id v2mr7566031qbq;
+        Tue, 15 Nov 2005 12:59:17 -0800 (PST)
+Received: by 10.64.242.4 with HTTP; Tue, 15 Nov 2005 12:59:17 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90511151259l51d13181j670274e123d7610f@mail.gmail.com>
+Date:	Wed, 16 Nov 2005 09:59:17 +1300
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: A case for tailor
+Cc:	git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.63.0511151931001.1157@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <Pine.LNX.4.63.0511151931001.1157@wbgn013.biozentrum.uni-wuerzburg.de>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:11929
+
+On 11/16/05, Johannes Schindelin <Johannes.Schindelin@gmx.de> wrote:
+> Just wanted to let people know...
+
+I've checked out tailor a while ago, and it seems a quite capable
+tool. Even bounced a few emails with the author, because I thought
+that we could perhaps deprecate our imports scripts. It _is_ good, and
+seems to have a cool community around it.
+
+The short of it is that tailor won't do branches. So for trivial
+single-line-of-development projects, you're fine with it, probably
+even happier than with our import scripts.  Sadly, none of the
+projects I've worked in the last 6 years fall into that category ;-)
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

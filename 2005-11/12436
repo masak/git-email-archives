@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 07:42:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CF73F31D049
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 07:42:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932314AbVKUOlh (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 09:41:37 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932315AbVKUOlg
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 09:41:36 -0500
+Received: from gw.ac-sw.com ([81.1.223.2]:32184 "EHLO gw.ac-sw.com")
+	by vger.kernel.org with ESMTP id S932314AbVKUOlg (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 21 Nov 2005 09:41:36 -0500
+Received: from lan.ac-sw.lcl (unknown [192.168.0.69])
+	by gw.ac-sw.com (Postfix) with ESMTP id 2CFC3BD37
+	for <git@vger.kernel.org>; Mon, 21 Nov 2005 20:41:27 +0600 (NOVT)
+Received: by lan.ac-sw.lcl (Postfix, from userid 65534)
+	id A873B159123; Mon, 21 Nov 2005 20:44:03 +0600 (NOVT)
+Received: from localhost (localhost [127.0.0.1])
+	by lan.ac-sw.lcl (Postfix) with ESMTP id E0AD0154417
+	for <git@vger.kernel.org>; Mon, 21 Nov 2005 20:43:57 +0600 (NOVT)
+From:	Alexander Litvinov <lan@ac-sw.com>
+Organization: AcademSoft Ltd.
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: cvsexportcommit/cvsimport workflow
+Date:	Mon, 21 Nov 2005 20:43:57 +0600
+User-Agent: KMail/1.8
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511212043.57434.lan@ac-sw.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:12436
+
+Hello,
+
+Can ypu please explain how to use cvsimport with cvsexportcommit scripts ? 
+
+I have tried these steps:
+1. Make git repo from cvs repo using cvsimport command - everything works 
+great.
+2. Start traking cvs changes by incremental running cvsimport - It works.
+3. Change files in git repo (master branch) - works :-)
+4. Export git commits to cvs: 
+      first question: What should be exported and in what order ? Lets skip 
+this part - it is the smallest problem.
+      Two test commits were exported to cvs without any problmes.
+5. Importing cvs again - I have found my exported commits became separate 
+commits in git repo in origin branch (solved by git-pull . origin). But thay 
+were merged idealy.
+6. Changing files again in git.
+7. Export git commits to cvs: What should be exported question become harder 
+and harder. Possible I should use some tag and run:
+git-rev-list MY-TAG..master | xargs -n 1 git-cvsexportcommit -vX -cX (by the 
+way, why just -v -c does not work ? I must add something to make options 
+work)
+
+This cycle is a bit of mess. I can write some scripts but I have no idea how 
+this is supposed to work !
+
+The biggest problem - conflict. I should resove them twice, during merging 
+origin branch to master and when exporting these changes to cvs. By the way, 
+I still can't export merge commit :-)
+
+Thanks for help.
+Alexander Litvinov.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

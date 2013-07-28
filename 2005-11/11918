@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 11:06:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 753CAB650C
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 11:06:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964965AbVKOSFo (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 13:05:44 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964977AbVKOSFo
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 13:05:44 -0500
+Received: from pne-smtpout2-sn2.hy.skanova.net ([81.228.8.164]:61628 "EHLO
+	pne-smtpout2-sn2.hy.skanova.net") by vger.kernel.org with ESMTP
+	id S964965AbVKOSFn (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 13:05:43 -0500
+Received: from vrrx50sn1.teliamobile.net (192.71.148.196) by pne-smtpout2-sn2.hy.skanova.net (7.2.060.1)
+        id 4378EBDA000606B1 for git@vger.kernel.org; Tue, 15 Nov 2005 19:05:42 +0100
+Received: from [212.181.228.90] (host-n13-90.homerun.telia.com [212.181.228.90])
+	by vrrx50sn1.teliamobile.net (8.11.6/8.11.6) with ESMTP id jAFI5gf23106
+	for <git@vger.kernel.org>; Tue, 15 Nov 2005 19:05:42 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437A2375.7020609@op5.se>
+Date:	Tue, 15 Nov 2005 19:05:41 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] git-core-foo -> git-foo, except the core package
+References: <43797C41.2050809@zytor.com>	 <625fc13d0511150641k353d7128pf72f3542da601104@mail.gmail.com>	 <437A09F2.8080109@zytor.com> <625fc13d0511150919l48786dcam6fda56bc9d3a9fa0@mail.gmail.com>
+In-Reply-To: <625fc13d0511150919l48786dcam6fda56bc9d3a9fa0@mail.gmail.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:11918
+
+Josh Boyer wrote:
+> On 11/15/05, H. Peter Anvin <hpa@zytor.com> wrote:
+> 
+>>Josh Boyer wrote:
+>>
+>>>What about "yum remove git" ?  I don't think that will work quite so
+>>>well.  The "git" package will be removed just fine since nothing
+>>>depends on it, but git-<foo> will still remain.  Maybe not that big of
+>>>a deal, but it might not be obvious to some.
+>>
+>>True.  If you have a solution to that, I'd love to hear it.  Note that
+>>having the core package depend on everything else is not acceptable.
+> 
+> 
+> %preun section that does rpm -e of the packages it brings in.  But
+> that is a hack that would cause some to become violently ill.  Perhaps
+> it's an issue not worth worrying about.
+> 
+
+Less puky while bringing some obviousity:
+
+%preun
+echo "To get rid of git completely, yada yada (real instructions)."
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

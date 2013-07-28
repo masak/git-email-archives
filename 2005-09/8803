@@ -1,0 +1,105 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 15:30:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 26FB61F5699
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 15:30:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932211AbVIRV3q (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 17:29:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932212AbVIRV3p
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 17:29:45 -0400
+Received: from wg.technophil.ch ([213.189.149.230]:30679 "HELO
+	hydrogenium.schottelius.org") by vger.kernel.org with SMTP
+	id S932211AbVIRV3p (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Sep 2005 17:29:45 -0400
+Received: (qmail 1758 invoked by uid 1000); 18 Sep 2005 21:29:04 -0000
+Date:	Sun, 18 Sep 2005 23:29:04 +0200
+From:	Nico -telmich- Schottelius <nico-linux-git@schottelius.org>
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Improved "git add"
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050918212904.GB1463@schottelius.org>
+References: <Pine.LNX.4.58.0509181119040.26803@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="bCsyhTFzCvuiizWE"
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0509181119040.26803@g5.osdl.org>
+User-Agent: echo $message | gpg -e $sender  -s | netcat mailhost 25
+X-Linux-Info: http://linux.schottelius.org/
+X-Operating-System: Linux 2.6.13.1
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 63
+Xref: brand.scrye.com linux.git:8803
+
+
+--bCsyhTFzCvuiizWE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Linus Torvalds [Sun, Sep 18, 2005 at 11:27:45AM -0700]:
+> [git-add/directory fix]
+
+Nice, first cogito and now git itself. You are pretty fast.
+
+> [...]
+> Also, I think we should have a default ignore list if we don't find a=20
+> .git/info/exclude file. Ignoring "*.o" and ".*" by default would probably=
+=20
+> be the right thing to do.
+
+I do use doc/.warning or similar in some projects files for outputting
+a warning when somebody simply types 'make', so he'll get instructions
+on what to do.
+
+Other people may even want to include *.o in their tree, because it's
+used by their program for another purpose.
+
+I do not think that a VCS should ignore anything from itself. If we
+generate a standard .git/info/excludes (or whatever the name of it is)
+and write those standard values in there, this is a different thing.
+
+Nico
+
+--=20
+Latest project: cconfig (http://nico.schotteli.us/papers/linux/cconfig/)
+Open Source nutures open minds and free, creative developers.
+
+--bCsyhTFzCvuiizWE
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+
+iQIVAwUBQy3cILOTBMvCUbrlAQLfdw//VnfW7DJqjFan84JVpnaWdoba9P+VFny+
+d+/5gGEbHkm6VSB0Jf8wAx7Yv4GVlVf2Z2wxyvObbGPC2Lvi0vviE0ucOeXiULM2
+vPr+O1Z4leF36YfaRfMUSnMnypxeKk/VzLm1n3qdwjMwaFXeqLcmGkMexG/Nrydz
+HF3GRfKBehkQIkqxyVtN28nc/tvcXZJAqT+H8nHVMteEc3J7sP6CMvGMttPhr8DW
+2wuZF0/ehDTUrYUR6vrI5M9wvo5lobEzm+mSMY2wKoj9owPdBHh0KHRn/8wKco+W
+lJyeX4CxoG4+mftv2pmh3HcSnIHp9qrAdNXALAByF+QesGB+XP5CM2uz28Pr8xjQ
+9MFNaRPnAR78RHSS9N+sARgOqLu35465C1wleQq1+83DGzkWc1yfV8Uq2ii3sp+T
+s8p/S3qYaoXliRcXxFMzZQa26atjR0ENzrz2f6sWQBtQ+MY2tjptnTldnP4U7Rm/
+h1LYUB3xKriu8fTsHry+Ol0+4mxLo7irpG773vTN4slB+edDEAr4yNypxh2/Iwet
+mlB+bxOROm+4wDRpBt6e8GZfNpW4en8AQ9X8k8JbnWi972gN+CJzxD3wjWgunJH5
+KXqGSemp0uQ9IMC8tQhnazzRm+w99XjOd3yFRZJm61fQ7eR08vWeq07ZoL5uTXur
+Pa24kyBQSLM=
+=XGfQ
+-----END PGP SIGNATURE-----
+
+--bCsyhTFzCvuiizWE--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,103 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 16:12:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 88A03120D1E
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 16:12:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932550AbVKOXMs (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 18:12:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932557AbVKOXMs
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 18:12:48 -0500
+Received: from pne-smtpout1-sn2.hy.skanova.net ([81.228.8.83]:51948 "EHLO
+	pne-smtpout1-sn2.hy.skanova.net") by vger.kernel.org with ESMTP
+	id S932550AbVKOXMr (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 18:12:47 -0500
+Received: from [192.168.0.82] (213.66.95.18) by pne-smtpout1-sn2.hy.skanova.net (7.2.060.1)
+        id 4378E95300070F73; Wed, 16 Nov 2005 00:12:46 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437A6B8A.8060905@etek.chalmers.se>
+Date:	Wed, 16 Nov 2005 00:13:14 +0100
+From:	=?ISO-8859-15?Q?Lukas_Sandstr=F6m?= <lukass@etek.chalmers.se>
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051015)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+CC:	Alex Riesen <raa.lkml@gmail.com>, junkio@cox.net
+Subject: Re: fix git-pack-redundant crashing sometimes
+References: <81b0412b0511150749g5672158v7b39c02ffdf13e08@mail.gmail.com> <20051115213442.GA4256@steel.home> <437A560E.8020500@etek.chalmers.se> <20051115223340.GA3951@steel.home>
+In-Reply-To: <20051115223340.GA3951@steel.home>
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: 8bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 61
+Xref: brand.scrye.com linux.git:11951
+
+Alex Riesen wrote:
+> Lukas Sandström, Tue, Nov 15, 2005 22:41:34 +0100:
+> 
+>>>>llist_sorted_difference_inplace didn't handle the match in the first
+>>>>sha1 correctly and the lists went wild everywhere.
+>>>
+>>>This wasn't enough. It never (>5 min on 2.4GHz PIV) finishes on
+>>>my local mirror of git, which has 22 packs by now.
+>>
+>>If the patch I just sent out doesn't fix the problem, and you don't
+> 
+> 
+> Sorry, it doesn't. The code loops here:
+> 
+> 401             /* find the permutations which contain all missing objects */
+> 402             perm_all = perm = get_all_permutations(non_unique);
+> 403             while (perm) {
+> 404                     if (is_superset(perm->pl, missing)) {
+> 405                             new_perm = xmalloc(sizeof(struct pll));
+> 406                             new_perm->pl = perm->pl;
+> 407                             new_perm->next = perm_ok;
+> 408                             perm_ok = new_perm;
+> (gdb) 
+> 409                     }
+> 410                     perm = perm->next;
+> 411             }
+> 412
+> 413             if (perm_ok == NULL)
+> 
+> 
+> 
+>>want to debug it yourself, could you please publish the .idx files
+>>so I could have a look at them?
+> 
+> 
+> Of course: http://home.arcor.de/fork0/download/idx.tar.gz
+> 
+
+After giving it a quick look, I don't think it locks up. It is just horribly
+slow. get_all_permutations returns (nice ASCII-art follows)
+
+    ___n___
+    \
+     \ ____1____
+n! * /  k!(n-k)!
+    /______
+      k=1
+
+permutations, which for your case (22 packs) adds up to 4194303.
+
+I'll look into an optimization so we won't have to call is_superset
+for every one of them.
+
+OTOH, I might be wrong and it could very well be an infinite loop.
+Mind running it over the night? I won't look further into this in
+20 hours or so anyway.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

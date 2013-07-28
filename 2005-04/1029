@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 17:05:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 94181E8F8F
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 17:05:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261834AbVDTXF3 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 19:05:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261835AbVDTXF3
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 19:05:29 -0400
+Received: from emf.emf.net ([205.149.0.19]:57614 "EHLO emf.net")
+	by vger.kernel.org with ESMTP id S261834AbVDTXFV (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 20 Apr 2005 19:05:21 -0400
+Received: (from lord@localhost) by emf.net (K/K) id QAA17069; Wed, 20 Apr 2005 16:04:00 -0700 (PDT)
+Date:	Wed, 20 Apr 2005 16:04:00 -0700 (PDT)
+From: Tom Lord <lord@emf.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200504202304.QAA17069@emf.net>
+To: duchier@ps.uni-sb.de
+Cc: gnu-arch-users@gnu.org, gnu-arch-dev@lists.seyza.com,
+	git@vger.kernel.org
+In-reply-to: <877jixfjxw.fsf@star.lifl.fr> (duchier@ps.uni-sb.de)
+Subject: Re: [GNU-arch-dev] [ANNOUNCEMENT] /Arch/ embraces `git'
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.8 required=5.0 tests=AWL,BAYES_00,SARE_MILLIONSOF 
+	autolearn=no version=3.0.2
+Lines: 33
+Xref: brand.scrye.com linux.git:1029
+
+
+
+
+   From: duchier@ps.uni-sb.de
+
+Thank you for your experiment.  I'm not surprised by the 
+result but it is very nice to know that my expectations
+are right.
+
+I think that to a large extent you are seeing artifacts
+of the questionable trade-offs that (reports tell me) the
+ext* filesystems make.   With a different filesystem, the 
+results would be very different.
+
+I'm imagining a blob database containing may revisions of the linux
+kernel.  It will contain millions of blobs.
+
+It's fine that some filesystems and some blob operations work fine
+on a directory with millions of files but what about other operations
+on the database?   I pity the poor program that has to `readdir' through
+millions of files.
+
+That said: I may add an optional flat-directory format to my library,
+just to avoid issues such as those you raise over the next couple 
+years.
+
+-t
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

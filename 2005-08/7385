@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 16 15:52:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 511A8242662
+	for <tkil@scrye.com>; Tue, 16 Aug 2005 15:52:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750973AbVHPVww (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 16 Aug 2005 17:52:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750974AbVHPVww
+	(ORCPT <rfc822;git-outgoing>); Tue, 16 Aug 2005 17:52:52 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:44767 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750904AbVHPVwv (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 16 Aug 2005 17:52:51 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7GLqljA000301
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 16 Aug 2005 14:52:47 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7GLqk5E015336;
+	Tue, 16 Aug 2005 14:52:46 -0700
+Date:	Tue, 16 Aug 2005 14:52:46 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Alternate object pool mechanism updates.
+In-Reply-To: <7vek8t8sgi.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508161451510.3553@g5.osdl.org>
+References: <7vmznmp5ja.fsf@assigned-by-dhcp.cox.net> <20050813120815.GC5608@pasky.ji.cz>
+ <7v1x4wcca0.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0508141726390.3553@g5.osdl.org>
+ <7vek8t8sgi.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:7385
+
+
+
+On Tue, 16 Aug 2005, Junio C Hamano wrote:
+> Linus Torvalds <torvalds@osdl.org> writes:
+> 
+> > We've got a "git prune-packed", it would be good to have a "git
+> > prune-alternate" or something equivalent.
+> 
+> If you have GIT_ALTERNATE_DIRECTORIES environment variable, git
+> prune-packed will remove objects from your repository if it is
+> found in somebody else's pack.  I am not sure if this is the
+> behaviour we would want.
+
+Well, it may be good enough if the "master" repository is regularly 
+packed..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

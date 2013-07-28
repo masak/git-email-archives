@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct  7 17:09:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 51EEC29774B
+	for <tkil@scrye.com>; Fri,  7 Oct 2005 17:09:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750888AbVJGXJH (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 7 Oct 2005 19:09:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751064AbVJGXJH
+	(ORCPT <rfc822;git-outgoing>); Fri, 7 Oct 2005 19:09:07 -0400
+Received: from 195.37.26.69.virtela.com ([69.26.37.195]:50369 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S1750967AbVJGXJG (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 7 Oct 2005 19:09:06 -0400
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id j97N8uLR017610;
+	Fri, 7 Oct 2005 16:08:56 -0700
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id j97N8uDC017608;
+	Fri, 7 Oct 2005 16:08:56 -0700
+Date:	Fri, 7 Oct 2005 16:08:56 -0700
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Don't fetch objects that exist in the local repository
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051007230856.GC4989@reactrix.com>
+References: <20051007220151.GB4989@reactrix.com> <Pine.LNX.4.63.0510080047500.20922@wbgn013.biozentrum.uni-wuerzburg.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.63.0510080047500.20922@wbgn013.biozentrum.uni-wuerzburg.de>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:9816
+
+On Sat, Oct 08, 2005 at 12:50:53AM +0200, Johannes Schindelin wrote:
+
+> > Be sure not to fetch objects that already exist in the local repository.
+> 
+> Really? I seem to recall a dispute I had with Linus that this is 
+> unacceptable. He seems worried about incomplete fetches.
+
+This patch just moved an existing check from the process queue loop to the
+appropriate places in transport-specific code to prevent the transport
+from transferring an object that appeared in the local repository after
+it was prefetched (eg. via a pack), and to make sure that all objects that
+were prefetched are subsequently fetched so the transport can perform the
+appropriate cleanup.
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

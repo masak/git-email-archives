@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 14:31:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1A11C278192
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 14:31:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750770AbVKUVZv (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 16:25:51 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750763AbVKUVZv
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 16:25:51 -0500
+Received: from mail.fieldses.org ([66.93.2.214]:59268 "EHLO
+	pickle.fieldses.org") by vger.kernel.org with ESMTP
+	id S1750770AbVKUVZu (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 16:25:50 -0500
+Received: from bfields by pickle.fieldses.org with local (Exim 4.54)
+	id 1EeJAb-000659-Tc
+	for git@vger.kernel.org; Mon, 21 Nov 2005 16:25:49 -0500
+Date:	Mon, 21 Nov 2005 16:25:49 -0500
+To:	git@vger.kernel.org
+Subject: 2.6.15-rc2 tag
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051121212549.GA23213@fieldses.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.11
+From:	"J. Bruce Fields" <bfields@fieldses.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:12474
+
+Help!  I'm confused.
+
+	git-fetch --tags http://kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+
+isn't getting me a 2.6.15-rc2 tag.  So maybe there's some delay?  There
+does, however, appear to be a file
+
+	http://kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/tags/v2.6.15-rc2
+
+Its contents are 7305b5cb045e2c71250b5b7472771ed2620bc514 which isn't
+anything I can find anywhere.
+
+gitweb, on the other hand:
+
+	http://www.kernel.org/git/?p=linux/kernel/git/torvalds/linux-2.6.git;a=tag;h=7305b5cb045e2c71250b5b7472771ed2620bc514
+
+shows 3bedff1d73b86e0cf52634efb447e9ada08f2cc6 as the tagged commit,
+which is something I do have.  What don't I understand?
+
+--b.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

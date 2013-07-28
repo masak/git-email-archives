@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 15 14:05:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0EB986655
+	for <tkil@scrye.com>; Sun, 15 May 2005 14:05:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261211AbVEOUFU (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 15 May 2005 16:05:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261215AbVEOUFU
+	(ORCPT <rfc822;git-outgoing>); Sun, 15 May 2005 16:05:20 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:17592 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261211AbVEOUFP (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 15 May 2005 16:05:15 -0400
+Received: (qmail 28457 invoked by uid 2001); 15 May 2005 20:05:14 -0000
+Date:	Sun, 15 May 2005 22:05:14 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Jeff Garzik <jgarzik@pobox.com>
+Cc: James Ketrenos <jketreno@linux.intel.com>,
+	Netdev <netdev@oss.sgi.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+Subject: Re: git repository for net drivers available
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050515200514.GA31414@pasky.ji.cz>
+References: <42841A3F.7020909@pobox.com> <4284C54E.3060907@linux.intel.com> <4284C7DA.1020707@pobox.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4284C7DA.1020707@pobox.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 21
+Xref: brand.scrye.com linux.git:3357
+
+Dear diary, on Fri, May 13, 2005 at 05:29:30PM CEST, I got a letter
+where Jeff Garzik <jgarzik@pobox.com> told me that...
+> Looks like cogito is using $repo/heads/$branch, whereas my git repo is 
+> using $repo/branches/$branch.
+
+Would it be a big problem to use refs/heads/$branch? That's the
+currently commonly agreed convention about location for storing branch
+heads, not just some weird Cogito-specific invention. And it'd be very
+nice to have those locations consistent across git repositories.
+
+Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

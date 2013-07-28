@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May 23 08:36:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6C7536130
+	for <tkil@scrye.com>; Mon, 23 May 2005 08:36:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261744AbVEWOg2 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 23 May 2005 10:36:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261737AbVEWOg1
+	(ORCPT <rfc822;git-outgoing>); Mon, 23 May 2005 10:36:27 -0400
+Received: from fire.osdl.org ([65.172.181.4]:57783 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261733AbVEWOgS (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 23 May 2005 10:36:18 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j4NEXijA021276
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 23 May 2005 07:33:44 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j4NEXfKH032630;
+	Mon, 23 May 2005 07:33:43 -0700
+Date:	Mon, 23 May 2005 07:35:47 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+Cc: Sean <seanlkml@sympatico.ca>, Sam Ravnborg <sam@ravnborg.org>,
+	git@vger.kernel.org
+Subject: Re: cogito - how do I ???
+In-Reply-To: <20050523071919.GG23388@cip.informatik.uni-erlangen.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505230731430.2307@ppc970.osdl.org>
+References: <20050521214700.GA18676@mars.ravnborg.org>
+ <2765.10.10.10.24.1116713164.squirrel@linux1> <Pine.LNX.4.58.0505211635440.2206@ppc970.osdl.org>
+ <20050523071919.GG23388@cip.informatik.uni-erlangen.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 34
+Xref: brand.scrye.com linux.git:3781
+
+
+
+On Mon, 23 May 2005, Thomas Glanzmann wrote:
+> 
+> > 	git-rev-tree MERGE_HEAD ^HEAD | git-diff-tree -v -m -s --stdin
+> 
+> This doesn't work for me:
+
+Yeah, I'm an idiot.
+
+> Bit this does:
+> 
+> (faui00u) [~/work/git/git] git-rev-tree 2cb45e95438c113871fbbea5b4f629f9463034e7 ^09d74b3b5ac634495e17b92b2b785fa996ffce97 | awk '{print $2'} | sed 's#:.*##' | git-diff-tree -v -m -s --stdin
+> 
+> was that a typo or is git-diff-tree supposed to handle the output of
+> git-rev-tree as well and it is a bug?
+
+It was me just forgetting about the time thing in rev-tree, forcing you to
+have a second phase there (I usually use just "cut -d' ' -f2" - the input
+_can_ have the ":n" flag thing that rev-tree outputs, and git-diff-tree
+will just ignore it).
+
+I actually suspect that whole time thing was a mistake, it seemed sensible 
+back when we didn't have any other way of ordering the changesets well, 
+but it's really a bad ordering anyway to do it by time (ie add a "sort 
+-rn" in there), and we can (and probably should) order rev-tree output 
+with some topological sort based on the commit tree.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

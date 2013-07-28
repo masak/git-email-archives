@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 17:34:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2287414B231
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 17:34:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030282AbVINXeV (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 19:34:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030292AbVINXeU
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 19:34:20 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:10119 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1030282AbVINXeU (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Sep 2005 19:34:20 -0400
+Received: (qmail 10639 invoked by uid 2001); 15 Sep 2005 01:34:16 +0200
+Date:	Thu, 15 Sep 2005 01:34:12 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Pavel Roskin <proski@gnu.org>
+Cc:	git <git@vger.kernel.org>
+Subject: Re: cg-pull to pull branches, not the whole repository
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050914233412.GG2936@pasky.or.cz>
+References: <1126733516.10827.54.camel@dv>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1126733516.10827.54.camel@dv>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 35
+Xref: brand.scrye.com linux.git:8567
+
+Dear diary, on Wed, Sep 14, 2005 at 11:31:56PM CEST, I got a letter
+where Pavel Roskin <proski@gnu.org> told me that...
+> Hello!
+
+Hello,
+
+> I believe cg-pull should be changed to pull only the objects relevant to
+> the branch rather than the whole repository.
+
+well, that should be the case for all the methods but rsync. Actually,
+it's not the case for local pulls now either, because git-local-pull
+wasn't able to deal with packs, but I think that's fixed by now so I'll
+reenable that.
+
+> Ideally, cogito should not rely on the server being able to list
+> directories.  This would allow support more protocols and servers, e.g.
+> http servers without directory listings.  Unfortunately, listings are
+> still needed to get refs/tags and refs/heads.  Any fix for that would
+> involve git core, and I don't see an elegant fix.
+
+Well, there's that update-server-info thing. It'd be nice if
+git-send-pack could call that automagically or something, so it's kept
+up-to-date. But I have no idea about how expensive can the command
+actually be.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

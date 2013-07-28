@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 24 10:43:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 92E7E27E5C8
+	for <tkil@scrye.com>; Fri, 24 Jun 2005 10:43:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263151AbVFXQmW (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 24 Jun 2005 12:42:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263146AbVFXQmT
+	(ORCPT <rfc822;git-outgoing>); Fri, 24 Jun 2005 12:42:19 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:63628 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S263141AbVFXQlP (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 24 Jun 2005 12:41:15 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j5OGf6jA014962
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 24 Jun 2005 09:41:07 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j5OGf6ij031668;
+	Fri, 24 Jun 2005 09:41:06 -0700
+Date:	Fri, 24 Jun 2005 09:43:12 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Sven Verdoolaege <skimo@liacs.nl>
+Cc: git@vger.kernel.org
+Subject: Re: rev-parse, unknown arguments and extended sha1's
+In-Reply-To: <20050624161718.GA14909@pc117b.liacs.nl>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506240941520.11175@ppc970.osdl.org>
+References: <20050624122436.GA15182@pc117b.liacs.nl>
+ <Pine.LNX.4.58.0506240904240.11175@ppc970.osdl.org> <20050624161718.GA14909@pc117b.liacs.nl>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:5210
+
+
+
+On Fri, 24 Jun 2005, Sven Verdoolaege wrote:
+>
+> This is what I use:
+> 
+> rev2=`echo $rev | sed -e 's/[^0-9a-f]//'`
+> rev3=`echo $rev2 | sed -e 's/........................................//'`
+> if test "x$rev3" = "x" -a "x$rev" = "x$rev2"; then
+> 	echo "valid SHA1"
+> fi
+
+Oooh. UGGHLEE.
+
+This is one reason I don't do much shell.
+
+Anyway, I think I'll make git-rev-parse have some option to "error out if 
+the result is anything but a single revision number", since this is really 
+the only reason for git-rev-parse in the first place: to make readable 
+scripts.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

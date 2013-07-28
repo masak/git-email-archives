@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 02:32:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8DBB82978F3
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 02:32:22 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964888AbVKBJaP (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 04:30:15 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964893AbVKBJaP
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 04:30:15 -0500
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:22521 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S964888AbVKBJaN (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 2 Nov 2005 04:30:13 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051102092933.DEDR29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 2 Nov 2005 04:29:33 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Andreas Ericsson <ae@op5.se>
+Subject: Re: [PATCH 4/4] git-daemon support for user-relative paths.
+References: <20051101225921.3E7455BF74@nox.op5.se>
+	<7vvezb6h4c.fsf@assigned-by-dhcp.cox.net> <4368760E.6030208@op5.se>
+cc:	git@vger.kernel.org
+Date:	Wed, 02 Nov 2005 01:30:12 -0800
+In-Reply-To: <4368760E.6030208@op5.se> (Andreas Ericsson's message of "Wed, 02
+	Nov 2005 09:17:18 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x1zv1ln.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:11009
+
+Andreas Ericsson <ae@op5.se> writes:
+
+> Junio C Hamano wrote:
+>>> -static int log_syslog;
+>>>+static int log_syslog = 0;
+>> I'd drop this.
+>
+> No can do. It has to be set either here or down in main. It's nice to 
+> have the default in the declaration.
+
+Isn't "static int log_syslog" in BSS to be initialized to zero anyway?
+
+>> I like the general direction this set is taking, but let's let
+>> it simmer for a while.
+>
+> Ok. I'll take that to mean "hold off on the --server-root and --userdir 
+> patch for a while" then.
+
+I do not mind keeping it in the proposed updates branch for
+people to see and experiment with, but not in the master branch,
+at least for now.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

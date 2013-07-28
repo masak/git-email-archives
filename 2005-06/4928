@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun 14 09:19:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7E32A230456
+	for <tkil@scrye.com>; Tue, 14 Jun 2005 09:19:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261164AbVFNPS1 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 14 Jun 2005 11:18:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261154AbVFNPS1
+	(ORCPT <rfc822;git-outgoing>); Tue, 14 Jun 2005 11:18:27 -0400
+Received: from neapel230.server4you.de ([217.172.187.230]:44212 "EHLO
+	neapel230.server4you.de") by vger.kernel.org with ESMTP
+	id S261153AbVFNPRy (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 14 Jun 2005 11:17:54 -0400
+Received: from [10.0.1.3] (p508E62CF.dip.t-dialin.net [80.142.98.207])
+	by neapel230.server4you.de (Postfix) with ESMTP id D269989;
+	Tue, 14 Jun 2005 17:17:50 +0200 (CEST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42AEF512.5040107@lsrfire.ath.cx>
+Date:	Tue, 14 Jun 2005 17:17:38 +0200
+From: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+User-Agent: Mozilla Thunderbird 1.0.2 (Windows/20050317)
+X-Accept-Language: de-DE, de, en-us, en
+MIME-Version: 1.0
+To: Mark Allen <mrallen1@yahoo.com>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Unset TZ in t5000
+References: <20050614131727.23011.qmail@web41211.mail.yahoo.com>
+In-Reply-To: <20050614131727.23011.qmail@web41211.mail.yahoo.com>
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,TW_TV 
+	autolearn=ham version=3.0.3
+Lines: 44
+Xref: brand.scrye.com linux.git:4928
+
+Mark Allen schrieb:
+> --- Rene Scharfe <rene.scharfe@lsrfire.ath.cx> wrote:> Mark Allen schrieb:
+>  > The expression
+> 
+>>   length($5)<7 ? $5":00" : $5
+>>
+>>(where $5 is a time value) is there to cope with tars that format the
+>>time like hh:mm instead of the expected hh:mm:ss.
+> 
+> 
+> I put (escaped) parenthesis around the length function and now it works as expected.
+> Here's a new patch. Please ack if you approve. 
+> 
+> Thanks,
+> 
+> --Mark
+> 
+> Signed-off-by: Mark Allen <mrallen1@yahoo.com>
+> 
+> 
+> ------------------------------------------------------------------------
+> 
+> diff --git a/t/t5000-tar-tree.sh b/t/t5000-tar-tree.sh
+> --- a/t/t5000-tar-tree.sh
+> +++ b/t/t5000-tar-tree.sh
+> @@ -50,8 +50,9 @@ test_expect_success \
+>  
+>  test_expect_success \
+>      'validate file modification time' \
+> -    'tar tvf b.tar a/a |
+> -     awk \{print\ \$4,\ length\(\$5\)\<7\ ?\ \$5\":00\"\ :\ \$5\} >b.mtime &&
+> +    'TZ= tar tvf b.tar a/a |
+> +     awk \{print\ \$4,\ \(length\(\$5\)\<7\)\ ?\ \$5\":00\"\ :\ \$5\} \
+> +     >b.mtime &&
+>       echo "2005-05-27 22:00:00" >expected.mtime &&
+>       diff expected.mtime b.mtime'
+>  
+
+Acked-by: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

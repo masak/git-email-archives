@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 18:07:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 31427E8EF6
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 18:07:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751218AbVIPAHP (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 20:07:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965279AbVIPAHP
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 20:07:15 -0400
+Received: from colo.jdl.com ([66.118.10.122]:20362 "EHLO jdl.com")
+	by vger.kernel.org with ESMTP id S1751218AbVIPAHO (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 15 Sep 2005 20:07:14 -0400
+Received: from jdl (helo=jdl.com)
+	by jdl.com with local-esmtp (Exim 4.44)
+	id 1EG3ku-0005hU-Eb
+	for git@vger.kernel.org; Thu, 15 Sep 2005 19:07:05 -0500
+From:	jdl@freescale.com
+To:	git@vger.kernel.org
+Subject: Re: Should Cogito scripts be renamed?
+In-Reply-To: <20050915234607.GA10867@pasky.or.cz>
+References: <20050915234607.GA10867@pasky.or.cz>
+Date:	Thu, 15 Sep 2005 19:07:04 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EG3ku-0005hU-Eb@jdl.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:8645
+
+So, like, the other day Petr asked:
+>  I'd like to hear the opinion of Cogito users about renaming the Cogito
+> commands accordingly to the GIT big renames. This would be:
+>
+>	cg-pull -> cg-fetch
+>	cg-update -> cg-pull
+
+It took me a good long while of confusion before I
+realized that cg and git were inconsistent in their
+command names and meanings here.  It was the source
+of Head Scratching and Not Understanding.
+
+I am firmly of the opinion that CG should either rename 
+these commands to be more consistent with GIT, or else
+make up totally new, different names unrelated to git
+entirely.  The reuse of "pull" alone will be, IMO, a
+constant source of documentation and explanation headaches.
+
+As with git, sooner rather than later, please.
+
+jdl
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

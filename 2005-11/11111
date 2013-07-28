@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov  3 21:04:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_SV 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9547D2173C2
+	for <tkil@scrye.com>; Thu,  3 Nov 2005 21:04:50 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030550AbVKDEEF (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 3 Nov 2005 23:04:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030596AbVKDEEF
+	(ORCPT <rfc822;git-outgoing>); Thu, 3 Nov 2005 23:04:05 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:57496 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S1030550AbVKDEEE (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 3 Nov 2005 23:04:04 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051104040341.DTYW4527.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 3 Nov 2005 23:03:41 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: GIT 0.99.9c
+Date:	Thu, 03 Nov 2005 20:04:02 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtjp2h59.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 44
+Xref: brand.scrye.com linux.git:11111
+
+GIT 0.99.9c is found at http://kernel.org/pub/software/scm/git/
+as usual.  It includes the following fixes and documentation
+updates since 0.99.9b:
+
+	Alex Riesen:
+	      remove CR/LF from .gitignore
+
+	Jon Loeliger
+	      Illustration: "Fundamental Git Index Operations"
+	      Illustration: "Git Diff Types"
+	      Illustration: "Commit DAG Revision Naming"
+
+	Junio C Hamano:
+	      Do not put automatic merge message after signed-off-by line.
+	      git-clone: do not forget to create origin branch.
+	      Make test-date buildable again.
+	      Do not fail on hierarchical branch names.
+	      Ignore '\r' at the end of line in $GIT_DIR/config
+	      Be careful when dereferencing tags (credits Pasky).
+	      Document --since and --until options to rev-parse.
+	      Add --no-commit to git-merge/git-pull.
+	      Add 'ours' merge strategy.
+	      git-merge-ours: make sure our index matches HEAD
+	      GIT 0.99.9c
+
+	Peter Eriksen:
+	      Clean up the SunOS Makefile rule
+
+The slow and steady march toward 1.0 continues.  
+
+I plan to do another full sweep in the documentation directory
+on my next GIT day.
+
+On the proposed updates front, I am hoping to include Nick's
+http-push using DAV in the "master" branch soon.  And I would
+appreciate somebody who actually uses svnimport to Ack on
+Yaacov's svnimport fix.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

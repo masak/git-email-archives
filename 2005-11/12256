@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 13:36:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 095172851FD
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 13:36:16 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161202AbVKRUfs (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 15:35:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161203AbVKRUfr
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 15:35:47 -0500
+Received: from pne-smtpout1-sn1.fre.skanova.net ([81.228.11.98]:15324 "EHLO
+	pne-smtpout1-sn1.fre.skanova.net") by vger.kernel.org with ESMTP
+	id S1161202AbVKRUfp (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 15:35:45 -0500
+Received: from [192.168.0.82] (213.66.95.18) by pne-smtpout1-sn1.fre.skanova.net (7.2.060.1)
+        id 437DDFC200014971; Fri, 18 Nov 2005 21:35:42 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437E3B3C.9000409@etek.chalmers.se>
+Date:	Fri, 18 Nov 2005 21:36:12 +0100
+From:	=?UTF-8?B?THVrYXMgU2FuZHN0csO2bQ==?= <lukass@etek.chalmers.se>
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051015)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+CC:	junio C Hamano <junkio@cox.net>,
+	=?UTF-8?B?THVrYXMgU2FuZHN0csO2bQ==?= <lukass@etek.chalmers.se>
+Subject: [PATCH] Remove all old packfiles when doing "git repack -a -d"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:12256
+
+No point in running git-pack-redundant if we already know 
+which packs are redundant.
+
+Signed-off-by: Lukas Sandström <lukass@etek.chalmers.se>
+---
+This should be correct. I even tested it.
+
+
+ git-repack.sh |   19 ++++++++++++++++---
+ 1 files changed, 16 insertions(+), 3 deletions(-)
+
+applies-to: 8c987c24bed7f7a30f4e74b12e8acc2cc5eeea93
+2f49d2a3a7cf0fc64edfad2febf986252392b667
+diff --git a/git-repack.sh b/git-repack.sh
+index e58fdd6..55a7b27 100755
+--- a/git-repack.sh
++++ b/git-repack.sh
+@@ -63,9 +63,22 @@ exit
+ if test "$remove_redundant" = t
+ then
+ 	sync
+-	redundant=$(git-pack-redundant --all)
+-	if test "$redundant" != "" ; then
+-		echo $redundant | xargs rm
++	if test "$all_into_one" = t
++	then
++		cd "$PACKDIR"
++		existing=`find . -type f \( -name '*.pack' -o -name '*.idx' \) -print`
++		for e in $existing
++		do
++			case "$e" in
++			./pack-$name.pack | ./pack-$name.idx) ;;
++			*)      rm -f $e ;;
++			esac
++		done
++	else
++		redundant=$(git-pack-redundant --all)
++		if test "$redundant" != "" ; then
++			echo $redundant | xargs rm
++		fi
+ 	fi
+ fi
+ 
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

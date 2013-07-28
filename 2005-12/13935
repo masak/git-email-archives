@@ -1,0 +1,101 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 04:35:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AA4CA2851FA
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 04:35:16 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932216AbVLVLfG (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 06:35:06 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932252AbVLVLfF
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 06:35:05 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:4519 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932216AbVLVLfE (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 22 Dec 2005 06:35:04 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 1B10813FD5D; Thu, 22 Dec 2005 12:35:03 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id F25939E38A; Thu, 22 Dec 2005 12:35:02 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id DEC599E231; Thu, 22 Dec 2005 12:35:02 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A7EEB13FD69; Thu, 22 Dec 2005 12:35:02 +0100 (CET)
+Date:	Thu, 22 Dec 2005 12:35:02 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Alex Riesen <raa.lkml@gmail.com>
+Cc:	Junio C Hamano <junkio@cox.net>,
+	Martin Langhoff <martin.langhoff@gmail.com>,
+	git@vger.kernel.org
+Subject: Re: git /objects directory created 755 by default?
+In-Reply-To: <81b0412b0512220211o74f7f533j11b8e48311b61ec2@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512221227190.7112@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <46a038f90512201525k5eb7cf62u65de2cd51424df37@mail.gmail.com> 
+ <7vacevgwqr.fsf@assigned-by-dhcp.cox.net>  <7vlkyffcxp.fsf@assigned-by-dhcp.cox.net>
+  <Pine.LNX.4.63.0512211502130.25834@wbgn013.biozentrum.uni-wuerzburg.de> 
+ <7vek465cev.fsf@assigned-by-dhcp.cox.net> 
+ <Pine.LNX.4.63.0512212317400.18684@wbgn013.biozentrum.uni-wuerzburg.de>
+ <81b0412b0512220211o74f7f533j11b8e48311b61ec2@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 43
+Xref: brand.scrye.com linux.git:13935
+
+Hi,
+
+On Thu, 22 Dec 2005, Alex Riesen wrote:
+
+> On 12/21/05, Johannes Schindelin <Johannes.Schindelin@gmx.de> wrote:
+> > > >
+> > > >     [core]
+> > > >             umask = 0002
+> > So, I tend to say: use core.umask only in shared setups (in which you
+> > should not checkout files unless you know exactly what you are doing).
+> 
+> May be "shell.umask" or "shared.umask" ?
+
+What would shell.umask do? Be set only when git-shell is called? Then you 
+better have the policy to access that particular repository *only* via 
+git-shell. Voila, it is the same effect as of core.umask.
+
+What would shared.umask do? Be set only when writing to GIT_DIR? This is a 
+major task, since you have to find out which writes are to the working 
+directory, which ones go to GIT_DIR.
+
+And you have to workout a policy (as I just answered in this thread) how 
+to deal with a checked out HEAD where you can't write to the working 
+directory (or at least modify the checked out files).
+
+The sanest way I can think of is either to disallow checkout, or to make 
+the files writable to the group. Both methods do fine with core.umask.
+
+Now that I think of it: A third possibility is to disallow pushing to the 
+checked out HEAD. Is this desirable? I think not. The user who works in 
+the working directory exclusively would have to keep track of the 
+pushed ref herself, instead of the user who pushed the ref. Sounds silly 
+to me.
+
+Hth,
+Dscho
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Aug 28 10:58:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CA29A1E8BB5
+	for <tkil@scrye.com>; Sun, 28 Aug 2005 10:58:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750735AbVH1Q6U (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 28 Aug 2005 12:58:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750797AbVH1Q6U
+	(ORCPT <rfc822;git-outgoing>); Sun, 28 Aug 2005 12:58:20 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:11224 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750735AbVH1Q6T (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 28 Aug 2005 12:58:19 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7SGwGjA011862
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 28 Aug 2005 09:58:17 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7SGwF0I021736;
+	Sun, 28 Aug 2005 09:58:16 -0700
+Date:	Sun, 28 Aug 2005 09:58:15 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Robert Fitzsimons <robfitz@273k.net>
+cc:	git@vger.kernel.org
+Subject: Re: [PATCH 6/9] New option --ignore-whitespace for git-apply.
+In-Reply-To: <1125242692932-git-send-email-robfitz@273k.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508280956320.3317@g5.osdl.org>
+References: <1125242692932-git-send-email-robfitz@273k.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:7871
+
+
+
+On Sun, 28 Aug 2005, Robert Fitzsimons wrote:
+>
+> Allow the user to force a patch to be applied even though there might
+> be whitespace differences.  Added a test case for the new option.
+
+If you ignore whitespace, then you should probably accept patches that are
+whitespace corrupted in another way: lines missing the ' ' at the
+beginning. Especially lines that are empty. That's actually the most 
+common form of whitespace corruption there is.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

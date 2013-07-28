@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May 18 14:30:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3DFFA101879
+	for <tkil@scrye.com>; Wed, 18 May 2005 14:30:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262345AbVERUa3 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 18 May 2005 16:30:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262353AbVERUa3
+	(ORCPT <rfc822;git-outgoing>); Wed, 18 May 2005 16:30:29 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:37786 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S262352AbVERUaT (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 18 May 2005 16:30:19 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050518203016.VOFV1367.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 18 May 2005 16:30:16 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org, pasky@ucw.cz
+Subject: Re: [PATCH 0/1] Diff-helper update
+References: <7v3bslqc94.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0505180821470.18337@ppc970.osdl.org>
+	<7v64xgpgb0.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0505181110480.18337@ppc970.osdl.org>
+	<Pine.LNX.4.58.0505181134470.18337@ppc970.osdl.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 18 May 2005 13:30:15 -0700
+In-Reply-To: <Pine.LNX.4.58.0505181134470.18337@ppc970.osdl.org> (Linus
+ Torvalds's message of "Wed, 18 May 2005 11:38:46 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vll6cnup4.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 45
+Xref: brand.scrye.com linux.git:3490
+
+>>>>> "LT" == Linus Torvalds <torvalds@osdl.org> writes:
+
+LT> I took the liberty of doing just that. The only subtle issue was that 
+LT> the strbuf functions would consider an empty line to be EOF, which looked 
+LT> wrong and unintentional. Fixing that made the actual diff-helper changes 
+LT> totally trivial, and I can now do
+LT> 	git-rev-list HEAD | git-diff-tree -r -v --stdin | ./git-diff-helper -r | less -S
+LT> and it does the right thing for me.
+
+Thanks for fixing up strbuf.
+
+@@ -136,8 +268,12 @@ int main(int ac, const char **av) {
+ 		if (sb.eof)
+ 			break;
+ 		status = parse_diff_raw_output(sb.buf, av+1, ac-1, reverse);
+-		if (status)
+-			fprintf(stderr, "cannot parse %s\n", sb.buf);
++		if (status) {
++			flush_renames(av+1, ac-1, reverse);
++			printf("%s%c", sb.buf, line_termination);
++		}
+ 	}
++
++	flush_renames(av+1, ac-1, reverse);
+ 	return 0;
+ }
+
+I suspect doing something like this might be saner instead,
+assuming non raw-diffs come at the end.  
+
+		if (status)
+			break;
+	}
+	flush_renames(av+1, ac-1, reverse);
+	if (!sb.eof) {
+        	spit out what we have in sb.eof, sendfile ;-) the
+                rest of the input to the output.
+	}
+	return 0;
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

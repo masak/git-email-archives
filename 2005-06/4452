@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun  3 01:26:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2B30C2AB36E
+	for <tkil@scrye.com>; Fri,  3 Jun 2005 01:26:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261162AbVFCH0r (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 3 Jun 2005 03:26:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261169AbVFCH0r
+	(ORCPT <rfc822;git-outgoing>); Fri, 3 Jun 2005 03:26:47 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:11232 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261162AbVFCH0q (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 3 Jun 2005 03:26:46 -0400
+Received: (qmail 17000 invoked by uid 2001); 3 Jun 2005 07:26:37 -0000
+Date:	Fri, 3 Jun 2005 09:26:37 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Sebastian Kuzminsky <seb@highlab.com>
+Cc: git@vger.kernel.org
+Subject: Re: documentation polish
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050603072637.GB16619@pasky.ji.cz>
+References: <E1De6Mp-0001AD-OQ@highlab.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1De6Mp-0001AD-OQ@highlab.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:4452
+
+Dear diary, on Fri, Jun 03, 2005 at 09:13:19AM CEST, I got a letter
+where Sebastian Kuzminsky <seb@highlab.com> told me that...
+> This large but repetitive patch polishes the docs a bit.  It does not
+> touch any files outside the Documentation directory.
+> 
+> 
+> It's against cogito-0.11.1, I can split it out into separate patches
+> for git and cogito if people want - let me know.
+
+That'd be really great. :-)
+
+Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

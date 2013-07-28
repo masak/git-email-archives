@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  9 23:48:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8C4D8F6362
+	for <tkil@scrye.com>; Tue,  9 Aug 2005 23:48:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965003AbVHJFpr (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 10 Aug 2005 01:45:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965008AbVHJFpr
+	(ORCPT <rfc822;git-outgoing>); Wed, 10 Aug 2005 01:45:47 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:22001 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S965003AbVHJFpq (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 10 Aug 2005 01:45:46 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050810054545.FOBK8651.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 10 Aug 2005 01:45:45 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc: Pavel Roskin <proski@gnu.org>, git@vger.kernel.org
+Subject: Re: Sanity check of git-commit patch, was Re: [PATCH] Making CFLAGS compilant with GNU Coding Standards
+References: <1123306575.7588.17.camel@dv.roinet.com>
+	<7vy87c2lrv.fsf@assigned-by-dhcp.cox.net>
+	<20050808231036.GA22778@mythryan2.michonline.com>
+	<Pine.LNX.4.63.0508090140100.3695@wgmdd8.biozentrum.uni-wuerzburg.de>
+	<7vpssnyge0.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.63.0508091212170.6752@wgmdd8.biozentrum.uni-wuerzburg.de>
+	<7vu0hzw9sx.fsf@assigned-by-dhcp.cox.net>
+Date:	Tue, 09 Aug 2005 22:45:44 -0700
+In-Reply-To: <7vu0hzw9sx.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Tue, 09 Aug 2005 05:53:50 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vd5oms5tj.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:7013
+
+Junio C Hamano <junkio@cox.net> writes:
+
+>> - Multiple -m options was actually a feature of my version of the patch.
+>
+> Ah, OK.
+
+I said "OK" and thought about it again.  While thinking about
+what is the right inter-message-piece separator for multiple -m
+parameters (you use "\n"), I got a headache.  I decided to keep
+what is already there after all ;-).
+
+I'll push things out tonight and expect to tag things tomorrow
+late afternoon to declare 0.99.4
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

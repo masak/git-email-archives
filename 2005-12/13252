@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec  6 00:32:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A656D101962
+	for <tkil@scrye.com>; Tue,  6 Dec 2005 00:32:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751463AbVLFHbn (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Dec 2005 02:31:43 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751464AbVLFHbn
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Dec 2005 02:31:43 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:62396 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1751463AbVLFHbm (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 6 Dec 2005 02:31:42 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051206073056.DMAC6244.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 6 Dec 2005 02:30:56 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Subject: Re: [PATCH] Clean up compatibility definitions.
+References: <81b0412b0512050519k5ed80035x9eb4907f569e0a4b@mail.gmail.com>
+	<81b0412b0512050524w7b632651n93c836fda41a39d@mail.gmail.com>
+	<7vfyp7cuii.fsf@assigned-by-dhcp.cox.net>
+	<7voe3vb8fh.fsf@assigned-by-dhcp.cox.net>
+	<20051205215059.GC4443@steel.home>
+	<7vr78r9pg0.fsf@assigned-by-dhcp.cox.net>
+	<81b0412b0512052315p1917a04ek264c14abf41a1027@mail.gmail.com>
+cc:	git@vger.kernel.org
+Date:	Mon, 05 Dec 2005 23:31:41 -0800
+In-Reply-To: <81b0412b0512052315p1917a04ek264c14abf41a1027@mail.gmail.com>
+	(Alex Riesen's message of "Tue, 6 Dec 2005 08:15:16 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vk6ei65r6.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 12
+Xref: brand.scrye.com linux.git:13252
+
+Alex Riesen <raa.lkml@gmail.com> writes:
+
+> ... return MAP_FAILED if error, do not
+> exit process, do no output.
+
+Ah, that is what you meant.  I agree.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

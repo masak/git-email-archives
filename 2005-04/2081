@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 16:30:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E7693170C10
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 16:30:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262305AbVD1W2s (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 18:28:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262303AbVD1W2M
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 18:28:12 -0400
+Received: from cantor2.suse.de ([195.135.220.15]:14529 "EHLO mx2.suse.de")
+	by vger.kernel.org with ESMTP id S262298AbVD1W15 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Apr 2005 18:27:57 -0400
+Received: from extimap.suse.de (extimap.suse.de [195.135.220.6])
+	(using TLSv1 with cipher EDH-RSA-DES-CBC3-SHA (168/168 bits))
+	(No client certificate requested)
+	by mx2.suse.de (Postfix) with ESMTP id 31B3C98A6;
+	Fri, 29 Apr 2005 00:27:57 +0200 (CEST)
+Received: from watt.suse.com (cpe-66-66-175-36.rochester.res.rr.com [66.66.175.36])
+	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	(Client did not present a certificate)
+	by extimap.suse.de (Postfix) with ESMTP
+	id D63D714ED3C; Fri, 29 Apr 2005 00:27:56 +0200 (CEST)
+From: Chris Mason <mason@suse.com>
+To: Kay Sievers <kay.sievers@vrfy.org>
+Subject: Re: Finding file revisions
+Date:	Thu, 28 Apr 2005 18:27:54 -0400
+User-Agent: KMail/1.8
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+References: <200504271251.00635.mason@suse.com> <200504281658.39300.mason@suse.com> <1114723987.4212.51.camel@localhost.localdomain>
+In-Reply-To: <1114723987.4212.51.camel@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200504281827.54553.mason@suse.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 33
+Xref: brand.scrye.com linux.git:2081
+
+On Thursday 28 April 2005 17:33, Kay Sievers wrote:
+> Sure. But file-changes lists the commit:
+>   c79bea07ec4d3ef087962699fe8b2f6dc5ca7754
+>
+> when asked for:
+>   "drivers/usb/core/usb.c"
+>
+> and that file isn't touched there. Actually it lists merge-commits which
+> are not related to the file.
+
+Ok, this is what Daniel and David were talking about.  When we've got commit 
+with multiple parents, we'll find the file at least one more time than it was 
+really changed.  Looking at the results on git web, it's easy it ignore the 
+merge sets as noise, but it would be nice if we only printed the merge set 
+when it made some change to the file the original cset being merged did not.
+
+I had misread your first mail, thinking that you had developed this 
+independently and solved these issues ;)  The problem is that if we do a true 
+depth first search, it seems like we'll have to keep a potentially unbounded 
+amount of data in order to find the first changeset that happened to create a 
+given sha1.  I'd really rather print the mergeset and let the user figure it 
+out.
+
+But, we're not really printing a merge set so much as we're printing the 
+complete diff of what was merged.  Is there some way to see what changes had 
+to be done in order to resolve conflicts during a merge?
+
+-chris
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 18 21:53:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8CAC11D3321
+	for <tkil@scrye.com>; Sun, 18 Dec 2005 21:53:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030262AbVLSEw6 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Dec 2005 23:52:58 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030263AbVLSEw6
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Dec 2005 23:52:58 -0500
+Received: from mail.dvmed.net ([216.237.124.58]:61572 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S1030262AbVLSEw5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 18 Dec 2005 23:52:57 -0500
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1EoD0w-0000jV-HW; Mon, 19 Dec 2005 04:52:48 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43A63C9B.7080306@pobox.com>
+Date:	Sun, 18 Dec 2005 23:52:43 -0500
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	"Brown, Len" <len.brown@intel.com>
+CC:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org,
+	"Luck, Tony" <tony.luck@intel.com>
+Subject: Re: using-topic-branches.txt
+References: <F7DC2337C7631D4386A2DF6E8FB22B30056F93AC@hdsmsx401.amr.corp.intel.com>
+In-Reply-To: <F7DC2337C7631D4386A2DF6E8FB22B30056F93AC@hdsmsx401.amr.corp.intel.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 42
+Xref: brand.scrye.com linux.git:13803
+
+Brown, Len wrote:
+>>file:4698abe46bff0b878dcfcd05771f5760483b4278 -> file:494429738f8f86bbe21f38b5f90cc94344ad0630
+>>--- a/Documentation/howto/using-topic-branches.txt
+>>+++ b/Documentation/howto/using-topic-branches.txt
+>>@@ -31,7 +31,7 @@ test tree and then pull to the release t
+>>patches blocked in the test tree waiting for complex changes to accumulate
+>>enough test time to graduate.
+>>-Back in the BitKeeper days I achieved this my creating small forests of
+>>+Back in the BitKeeper days I achieved this by creating small forests of
+>>temporary trees, one tree for each logical grouping of patches, and then
+>>pulling changes from these trees first to the test tree, and then to the
+>>release tree. At first I replicated this in GIT, but then I realised
+>>@@ -42,7 +42,8 @@ So here is the step-by-step guide how th
+>>First create your work tree by cloning Linus's public tree:
+>>- $ git clone rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git work
+>>+ $ git clone \
+>>+ master.kernel.org:/pub/scm/linux/kernel/git/torvalds/linux-2.6.git work
+>>Change directory into the cloned tree you just created
+>>@@ -52,7 +53,7 @@ Set up a remotes file so that you can fe
+>>branch into a local branch named "linus":
+>>$ cat > .git/remotes/linus
+>>- URL: rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+>>+ URL: master.kernel.org:/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+>>Pull: master:linus
+>>^D
+> 
+> 
+> This works for me, but now it requires a password to update
+> when before it did not.
+
+master.kernel.org is non-public, so it shouldn't be mentioned in 
+documentation...
+
+	Jeff
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

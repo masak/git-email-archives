@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov  4 08:58:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.3 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C4F251155CB
+	for <tkil@scrye.com>; Fri,  4 Nov 2005 08:58:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161149AbVKDP50 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 4 Nov 2005 10:57:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161158AbVKDP50
+	(ORCPT <rfc822;git-outgoing>); Fri, 4 Nov 2005 10:57:26 -0500
+Received: from DELFT.AURA.CS.CMU.EDU ([128.2.206.88]:13213 "EHLO
+	delft.aura.cs.cmu.edu") by vger.kernel.org with ESMTP
+	id S1161149AbVKDP5Z (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 4 Nov 2005 10:57:25 -0500
+Received: from jaharkes by delft.aura.cs.cmu.edu with local (Exim 3.36 #1 (Debian))
+	id 1EY3wA-0000kO-00; Fri, 04 Nov 2005 10:57:06 -0500
+Date:	Fri, 4 Nov 2005 10:57:06 -0500
+To:	Erik Mouw <erik@harddisk-recovery.com>
+Cc:	git@vger.kernel.org
+Subject: Re: Tags not transferred with git pull?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051104155706.GA2473@delft.aura.cs.cmu.edu>
+Mail-Followup-To: Erik Mouw <erik@harddisk-recovery.com>,
+	git@vger.kernel.org
+References: <20051104155314.GB23790@harddisk-recovery.nl>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051104155314.GB23790@harddisk-recovery.nl>
+User-Agent: Mutt/1.5.9i
+From:	Jan Harkes <jaharkes@cs.cmu.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:11128
+
+On Fri, Nov 04, 2005 at 04:53:14PM +0100, Erik Mouw wrote:
+> Is it OK that the latest git (0.99.9c) doesn't get the tags
+> (refs/tags/*) when doing a git pull? It's getting a bit of a nuisance
+> to do a separate rsync to get them right.
+
+You don't need to fall back on rsync,
+
+    git fetch --tags
+
+Jan
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

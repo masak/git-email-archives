@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 02:46:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BAA942851FA
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 02:46:03 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965148AbVLVJpz (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 04:45:55 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965149AbVLVJpz
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 04:45:55 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:47744 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S965148AbVLVJpy
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 22 Dec 2005 04:45:54 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id A6FFA6BD02
+	for <git@vger.kernel.org>; Thu, 22 Dec 2005 10:45:53 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43AA75D1.7040009@op5.se>
+Date:	Thu, 22 Dec 2005 10:45:53 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: git /objects directory created 755 by default?
+References: <46a038f90512201525k5eb7cf62u65de2cd51424df37@mail.gmail.com> <7vacevgwqr.fsf@assigned-by-dhcp.cox.net> <7vlkyffcxp.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0512211502130.25834@wbgn013.biozentrum.uni-wuerzburg.de> <7vek465cev.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0512212317400.18684@wbgn013.biozentrum.uni-wuerzburg.de>
+In-Reply-To: <Pine.LNX.4.63.0512212317400.18684@wbgn013.biozentrum.uni-wuerzburg.de>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:13928
+
+Johannes Schindelin wrote:
+> Hi,
+> 
+> On Wed, 21 Dec 2005, Junio C Hamano wrote:
+> 
+> 
+>>Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+>>
+>>
+>>>If you don't use git-shell, because the same machine is used for other 
+>>>purposes, it makes sense to introduce
+>>>
+>>>	[core]
+>>>		umask = 0002
+>>
+>>I agree the setting should not be limited to git-shell, but I do
+>>not think setting "umask" from git configuration is the right
+>>way either.  For files and directories under $GIT_DIR, maybe
+>>imposing the policy git configuration file has is OK, but I
+>>think honoring the user's umask is the right thing for working
+>>tree files.
+> 
+> 
+> As we worked out in another thread, you should not have a working 
+> directory when you write-share the repository.
+> 
+
+Which thread was that? I see no particular problem with having a working 
+directory in a write-shared repo. The same care has to be taken there as 
+everywhere (pull before push), but that's nothing new.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

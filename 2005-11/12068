@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 17:46:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9AA63BE09B
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 17:46:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161055AbVKQAqi (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 19:46:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161056AbVKQAqi
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 19:46:38 -0500
+Received: from 195.37.26.69.virtela.com ([69.26.37.195]:47190 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S1161055AbVKQAqi (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 19:46:38 -0500
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id jAH0kMLf027605;
+	Wed, 16 Nov 2005 16:46:22 -0800
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id jAH0kLZ9027603;
+	Wed, 16 Nov 2005 16:46:21 -0800
+Date:	Wed, 16 Nov 2005 16:46:21 -0800
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	Andrew Wozniak <awozniak@mc.com>, Junio C Hamano <junkio@cox.net>,
+	git@vger.kernel.org
+Subject: Re: recent patch breaks the build ?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051117004621.GB3968@reactrix.com>
+References: <437B6997.8010903@mc.com> <7v64qs8kuo.fsf@assigned-by-dhcp.cox.net> <437B8CEC.8040002@mc.com> <20051116203334.GA3968@reactrix.com> <Pine.LNX.4.63.0511170023040.9284@wbgn013.biozentrum.uni-wuerzburg.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.63.0511170023040.9284@wbgn013.biozentrum.uni-wuerzburg.de>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:12068
+
+On Thu, Nov 17, 2005 at 12:25:06AM +0100, Johannes Schindelin wrote:
+
+> It was 7.8.1. I checked. You might want to add this somewhere:
+> 
+> #if LIBCURL_VERSION_NUM < 0x070801
+> #error http-push needs curl >= 7.8.1 (because of CURLOPT_HTTPGET)
+> #endif
+
+Is it worth trying to figure this out in the Makefile instead, using eg.
+curl-config --vernum?
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov  4 08:52:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_GL 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 342A76D084
+	for <tkil@scrye.com>; Fri,  4 Nov 2005 08:52:31 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161150AbVKDPrZ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 4 Nov 2005 10:47:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161148AbVKDPrY
+	(ORCPT <rfc822;git-outgoing>); Fri, 4 Nov 2005 10:47:24 -0500
+Received: from coyote.holtmann.net ([217.160.111.169]:48527 "EHLO
+	mail.holtmann.net") by vger.kernel.org with ESMTP id S1161145AbVKDPrW
+	(ORCPT <rfc822;git@vger.kernel.org>); Fri, 4 Nov 2005 10:47:22 -0500
+Received: from localhost.localdomain (localhost [127.0.0.1])
+	by mail.holtmann.net (8.12.3/8.12.3/Debian-7.1) with ESMTP id jA4FlLGB032248
+	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NO);
+	Fri, 4 Nov 2005 16:47:21 +0100
+Subject: Re: Problem cloning the Linux history tree
+From:	Marcel Holtmann <marcel@holtmann.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
+In-Reply-To: <7vmzkl3yl0.fsf@assigned-by-dhcp.cox.net>
+References: <1131008187.6634.14.camel@localhost.localdomain>
+	 <7vmzkl3yl0.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+Date:	Fri, 04 Nov 2005 16:47:20 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1131119240.11673.6.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV 0.85.1/1162/Thu Nov  3 18:15:03 2005 on coyote.holtmann.net
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:11126
+
+Hi Thomas,
+
+> > # cg-clone http://www.kernel.org/pub/scm/linux/kernel/git/tglx/history.git
+> > defaulting to local storage area
+> > 09:53:02 URL:http://www.kernel.org/pub/scm/linux/kernel/git/tglx/history.git/HEAD [41/41] -> "refs/heads/.origin-fetching" [1]
+> > Getting alternates list
+> > Getting pack list
+> > error: The requested URL returned error: 404
+> 
+> That repository is packed but lacks objects/info/packs file.
+> Perhaps you need to ask tglx to run git-update-server-info in
+> the repository.
+
+can please try to fix it according to Junio's proposal.
+
+Regards
+
+Marcel
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

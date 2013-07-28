@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 11 19:09:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4404432221A
+	for <tkil@scrye.com>; Tue, 11 Oct 2005 19:09:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932369AbVJLBJY (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 11 Oct 2005 21:09:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932368AbVJLBJY
+	(ORCPT <rfc822;git-outgoing>); Tue, 11 Oct 2005 21:09:24 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:17816 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932369AbVJLBJX (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 11 Oct 2005 21:09:23 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9C19A4s014511
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Oct 2005 18:09:10 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9C1991k007035;
+	Tue, 11 Oct 2005 18:09:09 -0700
+Date:	Tue, 11 Oct 2005 18:09:09 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Make git config variable names case-insensitive
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510111803540.14597@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.124 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:9986
+
+
+They always were meant to be case-insensitive, but I had missed one 
+"tolower()", making that not true.
+
+The actual _values_ aren't case-insensitive, of course, although some uses 
+of them may be (ie boolean parsing uses "strcasecmp()" to match against 
+the strings "true" and "false").
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+
+This should independent of the other patch - it should apply whether 
+you've taken the [user]name/email config thing or not. But it was 
+generated on top of that change.
+
+
+diff --git a/config.c b/config.c
+index cf80358..9b7c6f2 100644
+--- a/config.c
++++ b/config.c
+@@ -168,7 +168,7 @@ static int git_parse_file(config_fn_t fn
+ 		}
+ 		if (!isalpha(c))
+ 			break;
+-		var[baselen] = c;
++		var[baselen] = tolower(c);
+ 		if (get_value(fn, var, baselen+1) < 0)
+ 			break;
+ 	}
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

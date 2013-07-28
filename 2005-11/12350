@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 19 18:15:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0B34520825C
+	for <tkil@scrye.com>; Sat, 19 Nov 2005 18:15:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751116AbVKTBPU (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 19 Nov 2005 20:15:20 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751122AbVKTBPU
+	(ORCPT <rfc822;git-outgoing>); Sat, 19 Nov 2005 20:15:20 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:47597 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751116AbVKTBPT (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 19 Nov 2005 20:15:19 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6EE9A13FDDE; Sun, 20 Nov 2005 02:15:16 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4D472B526B; Sun, 20 Nov 2005 02:15:16 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 2F88BB34DF; Sun, 20 Nov 2005 02:15:16 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 979B713FDDE; Sun, 20 Nov 2005 02:15:15 +0100 (CET)
+Date:	Sun, 20 Nov 2005 02:15:15 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	"Randal L. Schwartz" <merlyn@stonehenge.com>
+Cc:	git@vger.kernel.org
+Subject: Re: what is "rebase"?
+In-Reply-To: <86fyps8bl1.fsf@blue.stonehenge.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511200214280.11653@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <86fyps8bl1.fsf@blue.stonehenge.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:12350
+
+Hi,
+
+On Sun, 19 Nov 2005, Randal L. Schwartz wrote:
+
+> Can someone point me to a simple explanation of what "rebase" is?
+
+How about the definition in Documentation/glossary.txt?
+
+> rebase::
+>         To clean a branch by starting from the head of the main line of
+>         development ("master"), and reapply the (possibly cherry-picked)
+>         changes from that branch.
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

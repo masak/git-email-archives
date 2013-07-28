@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 21:07:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 58BF23F021
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 21:07:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750927AbVHXDHs (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 23 Aug 2005 23:07:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750929AbVHXDHs
+	(ORCPT <rfc822;git-outgoing>); Tue, 23 Aug 2005 23:07:48 -0400
+Received: from iabervon.org ([66.92.72.58]:14605 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1750926AbVHXDHs (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 23 Aug 2005 23:07:48 -0400
+Received: (qmail 18932 invoked by uid 1000); 23 Aug 2005 23:11:20 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 23 Aug 2005 23:11:20 -0400
+Date:	Tue, 23 Aug 2005 23:11:20 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Len Brown <len.brown@intel.com>,
+	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: Automatic merge failed, fix up by hand
+In-Reply-To: <7v3bp0m9ax.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508232231110.23242@iabervon.org>
+References: <1124831571.13042.27.camel@firebird.lenb.worldpath.net>
+ <7vhddgnw9q.fsf@assigned-by-dhcp.cox.net> <1124836282.14730.4.camel@toshiba>
+ <7vzmr8mci2.fsf@assigned-by-dhcp.cox.net> <7vek8kmb2a.fsf@assigned-by-dhcp.cox.net>
+ <7v3bp0m9ax.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 47
+Xref: brand.scrye.com linux.git:7691
+
+On Tue, 23 Aug 2005, Junio C Hamano wrote:
+
+> Only lightly tested, in the sense that I did only this one case
+> and nothing else.  For a large repository and with complex
+> merges, "merge-base -a" _might_ end up reporting many
+> candidates, in which case the pre-merge step to figure out the
+> best merge base may turn out to be disastrously slow.  I dunno.
+
+I think it's the right thing to do for now (and what I was going to
+suggest), and if people find it too slow, we can consider teaching
+read-tree to take multiple common ancestors and use any of them that gives
+clear result on a per-file basis.
+
+On the other hand, Tony might have hit a bad case with an ill-chosen
+common ancestor for a patch/revert sequence, and we probably want to look
+into that if we've got some history that demonstrates the problem. I think
+that, if there are two common ancestors, one of which has applied a patch
+and one of which hasn't, and on one side of the merge it gets reverted, we
+should get the revert, but we'll only get it if we choose the ancestor
+where it was applied.
+
+(Letters are versions of the file, which 'b' being the bad patch; the
+ second column is the two choices for common ancestor)
+
+  a-b-a-?
+ / X   /
+a-b-b-b
+
+Of course, you could have the two lines exactly flipped for a different
+file in the same commits, or for a different hunk in the same file, and
+there would be no single choice that doesn't lose the revert. The really
+right thing to do is identify that there is a b->a transition that is not
+a trivial merge and that is not beyond a common ancestor, but that's hard
+to determine easily and with sufficient granularity to catch everything.
+
+I still someday want to do a version of diff/merge for git that could
+select common ancestors on a per-hunk basis and identify block moves and
+avoid giving confusing (but marginally shorter) diffs, but that's a major
+undertaking that I don't have time for right now.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

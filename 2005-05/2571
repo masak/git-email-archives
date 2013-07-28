@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May  4 17:04:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B77066B4E
+	for <tkil@scrye.com>; Wed,  4 May 2005 17:04:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261948AbVEDXD7 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 4 May 2005 19:03:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261949AbVEDXD7
+	(ORCPT <rfc822;git-outgoing>); Wed, 4 May 2005 19:03:59 -0400
+Received: from iabervon.org ([66.92.72.58]:59141 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261948AbVEDXD5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 4 May 2005 19:03:57 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DTStp-0004oD-00; Wed, 4 May 2005 19:03:25 -0400
+Date:	Wed, 4 May 2005 19:03:25 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: "David A. Wheeler" <dwheeler@dwheeler.com>
+Cc: "H. Peter Anvin" <hpa@zytor.com>,
+	Junio C Hamano <junkio@cox.net>, Linus Torvalds <torvalds@osdl.org>,
+	Andreas Gal <gal@uci.edu>, Kay Sievers <kay.sievers@vrfy.org>,
+	git@vger.kernel.org
+Subject: Re: git and symlinks as tracked content
+In-Reply-To: <4278EEC6.2090607@dwheeler.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0505041854040.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 36
+Xref: brand.scrye.com linux.git:2571
+
+On Wed, 4 May 2005, David A. Wheeler wrote:
+
+> Once you're there, it wouldn't be hard to add logic to add options to
+> (1) record the REAL permission bits, (2) record "." files, and
+> (3) recover the permission bits.  That would be enough to
+> store & recover in a distributed way a single person's home directory.
+> THAT might be darn useful, for those of us who float between
+> different systems & would like to use a single system for multiple purposes.
+> That's clearly beyond the scope of a typical SCM, but since
+> it's easy to get there, that'd make sense.
+
+The status quo with respect to the permissions is actually the correct
+thing for an SCM, because you want to generate the corresponding tree for
+a different user (e.g., with the other user's umask applied, etc.), not
+the same tree.
+
+This is a situation in which doing 90% of one thing, and then supporting
+90% of something else separately is best. What you really want is to have
+a "directory" object type that stores the exact permissions, and the
+uid/gid, and even xattr stuff. Then you use those for distributing your
+home directory, but not for distributing source trees, where that stuff is
+useless and somewhat wrong. You could probably have the same kind of
+commit objects, although you still need some way of figuring out what kind
+of object is desired for the directories in a commit.
+
+(on the other hand, it might make sense for git to handle files starting
+with '.', and only skip .git).
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

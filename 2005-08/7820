@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 26 18:23:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 274CB27B02C
+	for <tkil@scrye.com>; Fri, 26 Aug 2005 18:23:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965180AbVH0AXV (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 26 Aug 2005 20:23:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965181AbVH0AXV
+	(ORCPT <rfc822;git-outgoing>); Fri, 26 Aug 2005 20:23:21 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:53930 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965180AbVH0AXV (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 26 Aug 2005 20:23:21 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7R0NBjA022097
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 26 Aug 2005 17:23:11 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7R0NAPN005496;
+	Fri, 26 Aug 2005 17:23:10 -0700
+Date:	Fri, 26 Aug 2005 17:23:10 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Daniel Barkalow <barkalow@iabervon.org>,
+	Martin Langhoff <martin.langhoff@gmail.com>,
+	GIT <git@vger.kernel.org>
+Subject: Re: Storing state in $GIT_DIR
+In-Reply-To: <7virxti6y5.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508261722410.3317@g5.osdl.org>
+References: <46a038f905082420323b025e3b@mail.gmail.com>
+ <Pine.LNX.4.58.0508251053000.3317@g5.osdl.org> <46a038f905082518306e9d7d2a@mail.gmail.com>
+ <Pine.LNX.4.58.0508252051400.3317@g5.osdl.org> <46a038f90508252115415acc04@mail.gmail.com>
+ <7v3boxl3o1.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0508260101390.23242@iabervon.org>
+ <Pine.LNX.4.58.0508252219520.3317@g5.osdl.org> <7virxti6y5.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:7820
+
+
+
+On Thu, 25 Aug 2005, Junio C Hamano wrote:
+> 
+> "v0.99.5^0" means "look at the named object v0.99.5, dereference
+> it repeatedly until you get a non-tag, and take the result,
+> which had better be a commit".  If a tag can contain more than
+> one pointers, I do not know what it means.
+
+Yeah, we'd have to either just say "I can't do that, Dave", or specify 
+that it only looks at the first object in the list.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

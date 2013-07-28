@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  9 20:57:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 596AE28A90D
+	for <tkil@scrye.com>; Mon,  9 May 2005 20:57:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261469AbVEJC4w (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 9 May 2005 22:56:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261470AbVEJC4w
+	(ORCPT <rfc822;git-outgoing>); Mon, 9 May 2005 22:56:52 -0400
+Received: from omx3-ext.sgi.com ([192.48.171.20]:63173 "EHLO omx3.sgi.com")
+	by vger.kernel.org with ESMTP id S261469AbVEJC4u (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 9 May 2005 22:56:50 -0400
+Received: from cthulhu.engr.sgi.com (cthulhu.engr.sgi.com [192.26.80.2])
+	by omx3.sgi.com (8.12.11/8.12.9/linux-outbound_gateway-1.1) with ESMTP id j4A3Niuv005974;
+	Mon, 9 May 2005 20:23:44 -0700
+Received: from vpn2 (mtv-vpn-hw-pj-2.corp.sgi.com [134.15.25.219])
+	by cthulhu.engr.sgi.com (SGI-8.12.5/8.12.5) with SMTP id j4A2uk5w23692803;
+	Mon, 9 May 2005 19:56:46 -0700 (PDT)
+Date:	Mon, 9 May 2005 19:56:45 -0700
+From: Paul Jackson <pj@sgi.com>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: Re: optimize gitdiff-do script
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050509195645.1af2383c.pj@sgi.com>
+In-Reply-To: <20050418183038.GB5554@pasky.ji.cz>
+References: <20050416232749.23430.93360.sendpatchset@sam.engr.sgi.com>
+	<20050416232810.23430.78712.sendpatchset@sam.engr.sgi.com>
+	<20050416234344.GQ19099@pasky.ji.cz>
+	<20050416171009.0bedbab4.pj@sgi.com>
+	<20050418082334.25359013.pj@sgi.com>
+	<20050418183038.GB5554@pasky.ji.cz>
+Organization: SGI
+X-Mailer: Sylpheed version 1.0.0 (GTK+ 1.2.10; i686-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:2920
+
+Weeks ago, Pasky replied to pj:
+> >  1) How do you want me to fix the indentation on my patch
+> >     to optimize gitdiff-do script:
+> > 	- forget my first patch and resend from scratch, or
+> > 	- a second patch restoring indentation, on top of my first one.
+> 
+> Resend from scratch, please.
+
+As was already no doubt obvious to everyone but me,
+I'm not going to get to this.  Sorry.  Good luck.
+
+-- 
+                  I won't rest till it's the best ...
+                  Programmer, Linux Scalability
+                  Paul Jackson <pj@engr.sgi.com> 1.650.933.1373, 1.925.600.0401
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

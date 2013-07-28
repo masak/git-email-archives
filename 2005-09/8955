@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 21:31:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5772E10605A
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 21:31:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964857AbVITD3x (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 23:29:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964858AbVITD3x
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 23:29:53 -0400
+Received: from inti.inf.utfsm.cl ([200.1.21.155]:17621 "EHLO inti.inf.utfsm.cl")
+	by vger.kernel.org with ESMTP id S964857AbVITD3w (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Sep 2005 23:29:52 -0400
+Received: from inti.inf.utfsm.cl (localhost.localdomain [127.0.0.1])
+	by inti.inf.utfsm.cl (8.13.4/8.13.1) with ESMTP id j8JLwiFY029891;
+	Mon, 19 Sep 2005 17:58:45 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200509192158.j8JLwiFY029891@inti.inf.utfsm.cl>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+cc:	Dmitry Torokhov <dtor_core@ameritech.net>, git@vger.kernel.org
+Subject: Re: Garbage in .git directories??? 
+In-Reply-To: Message from "H. Peter Anvin" <hpa@zytor.com> 
+   of "Mon, 19 Sep 2005 12:10:19 MST." <432F0D1B.60303@zytor.com> 
+X-Mailer: MH-E 7.4.2; nmh 1.1; XEmacs 21.4 (patch 17)
+Date:	Mon, 19 Sep 2005 17:58:44 -0400
+From:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:8955
+
+H. Peter Anvin <hpa@zytor.com> wrote:
+
+[...]
+
+> FWIW, using cg-clone (using git-core 0.99.6 and cogito 0.14.1) I keep
+> finding a directory in .git which consists of a single DEL character
+> (\177).
+
+Using latest cogito (0.15 63ef5488c38b6660c72f042d4aa3015d72a3bd28) +
+latest git (0.99.7), cloning locally I don't see that. My older
+repositories (cloned over the net at various times or made locally) don't
+show it either.
+-- 
+Dr. Horst H. von Brand                   User #22616 counter.li.org
+Departamento de Informatica                     Fono: +56 32 654431
+Universidad Tecnica Federico Santa Maria              +56 32 654239
+Casilla 110-V, Valparaiso, Chile                Fax:  +56 32 797513
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

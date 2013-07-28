@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 10:07:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EEA212B0560
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 10:07:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965012AbVKVRG2 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 12:06:28 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965014AbVKVRG2
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 12:06:28 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:4578 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S965012AbVKVRG2 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 12:06:28 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051122170547.UPWE20875.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 22 Nov 2005 12:05:47 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Franck <vagabon.xyz@gmail.com>
+Subject: Re: [QUESTION] Access to a huge GIT repository.
+References: <cda58cb80511160424j1acac7c6j@mail.gmail.com>
+	<cda58cb80511171347yef4f090g@mail.gmail.com>
+	<Pine.LNX.4.64.0511171443000.13959@g5.osdl.org>
+	<cda58cb80511190423w1e46bf5bu@mail.gmail.com>
+	<Pine.LNX.4.64.0511190953520.13959@g5.osdl.org>
+	<7vzmo04dpl.fsf@assigned-by-dhcp.cox.net>
+	<cda58cb80511211211l2ff6ff12j@mail.gmail.com>
+	<7vhda5pw6l.fsf@assigned-by-dhcp.cox.net>
+	<cda58cb80511220122r76ca69a2y@mail.gmail.com>
+	<7vfyppf1va.fsf@assigned-by-dhcp.cox.net>
+	<cda58cb80511220240u45267b18o@mail.gmail.com>
+cc:	git@vger.kernel.org
+Date:	Tue, 22 Nov 2005 09:06:20 -0800
+In-Reply-To: <cda58cb80511220240u45267b18o@mail.gmail.com>
+	(vagabon.xyz@gmail.com's message of "Tue, 22 Nov 2005 11:40:36 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x18fw8j.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12545
+
+Franck <vagabon.xyz@gmail.com> writes:
+
+> It seems that the "lite" repository can't be used as a working
+> repository.
+>...
+> Do you have any clues ?
+
+Were you around on this list, around the beginning of this
+month?  The thread that starts here may be of interest:
+
+	http://marc.theaimsgroup.com/?l=git&m=113089701819420
+
+I think (although I do not exactly know how the "lite"
+repository was constructed) what you are doing is similar to
+what I called "shallow clone" there in that thread.  At the end
+of the thread I think I listed what you can and cannot do in
+such an incomplete repository.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

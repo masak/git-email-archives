@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 30 06:15:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 98CD66F84
+	for <tkil@scrye.com>; Sat, 30 Apr 2005 06:15:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261205AbVD3MPj (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 30 Apr 2005 08:15:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261206AbVD3MPj
+	(ORCPT <rfc822;git-outgoing>); Sat, 30 Apr 2005 08:15:39 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:25521 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S261205AbVD3MPf (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 30 Apr 2005 08:15:35 -0400
+Received: from shinybook.infradead.org ([81.187.226.99])
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DRqsW-0006f0-My; Sat, 30 Apr 2005 13:15:25 +0100
+Subject: Re: Trying to use AUTHOR_DATE
+From: David Woodhouse <dwmw2@infradead.org>
+To: Kay Sievers <kay.sievers@vrfy.org>
+Cc: Edgar Toernig <froese@gmx.de>,
+	Linus Torvalds <torvalds@osdl.org>, "H. Peter Anvin" <hpa@zytor.com>,
+	"Luck, Tony" <tony.luck@intel.com>, git@vger.kernel.org
+In-Reply-To: <1114862920.17673.1.camel@localhost.localdomain>
+References: <B8E391BBE9FE384DAA4C5C003888BE6F035EDE2C@scsmsx401.amr.corp.intel.com>
+	 <42730061.5010106@zytor.com>
+	 <Pine.LNX.4.58.0504292101230.2296@ppc970.osdl.org>
+	 <Pine.LNX.4.58.0504292114580.2296@ppc970.osdl.org>
+	 <20050430125333.2bd81b18.froese@gmx.de>
+	 <1114859594.24014.60.camel@localhost.localdomain>
+	 <1114862920.17673.1.camel@localhost.localdomain>
+Content-Type: text/plain
+Date:	Sat, 30 Apr 2005 13:13:40 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114863221.24014.68.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-1) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:2227
+
+On Sat, 2005-04-30 at 14:08 +0200, Kay Sievers wrote:
+> Yes, some have half-hour offsets:
+> http://www.timeanddate.com/library/abbreviations/timezones/au/nft.html
+
+That doesn't count -- that timezone is honoured all year round. We're
+talking about the difference between wintertime and summertime in any
+given locale.
+
+TBH I think I'd rather just put a gmt_mktime() which uses my trick of
+looking at tm.tm_gmtoff after the mktime call into a separate file
+wrapped in #ifdef GLIBC and let anyone else who really cares about their
+own non-BSD-compatible system worry about whether it works there and fix
+it up accordingly.
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

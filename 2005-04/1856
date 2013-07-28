@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 11:45:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 8DE09F7934
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 11:45:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261853AbVD0Rn4 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Apr 2005 13:43:56 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261842AbVD0RnU
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Apr 2005 13:43:20 -0400
+Received: from mailwasher.lanl.gov ([192.65.95.54]:40099 "EHLO
+	mailwasher-b.lanl.gov") by vger.kernel.org with ESMTP
+	id S261841AbVD0RlA (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 27 Apr 2005 13:41:00 -0400
+Received: from w-mail.lanl.gov (w-mail.lanl.gov [128.165.4.47])
+	by mailwasher-b.lanl.gov (8.12.11/8.12.11/(ccn-5)) with ESMTP id j3RHetp6025034
+	for <git@vger.kernel.org>; Wed, 27 Apr 2005 11:40:55 -0600
+Received: from [128.165.67.197] (spc7.esa.lanl.gov [128.165.67.197])
+	by w-mail.lanl.gov (8.12.11/8.12.11/(ccn-5)) with ESMTP id j3RHeoIg024223;
+	Wed, 27 Apr 2005 11:40:51 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <426FCEA2.5000708@mesatop.com>
+Date:	Wed, 27 Apr 2005 11:40:50 -0600
+From: Steven Cole <elenstev@mesatop.com>
+User-Agent: Thunderbird 1.0 (Multics)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Steven Cole <elenstev@mesatop.com>
+Cc: Andrew Morton <akpm@osdl.org>, Petr Baudis <pasky@ucw.cz>,
+	git@vger.kernel.org
+Subject: Re: I'm missing isofs.h
+References: <20050426214338.32e9ac27.akpm@osdl.org> <426FB03B.9090509@mesatop.com>
+In-Reply-To: <426FB03B.9090509@mesatop.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-PMX-Version: 4.7.0.111621
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 36
+Xref: brand.scrye.com linux.git:1856
+
+Steven Cole wrote:
+> Andrew Morton wrote:
+> 
+>> In a current tree, using git-pasky-0.7:
+>>
+>> bix:/usr/src/git26> cat .git/tags/v2.6.12-rc3 
+>> a2755a80f40e5794ddc20e00f781af9d6320fafb
+>> bix:/usr/src/git26> git diff -r v2.6.12-rc3|grep isofs.h
+>> +#include "isofs.h"
+>>  #include "zisofs.h"
+>> +#include "isofs.h"
+>> +#include "isofs.h"
+>> +#include "isofs.h"
+>>  #include "zisofs.h"
+>> +#include "isofs.h"
+>> +#include "isofs.h"
+>> +#include "isofs.h"
+>> +#include "isofs.h"
+>>
+>>
+>> That diff should have included the addition of the new isofs.h, but it
+>> isn't there.
+>>
+> 
+> I'm seeing unexplained behaviour using the above technique, and I'm
+> also seeing fs/isofs/isofs.h as missing, along with seven other changes.
+> 
+
+Jan Harkes has found the problem to be a missing ':' at the end of the tag.
+
+Steven
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

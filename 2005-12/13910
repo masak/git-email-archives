@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 16:47:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 13F9BDDD44
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 16:47:22 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964994AbVLUXrM (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 18:47:12 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964998AbVLUXrM
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 18:47:12 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:54446 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S964994AbVLUXrM
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 18:47:12 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EpDfq-0002Br-LW
+	for git@vger.kernel.org; Wed, 21 Dec 2005 18:47:10 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EpDfp-00025W-RC
+	for git@vger.kernel.org; Wed, 21 Dec 2005 18:47:09 -0500
+Subject: [PATCH] sanity check in add_packed_git()
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Wed, 21 Dec 2005 18:47:09 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1135208829.15567.18.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:13910
+
+add_packed_git() tries to get the pack SHA1 by parsing its name.  It may
+access uninitialized memory for packs with short names.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/sha1_file.c b/sha1_file.c
+index fa22e9c..d83d824 100644
+--- a/sha1_file.c
++++ b/sha1_file.c
+@@ -464,7 +464,7 @@ struct packed_git *add_packed_git(char *
+ 	p->pack_last_used = 0;
+ 	p->pack_use_cnt = 0;
+ 	p->pack_local = local;
+-	if (!get_sha1_hex(path + path_len - 40 - 4, sha1))
++	if ((path_len > 44) && !get_sha1_hex(path + path_len - 44, sha1))
+ 		memcpy(p->sha1, sha1, 20);
+ 	return p;
+ }
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

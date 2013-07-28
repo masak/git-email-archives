@@ -1,0 +1,44 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 15:56:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A845612E5D3
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 15:56:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965061AbVKOWwx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 17:52:53 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965059AbVKOWwx
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 17:52:53 -0500
+Received: from citi.umich.edu ([141.211.133.111]:61529 "EHLO citi.umich.edu")
+	by vger.kernel.org with ESMTP id S965062AbVKOWww (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 15 Nov 2005 17:52:52 -0500
+Received: from dexter.citi.umich.edu (dexter.citi.umich.edu [141.211.133.33])
+	by citi.umich.edu (Postfix) with ESMTP id 31EC41BACA;
+	Tue, 15 Nov 2005 17:52:52 -0500 (EST)
+From:	Chuck Lever <cel@citi.umich.edu>
+Subject: [PATCH 0/2] Two more small clean-ups
+Date:	Tue, 15 Nov 2005 17:51:36 -0500
+To:	catalin.marinas@gmail.com
+Cc:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051115225136.16350.96122.stgit@dexter.citi.umich.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 9
+Xref: brand.scrye.com linux.git:11947
+
+        -- Chuck Lever
+--
+corporate:    <cel at netapp dot com>
+personal:     <chucklever at bigfoot dot com>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

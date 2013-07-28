@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 16:00:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5C8CF260D24
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 16:00:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965009AbVKGW6S (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 17:58:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965594AbVKGW6R
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 17:58:17 -0500
+Received: from [85.8.31.11] ([85.8.31.11]:47501 "EHLO mail6.wasadata.com")
+	by vger.kernel.org with ESMTP id S965009AbVKGW6P (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 7 Nov 2005 17:58:15 -0500
+Received: from c165 (unknown [85.8.2.189])
+	by mail6.wasadata.com (Postfix) with ESMTP
+	id AC69140FD; Tue,  8 Nov 2005 00:06:27 +0100 (CET)
+Received: from ksorim by c165 with local (Exim 3.36 #1 (Debian))
+	id 1EZFwF-0002rA-00; Mon, 07 Nov 2005 23:58:07 +0100
+Date:	Mon, 7 Nov 2005 23:58:07 +0100
+From:	Fredrik Kuivinen <freku045@student.liu.se>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Junio C Hamano <junkio@cox.net>,
+	Fredrik Kuivinen <freku045@student.liu.se>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Comments on recursive merge..
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051107225807.GA10937@c165.ib.student.liu.se>
+References: <Pine.LNX.4.64.0511070837530.3193@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.64.0511070837530.3193@g5.osdl.org>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:11280
+
+On Mon, Nov 07, 2005 at 08:48:06AM -0800, Linus Torvalds wrote:
+> 
+> Guys,
+> 
+>   I just hit my first real rename conflict, and very timidly tried the 
+> "recursive" strategy in the hopes that I wouldn't need to do things by 
+> hand.
+> 
+> It resolved things beautifully. Good job. 
+
+I'm glad that it worked.
+
+> My only worry is that I don't read python, so I don't really know how it 
+> does what it does, which makes me nervous. Can somebody (Fredrik?) add 
+> some documentation about the merge strategy and how it works.
+
+I will write something up.
+
+> Considering that the stupid resolve strategy really requires you to know 
+> how git works when rename conflicts happen (things left in unmerged state 
+> are really quite hard to handle by hand unless you know exactly what 
+> you're doing), I'd almost suggest making "recursive" the default. I'm a 
+> bit nervous about it, but knowing how it works would probably put most of 
+> that to rest.
+
+It would be great if the recursive strategy could get some more
+testing. I have tested it on a thousand commits or so in a few kernel
+repositories and haven't found any bugs, but it could be due to errors
+in the test setup, testing the wrong repositories or just being lucky. Some
+real-world testing would be great.
+
+- Fredrik
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

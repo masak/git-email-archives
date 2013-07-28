@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 26 12:13:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B64D02929CD
+	for <tkil@scrye.com>; Mon, 26 Sep 2005 12:13:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932454AbVIZSKu (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 26 Sep 2005 14:10:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932455AbVIZSKu
+	(ORCPT <rfc822;git-outgoing>); Mon, 26 Sep 2005 14:10:50 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:23471 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S932454AbVIZSKt
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 26 Sep 2005 14:10:49 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j8QIAZ0q025186
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 26 Sep 2005 11:10:35 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43383999.8090508@zytor.com>
+Date:	Mon, 26 Sep 2005 11:10:33 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	"H. Peter Anvin" <hpa@zytor.com>
+CC:	Petr Baudis <pasky@suse.cz>, Git Mailing List <git@vger.kernel.org>
+Subject: Re: How to make Cogito use git-fetch-pack?
+References: <43347F98.6020101@zytor.com> <20050924011912.GK10255@pasky.or.cz> <4334B428.7020608@zytor.com>
+In-Reply-To: <4334B428.7020608@zytor.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:9309
+
+H. Peter Anvin wrote:
+> Petr Baudis wrote:
+> 
+>> Dear diary, on Sat, Sep 24, 2005 at 12:20:08AM CEST, I got a letter
+>> where "H. Peter Anvin" <hpa@zytor.com> told me that...
+>>
+>>> Is there any way to make Cogito use git-fetch-pack instead of 
+>>> git-ssh-fetch?  git+ssh:// seems to invoke the latter.
+>>
+>>
+>> I just added git+packed+ssh:// to be used for this purpose.
+>>
+> 
+> Since git tends to use "pack" (e.g. git-fetch-pack) I'd suggest use 
+> git+pack+ssh:// instead.  It's shorter, too.
+> 
+
+I thought some more about this, and realized that it really doesn't make 
+sense for there to be another name for this.  Simply put, git+ssh:// 
+requires ssh access and git to be present on the other side, and within 
+those parameters it should use whatever access method is most effective. 
+Thus, having a separate URL type only makes sense if something is 
+fundamentally and user-visibly different between the two.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

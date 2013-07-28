@@ -1,0 +1,98 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 28 09:30:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 925A129206E
+	for <tkil@scrye.com>; Wed, 28 Sep 2005 09:30:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751295AbVI1PaJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 28 Sep 2005 11:30:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751298AbVI1PaJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 28 Sep 2005 11:30:09 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:3001 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751295AbVI1PaH (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 28 Sep 2005 11:30:07 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8SFTl4s015695
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 28 Sep 2005 08:29:48 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8SFTkq7003019;
+	Wed, 28 Sep 2005 08:29:46 -0700
+Date:	Wed, 28 Sep 2005 08:29:46 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Robert Watson <robert.oo.watson@gmail.com>
+cc:	git@vger.kernel.org, Junio C Hamano <junkio@cox.net>
+Subject: Re: [PATCH] Fix git-pull output message
+In-Reply-To: <72499e3b05092803027175bab0@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509280823260.3308@g5.osdl.org>
+References: <72499e3b05092803027175bab0@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.118 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 53
+Xref: brand.scrye.com linux.git:9424
+
+
+
+On Wed, 28 Sep 2005, Robert Watson wrote:
+> 
+> Notice that the git.git directory is truncated.  It seems the
+> intension is to truncate at the .git
+> directory level.  The following patch fixes it.
+
+No, the intention really is to remove the ".git" at the end. At least 
+that's how I use it.
+
+I like seeing my merges say
+
+    Merge branch 'for-linus' from master.kernel.org:/pub/scm/linux/kernel/git/roland/infiniband
+
+even though the _real_ directory was ".../infiniband.git/", simply because 
+the ".git" doesn't really add any extra information when you're already in 
+git.
+
+_outside_ of git, the ".git" tells you something: it tells you that you're 
+entering a git archive. But when merging in git, that part is kind of 
+taken for granted, isn't it?
+
+This also matches what "git-receive-pack" and "git-upload-pack" does:
+
+	...
+        /* chdir to the directory. If that fails, try appending ".git" */
+        if (chdir(dir) < 0) {
+                if (chdir(mkpath("%s.git", dir)) < 0)
+                        die("unable to cd to %s", dir);
+        }
+
+        /* If we have a ".git" directory, chdir to it */
+        chdir(".git");
+	...
+
+Note how it _both_ will append ".git" to the directory name (if it can't 
+find one without ".git" _and_ will try to chdir to a ".git" directory 
+_within_ the directory name.
+
+So if you use the native pack ssh interfaces, you really can say
+
+	git pull master.kernel.org:.../infiniband
+
+because the tools (well, the "native pack" ones - not the http/rsync/scp
+ones) will automatically DTRT.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

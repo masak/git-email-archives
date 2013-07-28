@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 11:35:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1BCE0C877C
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 11:35:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932132AbVIRRfE (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 13:35:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932134AbVIRRfE
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 13:35:04 -0400
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:28316 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S932132AbVIRRfC (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Sep 2005 13:35:02 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050918173502.ZKMC4028.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 18 Sep 2005 13:35:02 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	git@vger.kernel.org
+Subject: Re: Newbie falls at first hurdle
+References: <200509171309.46893.alan@chandlerfamily.org.uk>
+	<20050918145958.GB22391@pasky.or.cz>
+Date:	Sun, 18 Sep 2005 10:35:00 -0700
+In-Reply-To: <20050918145958.GB22391@pasky.or.cz> (Petr Baudis's message of
+	"Sun, 18 Sep 2005 16:59:58 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7virwy46uz.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:8786
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> Two reports about this error message in one day, and I've seen more in
+> the past. Heh. ;-) I'd submit a patch, but I'm still staying at the last
+> git release because of the command renames.
+
+That should not be a reason to stay at the last release; the old
+command names should be supported as well in the current
+"master" branch -- unless something is broken (missing backward
+compatible old-name symlinks, for example), which I hope is not
+the case.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

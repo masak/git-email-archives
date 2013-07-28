@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 16 21:53:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A8C3C1697F2
+	for <tkil@scrye.com>; Tue, 16 Aug 2005 21:53:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750825AbVHQDw0 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 16 Aug 2005 23:52:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750827AbVHQDw0
+	(ORCPT <rfc822;git-outgoing>); Tue, 16 Aug 2005 23:52:26 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:32969 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750825AbVHQDwZ (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 16 Aug 2005 23:52:25 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7H3qLjA028146
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 16 Aug 2005 20:52:21 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7H3qKBU031990;
+	Tue, 16 Aug 2005 20:52:20 -0700
+Date:	Tue, 16 Aug 2005 20:52:20 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Improve handling of "." and ".." in git-diff-*
+In-Reply-To: <Pine.LNX.4.58.0508162037080.3553@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508162044390.3553@g5.osdl.org>
+References: <Pine.LNX.4.58.0508162037080.3553@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 37
+Xref: brand.scrye.com linux.git:7411
+
+
+On Tue, 16 Aug 2005, Linus Torvalds wrote:
+> 
+> This fixes up usage of ".." (without an ending slash) and "." (with or 
+> without the ending slash) in the git diff family.
+
+Btw, if it wasn't clear, with this patch you can now do
+
+	git diff .
+
+and it will show the diffs for everything under the current working 
+directory. Similarly, you can do
+
+	git diff ./drivers
+
+or something like
+
+	cd arch/i386
+	git diff . ../x86-64 
+
+and it will do the obvious thing (the "obvious thing" in the latter case
+is to show the diffs for everything under _both_ arch/i386 and
+arch/x86-64, but not anything outside of that - the path pattern gets
+rewritten to "arch/i386" and "arch/x86-64").
+
+		Linus
+
+PS. A number of the other "work tree" ops can be similarly extended to
+DTRT in git project subdirectories, but I wanted to finish off the "git
+diff" family first, and get that one all done. I think I'm done now, and I
+might tackle the other things (git-update-cache, git-checkout-cache,
+git-commit-script, etc) tomorrow.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  1 08:06:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A18C218FBE5
+	for <tkil@scrye.com>; Mon,  1 Aug 2005 08:06:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262052AbVHAOFM (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 1 Aug 2005 10:05:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262047AbVHAOFM
+	(ORCPT <rfc822;git-outgoing>); Mon, 1 Aug 2005 10:05:12 -0400
+Received: from zealot.progeny.com ([216.37.46.162]:63650 "EHLO
+	morimoto.progeny.com") by vger.kernel.org with ESMTP
+	id S262052AbVHAOD7 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 1 Aug 2005 10:03:59 -0400
+Received: from dhcp-2-246.progeny.com (dhcp-2-246.progeny.com [192.168.2.246])
+	by morimoto.progeny.com (Postfix) with ESMTP
+	id 5EB5A636AC; Mon,  1 Aug 2005 09:03:58 -0500 (EST)
+Subject: Re: Dump http servers still slow?
+From: Darrin Thompson <darrint@progeny.com>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org, barkalow@iabervon.org
+In-Reply-To: <7v1x5ftqn5.fsf@assigned-by-dhcp.cox.net>
+References: <1122584423.12374.11.camel@localhost.localdomain>
+	 <7vy87qpcwg.fsf@assigned-by-dhcp.cox.net>
+	 <1122645821.4263.6.camel@localhost.localdomain>
+	 <7v1x5ftqn5.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+Date:	Mon, 01 Aug 2005 09:03:57 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1122905037.4042.1.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:6690
+
+On Sat, 2005-07-30 at 23:51 -0700, Junio C Hamano wrote:
+> Darrin Thompson <darrint@progeny.com> writes:
+> 
+> > 1. Pack files should reduce the number of http round trips.
+> > 2. What I'm seeing when I check out mainline git is the acquisition of a
+> > single large pack, then 600+ more recent objects. Better than before,
+> > but still hundreds of round trips.
+> 
+> I've packed the git.git repository, by the way.  It has 43
+> unpacked objects totalling 224 kilobytes, so cloning over dumb
+> http should go a lot faster until we accumulate more unpacked
+> objects.
+
+I did a pull from the office and the times were 27 sec for http and 17
+sec for rsync. So the moral of the story should be that frequent repacks
+are sufficient for decent http performance.
+
+--
+Darrin
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 11 05:07:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9C9A32851FA
+	for <tkil@scrye.com>; Sun, 11 Sep 2005 05:07:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964903AbVIKLHY (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Sep 2005 07:07:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932492AbVIKLHY
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Sep 2005 07:07:24 -0400
+Received: from rproxy.gmail.com ([64.233.170.193]:50351 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932467AbVIKLHX convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 11 Sep 2005 07:07:23 -0400
+Received: by rproxy.gmail.com with SMTP id i8so249269rne
+        for <git@vger.kernel.org>; Sun, 11 Sep 2005 04:07:18 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=AWvkle9mlT1im+x2sMXY6xsaWoywxNyw/WGa7t+GqlcLmaH0EADvDBflTN10gJ22L8ZDs9NeUYeOF3sE+VH1D6qwi9Zgn3AbuJG54Zy3f929CGN+3iqFV+dTE2378+Ua0ZPEmqPQDMykNkZBBs0Nx37jCqXQnTEu6GyIdTgDEPM=
+Received: by 10.38.97.6 with SMTP id u6mr193999rnb;
+        Sun, 11 Sep 2005 04:07:18 -0700 (PDT)
+Received: by 10.38.101.53 with HTTP; Sun, 11 Sep 2005 04:07:18 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f9050911040762f53552@mail.gmail.com>
+Date:	Sun, 11 Sep 2005 23:07:18 +1200
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+Reply-To: martin.langhoff@gmail.com
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: Status of Mac OS/X ports of git and cogito?
+Cc:	Junio C Hamano <junkio@cox.net>,
+	John Ellson <ellson@research.att.com>, git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.63.0509111159190.32555@wgmdd8.biozentrum.uni-wuerzburg.de>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <deofnh$jl0$1@sea.gmane.org>
+	 <7vd5o03uof.fsf@assigned-by-dhcp.cox.net>
+	 <Pine.LNX.4.63.0509111159190.32555@wgmdd8.biozentrum.uni-wuerzburg.de>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:8284
+
+On 9/11/05, Johannes Schindelin <Johannes.Schindelin@gmx.de> wrote:
+
+> - gitk gets very confused about the window layout. My preliminary tests on
+>   cygwin showed that this seems to be rather a problem of Tk with rootless
+>   Xwin. I worked around it by explicitely stating the dimensions of some
+>   canvas windows which would not automatically resize with their contents
+>   otherwise.
+ 
+Can you share that fix? 
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul 28 15:23:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 835BB14EFFB
+	for <tkil@scrye.com>; Thu, 28 Jul 2005 15:23:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262286AbVG1VS5 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Jul 2005 17:18:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262271AbVG1VQa
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Jul 2005 17:16:30 -0400
+Received: from zealot.progeny.com ([216.37.46.162]:63153 "EHLO
+	morimoto.progeny.com") by vger.kernel.org with ESMTP
+	id S262296AbVG1VPP (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 28 Jul 2005 17:15:15 -0400
+Received: from dhcp-2-246.progeny.com (dhcp-2-246.progeny.com [192.168.2.246])
+	by morimoto.progeny.com (Postfix) with ESMTP id 4E8BA636A4
+	for <git@vger.kernel.org>; Thu, 28 Jul 2005 16:15:14 -0500 (EST)
+Subject: Re: Tutorial problem a/a a/b
+From: Darrin Thompson <darrint@progeny.com>
+To: git@vger.kernel.org
+In-Reply-To: <1122582005.12374.6.camel@localhost.localdomain>
+References: <1122582005.12374.6.camel@localhost.localdomain>
+Content-Type: text/plain
+Date:	Thu, 28 Jul 2005 16:15:13 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1122585313.12374.16.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:6514
+
+On Thu, 2005-07-28 at 15:20 -0500, Darrin Thompson wrote:
+> In the tutorial the user is instructed to create two files: a and b.
+> 
+> Then when the user diffs the files, they see this:
+> 
+> diff --git a/a b/a
+> 
+> That really confused somebody and I had to untangle their brain. :-) I
+> don't have a patch for it, but thought I'd point out: perhaps a and b
+> aren't the best example filenames given git's diff format. :-D
+> 
+
+Note: I've been fielding a few questions while some Progeny folks get up
+to speed on git.
+
+I had to explain what was meant by <tree-ish> in some usage messages.
+Perhaps those should be spelled out as "tree, tag, or commit id"?
+
+[Sorry this is a whine and not a patch.]
+
+--
+Darrin
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

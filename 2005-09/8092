@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep  5 10:04:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B5887240225
+	for <tkil@scrye.com>; Mon,  5 Sep 2005 10:04:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932304AbVIEQEK (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Sep 2005 12:04:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932306AbVIEQEJ
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Sep 2005 12:04:09 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:24234 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932304AbVIEQEI (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 5 Sep 2005 12:04:08 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j85G42Bo016985
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 5 Sep 2005 09:04:02 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j85G3xxP016251;
+	Mon, 5 Sep 2005 09:04:00 -0700
+Date:	Mon, 5 Sep 2005 09:04:18 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	=?ISO-8859-1?Q?David_K=E5gedal?= <davidk@lysator.liu.se>
+cc:	git@vger.kernel.org
+Subject: Re: Tool renames? was Re: First stab at glossary
+In-Reply-To: <u5tvf1feedt.fsf@lysator.liu.se>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509050902070.3568@evo.osdl.org>
+References: <200509050054.j850sC3D023778@laptop11.inf.utfsm.cl>
+ <Pine.LNX.4.58.0509050738340.3504@evo.osdl.org> <u5tvf1feedt.fsf@lysator.liu.se>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:8092
+
+
+
+On Mon, 5 Sep 2005, David Kågedal wrote:
+> 
+> But to the users (like myself), there's no point in naming it by
+> whether it's a script or a binary. 
+
+So? There's no downside.
+
+To you, as a user, you never see the "-script" ending anyway. You'd never 
+type it out, or you're already doing something wrong.
+
+So to users it doesn't matter, and to developers it _does_ matter (and 
+calling them ".pl" or ".sh" or something would be _bad_), why not please 
+the developers?
+
+> So your argument that it makes it easier for git developers to work
+> with the source doesn't help the user.
+
+It doesn't _help_ the user, but since it doesn't hurt him either, why the 
+hell would we even _care_ about the user?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

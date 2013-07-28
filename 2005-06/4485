@@ -1,0 +1,54 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun  3 15:34:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CE292230373
+	for <tkil@scrye.com>; Fri,  3 Jun 2005 15:34:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261392AbVFCVeO (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 3 Jun 2005 17:34:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261418AbVFCVeO
+	(ORCPT <rfc822;git-outgoing>); Fri, 3 Jun 2005 17:34:14 -0400
+Received: from iabervon.org ([66.92.72.58]:47108 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261392AbVFCVeM (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 3 Jun 2005 17:34:12 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DeJmz-0001pa-00; Fri, 3 Jun 2005 17:33:13 -0400
+Date:	Fri, 3 Jun 2005 17:33:13 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Jason McMullan <jason.mcmullan@timesys.com>
+Cc: git@vger.kernel.org, torvalds@osdl.org
+Subject: Re: [PATCH] git-daemon server
+In-Reply-To: <20050603152212.GA4598@jmcmullan.timesys>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0506031727400.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:4485
+
+On Fri, 3 Jun 2005, Jason McMullan wrote:
+
+> git-daemon - Client/server for exchanging GIT objects
+
+Is this somehow different from rpush/rpull aside from using an
+externally-provided socket and having the proper locking for writing refs
+(which I posted a while ago, but which hasn't been included anywhere yet)?
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 02:12:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 06FB5143495
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 02:12:05 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750702AbVKJJL1 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 04:11:27 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750703AbVKJJL0
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 04:11:26 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:26003 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1750702AbVKJJL0
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 10 Nov 2005 04:11:26 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 5A5266BCFF
+	for <git@vger.kernel.org>; Thu, 10 Nov 2005 10:11:25 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43730EBD.90307@op5.se>
+Date:	Thu, 10 Nov 2005 10:11:25 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Add --pretty=fuller
+References: <7vzmod58ot.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vzmod58ot.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+To:	unlisted-recipients:; (no To-header on input)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 43
+Xref: brand.scrye.com linux.git:11463
+
+Junio C Hamano wrote:
+> git log without --pretty showed author and author-date, while
+> with --pretty=full showed author and committer but no dates.
+> The new formatting option, --pretty=fuller, shows both name and
+> timestamp for author and committer.
+> 
+> Signed-off-by: Junio C Hamano <junkio@cox.net>
+> 
+> ---
+> 
+>  * again, likes, dislikes, don't-cares?
+> 
+
+Why not use:
+
+--show=cdm,atn
+
+for
+Committer: date, mail
+Author: timestamp,name
+
+or
+
+--show-author=date,timestamp,name
+--show-committer=name,time
+--show=name,date (for both author and committer)
+
+or some such, with --pretty=<something> just a short-hand for those 
+show-options?
+
+We'll run out of superlatives really quickly if there are more author 
+and committer info added sometime in the future, while the --show 
+flag(s) can be extended more or less indefinitely.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

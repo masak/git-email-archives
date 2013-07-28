@@ -1,0 +1,96 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 16 22:27:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 98DB4137D3B
+	for <tkil@scrye.com>; Tue, 16 Aug 2005 22:27:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750817AbVHQE1p (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 00:27:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750827AbVHQE1p
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 00:27:45 -0400
+Received: from fencepost.gnu.org ([199.232.76.164]:40597 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S1750817AbVHQE1o
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 17 Aug 2005 00:27:44 -0400
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1E5FTt-0002hl-Kf
+	for git@vger.kernel.org; Wed, 17 Aug 2005 00:24:49 -0400
+Received: from localhost.localdomain ([127.0.0.1] helo=dv.roinet.com)
+	by dv.roinet.com with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.52)
+	id 1E5FWe-0001j2-N4; Wed, 17 Aug 2005 00:27:40 -0400
+Received: (from proski@localhost)
+	by dv.roinet.com (8.13.4/8.13.4/Submit) id j7H4Rc2p006633;
+	Wed, 17 Aug 2005 00:27:38 -0400
+X-Authentication-Warning: dv.roinet.com: proski set sender to proski@gnu.org using -f
+Subject: [PATCH] commit-id, tree-id fail on tags
+From:	Pavel Roskin <proski@gnu.org>
+To:	Petr Baudis <pasky@ucw.cz>, git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Wed, 17 Aug 2005 00:27:38 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1124252858.26240.31.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.2 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 49
+Xref: brand.scrye.com linux.git:7412
+
+Hello!
+
+Tag names don't work with current cogito because commit-id and tree-id
+don't parse the cg-Xnormid output properly.
+
+Namely, if $type is empty (which is the case for tags), $normid is used
+before the trailing space is stripped from it.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/commit-id b/commit-id
+--- a/commit-id
++++ b/commit-id
+@@ -9,8 +9,9 @@
+ 
+ id="$1"
+ normid=$(. ${COGITO_LIB}cg-Xnormid "$id") || exit 1
+-type=${normid#* }; [ "$type" ] || type=$(git-cat-file -t "$normid")
++type=${normid#* }
+ normid=${normid% *}
++[ "$type" ] || type=$(git-cat-file -t "$normid")
+ 
+ if [ "$type" != "commit" ]; then
+ 	echo "Invalid commit id: $normid" >&2
+diff --git a/tree-id b/tree-id
+--- a/tree-id
++++ b/tree-id
+@@ -7,8 +7,9 @@
+ 
+ id="$1"
+ normid=$(. ${COGITO_LIB}cg-Xnormid "$id") || exit 1
+-type=${normid#* }; [ "$type" ] || type=$(git-cat-file -t "$normid")
++type=${normid#* }
+ normid=${normid% *}
++[ "$type" ] || type=$(git-cat-file -t "$normid")
+ 
+ if [ "$type" = "commit" ]; then
+ 	normid=$(git-cat-file commit "$normid" | sed -e 's/tree //;q')
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

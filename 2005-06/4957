@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun 15 12:47:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7DCF02B0A15
+	for <tkil@scrye.com>; Wed, 15 Jun 2005 12:47:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261258AbVFOSrX (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 15 Jun 2005 14:47:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261267AbVFOSrX
+	(ORCPT <rfc822;git-outgoing>); Wed, 15 Jun 2005 14:47:23 -0400
+Received: from covert.brown-ring.iadfw.net ([209.196.123.143]:24593 "EHLO
+	covert.brown-ring.iadfw.net") by vger.kernel.org with ESMTP
+	id S261258AbVFOSrV (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 15 Jun 2005 14:47:21 -0400
+Received: from cable-68-185-230-105.sli.la.charter.com ([68.185.230.105] helo=pcdebian)
+	by covert.iadfw.net with esmtp (Exim 4.24)
+	id 1Dicxx-0004Gm-8a
+	for git@vger.kernel.org; Wed, 15 Jun 2005 13:50:21 -0500
+Received: (qmail 25263 invoked by uid 1000); 15 Jun 2005 18:47:20 -0000
+From: "Art Haas" <ahaas@airmail.net>
+Date:	Wed, 15 Jun 2005 13:47:20 -0500
+To: git@vger.kernel.org
+Subject: Converting SVN repository to git
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050615184720.GF31997@artsapartment.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:4957
+
+Hi.
+
+The utilities for converting CVS repositories to git repos have become
+part of the standard git package, and hopefully they'll be used to
+convert many CVS based projects to git. I've not seen anything, though,
+on switching Subversion repositories to git. Has there been any public
+activity in writing a tool/script to do this? Perhaps some offline
+discussion about doing this?
+
+Thanks in advance.
+
+Art Haas
+-- 
+Man once surrendering his reason, has no remaining guard against absurdities
+the most monstrous, and like a ship without rudder, is the sport of every wind.
+
+-Thomas Jefferson to James Smith, 1822
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

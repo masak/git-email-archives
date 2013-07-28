@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 19 01:48:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B4FBE29C372
+	for <tkil@scrye.com>; Sat, 19 Nov 2005 01:48:33 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750798AbVKSIsW (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 19 Nov 2005 03:48:22 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750877AbVKSIsW
+	(ORCPT <rfc822;git-outgoing>); Sat, 19 Nov 2005 03:48:22 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:8446 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1750798AbVKSIsV (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 19 Nov 2005 03:48:21 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051119084706.GXNN17437.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 19 Nov 2005 03:47:06 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Ismail Donmez <ismail@uludag.org.tr>
+Subject: Re: Rss produced by git is not valid xml?
+References: <200511181833.40048.ismail@uludag.org.tr>
+	<200511182245.01713.ismail@uludag.org.tr>
+	<7v7jb5hcm2.fsf@assigned-by-dhcp.cox.net>
+	<200511182329.52368.ismail@uludag.org.tr>
+cc:	git@vger.kernel.org
+Date:	Sat, 19 Nov 2005 00:48:20 -0800
+In-Reply-To: <200511182329.52368.ismail@uludag.org.tr> (Ismail Donmez's
+	message of "Fri, 18 Nov 2005 23:29:52 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7voe4h9g6j.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 14
+Xref: brand.scrye.com linux.git:12314
+
+Ismail Donmez <ismail@uludag.org.tr> writes:
+
+> Your produced XML is NOT valid then. You put encoding=utf-8 and then put 
+> latin-1 encoded data in it. You SHOULD NOT do that. Either put latin-1 as 
+> encoding in the RSS because you say its the way data should be else encode 
+> non-utf stuff to be utf-8.
+
+Maybe, but that is not me ;-).
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

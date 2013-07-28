@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 18 13:05:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4CC14201D5F
+	for <tkil@scrye.com>; Mon, 18 Apr 2005 13:05:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262164AbVDRTDq (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 18 Apr 2005 15:03:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262170AbVDRTDU
+	(ORCPT <rfc822;git-outgoing>); Mon, 18 Apr 2005 15:03:20 -0400
+Received: from sb0-cf9a48a7.dsl.impulse.net ([207.154.72.167]:46052 "EHLO
+	madrabbit.org") by vger.kernel.org with ESMTP id S262164AbVDRTCD
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 18 Apr 2005 15:02:03 -0400
+Received: from orca.madrabbit.org (orca.madrabbit.org [192.168.1.51])
+	by madrabbit.org (Postfix) with ESMTP
+	id 7C0CB4C1442; Mon, 18 Apr 2005 12:02:02 -0700 (PDT)
+Subject: Re: [PATCH] Pretty-print date in 'git log'
+From: Ray Lee <ray-lk@madrabbit.org>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: git@vger.kernel.org, Petr Baudis <pasky@ucw.cz>
+In-Reply-To: <1113803220.11910.81.camel@localhost.localdomain>
+References: <1113803220.11910.81.camel@localhost.localdomain>
+Content-Type: text/plain
+Organization: http://madrabbit.org/
+Date:	Mon, 18 Apr 2005 12:02:02 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1113850922.23938.54.camel@orca.madrabbit.org>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 20
+Xref: brand.scrye.com linux.git:655
+
+On Mon, 2005-04-18 at 15:46 +1000, David Woodhouse wrote:
+> Add tool to render git's "<utcseconds> <zone>" into an RFC2822-compliant
+> string, because I don't think date(1) can do it.
+
+I admit it's not obvious, but date(1) includes gnu's full date parser,
+so you can pull stunts like:
+
+ray:~/work/home$ date -ud 'jan 1, 1970 + 1111111111 seconds'
+Fri Mar 18 01:58:31 UTC 2005
+ray:~/work/home$ date -ud 'jan 1, 1970 + 1111111111 seconds + 0800'
+Fri Mar 18 09:58:31 UTC 2005
+
+Ray
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

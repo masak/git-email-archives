@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 17:50:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1C57A1C3207
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 17:50:15 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750821AbVKLAuE (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 19:50:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750822AbVKLAuE
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 19:50:04 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:50658 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750821AbVKLAuC (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 11 Nov 2005 19:50:02 -0500
+Received: (qmail 21875 invoked from network); 12 Nov 2005 01:49:59 +0100
+Received: from localhost (HELO machine.or.cz) (xpasky@127.0.0.1)
+  by localhost with SMTP; 12 Nov 2005 01:49:59 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	<git@vger.kernel.org>
+Subject: [PATCH] Show URL in the "Getting <foo> list" http-fetch messages
+Date:	Sat, 12 Nov 2005 01:49:59 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051112004958.21857.95728.stgit@machine.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:11642
+
+Signed-off-by: Petr Baudis <pasky@suse.cz>
+---
+
+ http-fetch.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/http-fetch.c b/http-fetch.c
+index e7655d1..e6e7df6 100644
+--- a/http-fetch.c
++++ b/http-fetch.c
+@@ -795,7 +795,7 @@ static int fetch_alternates(char *base)
+ 	buffer.buffer = data;
+ 
+ 	if (get_verbosely)
+-		fprintf(stderr, "Getting alternates list\n");
++		fprintf(stderr, "Getting alternates list for %s\n", base);
+ 	
+ 	url = xmalloc(strlen(base) + 31);
+ 	sprintf(url, "%s/objects/info/http-alternates", base);
+@@ -918,7 +918,7 @@ static int fetch_indices(struct alt_base
+ 	buffer.buffer = data;
+ 
+ 	if (get_verbosely)
+-		fprintf(stderr, "Getting pack list\n");
++		fprintf(stderr, "Getting pack list for %s\n", repo->base);
+ 	
+ 	url = xmalloc(strlen(repo->base) + 21);
+ 	sprintf(url, "%s/objects/info/packs", repo->base);
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun  8 14:00:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 37F3F13AE25
+	for <tkil@scrye.com>; Wed,  8 Jun 2005 14:00:05 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261567AbVFHT7O (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 8 Jun 2005 15:59:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261586AbVFHT7O
+	(ORCPT <rfc822;git-outgoing>); Wed, 8 Jun 2005 15:59:14 -0400
+Received: from fire.osdl.org ([65.172.181.4]:29352 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261567AbVFHT65 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 8 Jun 2005 15:58:57 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j58JwhjA015863
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 8 Jun 2005 12:58:44 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j58Jwg3k008045;
+	Wed, 8 Jun 2005 12:58:42 -0700
+Date:	Wed, 8 Jun 2005 13:00:48 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Jonas Fonseca <fonseca@diku.dk>, git@vger.kernel.org
+Subject: Re: [PATCH] git-diff-cache: handle pathspec beginning with a dash
+In-Reply-To: <20050608184709.GE982@pasky.ji.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506081259580.2286@ppc970.osdl.org>
+References: <20050606212700.GA3498@diku.dk> <20050608184709.GE982@pasky.ji.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 23
+Xref: brand.scrye.com linux.git:4694
+
+
+
+On Wed, 8 Jun 2005, Petr Baudis wrote:
+>
+> Dear diary, on Mon, Jun 06, 2005 at 11:27:00PM CEST, I got a letter
+> where Jonas Fonseca <fonseca@diku.dk> told me that...
+> > Parse everything after '--' as tree name or pathspec.
+> > 
+> > Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+> 
+> Thanks, applied to git-pb. Linus, any particular reason for holding this
+> off?
+
+It seems to have gone only to the mailing list. I only glance through the 
+lists, and assume that if somebody wants me to apply a patch, they'll cc 
+me personally too..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

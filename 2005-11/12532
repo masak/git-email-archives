@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 03:36:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.6 required=5.0 tests=AWL,BAYES_00,
+	RCVD_IN_BL_SPAMCOP_NET autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9A7921A4474
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 03:36:16 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964901AbVKVKfi (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 05:35:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964903AbVKVKfi
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 05:35:38 -0500
+Received: from xproxy.gmail.com ([66.249.82.205]:54570 "EHLO xproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S964901AbVKVKfh convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 05:35:37 -0500
+Received: by xproxy.gmail.com with SMTP id i30so852909wxd
+        for <git@vger.kernel.org>; Tue, 22 Nov 2005 02:35:34 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=KOSFhWaH9xXTGNap5EjA+8ce/vFE825wakCUgHcxkbvzN22PnZSeHx3IovGExKU9T+BDX0ubaXUWul0ssCcXBiSpMW9qm/BZK54Ze+DzIZRF1dtAW1S5i2mcaIaJ6qNv+BDGddqLZOFTJ+JfwD6Rc4o921G76iAhT+a4FLDTkWs=
+Received: by 10.70.73.20 with SMTP id v20mr3367991wxa;
+        Tue, 22 Nov 2005 02:35:34 -0800 (PST)
+Received: by 10.70.27.12 with HTTP; Tue, 22 Nov 2005 02:35:34 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <b0943d9e0511220235kf314b5dy@mail.gmail.com>
+Date:	Tue, 22 Nov 2005 10:35:34 +0000
+From:	Catalin Marinas <catalin.marinas@gmail.com>
+To:	cel@citi.umich.edu
+Subject: Re: Diffs "from" working directory
+Cc:	git@vger.kernel.org
+In-Reply-To: <4382A972.1010801@citi.umich.edu>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <200511201817.15780.blaisorblade@yahoo.it>
+	 <20051120174359.GA24177@fieldses.org>
+	 <Pine.LNX.4.64.0511201010490.13959@g5.osdl.org>
+	 <20051120205855.GA30346@fieldses.org>
+	 <4381287F.5080402@citi.umich.edu>
+	 <b0943d9e0511211328j7c062c07s@mail.gmail.com>
+	 <4382A972.1010801@citi.umich.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:12532
+
+On 22/11/05, Chuck Lever <cel@citi.umich.edu> wrote:
+> Catalin Marinas wrote:
+> > My import command sets the author to the e-mail sender, which was you.
+>
+> for some reason i was under the impression that it would parse the
+> Signed-off-by: fields in the patch description, and take the first one
+> as the patch author.
+
+If you import a patch file and don't specify an author (and the patch
+is not an e-mail), the first Signed-off-by: line is used. As Linus
+mentioned, we could get rid of this assumption entirely and just
+report an error if no author information is given.
+
+--
+Catalin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

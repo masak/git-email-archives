@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 20 06:34:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3C38C171B17
+	for <tkil@scrye.com>; Tue, 20 Sep 2005 06:34:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964999AbVITMcL (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Sep 2005 08:32:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965000AbVITMcL
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Sep 2005 08:32:11 -0400
+Received: from ozlabs.org ([203.10.76.45]:51682 "EHLO ozlabs.org")
+	by vger.kernel.org with ESMTP id S964999AbVITMcK (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 20 Sep 2005 08:32:10 -0400
+Received: by ozlabs.org (Postfix, from userid 1003)
+	id 45F6A68348; Tue, 20 Sep 2005 22:32:05 +1000 (EST)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <17200.325.128562.160145@cargo.ozlabs.ibm.com>
+Date:	Tue, 20 Sep 2005 22:32:05 +1000
+From:	Paul Mackerras <paulus@samba.org>
+To:	Matthias Urlichs <smurf@smurf.noris.de>
+Cc:	git@vger.kernel.org
+Subject: Re: Joining cg-*-id
+In-Reply-To: <pan.2005.09.20.10.11.38.565694@smurf.noris.de>
+References: <1127166049.26772.26.camel@dv>
+	<20050919215608.GA13845@pasky.or.cz>
+	<Pine.LNX.4.58.0509191505470.2553@g5.osdl.org>
+	<7vy85s9tgk.fsf@assigned-by-dhcp.cox.net>
+	<pan.2005.09.20.10.11.38.565694@smurf.noris.de>
+X-Mailer: VM 7.19 under Emacs 21.4.1
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:8984
+
+Matthias Urlichs writes:
+
+> One feature I'd like to see in this context is a gitk tree view that lists
+> nodes in date order, instead of the "walk down one branch as far as
+> possible before doing the next one" process it currently uses.
+
+It's there already: the -d flag to gitk does that.
+
+That shows them in date order subject to the constraint that children
+are shown before parents.  Yes, it is possible to have a commit that
+is older than its parent(s), if it or its parent(s) were created on a
+machine whose date is set wrong.
+
+Paul.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

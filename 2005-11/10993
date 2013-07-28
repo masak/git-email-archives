@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 23:21:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D43C114310C
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 23:21:04 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932370AbVKBGU6 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 01:20:58 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932687AbVKBGU6
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 01:20:58 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:64411 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S932370AbVKBGU5 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 2 Nov 2005 01:20:57 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051102062006.MGBS2059.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 2 Nov 2005 01:20:06 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: [PATCH] git-clone: do not forget to create origin branch.
+Date:	Tue, 01 Nov 2005 22:20:56 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v8xw71sfr.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 52
+Xref: brand.scrye.com linux.git:10993
+
+The newly cloned repository by default had .git/remotes/origin
+set up to track the remote master to origin, but forgot to
+create the origin branch ourselves.  Also it hardcoded the
+assumption that the remote HEAD points at "master", which may
+not always be true.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+
+---
+
+ * Objections?
+
+ git-clone.sh |   15 +++++++++++----
+ 1 files changed, 11 insertions(+), 4 deletions(-)
+
+applies-to: 9c030fed625268c19d7f0838b26f742745b36085
+e125c1a717bb732319596d8b792a67c2b7b15ef7
+diff --git a/git-clone.sh b/git-clone.sh
+index 18e692a..c27a913 100755
+--- a/git-clone.sh
++++ b/git-clone.sh
+@@ -196,10 +196,17 @@ cd $D || exit
+ 
+ if test -f ".git/HEAD"
+ then
+-	mkdir -p .git/remotes || exit
+-	echo >.git/remotes/origin \
+-	"URL: $repo
+-Pull: master:origin"
++	head_points_at=`git-symbolic-ref HEAD`
++	case "$head_points_at" in
++	refs/heads/*)
++		head_points_at=`expr "$head_points_at" : 'refs/heads/\(.*\)'`
++		mkdir -p .git/remotes &&
++		echo >.git/remotes/origin \
++		"URL: $repo
++Pull: $head_points_at:origin"
++		cp ".git/refs/heads/$head_points_at" .git/refs/heads/origin
++	esac
++
+ 	case "$no_checkout" in
+ 	'')
+ 		git checkout
+---
+0.99.9.GIT
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

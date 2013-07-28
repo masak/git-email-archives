@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May  6 18:21:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 529FD1156D1
+	for <tkil@scrye.com>; Fri,  6 May 2005 18:21:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261322AbVEGAUd (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 6 May 2005 20:20:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261326AbVEGAUd
+	(ORCPT <rfc822;git-outgoing>); Fri, 6 May 2005 20:20:33 -0400
+Received: from simmts7.bellnexxia.net ([206.47.199.165]:48286 "EHLO
+	simmts7-srv.bellnexxia.net") by vger.kernel.org with ESMTP
+	id S261322AbVEGAU0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 6 May 2005 20:20:26 -0400
+Received: from linux1 ([69.156.111.46]) by simmts7-srv.bellnexxia.net
+          (InterMail vM.5.01.06.10 201-253-122-130-110-20040306) with ESMTP
+          id <20050507002025.ZONH3701.simmts7-srv.bellnexxia.net@linux1>;
+          Fri, 6 May 2005 20:20:25 -0400
+Received: from linux1 (linux1.attic.local [127.0.0.1])
+	by linux1 (8.12.11/8.12.11) with ESMTP id j470KMVh019095;
+	Fri, 6 May 2005 20:20:22 -0400
+Received: from 10.10.10.24
+        (SquirrelMail authenticated user sean)
+        by linux1 with HTTP;
+        Fri, 6 May 2005 20:20:25 -0400 (EDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2637.10.10.10.24.1115425225.squirrel@linux1>
+In-Reply-To: <7vmzr8apxc.fsf@assigned-by-dhcp.cox.net>
+References: <7vmzr8apxc.fsf@assigned-by-dhcp.cox.net>
+Date:	Fri, 6 May 2005 20:20:25 -0400 (EDT)
+Subject: Re: [PATCH] Introduce SHA1_FILE_DIRECTORIES
+From: "Sean" <seanlkml@sympatico.ca>
+To: "Junio C Hamano" <junkio@cox.net>
+Cc: "Linus Torvalds" <torvalds@osdl.org>, git@vger.kernel.org
+User-Agent: SquirrelMail/1.4.4-2
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+X-Priority: 3 (Normal)
+Importance: Normal
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 38
+Xref: brand.scrye.com linux.git:2701
+
+On Fri, May 6, 2005 7:35 pm, Junio C Hamano said:
+
+Hi Junio,
+
+> This is an implementation of the idea floated on the GIT list a couple
+> of days ago to archive really old history on a separate directory, even
+> on a read-only DVD ROM media.
+
+David Lang should get the credit for the idea.
+
+>  int has_sha1_file(const unsigned char *sha1)
+>  {
+> -	char *filename = sha1_file_name(sha1);
+>  	struct stat st;
+> +	char *filename = find_sha1_file(sha1);
+> +	if (!filename)
+> +		return 0;
+>
+>  	if (!stat(filename, &st))
+>  		return 1;
+
+has_sha1_file can be reduced to:
+
+
+int has_sha1_file(const unsigned char *sha1)
+{
+       return (!!find_sha1_file(sha1));
+}
+
+
+Sean
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

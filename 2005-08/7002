@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  9 15:54:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B13522606CF
+	for <tkil@scrye.com>; Tue,  9 Aug 2005 15:54:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964933AbVHIVyG (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 9 Aug 2005 17:54:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964937AbVHIVyF
+	(ORCPT <rfc822;git-outgoing>); Tue, 9 Aug 2005 17:54:05 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:9883 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S964933AbVHIVyE (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 9 Aug 2005 17:54:04 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j79LrxjA026705
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 9 Aug 2005 14:54:00 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j79LrwTD013839;
+	Tue, 9 Aug 2005 14:53:59 -0700
+Date:	Tue, 9 Aug 2005 14:53:58 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc: Sam Ravnborg <sam@ravnborg.org>,
+	Kay Sievers <kay.sievers@vrfy.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: gitweb - feature request
+In-Reply-To: <Pine.LNX.4.63.0508092224580.9849@wgmdd8.biozentrum.uni-wuerzburg.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508091447080.3258@g5.osdl.org>
+References: <20050809193104.GA10858@mars.ravnborg.org> <20050809195818.GA19284@vrfy.org>
+ <20050809201836.GA11051@mars.ravnborg.org>
+ <Pine.LNX.4.63.0508092224580.9849@wgmdd8.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:7002
+
+
+
+On Tue, 9 Aug 2005, Johannes Schindelin wrote:
+> 
+> You have Firefox, don't you? Next time you surf to gitweb, right click on 
+> the funny yellow symbol in the lower right corner of your Firefox. It 
+> should say something like "Subscribe to...". Do it.
+
+Left-click. And you need to be inside the project you want to rss (it 
+would be nice if you could be at the "projects" page and it would give you 
+a list of things to subscribe to, but that may not be possible).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 03:33:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F3A391FD230
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 03:33:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750732AbVKQKdF (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 05:33:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750733AbVKQKdE
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 05:33:04 -0500
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:63670 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1750732AbVKQKdD (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 05:33:03 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051117103239.SZAA3131.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 17 Nov 2005 05:32:39 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Nick Hengeveld <nickh@reactrix.com>
+Subject: Re: recent patch breaks the build ?
+References: <437B6997.8010903@mc.com>
+	<7v64qs8kuo.fsf@assigned-by-dhcp.cox.net> <437B8CEC.8040002@mc.com>
+	<20051116203334.GA3968@reactrix.com>
+	<Pine.LNX.4.63.0511170023040.9284@wbgn013.biozentrum.uni-wuerzburg.de>
+	<20051117004621.GB3968@reactrix.com>
+	<7vd5l03whv.fsf@assigned-by-dhcp.cox.net>
+	<20051117021014.GC3968@reactrix.com>
+cc:	git@vger.kernel.org
+Date:	Thu, 17 Nov 2005 02:33:02 -0800
+In-Reply-To: <20051117021014.GC3968@reactrix.com> (Nick Hengeveld's message of
+	"Wed, 16 Nov 2005 18:10:14 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7voe4jy36p.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:12084
+
+Nick Hengeveld <nickh@reactrix.com> writes:
+
+> Assuming --vernum does work, is there a reasonable/portable way to
+> compare two hex values like 070801?
+
+I would assume that it is always 6 lowercase hexdigits %06x when
+supported, or showing nothing to stdout for ancient ones.
+
+A horrible but probably portable way would be:
+
+	case `(echo 070801; curl-config --vernum) 2>/dev/null |
+        	sort -r | sed -ne 2p` in
+	070801)
+        	echo Happy ;;
+        *)
+        	echo Sad ;;
+	esac
+
+The obvious one is unfortunately not very portable:
+
+	if test 070801 \< `curl-config --vernum`
+        then
+        	echo "Happy"
+	else
+        	echo "Sad"
+	fi
+
+This would work if your test is bash/dash-builtin.  The
+following do not seem to know about '<' '>' string comparison:
+
+	GNU /usr/bin/test from coreutils (version 5.2.1)
+        OpenBSD shell builtin
+        Solaris /usr/bin/test
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

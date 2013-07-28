@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 23:40:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 78A2A1744C7
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 23:40:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262016AbVD1FkX (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 01:40:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262023AbVD1FkX
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 01:40:23 -0400
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:61921
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S262016AbVD1FkT (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 28 Apr 2005 01:40:19 -0400
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1DR1l4-0006pQ-8p; Thu, 28 Apr 2005 06:40:18 +0100
+From: Alan Chandler <alan@chandlerfamily.org.uk>
+To: git@vger.kernel.org
+Subject: Re: Cogito Tutorial If It Helps
+Date:	Thu, 28 Apr 2005 06:40:19 +0100
+User-Agent: KMail/1.8
+References: <1114548747.3083.1.camel@kryten> <20050427193227.GF22956@pasky.ji.cz> <200504272315.22939.alan@chandlerfamily.org.uk>
+In-Reply-To: <200504272315.22939.alan@chandlerfamily.org.uk>
+Cc: James Purser <purserj@winnsw.com.au>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200504280640.19543.alan@chandlerfamily.org.uk>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 20
+Xref: brand.scrye.com linux.git:1978
+
+On Wednesday 27 April 2005 23:15, Alan Chandler wrote:
+> On Wednesday 27 April 2005 20:32, Petr Baudis wrote:
+
+> > You didn't do make install and you don't have the cogito tree in your
+> > $PATH.
+>
+> I DID do a make install - which put everything in ~/bin (including
+> cg-Xdiffdo) and ~/bin is the first item in my $PATH.
+
+Thanks to James Purser its fixed.
+
+I needed the full path to ~/bin rather than just using the ~ in $PATH.
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

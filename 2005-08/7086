@@ -1,0 +1,158 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 11 17:35:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 598511B5E17
+	for <tkil@scrye.com>; Thu, 11 Aug 2005 17:35:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751045AbVHKXe5 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 11 Aug 2005 19:34:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751057AbVHKXe5
+	(ORCPT <rfc822;git-outgoing>); Thu, 11 Aug 2005 19:34:57 -0400
+Received: from iabervon.org ([66.92.72.58]:49168 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751044AbVHKXe4 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 11 Aug 2005 19:34:56 -0400
+Received: (qmail 15391 invoked by uid 1000); 11 Aug 2005 19:38:09 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 11 Aug 2005 19:38:09 -0400
+Date:	Thu, 11 Aug 2005 19:38:09 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Petr Baudis <pasky@suse.cz>, git@vger.kernel.org
+Subject: [PATCH] Re: git-http-pull broken in latest git
+In-Reply-To: <7v4q9wf4ad.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508111929010.12816@iabervon.org>
+References: <42F8D472.3080404@de.bosch.com> <20050811223349.GI25280@pasky.ji.cz>
+ <7v4q9wf4ad.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 118
+Xref: brand.scrye.com linux.git:7086
+
+On Thu, 11 Aug 2005, Junio C Hamano wrote:
+
+> Petr Baudis <pasky@suse.cz> writes:
+> 
+> > $ git-cat-file commit bf570303153902ec3d85570ed24515bcf8948848 | grep tree
+> > tree 41f10531f1799bbb31a1e0f7652363154ce96f45
+> > $ git-read-tree 41f10531f1799bbb31a1e0f7652363154ce96f45
+> > fatal: failed to unpack tree object 41f10531f1799bbb31a1e0f7652363154ce96f45
+> 
+> > Kaboom. I think the issue might be that the reference dependency tree
+> > building is broken and it should've pulled the other pack as well.
+> 
+> Last time I checked, git-http-pull did not utilize the pack
+> dependency information, which indeed is wrong. 
+
+Is there documentation on the format?
+
+> When it decides to fetch a pack instead of an asked-for object, it 
+> should check which commits the pack expects to have in your local 
+> repository and add them to its list of things to slurp.
+
+It should work anyway, except that I messed up some logic in the parallel 
+pull stuff; when it finds it has something already, it ignores it 
+entirely, rather than processing it. The following patch fixes this.
+---
+[PATCH] Fix parallel pull dependancy tracking.
+
+It didn't refetch an object it already had (good), but didn't process
+it, either (bad). Synchronously process anything you already have.
+
+Signed-off-by: Daniel Barkalow <barkalow@iabervon.org>
+---
+
+ pull.c |   57 ++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 32 insertions(+), 25 deletions(-)
+
+9b6b4b259c6b00d5b2502c158bc800d7623352bc
+diff --git a/pull.c b/pull.c
+--- a/pull.c
++++ b/pull.c
+@@ -98,12 +98,38 @@ static int process_tag(struct tag *tag)
+ static struct object_list *process_queue = NULL;
+ static struct object_list **process_queue_end = &process_queue;
+ 
+-static int process(unsigned char *sha1, const char *type)
++static int process_object(struct object *obj)
+ {
+-	struct object *obj;
+-	if (has_sha1_file(sha1))
++	if (obj->type == commit_type) {
++		if (process_commit((struct commit *)obj))
++			return -1;
++		return 0;
++	}
++	if (obj->type == tree_type) {
++		if (process_tree((struct tree *)obj))
++			return -1;
+ 		return 0;
+-	obj = lookup_object_type(sha1, type);
++	}
++	if (obj->type == blob_type) {
++		return 0;
++	}
++	if (obj->type == tag_type) {
++		if (process_tag((struct tag *)obj))
++			return -1;
++		return 0;
++	}
++	return error("Unable to determine requirements "
++		     "of type %s for %s",
++		     obj->type, sha1_to_hex(obj->sha1));
++}
++
++static int process(unsigned char *sha1, const char *type)
++{
++	struct object *obj = lookup_object_type(sha1, type);
++	if (has_sha1_file(sha1)) {
++		/* We already have it, so we should scan it now. */
++		return process_object(obj);
++	}
+ 	if (object_list_contains(process_queue, obj))
+ 		return 0;
+ 	object_list_insert(obj, process_queue_end);
+@@ -134,27 +160,8 @@ static int loop(void)
+ 			return -1;
+ 		if (!obj->type)
+ 			parse_object(obj->sha1);
+-		if (obj->type == commit_type) {
+-			if (process_commit((struct commit *)obj))
+-				return -1;
+-			continue;
+-		}
+-		if (obj->type == tree_type) {
+-			if (process_tree((struct tree *)obj))
+-				return -1;
+-			continue;
+-		}
+-		if (obj->type == blob_type) {
+-			continue;
+-		}
+-		if (obj->type == tag_type) {
+-			if (process_tag((struct tag *)obj))
+-				return -1;
+-			continue;
+-		}
+-		return error("Unable to determine requirements "
+-			     "of type %s for %s",
+-			     obj->type, sha1_to_hex(obj->sha1));
++		if (process_object(obj))
++			return -1;
+ 	}
+ 	return 0;
+ }
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

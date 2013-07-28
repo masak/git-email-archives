@@ -1,0 +1,426 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  1 14:48:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EE2F711513F
+	for <tkil@scrye.com>; Mon,  1 Aug 2005 14:48:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261275AbVHAUqG (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 1 Aug 2005 16:46:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261260AbVHAUoI
+	(ORCPT <rfc822;git-outgoing>); Mon, 1 Aug 2005 16:44:08 -0400
+Received: from moutng.kundenserver.de ([212.227.126.188]:53711 "EHLO
+	moutng.kundenserver.de") by vger.kernel.org with ESMTP
+	id S261220AbVHAUmv (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 1 Aug 2005 16:42:51 -0400
+Received: from p54A38EB2.dip0.t-ipconnect.de [84.163.142.178] (helo=[192.168.11.11])
+	by mrelayeu.kundenserver.de with ESMTP (Nemesis),
+	id 0ML25U-1Dzh7X2esM-0008Kc; Mon, 01 Aug 2005 22:42:47 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42EE894A.1030301@my-eitzenberger.de>
+Date:	Mon, 01 Aug 2005 22:42:50 +0200
+From: Holger Eitzenberger <holger@my-eitzenberger.de>
+User-Agent: Debian Thunderbird 1.0.2 (X11/20050715)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: git <git@vger.kernel.org>
+Subject: [PATCH 1/3] debianization update
+Content-Type: multipart/mixed;
+ boundary="------------020903080206030607050309"
+X-Provags-ID: kundenserver.de abuse@kundenserver.de login:8548cd0e00552bb75411ff34ad15700a
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_CG,TW_DP,
+	TW_GV autolearn=no version=3.0.4
+Lines: 385
+Xref: brand.scrye.com linux.git:6700
+
+This is a multi-part message in MIME format.
+--------------020903080206030607050309
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+attached is a patch containing a debianziation update for cogito, based 
+upon the Debian/unstable package.  I mailed the official Debian 
+maintainer in the hope to get an updated .deb but got no reply from him 
+until today.  So i used his work to make a new release of it.
+
+Note that this patch alone will not make the build work, the following 
+two patches contain a makefile update and a small cleanup patch to 
+remove the old debian/git-core.* files.
+
+Also note that i had to remove the reference to the asciidoc.conf in 
+Documentation/Makefile because asciidoc.conf is not available yet.
+
+I hope that these patches are usefull for you.
+
+Any suggestions/improvements welcome.
+
+/holger
+
+--------------020903080206030607050309
+Content-Type: text/x-patch;
+ name="deb-update.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+ filename="deb-update.patch"
+
+Debianization update for latest cogito (0.12.x).
+
+---
+commit f2d865a59091d712f9138dbb7b6df039b342844e
+tree 7ad37ab44c23028d08595e75338869b2a88828e2
+parent 5811433ca54eaab5cefe36924154428697e8826e
+author Holger Eitzenberger <holger@my-eitzenberger.de> Mon, 01 Aug 2005 23:30:00 +0200
+committer Holger Eitzenberger <holger@jonathan.my-eitzenberger.de> Mon, 01 Aug 2005 23:30:00 +0200
+
+ debian/README.Debian                |   21 ++++++++
+ debian/changelog                    |   21 +-------
+ debian/control                      |   23 +++------
+ debian/dirs                         |    4 +
+ debian/git-core.doc-base            |   12 ----
+ debian/git-core.install             |    1 
+ debian/helper-scripts/make-orig.tgz |   12 ++++
+ debian/helper-scripts/make-package  |    4 +
+ debian/helper-scripts/make-test     |   28 ++++++++++
+ debian/rules                        |   94 ++++++++++++++++++++---------------
+ 10 files changed, 135 insertions(+), 85 deletions(-)
+
+diff --git a/debian/README.Debian b/debian/README.Debian
+new file mode 100644
+--- /dev/null
++++ b/debian/README.Debian
+@@ -0,0 +1,21 @@
++cogito for Debian
++-----------------
++
++GIT is Linus Torvald's directory content manager.  Cogito is Petr "Pasky"
++Baudis' distributed revision control system on top of GIT.
++
++The changes from the upstream are:
++
++    * don't install the 'git' and 'cg' commands (to avoid conflicts with
++      the git and cgvg debian packages)
++
++    * make & install docs in .txt format
++
++    * minor tweaks to the docs (sent to upstream, pending approval)
++
++
++Here is the list of GIT repositories available on kernel.org:
++    http://kernel.org/git/
++
++
++ -- Sebastian Kuzminsky <seb@highlab.com>, Thu,  5 May 2005 10:27:14 -0600
+diff --git a/debian/changelog b/debian/changelog
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,21 +1,6 @@
+-git-core (0.99-2) unstable; urgency=low
++cogito (0.12.1-1) stable; urgency=low
+ 
+-  * Conflict with the GNU Interactive Tools package, which also installs
+-    /usr/bin/git.
+-  * Use the Mozilla SHA1 code and/or the PPC assembly in preference to
+-    OpenSSL.  This is only a partial fix for the license issues with OpenSSL.
+-  * Minor tweaks to the Depends.
++  * new version 0.12.1 (needed in order check out Linus' git trees).
+ 
+- -- Ryan Anderson <ryan@michonline.com>  Sat, 23 Jul 2005 14:15:00 -0400
++ -- Holger Eitzenberger <holger@my-eitzenberger.de>  Mon, 01 Aug 2005 20:00:00 -0200
+ 
+-git-core (0.99-1) unstable; urgency=low
+-
+-  * Update deb package support to build correctly. 
+-
+- -- Ryan Anderson <ryan@michonline.com>  Thu, 21 Jul 2005 02:03:32 -0400
+-
+-git-core (0.99-0) unstable; urgency=low
+-
+-  * Initial deb package support
+-
+- -- Eric Biederman <ebiederm@xmission.com>  Tue, 12 Jul 2005 10:57:51 -0600
+diff --git a/debian/control b/debian/control
+--- a/debian/control
++++ b/debian/control
+@@ -1,19 +1,14 @@
+-Source: git-core
++Source: cogito
+ Section: devel
+ Priority: optional
+-Maintainer: Linus Torvalds <torvalds@osdl.org>
+-Build-Depends-Indep: libz-dev, libssl-dev, libcurl3-dev, asciidoc > 6.0.3, xmlto, debhelper (>= 4.0.0)
++Maintainer: Holger Eitzenberger <holger@my-eitzenberger.de>
++Build-Depends: debhelper (>= 4.0.0), dpatch, zlib1g-dev, libcurl3-dev, asciidoc, xmlto
+ Standards-Version: 3.6.1
+ 
+-Package: git-core
++Package: cogito
+ Architecture: any
+-Depends: ${shlibs:Depends}, ${misc:Depends}, patch, diff, rcs
+-Recommends: rsync, curl, ssh
+-Conflicts: git
+-Description: The git content addressable filesystem
+- GIT comes in two layers. The bottom layer is merely an extremely fast
+- and flexible filesystem-based database designed to store directory trees
+- with regard to their history. The top layer is a SCM-like tool which
+- enables human beings to work with the database in a manner to a degree
+- similar to other SCM tools (like CVS, BitKeeper or Monotone).
+-
++Depends: ${shlibs:Depends}, rcs, patch, rsync, wget, rsh-client
++Description: version control system
++ Cogito is the user-friendly front-end to the GIT directory content
++ manager.  This package includes both the low-level GIT tools and the
++ high-level Cogito programs.
+diff --git a/debian/dirs b/debian/dirs
+new file mode 100644
+--- /dev/null
++++ b/debian/dirs
+@@ -0,0 +1,4 @@
++usr/bin
++usr/share/doc/cogito/html
++usr/share/doc/cogito/txt
++usr/share/man/man7
+diff --git a/debian/git-core.doc-base b/debian/git-core.doc-base
+--- a/debian/git-core.doc-base
++++ b/debian/git-core.doc-base
+@@ -1,12 +0,0 @@
+-Document: git-core
+-Title: git-core
+-Author: 
+-Abstract: This manual describes git
+-Section: Devel
+-
+-Format: HTML
+-Index: /usr/share/doc/git-core/html/git.html
+-Files: /usr/share/doc/git-core/html/*.html
+-
+-Format: text
+-Files: /usr/share/doc/git-core/git-core.txt
+diff --git a/debian/git-core.install b/debian/git-core.install
+--- a/debian/git-core.install
++++ b/debian/git-core.install
+@@ -1 +0,0 @@
+-*
+diff --git a/debian/helper-scripts/make-orig.tgz b/debian/helper-scripts/make-orig.tgz
+new file mode 100644
+--- /dev/null
++++ b/debian/helper-scripts/make-orig.tgz
+@@ -0,0 +1,12 @@
++#!/bin/sh
++
++
++UPSTREAM=$( dpkg-parsechangelog | perl -ne '/^Version: (.*)-\d+/ && print "$1\n";' )
++echo upstream version is ${UPSTREAM}
++
++
++# this is ok because our stuff's limited to the debian/ directory
++cg-export ../cogito-${UPSTREAM}.tar.gz origin
++mv ../cogito-${UPSTREAM}.tar.gz ../cogito_${UPSTREAM}.orig.tar.gz
++
++
+diff --git a/debian/helper-scripts/make-package b/debian/helper-scripts/make-package
+new file mode 100644
+--- /dev/null
++++ b/debian/helper-scripts/make-package
+@@ -0,0 +1,4 @@
++#!/bin/sh
++
++dpkg-buildpackage -rfakeroot -i'^\.\/\.git\/' -tc
++
+diff --git a/debian/helper-scripts/make-test b/debian/helper-scripts/make-test
+new file mode 100644
+--- /dev/null
++++ b/debian/helper-scripts/make-test
+@@ -0,0 +1,28 @@
++#!/bin/sh
++
++# exit if any test fails
++set -e
++
++
++DSC=$(ls -1 ../*.dsc | sort | tail -1)
++if [ -z "$DSC" ]; then
++    echo no .dsc file found
++    exit 1
++fi
++
++DEB=$(ls -1 ../*.deb | sort | tail -1)
++if [ -z "$DEB" ]; then
++    echo no .deb file found
++    exit 1
++fi
++
++echo using .dsc file $DSC
++echo using .deb file $DEB
++
++
++dscverify --keyring ~/.gnupg/pubring.gpg $DSC
++sudo pbuilder build $DSC
++
++lintian -i $DEB
++linda -i $DEB
++
+diff --git a/debian/rules b/debian/rules
+--- a/debian/rules
++++ b/debian/rules
+@@ -1,22 +1,26 @@
+ #!/usr/bin/make -f
++#
+ # -*- makefile -*-
++#
++# Sample debian/rules that uses debhelper.
++# This file was originally written by Joey Hess and Craig Small.
++# As a special exception, when this file is copied by dh-make into a
++# dh-make output file, you may use that output file without restriction.
++# This special exception was added by Craig Small in version 0.37 of dh-make.
+ 
+ # Uncomment this to turn on verbose mode.
+ #export DH_VERBOSE=1
+ 
+-CFLAGS = -g -Wall
+-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+-       CFLAGS += -O0
+-else
+-       CFLAGS += -O2
+-endif
+-export CFLAGS
++# these are used to override the variables in the upstream makefile
++export prefix = /usr
++export libdir = $(prefix)/share/cogito
++
++DESTDIR = $(CURDIR)/debian/cogito
++
+ 
+-#
+ # On PowerPC we compile against the hand-crafted assembly, on all
+ # other architectures we compile against GPL'ed sha1 code lifted
+-# from Mozilla.  OpenSSL is strangely licensed and best avoided
+-# in Debian.
++# from Mozilla
+ #
+ HOST_ARCH=$(shell dpkg-architecture -qDEB_HOST_ARCH)
+ ifeq (${HOST_ARCH},powerpc)
+@@ -25,53 +29,62 @@ else
+ 	export MOZILLA_SHA1=YesPlease
+ endif
+ 
++CFLAGS = -Wall -g
++
++ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
++	CFLAGS += -O0
++else
++	CFLAGS += -O2
++endif
++
++configure: configure-stamp
++configure-stamp:
++	dh_testdir
++	touch configure-stamp
+ 
+-PREFIX := /usr
+-MANDIR := /usr/share/man/
+ 
+-SRC    := ./
+-DOC    := Documentation/
+-DESTDIR  := $(CURDIR)/debian/tmp
+-DOC_DESTDIR := $(DESTDIR)/usr/share/doc/git-core/
+-MAN_DESTDIR := $(DESTDIR)/$(MANDIR)
++build: build-stamp
+ 
+-build: debian/build-stamp
+-debian/build-stamp:
++build-stamp: configure-stamp 
+ 	dh_testdir
+-	$(MAKE) all doc
+-	touch debian/build-stamp
++	$(MAKE)
++	$(MAKE) -C Documentation html man
++	touch build-stamp
+ 
+-debian-clean:
++clean:
+ 	dh_testdir
+ 	dh_testroot
+-	rm -f debian/build-stamp
+-	dh_clean
+-
+-clean: debian-clean
++	rm -f build-stamp configure-stamp
+ 	$(MAKE) clean
++	$(MAKE) -C Documentation clean
++	dh_clean 
+ 
+ install: build
+ 	dh_testdir
+ 	dh_testroot
+ 	dh_clean -k 
+-	dh_installdirs 
+-
+-	make dest=$(DESTDIR) prefix=$(PREFIX) mandir=$(MANDIR) install install-doc
+-
+-	mkdir -p $(DOC_DESTDIR)
+-	find $(DOC) '(' -name '*.txt' -o -name '*.html' ')' -exec install {} $(DOC_DESTDIR) ';'
+-
+-	dh_install --list-missing --sourcedir=$(DESTDIR)
++	dh_installdirs
++	$(MAKE) install DESTDIR=$(CURDIR)/debian/cogito
++	$(RM) $(DESTDIR)/usr/bin/{cg,git}
++	install -m 0644 Documentation/*.html $(DESTDIR)/usr/share/doc/cogito/html
++	install -m 0644 Documentation/{git*.txt,cogito.txt} $(DESTDIR)/usr/share/doc/cogito/txt
++	install -m 0644 Documentation/*.7 $(DESTDIR)/usr/share/man/man7
++
++# Build architecture-independent files here.
++binary-indep: build install
++# We have nothing to do by default.
+ 
+-binary: build install
++# Build architecture-dependent files here.
++binary-arch: build install
+ 	dh_testdir
+ 	dh_testroot
+-	dh_installchangelogs
++	dh_installchangelogs 
+ 	dh_installdocs
+ 	dh_installexamples
++#	dh_install
+ #	dh_installmenu
+ #	dh_installdebconf	
+-#	dh_installlogrotate	
++#	dh_installlogrotate
+ #	dh_installemacsen
+ #	dh_installpam
+ #	dh_installmime
+@@ -81,15 +94,16 @@ binary: build install
+ 	dh_installman
+ 	dh_link
+ 	dh_strip
+-	dh_compress 
++	dh_compress
+ 	dh_fixperms
+ #	dh_perl
+ #	dh_python
+-	dh_makeshlibs
++#	dh_makeshlibs
+ 	dh_installdeb
+ 	dh_shlibdeps
+ 	dh_gencontrol
+ 	dh_md5sums
+ 	dh_builddeb
+ 
+-.PHONY: build clean binary install clean debian-clean
++binary: binary-indep binary-arch
++.PHONY: build clean binary-indep binary-arch binary install configure
+
+--------------020903080206030607050309--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 11:32:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C37081B2624
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 11:32:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932130AbVIRRbk (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 13:31:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932131AbVIRRbk
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 13:31:40 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:45705 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S932130AbVIRRbj (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Sep 2005 13:31:39 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050918173139.HDDB23678.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 18 Sep 2005 13:31:39 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Subject: Re: first impressions to git
+References: <20050918111259.GA10882@schottelius.org>
+	<Pine.LNX.4.63.0509181201220.23242@iabervon.org>
+cc:	git@vger.kernel.org, Kay Sievers <kay.sievers@vrfy.org>,
+	Christian Gierke <ch@gierke.de>,
+	Nico -telmich- Schottelius <nico-linux-git@schottelius.org>
+Date:	Sun, 18 Sep 2005 10:31:37 -0700
+In-Reply-To: <Pine.LNX.4.63.0509181201220.23242@iabervon.org> (Daniel
+	Barkalow's message of "Sun, 18 Sep 2005 12:56:21 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7bm470m.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:8784
+
+Daniel Barkalow <barkalow@iabervon.org> writes:
+
+> We need to fix the error for trying to add a directory, and we should 
+> probably support it in "add".
+
+Yup.
+
+> Core git doesn't have a .git/info/excludes at all. (And, in general, 
+> .gitignore makes more sense, I think, because you usually want this to be 
+> version-controlled; but maybe there should be .git/info/excludes as a 
+> default for new directories?)
+
+We by default install info/excludes disabled in a new repository
+and 'git status' looks at it.  What it _does_ not do is to use
+any exclude patterns by default; if info/excludes is empty
+(modulo '# comment' lines) it does not use .gitignore.
+
+> ".git/remotes" is the current one; ".git/branches" is obsolete.
+
+Perhaps deprecated but obsolete is too strong a word -- it still
+is supported.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

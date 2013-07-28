@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 10:43:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DECD412A8CD
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 10:43:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751463AbVKORmR (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 12:42:17 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751465AbVKORmR
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 12:42:17 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:39102 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751463AbVKORmQ (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 15 Nov 2005 12:42:16 -0500
+Received: (qmail 30427 invoked by uid 2001); 15 Nov 2005 18:42:13 +0100
+Date:	Tue, 15 Nov 2005 18:42:13 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Pavel Roskin <proski@gnu.org>, Junio C Hamano <junkio@cox.net>,
+	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Disable USE_SYMLINK_HEAD by default
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051115174213.GO16061@pasky.or.cz>
+References: <1132034390.22207.18.camel@dv> <7vveyuqto5.fsf@assigned-by-dhcp.cox.net> <1132042427.3512.50.camel@dv> <7vpsp2qpx4.fsf@assigned-by-dhcp.cox.net> <7vd5l2mco1.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0511151207070.21671@wbgn013.biozentrum.uni-wuerzburg.de> <20051115121854.GV30496@pasky.or.cz> <7v8xvpn8ne.fsf@assigned-by-dhcp.cox.net> <1132075295.25640.59.camel@dv> <Pine.LNX.4.64.0511150931010.3945@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.64.0511150931010.3945@g5.osdl.org>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:11916
+
+Dear diary, on Tue, Nov 15, 2005 at 06:33:44PM CET, I got a letter
+where Linus Torvalds <torvalds@osdl.org> said that...
+> On Tue, 15 Nov 2005, Pavel Roskin wrote:
+> > 
+> > With symlinks, cogito doesn't know which branch it is fetching if the
+> > branch is not explicitly specified.
+> > 
+> > The old behavior was to fetch the "master" branch by default.
+> > Currently, cogito uses HEAD, but it cannot read the symlink, it can only
+> > read the SHA1. 
+> 
+> Hmm? Why not just use "git-symbolic-ref HEAD" to figure it out? That works 
+> with both symlinks and symrefs (and indeed, was added for that reason).
+
+If you show me a way how to do git-symbolic-ref over HTTP, I will be
+most grateful. :-)
+
+Seriously though, if people have huge problem with having symbolic refs
+by default, that's unfortunate since we have two possibilities which are
+not equally tested, but I can live with it - just give me a way to
+configure that behaviour per-repository, so that I can make GIT use
+symbolic refs in public repositories (or I can whip up a patch myself at
+the evening, after all...).
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

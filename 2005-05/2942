@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 10 03:01:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B5499635A
+	for <tkil@scrye.com>; Tue, 10 May 2005 03:01:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261572AbVEJJBo (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 10 May 2005 05:01:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261581AbVEJJBo
+	(ORCPT <rfc822;git-outgoing>); Tue, 10 May 2005 05:01:44 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:42375 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S261572AbVEJJBn (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 10 May 2005 05:01:43 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050510090141.FJAL12158.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 10 May 2005 05:01:41 -0400
+To: Jan-Benedict Glaw <jbglaw@lug-owl.de>
+Cc: Brian Gerst <bgerst@didntduck.org>,
+	Matthias Urlichs <smurf@smurf.noris.de>, git@vger.kernel.org
+Subject: Re: [PATCH Cogito] cg-init breaks if . contains sub-dir
+References: <20050509233904.GB878@osuosl.org>
+	<pan.2005.05.10.03.41.15.683163@smurf.noris.de>
+	<428043EB.7010004@didntduck.org> <20050510075227.GA8176@lug-owl.de>
+	<20050510080445.GB8176@lug-owl.de>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Tue, 10 May 2005 02:01:41 -0700
+In-Reply-To: <20050510080445.GB8176@lug-owl.de> (Jan-Benedict Glaw's message
+ of "Tue, 10 May 2005 10:04:45 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vis1rpi8a.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 15
+Xref: brand.scrye.com linux.git:2942
+
+>>>>> "JBG" == Jan-Benedict Glaw <jbglaw@lug-owl.de> writes:
+
+>> find * \( -type f -o tyle l \) -print0 | ...
+
+JBG> Btw, this won't find dot files, so using "." as the path list (instead
+JBG> of "*") might be wise...
+
+Huh?  Since when GIT started managing paths whose _any_ of their
+path component starts with a dot?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

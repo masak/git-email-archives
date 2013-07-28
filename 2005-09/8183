@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep  7 20:11:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F23E5263955
+	for <tkil@scrye.com>; Wed,  7 Sep 2005 20:11:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932561AbVIHCLE (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 7 Sep 2005 22:11:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932564AbVIHCLE
+	(ORCPT <rfc822;git-outgoing>); Wed, 7 Sep 2005 22:11:04 -0400
+Received: from wproxy.gmail.com ([64.233.184.201]:55422 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932561AbVIHCLC (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 7 Sep 2005 22:11:02 -0400
+Received: by wproxy.gmail.com with SMTP id i2so1087138wra
+        for <git@vger.kernel.org>; Wed, 07 Sep 2005 19:11:01 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:disposition-notification-to:date:from:reply-to:user-agent:x-accept-language:mime-version:to:cc:subject:references:in-reply-to:content-type:content-transfer-encoding;
+        b=SDSUQXBcl94GLTCmx7qO+MqgDJs0mVk49y02ue61HIl7/OeRubINqh/GuSveselzYkF9pBu2WIyL6/6Mj2VPPlluAv0hpbt68i0kO7xnoKGKTsCtEK+PeP5fvFGl9Ij7ahpe+Jw5M7KKshZkknXTUdFGYn5tavTlKNZ4nZRHd1g=
+Received: by 10.54.29.44 with SMTP id c44mr2641239wrc;
+        Wed, 07 Sep 2005 19:11:01 -0700 (PDT)
+Received: from ?10.0.0.6? ( [70.89.97.97])
+        by mx.gmail.com with ESMTP id 6sm518569wrl.2005.09.07.19.11.01;
+        Wed, 07 Sep 2005 19:11:01 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <431F9DB3.5090204@gmail.com>
+Date:	Wed, 07 Sep 2005 22:10:59 -0400
+From:	A Large Angry SCM <gitzilla@gmail.com>
+Reply-To:  gitzilla@gmail.com
+User-Agent: Mozilla Thunderbird 1.0 (X11/20041207)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Junio C Hamano <junkio@cox.net>
+CC:	Zack Brown <zbrown@tumblerings.org>, git@vger.kernel.org
+Subject: Re: git/cogito suggestion: tags with descriptions
+References: <20050905184551.GA14720@tumblerings.org> <7vu0gw1htd.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vu0gw1htd.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:8183
+
+Junio C Hamano wrote:
+> Zack Brown <zbrown@tumblerings.org> writes:
+> 
+>>It would be great if tags also allowed a brief description to go along with
+>>them, that would show up in cg-tag-ls. Then I could seek to a tag that's just
+>>an easy-to-type version number, and still have an idea of what's significant
+>>about that version because of the descriptive text.
+> 
+> Do people crave for 'git tag' showing list of tags with their
+> brief descriptions just like 'git branch' does?
+
+Sort of like what gitweb does now?
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 09:16:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3AA752851FC
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 09:16:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965240AbVINPOu (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 11:14:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965230AbVINPOt
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 11:14:49 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:36016 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S965240AbVINPOt (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Sep 2005 11:14:49 -0400
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1EFYyG-0002RL-Il; Wed, 14 Sep 2005 15:14:48 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43283E66.5080101@pobox.com>
+Date:	Wed, 14 Sep 2005 11:14:46 -0400
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Linus Torvalds <torvalds@osdl.org>
+CC:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: does git prune packs?
+References: <432805E6.6030905@pobox.com> <Pine.LNX.4.58.0509140808010.26803@g5.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0509140808010.26803@g5.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:8522
+
+Linus Torvalds wrote:
+> 
+> On Wed, 14 Sep 2005, Jeff Garzik wrote:
+> 
+>>Does git-prune-packed eliminate packs that have been superceded by other 
+>>packs?
+> 
+> 
+> Nope. Pretty hard to do. Unless you just repack everything, at which point
+> 
+> 	git repack -a -d
+> 
+> will do the right thing.
+
+I never repack, I just use your packs.
+
+Easier on my hard disk, vastly reduces upload time (cable modem == slow 
+uploads), since I can ssh to master.kernel.org and hardlink, and easier 
+on kernel.org.
+
+I'll remove the old packs manually.
+
+Thanks,
+
+	Jeff
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May 23 01:25:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1189A24948C
+	for <tkil@scrye.com>; Mon, 23 May 2005 01:25:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261853AbVEWHYu (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 23 May 2005 03:24:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261857AbVEWHYf
+	(ORCPT <rfc822;git-outgoing>); Mon, 23 May 2005 03:24:35 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:10693 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S261853AbVEWHY3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 23 May 2005 03:24:29 -0400
+Received: from cpe-065-184-065-144.nc.res.rr.com ([65.184.65.144] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1Da7IY-0000Xf-H6; Mon, 23 May 2005 07:24:27 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42918526.1060406@pobox.com>
+Date:	Mon, 23 May 2005 03:24:22 -0400
+From: Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.6) Gecko/20050328 Fedora/1.7.6-1.2.5
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: david@gibson.dropbear.id.au
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: git-switch-tree script
+Content-Type: multipart/mixed;
+ boundary="------------040907090901080000080103"
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 45
+Xref: brand.scrye.com linux.git:3773
+
+This is a multi-part message in MIME format.
+--------------040907090901080000080103
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+
+This is what I use to switch between branches, in my kernel trees.
+
+	Jeff
+
+
+
+--------------040907090901080000080103
+Content-Type: text/plain;
+ name="git-switch-tree"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+ filename="git-switch-tree"
+
+#!/bin/sh
+
+if [ "x$1" != "x" ]
+then
+	if [ "$1" == "master" ]
+	then
+		( cd .git && rm -f HEAD && ln -s refs/heads/master HEAD )
+	else
+		if [ ! -f .git/refs/heads/$1 ]
+		then
+			echo Branch $1 not found.
+			exit 1
+		fi
+
+		( cd .git && rm -f HEAD && ln -s refs/heads/$1 HEAD )
+	fi
+fi
+
+git-read-tree -m HEAD && git-checkout-cache -q -f -u -a
+
+
+--------------040907090901080000080103--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

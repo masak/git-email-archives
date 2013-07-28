@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  9 00:55:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 47FEE155BBD
+	for <tkil@scrye.com>; Thu,  9 Jun 2005 00:55:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262297AbVFIGzE (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 9 Jun 2005 02:55:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262289AbVFIGzE
+	(ORCPT <rfc822;git-outgoing>); Thu, 9 Jun 2005 02:55:04 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:38612 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S262300AbVFIGys (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 9 Jun 2005 02:54:48 -0400
+Received: from cpe-065-184-065-144.nc.res.rr.com ([65.184.65.144] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1DgGw9-0004Z5-Nu
+	for git@vger.kernel.org; Thu, 09 Jun 2005 06:54:47 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42A7E7AD.5030108@pobox.com>
+Date:	Thu, 09 Jun 2005 02:54:37 -0400
+From: Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.2-6 (X11/20050513)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Git Mailing List <git@vger.kernel.org>
+Subject: git bug?
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 50
+Xref: brand.scrye.com linux.git:4734
+
+
+Just upgraded to the latest git, pulled the latest Linux kernel tree, 
+and made a local modification.  Here is the strange git-diff-cache output:
+
+> [jgarzik@pretzel libata-dev]$ git-diff-cache -p HEAD 
+> diff --git a/arch/arm/mm/minicache.c b/arch/arm/mm/minicache.c
+> deleted file mode 100644
+> diff --git a/drivers/scsi/libata-core.c b/drivers/scsi/libata-core.c
+> --- a/drivers/scsi/libata-core.c
+> +++ b/drivers/scsi/libata-core.c
+> @@ -3059,8 +3059,6 @@ static void __ata_qc_complete(struct ata
+>         struct ata_port *ap = qc->ap;
+>         unsigned int tag, do_clear = 0;
+>  
+> -       WARN_ON(!assert_spin_locked(&ap->host_set->lock));
+> -
+>         if (likely(qc->flags & ATA_QCFLAG_ACTIVE)) {
+>                 assert(ap->queue_depth);
+>                 ap->queue_depth--;
+
+The libata-core part is correct, the arch/arm/mm part is not.
+
+I pulled using unmodified, upstream git scripts.  No sugar added. 
+Here's what the repo looks like:
+
+> [jgarzik@pretzel libata-dev]$ git-rev-list --pretty HEAD ^master | git-shortlog 
+> Jeff Garzik:
+>   Merge /spare/repo/linux-2.6/
+>   Automatic merge of /spare/repo/linux-2.6/.git branch HEAD
+> 
+> Jens Axboe:
+>   libata: fix spinlock bug introduced by NCQ code
+>   libata: ncq support update
+>   libata-scsi: better placement of cmd completion on err
+>   SATA NCQ support
+
+It's mirroring to kernel.org right now, at 
+rsync.kernel.org://...jgarzik/libata-dev.git if somebody wants to poke 
+at it.  Top of tree is d032ec9048ff82a704b96b93cfd6f2e8e3a06b19 (when 
+fully uploaded and mirrored).
+
+	Jeff
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

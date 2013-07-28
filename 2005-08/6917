@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  8 02:52:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5260327E799
+	for <tkil@scrye.com>; Mon,  8 Aug 2005 02:52:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750765AbVHHIwB (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 8 Aug 2005 04:52:01 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750766AbVHHIwB
+	(ORCPT <rfc822;git-outgoing>); Mon, 8 Aug 2005 04:52:01 -0400
+Received: from cam-admin0.cambridge.arm.com ([193.131.176.58]:46027 "EHLO
+	cam-admin0.cambridge.arm.com") by vger.kernel.org with ESMTP
+	id S1750765AbVHHIwA (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 8 Aug 2005 04:52:00 -0400
+Received: from cam-mail2.cambridge.arm.com (cam-mail2.cambridge.arm.com [10.1.127.39])
+	by cam-admin0.cambridge.arm.com (8.12.10/8.12.10) with ESMTP id j788okOU007197;
+	Mon, 8 Aug 2005 09:50:46 +0100 (BST)
+Received: from ZIPPY.Emea.Arm.com (cam-exch2.emea.arm.com [10.1.255.58])
+	by cam-mail2.cambridge.arm.com (8.9.3/8.9.3) with ESMTP id JAA18817;
+	Mon, 8 Aug 2005 09:51:34 +0100 (BST)
+Received: from localhost.localdomain ([10.1.69.144]) by ZIPPY.Emea.Arm.com with Microsoft SMTPSVC(6.0.3790.211);
+	 Mon, 8 Aug 2005 09:51:02 +0100
+To: Junio C Hamano <junkio@cox.net>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: use of temporary refs in resolve
+References: <7v3bplwmzg.fsf@assigned-by-dhcp.cox.net>
+From: Catalin Marinas <catalin.marinas@gmail.com>
+Date:	Mon, 08 Aug 2005 09:50:30 +0100
+In-Reply-To: <7v3bplwmzg.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+ message of "Sun, 07 Aug 2005 12:44:35 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <tnxk6iwx161.fsf@arm.com>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-OriginalArrivalTime: 08 Aug 2005 08:51:02.0534 (UTC) FILETIME=[4E269A60:01C59BF6]
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 40
+Xref: brand.scrye.com linux.git:6917
+
+Junio C Hamano <junkio@cox.net> wrote:
+> Here is my understanding of various "temporary heads" left
+> directly underneath $GIT_DIR:
+>
+>     HEAD      : updated only after successful auto merge.
+>
+>     ORIG_HEAD : records the head value before resolve started.
+>                 if automerge fails, this is the same as HEAD,
+>                 but after successful automerge, this can be used
+>                 to see what the previous head was.  This is the
+>                 first parent of the resulting commit.
+>
+>     MERGE_HEAD: present if auto merge is unsuccessful and
+> 		records the other head being merged.
+>
+>     LAST_MERGE: present if merge is unsuccessful or impossible and
+> 		records the other head being merged.
+
+Is FETCH_HEAD going to be preserved by the git-fetch-script operation?
+It should be, unless, git-pull-script removes it or it is changed to
+do the fetch as well.
+
+In a repository managed with StGIT (i.e. updated with 'stg pull'), the
+base of the stack is always the same with FETCH_HEAD and StGIT uses
+this file. I also find it quite useful for:
+
+  gitk ORIG_HEAD..FETCH_HEAD
+
+to only see the remote commits since the local StGIT patches are
+always seen as commits on top of the FETCH_HEAD. It's also useful for
+people using 'git rebase'.
+
+-- 
+Catalin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

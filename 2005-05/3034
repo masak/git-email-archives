@@ -1,0 +1,55 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May 11 13:56:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E48CD6FB2
+	for <tkil@scrye.com>; Wed, 11 May 2005 13:56:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262032AbVEKTzX (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 11 May 2005 15:55:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262035AbVEKTzX
+	(ORCPT <rfc822;git-outgoing>); Wed, 11 May 2005 15:55:23 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:8384 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262032AbVEKTzU (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 11 May 2005 15:55:20 -0400
+Received: (qmail 24400 invoked by uid 2001); 11 May 2005 19:55:14 -0000
+Date:	Wed, 11 May 2005 21:55:13 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Morten Welinder <mwelinder@gmail.com>
+Cc: GIT Mailing List <git@vger.kernel.org>
+Subject: Re: cg-add does not understand symlinks
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050511195513.GB22686@pasky.ji.cz>
+References: <118833cc050511112528a768ce@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <118833cc050511112528a768ce@mail.gmail.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 15
+Xref: brand.scrye.com linux.git:3034
+
+Dear diary, on Wed, May 11, 2005 at 08:25:32PM CEST, I got a letter
+where Morten Welinder <mwelinder@gmail.com> told me that...
+> It looks like cg-add does not understand symlinks.
+
+Thanks, fixed.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

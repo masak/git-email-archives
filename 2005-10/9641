@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct  3 14:08:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7AB7B1B7A6A
+	for <tkil@scrye.com>; Mon,  3 Oct 2005 14:08:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932682AbVJCUIM (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 3 Oct 2005 16:08:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932684AbVJCUIM
+	(ORCPT <rfc822;git-outgoing>); Mon, 3 Oct 2005 16:08:12 -0400
+Received: from iabervon.org ([66.92.72.58]:58117 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S932682AbVJCUIL (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 3 Oct 2005 16:08:11 -0400
+Received: (qmail 29683 invoked by uid 1000); 3 Oct 2005 16:12:51 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 3 Oct 2005 16:12:51 -0400
+Date:	Mon, 3 Oct 2005 16:12:51 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Nick Hengeveld <nickh@reactrix.com>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: What to expect after 0.99.8
+In-Reply-To: <20051003200233.GC15593@reactrix.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510031608170.23242@iabervon.org>
+References: <7v7jcvxxrl.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0510031522590.23242@iabervon.org> <20051003200233.GC15593@reactrix.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:9641
+
+On Mon, 3 Oct 2005, Nick Hengeveld wrote:
+
+> On Mon, Oct 03, 2005 at 03:43:02PM -0400, Daniel Barkalow wrote:
+> 
+> >  * Accept patches to fetch multiple objects by HTTP in parallel.
+> > 
+> > I think this may be necessary to get good performance without rsync for 
+> > repositories hosted without specific git support.
+> 
+> I have a version of this almost working, but it's a nontrivial patch
+> that feels more like a post-1.0 thing to me.
+
+I'd be interested to see it anyway.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

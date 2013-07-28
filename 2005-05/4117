@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 28 10:14:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 08F411709C2
+	for <tkil@scrye.com>; Sat, 28 May 2005 10:14:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261157AbVE1QOn (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 28 May 2005 12:14:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261158AbVE1QOn
+	(ORCPT <rfc822;git-outgoing>); Sat, 28 May 2005 12:14:43 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:25319 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S261157AbVE1QOl (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 28 May 2005 12:14:41 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050528161439.ONFV26972.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 28 May 2005 12:14:39 -0400
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Add -O<orderfile> option to diff-* brothers.
+References: <7vzmufwu8w.fsf@assigned-by-dhcp.cox.net>
+	<20050528111238.GA1036@pasky.ji.cz>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Sat, 28 May 2005 09:14:37 -0700
+In-Reply-To: <20050528111238.GA1036@pasky.ji.cz> (Petr Baudis's message of
+ "Sat, 28 May 2005 13:12:38 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vu0knuy36.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 24
+Xref: brand.scrye.com linux.git:4117
+
+>>>>> "PB" == Petr Baudis <pasky@ucw.cz> writes:
+
+PB> Hmm, is this really useful in practice? diff itself doesn't appear to
+PB> have it either, and I haven't seen something like this before. So is it
+PB> worth the code?
+
+CVS nor SVN does not do pickaxe as far as I know either, but I
+think some people in GIT community are already having fun with
+pickaxe.
+
+The amount of the code is small, and it does not impact if you
+do not use the option.  I am more concerned by (1) the fact that
+each new diffcore filters would carve out its own niche from the
+scarse command option namespace; (2) you have to duplicate the
+option parsing in all three diff-* brothers; and (3) diff-tree
+is sometimes an odd-man-out among those three and it is not so
+simple to unify the option parsing.  A help in that area is very
+much appreciated.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

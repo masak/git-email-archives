@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct  6 22:56:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4D7D9138EA0
+	for <tkil@scrye.com>; Thu,  6 Oct 2005 22:56:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751369AbVJGE4o (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 7 Oct 2005 00:56:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751372AbVJGE4o
+	(ORCPT <rfc822;git-outgoing>); Fri, 7 Oct 2005 00:56:44 -0400
+Received: from 194.37.26.69.virtela.com ([69.26.37.194]:46998 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S1751369AbVJGE4n (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 7 Oct 2005 00:56:43 -0400
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id j974udV0022042;
+	Thu, 6 Oct 2005 21:56:39 -0700
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id j974udcd022040;
+	Thu, 6 Oct 2005 21:56:39 -0700
+Date:	Thu, 6 Oct 2005 21:56:39 -0700
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Add support for parallel HTTP transfers
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051007045639.GA18998@reactrix.com>
+References: <20051005214447.GF15593@reactrix.com> <Pine.LNX.4.63.0510061550510.23242@iabervon.org> <20051007000041.GH15593@reactrix.com> <7virwa5ety.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7virwa5ety.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:9787
+
+On Thu, Oct 06, 2005 at 05:51:53PM -0700, Junio C Hamano wrote:
+
+> Well, I'd suggest just to hardcode a reasonable value to be a
+> good net citizen, and not make it configurable.  Four, perhaps?
+> 
+> OTOH, we may want to have an option to disable parallel from the
+> command line (I think -r 1 would mean that with yours).
+
+I'd prefer to keep it configurable - for our purposes we'll be hitting
+a single server from several clients and will probably want to limit
+concurrent connections to something like two per client, but when doing
+a fetch from a big server farm more connections would make sense.
+
+> If we really want to have the number of parallel configurable,
+> and -r implies recursive as you say, maybe '-j' to mimic
+> parallel make?
+
+Not that I'm a huge fan of using environment variables, but it might make
+sense to use one here.  That would allow the setting to work whether
+git-http-fetch is run directly or via git-fetch.  GIT_HTTP_MAX_REQUESTS?
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

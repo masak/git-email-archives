@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 17 17:08:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 941C41DB17F
+	for <tkil@scrye.com>; Fri, 17 Jun 2005 17:08:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261730AbVFQXIR (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 17 Jun 2005 19:08:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261750AbVFQXIR
+	(ORCPT <rfc822;git-outgoing>); Fri, 17 Jun 2005 19:08:17 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:63119 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S261730AbVFQXIN (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 17 Jun 2005 19:08:13 -0400
+Received: from cpe-065-184-065-144.nc.res.rr.com ([65.184.65.144] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1DjPwX-0000LJ-VG; Fri, 17 Jun 2005 23:08:10 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42B357D7.6030302@pobox.com>
+Date:	Fri, 17 Jun 2005 19:08:07 -0400
+From: Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.2-6 (X11/20050513)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Jens Axboe <axboe@suse.de>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: git merging
+References: <20050617133440.GI6957@suse.de> <Pine.LNX.4.58.0506170937260.8487@ppc970.osdl.org> <20050617175653.GS6957@suse.de> <Pine.LNX.4.58.0506171101450.2268@ppc970.osdl.org> <20050617181156.GT6957@suse.de> <Pine.LNX.4.58.0506171132390.2268@ppc970.osdl.org> <20050617183914.GX6957@suse.de> <Pine.LNX.4.58.0506171142500.2268@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0506171142500.2268@ppc970.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,
+	SEE_FOR_YOURSELF autolearn=no version=3.0.3
+Lines: 30
+Xref: brand.scrye.com linux.git:4986
+
+Linus Torvalds wrote:
+> The "git prune" script is really trivial, you can see for yourself what 
+> "git-prune-script" does.
+
+
+I've been too lazy to report this, but...
+
+last time I tried it, git-prune-script ate valid objects, for my 
+multi-branch trees.  This was 100% reproducible.  Luckily, the objects 
+it ate were all in the main branch, so an rsync-without-delete from 
+linux-2.6.git/objects would restore the missing data.
+
+This was verified by repeated runs of
+	git-fsck-cache		# OK
+	git-prune-script
+	git-fsck-cache		# spits out tons of errors
+	rsync ...		# restore deleted objects
+	git-fsck-cache		# OK
+
+I use hardlinks on the local disk, between several multi-branch repos, 
+if that matters.
+
+	Jeff
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 00:03:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 36BF62878E4
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 00:03:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932319AbVKOHDk (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 02:03:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932320AbVKOHDk
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 02:03:40 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:19874 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932319AbVKOHDk (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 02:03:40 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051115070310.EQUD20875.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 15 Nov 2005 02:03:10 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Pavel Roskin <proski@gnu.org>
+Subject: Re: [PATCH] Disable USE_SYMLINK_HEAD by default
+References: <1132034390.22207.18.camel@dv>
+cc:	git@vger.kernel.org
+Date:	Mon, 14 Nov 2005 23:03:38 -0800
+In-Reply-To: <1132034390.22207.18.camel@dv> (Pavel Roskin's message of "Tue,
+	15 Nov 2005 00:59:50 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vveyuqto5.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:11869
+
+Pavel Roskin <proski@gnu.org> writes:
+
+> Applying this patch before 1.0 may be controversial,...
+
+If I am not mistaken, I thought the last thread on the list
+showed general consensus that symlinks were preferred when
+available.  So applying this patch anytime would be
+controversial...
+
+> but I think there is a very good reason for that.
+
+Which is...?  I do not think this paragraph justifies it:
+
+> There should be exactly one git 1.0 repository format.  Now we
+> have two that are present in the sources and that have
+> received testing from the git users.
+
+The one format is that .git/HEAD can either be a symlink or
+regular file text symref; both variants are tested -- wouldn't
+that be good enough?
+
+The only thing I can think of that might be inconvenient is if
+you try doing "cp -a" off of a filesystem that supports symlinks
+to another filesystem that does not -- probably that would fail
+copying the symlinked .git/HEAD.  But if that is the problem,
+you could always git-clone, which should do the right thing, I
+think.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

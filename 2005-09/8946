@@ -1,0 +1,107 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 20:15:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 60678106035
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 20:15:05 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964831AbVITCO7 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 22:14:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964840AbVITCO7
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 22:14:59 -0400
+Received: from fencepost.gnu.org ([199.232.76.164]:43435 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S964831AbVITCO6
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Sep 2005 22:14:58 -0400
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EHXer-0006BX-RZ
+	for git@vger.kernel.org; Mon, 19 Sep 2005 22:14:58 -0400
+Received: from proski by dv.roinet.com with local (Exim 4.52)
+	id 1EHXeq-0001hK-M3
+	for git@vger.kernel.org; Mon, 19 Sep 2005 22:14:56 -0400
+Subject: [PATCH 3/8] cogito: "cg-object-id -p" should separate its output
+	by newlines
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Mon, 19 Sep 2005 22:14:56 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1127182496.31115.21.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 64
+Xref: brand.scrye.com linux.git:8946
+
+"cg-object-id -p" should separate its output by newlines.
+
+If there are several parents, they should be separated by newlines, not
+by spaces.  That's what cg-diff expects.
+
+diff --git a/cg-Xnormid b/cg-Xnormid
+--- a/cg-Xnormid
++++ b/cg-Xnormid
+@@ -17,11 +17,11 @@
+ id="$1"
+ 
+ if [ "${id:(-1):1}" = "^" ]; then
+ 	# find parent
+ 	id=$(cg-object-id "${id%^}") || exit 1
+-	git-cat-file commit "$id" | awk '/^parent/{print $2," "};/^$/{exit}' || exit 1
++	git-cat-file commit "$id" | awk '/^parent/{print $2};/^$/{exit}' || exit 1
+ 	exit
+ fi
+ 
+ if [ ! "$id" ] || [ "$id" = "this" ] || [ "$id" = "HEAD" ]; then
+ 	read id < "$_git/HEAD"
+diff --git a/cg-object-id b/cg-object-id
+--- a/cg-object-id
++++ b/cg-object-id
+@@ -9,12 +9,12 @@
+ #
+ # OPTIONS
+ # -------
+ # -p::
+ #	Get ID of parent commit(s) to a given revision or HEAD.
+-#	NOTE: Multiple SHA1s will be returned for commits with multiple
+-#	parents.
++#	NOTE: Multiple SHA1s separated by newlines will be returned for
++#	commits with multiple parents.
+ #
+ # -t::
+ #	Get ID of tree associated with given commit or HEAD.
+ #
+ # OBJECT_ID::
+@@ -53,11 +53,11 @@ if [ "$show_parent" ]; then
+ fi
+ 
+ normid=$(. ${COGITO_LIB}cg-Xnormid "$id") || exit 1
+ 
+ if [ "$show_parent" ]; then
+-	echo ${normid% *}
++	echo "${normid% *}"
+ 	exit 0
+ fi
+ 
+ type=${normid#* }
+ normid=${normid% *}
+
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

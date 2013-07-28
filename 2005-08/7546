@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 19 01:50:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B6FD912A0BE
+	for <tkil@scrye.com>; Fri, 19 Aug 2005 01:50:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964908AbVHSHtp (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 19 Aug 2005 03:49:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964905AbVHSHtp
+	(ORCPT <rfc822;git-outgoing>); Fri, 19 Aug 2005 03:49:45 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:17808 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S964908AbVHSHto (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 19 Aug 2005 03:49:44 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050819074943.YZAV8651.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 19 Aug 2005 03:49:43 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Subject: Re: [RFC] Importing from a patch-oriented SCM
+References: <46a038f9050819000417ed436e@mail.gmail.com>
+cc:	git@vger.kernel.org
+Date:	Fri, 19 Aug 2005 00:49:43 -0700
+In-Reply-To: <46a038f9050819000417ed436e@mail.gmail.com> (Martin Langhoff's
+	message of "Fri, 19 Aug 2005 19:04:24 +1200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vslx61i3s.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:7546
+
+Martin Langhoff <martin.langhoff@gmail.com> writes:
+
+> If I remember correctly, Junio added some stuff in the merge & rebase
+> code that will identify if a particular patch has been seen and
+> applied, and skip it even if it's a bit out of order. But I don't know
+
+I think you are talking about git-patch-id.
+
+f97672225b3b1a2ca57cfc16f49239bed1efcd87
+Author: Linus Torvalds <torvalds@ppc970.osdl.org>
+Date:   Thu Jun 23 15:06:04 2005 -0700
+
+    Add "git-patch-id" program to generate patch ID's.
+
+    A "patch ID" is nothing but a SHA1 of the diff associated
+    with a patch, with whitespace and line numbers ignored.  As
+    such, it's "reasonably stable", but at the same time also
+    reasonably unique, ie two patches that have the same "patch
+    ID" are almost guaranteed to be the same thing.
+
+    IOW, you can use this thing to look for likely duplicate
+    commits.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

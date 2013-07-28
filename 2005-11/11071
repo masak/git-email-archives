@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov  3 10:41:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8BF1A5E0C3
+	for <tkil@scrye.com>; Thu,  3 Nov 2005 10:41:58 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030367AbVKCRlW (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 3 Nov 2005 12:41:22 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030393AbVKCRlW
+	(ORCPT <rfc822;git-outgoing>); Thu, 3 Nov 2005 12:41:22 -0500
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:63688
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S1030367AbVKCRlV (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 3 Nov 2005 12:41:21 -0500
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1EXj5U-00066K-Ld
+	for git@vger.kernel.org; Thu, 03 Nov 2005 17:41:20 +0000
+From:	Alan Chandler <alan@chandlerfamily.org.uk>
+To:	git@vger.kernel.org
+Subject: little conundrum
+Date:	Thu, 3 Nov 2005 17:41:20 +0000
+User-Agent: KMail/1.8.2
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511031741.20496.alan@chandlerfamily.org.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:11071
+
+I have a little problem I am trying to solve.  Tried a few things and got 
+nowhere, so I thought I would ask here.
+
+I have two directories one of which contains a tree of source code that was an 
+original software package that I downloaded.  The other contains the result 
+of some unfinished - but quite substancial changes that I had made to that 
+source code.  Since this was some time ago, I don't have any records, but it 
+is quite possible that I added and removed quite a few files.
+
+I would like to make myself a git repository that contains at the start, an 
+initial commit of the original downloaded source code, and a second commit on 
+the top of that that contains the the current state of play after the changes 
+I have made.
+
+Since I don't actually have a list of the files, I thought I would establish 
+these automatically by going into each directory and doing a cg-init.  So I 
+now have two disjoint repositories each with their source tree in it.
+
+My next thought was to add a branch to one of them and then pull the resultant 
+code over and merge it using cg-branch-add followed by a cg-update.  But when 
+I do that it complains that there is no common base.  
+
+I tried creating an empty directory and separately merging the two versions 
+with it, so that I have a common parent, but whatever I do, I can't get one 
+of those nice little gitk diagrams that has any linkage between the two 
+versions of the source code.
+
+Is there an approach I could take to achieve what I want?
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+Open Source. It's the difference between trust and antitrust.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

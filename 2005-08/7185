@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 13 09:30:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9313DBC5F5
+	for <tkil@scrye.com>; Sat, 13 Aug 2005 09:30:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751336AbVHMP3r (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 13 Aug 2005 11:29:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751337AbVHMP3r
+	(ORCPT <rfc822;git-outgoing>); Sat, 13 Aug 2005 11:29:47 -0400
+Received: from stat16.steeleye.com ([209.192.50.48]:47289 "EHLO
+	hancock.sc.steeleye.com") by vger.kernel.org with ESMTP
+	id S1751336AbVHMP3r (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 13 Aug 2005 11:29:47 -0400
+Received: from midgard.sc.steeleye.com (midgard.sc.steeleye.com [172.17.6.40])
+	by hancock.sc.steeleye.com (8.11.6/8.11.6) with ESMTP id j7DFTXA01462;
+	Sat, 13 Aug 2005 11:29:33 -0400
+Subject: [PATCH] fix git-checkout-cache segfault on parisc
+From: James Bottomley <James.Bottomley@SteelEye.com>
+To: junkio@cox.net
+Cc: git@vger.kernel.org,
+	PARISC list <parisc-linux@lists.parisc-linux.org>
+Content-Type: text/plain
+Date:	Sat, 13 Aug 2005 10:29:32 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1123946972.5115.4.camel@mulgrave>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.4 (2.0.4-6) 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_WF 
+	autolearn=ham version=3.0.4
+Lines: 39
+Xref: brand.scrye.com linux.git:7185
+
+This one I think is Linus' fault, so send him a brown paper bag with my
+complements ...
+
+The index cleanup code is executed via atexit() which is *after* main
+has completed, so the stack allocated cache_file has gone out of scope.
+Parisc seems to use stack in the destructor functions, so cache_file
+gets partially overwritten leading to the predictable disastrous
+consequences.
+
+Signed-off-by: James Bottomley <James.Bottomley@SteelEye.com>
+
+---
+
+James
+
+diff --git a/checkout-cache.c b/checkout-cache.c
+--- a/checkout-cache.c
++++ b/checkout-cache.c
+@@ -80,10 +80,11 @@ static int checkout_all(void)
+ static const char checkout_cache_usage[] =
+ "git-checkout-cache [-u] [-q] [-a] [-f] [-n] [--prefix=<string>] [--] <file>...";
+ 
++static struct cache_file cache_file;
++
+ int main(int argc, char **argv)
+ {
+ 	int i, force_filename = 0;
+-	struct cache_file cache_file;
+ 	int newfd = -1;
+ 
+ 	if (read_cache() < 0) {
+diff --git a/index.c b/index.c
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

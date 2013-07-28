@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 12 13:04:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id AB067264426
+	for <tkil@scrye.com>; Thu, 12 May 2005 13:04:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261304AbVELTEj (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 15:04:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261373AbVELTEh
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 15:04:37 -0400
+Received: from lug-owl.de ([195.71.106.12]:62667 "EHLO lug-owl.de")
+	by vger.kernel.org with ESMTP id S261304AbVELTEe (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 12 May 2005 15:04:34 -0400
+Received: by lug-owl.de (Postfix, from userid 1001)
+	id ABB5F1902E0; Thu, 12 May 2005 21:04:33 +0200 (CEST)
+Date:	Thu, 12 May 2005 21:04:33 +0200
+From: Jan-Benedict Glaw <jbglaw@lug-owl.de>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: git@vger.kernel.org
+Subject: Re: [ANNOUNCE] git tracker online
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050512190433.GB8176@lug-owl.de>
+References: <1115794878.22180.27.camel@tglx>
+Mime-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="oRWDw5wXQ3uCJU7V"
+Content-Disposition: inline
+In-Reply-To: <1115794878.22180.27.camel@tglx>
+X-Operating-System: Linux mail 2.6.10-rc2-bk5lug-owl 
+X-gpg-fingerprint: 250D 3BCF 7127 0D8C A444  A961 1DBD 5E75 8399 E1BB
+X-gpg-key: wwwkeys.de.pgp.net
+X-Echelon-Enable: howto poison arsenous mail psychological biological nuclear warfare test the bombastical terror of flooding the spy listeners explosion sex drugs and rock'n'roll
+X-TKUeV: howto poison arsenous mail psychological biological nuclear warfare test the bombastical terror of flooding the spy listeners explosion sex drugs and rock'n'roll
+User-Agent: Mutt/1.5.6+20040907i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 53
+Xref: brand.scrye.com linux.git:3151
+
+
+--oRWDw5wXQ3uCJU7V
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 2005-05-11 07:01:18 +0000, Thomas Gleixner <tglx@linutronix.de> wro=
+te:
+> git tracker is online in a beta version:
+>=20
+> http://www.tglx.de/gittracker
+
+I already said I like it, here are two suggestions:
+
+	- Browsing the Cogito repository doesn't work. Could you fix
+	  that?
+
+	- When the {repository,diff against} drop-down box is changed,
+	  it would be nice to fire off a onchange=3D"submit()" so that (if
+	  your browser is wacked with JavaScript) you don't need to
+	  press the submit button.
+
+Thanks, JBG
+
+--=20
+Jan-Benedict Glaw       jbglaw@lug-owl.de    . +49-172-7608481             =
+_ O _
+"Eine Freie Meinung in  einem Freien Kopf    | Gegen Zensur | Gegen Krieg  =
+_ _ O
+ fuer einen Freien Staat voll Freier B=C3=BCrger" | im Internet! |   im Ira=
+k!   O O O
+ret =3D do_actions((curr | FREE_SPEECH) & ~(NEW_COPYRIGHT_LAW | DRM | TCPA)=
+);
+
+--oRWDw5wXQ3uCJU7V
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFCg6jBHb1edYOZ4bsRAuqOAJ9OyFkl8uwh77NyqHNhq7LXIGMqXACfZifs
+py2TVuTZBvHP63S9vGLWb1I=
+=MHIQ
+-----END PGP SIGNATURE-----
+
+--oRWDw5wXQ3uCJU7V--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

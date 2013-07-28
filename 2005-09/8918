@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 17:59:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D61BE15BCD5
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 17:59:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964790AbVISX7V (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 19:59:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964791AbVISX7V
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 19:59:21 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:1458 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S964790AbVISX7U
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Sep 2005 19:59:20 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j8JNwvHw013509
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 19 Sep 2005 16:58:58 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <432F50BC.5000304@zytor.com>
+Date:	Mon, 19 Sep 2005 16:58:52 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Petr Baudis <pasky@suse.cz>, Junio C Hamano <junkio@cox.net>
+CC:	Dmitry Torokhov <dtor_core@ameritech.net>, git@vger.kernel.org
+Subject: Re: Garbage in .git directories???
+References: <200509172141.31591.dtor_core@ameritech.net> <432F0D1B.60303@zytor.com> <20050919194445.GD18320@pasky.or.cz> <432F46BE.5000406@zytor.com> <20050919234030.GI18320@pasky.or.cz>
+In-Reply-To: <20050919234030.GI18320@pasky.or.cz>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:8918
+
+Petr Baudis wrote:
+> Dear diary, on Tue, Sep 20, 2005 at 01:16:14AM CEST, I got a letter
+> 
+> Another idea - try this patch:
+> 
+> diff --git a/init-db.c b/init-db.c
+> --- a/init-db.c
+> +++ b/init-db.c
+> @@ -154,6 +154,7 @@ static void copy_templates(const char *g
+>  	}
+>  
+>  	memcpy(path, git_dir, len);
+> +	path[len] = 0;
+>  	copy_templates_1(path, len,
+>  			 template_path, template_len,
+>  			 dir);
+> 
+
+This seems to have worked.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

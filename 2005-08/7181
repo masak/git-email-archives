@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 13 06:09:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2A17F113A8D
+	for <tkil@scrye.com>; Sat, 13 Aug 2005 06:09:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932154AbVHMMIX (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 13 Aug 2005 08:08:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932155AbVHMMIX
+	(ORCPT <rfc822;git-outgoing>); Sat, 13 Aug 2005 08:08:23 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:20233 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S932154AbVHMMIX (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 13 Aug 2005 08:08:23 -0400
+Received: (qmail 9270 invoked by uid 2001); 13 Aug 2005 12:08:16 -0000
+Date:	Sat, 13 Aug 2005 14:08:16 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Alternate object pool mechanism updates.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050813120815.GC5608@pasky.ji.cz>
+References: <7vmznmp5ja.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vmznmp5ja.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:7181
+
+Dear diary, on Sat, Aug 13, 2005 at 11:09:13AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> It was a mistake to use GIT_ALTERNATE_OBJECT_DIRECTORIES
+> environment variable to specify what alternate object pools to
+> look for missing objects when working with an object database.
+> It is not a property of the process running the git commands,
+> but a property of the object database that is partial and needs
+> other object pools to complete the set of objects it lacks.
+> 
+> This patch allows you to have $GIT_OBJECT_DIRECTORY/info/alt
+> file whose contents is in exactly the same format as the
+> environment variable, to let an object database name alternate
+> object pools it depends on.
+> 
+> Signed-off-by: Junio C Hamano <junkio@cox.net>
+
+What about calling it rather info/alternates (or info/alternate)? It
+looks better, sounds better, is more namespace-ecological tab-completes
+fine and you don't type it that often anyway. :-)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

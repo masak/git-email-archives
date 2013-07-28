@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 14:30:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 21EF8217AE1
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 14:30:31 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751209AbVKKV35 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 16:29:57 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751215AbVKKV34
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 16:29:56 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:56739 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751209AbVKKV34 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 11 Nov 2005 16:29:56 -0500
+Received: (qmail 9339 invoked by uid 2001); 11 Nov 2005 22:29:53 +0100
+Date:	Fri, 11 Nov 2005 22:29:53 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Alexander Litvinov <lan@ac-sw.com>
+Cc:	git@vger.kernel.org
+Subject: Re: Something looks like CVS modules
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051111212953.GX30496@pasky.or.cz>
+References: <200511111313.27273.lan@ac-sw.com> <200511111642.25908.lan@ac-sw.com> <20051111105820.GN30496@pasky.or.cz> <200511111713.58018.lan@ac-sw.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200511111713.58018.lan@ac-sw.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 57
+Xref: brand.scrye.com linux.git:11627
+
+Dear diary, on Fri, Nov 11, 2005 at 12:13:57PM CET, I got a letter
+where Alexander Litvinov <lan@ac-sw.com> said that...
+> On Friday 11 November 2005 16:58, Petr Baudis wrote:
+> > But this is troublesome, and doesn't fit into GIT's model at all. Do you
+> > have any concrete example of a scenario where something like this would
+> > be useful?
+> 
+> For eaxmle: I have java lib A. I setup project B in this way:
+> B/src/
+> B/A/src
+> 
+> Have another project C:
+> C/src/
+> C/A/src
+> 
+> Both of them share the same code from library's module. I can tag them, edit, 
+> commit: do all work I usualy do. If I change something in B/A/src this will 
+> be updated into C/A/src.
+
+Aha. So it isn't so much about modules, but more about nested checkouts,
+described in Cogito's TODO as:
+
+* Subprojects
+	Support a GIT project inside a GIT project:
+
+		x/.git
+		x/foo/bar/.git
+		x/foo/bar/baz/.git
+		x/quux/zot/.git
+
+	That means cg-update working recursively and cg-add'n'stuff
+	checking if there isn't another .git along the path of its
+	argument.
+
+	Needs more thought, especially wrt. fetching and merging
+	recursive semantics.
+
+Yes, that would be nice - it is something that you get kind of for-free
+in CVS given its internal architecture, but needs specially crafted
+support in the GIT environment. But when thinking about it (and we
+discussed it with Jonas during one night bike ride through Copenhagen
+some time ago ;), most of the problems with fetching and merging
+semantics turn out to be actually largely artificial, and just doing
+the intuitively right thing should be ok.
+
+Patches welcome. Otherwise, I will get to it, but not very fast. :-)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

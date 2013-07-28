@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 23 18:55:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 31A3323C8BE
+	for <tkil@scrye.com>; Sun, 23 Oct 2005 18:55:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750872AbVJXAzP (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 23 Oct 2005 20:55:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750878AbVJXAzP
+	(ORCPT <rfc822;git-outgoing>); Sun, 23 Oct 2005 20:55:15 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:47047 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750872AbVJXAzN (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 23 Oct 2005 20:55:13 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9O0t6FC029649
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 23 Oct 2005 17:55:06 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9O0t5tm004450;
+	Sun, 23 Oct 2005 17:55:06 -0700
+Date:	Sun, 23 Oct 2005 17:55:05 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Add git-shell.
+In-Reply-To: <Pine.LNX.4.64.0510231751040.10477@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510231754130.10477@g5.osdl.org>
+References: <435ABB99.5020908@op5.se> <7vll0l6pn7.fsf@assigned-by-dhcp.cox.net>
+ <435B5AE0.1060400@op5.se> <7v1x2cyplw.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0510231427230.10477@g5.osdl.org> <7vhdb7vk64.fsf_-_@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0510231751040.10477@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:10508
+
+
+
+On Sun, 23 Oct 2005, Linus Torvalds wrote:
+> 
+> Did you actually test that it works as somebody's login-shell and can be 
+> used for pushing?
+> 
+> I think it should add "pull" functionality too
+
+Gaah, I only read your description, didn't look closer at the patch. The 
+description just said "push", but you added the pull side too, and 
+apparently even tested it. Goodie.
+
+Never mind me.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

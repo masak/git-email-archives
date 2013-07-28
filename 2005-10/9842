@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct  8 12:52:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2E21327C17A
+	for <tkil@scrye.com>; Sat,  8 Oct 2005 12:52:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751027AbVJHSwE (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 8 Oct 2005 14:52:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751049AbVJHSwD
+	(ORCPT <rfc822;git-outgoing>); Sat, 8 Oct 2005 14:52:03 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:36555 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1751027AbVJHSwB (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 8 Oct 2005 14:52:01 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051008185150.OKFX16347.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 8 Oct 2005 14:51:50 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: Re: Seeing various mode changes on cygwin
+References: <20051008180023.GC28875@diku.dk>
+Date:	Sat, 08 Oct 2005 11:51:55 -0700
+In-Reply-To: <20051008180023.GC28875@diku.dk> (Jonas Fonseca's message of
+	"Sat, 8 Oct 2005 20:00:23 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyrbrgdw.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:9842
+
+Jonas Fonseca <fonseca@diku.dk> writes:
+
+> ... It seems that cygwin overrides the previous
+> modes and sets the executable bit. git-reset doesn't fix it. Can this even be
+> fixed then?
+>
+> A few examples below ...
+>
+> jonas@cygwin /usr/local/dev/git/git
+> $ git reset
+> Documentation/sort_glossary.pl: needs update
+> t/lib-read-tree-m-3way.sh: needs update
+
+I do not have an access to Cygwin environment so cannot be of
+help on this directly, but 'git reset' without flags defaults
+"--mixed" and leaves the modified files intact.  Maybe hard
+reset would help here, but the real solution is to figure out
+why these files acquired the extra executable bits in the first
+place.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 19 17:22:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9E26B11033F
+	for <tkil@scrye.com>; Fri, 19 Aug 2005 17:22:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932340AbVHSXVh (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 19 Aug 2005 19:21:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932344AbVHSXVh
+	(ORCPT <rfc822;git-outgoing>); Fri, 19 Aug 2005 19:21:37 -0400
+Received: from ozlabs.org ([203.10.76.45]:23981 "EHLO ozlabs.org")
+	by vger.kernel.org with ESMTP id S932340AbVHSXVg (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 19 Aug 2005 19:21:36 -0400
+Received: by ozlabs.org (Postfix, from userid 1003)
+	id 4658467F9D; Sat, 20 Aug 2005 09:21:35 +1000 (EST)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <17158.27011.7426.577686@cargo.ozlabs.ibm.com>
+Date:	Sat, 20 Aug 2005 09:21:39 +1000
+From:	Paul Mackerras <paulus@samba.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: gitweb "tag" display
+In-Reply-To: <7vpssq7vfa.fsf@assigned-by-dhcp.cox.net>
+References: <17130.56620.137642.941175@cargo.ozlabs.ibm.com>
+	<Pine.LNX.4.58.0508050658260.3258@g5.osdl.org>
+	<Pine.LNX.4.58.0508050710460.3258@g5.osdl.org>
+	<20050806033654.GA27953@vrfy.org>
+	<7vacju9az9.fsf_-_@assigned-by-dhcp.cox.net>
+	<7vpssq7vfa.fsf@assigned-by-dhcp.cox.net>
+X-Mailer: VM 7.19 under Emacs 21.4.1
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 43
+Xref: brand.scrye.com linux.git:7574
+
+Junio C Hamano writes:
+
+> If you can pop-up a temporary window that shows the tag contents
+> when I hover over a tag icon for 2 seconds, and remove that
+> temporary window when step outside it would be ideal.  It is up
+
+I did something a little easier - if you click on the tag, it now
+displays the contents of the tag in the details pane.  Is that good
+enough?
+
+> to you to implement the part to show my wife's picture, reading
+> "object-content-type: image/jpeg" thing ;-).  That one was not a
+> serious request.
+
+Well, Tk can display inline images in text widgets... :)
+
+> I have two more requests to gitk, which are related to each
+> other but not related to the "tag contents" one above:
+> 
+>  - if "gitk --all" slurped not just refs/heads and refs/tags but
+>    everything under refs/* recursively, that would help
+>    visualizing the bisect status.  bisect creates bunch of
+>    commit object names in refs/bisect.
+> 
+>  - I have not looked at the code closely enough, but I cannot
+>    find how to re-read references.  I would appreciate it if it
+>    allowed it.  This relates to the bisect status visualization,
+>    where the set of references changes _after_ the user started
+>    gitk.
+
+I implemented these two.  There is now a "Reread references" button in
+the File menu.  References other than tags and heads get displayed in
+a light blue box.
+
+Hmmm... now I suppose we want a way to use gitk to drive the git
+bisection process... :)
+
+Paul.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

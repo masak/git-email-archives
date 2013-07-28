@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 17:42:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 73998217B16
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 17:42:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750802AbVKLAmk (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 19:42:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750813AbVKLAmk
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 19:42:40 -0500
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:42211 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S1750802AbVKLAmj (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 11 Nov 2005 19:42:39 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051112004139.WPMT11356.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 11 Nov 2005 19:41:39 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: Comments on recursive merge..
+References: <Pine.LNX.4.64.0511070837530.3193@g5.osdl.org>
+	<20051107225807.GA10937@c165.ib.student.liu.se>
+	<7vll00ov2l.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0511071629270.3247@g5.osdl.org>
+	<7v4q6ilt3m.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0511111437410.3228@g5.osdl.org>
+cc:	git@vger.kernel.org
+Date:	Fri, 11 Nov 2005 16:42:37 -0800
+In-Reply-To: <Pine.LNX.4.64.0511111437410.3228@g5.osdl.org> (Linus Torvalds's
+	message of "Fri, 11 Nov 2005 14:53:56 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v8xvuk876.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:11641
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> I actually don't think that is surprisingly high, and would actually have 
+> expected it to be closer to 50%.
+>
+> On the other hand, the merges that end up being pure fast-forwards aren't 
+> counted as merges at all (since they don't show up as commits), so maybe 
+> that's what skews my preception of a big percentage of merges as being 
+> really trivial.
+
+That is what I meant by "it does not show just what you saw".
+It shows the whole community experience by everybody who has
+commit there.  Being _the_ integration point, I imagine that
+most of the pure fast-forwards you saw were real merges for
+somebody else, and that merge being fast/safe/convenient
+counts, not for you but for your subsystem people.
+
+>>    All three of these points together is a fine demonstration
+>>    that you designed git really right.
+>
+> Well, it's self-re-inforcing. It was designed for the kernel
+> usage patterns, so using the kernel to confirm that it's the
+> "right design" is a bit self-serving.
+
+That is true.  My point was that it's not like git was done
+right only for _you_, sacrificing subsystem people.  The sample
+4k commits show that the assumption of the usage pattern git is
+optimized for actually holds (commits being small, merges being
+mostly trivial) for kernel people other than you.
+
+It is yet to be seen if the same assumption holds for other
+projects.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

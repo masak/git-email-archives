@@ -1,0 +1,55 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May 18 12:52:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D126F1CE044
+	for <tkil@scrye.com>; Wed, 18 May 2005 12:52:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262221AbVERSub (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 18 May 2005 14:50:31 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262217AbVERSub
+	(ORCPT <rfc822;git-outgoing>); Wed, 18 May 2005 14:50:31 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:45778 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S262233AbVERSuT (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 18 May 2005 14:50:19 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j4IIoIS8028491
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <git@vger.kernel.org>; Wed, 18 May 2005 18:50:18 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j4IIoIeu028490
+	for git@vger.kernel.org; Wed, 18 May 2005 20:50:18 +0200 (CEST)
+Date:	Wed, 18 May 2005 20:50:18 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: GIT <git@vger.kernel.org>
+Subject: 'git resolve'
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050518185018.GE4738@cip.informatik.uni-erlangen.de>
+Mail-Followup-To: GIT <git@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 11
+Xref: brand.scrye.com linux.git:3486
+
+Hello,
+has someone out there an git-resolve script? Which guides the user tot
+he process of stuff that is not handeled the autmatic merge or the
+threeway merge?
+
+	Thomas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

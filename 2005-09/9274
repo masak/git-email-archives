@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 25 14:04:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 24EFC24282A
+	for <tkil@scrye.com>; Sun, 25 Sep 2005 14:04:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932283AbVIYUDj (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 25 Sep 2005 16:03:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932284AbVIYUDj
+	(ORCPT <rfc822;git-outgoing>); Sun, 25 Sep 2005 16:03:39 -0400
+Received: from web26301.mail.ukl.yahoo.com ([217.146.176.12]:37455 "HELO
+	web26301.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S932283AbVIYUDi (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 25 Sep 2005 16:03:38 -0400
+Received: (qmail 33822 invoked by uid 60001); 25 Sep 2005 20:03:37 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=OM+GX04k1b7eB+r0v9TuBpjVcZfzdjGEjiYbfn4SnfObDvCfIsr1JC8q1ggEFp6MZ6QH1JlpkgIb9D1JRGdCkKbCbH+0lQxfMVewAIir9FnPMoADIAThu9LH8nuhsD+w+jXuvvYbCMAeAYoXWNfY5eh7KMJPVuvxcaa/LpF1nS0=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050925200337.33820.qmail@web26301.mail.ukl.yahoo.com>
+Received: from [151.42.224.4] by web26301.mail.ukl.yahoo.com via HTTP; Sun, 25 Sep 2005 13:03:36 PDT
+Date:	Sun, 25 Sep 2005 13:03:36 -0700 (PDT)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: scons and $HOME was Re: [ANNOUNCE qgit-0.95]
+To:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+Cc:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 44
+Xref: brand.scrye.com linux.git:9274
+
+Josef Weidendorfer wrote:
+
+>On Sunday 25 September 2005 09:07, Marco Costalba wrote:
+>
+>>>>src/rangeselectbase.h QSettings: error creating /.qt
+>>>>QSettings: error creating /.qt
+>>
+>>...
+>>QSettings are there from day one :-<
+>>I am not able to let them disappear.....very bad. In any case should be
+>>harmless.
+>
+>
+>These errors seam to appear because scons does NOT pass through the $HOME
+>environment variable to subprocesses. "moc", which is producing these
+>errors, obviously wants to access some config options in $HOME/.qt/.
+>
+>Somebody knows how to change this?
+>
+
+$HOME environment variable is passed to scons in SConstruct with
+
+env['HOME'] = os.environ['HOME']
+
+
+then moc util is called in qt.py inside scons-mini.tar.bz2
+
+That's where I stopped.....
+
+Anyone that can teach qt.py to pass $HOME to moc and uic tools is greatly appreciated.
+
+Marco
+
+
+
+		
+__________________________________ 
+Yahoo! Mail - PC Magazine Editors' Choice 2005 
+http://mail.yahoo.com
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

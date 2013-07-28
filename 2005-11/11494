@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 12:07:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0F2201F5D9E
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 12:07:35 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932158AbVKJTEL (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 14:04:11 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932159AbVKJTEK
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 14:04:10 -0500
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:11247 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S932158AbVKJTEJ (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 10 Nov 2005 14:04:09 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051110190320.JTBC29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 10 Nov 2005 14:03:20 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Subject: Re: [ANNOUNCE] GIT 0.99.9g
+References: <7vmzkc2a3e.fsf@assigned-by-dhcp.cox.net>
+	<43737EC7.6090109@zytor.com> <7v4q6k1jp0.fsf@assigned-by-dhcp.cox.net>
+	<20051110180311.GR30496@pasky.or.cz>
+	<Pine.LNX.4.64.0511101317500.25300@iabervon.org>
+cc:	git@vger.kernel.org
+Date:	Thu, 10 Nov 2005 11:04:07 -0800
+In-Reply-To: <Pine.LNX.4.64.0511101317500.25300@iabervon.org> (Daniel
+	Barkalow's message of "Thu, 10 Nov 2005 13:31:16 -0500 (EST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vk6fgz5nc.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:11494
+
+Daniel Barkalow <barkalow@iabervon.org> writes:
+
+> ... (That is, you 
+> want the head of an unreachable chain listed for recovery, but not other 
+> things reachable from it; you also may want the list of blobs and trees 
+> not reachable either from a ref or from something listed for recovery, but 
+> not omitting a blob reachable only from an unreachable tree)
+
+I thought that was what those 'dangling blah' was about...
+That is, if you make commit A and then on top of that commit B,
+and lose both, you will see dnagling for B but not A (which is
+reachable from B).
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

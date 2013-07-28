@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 09:28:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 23C87DF335
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 09:28:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964827AbVLNQ1H (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 11:27:07 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964833AbVLNQ1G
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 11:27:06 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:54222 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S964827AbVLNQ1F (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Dec 2005 11:27:05 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBEGQkDZ024512
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 14 Dec 2005 08:26:46 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBEGQid3023864;
+	Wed, 14 Dec 2005 08:26:45 -0800
+Date:	Wed, 14 Dec 2005 08:26:14 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Len Brown <len.brown@intel.com>, git@vger.kernel.org
+Subject: Re: new file leaked onto release branch
+In-Reply-To: <7vmzj4yq3l.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512140822540.3292@g5.osdl.org>
+References: <200512140257.03975.len.brown@intel.com> <7vmzj4yq3l.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:13622
+
+
+
+On Wed, 14 Dec 2005, Junio C Hamano wrote:
+> 
+> Gahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh.
+> 
+> Forget about what I said.  Although all of what I said above are
+> correct, I do not think it applies to your case at all --- these
+> commits do not appear to be created by git-pull nor git-merge,
+> and honestly, they look quite bogus.  There is something else
+> going on.
+> 
+>         $ git cat-file commit 9115a6
+>         tree da65904b8c0c0bc6c778b39bc25d06e07ca7c82c
+>         parent 927fe18397b3b1194a5b26b1d388d97e391e5fd2
+>         parent e4f5c82a92c2a546a16af1614114eec19120e40a
+>         author Len Brown <len.brown@intel.com> 1133904460 -0500
+>         committer Len Brown <len.brown@intel.com> 1133904460 -0500
+> 
+>         Auto-update from upstream
+> 
+>         $ git-merge-base 9115a6^1 9115a6^2; git-rev-parse 9115a6^2
+>         e4f5c82a92c2a546a16af1614114eec19120e40a
+>         e4f5c82a92c2a546a16af1614114eec19120e40a
+
+Argh. 
+
+Len, how old a git are you using? "git-merge" really should _never_ have 
+done this, but old (and I mean really old) git merges sometimes got 
+confused with the base parent and would create a merge even when it was 
+unnecessary.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

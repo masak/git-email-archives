@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 17:19:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0058C22796A
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 17:19:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965092AbVINXTN (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 19:19:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965105AbVINXTN
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 19:19:13 -0400
+Received: from iabervon.org ([66.92.72.58]:12805 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S965092AbVINXTM (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Sep 2005 19:19:12 -0400
+Received: (qmail 9155 invoked by uid 1000); 14 Sep 2005 19:23:21 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 14 Sep 2005 19:23:21 -0400
+Date:	Wed, 14 Sep 2005 19:23:21 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Linus Torvalds <torvalds@osdl.org>
+cc:	Chuck Lever <cel@citi.umich.edu>, git@vger.kernel.org
+Subject: Re: [PATCH 21/22] teach the merge algorithm about cache iterators
+In-Reply-To: <Pine.LNX.4.58.0509141549270.26803@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509141901020.23242@iabervon.org>
+References: <20050912145543.28120.7086.stgit@dexter.citi.umich.edu>
+ <20050912145629.28120.70337.stgit@dexter.citi.umich.edu>
+ <Pine.LNX.4.63.0509121633480.23242@iabervon.org> <43284368.8010004@citi.umich.edu>
+ <Pine.LNX.4.63.0509141214490.23242@iabervon.org> <43287ECB.8090308@citi.umich.edu>
+ <Pine.LNX.4.63.0509141622340.23242@iabervon.org> <4328A3F9.1010506@citi.umich.edu>
+ <Pine.LNX.4.58.0509141549270.26803@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:8566
+
+On Wed, 14 Sep 2005, Linus Torvalds wrote:
+
+> On Wed, 14 Sep 2005, Chuck Lever wrote:
+> > 
+> > oh, i see.  the hash table won't help cache_find_name find an insertion 
+> > point quickly if the name isn't already in the cache.
+> 
+> Note that almost all insertion tends to happen linearly.
+> 
+> In particular, read-tree always inserts things in order.
+
+read-tree (with Chuck's latest work) should actually only append entries 
+to an initially-empty list, which is even easier. Dunno about the other 
+stuff, but I'd guess inserting into a cursor would handle a lot of it.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

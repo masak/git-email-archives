@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 23 18:53:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2ECF22B626C
+	for <tkil@scrye.com>; Sun, 23 Oct 2005 18:53:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750865AbVJXAwz (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 23 Oct 2005 20:52:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750872AbVJXAwz
+	(ORCPT <rfc822;git-outgoing>); Sun, 23 Oct 2005 20:52:55 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:64454 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750860AbVJXAwy (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 23 Oct 2005 20:52:54 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9O0qoFC029530
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 23 Oct 2005 17:52:50 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9O0qn8v004375;
+	Sun, 23 Oct 2005 17:52:49 -0700
+Date:	Sun, 23 Oct 2005 17:52:49 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Add git-shell.
+In-Reply-To: <7vhdb7vk64.fsf_-_@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510231751040.10477@g5.osdl.org>
+References: <435ABB99.5020908@op5.se> <7vll0l6pn7.fsf@assigned-by-dhcp.cox.net>
+ <435B5AE0.1060400@op5.se> <7v1x2cyplw.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0510231427230.10477@g5.osdl.org> <7vhdb7vk64.fsf_-_@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:10507
+
+
+
+On Sun, 23 Oct 2005, Junio C Hamano wrote:
+>
+> This adds a very git specific restricted shell, that can be
+> added to /etc/shells and set to the pw_shell in the /etc/passwd
+> file, to give users ability to push into repositories over ssh
+> without giving them full interactive shell acount.
+
+Did you actually test that it works as somebody's login-shell and can be 
+used for pushing?
+
+I think it should add "pull" functionality too, so that you can have 
+restricted reading (hey, git may be open source, but not everything that 
+is maintained in it necessarily will be..)
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

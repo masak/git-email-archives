@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 05:16:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3554C17077C
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 05:14:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261424AbVDZLLx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 07:11:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261400AbVDZLLx
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 07:11:53 -0400
+Received: from user-10mt71s.cable.mindspring.com ([65.110.156.60]:48935 "EHLO
+	localhost") by vger.kernel.org with ESMTP id S261424AbVDZLL3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 26 Apr 2005 07:11:29 -0400
+Received: from droundy by localhost with local (Exim 4.50)
+	id 1DQNtR-0006r6-FM; Tue, 26 Apr 2005 07:06:17 -0400
+Date:	Tue, 26 Apr 2005 07:06:17 -0400
+From: David Roundy <droundy@abridgegame.org>
+To: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>
+Cc: darcs-devel@darcs.net, Git Mailing List <git@vger.kernel.org>
+Subject: Re: [darcs-devel] Re: A darcs that can pull from git
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050426110613.GB20723@abridgegame.org>
+Mail-Followup-To: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>,
+	darcs-devel@darcs.net, Git Mailing List <git@vger.kernel.org>
+References: <7ipswjbybx.fsf@lanthane.pps.jussieu.fr> <20050425133116.GG11667@abridgegame.org> <7i4qdusxdw.fsf@lanthane.pps.jussieu.fr>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7i4qdusxdw.fsf@lanthane.pps.jussieu.fr>
+User-Agent: Mutt/1.5.6+20040907i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 33
+Xref: brand.scrye.com linux.git:1705
+
+On Mon, Apr 25, 2005 at 05:12:59PM +0200, Juliusz Chroboczek wrote:
+> > Do you have any plans/ideas for allowing pulls directly from a
+> > remote git repository?
+> 
+> I haven't thought about it yet.  Does anyone have any ideas about how
+> to efficiently pull from git without a complete local copy?
+
+I don't think so.  My best thought so far would be to have something like a
+~/.gitcache/, which would store the sha1 objects themselves, so at least
+we'd only end up with *one* local copy.  I'm actually curious what the true
+git people do about this--it would be nice to share a cache.  For darcs'
+purposes, we could prune the cache from time to time.  If we're running
+with a darcs backend, we really only need the recent versions of files and
+trees.
+
+Do the git have any suggestions about how to avoid excess downloads or
+excess copies of a git repository? It seems to me like it would make sense
+to always download sha1s to ~/.gitcache/, and then hardlink them to the
+current git repository, so you wouldn't end up ever downloading the same
+sha1 twice.  Or we should use $GITCACHE/, to give the user some
+flexibility.  But perhaps this is an already-solved problem, and I've just
+not noticed...
+
+As far as other details, currently we can just walk the tree to find out
+what files are needed, right?
+-- 
+David Roundy
+http://www.darcs.net
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

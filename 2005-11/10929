@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 09:00:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,TW_GM autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DD56727BC8A
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 09:00:55 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750919AbVKAQAr (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 11:00:47 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750918AbVKAQAr
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 11:00:47 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:41620 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750833AbVKAQAq (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 1 Nov 2005 11:00:46 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jA1G0QW6005662
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 1 Nov 2005 08:00:27 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jA1G0P8o003248;
+	Tue, 1 Nov 2005 08:00:25 -0800
+Date:	Tue, 1 Nov 2005 08:00:25 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Chris Mason <mason@suse.com>
+cc:	Petr Baudis <pasky@suse.cz>, "Theodore Ts'o" <tytso@mit.edu>,
+	Joel Becker <Joel.Becker@oracle.com>,
+	Junio C Hamano <junkio@cox.net>, catalin.marinas@gmail.com,
+	git@vger.kernel.org
+Subject: Re: hgmq vs. StGIT
+In-Reply-To: <20051101141149.GA26847@watt.suse.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511010757040.27915@g5.osdl.org>
+References: <Pine.LNX.4.64.0510301811390.27915@g5.osdl.org>
+ <Pine.LNX.4.63.0510311111340.2916@wbgn013.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.64.0510310804400.27915@g5.osdl.org> <20051031195010.GM11488@ca-server1.us.oracle.com>
+ <7vr7a1e719.fsf@assigned-by-dhcp.cox.net> <20051031213616.GO11488@ca-server1.us.oracle.com>
+ <7vk6ftcp0d.fsf@assigned-by-dhcp.cox.net> <20051031224246.GP11488@ca-server1.us.oracle.com>
+ <20051101002554.GA7634@thunk.org> <20051101090804.GA11618@pasky.or.cz>
+ <20051101141149.GA26847@watt.suse.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:10929
+
+
+
+On Tue, 1 Nov 2005, Chris Mason wrote:
+> 
+> StGIT has the ability to rebase patches via three-way merge.  This is
+> still on my todo list for mq.
+
+Btw, I have to say that I was a bit uncertain about doing the rebasing by 
+way of a three-way merge, but when I recently did a revert, I was _really_ 
+happy with how well "git revert" did the rebasing of the revert. It wasn't 
+even a clean merge, but leaving the conflict in the tree and allowing me 
+to fix it up made what would otherwise have been a much more complex 
+manual operation be 99% automated.
+
+So I'm _neither_ a StGIT not mq user, but I can definitely say that 
+rebasing with a three-way merge instead of just trying to apply the patch 
+(whether in reverse like in a merge, or just re-apply it straigt) is 
+really really nice.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

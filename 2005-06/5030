@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun 19 14:06:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 98E98A5CD7
+	for <tkil@scrye.com>; Sun, 19 Jun 2005 14:06:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261290AbVFSUF6 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 19 Jun 2005 16:05:58 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262270AbVFSUF6
+	(ORCPT <rfc822;git-outgoing>); Sun, 19 Jun 2005 16:05:58 -0400
+Received: from web26309.mail.ukl.yahoo.com ([217.146.176.20]:27254 "HELO
+	web26309.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S261290AbVFSUFx (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 19 Jun 2005 16:05:53 -0400
+Received: (qmail 68357 invoked by uid 60001); 19 Jun 2005 20:05:47 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=aynVJZwoRoxhyp+CSk+C9AatsSGfXj/VTQ4uxjkEhygV2pK5CrUO8FHdZaJkaplrZl6p8pDJAbs2DDut8Z56SYwjlg3PFxg+bLag0i60Q7UJFYuEzeUg5UpF73SDWsuh842x/cZllQR3MjjBy2nGkcQ5LIXwSX1njoWJt//VvOQ=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050619200547.68355.qmail@web26309.mail.ukl.yahoo.com>
+Received: from [151.38.101.189] by web26309.mail.ukl.yahoo.com via HTTP; Sun, 19 Jun 2005 13:05:46 PDT
+Date:	Sun, 19 Jun 2005 13:05:46 -0700 (PDT)
+From: Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: qgit-0.6
+To: Ingo Molnar <mingo@elte.hu>
+Cc: berkus@gmail.com, git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_QG autolearn=ham 
+	version=3.0.3
+Lines: 29
+Xref: brand.scrye.com linux.git:5030
+
+Ingo Molnar ha scritto:
+
+>on FC4 the build is quite noisy. Not a big issue because it otherwise 
+>builds and works fine:
+>
+>scons -Q
+>/usr/lib/qt-3.3/bin/uic -o src/diffbase.h src/diffbase.ui
+>/usr/lib/qt-3.3/bin/uic -impl diffbase.h -o src/uic_diffbase.cc src/diffbase.ui
+>/usr/lib/qt-3.3/bin/moc -o src/moc_diffbase.cc src/diffbase.h
+>QSettings: error creating /.qt
+>QSettings: error creating /.qt
+>QSettings: error creating /.qt
+
+I have the same output from day one on my box too, but I am not so familiar with scons to be able
+to fix it.
+Peraphs someone (Stanislav?) can provide a fix?
+
+Marco
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

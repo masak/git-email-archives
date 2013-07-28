@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 12 15:49:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 53ABF27D797
+	for <tkil@scrye.com>; Thu, 12 May 2005 15:49:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262144AbVELVsV (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 17:48:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262149AbVELVrD
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 17:47:03 -0400
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:58109 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S262144AbVELVpF (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 12 May 2005 17:45:05 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050512214459.WINQ7629.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 12 May 2005 17:44:59 -0400
+To: "Sean" <seanlkml@sympatico.ca>
+Cc: tglx@linutronix.de, "Junio C Hamano" <junkio@cox.net>,
+	"H. Peter Anvin" <hpa@zytor.com>, git@vger.kernel.org
+Subject: Re: [PATCH] [RFD] Add repoid identifier to commit
+References: <1115847510.22180.108.camel@tglx> <428291CD.7010701@zytor.com>
+	<1115854733.22180.202.camel@tglx> <428297DB.8030905@zytor.com>
+	<1115858022.22180.256.camel@tglx>
+	<7vekcdmd16.fsf@assigned-by-dhcp.cox.net>
+	<1115884637.22180.277.camel@tglx>
+	<7vvf5ogxdu.fsf@assigned-by-dhcp.cox.net>
+	<1115930845.11872.79.camel@tglx>
+	<4776.10.10.10.24.1115932163.squirrel@linux1>
+	<1115932872.11872.86.camel@tglx>
+	<2477.10.10.10.24.1115933520.squirrel@linux1>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 12 May 2005 14:44:57 -0700
+In-Reply-To: <2477.10.10.10.24.1115933520.squirrel@linux1> (seanlkml@sympatico.ca's
+ message of "Thu, 12 May 2005 17:32:00 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vis1odspy.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 25
+Xref: brand.scrye.com linux.git:3182
+
+>>>>> "S" == Sean  <seanlkml@sympatico.ca> writes:
+
+S> When an object is committed locally it is set to the local time.  You can
+S> only have this feature when you use private commit objects (shared blobs
+S> are okay).
+
+This brings up an interesting possibility, which is off topic
+from this thread.
+
+You _could_ (I am not advocating this, just thinking aloud) have
+GIT_OBJECT_DIRECTORY and GIT_COMMIT_OBJECT_DIRECTORY pointing at
+two separate object pools, with the value of
+GIT_COMMIT_OBJECT_DIRECTORY being on
+GIT_ALTERNATE_OBJECT_DIRECTORIES list.  Your commits go to
+GIT_COMMIT_OBJECT_DIRECTORY (local to the tree) and everything
+else go to GIT_OBJECT_DIRECTORY (can be shared across trees).
+
+Hmm.... Interesting.  My gut feeling tells me not to go there,
+though.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

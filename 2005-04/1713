@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 08:43:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DDDDB1707B1
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 08:43:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261566AbVDZOmc (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 10:42:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261577AbVDZOmb
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 10:42:31 -0400
+Received: from neapel230.server4you.de ([217.172.187.230]:10382 "EHLO
+	neapel230.server4you.de") by vger.kernel.org with ESMTP
+	id S261566AbVDZOmO (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 26 Apr 2005 10:42:14 -0400
+Received: from [10.0.1.3] (p508E5FF1.dip.t-dialin.net [80.142.95.241])
+	by neapel230.server4you.de (Postfix) with ESMTP id 845A615B;
+	Tue, 26 Apr 2005 16:42:08 +0200 (CEST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <426E533C.70502@lsrfire.ath.cx>
+Date:	Tue, 26 Apr 2005 16:42:04 +0200
+From: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+User-Agent: Mozilla Thunderbird 1.0.2 (Windows/20050317)
+X-Accept-Language: de-DE, de, en-us, en
+MIME-Version: 1.0
+To: Paul Dickson <paul@permanentmail.com>
+Cc: pasky@ucw.cz, git@vger.kernel.org
+Subject: Re: [PATCH] Add archive-tree, a cpio archive creator
+References: <20050424014346.GA23083@lsrfire.ath.cx> <20050425153011.34c93b38.paul@permanentmail.com>
+In-Reply-To: <20050425153011.34c93b38.paul@permanentmail.com>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 21
+Xref: brand.scrye.com linux.git:1713
+
+Paul Dickson schrieb:
+> Use the "newc" format.  The "odc" will generate a lot of errors on a
+>  large filesystem (which I discovered this past weekend).
+
+How is that?  I can only imagine problems with the size of individual
+files inside an archive because the size field in the header is limited
+to 33 bits.
+
+In any case, I switched to the tar format.  It's more complicated but it
+turned out that creating these things is still easy.  Parsing them might
+be more of a challenge, but we already have tar for that. :-)
+
+See my other mail for more on the tar creator.  I also rebased it to
+core GIT because it's no helper script.
+
+Rene
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

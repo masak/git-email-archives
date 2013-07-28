@@ -1,0 +1,109 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 14:12:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5D7F419A2FA
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 14:12:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965179AbVLVVML (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 16:12:11 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965180AbVLVVML
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 16:12:11 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:52975 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S965179AbVLVVMK (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 22 Dec 2005 16:12:10 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051222211118.DZYT20875.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 22 Dec 2005 16:11:18 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	git@vger.kernel.org, junkio@cox.net
+Subject: Re: [PATCH] git-clone-pack: do not silently overwrite an existing branch 'origin'
+References: <Pine.LNX.4.63.0512221859110.20025@wbgn013.biozentrum.uni-wuerzburg.de>
+Date:	Thu, 22 Dec 2005 13:12:08 -0800
+In-Reply-To: <Pine.LNX.4.63.0512221859110.20025@wbgn013.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Thu, 22 Dec 2005 18:59:30 +0100
+	(CET)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vu0d0hm53.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 64
+Xref: brand.scrye.com linux.git:13963
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> When cloning a repository which already contains a branch called 'origin',
+> do not silently overwrite it with the remote 'master' ref.
+
+If we consider the "origin is special and is used to track
+upstream" convention pretty much ingrained, then unconditionally
+overwriting origin without saying anything is the right
+approach.  After all, you do not care what upstream your
+upstream is keeping track of, and you would want to use 'origin'
+for the usual purpose of keeping track of upstream.
+
+Otherwise, if we do not treat "origin" specially, we could
+do something like this.  If "origin" exists, then we do not
+overwrite upon clone, nor subsequent fetch.
+
+I have a mild aversion to this change, though.  I'd much prefer
+the third approach I am too lazy to code, which lets you say
+what local branch name instead of 'origin' to keep track of
+upstream from 'git clone' command line.
+
+---
+
+diff --git a/git-clone.sh b/git-clone.sh
+index 280cc2e..edebee7 100755
+--- a/git-clone.sh
++++ b/git-clone.sh
+@@ -206,17 +206,22 @@ then
+ 	refs/heads/*)
+ 		head_points_at=`expr "$head_points_at" : 'refs/heads/\(.*\)'`
+ 		mkdir -p .git/remotes &&
+-		echo >.git/remotes/origin \
+-		"URL: $repo
+-Pull: $head_points_at:origin" &&
+-		cp ".git/refs/heads/$head_points_at" .git/refs/heads/origin &&
++		echo "URL: $repo" >.git/remotes/origin &&
++		if test -f ".git/refs/heads/origin"
++		then
++		    echo "Pull: $head_points_at:"
++		else
++		    echo "Pull: $head_points_at:origin"
++		    cp ".git/refs/heads/$head_points_at" \
++		        .git/refs/heads/origin &&
++		fi >>.git/remotes/origin &&
+ 		find .git/refs/heads -type f -print |
+ 		while read ref
+ 		do
+-			head=`expr "$ref" : '.git/refs/heads/\(.*\)'` &&
+-			test "$head_points_at" = "$head" ||
+-			test "origin" = "$head" ||
+-			echo "Pull: ${head}:${head}"
++		    head=`expr "$ref" : '.git/refs/heads/\(.*\)'` &&
++		    test "$head_points_at" = "$head" ||
++		    test "origin" = "$head" ||
++		    echo "Pull: ${head}:${head}"
+ 		done >>.git/remotes/origin
+ 	esac
+ 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

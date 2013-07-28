@@ -1,0 +1,54 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun 21 18:35:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0CEA727DD19
+	for <tkil@scrye.com>; Tue, 21 Jun 2005 18:35:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262146AbVFVAes (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 21 Jun 2005 20:34:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262384AbVFVAes
+	(ORCPT <rfc822;git-outgoing>); Tue, 21 Jun 2005 20:34:48 -0400
+Received: from iabervon.org ([66.92.72.58]:35334 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262146AbVFVAeq (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 21 Jun 2005 20:34:46 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DktB9-0003HU-00; Tue, 21 Jun 2005 20:33:19 -0400
+Date:	Tue, 21 Jun 2005 20:33:19 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: git@vger.kernel.org
+Cc: Linus Torvalds <torvalds@osdl.org>
+Subject: [PATCH 0/2] Pull objects of various types
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0506212029190.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:5087
+
+This series handles pulling objects of various types, rather than just
+commits. In order to support pulling tags (the interesting case), it is
+necessary to support getting the struct object for the tagged object when
+the tagged object isn't available.
+
+ 1: Support getting a valid struct object for the absent object tagged by
+    a tag file.
+ 2: Support processing objects of unknown type in pull.c
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

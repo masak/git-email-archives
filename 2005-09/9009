@@ -1,0 +1,109 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 20 13:36:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 479A1323359
+	for <tkil@scrye.com>; Tue, 20 Sep 2005 13:36:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965095AbVITTey (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Sep 2005 15:34:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965097AbVITTey
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Sep 2005 15:34:54 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:32185 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965095AbVITTey (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 20 Sep 2005 15:34:54 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8KJYJBo009522
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 20 Sep 2005 12:34:19 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8KJYBOm001937;
+	Tue, 20 Sep 2005 12:34:14 -0700
+Date:	Tue, 20 Sep 2005 12:34:10 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Petr Baudis <pasky@suse.cz>, Paul Mackerras <paulus@samba.org>
+cc:	Junio C Hamano <junkio@cox.net>, Pavel Roskin <proski@gnu.org>,
+	fonseca@diku.dk, git <git@vger.kernel.org>
+Subject: Re: Joining cg-*-id
+In-Reply-To: <Pine.LNX.4.58.0509200906120.2553@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509201224360.2553@g5.osdl.org>
+References: <1127166049.26772.26.camel@dv> <20050919215608.GA13845@pasky.or.cz>
+ <Pine.LNX.4.58.0509191505470.2553@g5.osdl.org> <20050919225422.GG18320@pasky.or.cz>
+ <Pine.LNX.4.58.0509191746130.2553@g5.osdl.org> <20050920135735.GC1884@pasky.or.cz>
+ <Pine.LNX.4.58.0509200734440.2553@g5.osdl.org> <20050920150719.GB1836@pasky.or.cz>
+ <Pine.LNX.4.58.0509200906120.2553@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.117 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 59
+Xref: brand.scrye.com linux.git:9009
+
+
+
+On Tue, 20 Sep 2005, Linus Torvalds wrote:
+> 
+> (Side note: the "gitk" thing works really badly. gitk doesn't quote its 
+> arguments to "git-rev-list", so something like
+> 
+> 	gitk --since="1 month ago"
+> 
+> does NOT work, while "--since=yesterday" does, because it has no spaces. 
+> Gaah. "Obi-Paul Mackerras, you're our only hope")
+
+Fixed thusly, I think.
+
+There is 'eval' magic with pure lists. I'm getting convinced that tcl is 
+evil after all - that's just _confusing_. A real language shouldn't have 
+semantic differences from this change, but it clearly does.
+
+However, getting gitk working also shows a problem with --topo-order
+(which gitk uses) and the time limits. See
+
+	[torvalds@g5 git]$ git-rev-list $(git-rev-parse --since="8 days ago" HEAD) | wc
+	     80      80    3280
+	[torvalds@g5 git]$ git-rev-list --topo-order $(git-rev-parse --since="8 days ago" HEAD) | wc
+	     10      10     410
+
+which is because when we sort things topologically, they won't be in date 
+order any more (surprise surprise), so the whole date-cut-off logic 
+doesn't actually work.
+
+So I'm sad to say that
+
+	gitk --since="5 days ago"
+
+still doesn't do what you'd actually _want_ it to do with gitk. But at 
+least gitk can now parse the arguments right.
+
+		Linus
+
+---
+diff --git a/gitk b/gitk
+--- a/gitk
++++ b/gitk
+@@ -33,8 +33,8 @@ proc getcommits {rargs} {
+     set nextupdate [expr $startmsecs + 100]
+     set ncmupdate 1
+     if [catch {
+-	set parse_args [concat --default HEAD $rargs]
+-	set parsed_args [split [eval exec git-rev-parse $parse_args] "\n"]
++	set parse_cmd [concat git-rev-parse --default HEAD $rargs]
++	set parsed_args [split [eval exec $parse_cmd] "\n"]
+     }] {
+ 	# if git-rev-parse failed for some reason...
+ 	if {$rargs == {}} {
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

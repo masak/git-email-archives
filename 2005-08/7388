@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 16 16:42:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 599201696EB
+	for <tkil@scrye.com>; Tue, 16 Aug 2005 16:42:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750705AbVHPWmA (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 16 Aug 2005 18:42:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750706AbVHPWmA
+	(ORCPT <rfc822;git-outgoing>); Tue, 16 Aug 2005 18:42:00 -0400
+Received: from iabervon.org ([66.92.72.58]:13582 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1750705AbVHPWmA (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 16 Aug 2005 18:42:00 -0400
+Received: (qmail 28755 invoked by uid 1000); 16 Aug 2005 18:45:21 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 16 Aug 2005 18:45:21 -0400
+Date:	Tue, 16 Aug 2005 18:45:21 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Marco Costalba <mcostalba@yahoo.it>
+cc:	martin.langhoff@gmail.com, git@vger.kernel.org
+Subject: Re: [RFC] Patches exchange is bad?
+In-Reply-To: <20050816220923.42545.qmail@web26301.mail.ukl.yahoo.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508161824140.23242@iabervon.org>
+References: <20050816220923.42545.qmail@web26301.mail.ukl.yahoo.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 41
+Xref: brand.scrye.com linux.git:7388
+
+On Tue, 16 Aug 2005, Marco Costalba wrote:
+
+> Martin Langhoff wrote:
+>
+> >>From what I understand, you'll want the StGIT infrastructure. If you
+> >use git/cogito, there is an underlying  assumption that you'll want
+> >all the patches merged across, and a simple cg-update will bring in
+> >all the pending stuff.
+> >
+>
+> My concerns are both metodologicals and practical:
+>
+> 1) Method: To use the 'free patching workflow' on git is something foreseen in
+> git design, something coherent with the fork + develop + merge cycle that it
+> seems, at least to me, THE way git is meant to be used. Or it is stretching
+> the possibility of the tool to something technically allowed but not suggested.
+
+Patches are definitely meant to be part of how git is used; they are the
+primary way of getting clean history out of messy history (that is, saving
+a content change while discarding some history that isn't applicable).
+There's relatively little support in git itself, but that's because the
+point is to go outside the system's tracking. There have been various
+discussions of more explicit support, and nobody's been able to come up
+with a need.
+
+> 2) Practical: The round trip git-format-patch + git-applymbox is the logical and
+> natural way to reach this goal or, also in this case, I intend to stretch some tools,
+> designed for one thing, for something else?
+
+I'd guess that git-diff-tree + git-apply (without the rest of the
+scripting) would be more effective when you're not doing anything with the
+intermediate files, since it saves doing a bunch of formatting and
+parsing.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

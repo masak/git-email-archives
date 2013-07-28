@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 15 16:04:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7D0892851FA
+	for <tkil@scrye.com>; Sat, 15 Oct 2005 16:04:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751244AbVJOWEd (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 15 Oct 2005 18:04:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751245AbVJOWEd
+	(ORCPT <rfc822;git-outgoing>); Sat, 15 Oct 2005 18:04:33 -0400
+Received: from blue.stonehenge.com ([209.223.236.162]:9499 "EHLO
+	blue.stonehenge.com") by vger.kernel.org with ESMTP
+	id S1751244AbVJOWEc (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 15 Oct 2005 18:04:32 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by blue.stonehenge.com (Postfix) with ESMTP id E00E48F778;
+	Sat, 15 Oct 2005 15:04:23 -0700 (PDT)
+Received: from blue.stonehenge.com ([127.0.0.1])
+ by localhost (blue.stonehenge.com [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 09946-01-3; Sat, 15 Oct 2005 15:04:23 -0700 (PDT)
+Received: by blue.stonehenge.com (Postfix, from userid 1001)
+	id 7A60B8F7CB; Sat, 15 Oct 2005 15:04:23 -0700 (PDT)
+To:	Nick Hengeveld <nickh@reactrix.com>
+Cc:	Daniel Barkalow <barkalow@iabervon.org>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: maybe breakage with latest git-pull and http protocol
+References: <867jciz18w.fsf@blue.stonehenge.com>
+	<864q7kqsa4.fsf@blue.stonehenge.com>
+	<7vhdbkt8ad.fsf@assigned-by-dhcp.cox.net>
+	<86achcoyvz.fsf@blue.stonehenge.com>
+	<Pine.LNX.4.63.0510141543030.23242@iabervon.org>
+	<863bn3lypn.fsf@blue.stonehenge.com>
+	<20051015215754.GD5509@reactrix.com>
+x-mayan-date: Long count = 12.19.12.12.16; tzolkin = 6 Cib; haab = 14 Yax
+From:	merlyn@stonehenge.com (Randal L. Schwartz)
+Date:	15 Oct 2005 15:04:23 -0700
+In-Reply-To: <20051015215754.GD5509@reactrix.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <86irvyigig.fsf@blue.stonehenge.com>
+Lines:	17
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:10140
+
+>>>>> "Nick" == Nick Hengeveld <nickh@reactrix.com> writes:
+
+Nick> On Sat, Oct 15, 2005 at 06:03:00AM -0700, Randal L. Schwartz wrote:
+>> OK, it happened this morning.  While syncing to update from
+>> yesterday's version, I got:
+>> ...
+>> Definitely broken.  But I can "rsync" just fine.
+
+Nick> Which version of curl did you build with?
+
+curl 7.13.1 (powerpc-apple-darwin8.0) libcurl/7.13.1 OpenSSL/0.9.7g zlib/1.2.3
+
+-- 
+Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+<merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

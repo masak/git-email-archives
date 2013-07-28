@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 18 17:06:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C80601B40CC
+	for <tkil@scrye.com>; Thu, 18 Aug 2005 17:06:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932361AbVHRXEd (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 18 Aug 2005 19:04:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932365AbVHRXEd
+	(ORCPT <rfc822;git-outgoing>); Thu, 18 Aug 2005 19:04:33 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:2474 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932361AbVHRXEc (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 18 Aug 2005 19:04:32 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7IN4UjA017841
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 18 Aug 2005 16:04:31 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7IN4R3p014943;
+	Thu, 18 Aug 2005 16:04:29 -0700
+Date:	Thu, 18 Aug 2005 16:04:27 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	"Luck, Tony" <tony.luck@intel.com>
+cc:	git@vger.kernel.org
+Subject: RE: git-whatchanged -p anomoly?
+In-Reply-To: <B8E391BBE9FE384DAA4C5C003888BE6F042C819D@scsmsx401.amr.corp.intel.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508181555370.3412@g5.osdl.org>
+References: <B8E391BBE9FE384DAA4C5C003888BE6F042C819D@scsmsx401.amr.corp.intel.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 47
+Xref: brand.scrye.com linux.git:7521
+
+
+
+On Thu, 18 Aug 2005, Luck, Tony wrote:
+> 
+> Yes I had a failed merge ... I thought that I had cleaned up from it, but
+> clearly I hadn't.  Bother.
+
+The simplest way of cleaning up after a failed merge is just a simple "git
+reset", which will also tell you if you need to perhaps clean up
+afterwards (equally easily done with "git checkout -f" if you just want to 
+blow all the changes away.
+
+> I guess I have a bit of tree maintenance to do ... But I think that it
+> should be easy ... I can just step "test" back to before I merged in
+> the Alex patch.  Redo the Alex patch properly.  Then re-merge all the
+> branches that happened after this.  Followed by crossing my fingers and
+> running "git prune".
+> 
+> Maybe I'll try all that in a *copy" of my GIT tree first!
+
+Yup. Think of it as a good exercise in git ;)
+
+Btw, it's a shame that git has all these "git rebase" etc helper scripts, 
+which rebase whole series of patches, but the simple "git re-do" which 
+basically ends up being a
+
+	git-diff-tree -p $old | git-apply --index &&
+		git commit --reedit=$old
+
+doesn't have a nice helper script.
+
+Anyway, the easiest approach may be to just do
+
+	git branch new-test-branch <good-point>
+	git format-patch -o patchdir --mbox <good-point>
+	git checkout new-test-branch
+	.. edit the individual patches in patchdir/* to taste ..
+	cat git-applymbox patchdir/* | git-applymbox
+
+or similar. 
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

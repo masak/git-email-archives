@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 26 05:00:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 474612850E9
+	for <tkil@scrye.com>; Fri, 26 Aug 2005 05:00:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932553AbVHZLAX (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 26 Aug 2005 07:00:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932552AbVHZLAW
+	(ORCPT <rfc822;git-outgoing>); Fri, 26 Aug 2005 07:00:22 -0400
+Received: from i1.inoi.fi ([194.100.97.46]:56477 "EHLO mail.srv.inoi.fi")
+	by vger.kernel.org with ESMTP id S1751547AbVHZLAR (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 26 Aug 2005 07:00:17 -0400
+Received: from mail.srv.inoi.fi (localhost.localdomain [127.0.0.1])
+	by mail.srv.inoi.fi (Postfix) with ESMTP id 00FFBFF9DB;
+	Fri, 26 Aug 2005 14:00:17 +0300 (EEST)
+Received: from pooch.inoi.fi (GMMCMXXXIV.dsl.saunalahti.fi [85.76.243.135])
+	by mail.srv.inoi.fi (Postfix) with ESMTP id A94CFFEDD2;
+	Fri, 26 Aug 2005 14:00:17 +0300 (EEST)
+Received: from pooch (pooch [127.0.0.1])
+	by pooch.inoi.fi (Postfix) with SMTP id 6D7C8BA067;
+	Fri, 26 Aug 2005 14:00:03 +0300 (EEST)
+Cc:	Tommi Virtanen <tv@debian.org>
+Subject: [PATCH] git bugfixes and cleanups, mainly Debian things
+In-Reply-To: 
+X-Mailer: git-send-email-script
+Date:	Fri, 26 Aug 2005 14:00:03 +0300
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1125054003873-git-send-email-tv@debian.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Tommi Virtanen <tv@debian.org>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Tommi Virtanen <tv@debian.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_DP 
+	autolearn=ham version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:7793
+
+Fix syntax error in debian Build-Depends-Indep, dpkg-checkbuilddeps used
+to give false ok results.
+
+Signed-off-by: Tommi Virtanen <tv@debian.org>
+
+---
+commit c87030106cfbe39f0ab2ed095f30f576235328fc
+tree ca572653ccd5a4c35f9479c079c8a904d6fce2d1
+parent 248542ea9ae9125a7ccf214b979ada9908ea1358
+author Tommi Virtanen <tv@debian.org> Fri, 26 Aug 2005 12:32:26 +0300
+committer Tommi Virtanen <tv@debian.org> Fri, 26 Aug 2005 12:32:26 +0300
+
+ debian/control |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/debian/control b/debian/control
+--- a/debian/control
++++ b/debian/control
+@@ -2,7 +2,7 @@ Source: git-core
+ Section: devel
+ Priority: optional
+ Maintainer: Junio C Hamano <junkio@cox.net>
+-Build-Depends-Indep: libz-dev, libssl-dev, libcurl3-dev, asciidoc > 6.0.3, xmlto, debhelper (>= 4.0.0)
++Build-Depends-Indep: libz-dev, libssl-dev, libcurl3-dev, asciidoc (>= 6.0.3), xmlto, debhelper (>= 4.0.0)
+ Standards-Version: 3.6.1
+ 
+ Package: git-core
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

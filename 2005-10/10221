@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 18 14:42:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F0DFDAE303
+	for <tkil@scrye.com>; Tue, 18 Oct 2005 14:42:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751493AbVJRUmi (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 18 Oct 2005 16:42:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751494AbVJRUmi
+	(ORCPT <rfc822;git-outgoing>); Tue, 18 Oct 2005 16:42:38 -0400
+Received: from quark.didntduck.org ([69.55.226.66]:2980 "EHLO
+	quark.didntduck.org") by vger.kernel.org with ESMTP
+	id S1751493AbVJRUmi (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 18 Oct 2005 16:42:38 -0400
+Received: from [172.21.26.77] (ip-2.provia.com [208.224.1.2])
+	(authenticated)
+	by quark.didntduck.org (8.11.6/8.11.6) with ESMTP id j9IKgV413875;
+	Tue, 18 Oct 2005 16:42:32 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43555E99.1010902@didntduck.org>
+Date:	Tue, 18 Oct 2005 16:44:09 -0400
+From:	Brian Gerst <bgerst@didntduck.org>
+User-Agent: Mozilla Thunderbird 1.0.6 (Windows/20050716)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Kay Sievers <kay.sievers@vrfy.org>
+CC:	"H. Peter Anvin" <hpa@zytor.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: gitweb.cgi
+References: <43546492.3020401@zytor.com> <20051018110725.GB6929@vrfy.org> <43552FC2.3000000@zytor.com>
+In-Reply-To: <43552FC2.3000000@zytor.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:10221
+
+H. Peter Anvin wrote:
+> Kay Sievers wrote:
+> 
+>>
+>>> Most of the hits we get are either the gitweb front page or the 
+>>> gitweb rss feeds, and it's eating I/O bandwidth like crazy.
+>>
+>>
+>> I tested some stuff on these boxes and 30 stat() calls alone take app. 
+>> 2 seconds
+>> on these boxes cause of I/O load ... :)
+>>
+> 
+> Welcome to my hell :)
+> 
+> I set up mod_cache (which I didn't know about, silly me) and so far it 
+> seems to work and has produced a tremendous decrease in load and 
+> improvement in response time.  I do, have, however, a request.  There 
+> are some gitweb pages which are more likely to change than others; in 
+> particular, some gitweb pages will *never* change (because they directly 
+> reflect immutable git data.)
+> 
+> If gitweb could produce Last-Modified and Expires headers where 
+> appropriate, it should improve caching performance.
+> 
+>     -hpa
+
+Some other areas for improvement would be to seperate out the git icon 
+and the style sheet into seperate static files.
+
+--
+				Brian Gerst
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

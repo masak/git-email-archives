@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 13:51:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6D5D0494C9
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 13:51:34 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750757AbVHQTvZ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 15:51:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751229AbVHQTvZ
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 15:51:25 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:38369 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750757AbVHQTvY (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 17 Aug 2005 15:51:24 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id D7E16E270E; Wed, 17 Aug 2005 21:51:23 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id BD33799C6C; Wed, 17 Aug 2005 21:51:23 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8908E99C52; Wed, 17 Aug 2005 21:51:23 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx68.rz.uni-wuerzburg.de [132.187.3.68])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 71093E270E; Wed, 17 Aug 2005 21:51:23 +0200 (CEST)
+Date:	Wed, 17 Aug 2005 21:51:23 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: git-format-patch + git-applymbox small issue
+In-Reply-To: <7vpsscweou.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508172149280.17234@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <20050817171844.57566.qmail@web26301.mail.ukl.yahoo.com>
+ <Pine.LNX.4.63.0508171931130.8623@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <7vpsscweou.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:7457
+
+Hi,
+
+On Wed, 17 Aug 2005, Junio C Hamano wrote:
+
+> Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+> 
+> > On Wed, 17 Aug 2005, Marco Costalba wrote:
+> >
+> >> P.S: I say 'revision', and 'git archive' but are very common also 
+> >> 'commit' and 'git repository'. This is just a silly example where a 
+> >> common dictionary should be useful.
+> 
+> I think 'commit' and 'repository' are more commonly seen here.
+> 
+> > How about the glossary, which I posted a few hours ago?
+> 
+> Which is very good.  Thanks.  Mind if I put it under
+> Documentation/ in its current shape?
+
+I'd be honoured! Though I think that peu a peu, useful suggestions trickle 
+in. But I can handle these as a patch, right?
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

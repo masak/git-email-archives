@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 23 15:03:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A7A391215EB
+	for <tkil@scrye.com>; Fri, 23 Sep 2005 15:03:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751293AbVIWVDO (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Sep 2005 17:03:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751294AbVIWVDO
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Sep 2005 17:03:14 -0400
+Received: from iabervon.org ([66.92.72.58]:23315 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751293AbVIWVDO (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 23 Sep 2005 17:03:14 -0400
+Received: (qmail 27101 invoked by uid 1000); 23 Sep 2005 17:07:37 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 23 Sep 2005 17:07:37 -0400
+Date:	Fri, 23 Sep 2005 17:07:37 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Petr Baudis <pasky@suse.cz>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: Please undo "Use git-merge instead of git-resolve in
+In-Reply-To: <20050923095742.GC10255@pasky.or.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509231648310.23242@iabervon.org>
+References: <E1EIVsD-0001Hu-9m@jdl.com> <20050922191058.GM21019@pasky.or.cz>
+ <34462.10.10.10.28.1127417134.squirrel@linux1> <20050923091012.GA10255@pasky.or.cz>
+ <7vslvwcelj.fsf@assigned-by-dhcp.cox.net> <20050923095742.GC10255@pasky.or.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 51
+Xref: brand.scrye.com linux.git:9196
+
+On Fri, 23 Sep 2005, Petr Baudis wrote:
+
+> Dear diary, on Fri, Sep 23, 2005 at 11:34:16AM CEST, I got a letter
+> where Junio C Hamano <junkio@cox.net> told me that...
+> > Petr Baudis <pasky@suse.cz> writes:
+> > 
+> > > 	* cg-fetch can do with symlinked object database
+> > 
+> > Do you mean ".git/object" in the repository you are fetching
+> > into is a symlink to somewhere, or something else?
+> 
+> Yes, exactly that. You get it by doing cg-clone -l /local/path.  O(1)
+> cloning, but it has its downsides and dangers which I tried to describe
+> in the cg-clone documentation.
+
+That's actually how I use git, and it works for me. (To be precise, I 
+have:
+
+ ~/git/project.git/{objects,refs,info}
+
+and I have
+
+ ~/working/git/current-work/, with .git/{objects,refs,info} symlinks to 
+                              the above.
+
+git fetch works fine, with the exception that remotes aren't shared 
+between working trees.
+
+> > > 	* cg-fetch won't do useless fetches when we are already
+> > > 	  up-to-date
+> > 
+> > Care to explain?  Perhaps you are talking about rsync transport
+> > (in which case I would not be surprised)?
+> 
+> Just that if the reference pointer did not change, you don't try to pull
+> any objects. Speeds things up somewhat, and now it should always work
+> (well, cg-fetch has -f which makes it always try objects as well, in
+> case something went wrong anyway).
+
+I assume you mean with rsync? The current git-http-fetch won't try any 
+objects if the ref didn't change (or, for that matter, if we have a 
+different ref that's the same), and the old one would make a local check 
+for the objects before trying to downlaod anything.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

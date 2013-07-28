@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  8 16:51:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0AAFA187474
+	for <tkil@scrye.com>; Mon,  8 Aug 2005 16:51:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932324AbVHHWmj (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 8 Aug 2005 18:42:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932327AbVHHWmj
+	(ORCPT <rfc822;git-outgoing>); Mon, 8 Aug 2005 18:42:39 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:5007 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932324AbVHHWmi (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 8 Aug 2005 18:42:38 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050808224237.HKAV17043.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 8 Aug 2005 18:42:37 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: A simple script to do the reverse of git-push
+References: <Pine.LNX.4.63.0508082318400.2911@wgmdd8.biozentrum.uni-wuerzburg.de>
+Cc: git@vger.kernel.org
+Date:	Mon, 08 Aug 2005 15:42:36 -0700
+In-Reply-To: <Pine.LNX.4.63.0508082318400.2911@wgmdd8.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Mon, 8 Aug 2005 23:25:49 +0200
+	(CEST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vslxk125f.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 45
+Xref: brand.scrye.com linux.git:6952
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> BTW, if you are lazy, like me, you just pull from Junio once in a while 
+> and do a "make test". Turns out there is a missing dependency though:
+>
+> peek-remote.o: cache.h
+>
+> which in my case lead to a git-peek-remote program which was unable to 
+> peek any ref.
+
+You are right.  Thanks for noticing.
+
+    $ (make clean ; make ) >/dev/null 2>/dev/null
+    $ touch cache.h
+    $ make 2>&1 | grep peek-remote
+    cc -g -O2 -Wall  '-DSHA1_HEADER=<openssl/sha.h>' -o git-peek-remote peek-remote.o libgit.a -lz -lcrypto
+
+I think recent "depend on object files" Makefile patch broke
+some things.
+
+We would need something like this.
+---
+# - pu: ls-remote: drop storing operation and add documentation.
+# + (working tree)
+diff --git a/Makefile b/Makefile
+--- a/Makefile
++++ b/Makefile
+@@ -172,6 +172,7 @@ init-db.o: init-db.c
+ 	$(CC) -c $(CFLAGS) -DDEFAULT_GIT_TEMPLATE_DIR='"$(template_dir)"' $*.c
+ 
+ $(LIB_OBJS): $(LIB_H)
++$(patsubst git-%,%.o,$(PROG)): $(LIB_H)
+ $(DIFF_OBJS): diffcore.h
+ 
+ $(LIB_FILE): $(LIB_OBJS)
+
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

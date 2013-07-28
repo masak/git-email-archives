@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec  6 14:29:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 587EE27F35D
+	for <tkil@scrye.com>; Tue,  6 Dec 2005 14:29:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030251AbVLFVWa (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Dec 2005 16:22:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030252AbVLFVWa
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Dec 2005 16:22:30 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:16093 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1030251AbVLFVW3
+	(ORCPT <rfc822;git@vger.kernel.org>); Tue, 6 Dec 2005 16:22:29 -0500
+Received: from [192.168.1.19] (1-2-9-7a.gkp.gbg.bostream.se [82.182.116.44])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id E76396BCBE
+	for <git@vger.kernel.org>; Tue,  6 Dec 2005 22:22:27 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43960113.8000209@op5.se>
+Date:	Tue, 06 Dec 2005 22:22:27 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git List <git@vger.kernel.org>
+Subject: git shorthands (was: Re: Wine + GIT)
+References: <20051206173909.GE17457@fieldses.org> <1133891589.8577.63.camel@cashmere.sps.mot.com>
+In-Reply-To: <1133891589.8577.63.camel@cashmere.sps.mot.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 39
+Xref: brand.scrye.com linux.git:13283
+
+Jon Loeliger wrote:
+> 
+> That way:
+>     "git mer" would fail
+>     "git merge" would run "git-merge"
+>     "git merge-" would fail
+>     "git merge-o" would fail,
+>     "git-merge-oc" would run "git-merge-octopus".
+> 
+> Any interest?  Overkill?  Bad idea?
+> 
+
+I think it's overkill. It would be better, methinks, to add mnemonic-ish 
+shorthands for the porcelainish commands, so that
+
+	git fp   => git-format-patch
+	git co   => git-checkout
+	git up   => git-update-index
+	git octo => git-merge-octopus
+	git fsck => git-fsck-objects
+	git hash => git-hash-object
+
+and so on...
+
+
+This because non-ambiguous is rarely logical (for git at least, which 
+has 'git-<family>-<action | object-type>) unless one knows the entire 
+command anyways. Ambiguity may also be introduced by later commands, and 
+then you'll need to re-learn them. I always find that annoying.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

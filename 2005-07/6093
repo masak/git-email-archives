@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul 13 21:27:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 855F5276149
+	for <tkil@scrye.com>; Wed, 13 Jul 2005 21:27:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261380AbVGND05 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 13 Jul 2005 23:26:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262873AbVGND05
+	(ORCPT <rfc822;git-outgoing>); Wed, 13 Jul 2005 23:26:57 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:65259 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S261380AbVGND04 convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 13 Jul 2005 23:26:56 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050714032655.HCND12158.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 13 Jul 2005 23:26:55 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] clone-pack: Typofix in the error message.
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 13 Jul 2005 20:26:54 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vbr56kqyp.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=euc-jp
+Content-Transfer-Encoding: 8BIT
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:6093
+
+Cleans a small cut-and-paste mistake.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+
+ clone-pack.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+c8db6ce8de9b9fc8a5eab939704eaa1535a0d3f0
+diff --git a/clone-pack.c b/clone-pack.c
+--- a/clone-pack.c
++++ b/clone-pack.c
+@@ -30,7 +30,7 @@ static struct ref *get_remote_refs(int f
+ 		if (line[len-1] == '\n')
+ 			line[--len] = 0;
+ 		if (len < 42 || get_sha1_hex(line, sha1))
+-			die("git-fetch-pack: protocol error - expected ref descriptor, got '%sŽ¤'", line);
++			die("git-clone-pack: protocol error - expected ref descriptor, got '%sŽ¤'", line);
+ 		refname = line+41;
+ 		len = len-40;
+ 		if (nr_match && !path_match(refname, nr_match, match))
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

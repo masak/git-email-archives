@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 24 16:50:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5D87E1B538A
+	for <tkil@scrye.com>; Fri, 24 Jun 2005 16:50:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263133AbVFXWrl (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 24 Jun 2005 18:47:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262675AbVFXWrl
+	(ORCPT <rfc822;git-outgoing>); Fri, 24 Jun 2005 18:47:41 -0400
+Received: from agminet04.oracle.com ([141.146.126.231]:2837 "EHLO
+	agminet04.oracle.com") by vger.kernel.org with ESMTP
+	id S263067AbVFXWqd (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 24 Jun 2005 18:46:33 -0400
+Received: from rgmgw1.us.oracle.com (rgmgw1.us.oracle.com [138.1.191.10])
+	by agminet04.oracle.com (Switch-3.1.7/Switch-3.1.7) with ESMTP id j5OMkEUl003289;
+	Fri, 24 Jun 2005 17:46:15 -0500
+Received: from rgmgw1.us.oracle.com (localhost [127.0.0.1])
+	by rgmgw1.us.oracle.com (Switch-3.1.4/Switch-3.1.0) with ESMTP id j5OMkE1L007202;
+	Fri, 24 Jun 2005 16:46:14 -0600
+Received: from ca-server1.us.oracle.com (ca-server1.us.oracle.com [139.185.118.41])
+	by rgmgw1.us.oracle.com (Switch-3.1.4/Switch-3.1.0) with ESMTP id j5OMkEfZ007195;
+	Fri, 24 Jun 2005 16:46:14 -0600
+Received: from jlbec by ca-server1.us.oracle.com with local (Exim 4.51)
+	id 1DlwvW-0007TP-BN; Fri, 24 Jun 2005 15:45:34 -0700
+Date:	Fri, 24 Jun 2005 15:45:34 -0700
+From: Joel Becker <Joel.Becker@oracle.com>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Matt Mackall <mpm@selenic.com>, Jeff Garzik <jgarzik@pobox.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>, mercurial@selenic.com
+Subject: Re: Mercurial vs Updated git HOWTO for kernel hackers
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050624224534.GF31165@ca-server1.us.oracle.com>
+Mail-Followup-To: Petr Baudis <pasky@ucw.cz>,
+	Matt Mackall <mpm@selenic.com>, Jeff Garzik <jgarzik@pobox.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>, mercurial@selenic.com
+References: <42B9E536.60704@pobox.com> <20050623235634.GC14426@waste.org> <20050624064101.GB14292@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050624064101.GB14292@pasky.ji.cz>
+X-Burt-Line: Trees are cool.
+X-Red-Smith: Ninety feet between bases is perhaps as close as man has ever come to perfection.
+User-Agent: Mutt/1.5.9i
+X-Brightmail-Tracker: AAAAAQAAAAI=
+X-Whitelist: TRUE
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:5222
+
+On Fri, Jun 24, 2005 at 08:41:01AM +0200, Petr Baudis wrote:
+> Theoretically, dotest should work just fine even if you use Cogito.
+> Anyone tested it?
+
+	When I update the OCFS2 git tree, I clone with Cogito and patch
+with dotest.  Been doing it for a month or two, no problems.
+
+Joel
+
+-- 
+
+"I think it would be a good idea."  
+        - Mahatma Ghandi, when asked what he thought of Western
+          civilization
+
+Joel Becker
+Senior Member of Technical Staff
+Oracle
+E-mail: joel.becker@oracle.com
+Phone: (650) 506-8127
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

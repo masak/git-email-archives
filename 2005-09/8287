@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 11 08:23:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A57D41F8A5B
+	for <tkil@scrye.com>; Sun, 11 Sep 2005 08:23:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932385AbVIKOXa (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Sep 2005 10:23:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932320AbVIKOXa
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Sep 2005 10:23:30 -0400
+Received: from smtp18.wxs.nl ([195.121.6.14]:39632 "EHLO smtp18.wxs.nl")
+	by vger.kernel.org with ESMTP id S932395AbVIKOX3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 11 Sep 2005 10:23:29 -0400
+Received: from greensroom.kotnet.org (ip54515aaa.direct-adsl.nl [84.81.90.170])
+ by smtp18.wxs.nl (iPlanet Messaging Server 5.2 Patch 2 (built Jul 14 2004))
+ with SMTP id <0IMN002XVPAZ8X@smtp18.wxs.nl> for git@vger.kernel.org; Sun,
+ 11 Sep 2005 16:23:23 +0200 (CEST)
+Received: (qmail 22006 invoked by uid 500); Sun, 11 Sep 2005 14:23:23 +0000
+Date:	Sun, 11 Sep 2005 16:23:23 +0200
+From:	Sven Verdoolaege <skimo@kotnet.org>
+Subject: Re: [ANNOUNCE qgit-0.94]
+In-reply-to: <20050911091832.16214.qmail@web26306.mail.ukl.yahoo.com>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Cc:	git@vger.kernel.org
+Reply-to: skimo@liacs.nl
+Mail-followup-to: Marco Costalba <mcostalba@yahoo.it>, git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20050911142323.GS15165MdfPADPa@greensroom.kotnet.org>
+MIME-version: 1.0
+Content-type: text/plain; charset=us-ascii
+Content-transfer-encoding: 7BIT
+Content-disposition: inline
+User-Agent: Mutt/1.5.10i
+References: <20050911091832.16214.qmail@web26306.mail.ukl.yahoo.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.0.4
+Lines: 12
+Xref: brand.scrye.com linux.git:8287
+
+On Sun, Sep 11, 2005 at 02:18:32AM -0700, Marco Costalba wrote:
+> Please remove qt4 and install qt3-devel-3.3.4
+
+Maybe you should mention this in the README
+as well as the fact that you apparently need to compile the -mt version.
+
+skimo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

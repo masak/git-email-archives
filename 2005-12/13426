@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  9 13:47:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B1FB7175E83
+	for <tkil@scrye.com>; Fri,  9 Dec 2005 13:47:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932338AbVLIUqz (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 9 Dec 2005 15:46:55 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932428AbVLIUqz
+	(ORCPT <rfc822;git-outgoing>); Fri, 9 Dec 2005 15:46:55 -0500
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:62083 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S932338AbVLIUqy (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 9 Dec 2005 15:46:54 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051209204601.BBEM20441.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 9 Dec 2005 15:46:01 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] use "git init-db" in tests
+References: <20051208202555.GA3046@steel.home>
+	<7vu0dje2oi.fsf@assigned-by-dhcp.cox.net>
+	<20051208210251.GB19423@steel.home>
+	<7v7jafcmev.fsf@assigned-by-dhcp.cox.net>
+	<81b0412b0512082336i674932bapd631d559e80cad79@mail.gmail.com>
+	<7vlkyu7l05.fsf@assigned-by-dhcp.cox.net>
+	<81b0412b0512090259l5f06f6d6n5416e271af36d6a1@mail.gmail.com>
+Date:	Fri, 09 Dec 2005 12:46:51 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzja2e2s.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:13426
+
+Alex Riesen <raa.lkml@gmail.com> writes:
+
+> In my case it was the freshly build directory where a chmod 0666 * was
+> done. This directory wont rebuild (the dates are correct), and the
+> tests run, as if nothing happened.
+
+I see.  I appreciate your honesty ;-), it is a pilot error
+alright, but surely it would be nicer if we catch it.
+
+Although your proposed change makes it harder to implement
+my desire to be able to run tests with installed binaries than
+it already is, I'd take the patch for now.  It would catch this
+particular pilot error.
+
+I however would think adding a dependency in t/Makefile to
+make sure the top level is built before starting to run test a
+overkill (I think I've seen some projects to do that), so I'd
+not go there.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

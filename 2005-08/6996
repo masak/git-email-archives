@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  9 14:43:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2529A17D738
+	for <tkil@scrye.com>; Tue,  9 Aug 2005 14:43:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964947AbVHIUm7 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 9 Aug 2005 16:42:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964948AbVHIUm6
+	(ORCPT <rfc822;git-outgoing>); Tue, 9 Aug 2005 16:42:58 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:57348 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S964947AbVHIUm6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 9 Aug 2005 16:42:58 -0400
+Received: (qmail 16854 invoked by uid 2001); 9 Aug 2005 20:42:54 -0000
+Date:	Tue, 9 Aug 2005 22:42:54 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Chris Wright <chrisw@osdl.org>,
+	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: Template files location
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050809204254.GD7052@pasky.ji.cz>
+References: <42DC4537.2080103@orionmulti.com> <20050805024222.GE7762@shell0.pdx.osdl.net> <42F2E571.6040207@orionmulti.com> <7voe8dow4w.fsf@assigned-by-dhcp.cox.net> <20050805042332.GG7762@shell0.pdx.osdl.net> <7vd5otov7s.fsf@assigned-by-dhcp.cox.net> <20050805094324.GF29216@pasky.ji.cz> <7vpsssjnld.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vpsssjnld.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:6996
+
+Dear diary, on Fri, Aug 05, 2005 at 07:33:02PM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> *2* And I am sure many others shared the same objection but did
+> not even bother to say anything because what Johannes said made
+> a lot of sense and what the patch did was obviously wrong.
+
+Me too, actually. I just didn't step out to see the big picture when
+writing the grandparent. Now I agree with everything you said.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

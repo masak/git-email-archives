@@ -1,0 +1,89 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 10 18:55:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6034F6E92
+	for <tkil@scrye.com>; Tue, 10 May 2005 18:55:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261863AbVEKAzf (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 10 May 2005 20:55:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261864AbVEKAze
+	(ORCPT <rfc822;git-outgoing>); Tue, 10 May 2005 20:55:34 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:4830 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S261863AbVEKAz0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 10 May 2005 20:55:26 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id 833D16E12E6; Wed, 11 May 2005 02:55:22 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 370126E0E7D; Wed, 11 May 2005 02:55:22 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 77C0B61FDE; Wed, 11 May 2005 02:55:25 +0200 (CEST)
+Date:	Wed, 11 May 2005 02:55:25 +0200
+From: Jonas Fonseca <fonseca@diku.dk>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: [PATCH] Fix cg-commit to handle files with leading '-'
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050511005525.GB3055@diku.dk>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="xHFwDpU9dbj6ez1V"
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 46
+Xref: brand.scrye.com linux.git:2992
+
+
+--xHFwDpU9dbj6ez1V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Pasky,
+
+cg-commit dies with "update-cache failed" message when adding files
+beginning with a '-' because the '--' arg is missing.
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+
+-- 
+Jonas Fonseca
+
+--xHFwDpU9dbj6ez1V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="fix-cg-commit.patch"
+
+Index: cg-commit
+===================================================================
+--- 673ad20e23591a8e5bdf18a755a5dea1755b7bf6/cg-commit  (mode:100755)
++++ uncommitted/cg-commit  (mode:100755)
+@@ -140,13 +140,13 @@
+ 
+ if [ ! "$ignorecache" ]; then
+ 	if [ "$customfiles" ]; then
+-		git-update-cache --add --remove "${commitfiles[@]}" \
++		git-update-cache --add --remove -- "${commitfiles[@]}" \
+ 			|| die "update-cache failed"
+ 		export GIT_INDEX_FILE=$(mktemp -t gitci.XXXXXX)
+ 		git-read-tree HEAD
+ 	fi
+ 	# TODO: Do the proper separation of adds, removes, and changes.
+-	git-update-cache --add --remove "${commitfiles[@]}" \
++	git-update-cache --add --remove -- "${commitfiles[@]}" \
+ 		|| die "update-cache failed"
+ fi
+ 
+
+--xHFwDpU9dbj6ez1V--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

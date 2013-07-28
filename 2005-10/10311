@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 16:22:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 26E0C1C9093
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 16:22:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751605AbVJSWUs (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 18:20:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751606AbVJSWUs
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 18:20:48 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:64747 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751603AbVJSWUr (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 19 Oct 2005 18:20:47 -0400
+Received: (qmail 8280 invoked by uid 2001); 20 Oct 2005 00:20:44 +0200
+Date:	Thu, 20 Oct 2005 00:20:44 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: The git protocol and DoS
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051019222044.GP30889@pasky.or.cz>
+References: <4356A5C5.5080905@zytor.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4356A5C5.5080905@zytor.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 36
+Xref: brand.scrye.com linux.git:10311
+
+Dear diary, on Wed, Oct 19, 2005 at 10:00:05PM CEST, I got a letter
+where "H. Peter Anvin" <hpa@zytor.com> told me that...
+> One way to do this would be to start the transaction by having the 
+> server transmit a cookie to the client, and to require the client to 
+> send a SHA1 of the (cookie + request) together with the request.  This 
+> would be done with a fairly short timeout.
+
+  If (well, it sounds like a good idea, so rather "when") you do this,
+it would be a good idea to do in a way that makes it easy to later add
+support for some kind of authentication (really, not everyone wants to
+give away ssh accounts). Let's say it works like:
+
+[client]	git-upload-pack <path>
+[server]	challenge somethingnonsensical
+[client]	challenge-response <username>:sha1(somethingnonsensical<password>)
+[server]	All right, the pack goes like this...
+
+  Suddenly you have support for hopefully secure authentication, and at
+the same time you have the cookie implemented in backwards-compatible
+fashion (in the sense that new client will be able to talk to old
+server) - just assume the username and password empty. This might be
+even hardcoded for now, just leave a room for its addition (in an
+elegant and compatible way) in the protocol, please.
+
+  Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

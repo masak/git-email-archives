@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 17:49:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.4 required=5.0 tests=AWL,BAYES_00,X_MAILER_SPAM 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C76CB135C11
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 17:49:28 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932099AbVKBAtS (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 19:49:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932110AbVKBAtS
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 19:49:18 -0500
+Received: from godel.catalyst.net.nz ([202.78.240.40]:64214 "EHLO
+	mail1.catalyst.net.nz") by vger.kernel.org with ESMTP
+	id S932099AbVKBAtR (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 1 Nov 2005 19:49:17 -0500
+Received: from leibniz.catalyst.net.nz ([202.78.240.7] helo=mltest)
+	by mail1.catalyst.net.nz with esmtp (Exim 4.50)
+	id 1EX6oU-0007Yd-VU; Wed, 02 Nov 2005 13:49:15 +1300
+Received: from mltest ([127.0.0.1])
+	by mltest with smtp (Exim 3.36 #1 (Debian))
+	id 1EX6sV-0001sC-00; Wed, 02 Nov 2005 13:53:24 +1300
+Cc:	Martin Langhoff <martin@catalyst.net.nz>
+Subject: [PATCH] cvsimport: cvsps should be quiet too
+In-Reply-To: 
+X-Mailer: git-send-email
+Date:	Wed, 2 Nov 2005 13:53:23 +1300
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <11308928033950-git-send-email-martin@catalyst.net.nz>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Martin Langhoff <martin@catalyst.net.nz>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Martin Langhoff <martin@catalyst.net.nz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:10978
+
+Tell cvsps to be quite, unless we've been told to be verbose.
+
+Signed-off-by: Martin Langhoff <martin@catalyst.net.nz>
+
+
+---
+
+ git-cvsimport.perl |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+applies-to: 3b008080b6ab6077e6dd2178c01dee4efed8ef42
+720675e4ad1e4efcda6af41461cf264617194ffc
+diff --git a/git-cvsimport.perl b/git-cvsimport.perl
+index 0144670..7bd9136 100755
+--- a/git-cvsimport.perl
++++ b/git-cvsimport.perl
+@@ -491,6 +491,7 @@ unless($pid) {
+ 	my @opt;
+ 	@opt = split(/,/,$opt_p) if defined $opt_p;
+ 	unshift @opt, '-z', $opt_z if defined $opt_z;
++	unshift @opt, '-q'         unless defined $opt_v;
+ 	unless (defined($opt_p) && $opt_p =~ m/--no-cvs-direct/) {
+ 		push @opt, '--cvs-direct';
+ 	}
+---
+0.99.8.GIT
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 26 16:32:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B79516EDB1
+	for <tkil@scrye.com>; Sat, 26 Nov 2005 16:32:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750785AbVKZXcj (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 26 Nov 2005 18:32:39 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750788AbVKZXcj
+	(ORCPT <rfc822;git-outgoing>); Sat, 26 Nov 2005 18:32:39 -0500
+Received: from smtp4-g19.free.fr ([212.27.42.30]:28054 "EHLO smtp4-g19.free.fr")
+	by vger.kernel.org with ESMTP id S1750785AbVKZXcj (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 26 Nov 2005 18:32:39 -0500
+Received: from nan92-1-81-57-214-146 (nan92-1-81-57-214-146.fbx.proxad.net [81.57.214.146])
+	by smtp4-g19.free.fr (Postfix) with ESMTP id 33F164001E;
+	Sun, 27 Nov 2005 00:32:38 +0100 (CET)
+Received: from dwitch by nan92-1-81-57-214-146 with local (Exim 4.54)
+	id 1Eg9Yy-0005PK-V6; Sun, 27 Nov 2005 00:34:37 +0100
+Date:	Sun, 27 Nov 2005 00:34:35 +0100
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Andreas Ericsson <ae@op5.se>, git@vger.kernel.org
+Subject: Re: git-send-mail in sh
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051126233434.GL3393@nowhere.earth>
+References: <4386DD45.6030308@op5.se> <7v7jaxou5b.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v7jaxou5b.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.11
+From:	Yann Dirson <ydirson@altern.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:12781
+
+On Fri, Nov 25, 2005 at 03:15:44AM -0800, Junio C Hamano wrote:
+> > function usage() {
+> > 	echo "Usage: git submit upstream@email.org <commit-ish> [<commit-ish>]"
+> > 	exit 1
+> > }
+> 
+> I'm old fashioned and tend to omit noise word "function".
+
+More importantly, it is not portable.
+-- 
+Yann Dirson    <ydirson@altern.org> |
+Debian-related: <dirson@debian.org> |   Support Debian GNU/Linux:
+                                    |  Freedom, Power, Stability, Gratis
+     http://ydirson.free.fr/        | Check <http://www.debian.org/>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

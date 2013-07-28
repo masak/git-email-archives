@@ -1,0 +1,51 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 09:53:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EE9B9147E6F
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 09:53:51 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965132AbVKBQwc (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 11:52:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965133AbVKBQwb
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 11:52:31 -0500
+Received: from terminus.zytor.com ([192.83.249.54]:14027 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S965132AbVKBQwb
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 2 Nov 2005 11:52:31 -0500
+Received: from [172.27.0.18] (c-67-180-238-27.hsd1.ca.comcast.net [67.180.238.27])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id jA2GqN8J031302
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 2 Nov 2005 08:52:24 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4368EEC7.2080601@zytor.com>
+Date:	Wed, 02 Nov 2005 08:52:23 -0800
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: git 0.99.9b installed on kernel.org
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 8
+Xref: brand.scrye.com linux.git:11019
+
+git 0.99.9b is now installed on all kernel.org machines.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

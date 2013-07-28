@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 10 15:41:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 903691F0ED4
+	for <tkil@scrye.com>; Sat, 10 Sep 2005 15:41:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932327AbVIJVkr (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 10 Sep 2005 17:40:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932330AbVIJVkr
+	(ORCPT <rfc822;git-outgoing>); Sat, 10 Sep 2005 17:40:47 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:52719 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S932327AbVIJVkq (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 10 Sep 2005 17:40:46 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050910214044.IRWB6784.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 10 Sep 2005 17:40:44 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Andrew Morton <akpm@osdl.org>
+Cc:	Linus Torvalds <torvalds@osdl.org>, junkio@cox.net,
+	git@vger.kernel.org
+Subject: Re: git-bisect failure
+References: <20050909011034.12f2bf64.akpm@osdl.org>
+	<7virx9ir3a.fsf@assigned-by-dhcp.cox.net>
+	<20050910022638.20832803.akpm@osdl.org>
+	<Pine.LNX.4.58.0509101202070.30958@g5.osdl.org>
+	<20050910141343.578649c7.akpm@osdl.org>
+Date:	Sat, 10 Sep 2005 14:40:44 -0700
+In-Reply-To: <20050910141343.578649c7.akpm@osdl.org> (Andrew Morton's message
+	of "Sat, 10 Sep 2005 14:13:43 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyscfvoj.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 16
+Xref: brand.scrye.com linux.git:8255
+
+Andrew Morton <akpm@osdl.org> writes:
+
+>>  So the bisection algorithm may have done the right thing from a technical 
+>>  standpoint, but I suspect it could be made to be a bit more forgiving, or 
+>>  at least when somebody realizes that bisection didn't work right, we could 
+>>  have the trail of good/bad markings to try to debug what happened...
+>
+> Yup.  Simply keeping a little log file would suffice.
+
+Will do.  Thanks.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 12 05:05:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C8C0F2851FA
+	for <tkil@scrye.com>; Wed, 12 Oct 2005 05:05:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751422AbVJLLEN (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 12 Oct 2005 07:04:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751401AbVJLLEN
+	(ORCPT <rfc822;git-outgoing>); Wed, 12 Oct 2005 07:04:13 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:2539 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751422AbVJLLEM (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 12 Oct 2005 07:04:12 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id C4C3613EE77; Wed, 12 Oct 2005 13:04:11 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A9FAA9ECA0; Wed, 12 Oct 2005 13:04:11 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8A6C99EC66; Wed, 12 Oct 2005 13:04:11 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 71A5F13EC57; Wed, 12 Oct 2005 13:04:11 +0200 (CEST)
+Date:	Wed, 12 Oct 2005 13:04:11 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Matthias Urlichs <smurf@smurf.noris.de>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Adapt tutorial to cygwin and add test case
+In-Reply-To: <pan.2005.10.12.01.27.25.688169@smurf.noris.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510121302460.30679@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0510111333160.27109@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vu0fnsu6f.fsf@assigned-by-dhcp.cox.net> <pan.2005.10.12.01.27.25.688169@smurf.noris.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:10009
+
+Hi,
+
+On Wed, 12 Oct 2005, Matthias Urlichs wrote:
+
+> Hi, Junio C Hamano wrote:
+> 
+> > The Kosher way would be
+> > 
+> >     tree=$(git-write-tree)
+> >     commit=$(echo 'Initial commit' | git-commit-tree $tree)
+> >     git-update-ref HEAD $(commit)
+> > 
+> > but looks quite intimidating as a tutorial material.
+> 
+> ... which is probably why there's a "git commit" command these days.
+
+Concur. The tutorial may contain technical details for the interested (and 
+for those who broke their setup...), so at that stage, I'd prefer to see 
+the convenient version.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

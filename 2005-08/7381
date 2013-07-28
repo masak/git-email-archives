@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 16 15:32:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C4F8818488E
+	for <tkil@scrye.com>; Tue, 16 Aug 2005 15:32:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932734AbVHPVbS (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 16 Aug 2005 17:31:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932736AbVHPVbS
+	(ORCPT <rfc822;git-outgoing>); Tue, 16 Aug 2005 17:31:18 -0400
+Received: from rproxy.gmail.com ([64.233.170.193]:39304 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932734AbVHPVbR convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 16 Aug 2005 17:31:17 -0400
+Received: by rproxy.gmail.com with SMTP id i8so28483rne
+        for <git@vger.kernel.org>; Tue, 16 Aug 2005 14:31:17 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=dR1NUNloH3neqfGFtZtsShUjLEQx59wvvGIVOu9PNjOBBF1TMAHvd62RKeMZEKfNgN8mO86MzT01JWTVCulssVa9uNbzAkshVoAuavdsZyg68ruxnWbLHtwIENZGg6M4Sz04Iu9mHNhCEmX7UOBG46PgCvlj97zrAlPeUx02i/0=
+Received: by 10.38.78.22 with SMTP id a22mr2494555rnb;
+        Tue, 16 Aug 2005 14:31:17 -0700 (PDT)
+Received: by 10.38.101.8 with HTTP; Tue, 16 Aug 2005 14:31:17 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f9050816143153e4104b@mail.gmail.com>
+Date:	Wed, 17 Aug 2005 09:31:17 +1200
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: [RFC] Patches exchange is bad?
+Cc:	git@vger.kernel.org
+In-Reply-To: <20050816200132.88287.qmail@web26304.mail.ukl.yahoo.com>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20050816200132.88287.qmail@web26304.mail.ukl.yahoo.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:7381
+
+On 8/17/05, Marco Costalba <mcostalba@yahoo.it> wrote:
+> What do you think?
+
+>From what I understand, you'll want the StGIT infrastructure. If you
+use git/cogito, there is an underlying  assumption that you'll want
+all the patches merged across, and a simple cg-update will bring in
+all the pending stuff.
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

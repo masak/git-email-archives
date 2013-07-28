@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 10:26:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0B08F1C50F2
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 10:26:20 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030557AbVKIRY3 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 12:24:29 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030553AbVKIRY2
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 12:24:28 -0500
+Received: from kleinhenz.com ([213.239.205.196]:41384 "EHLO kleinhenz.com")
+	by vger.kernel.org with ESMTP id S1030557AbVKIRY0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 12:24:26 -0500
+Received: from [192.168.115.35] (p54997E8E.dip.t-dialin.net [84.153.126.142])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "Simon Richter", Issuer "Kleinhenz Elektronik CA" (verified OK))
+	by kleinhenz.com (Postfix) with ESMTP id 8C24A4A800D;
+	Wed,  9 Nov 2005 18:24:25 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437230C1.3090700@debian.org>
+Date:	Wed, 09 Nov 2005 18:24:17 +0100
+From:	Simon Richter <sjr@debian.org>
+User-Agent: Debian Thunderbird 1.0.7 (X11/20051019)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Alan Chandler <alan@chandlerfamily.org.uk>, git@vger.kernel.org
+Subject: Re: Which packages/versions are needed to build documentation
+References: <200511091655.51093.alan@chandlerfamily.org.uk>
+In-Reply-To: <200511091655.51093.alan@chandlerfamily.org.uk>
+X-Enigmail-Version: 0.93.0.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature";
+ boundary="------------enig8D0D7A6887982431813AEAB5"
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:11396
+
+This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
+--------------enig8D0D7A6887982431813AEAB5
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+> On my debian sarge system it fails almost immediately
+
+Just take the asciidoc package from unstable, last time I looked it had 
+no dependencies that were unfulfillable from sarge.
+
+    Simon
+
+--------------enig8D0D7A6887982431813AEAB5
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2 (GNU/Linux)
+
+iQCVAwUBQ3Iww1Yr4CN7gCINAQINdwQAlosJKUXNvySqOLbuszmzyjXUMqKACran
+BZwlChbxCYdYydIGenA1Tt6HzPBctS3XL5Ujkafr0cJnwL6jjAfKnozJN3j2saF3
+xex19BolavMB/RiUEQsIX5+5HRhpdE534gcPtOdnxb+GvRRna6DN1UMjaEaeB8QC
+PIOx9/eVQwo=
+=+6L8
+-----END PGP SIGNATURE-----
+
+--------------enig8D0D7A6887982431813AEAB5--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

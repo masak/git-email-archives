@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 13:45:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0C5B91EDB5C
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 13:45:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030343AbVJETm2 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 15:42:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030347AbVJETm2
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 15:42:28 -0400
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:8065 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S1030343AbVJETm0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 5 Oct 2005 15:42:26 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051005194216.YITF19461.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 5 Oct 2005 15:42:16 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: Re: clone: I'm only doing a max of 256 requests
+References: <20051005191300.GC17475@hexapodia.org>
+Date:	Wed, 05 Oct 2005 12:42:20 -0700
+In-Reply-To: <20051005191300.GC17475@hexapodia.org> (Andy Isaacson's message
+	of "Wed, 5 Oct 2005 12:13:00 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7virwbu4wz.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:9719
+
+Andy Isaacson <adi@hexapodia.org> writes:
+
+> ...  (And how should I be starting to
+> debug this?  The git programs don't seem to have a useful --verbose
+> option.  It would be nice if "git -v clone" would tell me what it is
+> doing.)
+
+$ git grep -n 'max of .* requests'
+upload-pack.c:141:			die("I'm only doing a max of %d requests", MAX_NEEDS);
+
+I suspect that the repository you are cloning has too many
+branch heads and tags under .git/refs/.
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

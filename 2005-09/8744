@@ -1,0 +1,98 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 20:51:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 941481C94E6
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 20:51:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750834AbVIQCul (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 22:50:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750836AbVIQCul
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 22:50:41 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:52418 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750834AbVIQCuk (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 16 Sep 2005 22:50:40 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8H2oaBo003652
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 16 Sep 2005 19:50:36 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8H2oZEN025956;
+	Fri, 16 Sep 2005 19:50:35 -0700
+Date:	Fri, 16 Sep 2005 19:50:35 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: deprecating more
+In-Reply-To: <7vr7boe8a8.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509161938580.26803@g5.osdl.org>
+References: <7vd5n8fqso.fsf@assigned-by-dhcp.cox.net> <7vzmqceayd.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0509161856260.26803@g5.osdl.org> <7vr7boe8a8.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 52
+Xref: brand.scrye.com linux.git:8744
+
+
+
+On Fri, 16 Sep 2005, Junio C Hamano wrote:
+> 
+> I'm happy to hear an argument to drop it, but I would like to
+> make sure that you do realize that git-whatchanged is not a
+> convenient way to truly "export" for later recreation of
+> identical repository, due to its indentation and truncation
+> behaviour.  Not that *I* think that matters.
+
+Well, the thing is, a true exporter probably doesn't want to use patches 
+at all.
+
+A truly good exporter would likely use
+
+	git-diff-tree -M -r
+
+or something to generate the list of filenames and versions, and then work 
+on that. You really _have_ to, in order to get things like binary files 
+right.
+
+Anything that is based on diffs would suck.
+
+Also, I suspect that to get the list of commits to export, a real exporter
+is likely to first just do something like
+
+	git-rev-list --parents --topo-order prev..
+
+and generate the commit topology from there. Then just either use the C
+library interfaces to suck in the commit messages, or just use
+git-cat-file. And then git-diff-tree -M (or perhaps -C, if the
+repo-to-be-exported-to knows about copies) to actually generate the 
+revision info.
+
+> What do you think about the other commands I mentioned?
+
+I think they can all go. I think some old scripts migth still use 
+git-rev-tree, but it really is clearly inferior in every way to 
+git-rev-list that such scripts should be fixed anyway. Fixing them should 
+be pretty easy.
+
+(The packed format actually makes git-rev-tree at least ok from a 
+performance angle, even if it has to walk all the way to the root. But I 
+_seriously_ doube you want to use it on any big repo anyway, and 
+definitely not with an unpacked one).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

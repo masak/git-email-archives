@@ -1,0 +1,98 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 04:15:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E757D2851FA
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 04:15:28 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750751AbVKQLPG (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 06:15:06 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750756AbVKQLPG
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 06:15:06 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:4776 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750751AbVKQLPE (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 06:15:04 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CD70213F9CE; Thu, 17 Nov 2005 12:15:03 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id AEA4B9F333; Thu, 17 Nov 2005 12:15:03 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 98FD998FA6; Thu, 17 Nov 2005 12:15:03 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 3FE1B13F8F5; Thu, 17 Nov 2005 12:15:03 +0100 (CET)
+Date:	Thu, 17 Nov 2005 12:15:03 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Nick Hengeveld <nickh@reactrix.com>, git@vger.kernel.org
+Subject: Re: recent patch breaks the build ?
+In-Reply-To: <7voe4jy36p.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511171213370.29989@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <437B6997.8010903@mc.com> <7v64qs8kuo.fsf@assigned-by-dhcp.cox.net>
+ <437B8CEC.8040002@mc.com> <20051116203334.GA3968@reactrix.com>
+ <Pine.LNX.4.63.0511170023040.9284@wbgn013.biozentrum.uni-wuerzburg.de>
+ <20051117004621.GB3968@reactrix.com> <7vd5l03whv.fsf@assigned-by-dhcp.cox.net>
+ <20051117021014.GC3968@reactrix.com> <7voe4jy36p.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 43
+Xref: brand.scrye.com linux.git:12090
+
+Hi,
+
+On Thu, 17 Nov 2005, Junio C Hamano wrote:
+
+> Nick Hengeveld <nickh@reactrix.com> writes:
+> 
+> > Assuming --vernum does work, is there a reasonable/portable way to
+> > compare two hex values like 070801?
+> 
+> I would assume that it is always 6 lowercase hexdigits %06x when
+> supported, or showing nothing to stdout for ancient ones.
+> 
+> A horrible but probably portable way would be:
+> 
+> 	case `(echo 070801; curl-config --vernum) 2>/dev/null |
+>         	sort -r | sed -ne 2p` in
+> 	070801)
+>         	echo Happy ;;
+>         *)
+>         	echo Sad ;;
+> 	esac
+
+Horrible to read, but actually portable (and can be produced by a small 
+script):
+
+case "$NUMBER" in
+07080[1-9] | \
+0708[1-9]? | \
+0709?? | \
+07[1-9]??? | \
+0[8-9]???? | \
+[1-9]?????) echo "Yes";;
+*) echo "No";;
+esac
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

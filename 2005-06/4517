@@ -1,0 +1,110 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jun  4 08:40:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 27F58667A
+	for <tkil@scrye.com>; Sat,  4 Jun 2005 08:40:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261356AbVFDOks (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 4 Jun 2005 10:40:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261358AbVFDOks
+	(ORCPT <rfc822;git-outgoing>); Sat, 4 Jun 2005 10:40:48 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:13567 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S261356AbVFDOkh (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 4 Jun 2005 10:40:37 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id 1D1866E1C09; Sat,  4 Jun 2005 16:39:56 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id D69F66E18CB; Sat,  4 Jun 2005 16:39:55 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id F36C761FE0; Sat,  4 Jun 2005 16:40:35 +0200 (CEST)
+Date:	Sat, 4 Jun 2005 16:40:35 +0200
+From: Jonas Fonseca <fonseca@diku.dk>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: [PATCH 4/10] First parse all commit header entries then print them
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050604144035.GH12615@diku.dk>
+References: <20050604143831.GD12615@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050604143831.GD12615@diku.dk>
+User-Agent: Mutt/1.5.6i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 65
+Xref: brand.scrye.com linux.git:4517
+
+Change the main loop to first parse all header entries before printing
+them. Makes the cg-log output more independent of the order of the git
+commit header.
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+---
+
+ cg-log |   26 ++++++++++++++++----------
+ 1 files changed, 16 insertions(+), 10 deletions(-)
+
+diff --git a/cg-log b/cg-log
+--- a/cg-log
++++ b/cg-log
+@@ -183,27 +183,33 @@ $revls | $revsort | while read time comm
+ 			case "$key" in
+ 			"author")
+ 				author="$rest"
+-				date=(${author#*> })
+-				pdate="$(showdate $date)"
+-				[ "$pdate" ] && author="${author%> *}> $pdate"
+-				echo $colauthor$key $author $coldefault
+ 				;;
+ 			"committer")
+ 				committer="$rest"
+-				date=(${committer#*> })
+-				pdate="$(showdate $date)"
+-				[ "$pdate" ] && committer="${committer%> *}> $pdate"
+-				echo $colcommitter$key $committer $coldefault
+ 				;;
+ 			"tree")
+ 				tree="$rest"
+-				echo $colheader$key $tree $coldefault
+ 				;;
+ 			"parent")
+ 				parents[${#parents[@]}]="$rest"
+-				echo $colheader$key $rest $coldefault
+ 				;;
+ 			"")
++				echo ${colheader}tree $tree $coldefault
++
++				for parent in "${parents[@]}"; do
++					echo ${colheader}parent $parent $coldefault
++				done
++
++				date=(${author#*> })
++				pdate="$(showdate $date)"
++				[ "$pdate" ] && author="${author%> *}> $pdate"
++				echo ${colauthor}author $author $coldefault
++
++				date=(${committer#*> })
++				pdate="$(showdate $date)"
++				[ "$pdate" ] && committer="${committer%> *}> $pdate"
++				echo ${colcommitter}committer $committer $coldefault
++
+ 				if [ -n "$list_files" ]; then
+ 					list_commit_files "$tree" "${parents[0]}"
+ 				fi
+
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

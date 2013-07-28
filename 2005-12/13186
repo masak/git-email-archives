@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec  4 16:03:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_NV 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E2C5D16795F
+	for <tkil@scrye.com>; Sun,  4 Dec 2005 16:03:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932368AbVLDXB4 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Dec 2005 18:01:56 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932371AbVLDXBz
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Dec 2005 18:01:55 -0500
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:44989 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S932368AbVLDXBy (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 4 Dec 2005 18:01:54 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051204230155.BELP25099.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 4 Dec 2005 18:01:55 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: [PATCH] compat/setenv: do not free what we fed putenv(3).
+References: <28409.1133564908@lotus.CS.Berkeley.EDU>
+Date:	Sun, 04 Dec 2005 15:01:52 -0800
+In-Reply-To: <28409.1133564908@lotus.CS.Berkeley.EDU> (Jason Riedy's message
+	of "Fri, 02 Dec 2005 15:08:28 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vlkz0eaan.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 44
+Xref: brand.scrye.com linux.git:13186
+
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+
+---
+
+ compat/setenv.c |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+3a2674337c12e958f8c697af991a0ef6c06ddd4d
+diff --git a/compat/setenv.c b/compat/setenv.c
+index 94acd2d..b7d7678 100644
+--- a/compat/setenv.c
++++ b/compat/setenv.c
+@@ -16,7 +16,7 @@ int gitsetenv(const char *name, const ch
+ 
+ 	namelen = strlen(name);
+ 	valuelen = strlen(value);
+-	envstr = malloc((namelen + valuelen + 2) * sizeof(char));
++	envstr = malloc((namelen + valuelen + 2));
+ 	if (!envstr) return -1;
+ 
+ 	memcpy(envstr, name, namelen);
+@@ -25,7 +25,11 @@ int gitsetenv(const char *name, const ch
+ 	envstr[namelen + valuelen + 1] = 0;
+ 
+ 	out = putenv(envstr);
++	/* putenv(3) makes the argument string part of the environment,
++	 * and changing that string modifies the environment --- which
++	 * means we do not own that storage anymore.  Do not free
++	 * envstr.
++	 */
+ 
+-	free(envstr);
+ 	return out;
+ }
+-- 
+0.99.9.GIT
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

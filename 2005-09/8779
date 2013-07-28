@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 11:01:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CA24CB4DC5
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 11:01:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751247AbVIRRAs (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 13:00:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751272AbVIRRAs
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 13:00:48 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:63898 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751247AbVIRRAr (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 18 Sep 2005 13:00:47 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8IH0UBo004654
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 18 Sep 2005 10:00:30 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8IH0Suu021792;
+	Sun, 18 Sep 2005 10:00:29 -0700
+Date:	Sun, 18 Sep 2005 10:00:28 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Dave Jones <davej@redhat.com>
+cc:	Git Mailing List <git@vger.kernel.org>,
+	Junio C Hamano <junkio@cox.net>
+Subject: Re: Fix archive-destroying "git repack -a -d" bug
+In-Reply-To: <20050918031837.GB23405@redhat.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509180958310.26803@g5.osdl.org>
+References: <Pine.LNX.4.58.0509171839590.26803@g5.osdl.org>
+ <20050918031837.GB23405@redhat.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:8779
+
+
+
+On Sat, 17 Sep 2005, Dave Jones wrote:
+> 
+> Hmm, I'm sure I've done this several times in my x86info git repo
+> (http://www.codemonkey.org.uk/projects/x86info/x86info.git)
+> 
+> It seems to look ok to git-fsck-cache though. Would that pick up
+> any breakage if present ?
+
+It will literally remove every single object in the system, so yes, there 
+would be major breakage. Even "git log" won't work.
+
+Note: this only happens if you haven't done _anything_ in between repacks. 
+If you commit anything or do anything else to cause the list of objects to 
+change, "git repack" is fine.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

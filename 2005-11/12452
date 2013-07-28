@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 11:03:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 64F5AB4B8B
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 11:03:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750962AbVKUR7X (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 12:59:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932390AbVKUR7W
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 12:59:22 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:51331 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1750961AbVKUR7W
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 12:59:22 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP
+	id EE7E36BD08; Mon, 21 Nov 2005 18:59:20 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43820AF8.5060208@op5.se>
+Date:	Mon, 21 Nov 2005 18:59:20 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	ltuikov@yahoo.com
+Cc:	git@vger.kernel.org
+Subject: Re: [RFC] git-format-patch options
+References: <20051121173603.73700.qmail@web31806.mail.mud.yahoo.com>
+In-Reply-To: <20051121173603.73700.qmail@web31806.mail.mud.yahoo.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 42
+Xref: brand.scrye.com linux.git:12452
+
+Luben Tuikov wrote:
+> --- Andreas Ericsson <ae@op5.se> wrote:
+> 
+> 
+>>Please don't. git-format-patch is generally used to send 
+> 
+> 
+> Ok, so then when I want to extract a single commit into a patch in a patch format, I loosely do
+> (scripted):
+> 
+>   git-rev-list --pretty=raw --max-count=1 <commit-ish>
+> 
+> Then I record the parent <parent> of the commit-ish and do:
+> 
+>   git-format-patch [output options] <parent>..<commit-ish>
+> 
+> Which gives me the commit with id <commit-ish> as a
+> formatted patch.
+> 
+> Is there an alernative to this, as opposed to the two
+> step procedure above?
+> 
+
+Here's how to automate it.
+
+git format-patch $(git rev-list --max-count=2 <commit-ish> | tail -n 
+1)..<commit-ish>
+
+Either way, you need to know <commit-ish>, but this format should be 
+fairly easy to add to git-format-patch. If you do, please let the user 
+specify the --max-count (but default to 1) so it can be used to extract 
+a series of patches rather than just one.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

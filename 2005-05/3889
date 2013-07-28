@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 24 20:16:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 47D652869A4
+	for <tkil@scrye.com>; Tue, 24 May 2005 20:16:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262236AbVEYCQZ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 24 May 2005 22:16:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262237AbVEYCQZ
+	(ORCPT <rfc822;git-outgoing>); Tue, 24 May 2005 22:16:25 -0400
+Received: from smtp3.Stanford.EDU ([171.67.16.138]:19425 "EHLO
+	smtp3.Stanford.EDU") by vger.kernel.org with ESMTP id S262236AbVEYCQW
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 24 May 2005 22:16:22 -0400
+Received: from windlord.stanford.edu (windlord.Stanford.EDU [171.64.19.147])
+	by smtp3.Stanford.EDU (8.12.11/8.12.11) with SMTP id j4P2GKsG030769
+	for <git@vger.kernel.org>; Tue, 24 May 2005 19:16:21 -0700
+Received: (qmail 16291 invoked by uid 1000); 25 May 2005 02:16:20 -0000
+To: git@vger.kernel.org
+Subject: Re: [PATCH] diff-cache path restriction fix.
+In-Reply-To: <7v3bscqdlr.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+ message of "Tue, 24 May 2005 18:49:20 -0700")
+References: <7vu0ksrv1v.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0505241757280.2307@ppc970.osdl.org>
+	<7vekbwru6x.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0505241814220.2307@ppc970.osdl.org>
+	<7v3bscqdlr.fsf@assigned-by-dhcp.cox.net>
+From: Russ Allbery <rra@stanford.edu>
+Organization: The Eyrie
+Date:	Tue, 24 May 2005 19:16:20 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <87u0kscaob.fsf@windlord.stanford.edu>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) XEmacs/21.4 (Jumbo Shrimp, linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-5.2 required=5.0 tests=AWL,BAYES_00,TW_RG 
+	autolearn=ham version=3.0.3
+Lines: 31
+Xref: brand.scrye.com linux.git:3889
+
+Junio C Hamano <junkio@cox.net> writes:
+
+> Yes, I was trained by Paul Eggert (me says that proudly).
+
+> Practically speaking, the only time I deliberately used > and >=
+> was when I was doing some dialect of SQL that always wanted
+> literal on fixed side and column on the other; I do not remember
+> which was which and whose SQL anymore.
+
+> Of course I sometimes end up using them when I am trying to
+> match the style of existing code.  However, for that particular
+> comparison in diff-cache, there weren't any other around there
+> to match, other than the "if (argc < 2 || ...)" after the loop,
+> which was what I myself wrote so it does not count.
+
+My prior programming experience has taught me to read argv > 1 as an
+assertion about argv, as opposed to 1 < argv, which would be an assertion
+about 1.  In other words, as I code, I'm generally thinking about testing
+a variable against some sort of boundary condition (which may or may not
+be itself variable), and the thing that I'm testing goes first, followed
+by the test.  As a result, 1 < argv throws me for a moment, since on first
+read it seems to imply the programmer was expecting the value of 1 to
+change.
+
+-- 
+Russ Allbery (rra@stanford.edu)             <http://www.eyrie.org/~eagle/>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  1 10:27:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 468D8264463
+	for <tkil@scrye.com>; Sun,  1 May 2005 10:27:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261670AbVEAQ1k (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 1 May 2005 12:27:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261683AbVEAQ1k
+	(ORCPT <rfc822;git-outgoing>); Sun, 1 May 2005 12:27:40 -0400
+Received: from fire.osdl.org ([65.172.181.4]:64136 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261670AbVEAQ1j (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 1 May 2005 12:27:39 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j41GRPs4011162
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 1 May 2005 09:27:25 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j41GRNlG021086;
+	Sun, 1 May 2005 09:27:24 -0700
+Date:	Sun, 1 May 2005 09:29:23 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: David Greaves <david@dgreaves.com>
+Cc: omb@bluewin.ch, Paul Mackerras <paulus@samba.org>,
+	git@vger.kernel.org, Petr Baudis <pasky@ucw.cz>
+Subject: Re: Quick command reference
+In-Reply-To: <4274FB3F.8090206@dgreaves.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505010927040.2296@ppc970.osdl.org>
+References: <17012.53862.704670.858276@cargo.ozlabs.ibm.com>   
+ <4274EB3D.2060602@dgreaves.com> <4274F373.6030001@khandalf.com>
+ <4274FB3F.8090206@dgreaves.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 26
+Xref: brand.scrye.com linux.git:2274
+
+
+
+On Sun, 1 May 2005, David Greaves wrote:
+> 
+> I've spent many many hours doing this and I'm happy to spend many more -
+> but I'm at that frustrated point where it makes no sense until I know
+> it's of use.
+
+I just tend to be concentrating on the technology itself, so docs 
+invariably fall a bit behind for me, until I get to the point where I 
+start looking at what (for me) ends up being the secondary things.
+
+Anyway, what I'd really appreciate is a whole "Documentation" 
+subdirectory, and preferably in some standard format. Maybe real 
+old-fashioned man-pages, but hey, especially with something like this, 
+just html would be good too.
+
+(And no, by "standard format" I do _not_ mean xml or stuff like that. I 
+mean something that is actually easy to read ;)
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

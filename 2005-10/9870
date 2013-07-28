@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 10 03:04:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CB379197589
+	for <tkil@scrye.com>; Mon, 10 Oct 2005 03:04:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750784AbVJJJDu (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 10 Oct 2005 05:03:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750779AbVJJJDt
+	(ORCPT <rfc822;git-outgoing>); Mon, 10 Oct 2005 05:03:49 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:756 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S1750706AbVJJJDq (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 10 Oct 2005 05:03:46 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id CEC296E1000; Mon, 10 Oct 2005 11:03:31 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 7BA6A6E0A5D; Mon, 10 Oct 2005 11:03:29 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 2684360FBE; Mon, 10 Oct 2005 11:03:43 +0200 (CEST)
+Date:	Mon, 10 Oct 2005 11:03:42 +0200
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Fix cygwin install issues
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051010090342.GB18009@diku.dk>
+References: <20051010085259.GA18009@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051010085259.GA18009@diku.dk>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:9870
+
+Jonas Fonseca <fonseca@diku.dk> wrote Mon, Oct 10, 2005:
+> Support installing to paths including spaces.
+> Remove any old .exe files so ln will succeed.
+
+I see that there are problems in the git porcelain commands that needs
+to also be fixed so please ignore this for now.
+
+Instead, is this something that should be supported? (It is quite
+absurd, although it is required for 'make install' to work out of the
+box on some systems).
+
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

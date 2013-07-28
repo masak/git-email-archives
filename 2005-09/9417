@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 28 05:31:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8851E2B148F
+	for <tkil@scrye.com>; Wed, 28 Sep 2005 05:31:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751223AbVI1LaM (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 28 Sep 2005 07:30:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751228AbVI1LaL
+	(ORCPT <rfc822;git-outgoing>); Wed, 28 Sep 2005 07:30:11 -0400
+Received: from darwin.snarc.org ([81.56.210.228]:2509 "EHLO darwin.snarc.org")
+	by vger.kernel.org with ESMTP id S1751223AbVI1LaK (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 28 Sep 2005 07:30:10 -0400
+Received: by darwin.snarc.org (Postfix, from userid 1000)
+	id 03FC34BE14; Wed, 28 Sep 2005 13:30:08 +0200 (CEST)
+Date:	Wed, 28 Sep 2005 13:30:08 +0200
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org, Nick Hengeveld <nickh@reactrix.com>
+Subject: Re: More Porcelains?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050928113008.GA11309@snarc.org>
+References: <20050926175156.GB9410@reactrix.com> <20050926182341.GA26340@pasky.or.cz> <7v3bnrh85g.fsf@assigned-by-dhcp.cox.net> <20050927001542.GC15615@reactrix.com> <7v64sn8hml.fsf_-_@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v64sn8hml.fsf_-_@assigned-by-dhcp.cox.net>
+X-Warning: Email may contain unsmilyfied humor and/or satire.
+User-Agent: Mutt/1.5.9i
+From:	tab@snarc.org (Vincent Hanquez)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:9417
+
+On Mon, Sep 26, 2005 at 05:43:46PM -0700, Junio C Hamano wrote:
+> Now you made me curious.
+> 
+> How many of you are working on your own Porcelains, announced or
+> unannounced?  I know about Cogito and StGIT ;-).  In a distant
+> past I have heard of something called JIT but I think it is now
+> defunct.  Matthias Urlichs said he is doing something with
+> Python.  Anybody else?
+
+Hi Junio,
+
+Well, I kinda work on one written in C using a libgit (using exec of git
+executable for the moment) It doesn't do that much at the moment:
+commiting, adding files, removing files.
+
+At some point I'ld like to have a very integrated and easy to use
+porcelain, but for now that's more a learning git by practice kind of
+project.
+
+Cheers,
+-- 
+Vincent Hanquez
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

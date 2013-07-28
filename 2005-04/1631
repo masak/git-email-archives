@@ -1,0 +1,138 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 25 15:37:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 02B841704D2
+	for <tkil@scrye.com>; Mon, 25 Apr 2005 15:37:05 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261223AbVDYVgE (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Apr 2005 17:36:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261170AbVDYVgE
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Apr 2005 17:36:04 -0400
+Received: from mail.gmx.de ([213.165.64.20]:54748 "HELO mail.gmx.net")
+	by vger.kernel.org with SMTP id S261228AbVDYVcs (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 25 Apr 2005 17:32:48 -0400
+Received: (qmail invoked by alias); 25 Apr 2005 21:32:47 -0000
+Received: from p50906A90.dip.t-dialin.net (EHLO dialup) [80.144.106.144]
+  by mail.gmx.net (mp005) with SMTP; 25 Apr 2005 23:32:47 +0200
+X-Authenticated: #271361
+Date:	Mon, 25 Apr 2005 23:32:44 +0200
+From: Edgar Toernig <froese@gmx.de>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] Fix rfc2822 date parser
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050425233244.5f79d59c.froese@gmx.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Y-GMX-Trusted: 0
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 98
+Xref: brand.scrye.com linux.git:1631
+
+- Fix some broken tests like "if (!tm.tm_sec > 59)"
+- Make seconds optional
+- Allow trailing comments like (EDT)
+- Stand-alone mktime without timezone correction
+
+Ciao, ET.
+
+
+diff -u git-0.6-orig/commit-tree.c git-0.6/commit-tree.c
+--- git-0.6-orig/commit-tree.c	Thu Apr 21 19:58:47 2005
++++ git-0.6/commit-tree.c	Mon Apr 25 23:06:36 2005
+@@ -113,6 +113,25 @@
+ 	}
+ }
+ 
++static time_t my_mktime(struct tm *tm)
++{
++	static const int mdays[] = {
++	    0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334
++	};
++	int year = tm->tm_year - 70;
++	int month = tm->tm_mon;
++	int day = tm->tm_mday;
++
++	if (year < 0 || year > 129) /* algo only works for 1970-2099 */
++		return -1;
++	if (month < 0 || month > 11) /* array bounds */
++		return -1;
++	if (month < 2 || (year + 2) % 4)
++		day--;
++	return (year * 365 + (year + 1) / 4 + mdays[month] + day) * 24*60*60UL +
++		tm->tm_hour * 60*60 + tm->tm_min * 60 + tm->tm_sec;
++}
++
+ static const char *month_names[] = {
+         "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+@@ -194,7 +213,7 @@
+ 		return;
+ 	tm.tm_hour = strtoul(p, &p, 10);
+ 	
+-	if (!tm.tm_hour > 23)
++	if (tm.tm_hour > 23)
+ 		return;
+ 
+ 	if (*p != ':')
+@@ -206,14 +225,11 @@
+ 		return;
+ 	tm.tm_min = strtoul(p, &p, 10);
+ 	
+-	if (!tm.tm_min > 59)
++	if (tm.tm_min > 59)
+ 		return;
+ 
+-	if (isspace(*p))
+-		goto zone;
+-
+ 	if (*p != ':')
+-		return; /* Error -- bad time */
++		goto zone;
+ 	p++;
+ 
+ 	/* second */
+@@ -221,13 +237,13 @@
+ 		return;
+ 	tm.tm_sec = strtoul(p, &p, 10);
+ 	
+-	if (!tm.tm_sec > 59)
++	if (tm.tm_sec > 59)
+ 		return;
+ 
++ zone:
+ 	if (!isspace(*p))
+ 		return;
+ 
+- zone:
+ 	p = skipfws(p);
+ 
+ 	if (*p == '-')
+@@ -243,10 +259,11 @@
+ 	i = strtoul(p+1, NULL, 10);
+ 	offset *= ((i % 100) + ((i / 100) * 60));
+ 
+-	if (*(skipfws(p + 5)))
++	p = skipfws(p + 5);
++	if (*p && *p != '(') /* trailing comment like (EDT) is ok */
+ 		return;
+ 
+-	then = mktime(&tm); /* mktime appears to ignore the GMT offset, stupidly */
++	then = my_mktime(&tm); /* mktime appears to ignore the GMT offset, stupidly */
+ 	if (then == -1)
+ 		return;
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

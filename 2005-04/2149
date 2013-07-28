@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 29 14:31:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2D1C4FC101
+	for <tkil@scrye.com>; Fri, 29 Apr 2005 14:31:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262949AbVD2UUH (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Apr 2005 16:20:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262948AbVD2USK
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Apr 2005 16:18:10 -0400
+Received: from mail.allianceoneinc.com ([65.213.221.36]:10255 "EHLO
+	mail.allianceoneinc.com") by vger.kernel.org with ESMTP
+	id S262930AbVD2UPW convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Apr 2005 16:15:22 -0400
+Received: from epa20012 [192.168.17.155] by mail.allianceoneinc.com with ESMTP
+  (SMTPD32-8.14) id A57E2E3900A8; Fri, 29 Apr 2005 16:13:50 -0400
+From: "Andrew Timberlake-Newell" <Andrew.Timberlake-Newell@AllianceOneInc.com>
+To: "'Tom Lord'" <lord@emf.net>, <noel@zhtwn.com>
+Cc: <seanlkml@sympatico.ca>, <git@vger.kernel.org>
+Subject: RE: Mercurial 0.4b vs git patchbomb benchmark
+Date:	Fri, 29 Apr 2005 16:13:50 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <000e01c54cf7$f61ee4a0$9b11a8c0@allianceoneinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain;
+	charset="US-ASCII"
+Content-Transfer-Encoding: 8BIT
+X-Priority: 3 (Normal)
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook, Build 10.0.6626
+In-Reply-To: <200504291954.MAA27561@emf.net>
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2180
+Importance: Normal
+X-IMAIL-SPAM-VALFROM: (957e2e3900a8e1d5)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 23
+Xref: brand.scrye.com linux.git:2149
+
+Tom Lord responded to Noel Maddy: 
+>   > Call me a naive git, but seems to me the "git way" is a little
+>   > different. It's tree-based rather than diff-based, and doesn't involve
+>   > passing diffs around, right?
+> 
+> Isn't that a significant part of what I said?  Go back and read more
+> carefully, is my suggestion.
+
+It looks to me like he did read carefully.
+
+There were two different ideas:
+   TL)  Passing tree & diff and trusting diff to create tree
+   NM)  Passing tree and generating diff versus local tree for review
+
+Maybe I'm reading them wrong, but that certainly looks like what each was
+expressing and they don't look like the same thing.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

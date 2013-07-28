@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 13:23:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2FECA28522A
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 13:23:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751211AbVHQTXP (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 15:23:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751214AbVHQTXP
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 15:23:15 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:19185 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S1751211AbVHQTXO (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 17 Aug 2005 15:23:14 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050817192314.KMEJ15197.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 17 Aug 2005 15:23:14 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: git-format-patch + git-applymbox small issue
+References: <20050817171844.57566.qmail@web26301.mail.ukl.yahoo.com>
+	<Pine.LNX.4.63.0508171931130.8623@wgmdd8.biozentrum.uni-wuerzburg.de>
+cc:	git@vger.kernel.org
+Date:	Wed, 17 Aug 2005 12:23:13 -0700
+In-Reply-To: <Pine.LNX.4.63.0508171931130.8623@wgmdd8.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Wed, 17 Aug 2005 19:32:14 +0200
+	(CEST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpsscweou.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:7453
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> Hi,
+>
+> On Wed, 17 Aug 2005, Marco Costalba wrote:
+>
+>> P.S: I say 'revision', and 'git archive' but are very common also 
+>> 'commit' and 'git repository'. This is just a silly example where a 
+>> common dictionary should be useful.
+
+I think 'commit' and 'repository' are more commonly seen here.
+
+> How about the glossary, which I posted a few hours ago?
+
+Which is very good.  Thanks.  Mind if I put it under
+Documentation/ in its current shape?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

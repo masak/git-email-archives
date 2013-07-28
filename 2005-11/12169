@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 16:57:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7B2472851FD
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 16:57:41 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965149AbVKQX4y (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 18:56:54 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965135AbVKQX4y
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 18:56:54 -0500
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:63955 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S965149AbVKQX4x (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 18:56:53 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051117235628.EIBL3131.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 17 Nov 2005 18:56:28 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	exon@op5.se (Andreas Ericsson)
+Subject: Re: [PATCH 1/5] Library code for user-relative paths, take three.
+References: <20051117193714.2B8995BF93@nox.op5.se>
+cc:	git@vger.kernel.org
+Date:	Thu, 17 Nov 2005 15:56:51 -0800
+In-Reply-To: <20051117193714.2B8995BF93@nox.op5.se> (Andreas Ericsson's
+	message of "Thu, 17 Nov 2005 20:37:14 +0100 (CET)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v8xvmsu9o.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12169
+
+exon@op5.se (Andreas Ericsson) writes:
+
+> +	if(strict && *dir != '/')
+
+(style everywhere)
+
+	if (strict ...
+
+> +	/* This is perfectly safe, and people tend to think of the directory
+> +	 * where they ran git-init-db as their repository, so humour them. */
+> +	(void)chdir(".git");
+
+It might be safe, but I think it changes the behaviour of
+upload-pack with strict case.  My gut reaction is we would want
+"if (!strict)" in front.  Thoughts?
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

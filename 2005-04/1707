@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 06:34:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7E262170789
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 06:34:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261495AbVDZMes (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 08:34:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261496AbVDZMes
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 08:34:48 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:52102 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261495AbVDZMeq (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 26 Apr 2005 08:34:46 -0400
+Received: (qmail 30212 invoked by uid 2001); 26 Apr 2005 12:34:45 -0000
+Date:	Tue, 26 Apr 2005 14:34:45 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>,
+	darcs-devel@darcs.net, Git Mailing List <git@vger.kernel.org>
+Subject: Re: [darcs-devel] Re: A darcs that can pull from git
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050426123445.GE18971@pasky.ji.cz>
+References: <7ipswjbybx.fsf@lanthane.pps.jussieu.fr> <20050425133116.GG11667@abridgegame.org> <7i4qdusxdw.fsf@lanthane.pps.jussieu.fr> <20050426110613.GB20723@abridgegame.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050426110613.GB20723@abridgegame.org>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 40
+Xref: brand.scrye.com linux.git:1707
+
+Dear diary, on Tue, Apr 26, 2005 at 01:06:17PM CEST, I got a letter
+where David Roundy <droundy@abridgegame.org> told me that...
+> On Mon, Apr 25, 2005 at 05:12:59PM +0200, Juliusz Chroboczek wrote:
+> > > Do you have any plans/ideas for allowing pulls directly from a
+> > > remote git repository?
+> > 
+> > I haven't thought about it yet.  Does anyone have any ideas about how
+> > to efficiently pull from git without a complete local copy?
+> 
+> I don't think so.  My best thought so far would be to have something like a
+> ~/.gitcache/, which would store the sha1 objects themselves, so at least
+> we'd only end up with *one* local copy.  I'm actually curious what the true
+> git people do about this--it would be nice to share a cache.  For darcs'
+> purposes, we could prune the cache from time to time.  If we're running
+> with a darcs backend, we really only need the recent versions of files and
+> trees.
+> 
+> Do the git have any suggestions about how to avoid excess downloads or
+> excess copies of a git repository? It seems to me like it would make sense
+> to always download sha1s to ~/.gitcache/, and then hardlink them to the
+> current git repository, so you wouldn't end up ever downloading the same
+> sha1 twice.  Or we should use $GITCACHE/, to give the user some
+> flexibility.  But perhaps this is an already-solved problem, and I've just
+> not noticed...
+
+I'm not sure about the problem you are actually trying to solve, and I
+didn't manage to guess it quickly just from the mails themselves;
+cg-init /local/path now hardlinks the sha1 objects to the local
+.git/objects directory, so you get no space waste. If you are talking
+about downloading stuff from remote repositories, http-pull might help.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul  7 08:51:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9F28F1C30D8
+	for <tkil@scrye.com>; Thu,  7 Jul 2005 08:51:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261681AbVGGOsj (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 7 Jul 2005 10:48:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261780AbVGGOqN
+	(ORCPT <rfc822;git-outgoing>); Thu, 7 Jul 2005 10:46:13 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:49319 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261681AbVGGOpC (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 7 Jul 2005 10:45:02 -0400
+Received: (qmail 2228 invoked by uid 2001); 7 Jul 2005 14:45:01 -0000
+Date:	Thu, 7 Jul 2005 16:45:01 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Brian Gerst <bgerst@didntduck.org>
+Cc: git@vger.kernel.org
+Subject: Re: [ANNOUNCE] Cogito-0.12
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050707144501.GG19781@pasky.ji.cz>
+References: <20050703234629.GF13848@pasky.ji.cz> <42CBC822.30701@didntduck.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42CBC822.30701@didntduck.org>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 40
+Xref: brand.scrye.com linux.git:5742
+
+Dear diary, on Wed, Jul 06, 2005 at 02:01:38PM CEST, I got a letter
+where Brian Gerst <bgerst@didntduck.org> told me that...
+> Petr Baudis wrote:
+> >  Also, I've deprecated rsync, as I explained in another mail. Use
+> >cg-branch-chg to change the branch URLs to some more sensible scheme -
+> >most likely HTTP, or SSH if you want to push as well.
+> 
+> I really question removing rsync before HTTP pulls become more 
+> effecient.
+
+It won't happen. Or rather, I hope the HTTP pulls become more efficient
+soon. Actually, perhaps Linus has something done already, my workstation
+is a bit derailed now so I couldn't pull from him in the last few days
+(hopefully will sort that out today).
+
+> I did a complete pull of cogito from kernel.org, and http 
+> took over 50 minutes to pull everything, while rsync was done in just 
+> over 1 minute.  I dared not even try to pull the full kernel at that speed.
+> 
+> I suspect that part of the problem is that the pull methods are doing a 
+> depth first search, so we can't request the next object until the 
+> current object is fully received and parsed.  Changing to a breadth 
+> first search would allow multiple requests in flight and asynchronous 
+> processing which should speed things up.  I am exploring using the 
+> curl_multi_* functions to do this, but this will require changes to 
+> common code in pull.c.
+
+Hmm, yes, I guess Linus won't be touching the HTTP backend at all. ;-) I
+suggest you to check the last development in Linus' branch and sync with
+Daniel Barkalow, who promised improving the pull tools as well.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+<Espy> be careful, some twit might quote you out of context..
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 11:52:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C8C442851FA
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 11:52:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030305AbVINRvs (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 13:51:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932511AbVINRvs
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 13:51:48 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:36543 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S932471AbVINRvr (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 14 Sep 2005 13:51:47 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050914175147.YAYE8185.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 14 Sep 2005 13:51:47 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Fredrik Kuivinen <freku045@student.liu.se>
+Cc:	git@vger.kernel.org, Daniel Barkalow <barkalow@iabervon.org>,
+	Tony Luck <tony.luck@intel.com>
+Subject: Re: Another merge test case from the kernel tree.
+References: <20050907164734.GA20198@c165.ib.student.liu.se>
+	<20050907165012.GA20392@c165.ib.student.liu.se>
+	<7vzmqk2u1w.fsf_-_@assigned-by-dhcp.cox.net>
+	<7vpsrcqjj6.fsf_-_@assigned-by-dhcp.cox.net>
+	<20050914174251.GA21639@c165.ib.student.liu.se>
+Date:	Wed, 14 Sep 2005 10:51:45 -0700
+In-Reply-To: <20050914174251.GA21639@c165.ib.student.liu.se> (Fredrik
+	Kuivinen's message of "Wed, 14 Sep 2005 19:42:51 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v7jdjleq6.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:8539
+
+Fredrik Kuivinen <freku045@student.liu.se> writes:
+
+> It works for me. The 'recursive' strategy cleanly merges this and
+> produces a result identical to the actual commit.
+>
+> The tree object 1d20af805193ab9982a48cb4c828c0f6af034c6c is the tree
+> of the commit a1cddb88920b915eaba10712ecfd0fc698b00a22 which is one of
+> the common ancestors. Are you sure that you got the entire repository? 
+> It took some time for me to figure out that 'git clone
+> rsync://rsync.kernel.org/pub/scm/linux/kernel/git/aegl/linux-2.6.git
+> aegl.git' will _not_ give you a usable repository. You have to change
+> aegl.git/.git/objects/objects/info/alternates before it becomes
+> usable.
+
+Ah, that figures..  I was looking at Tony's repository right
+now.
+
+Thanks.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

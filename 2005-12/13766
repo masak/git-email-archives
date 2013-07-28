@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec 17 02:37:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 88B58211938
+	for <tkil@scrye.com>; Sat, 17 Dec 2005 02:37:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932268AbVLQJgy (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Dec 2005 04:36:54 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932408AbVLQJgy
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Dec 2005 04:36:54 -0500
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:52122 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S932268AbVLQJgx (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 17 Dec 2005 04:36:53 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051217093528.JBJI17006.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 17 Dec 2005 04:35:28 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Marco Costalba <mcostalba@gmail.com>
+Cc:	Pavel Roskin <proski@gnu.org>, git@vger.kernel.org
+Subject: Re: qgit reports errors in the git repository
+References: <1134433440.3798.27.camel@dv> <1134624477.5360.6.camel@dv>
+	<e5bfff550512150501v48bb65abwf44b3fc21f33bdf6@mail.gmail.com>
+	<1134665095.27212.22.camel@dv>
+	<e5bfff550512151100k33a66db5tdb2eb1ff2da10a59@mail.gmail.com>
+	<1134693349.22652.22.camel@dv>
+	<e5bfff550512152258t3f7b2eb1i1c709572b18fe3f7@mail.gmail.com>
+	<1134757942.2248.11.camel@dv>
+	<e5bfff550512161247v4c187cc0gedae8234d454c3b6@mail.gmail.com>
+	<7virto9pr0.fsf@assigned-by-dhcp.cox.net>
+	<e5bfff550512170044v59f96262ica6511e981889ea9@mail.gmail.com>
+Date:	Sat, 17 Dec 2005 01:36:52 -0800
+In-Reply-To: <e5bfff550512170044v59f96262ica6511e981889ea9@mail.gmail.com>
+	(Marco Costalba's message of "Sat, 17 Dec 2005 09:44:52 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vu0d812vf.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:13766
+
+Marco Costalba <mcostalba@gmail.com> writes:
+
+> Using
+>
+> git-clone http://digilander.libero.it/mcostalba/qgit.git qgit_test
+>
+> does not work (never did). Peraphs it's time I dig a little bit deeper.
+
+Do you keep qgit.git/info/refs, qgit.git/objects/info/packs, and
+possibly qgit.git/objects/info/alternates up-to-date under
+http://digilander.libero.it/mcostalba/?  Your server seems to
+give friendly "no such page" instead of usual 404 not found for
+nonexisting paths, which means that you would probably need to
+have an empty info/alternates file there, and if you do not have
+packs then empty info/packs files as well.
+
+Also I suspect once you start packing your repository the
+downloaders would have a hard time --- instead of getting "not
+found" as a cue to switch to fetching packs they would get the
+"friendly page" and mistakenly think the loose object stored in
+your repository is corrupt.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

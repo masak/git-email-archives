@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec 16 14:42:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,TW_VN autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 96C2ECB5FF
+	for <tkil@scrye.com>; Fri, 16 Dec 2005 14:42:16 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932486AbVLPVle (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Dec 2005 16:41:34 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932487AbVLPVle
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Dec 2005 16:41:34 -0500
+Received: from pfepa.post.tele.dk ([195.41.46.235]:14371 "EHLO
+	pfepa.post.tele.dk") by vger.kernel.org with ESMTP id S932486AbVLPVld
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 16 Dec 2005 16:41:33 -0500
+Received: from mars.ravnborg.org (0x50a0757d.hrnxx9.adsl-dhcp.tele.dk [80.160.117.125])
+	by pfepa.post.tele.dk (Postfix) with ESMTP id E948747FE77;
+	Fri, 16 Dec 2005 22:41:32 +0100 (CET)
+Received: by mars.ravnborg.org (Postfix, from userid 1000)
+	id 487726AC32D; Fri, 16 Dec 2005 22:42:31 +0100 (CET)
+Date:	Fri, 16 Dec 2005 22:42:31 +0100
+From:	Sam Ravnborg <sam@ravnborg.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: Why do we need [PATCH]?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051216214231.GA2903@mars.ravnborg.org>
+References: <20051216210145.GA25311@mars.ravnborg.org> <7vpsnwenqy.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vpsnwenqy.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:13749
+
+On Fri, Dec 16, 2005 at 01:27:33PM -0800, Junio C Hamano wrote:
+> Sam Ravnborg <sam@ravnborg.org> writes:
+> 
+> > I looked at the source and found the -k option, but adding [PATCH]
+> > should not be default behaviour so this is not the correct solution.
+> 
+> The "correct" solution depends on where you come from.  That
+> extra [PATCH] is a carryover from BK days, I was told by Linus,
+> to make e-mailed things stand out --- I've never used BK but I
+> am guessing that things were not as obvious as our commit
+> messages, perhaps?
+You can a typical bk commit here:
+http://linus.bkbits.net:8080/linux-2.5/cset@1.2243?nav=index.html|ChangeSet@-9M
+
+And here it made much more sense sine the author/comitter info are
+less structured. Also we do nto have the Signed-off-by: stuff back then.
+
+> We have "Author/Committer" distinction so
+> the [PATCH] marker is redundant.
+> 
+> The rewrite, "git-am" does not bother with adding [PATCH], but
+> the original "git-applymbox", being everyday Linus' tool, was
+> left as it was, not to disrupt the workflow of Linus.
+
+Thanks, I had forgotten the git-am rewrite.
+I will use that in the future - if I remember.
+
+	Sam
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

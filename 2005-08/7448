@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 11:36:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9C99C285218
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 11:36:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750722AbVHQRfY (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 13:35:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751162AbVHQRfY
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 13:35:24 -0400
+Received: from web26305.mail.ukl.yahoo.com ([217.146.176.16]:8313 "HELO
+	web26305.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S1750722AbVHQRfY (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 17 Aug 2005 13:35:24 -0400
+Received: (qmail 14388 invoked by uid 60001); 17 Aug 2005 17:35:22 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=D2OlLTLxwNyq/2pTaBYFOW8p76djeZRkB2v7LtcvyuZTf5h4kl242ihTY29Mh16oowWOZNHBigtJLnwVhJMtbMBWtktDrXv0KOCa/ZNTenBUDaNPtqcT9Bz63K5zC4qmoKzGPQBs9MmZaz6e55o/AQAY4MojDYrEvTzWKW34my4=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050817173522.14386.qmail@web26305.mail.ukl.yahoo.com>
+Received: from [151.42.53.158] by web26305.mail.ukl.yahoo.com via HTTP; Wed, 17 Aug 2005 10:35:22 PDT
+Date:	Wed, 17 Aug 2005 10:35:22 -0700 (PDT)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: [RFC] Patches exchange is bad?
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+Cc:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 48
+Xref: brand.scrye.com linux.git:7448
+
+Catalin Marinas wrote:
+
+>
+>Once you want a subset of these patches merged into MAIN, just pop
+>everything from the stack and only push those you want merged, in the
+>order you want (if there are some dependencies, the push will fail and
+>you can correct them or the order). When you are happy with the
+>patches pushed on the stack, just do a 'git pull <HEAD>' in the MAIN
+>repository. After this, doing a 'stg pull <MAIN>' in the HEAD one will
+>mark the patches already integrated into MAIN as empty and you can
+>safely remove them ('stg clean' does this automatically).
+>
+>This way I found StGIT useful for maintainers as well, not only for
+>contributors.
+>
+
+Sorry if the answer is silly, but I still don't know well StGIT .
+
+What you describe it's an asymmetrical or one way scenario, new code 
+goes always from HEAD to MAIN. But how is the workflow if:
+
+1) There is more then one contributor feeding MAIN and you need to update 
+the StGIT patch stack from MAIN.
+
+2) You made something terribly wrong with HEAD (I don't know what can be 
+'terribly wrong') and you need to recreate a clean base from MAIN.
+
+In this cases, if I understand correctly, you need to clone a new StGIT archive from 
+MAIN and push the interesting stuff from old/broken HEAD.
+
+Or you can always merge back pulling from MAIN as in case of two pure git archives?
+
+
+Thanks
+Marco
+
+
+
+		
+____________________________________________________
+Start your day with Yahoo! - make it your home page 
+http://www.yahoo.com/r/hs 
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

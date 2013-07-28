@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 16 13:59:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D059A1C9477
+	for <tkil@scrye.com>; Fri, 16 Sep 2005 13:59:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161193AbVIPT7J (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Sep 2005 15:59:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161187AbVIPT7J
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Sep 2005 15:59:09 -0400
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:7811 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S965317AbVIPT7F (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 16 Sep 2005 15:59:05 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050916195903.YVSM9510.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 16 Sep 2005 15:59:03 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+Subject: Re: git-merge-cache / StGIT - gitmergeonefile.py: merging one tree into another rather than two trees into merge base
+References: <200509102027.28812.blaisorblade@yahoo.it>
+	<1126427087.8457.33.camel@localhost.localdomain>
+	<200509142019.04667.blaisorblade@yahoo.it> <tnxslw6d4qt.fsf@arm.com>
+cc:	git@vger.kernel.org
+Date:	Fri, 16 Sep 2005 12:59:02 -0700
+In-Reply-To: <tnxslw6d4qt.fsf@arm.com> (Catalin Marinas's message of "Thu, 15
+	Sep 2005 11:06:50 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvf10hji1.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 40
+Xref: brand.scrye.com linux.git:8714
+
+Catalin Marinas <catalin.marinas@gmail.com> writes:
+
+> git-read-tree -m doesn't handle the case when a file is removed from
+> one branch and unmodified in the other, which is what happens in your
+> test. For each of these removed files, git-merge-cache will call
+> gitmergeonefile.py which calls 'git-update-cache --remove'.
+>
+> An improvement would be to make git-read-tree smarter...
+
+I think this was once discussed but the primary reason for the
+behaviour is that Linus wanted to leave as much merge policy
+decision to be scriptable without hardcoding it in read-tree.
+
+For example, you would see branch A removing a path while branch
+B keeping the path if A renamed it to somewhere else while B
+kept it -- a cleverer merge policy than one-path-at-a-time we
+currently have _could_ take a hint from the unmerged cache, go
+look for the other half of the rename in branch A, and ask the
+user if the rename should be honored in the merge result for
+example.  If you always do "added or removed in only one head
+means take that head", most likely in the above example B would
+not have a new path (rename target of A) so you would end up
+always taking the file rename.
+
+>> git-diff-tree -r v2.6.13 master |grep ' D'|wc -l
+>>
+>> gives 189.
+
+A completely different topic:  would it please people if I did this?
+
+    $ git-diff-tree -r --names-and-changes A B
+    M	frotz
+    R93	rezrov	nitfol
+    D	yomin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

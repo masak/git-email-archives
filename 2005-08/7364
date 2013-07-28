@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 16 11:50:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D34FF1ABFCA
+	for <tkil@scrye.com>; Tue, 16 Aug 2005 11:50:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030261AbVHPRty (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 16 Aug 2005 13:49:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030263AbVHPRty
+	(ORCPT <rfc822;git-outgoing>); Tue, 16 Aug 2005 13:49:54 -0400
+Received: from fep31-0.kolumbus.fi ([193.229.0.35]:9888 "EHLO
+	fep31-app.kolumbus.fi") by vger.kernel.org with ESMTP
+	id S1030261AbVHPRty (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 16 Aug 2005 13:49:54 -0400
+Received: from litku.valo.iki.fi ([81.197.35.21]) by fep31-app.kolumbus.fi
+          with ESMTP
+          id <20050816174944.DUSP4404.fep31-app.kolumbus.fi@litku.valo.iki.fi>;
+          Tue, 16 Aug 2005 20:49:44 +0300
+To:	Amos Waterland <apw@rossby.metr.ou.edu>
+Cc:	junkio@cox.net, git@vger.kernel.org
+Subject: Re: [PATCH] Add git-branches-script
+References: <20050815204430.GA77829@rossby.metr.ou.edu>
+From:	Kalle Valo <Kalle.Valo@iki.fi>
+Date:	Tue, 16 Aug 2005 20:53:49 +0300
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <87hddplqdu.fsf@litku.valo.iki.fi>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 34
+Xref: brand.scrye.com linux.git:7364
+
+Amos Waterland <apw@rossby.metr.ou.edu> writes:
+
+> For people whose workflow involves switching back and forth between a
+> lot of branches, it can be really helpful to be able to quickly tell
+> which branch you are on and which ones are available.  This patch
+> introduces a small script that when invoked as `git branches' prints a
+> list of available branches with a star in front of the one you are on:
+>
+>  $ cd linux-2.6/
+>  $ git checkout -b ppc64-cleanups
+>  $ git checkout -b ppc64-new-devel
+>  $ git checkout -b ppc64-all-merge
+>  $ git branches
+>    master
+>  * ppc64-all-merge
+>    ppc64-cleanups
+>    ppc64-new-devel
+
+I would prefer to using some git command compared to 'ls -l
+.git/refs/heads/'. In my opinion there is a need for this command and
+it should be included.
+
+But my immediate concern was that there is already 'git branch'
+command and 'git branches' is too similar. I think they should be
+merged. I have a patch coming up.
+
+-- 
+Kalle Valo
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

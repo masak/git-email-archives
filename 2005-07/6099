@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul 14 00:28:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D7C8415B3C6
+	for <tkil@scrye.com>; Thu, 14 Jul 2005 00:28:05 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262492AbVGNG15 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 14 Jul 2005 02:27:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262924AbVGNG15
+	(ORCPT <rfc822;git-outgoing>); Thu, 14 Jul 2005 02:27:57 -0400
+Received: from smtp104.mail.sc5.yahoo.com ([66.163.169.223]:40055 "HELO
+	smtp104.mail.sc5.yahoo.com") by vger.kernel.org with SMTP
+	id S262492AbVGNG14 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 14 Jul 2005 02:27:56 -0400
+Received: (qmail 67850 invoked from network); 14 Jul 2005 06:27:47 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Received:From:To:Cc:Message-Id:In-Reply-To:References:Subject;
+  b=XqImEshhvy7+oW8pVy/B2EHFrxAE1LyXf7OEII2T+kZOZURlDEqTCcbfs/yRb9xmNyg7MlEPvGA+zcbfIN2HH9Ia5ShlwnHmoJOdfn6O44he9pg95F7EbGjuSERm+4NaZa5MgGtSuBvom7HDLfACPMp72X/av2XoNuow3lmChtM=  ;
+Received: from unknown (HELO bryan-larsens-ibook-g4.local) (bryanlarsen@69.159.204.165 with plain)
+  by smtp104.mail.sc5.yahoo.com with SMTP; 14 Jul 2005 06:27:47 -0000
+From: Bryan Larsen <bryanlarsen@yahoo.com>
+To: bryan.larsen@gmail.com
+Cc: Bryan Larsen <bryanlarsen@yahoo.com>, git@vger.kernel.org,
+	catalin.marinas@gmail.com
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050714062744.21779.87923.sendpatchset@bryan-larsens-ibook-g4.local>
+In-Reply-To: <20050714062733.21779.33599.sendpatchset@bryan-larsens-ibook-g4.local>
+References: <20050714062733.21779.33599.sendpatchset@bryan-larsens-ibook-g4.local>
+Subject: [PATCH] stgit: export without --range does not export the last patch
+Date:	Thu, 14 Jul 2005 02:27:56 -0400
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:6099
+
+The top patch is never exported.
+
+Signed-off-by: Bryan Larsen <bryan.larsen@gmail.com>
+---
+
+ stgit/commands/export.py |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/stgit/commands/export.py b/stgit/commands/export.py
+--- a/stgit/commands/export.py
++++ b/stgit/commands/export.py
+@@ -90,7 +90,7 @@ def func(parser, options, args):
+             raise MainException, 'Incorrect patch range order'
+     else:
+         start_idx = 0
+-        stop_idx = -1
++        stop_idx = len(applied)
+ 
+     patches = applied[start_idx:stop_idx]
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

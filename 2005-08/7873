@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Aug 28 11:47:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 177A41E8BBD
+	for <tkil@scrye.com>; Sun, 28 Aug 2005 11:47:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750714AbVH1RrG (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 28 Aug 2005 13:47:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750716AbVH1RrG
+	(ORCPT <rfc822;git-outgoing>); Sun, 28 Aug 2005 13:47:06 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:24291 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750714AbVH1RrF (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 28 Aug 2005 13:47:05 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7SHkxjA015207
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 28 Aug 2005 10:46:59 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7SHkwtU023503;
+	Sun, 28 Aug 2005 10:46:58 -0700
+Date:	Sun, 28 Aug 2005 10:46:58 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Jason Riedy <ejr@EECS.Berkeley.EDU>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Spell __attribute__ correctly in cache.h. 
+In-Reply-To: <19723.1125249085@lotus.CS.Berkeley.EDU>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508281045060.3317@g5.osdl.org>
+References: <19723.1125249085@lotus.CS.Berkeley.EDU>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:7873
+
+
+
+On Sun, 28 Aug 2005, Jason Riedy wrote:
+> 
+> I'm fine with requiring a limited C99 compiler.  A
+> pedantic compiler will reject members with a length
+> of zero.  6.7.5.2 para1 requires a value greater than
+> zero for a constant array size.  So the code now (with
+> [0] decls) is neither C89 nor C99.
+
+But using "array[]" means that "sizeof()" no longer works, and then you 
+have to use "offsetof()", which is a big pain.
+
+I think all relevant compilers end up accepting [0] (probably giving a
+warning, especially in some pedantic mode), since it's been how gcc users
+have been doing things for years (gcc was late to the [] syntax).
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

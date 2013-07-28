@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 23 16:24:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0E06811528B
+	for <tkil@scrye.com>; Fri, 23 Sep 2005 16:24:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751324AbVIWWYT (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Sep 2005 18:24:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751325AbVIWWYT
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Sep 2005 18:24:19 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:996 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1751324AbVIWWYS
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 23 Sep 2005 18:24:18 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j8NMOA6W011971
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 23 Sep 2005 15:24:11 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43348086.2040006@zytor.com>
+Date:	Fri, 23 Sep 2005 15:24:06 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>, Petr Baudis <pasky@ucw.cz>
+Subject: Cogito: cg-clone doesn't like packed tag objects
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 12
+Xref: brand.scrye.com linux.git:9201
+
+Packed tag objects breaks Cogito when using git+ssh:// transport.
+
+Example:
+
+cg-clone -s git+ssh://master.kernel.org/pub/scm/libs/klibc/klibc.git
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

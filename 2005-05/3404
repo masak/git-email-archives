@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May 16 17:11:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6BB62D72DB
+	for <tkil@scrye.com>; Mon, 16 May 2005 17:11:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261958AbVEPXLe (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 16 May 2005 19:11:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261976AbVEPXLe
+	(ORCPT <rfc822;git-outgoing>); Mon, 16 May 2005 19:11:34 -0400
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:24259 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S261958AbVEPXLb (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 16 May 2005 19:11:31 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050516231128.UIVQ7275.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 16 May 2005 19:11:28 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+Subject: Re: [PATCH 3/4] Implement git-checkout-cache -u to update stat
+ information in the cache.
+References: <7vll6gqj3z.fsf@assigned-by-dhcp.cox.net>
+	<20050516220153.GA8609@pasky.ji.cz>
+	<Pine.LNX.4.58.0505161530230.18337@ppc970.osdl.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Mon, 16 May 2005 16:11:29 -0700
+In-Reply-To: <Pine.LNX.4.58.0505161530230.18337@ppc970.osdl.org> (Linus
+ Torvalds's message of "Mon, 16 May 2005 15:32:24 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vk6lyn4v2.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 15
+Xref: brand.scrye.com linux.git:3404
+
+>>>>> "LT" == Linus Torvalds <torvalds@osdl.org> writes:
+
+LT> ... and as long as the index file locking is honoured
+LT> (which the patch seemed to do) ...
+
+Yes, it does.  But that was one thing I was not very sure about
+this patch.  I am reasonably sure this "index.c" conflicts with
+the libification effort, and when the libification finishes, I
+feel that what "index.c" does should be part of it.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

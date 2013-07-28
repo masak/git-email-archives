@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 14:50:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B62C41709A5
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 14:50:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261772AbVDZUue (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 16:50:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261778AbVDZUue
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 16:50:34 -0400
+Received: from dsl-202-52-56-051.nsw.veridas.net ([202.52.56.51]:11392 "EHLO
+	localhost.localdomain") by vger.kernel.org with ESMTP
+	id S261772AbVDZUub (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 26 Apr 2005 16:50:31 -0400
+Received: from localhost.localdomain (kryten [127.0.0.1])
+	by localhost.localdomain (8.12.11/8.12.11) with ESMTP id j3QKqSAY003143
+	for <git@vger.kernel.org>; Wed, 27 Apr 2005 06:52:28 +1000
+Received: (from purserj@localhost)
+	by localhost.localdomain (8.12.11/8.12.11/Submit) id j3QKqRv0003142
+	for git@vger.kernel.org; Wed, 27 Apr 2005 06:52:27 +1000
+X-Authentication-Warning: localhost.localdomain: purserj set sender to purserj@ksit.dynalias.com using -f
+Subject: Cogito Tutorial If It Helps
+From: James Purser <purserj@ksit.dynalias.com>
+To: git@vger.kernel.org
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114548747.3083.1.camel@kryten>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6 (1.4.6-2) 
+Date:	Wed, 27 Apr 2005 06:52:27 +1000
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 14
+Xref: brand.scrye.com linux.git:1772
+
+I reworked the previous tutorial to take in the changes in the scripts.
+Will make this a series of tutorials to cover all aspects. Any
+suggestions or hints or spelling corrections would be most welcome.
+
+http://ksit.dynalias.com/articles.php?s_id=46&art_id=41
+-- 
+James Purser
+http://ksit.dynalias.com
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

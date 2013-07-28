@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 17:26:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_CL 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8141A1542F9
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 17:26:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965105AbVKPAYK (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 19:24:10 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965106AbVKPAYJ
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 19:24:09 -0500
+Received: from pne-smtpout1-sn1.fre.skanova.net ([81.228.11.98]:24466 "EHLO
+	pne-smtpout1-sn1.fre.skanova.net") by vger.kernel.org with ESMTP
+	id S965105AbVKPAYI (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 19:24:08 -0500
+Received: from vrrx50sn1.teliamobile.net (192.71.148.196) by pne-smtpout1-sn1.fre.skanova.net (7.2.060.1)
+        id 4378F0CA0006A6A1 for git@vger.kernel.org; Wed, 16 Nov 2005 01:24:07 +0100
+Received: from [212.181.228.90] (host-n13-90.homerun.telia.com [212.181.228.90])
+	by vrrx50sn1.teliamobile.net (8.11.6/8.11.6) with ESMTP id jAG0O6f24555
+	for <git@vger.kernel.org>; Wed, 16 Nov 2005 01:24:06 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437A7C26.5020400@op5.se>
+Date:	Wed, 16 Nov 2005 01:24:06 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [PATCH 3/3] git --help COMMAND brings up the git-COMMAND man-page.
+References: <20051115233125.2C0355BF73@nox.op5.se> <7vsltxeakh.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vsltxeakh.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:11969
+
+Junio C Hamano wrote:
+>>+
+>>+	execlp(PATH_TO_MAN, "man", page, NULL);
+>>+}
+> 
+> 
+> If you do PATH_TO_MAN absolute, execl would suffice, but just
+> saying "man" and have execlp look for it would be easier to
+> manage.
+> 
+> 
+
+Never even occurred to me, actually. I just re-submitted the patch.
+
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

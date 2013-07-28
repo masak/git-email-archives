@@ -1,0 +1,113 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 13 17:13:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4A93EFC28A
+	for <tkil@scrye.com>; Fri, 13 May 2005 17:13:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262452AbVEMXNI (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 13 May 2005 19:13:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262438AbVEMXMl
+	(ORCPT <rfc822;git-outgoing>); Fri, 13 May 2005 19:12:41 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:51190 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S262611AbVEMW7d (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 13 May 2005 18:59:33 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050513225932.FKML26972.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 13 May 2005 18:59:32 -0400
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Resurrect diff-tree-helper -R
+References: <7v7jij3htp.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0504301805300.2296@ppc970.osdl.org>
+	<20050513224529.GF32232@pasky.ji.cz>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Fri, 13 May 2005 15:59:31 -0700
+In-Reply-To: <20050513224529.GF32232@pasky.ji.cz> (Petr Baudis's message of
+ "Sat, 14 May 2005 00:45:29 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhdh691gs.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 67
+Xref: brand.scrye.com linux.git:3238
+
+PB> Sorry for replying after so much time, it looks like I missed this and
+PB> got here only after checking what change removed the mode: bits...
+
+PB> What do you think?
+
+FYI, here is a demonsrtation of what you have right now.
+Temporarily slurp in the test framework patch you hate so much
+to get t/test-lib.sh ;-), apply this to get t/t2000-diff.sh, cd
+to t and say sh ./t2000-diff.sh
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+jit-diff 1: t/t2000-diff.sh
+# - HEAD: Fix git-diff-files for symlinks.
+# + (working tree)
+Created: t/t2000-diff.sh (mode:100755)
+--- /dev/null
++++ b/t/t2000-diff.sh
+@@ -0,0 +1,41 @@
++#!/bin/sh
++#
++# Copyright (c) 2005 Junio C Hamano
++#
++
++test_description='Test built-in diff output engine.
++
++'
++. ./test-lib.sh
++
++echo >path0 'Line 1
++Line 2
++line 3'
++cat path0 >path1
++chmod +x path1
++git-update-cache --add path0 path1
++mv path0 path0-
++sed -e 's/line/Line/' <path0- >path0
++chmod +x path0
++rm -f path1
++git-diff-files -p >current
++cat >expected <<\EOF
++Mode changed: path0 (100644->100755)
++--- a/path0
+++++ b/path0
++@@ -1,3 +1,3 @@
++ Line 1
++ Line 2
++-line 3
+++Line 3
++Deleted: path1
++--- a/path1
+++++ /dev/null
++@@ -1,3 +0,0 @@
++-Line 1
++-Line 2
++-line 3
++EOF
++
++test_expect_success 'cmp -s current expected'
++test_done
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

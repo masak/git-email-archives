@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 20:13:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.8 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7ABADA828F
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 20:13:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750709AbVJFCMu (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 22:12:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750711AbVJFCMu
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 22:12:50 -0400
+Received: from fencepost.gnu.org ([199.232.76.164]:53213 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S1750709AbVJFCMu
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 5 Oct 2005 22:12:50 -0400
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1ENLFZ-0004CC-6K
+	for git@vger.kernel.org; Wed, 05 Oct 2005 22:12:49 -0400
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1ENLFY-0001b7-7R; Wed, 05 Oct 2005 22:12:48 -0400
+Subject: [PATCH] gitk: use UTF-8 encoding
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>, Paul Mackerras <paulus@samba.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Wed, 05 Oct 2005 22:12:48 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1128564768.32103.18.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:9747
+
+gitk should try to use UTF-8 encoding for system operations, such as
+reading and writing files and git output.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/gitk b/gitk
+--- a/gitk
++++ b/gitk
+@@ -3726,6 +3726,7 @@ set colors {green red blue magenta darkg
+ 
+ catch {source ~/.gitk}
+ 
++catch {encoding system utf-8}
+ set namefont $mainfont
+ if {$boldnames} {
+     lappend namefont bold
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

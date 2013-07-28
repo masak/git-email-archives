@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 23 13:55:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 12A8427BB0F
+	for <tkil@scrye.com>; Fri, 23 Sep 2005 13:55:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750853AbVIWTzG (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Sep 2005 15:55:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751014AbVIWTzG
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Sep 2005 15:55:06 -0400
+Received: from qproxy.gmail.com ([72.14.204.193]:41457 "EHLO qproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750853AbVIWTzE convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 23 Sep 2005 15:55:04 -0400
+Received: by qproxy.gmail.com with SMTP id f11so238575qba
+        for <git@vger.kernel.org>; Fri, 23 Sep 2005 12:55:03 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=fRTUuHS3UrK2mE+rDYIYTmK6VDVrBrdyWXO8iembQ77hCWSVirIBTtJtTP4k9/MxMY2G98V+OZXCidEgEhsAh+mhJjcZadl8509U3qL6KsmMrYwSASyJwaClxdUDui8JWixYS8SNLsE96t4vfQqYw55hnREIkcOFZgd+4NO8+LM=
+Received: by 10.65.83.6 with SMTP id k6mr259595qbl;
+        Fri, 23 Sep 2005 12:55:03 -0700 (PDT)
+Received: by 10.65.107.8 with HTTP; Fri, 23 Sep 2005 12:55:03 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <118833cc05092312553b526845@mail.gmail.com>
+Date:	Fri, 23 Sep 2005 15:55:03 -0400
+From:	Morten Welinder <mwelinder@gmail.com>
+Reply-To: Morten Welinder <mwelinder@gmail.com>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: /bin/sh portability question
+Cc:	Peter Eriksen <s022018@student.dtu.dk>, git@vger.kernel.org
+In-Reply-To: <43345C17.7060402@zytor.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20050923075058.GA25473@bohr.gbar.dtu.dk>
+	 <43345C17.7060402@zytor.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 10
+Xref: brand.scrye.com linux.git:9189
+
+> I think $(foo) is required by POSIX.
+
+Indeed, but Solaris really does not have it.
+
+Morten
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,52 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 12:13:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4C37E86C01
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 12:13:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932066AbVILSLF (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 14:11:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932116AbVILSLF
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 14:11:05 -0400
+Received: from soundwarez.org ([217.160.171.123]:59351 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S932066AbVILSLE (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 14:11:04 -0400
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id 3516062C89; Mon, 12 Sep 2005 20:11:01 +0200 (CEST)
+Date:	Mon, 12 Sep 2005 20:11:01 +0200
+From:	Kay Sievers <kay.sievers@vrfy.org>
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: hmm, can't we give the "root" a parent?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050912181101.GA22221@vrfy.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 15
+Xref: brand.scrye.com linux.git:8401
+
+Can't we teach the git tools that a "root commit" (one without a any
+parent) is not visible as a "root", if let's say:
+  .git/parents/<root-commit-id> -> <fake-parent-id>
+
+does connect a "fake" parent to the "root"? This way we could add any
+older Linux history to the current tree. Combined with "alternates" it
+could live in a complete different repository too.
+
+Thanks,
+Kay
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

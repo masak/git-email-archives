@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 17:35:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AF1BC21CF84
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 17:35:06 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965637AbVKHAeJ (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 19:34:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965636AbVKHAeI
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 19:34:08 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:5331 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965637AbVKHAeH (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 7 Nov 2005 19:34:07 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jA80XwnO032656
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 7 Nov 2005 16:33:58 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jA80XuJU007491;
+	Mon, 7 Nov 2005 16:33:57 -0800
+Date:	Mon, 7 Nov 2005 16:33:56 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org, Fredrik Kuivinen <freku045@student.liu.se>
+Subject: Re: Comments on recursive merge..
+In-Reply-To: <7vll00ov2l.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511071629270.3247@g5.osdl.org>
+References: <Pine.LNX.4.64.0511070837530.3193@g5.osdl.org>
+ <20051107225807.GA10937@c165.ib.student.liu.se> <7vll00ov2l.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:11288
+
+
+
+On Mon, 7 Nov 2005, Junio C Hamano wrote:
+> 
+> This is the first time I see you pleased by something in git
+> that was done without very close supervision from you.
+
+That sounds like a backhanded way of saying that I'm micromanagering, 
+picky and difficult to work with ;)
+
+> Another thing to consider is if it is fast enough for everyday
+> trivial merges.
+
+Hmm. True. The _really_ trivial in-index case triggers for me pretty 
+often, but I haven't done any statistics. It might be only 50% of the 
+time.
+
+Is the recursive thing noticeably slower for the "easy" cases (ie things 
+that the old regular resolve strategy does well)?
+
+It's certainly an option to just do what I just did, namely use the 
+default one until it breaks, and then just do "git reset --hard" and re-do 
+the pull with "-s recursive". A bit sad, and it would be good to have 
+coverage on the recursive strategy..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

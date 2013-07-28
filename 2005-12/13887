@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 13:47:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2DE481F5691
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 13:47:43 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751163AbVLUUr0 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 15:47:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751169AbVLUUr0
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 15:47:26 -0500
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:40897 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S1751163AbVLUUrZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 15:47:25 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051221204723.OCHU25099.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 21 Dec 2005 15:47:23 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	git@vger.kernel.org, junkio@cox.net
+Subject: Re: [PATCH] Avoid misleading success message on error
+References: <Pine.LNX.4.63.0512211752340.16125@wbgn013.biozentrum.uni-wuerzburg.de>
+Date:	Wed, 21 Dec 2005 12:47:19 -0800
+In-Reply-To: <Pine.LNX.4.63.0512211752340.16125@wbgn013.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Wed, 21 Dec 2005 17:53:29 +0100
+	(CET)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmziu6uug.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 12
+Xref: brand.scrye.com linux.git:13887
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> When a push fails (for example when the remote head does not fast forward 
+> to the desired ref) it is not correct to print "Everything up-to-date".
+
+Thanks.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

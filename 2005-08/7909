@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 12:32:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D21F6285209
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 12:32:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751293AbVH2SZk (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 14:25:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751290AbVH2SZk
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 14:25:40 -0400
+Received: from soundwarez.org ([217.160.171.123]:40856 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S1751297AbVH2SZj (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 29 Aug 2005 14:25:39 -0400
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id C04B456F39; Mon, 29 Aug 2005 20:25:34 +0200 (CEST)
+Date:	Mon, 29 Aug 2005 20:25:34 +0200
+From:	Kay Sievers <kay.sievers@vrfy.org>
+To:	Komal Shah <komal_shah802003@yahoo.com>
+Cc:	git@vger.kernel.org
+Subject: Re: gitweb : index.aux
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050829182534.GA16808@vrfy.org>
+References: <20050829093500.54242.qmail@web53602.mail.yahoo.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050829093500.54242.qmail@web53602.mail.yahoo.com>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:7909
+
+On Mon, Aug 29, 2005 at 02:35:00AM -0700, Komal Shah wrote:
+> Kay,
+> 
+> I am able to setup gitweb tree for my linux-omap tree internally, but
+> for this I am using $project_list equals to $projectroot. I want to add
+> more projects, but I don't know how write/generate index.aux file?
+
+Yeah, this works only if all the trees are in one directory. The index file
+is a simple list with the pathes url encoded. (It is exported by a cron job
+running on kernel.org. We need it there cause the trees are in subdirs and
+the mirrored trees don't have the original ownership, that is displayed in
+gitweb.)
+
+> Me don't know much about cgi-bin/perl :(
+
+So let's do it in perl then. :) Just encode the pathes and put them into
+the file (optionaly the owner comes after a space in the same line):
+  perl -e 'use CGI; print CGI::escape("/this/is/my/project") . "\n"'
+  %2Fthis%2Fis%2Fmy%2Fproject
+
+Good luck,
+Kay
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

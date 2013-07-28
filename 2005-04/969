@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 09:58:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E2EE4260815
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 09:58:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261702AbVDTP51 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 11:57:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261709AbVDTP51
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 11:57:27 -0400
+Received: from dtp.xs4all.nl ([80.126.206.180]:59703 "HELO bitwizard.nl")
+	by vger.kernel.org with SMTP id S261703AbVDTP5Y (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 20 Apr 2005 11:57:24 -0400
+Received: (qmail 4715 invoked by uid 501); 20 Apr 2005 15:57:23 -0000
+Date:	Wed, 20 Apr 2005 17:57:23 +0200
+From: Erik Mouw <erik@harddisk-recovery.com>
+To: linux@horizon.com
+Cc: git@vger.kernel.org, linux-kernel@vger.kernel.org, mingo@elte.hu
+Subject: Re: enforcing DB immutability
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050420155723.GC27307@harddisk-recovery.com>
+References: <20050420084115.2699.qmail@science.horizon.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050420084115.2699.qmail@science.horizon.com>
+User-Agent: Mutt/1.3.28i
+Organization: Harddisk-recovery.com
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 22
+Xref: brand.scrye.com linux.git:969
+
+On Wed, Apr 20, 2005 at 08:41:15AM -0000, linux@horizon.com wrote:
+> [A discussion on the git list about how to provide a hardlinked file
+> that *cannot* me modified by an editor, but must be replaced by
+> a new copy.]
+
+Some time ago there was somebody working on copy-on-write links: once
+you modify a cow-linked file, the file contents are copied, the file is
+unlinked and you can safely work on the new file. It has some horrible
+semantics in that the inode number of the opened file changes, I don't
+know if applications are or should be aware of that.
+
+
+Erik
+
+-- 
++-- Erik Mouw -- www.harddisk-recovery.com -- +31 70 370 12 90 --
+| Lab address: Delftechpark 26, 2628 XH, Delft, The Netherlands
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

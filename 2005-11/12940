@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 10:33:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6A4AF171A71
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 10:33:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932112AbVK2Rdi (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 12:33:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932265AbVK2Rdi
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 12:33:38 -0500
+Received: from 195.37.26.69.virtela.com ([69.26.37.195]:8838 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S932112AbVK2Rdh (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 29 Nov 2005 12:33:37 -0500
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id jATHXbOH005981
+	for <git@vger.kernel.org>; Tue, 29 Nov 2005 09:33:37 -0800
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id jATHXaYv005979
+	for git@vger.kernel.org; Tue, 29 Nov 2005 09:33:36 -0800
+Date:	Tue, 29 Nov 2005 09:33:36 -0800
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	git@vger.kernel.org
+Subject: [PATCH] http-push cleanup
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051129173336.GA3809@reactrix.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 45
+Xref: brand.scrye.com linux.git:12940
+
+The malloc patch from Jan Andres fixed the problem that was causing a
+segfault when freeing the lock token, and Johannes Schindelin found
+and fixed a problem when no URL is specified on the command line.
+
+Signed-off-by: Nick Hengeveld <nickh@reactrix.com>
+
+
+---
+
+ http-push.c |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
+
+applies-to: 39ddd76c46b92ac971b2325acf9efecf443fbe6b
+1510a5b7deec93abcf010aa867adf27ad7750293
+diff --git a/http-push.c b/http-push.c
+index bbb5118..56c2bb5 100644
+--- a/http-push.c
++++ b/http-push.c
+@@ -1009,9 +1009,7 @@ static int unlock_remote(struct active_l
+ 	if (lock->owner != NULL)
+ 		free(lock->owner);
+ 	free(lock->url);
+-/* Freeing the token causes a segfault...
+ 	free(lock->token);
+-*/
+ 	free(lock);
+ 
+ 	return rc;
+@@ -1274,6 +1272,9 @@ int main(int argc, char **argv)
+ 		break;
+ 	}
+ 
++	if (!remote->url)
++		usage(http_push_usage);
++
+ 	memset(remote_dir_exists, 0, 256);
+ 
+ 	http_init();
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

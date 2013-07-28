@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 17 22:01:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B646324F1A0
+	for <tkil@scrye.com>; Mon, 17 Oct 2005 22:01:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751102AbVJREBN (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 18 Oct 2005 00:01:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751367AbVJREBN
+	(ORCPT <rfc822;git-outgoing>); Tue, 18 Oct 2005 00:01:13 -0400
+Received: from inti.inf.utfsm.cl ([200.1.21.155]:63711 "EHLO inti.inf.utfsm.cl")
+	by vger.kernel.org with ESMTP id S1751102AbVJREBM (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 18 Oct 2005 00:01:12 -0400
+Received: from inti.inf.utfsm.cl (localhost.localdomain [127.0.0.1])
+	by inti.inf.utfsm.cl (8.13.5/8.13.1) with ESMTP id j9I3CdBZ006274;
+	Tue, 18 Oct 2005 00:12:39 -0300
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200510180312.j9I3CdBZ006274@inti.inf.utfsm.cl>
+To:	David Whistler <dwhistler@gmail.com>
+cc:	git@vger.kernel.org
+Subject: Re: Scribblings for a cogito/git tutorial 
+In-Reply-To: Message from David Whistler <dwhistler@gmail.com> 
+   of "Tue, 18 Oct 2005 02:28:19 -0000." <loom.20051018T042052-760@post.gmane.org> 
+X-Mailer: MH-E 7.4.2; nmh 1.1; XEmacs 21.4 (patch 17)
+Date:	Tue, 18 Oct 2005 00:12:39 -0300
+From:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:10197
+
+David Whistler <dwhistler@gmail.com> wrote:
+> Horst von Brand <vonbrand <at> inf.utfsm.cl> writes:
+
+[...]
+
+> > Comments, suggestions, patches are welcome! 
+> > 
+> > Repository of the script and supporting files is at
+> > <http://pincoya.inf.utfsm.cl/Script.git>
+
+> I can't read it.  Seems to be a recursive trick.
+
+Latest cogito + latest git here clones it without problems over the 'net
+(from home, via ADSL).
+
+> Or did you mean to do that?
+
+I might have set it up wrong, but it doesn't look that way.
+-- 
+Dr. Horst H. von Brand                   User #22616 counter.li.org
+Departamento de Informatica                     Fono: +56 32 654431
+Universidad Tecnica Federico Santa Maria              +56 32 654239
+Casilla 110-V, Valparaiso, Chile                Fax:  +56 32 797513
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

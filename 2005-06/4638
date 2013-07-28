@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun  6 19:59:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 09EFA13233A
+	for <tkil@scrye.com>; Mon,  6 Jun 2005 19:59:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261228AbVFGB7I (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 6 Jun 2005 21:59:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261318AbVFGB7I
+	(ORCPT <rfc822;git-outgoing>); Mon, 6 Jun 2005 21:59:08 -0400
+Received: from fire.osdl.org ([65.172.181.4]:55251 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261228AbVFGB7C (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 6 Jun 2005 21:59:02 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j571vFjA003983
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 6 Jun 2005 18:57:15 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j571vDhq030583;
+	Mon, 6 Jun 2005 18:57:14 -0700
+Date:	Mon, 6 Jun 2005 18:59:18 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Timo Hirvonen <tihirvon@ee.oulu.fi>
+Cc: git@vger.kernel.org
+Subject: Re: duplicate htons() in check_file_directory_conflict()
+In-Reply-To: <1118098966l.5384l.0l@garlic>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506061858140.1876@ppc970.osdl.org>
+References: <1118098966l.5384l.0l@garlic>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 21
+Xref: brand.scrye.com linux.git:4638
+
+
+
+On Mon, 6 Jun 2005, Timo Hirvonen wrote:
+>
+> create_ce_flags() macro calls htons() so the htons()s in  
+> check_file_directory_conflict() should be removed or alternatively htons  
+> should be removed from the create_ce_flags macro. I noticed the bug when  
+> compiling cogito with -Wshadow.
+
+No, but it probably should be a ntohs()..
+
+cache_name_pos() takes a host-order thing, and create_ce_flags creates a 
+network order thing. It so happens that on all sane setups, ntohs == 
+htons, so..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun 29 15:30:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4009E11EA59
+	for <tkil@scrye.com>; Wed, 29 Jun 2005 15:30:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262648AbVF2V2v (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 29 Jun 2005 17:28:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262549AbVF2V2u
+	(ORCPT <rfc822;git-outgoing>); Wed, 29 Jun 2005 17:28:50 -0400
+Received: from omx2-ext.sgi.com ([192.48.171.19]:12717 "EHLO omx2.sgi.com")
+	by vger.kernel.org with ESMTP id S262667AbVF2V2g (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 29 Jun 2005 17:28:36 -0400
+Received: from cthulhu.engr.sgi.com (cthulhu.engr.sgi.com [192.26.80.2])
+	by omx2.sgi.com (8.12.11/8.12.9/linux-outbound_gateway-1.1) with ESMTP id j5TNJNWd015452;
+	Wed, 29 Jun 2005 16:19:23 -0700
+Received: from v0 (mtv-vpn-hw-masa-1.corp.sgi.com [134.15.25.210])
+	by cthulhu.engr.sgi.com (SGI-8.12.5/8.12.5) with SMTP id j5TLSTdO42738244;
+	Wed, 29 Jun 2005 14:28:29 -0700 (PDT)
+Date:	Wed, 29 Jun 2005 14:28:29 -0700
+From: Paul Jackson <pj@sgi.com>
+To: Catalin Marinas <catalin.marinas@gmail.com>
+Cc: git@vger.kernel.org
+Subject: Re: Stacked GIT 0.1 (a.k.a. quilt for git)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050629142829.32208ad8.pj@sgi.com>
+In-Reply-To: <tnxwtoeiysf.fsf@arm.com>
+References: <tnxy899zzu7.fsf@arm.com>
+	<20050623175848.1cf41a52.pj@sgi.com>
+	<tnxd5qc6s5o.fsf@arm.com>
+	<20050624034743.6c3bdae4.pj@sgi.com>
+	<tnxhdfo56yd.fsf@arm.com>
+	<20050624045627.6e9cbaff.pj@sgi.com>
+	<tnxwtoeiysf.fsf@arm.com>
+Organization: SGI
+X-Mailer: Sylpheed version 2.0.0beta3 (GTK+ 2.6.7; i686-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00,
+	RCVD_IN_BL_SPAMCOP_NET autolearn=no version=3.0.4
+Lines: 14
+Xref: brand.scrye.com linux.git:5401
+
+Catalin wrote:
+> Does this make it closer to quilt in functionality?
+
+It could - right now I'm playing with Matt Mackall's Mercurial.  Sorry.
+
+-- 
+                  I won't rest till it's the best ...
+                  Programmer, Linux Scalability
+                  Paul Jackson <pj@sgi.com> 1.925.600.0401
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

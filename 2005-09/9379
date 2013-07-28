@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 27 04:14:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5B19D2851FA
+	for <tkil@scrye.com>; Tue, 27 Sep 2005 04:14:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964886AbVI0KOn (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 27 Sep 2005 06:14:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964888AbVI0KOn
+	(ORCPT <rfc822;git-outgoing>); Tue, 27 Sep 2005 06:14:43 -0400
+Received: from mailout1.informatik.tu-muenchen.de ([131.159.0.18]:40409 "EHLO
+	mailout1.informatik.tu-muenchen.de") by vger.kernel.org with ESMTP
+	id S964886AbVI0KOm (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 27 Sep 2005 06:14:42 -0400
+Received: from dhcp-3s-40.lrr.in.tum.de (dhcp-3s-40.lrr.in.tum.de [131.159.35.40])
+	by mail.in.tum.de (Postfix) with ESMTP id 4F48526DD
+	for <git@vger.kernel.org>; Tue, 27 Sep 2005 12:14:41 +0200 (MEST)
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	git@vger.kernel.org
+Subject: Re: Cogito: cg-clone doesn't like packed tag objects
+Date:	Tue, 27 Sep 2005 12:14:31 +0200
+User-Agent: KMail/1.8.2
+References: <7virwna2oi.fsf@assigned-by-dhcp.cox.net> <7v4q875bbj.fsf@assigned-by-dhcp.cox.net> <20050927094029.GA30889@pasky.or.cz>
+In-Reply-To: <20050927094029.GA30889@pasky.or.cz>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200509271214.31933.Josef.Weidendorfer@gmx.de>
+X-Virus-Scanned: by amavisd-new/sophie/sophos at mailrelay1.informatik.tu-muenchen.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:9379
+
+On Tuesday 27 September 2005 11:40, Petr Baudis wrote:
+> Another thing I proposed back then (I think it was in June) was having
+> the refs/tags directory further divised based on heads, so all tags for
+> head A would be in refs/tags/A/, etc. I didn't pursue this idea now
+> because it seemed that there would be way too many duplicate stuff in
+> refs/tags/ since most tags are likely to be shared across heads, but
+> perhaps it is the beast and cleanest solution after all.
+
+The problem here is that currently there are no global, public branches.
+And you should not mix private heads in refs/heads with global tags.
+Perhaps interpret tag objects as global branch names, similar to
+the "mixture" in .git/refs ?
+
+Josef
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

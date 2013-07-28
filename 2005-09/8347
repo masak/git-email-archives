@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 11 19:04:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B3F291D72CA
+	for <tkil@scrye.com>; Sun, 11 Sep 2005 19:04:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751114AbVILBDy (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Sep 2005 21:03:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751117AbVILBDy
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Sep 2005 21:03:54 -0400
+Received: from jay.exetel.com.au ([220.233.0.8]:10182 "EHLO jay.exetel.com.au")
+	by vger.kernel.org with ESMTP id S1751114AbVILBDy (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 11 Sep 2005 21:03:54 -0400
+Received: (qmail 4135 invoked by uid 507); 12 Sep 2005 11:03:46 +1000
+Received: from 22.107.233.220.exetel.com.au (HELO arnor.apana.org.au) (220.233.107.22)
+  by jay.exetel.com.au with SMTP; 12 Sep 2005 11:03:46 +1000
+Received: from gondolin.me.apana.org.au ([192.168.0.6] ident=mail)
+	by arnor.apana.org.au with esmtp (Exim 3.36 #1 (Debian))
+	id 1EEcjZ-0007Cl-00; Mon, 12 Sep 2005 11:03:45 +1000
+Received: from herbert by gondolin.me.apana.org.au with local (Exim 3.36 #1 (Debian))
+	id 1EEcjX-0008QT-00; Mon, 12 Sep 2005 11:03:43 +1000
+Date:	Mon, 12 Sep 2005 11:03:43 +1000
+To:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: [PATCH] Apply N -> A status change in diff-helper
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050912010343.GA32376@gondor.apana.org.au>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="azLHFNyN32YCQGCU"
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+From:	Herbert Xu <herbert@gondor.apana.org.au>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 45
+Xref: brand.scrye.com linux.git:8347
+
+
+--azLHFNyN32YCQGCU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi:
+
+When the git diff status 'N' was changed to 'A', diff-helper.c was
+not updated accordingly.  This means that it no longer shows the
+diff for newly added files.
+
+This patch makes that change in diff-helper.c.
+
+Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
+
+Cheers,
+-- 
+Visit Openswan at http://www.openswan.org/
+Email: Herbert Xu ~{PmV>HI~} <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+
+--azLHFNyN32YCQGCU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename=p
+
+diff --git a/diff-helper.c b/diff-helper.c
+--- a/diff-helper.c
++++ b/diff-helper.c
+@@ -91,7 +91,7 @@ int main(int ac, const char **av) {
+ 			if (*cp++ != ' ')
+ 				break;
+ 			status = *cp++;
+-			if (!strchr("MCRNDU", status))
++			if (!strchr("AMCRDU", status))
+ 				break;
+ 			two_paths = score = 0;
+ 			if (status == DIFF_STATUS_RENAMED ||
+
+--azLHFNyN32YCQGCU--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

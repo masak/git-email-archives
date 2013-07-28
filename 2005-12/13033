@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  1 02:06:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AF72F196869
+	for <tkil@scrye.com>; Thu,  1 Dec 2005 02:06:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751605AbVLAJE1 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Dec 2005 04:04:27 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751665AbVLAJE0
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Dec 2005 04:04:26 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:26522 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1751605AbVLAJE0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 1 Dec 2005 04:04:26 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051201090343.KRMK6244.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 1 Dec 2005 04:03:43 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	Timo Hirvonen <tihirvon@gmail.com>, git@vger.kernel.org
+Subject: Re: [PATCH] Move couple of ifdefs after "include config.mk"
+References: <20051201012333.44bd81f2.tihirvon@gmail.com>
+	<Pine.LNX.4.63.0512010144050.11941@wbgn013.biozentrum.uni-wuerzburg.de>
+	<20051201033201.02b47071.tihirvon@gmail.com>
+	<7vhd9tmw1g.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.63.0512010906400.22709@wbgn013.biozentrum.uni-wuerzburg.de>
+Date:	Thu, 01 Dec 2005 01:04:24 -0800
+In-Reply-To: <Pine.LNX.4.63.0512010906400.22709@wbgn013.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Thu, 1 Dec 2005 09:08:27 +0100
+	(CET)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzjlkx2f.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:13033
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> But it is only one line, heck only 20 bytes!
+
+Hey, don't get so piped up.  Timo's patch has already been
+merged (thanks, Timo).
+
+But think about it a bit.
+
+If you need an override, you have to write down and maintain
+those YesPlease _somewhere_ yourself anyway, outside what I
+ship.  Either "config.mak" or "Make" script.
+
+If we have '-include' in the Makefile, we need to make a
+decision if what we are adding to the Makefile should be
+overridable by that config.mak every time, exactly because
+whatever is included becomes part of the Makefile.  IOW, that
+"only 20 bytes" adds work for the Makefile maintainer.
+
+"Make" script method is a command line override to the "make"
+program, which takes precedence and does not have that problem.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 20 02:51:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4A055F6129
+	for <tkil@scrye.com>; Fri, 20 May 2005 02:51:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261373AbVETIu4 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 20 May 2005 04:50:56 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261384AbVETIu4
+	(ORCPT <rfc822;git-outgoing>); Fri, 20 May 2005 04:50:56 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:48556 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261381AbVETIus (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 20 May 2005 04:50:48 -0400
+Received: (qmail 29740 invoked by uid 2001); 20 May 2005 08:50:47 -0000
+Date:	Fri, 20 May 2005 10:50:47 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Frank Sorenson <frank@tuxrocks.com>
+Cc: Git Mailing List <git@vger.kernel.org>,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [PATCH] Fix git-fsck-cache segfault on invalid tag
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050520085047.GA27787@pasky.ji.cz>
+References: <428D8B19.4070605@tuxrocks.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <428D8B19.4070605@tuxrocks.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 39
+Xref: brand.scrye.com linux.git:3575
+
+Dear diary, on Fri, May 20, 2005 at 09:00:41AM CEST, I got a letter
+where Frank Sorenson <frank@tuxrocks.com> told me that...
+> git-fsck-cache will segfault if a tag contains a non-existent sha1.  This
+> patch fixes fsck-cache to report the invalid tag and not die.
+
+Oh. I've fixed this too but didn't even get to commit it yet. :-)
+
+> Index: fsck-cache.c
+> ===================================================================
+> --- ca5fef50fb68a3afbb35e1a48ac622f7a964f021/fsck-cache.c  (mode:100644)
+> +++ ac5d65a040c22194ddcd0706dc5f0b8bb52aef65/fsck-cache.c  (mode:100644)
+> @@ -315,6 +315,10 @@
+>  		return;
+>  
+>  	obj = lookup_object(sha1);
+> +	if (!obj) {
+> +		fprintf(stderr, "invalid tag %s - %s\n", path, hexname);
+> +		return;
+> +	}
+>  	obj->used = 1;
+>  	mark_reachable(obj, REACHABLE);
+>  }
+
+My error message is
+
+	error("%s: invalid sha1 pointer %.40s", path, hexname);
+
+I'd prefer that (at least use the error() call). The .40 is there since
+it has a newline on its own.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

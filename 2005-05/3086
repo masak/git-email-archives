@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May 11 22:24:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id F3811FC018
+	for <tkil@scrye.com>; Wed, 11 May 2005 22:24:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261163AbVELEYH (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 00:24:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261272AbVELEYH
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 00:24:07 -0400
+Received: from iabervon.org ([66.92.72.58]:43524 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261163AbVELEYC (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 12 May 2005 00:24:02 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DW5Ea-0006RK-00; Thu, 12 May 2005 00:23:40 -0400
+Date:	Thu, 12 May 2005 00:23:40 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: git@vger.kernel.org
+Cc: Junio C Hamano <junkio@cox.net>, Petr Baudis <pasky@ucw.cz>,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: [RFC] Support projects including other projects
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0505112350420.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 50
+Xref: brand.scrye.com linux.git:3086
+
+I've come up with a way to handle projects like cogito which are based on
+other projects. I think that it actually solves the real problem with such
+projects, and it is actually very simple.
+
+The problem that such projects run into, especially while both the core
+and the non-core projects are in a state of substantial flux and when the 
+non-core developer(s) contribute needed changes to the core, is that the
+two projects not only have to be tracked, they have to be kept in 
+sync. That is, a particular version of cogito requires a particular
+version of git. There is a bit of convenience to having the tools
+magically do the right thing when you check out the child project, but the
+thing that really requires tool support is that you need to be able to
+find the version of git-pb which matches the version of cogito you're
+trying to build (and you might be searching the history for where a bug
+was introduced, so you may not be able to use the latest of either).
+
+The solution is to add a header to commits: "include {hash}", which simply
+says that the given hash, which is from the core project, is the commit
+needed to build this commit of the non-core project. This comes from an
+argument to commit-tree ("-I", perhaps), and the parsing code needs to
+identify the reference so that fsck-cache stays happy.
+
+Git doesn't do anything more; wrapping layers would be able to take care
+of the rest. When the wrapping layer determines that you are checking out
+a commit with an include header, it also checks out the included commit,
+using a different index file. The core treats everything as if you had a
+bunch of non-tracked files in the directory (those being the things in the
+other project). When you commit, it first commits any includes (if
+needed), identifies the resulting core head, and passes that to the
+include for the final result.
+
+It seems to me like this should work perfectly. The one weakness is that
+it's quite annoying to do by hand, since you have to simultaneously track
+two index files and remember to pass the argument to commit-tree each
+time. (Also, it means that you'd ideally pull git-pb from the cogito
+repository with a client that ignores things not reachable from your head,
+although Petr could still just copy and prune to match the current
+situation).
+
+I've written up the git changes needed, if people are interested in the
+patch.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

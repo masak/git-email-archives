@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jul 12 01:31:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D71BB24948D
+	for <tkil@scrye.com>; Tue, 12 Jul 2005 01:31:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261223AbVGLHas (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 12 Jul 2005 03:30:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261227AbVGLHas
+	(ORCPT <rfc822;git-outgoing>); Tue, 12 Jul 2005 03:30:48 -0400
+Received: from run.smurf.noris.de ([192.109.102.41]:23938 "EHLO
+	server.smurf.noris.de") by vger.kernel.org with ESMTP
+	id S261223AbVGLHaq convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 12 Jul 2005 03:30:46 -0400
+Received: from kiste.smurf.noris.de ([192.109.102.35] ident=mail)
+	by server.smurf.noris.de with smtp (Exim 4.50)
+	id 1DsFCw-0005I9-1C; Tue, 12 Jul 2005 09:29:46 +0200
+Received: (nullmailer pid 28522 invoked by uid 501);
+	Tue, 12 Jul 2005 07:29:33 -0000
+Date:	Tue, 12 Jul 2005 09:29:33 +0200
+To: torvalds@osdl.org, git@vger.kernel.org
+Subject: [PATCH] document CVS vs. git tags
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050712072933.GA28506@kiste.smurf.noris.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+User-Agent: Mutt/1.5.6+20040907i
+From: Matthias Urlichs <smurf@smurf.noris.de>
+X-Smurf-Spam-Score: -2.5 (--)
+X-Smurf-Whitelist: +relay_from_hosts
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 46
+Xref: brand.scrye.com linux.git:6005
+
+CVS uses tags for lots of things.
+Git doesn't.
+Document that, so people may understand.
+
+diff --git a/Documentation/cvs-migration.txt b/Documentation/cvs-migration.txt
+--- a/Documentation/cvs-migration.txt
++++ b/Documentation/cvs-migration.txt
+@@ -230,3 +230,33 @@ that contain this changed "if" statement
+ [ Side note.  This option is called "--pickaxe-all" because -S
+   option is internally called "pickaxe", a tool for software
+   archaeologists.]
++
++
++
++Tagging, Branching and Merging
++------------------------------
++
++In CVS, you need tags for three different (and conflicting) use cases:
++
++* Mark the state of you repository at a given point in time.
++
++  "This is version 0.2."
++
++* Name a branch, i.e. semi-separate line of development.
++
++  "I'm now working on what's going to be version 0.3."
++
++* Remember where you last merged from so that you won't mess up your
++  changes later.
++  
++  "Did we integrate that important bugfix from 0.2.1 into 0.3 yet?"
++
++
++Git has different features for each of these uses.
++
++* You mark the current (actually, last-checked-in) state with "git tag".
++
++* You start a new branch with "git checkout -b <name>".
++
++* Git keeps track of what-got-merged-to-where internally.
++
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

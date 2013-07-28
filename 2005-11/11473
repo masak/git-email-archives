@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 10 06:10:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4367B2851FC
+	for <tkil@scrye.com>; Thu, 10 Nov 2005 06:10:20 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750770AbVKJNJz (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 08:09:55 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750831AbVKJNJz
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 08:09:55 -0500
+Received: from mailout1.informatik.tu-muenchen.de ([131.159.0.18]:14323 "EHLO
+	mailout1.informatik.tu-muenchen.de") by vger.kernel.org with ESMTP
+	id S1750770AbVKJNJz (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 10 Nov 2005 08:09:55 -0500
+Received: from dhcp-3s-40.lrr.in.tum.de (dhcp-3s-40.lrr.in.tum.de [131.159.35.40])
+	by mail.in.tum.de (Postfix) with ESMTP id CEC3F283D
+	for <git@vger.kernel.org>; Thu, 10 Nov 2005 14:09:51 +0100 (MET)
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	git@vger.kernel.org
+Subject: Re: HTTP redirection with git-clone/git-fetch ?
+Date:	Thu, 10 Nov 2005 14:09:48 +0100
+User-Agent: KMail/1.8.2
+References: <200511092331.36421.Josef.Weidendorfer@gmx.de> <20051110002419.GB4051@reactrix.com>
+In-Reply-To: <20051110002419.GB4051@reactrix.com>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511101409.48618.Josef.Weidendorfer@gmx.de>
+X-Virus-Scanned: by amavisd-new/sophie/sophos at mailrelay1.informatik.tu-muenchen.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:11473
+
+On Thursday 10 November 2005 01:24, Nick Hengeveld wrote:
+> On Wed, Nov 09, 2005 at 11:31:36PM +0100, Josef Weidendorfer wrote:
+> 
+> > This seems because git-fetch should understand redirections, too.
+> > I am not familiar to the curl API. So perhaps another one can try to
+> > fix this?
+> 
+> This should fix it, although it still tries every GET with the original
+> URL which is a bit inefficient.
+
+Thanks, I just sent a patch for git-clone, including your patch, to
+Junio.
+
+Josef
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

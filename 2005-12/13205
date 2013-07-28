@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec  5 07:11:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EFD2421CE9E
+	for <tkil@scrye.com>; Mon,  5 Dec 2005 07:11:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932384AbVLEOL1 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Dec 2005 09:11:27 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932426AbVLEOL0
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Dec 2005 09:11:26 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:10410 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932384AbVLEOL0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 5 Dec 2005 09:11:26 -0500
+Received: (qmail 31392 invoked by uid 2001); 5 Dec 2005 15:11:41 +0100
+Date:	Mon, 5 Dec 2005 15:11:41 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Cc:	git@vger.kernel.org, Junio C Hamano <junkio@cox.net>
+Subject: Re: make gitfakemmap standalone to fix linking error in git.c
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051205141141.GF22159@pasky.or.cz>
+References: <81b0412b0512050519k5ed80035x9eb4907f569e0a4b@mail.gmail.com> <81b0412b0512050524w7b632651n93c836fda41a39d@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <81b0412b0512050524w7b632651n93c836fda41a39d@mail.gmail.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:13205
+
+Dear diary, on Mon, Dec 05, 2005 at 02:24:47PM CET, I got a letter
+where Alex Riesen <raa.lkml@gmail.com> said that...
+> The patch is to fix the error introduced by previous patch, which
+> inverted condition of checking for the supported case (start must be
+> NULL).
+> 
+> On 12/5/05, Alex Riesen <raa.lkml@gmail.com> wrote:
+> > The patch is to fix linking error because of gitfakemmap referencing
+> > die living in usage.c, and git.c not linking in the file. Instead of
+> > hardcoding usage.o in git.c prerequisites, I separated mmap from the
+> > main sources.
+> 
+> Why does it always happen...
+
+Possibly not worth yet another patch submission now, but in general I
+believe it's better to send new revision of the original patch rather
+than another patch on top of the previous one.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

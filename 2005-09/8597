@@ -1,0 +1,101 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 08:03:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2E6DC29FD25
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 08:03:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964960AbVIOOBU (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 10:01:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964963AbVIOOBU
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 10:01:20 -0400
+Received: from citi.umich.edu ([141.211.133.111]:41247 "EHLO citi.umich.edu")
+	by vger.kernel.org with ESMTP id S964960AbVIOOBS (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 15 Sep 2005 10:01:18 -0400
+Received: from [10.58.53.165] (nat-198-95-226-230.netapp.com [198.95.226.230])
+	by citi.umich.edu (Postfix) with ESMTP id 33D8A1BADE;
+	Thu, 15 Sep 2005 10:01:17 -0400 (EDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43297EAC.6020205@citi.umich.edu>
+Date:	Thu, 15 Sep 2005 10:01:16 -0400
+From:	Chuck Lever <cel@citi.umich.edu>
+Reply-To: cel@citi.umich.edu
+Organization: Network Appliance, Inc.
+User-Agent: Mozilla Thunderbird 1.0 (Windows/20041206)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Cc:	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH 21/22] teach the merge algorithm about cache iterators
+References: <20050912145543.28120.7086.stgit@dexter.citi.umich.edu> <20050912145629.28120.70337.stgit@dexter.citi.umich.edu> <Pine.LNX.4.63.0509121633480.23242@iabervon.org> <43284368.8010004@citi.umich.edu> <Pine.LNX.4.63.0509141214490.23242@iabervon.org> <43287ECB.8090308@citi.umich.edu> <Pine.LNX.4.63.0509141622340.23242@iabervon.org> <4328A3F9.1010506@citi.umich.edu> <Pine.LNX.4.58.0509141549270.26803@g5.osdl.org> <Pine.LNX.4.63.0509141901020.23242@iabervon.org>
+In-Reply-To: <Pine.LNX.4.63.0509141901020.23242@iabervon.org>
+Content-Type: multipart/mixed;
+ boundary="------------070000010501010200030508"
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 57
+Xref: brand.scrye.com linux.git:8597
+
+This is a multi-part message in MIME format.
+--------------070000010501010200030508
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Daniel Barkalow wrote:
+> On Wed, 14 Sep 2005, Linus Torvalds wrote:
+> 
+> 
+>>On Wed, 14 Sep 2005, Chuck Lever wrote:
+>>
+>>>oh, i see.  the hash table won't help cache_find_name find an insertion 
+>>>point quickly if the name isn't already in the cache.
+>>
+>>Note that almost all insertion tends to happen linearly.
+>>
+>>In particular, read-tree always inserts things in order.
+> 
+> read-tree (with Chuck's latest work) should actually only append entries 
+> to an initially-empty list, which is even easier. Dunno about the other 
+> stuff, but I'd guess inserting into a cursor would handle a lot of it.
+
+i'm implementing the splay tree now.
+
+part of the insertion process is to splay the insertion point up to the 
+root of the tree.  if what you and linus says is true, then the search 
+for the next insertion point will be very fast most of the time.
+
+--------------070000010501010200030508
+Content-Type: text/x-vcard; charset=utf-8;
+ name="cel.vcf"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="cel.vcf"
+
+begin:vcard
+fn:Chuck Lever
+n:Lever;Charles
+org:Network Appliance, Incorporated;Linux NFS Client Development
+adr:535 West William Street, Suite 3100;;Center for Information Technology Integration;Ann Arbor;MI;48103-4943;USA
+email;internet:cel@citi.umich.edu
+title:Member of Technical Staff
+tel;work:+1 734 763-4415
+tel;fax:+1 734 763 4434
+tel;home:+1 734 668-1089
+x-mozilla-html:FALSE
+url:http://www.monkey.org/~cel/
+version:2.1
+end:vcard
+
+
+--------------070000010501010200030508--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

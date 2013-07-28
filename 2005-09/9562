@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 30 12:38:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4CA671BB996
+	for <tkil@scrye.com>; Fri, 30 Sep 2005 12:38:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030299AbVI3Shw (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 30 Sep 2005 14:37:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965066AbVI3Shw
+	(ORCPT <rfc822;git-outgoing>); Fri, 30 Sep 2005 14:37:52 -0400
+Received: from ppp-62-11-79-147.dialup.tiscali.it ([62.11.79.147]:25823 "EHLO
+	zion.home.lan") by vger.kernel.org with ESMTP id S965062AbVI3Shv
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 30 Sep 2005 14:37:51 -0400
+Received: from zion.home.lan (localhost [127.0.0.1])
+	by zion.home.lan (Postfix) with ESMTP id 3D29B2283DB;
+	Fri, 30 Sep 2005 20:35:49 +0200 (CEST)
+From:	Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+Subject: [PATCH] Fix cg-admin-uncommit
+Date:	Fri, 30 Sep 2005 20:35:46 +0200
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050930183545.15895.61691.stgit@zion.home.lan>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:9562
+
+From: Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+
+It uses $1 rather than ${ARGS[0]}, which breaks when optparse found some
+options, i.e. with cg-admin-uncommit -t (cg-object-id -c -t is not nice).
+
+Please, document optparse to explain this. It's absolutely non-obvious, and when
+I first hit this I thought optparse was buggy but couldn't make my way to the
+fix.
+
+Both because I was using cogito rather than debugging it, and even considering
+the obfuscation level, but above all I was looking for a call to shift in
+optshift and didn't find it. Now I understood the thing I pity myself, though.
+
+Btw, why doesn't optparse consume all the cmd arguments via shift, making thus
+sure that $1 never works at all?
+
+Signed-off-by: Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+---
+
+ cg-admin-uncommit |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/cg-admin-uncommit b/cg-admin-uncommit
+--- a/cg-admin-uncommit
++++ b/cg-admin-uncommit
+@@ -47,7 +47,7 @@ done
+ 
+ base=$(cg-object-id -c) || exit 1
+ 
+-commit=$(cg-object-id -c "$1") || exit 1
++commit=$(cg-object-id -c "${ARGS[0]}") || exit 1
+ git-rev-list $base | grep -q $commit || \
+ 	die "$commit: not an ancestor of HEAD"
+ 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

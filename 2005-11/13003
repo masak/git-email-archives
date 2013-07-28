@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 11:50:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1BEBF14F3CB
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 11:50:43 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751495AbVK3SuT (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 13:50:19 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751505AbVK3SuT
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 13:50:19 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:64184 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1751495AbVK3SuS (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 30 Nov 2005 13:50:18 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051130184845.DMRL17437.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 30 Nov 2005 13:48:45 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	David Woodhouse <dwmw2@infradead.org>
+Cc:	git@vger.kernel.org
+Subject: Re: GIT_OBJECT_DIRECTORY handling broken on master.kernel.org?
+References: <1133359173.4117.68.camel@baythorne.infradead.org>
+Date:	Wed, 30 Nov 2005 10:50:14 -0800
+In-Reply-To: <1133359173.4117.68.camel@baythorne.infradead.org> (David
+	Woodhouse's message of "Wed, 30 Nov 2005 13:59:33 +0000")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64qaug0p.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 12
+Xref: brand.scrye.com linux.git:13003
+
+David Woodhouse <dwmw2@infradead.org> writes:
+
+> Daily kernel snapshots broke again. Trying to access, literally, "GIT_OBJECT_DIRECTORY".
+
+Sorry about that.
+Tommi Virtanen's patch looks correct.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

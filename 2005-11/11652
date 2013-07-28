@@ -1,0 +1,114 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 02:24:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B9B3B9FA39
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 02:24:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932250AbVKLJXk (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 04:23:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932259AbVKLJXk
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 04:23:40 -0500
+Received: from hand.yhbt.net ([66.150.188.102]:31117 "EHLO mail.yhbt.net")
+	by vger.kernel.org with ESMTP id S932250AbVKLJXk (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 12 Nov 2005 04:23:40 -0500
+Received: from mayonaise.dyndns.org (user-118bgak.cable.mindspring.com [66.133.193.84])
+	by mail.yhbt.net (Postfix) with SMTP id 56CA92DC03B;
+	Sat, 12 Nov 2005 01:23:38 -0800 (PST)
+Received: by mayonaise.dyndns.org (sSMTP sendmail emulation); Sat, 12 Nov 2005 01:23:37 -0800
+Date:	Sat, 12 Nov 2005 01:23:37 -0800
+From:	Eric Wong <normalperson@yhbt.net>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Cc:	git list <git@vger.kernel.org>
+Subject: [PATCH] archimport improvements
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051112092336.GA16218@Muzzle>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 74
+Xref: brand.scrye.com linux.git:11652
+
+Hello,
+
+I'm another Arch-user trying out git.  Unfortunately, I encountered
+several problems with git-archimport that I needed fixed before my
+development trees could be imported into git.
+
+Here's a summary of the changes:
+
+Bug Fixes:
+
+* Support for '--branch'-less Arch version names.
+  Encoding '/' to '--' (as was previously done) is not 100% reversable
+  because the "--branch" portion of an fully-qualified Arch version name
+  is optional (though not many people or Arch-related tools know this).
+
+* I'm encoding the '/' in the fully-qualified name as ',' to not confuse
+  other porcelains, but leaving '/' in branch names may be alright
+  provided porcelains can support them.
+
+* Identify git branches as an Arch "archive,category<--branch>--version"
+  Anything less than that is ambiguous as far as history and patch
+  relationships go.
+
+* Renamed directories containing renamed/moved files inside didn't get
+  tracked properly.  The original code was inadequate for this, and
+  making it support all rename cases that Arch supports is too much
+  work.  Instead, I maintain full-blown Arch trees in the temp dir and
+  replay patches + rsync based on that.  Performance is slightly slower
+  than before, but accuracy is more important to me.
+
+* Permission (execute bit only because of git) tracking as a side effect
+  of the above.
+
+* Tracking changes from branches that are only cherry-picked now works
+
+* Pika-escaped filenames unhandled.  This seems fixed in the latest
+  git, but I fixed it more generally and removed the ShellQuote module
+  dependency along the way.
+
+* Don't die() when a merge-base can't be found.  Arch supports
+  merging between unrelated trees.
+
+
+Usability enhancements:
+
+* Optionally detect merged branches and attempt to import their history,
+  too.  Use the -D <depth> option for this.  Specifying a <depth>
+  greater than 1 is usually not needed unless the tree you're tracking
+  has had history pruned.
+  
+* Optionally attempt to auto-register unknown Arch archives from
+  mirrors.sourcecontrol.net to pull their history with the -a (boolean)
+  switch.  Not sure how useful users will find this.
+
+* Removed -A <archive> usage (unnecessary in all cases) and made all
+  Arch calls and output parsing to be compatible with both tla (tested
+  1.3.3) and baz (1.4.2).  Default is still tla, but the ARCH_CLIENT
+  environment variable may be changed to baz.
+
+
+Current weaknesses:
+
+* (Present in the original code as well).
+  The code still assumes that dates in commit logs can be trusted, which is
+  fine in most cases, but a wayward branch can screw up git-archimport and
+  cause parents to be missed.
+
+-- 
+Eric Wong
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

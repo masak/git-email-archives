@@ -1,0 +1,55 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 25 23:40:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5B70C1706C0
+	for <tkil@scrye.com>; Mon, 25 Apr 2005 23:40:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261320AbVDZFkK (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 01:40:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261290AbVDZFkK
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 01:40:10 -0400
+Received: from parcelfarce.linux.theplanet.co.uk ([195.92.249.252]:65223 "EHLO
+	parcelfarce.linux.theplanet.co.uk") by vger.kernel.org with ESMTP
+	id S261205AbVDZFkG (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 26 Apr 2005 01:40:06 -0400
+Received: from viro by parcelfarce.linux.theplanet.co.uk with local (Exim 4.43)
+	id 1DQInx-0000iS-Fs; Tue, 26 Apr 2005 06:40:17 +0100
+Date:	Tue, 26 Apr 2005 06:40:17 +0100
+From: Al Viro <viro@parcelfarce.linux.theplanet.co.uk>
+To: Daniel Barkalow <barkalow@iabervon.org>
+Cc: Jeff Garzik <jgarzik@pobox.com>, pasky@ucw.cz,
+	git@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [ANNOUNCE] Cogito-0.8 (former git-pasky, big changes!)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050426054017.GS13052@parcelfarce.linux.theplanet.co.uk>
+References: <426DCA75.901@pobox.com> <Pine.LNX.4.21.0504260103050.30848-100000@iabervon.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.21.0504260103050.30848-100000@iabervon.org>
+User-Agent: Mutt/1.4.1i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 13
+Xref: brand.scrye.com linux.git:1690
+
+> > So, it still complains about commit-id
+> 
+> In this case, it would complain about .git/HEAD even if it found
+> commit-id. The right solution is probably to suppress that part if there's
+> no .git/HEAD.
+
+The right thing is to stop assuming that everyone has . in their $PATH,
+to start with...
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

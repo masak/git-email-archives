@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 07:01:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id BB465231F77
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 07:01:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261409AbVFBM72 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 08:59:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261410AbVFBM72
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 08:59:28 -0400
+Received: from host-80-95-32-178.leasedlines.sura.ru ([80.95.32.178]:48610
+	"HELO penza-gsm.ru") by vger.kernel.org with SMTP id S261408AbVFBM7K convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 08:59:10 -0400
+Received: (qmail 24735 invoked from network); 2 Jun 2005 12:59:08 -0000
+Received: from unknown (HELO nezhdanov.penza-gsm.ru) (192.168.4.99)
+  by fileserver.penza-gsm.ru with SMTP; 2 Jun 2005 12:59:07 -0000
+Received: (qmail 9845 invoked by uid 1000); 2 Jun 2005 12:59:06 -0000
+From: Alexey Nezhdanov <snake@penza-gsm.ru>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org, Vincent Hanquez <tab@snarc.org>
+Subject: Re: [PATCH] several typos in tutorial
+Date:	Thu, 2 Jun 2005 16:56:11 +0400
+User-Agent: KMail/1.7.2
+References: <Pine.LNX.4.58.0505301253070.1876@ppc970.osdl.org> <200506021645.15247.snake@penza-gsm.ru> <20050602125124.GA31680@snarc.org>
+In-Reply-To: <20050602125124.GA31680@snarc.org>
+X-KMail-Link-Message: 239668
+X-KMail-Link-Type: reply
+X-KMail-Identity: 1411969544
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200506021656.11180.snake@penza-gsm.ru>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 34
+Xref: brand.scrye.com linux.git:4391
+
+Signed-off-by: Alexey Nezhdanov <snake@penza-gsm.ru>
+---
+diff --git a/Documentation/tutorial.txt b/Documentation/tutorial.txt
+--- a/Documentation/tutorial.txt
++++ b/Documentation/tutorial.txt
+@@ -298,7 +298,7 @@ have committed something, we can also le
+ 
+ Unlike "git-diff-files", which showed the difference between the index
+ file and the working directory, "git-diff-cache" shows the differences
+-between a committed _tree_ and the index file.  In other words,
++between a committed _tree_ and the working directory.  In other words,
+ git-diff-cache wants a tree to be diffed against, and before we did the
+ commit, we couldn't do that, because we didn't have anything to diff
+ against. 
+@@ -423,10 +423,10 @@ With that, you should now be having some
+ can explore on your own.
+ 
+ 
+-	Copoying archives
+-	-----------------
++	Copying archives
++	----------------
+ 
+-Git arhives are normally totally self-sufficient, and it's worth noting
++Git archives are normally totally self-sufficient, and it's worth noting
+ that unlike CVS, for example, there is no separate notion of
+ "repository" and "working tree".  A git repository normally _is_ the
+ working tree, with the local git information hidden in the ".git"
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

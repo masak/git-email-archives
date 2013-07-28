@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 09:39:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CCFDF2851FA
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 09:39:04 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750856AbVKKQiz (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 11:38:55 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750857AbVKKQiz
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 11:38:55 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:20929 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750855AbVKKQiy (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 11 Nov 2005 11:38:54 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id B324C13F2E6; Fri, 11 Nov 2005 17:38:53 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8F2F8B514F; Fri, 11 Nov 2005 17:38:53 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 70468B35C8; Fri, 11 Nov 2005 17:38:53 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 43B3713F2E6; Fri, 11 Nov 2005 17:38:53 +0100 (CET)
+Date:	Fri, 11 Nov 2005 17:38:53 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Paolo Teti <paolo.teti@gmail.com>
+Cc:	git@vger.kernel.org
+Subject: Re: lock
+In-Reply-To: <34a7ae040511110831y3e896738o@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511111737590.17831@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <34a7ae040511110831y3e896738o@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:11605
+
+Hi,
+
+On Fri, 11 Nov 2005, Paolo Teti wrote:
+
+> Is possible to apply a lock (as in ClearCase) on a given file etc in 
+> order to prevent accidental check-out or any other tool operation?
+
+You should be able to do that with a hook (see Documentation/hooks.txt).
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

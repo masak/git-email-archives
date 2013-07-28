@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 13:40:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2D3BE270498
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 13:40:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932331AbVHWTkZ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 23 Aug 2005 15:40:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932335AbVHWTkZ
+	(ORCPT <rfc822;git-outgoing>); Tue, 23 Aug 2005 15:40:25 -0400
+Received: from iabervon.org ([66.92.72.58]:15115 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S932331AbVHWTkY (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 23 Aug 2005 15:40:24 -0400
+Received: (qmail 14580 invoked by uid 1000); 23 Aug 2005 15:43:56 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 23 Aug 2005 15:43:56 -0400
+Date:	Tue, 23 Aug 2005 15:43:56 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Carl Baldwin <cnb@fc.hp.com>
+cc:	git@vger.kernel.org
+Subject: Re: [RFC] Removing deleted files after checkout
+In-Reply-To: <20050823162156.GA32240@hpsvcnb.fc.hp.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508231533570.23242@iabervon.org>
+References: <20050823162156.GA32240@hpsvcnb.fc.hp.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:7654
+
+On Tue, 23 Aug 2005, Carl Baldwin wrote:
+
+> Hello,
+>
+> I recently started using git to revision control the source for my
+> web-page.  I wrote a post-update hook to checkout the files when I push
+> to the 'live' repository.
+>
+> In this particular context I decided that it was important to me to remove
+> deleted files after checking out the new HEAD.  I accomplished this by running
+> git-ls-files before and after the checkout.
+>
+> Is there a better way?  Could there be some way built into git to easily
+> find out what files dissappear when replacing the current index with one
+> from a new tree?  Is there already?  The behavior of git should NOT
+> change to delete these files but I would argue that some way should
+> exist to query what files disappeared if removing them is desired.
+
+If you don't use -f, git-checkout-script removes deleted files. Using -f
+tells it to ignore the old index, which means that it can't tell the
+difference between removed files and files that weren't tracked at all.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

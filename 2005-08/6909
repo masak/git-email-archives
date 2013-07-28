@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Aug  7 16:54:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BC1F7167AA7
+	for <tkil@scrye.com>; Sun,  7 Aug 2005 16:54:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1752174AbVHGWyf (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 7 Aug 2005 18:54:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1752181AbVHGWyf
+	(ORCPT <rfc822;git-outgoing>); Sun, 7 Aug 2005 18:54:35 -0400
+Received: from ozlabs.org ([203.10.76.45]:54485 "EHLO ozlabs.org")
+	by vger.kernel.org with ESMTP id S1752174AbVHGWye (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 7 Aug 2005 18:54:34 -0400
+Received: by ozlabs.org (Postfix, from userid 1003)
+	id BF0B867F31; Mon,  8 Aug 2005 08:54:33 +1000 (EST)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <17142.37044.108962.189983@cargo.ozlabs.ibm.com>
+Date:	Mon, 8 Aug 2005 08:52:36 +1000
+From: Paul Mackerras <paulus@samba.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: gitk "parent information" in commit window
+In-Reply-To: <Pine.LNX.4.58.0508071351150.3258@g5.osdl.org>
+References: <Pine.LNX.4.58.0508071351150.3258@g5.osdl.org>
+X-Mailer: VM 7.19 under Emacs 21.4.1
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:6909
+
+Linus Torvalds writes:
+
+> This adds a useful "Parent:" line to the git commit information window.
+
+Cool!  Applied and pushed out.
+
+I have been thinking about adding dialog windows to allow the user to
+select which repository and which range of commits they want to look at.
+Do you think that would be useful for you?
+
+Regards,
+Paul.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

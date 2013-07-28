@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 13 01:47:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 844381B547C
+	for <tkil@scrye.com>; Thu, 13 Oct 2005 01:47:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750763AbVJMHr3 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 13 Oct 2005 03:47:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750786AbVJMHr3
+	(ORCPT <rfc822;git-outgoing>); Thu, 13 Oct 2005 03:47:29 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:13509 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S1750763AbVJMHr2 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 13 Oct 2005 03:47:28 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051013074711.TQBP29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 13 Oct 2005 03:47:11 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Sven Verdoolaege <skimo@kotnet.org>
+Cc:	git@vger.kernel.org, "Randal L. Schwartz" <merlyn@stonehenge.com>
+Subject: Re: openbsd version?
+References: <8664s5gxl9.fsf@blue.stonehenge.com>
+	<Pine.LNX.4.64.0510100939320.14597@g5.osdl.org>
+	<7vvf0542fs.fsf@assigned-by-dhcp.cox.net>
+	<864q7pdvcn.fsf@blue.stonehenge.com>
+	<7vll113yjs.fsf@assigned-by-dhcp.cox.net>
+	<20051010210007.GJ8383MdfPADPa@greensroom.kotnet.org>
+	<7vzmph1225.fsf@assigned-by-dhcp.cox.net>
+Date:	Thu, 13 Oct 2005 00:47:26 -0700
+In-Reply-To: <7vzmph1225.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Mon, 10 Oct 2005 14:42:42 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpsq9504x.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:10056
+
+Junio C Hamano <junkio@cox.net> writes:
+
+> Sven Verdoolaege <skimo@kotnet.org> writes:
+>
+>> I think you mean 
+>>
+>> $ git-update-ref refs/heads/mybranch mybranch^
+>
+> Of course you are right.  Thanks.
+
+And I am an idiot.  I did that myself again, and ended up
+wasting 30 minutes or so, scratching my head.
+
+Maybe there should be a safety measure built into git-update-ref
+that says single-level name (i.e. not starting with refs/) gets
+warning unless all uppercase or something silly like that to
+protect idiots like myself.  Hmmm.
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

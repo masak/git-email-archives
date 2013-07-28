@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun  7 17:03:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1F1181B9568
+	for <tkil@scrye.com>; Tue,  7 Jun 2005 17:03:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262029AbVFGXCL (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 7 Jun 2005 19:02:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262030AbVFGXCL
+	(ORCPT <rfc822;git-outgoing>); Tue, 7 Jun 2005 19:02:11 -0400
+Received: from fire.osdl.org ([65.172.181.4]:39364 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262029AbVFGXBx (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 7 Jun 2005 19:01:53 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j57N1mjA013060
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <git@vger.kernel.org>; Tue, 7 Jun 2005 16:01:49 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j57N1m7J020808
+	for <git@vger.kernel.org>; Tue, 7 Jun 2005 16:01:48 -0700
+Date:	Tue, 7 Jun 2005 16:03:53 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Git Mailing List <git@vger.kernel.org>
+Subject: "git cvsimport"
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506071556000.2286@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 33
+Xref: brand.scrye.com linux.git:4658
+
+
+Ok,
+ here's something for testers and/or documentation people: I wrapped a 
+little script around cvs2git (which I imported from the git tools thing), 
+and now you can do
+
+	git cvsimport <cvsroot> <modulename>
+
+and it might all "just work".
+
+Right now the little sript is actually being anal and checking that 
+CVSROOT is a directory, even though I think it all _should_ work even if 
+CVSROOT is remote too. But I don't have any remote things to test, and for 
+all I know maybe performance is horrible, so for now it artificially 
+limits it to locally accessible CVS repos.
+
+I'd love it if somebody tested the remote case (and, if it works, sends me
+a patch that just removes the anal tests in git-cvsimport-script), and
+maybe even updated the information a bit more.. As it is, that
+Documentation/cvs-migration.txt file is a bit on the light side.
+
+Finally, I don't know what to do about cvsps options. It seems that the 
+default time-fuzz is a bit too long for some projects, so at least that 
+one should be overridable. So my silly script is not exactly wonderful, 
+but I think it's more approachable than people doing the magic by hand 
+(and forgetting to set TZ to UTC and the "-A" flag etc etc).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

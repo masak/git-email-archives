@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 18:08:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DFD241C0205
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 18:08:40 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030454AbVJFAGp (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 20:06:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030455AbVJFAGp
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 20:06:45 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:6585 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1030454AbVJFAGo (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 5 Oct 2005 20:06:44 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051006000618.YHVQ16347.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 5 Oct 2005 20:06:18 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Jonas Fonseca <fonseca@diku.dk>
+Cc:	Alan Chandler <alan@chandlerfamily.org.uk>, git@vger.kernel.org
+Subject: Re: [PATCH] Fix usage of carets in git-rev-parse(1)
+References: <200510052350.07217.alan@chandlerfamily.org.uk>
+	<7v7jcrh7wu.fsf@assigned-by-dhcp.cox.net>
+	<20051005234222.GA19292@diku.dk>
+Date:	Wed, 05 Oct 2005 17:06:22 -0700
+In-Reply-To: <20051005234222.GA19292@diku.dk> (Jonas Fonseca's message of
+	"Thu, 6 Oct 2005 01:42:23 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vd5mjcxvl.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 14
+Xref: brand.scrye.com linux.git:9743
+
+Jonas Fonseca <fonseca@diku.dk> writes:
+
+> ... but using a {caret} attribute.
+>
+> Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+
+Thanks.  This seems to fix it.  Applied and pushed out (but not
+in time for just released 0.99.8b).
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

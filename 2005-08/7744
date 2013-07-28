@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 25 11:35:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9F8D0190875
+	for <tkil@scrye.com>; Thu, 25 Aug 2005 11:35:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932308AbVHYRfB (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 25 Aug 2005 13:35:01 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932245AbVHYRfB
+	(ORCPT <rfc822;git-outgoing>); Thu, 25 Aug 2005 13:35:01 -0400
+Received: from fep01-0.kolumbus.fi ([193.229.0.41]:19584 "EHLO
+	fep01-app.kolumbus.fi") by vger.kernel.org with ESMTP
+	id S1751352AbVHYRfA (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 25 Aug 2005 13:35:00 -0400
+Received: from litku.valo.iki.fi ([81.197.35.21]) by fep01-app.kolumbus.fi
+          with ESMTP
+          id <20050825173456.PWVY23558.fep01-app.kolumbus.fi@litku.valo.iki.fi>;
+          Thu, 25 Aug 2005 20:34:56 +0300
+To:	Carl Baldwin <cnb@fc.hp.com>
+Cc:	git@vger.kernel.org
+Subject: Re: [RFC] undo and redo
+References: <20050824172339.GA7083@hpsvcnb.fc.hp.com>
+	<20050824181004.GA18790@hpsvcnb.fc.hp.com>
+	<Pine.LNX.4.58.0508241148480.3317@g5.osdl.org>
+	<20050824195615.GA693@hpsvcnb.fc.hp.com>
+	<Pine.LNX.4.63.0508241634350.23242@iabervon.org>
+	<20050824204736.GA13194@hpsvcnb.fc.hp.com>
+	<Pine.LNX.4.63.0508241651420.23242@iabervon.org>
+	<7vd5o3ar4a.fsf@assigned-by-dhcp.cox.net>
+	<20050825024134.GA31886@hpsvcnb.fc.hp.com>
+	<7v1x4izjtm.fsf@assigned-by-dhcp.cox.net>
+	<20050825163201.GA3944@hpsvcnb.fc.hp.com>
+From:	Kalle Valo <Kalle.Valo@iki.fi>
+Date:	Thu, 25 Aug 2005 20:39:05 +0300
+In-Reply-To: <20050825163201.GA3944@hpsvcnb.fc.hp.com> (Carl Baldwin's
+ message of "Thu, 25 Aug 2005 10:32:01 -0600")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <87u0hdor0m.fsf@litku.valo.iki.fi>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:7744
+
+Carl Baldwin <cnb@fc.hp.com> writes:
+
+> For this, I may also use branching, as suggested.  I meant for undo/redo
+> to be a lighter weight alternative to allow for a faster context switch.
+
+I have been missing the undo command since I started to use git, so
+I'll share a user's perspective. 
+
+I was also considering undo as a really lightweight command, nothing
+too fancy. Usually, I want to try implement something wild or stupid,
+but almost immediately decide to abandon it. With 'git undo', this
+kind of prototyping would be really easy. For me, redo would be just a
+backup if (read: when) I undo something important, nothing more. For
+anything else I would use branches, as was suggested.
+
+-- 
+Kalle Valo
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

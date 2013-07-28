@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 14:24:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D6531285207
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 14:24:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751594AbVH2UU5 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 16:20:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751596AbVH2UU5
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 16:20:57 -0400
+Received: from az33egw01.freescale.net ([192.88.158.102]:55474 "EHLO
+	az33egw01.freescale.net") by vger.kernel.org with ESMTP
+	id S1751529AbVH2UU4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 29 Aug 2005 16:20:56 -0400
+Received: from az33smr02.freescale.net (az33smr02.freescale.net [10.64.34.200])
+	by az33egw01.freescale.net (8.12.11/az33egw01) with ESMTP id j7TKTxVL016803
+	for <git@vger.kernel.org>; Mon, 29 Aug 2005 13:29:59 -0700 (MST)
+Received: from [10.82.19.2] (cashmere.am.freescale.net [10.82.19.2])
+	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id j7TKQFY7010683
+	for <git@vger.kernel.org>; Mon, 29 Aug 2005 15:26:15 -0500 (CDT)
+Subject: Re: question git & branches
+From:	Jon Loeliger <jdl@freescale.com>
+To:	Git List <git@vger.kernel.org>
+In-Reply-To: <Pine.LNX.4.58.0508290754410.3243@g5.osdl.org>
+References: <4312C24E.4000803@candelatech.com>
+	 <Pine.LNX.4.58.0508290754410.3243@g5.osdl.org>
+Content-Type: text/plain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1125346853.7206.2.camel@cashmere.sps.mot.com>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6 (1.4.6-2.ydl.1) 
+Date:	Mon, 29 Aug 2005 15:20:54 -0500
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:7916
+
+On Mon, 2005-08-29 at 10:03, Linus Torvalds wrote:
+
+> (Both "git branch" and "git checkout -b <branchname>" that reate a new
+
+This of course, is Git's answer to the long standing
+UNIX tradition.  Whereas UNIX would creat() files,
+Git will reate() branches.
+
+> 				Linus
+
+jdl
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

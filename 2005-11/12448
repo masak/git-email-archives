@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 09:56:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C573224A308
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 09:56:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932345AbVKUQze (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 11:55:34 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932350AbVKUQze
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 11:55:34 -0500
+Received: from soundwarez.org ([217.160.171.123]:62667 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S932345AbVKUQze (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 21 Nov 2005 11:55:34 -0500
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id 912E859217; Mon, 21 Nov 2005 17:55:22 +0100 (CET)
+Date:	Mon, 21 Nov 2005 17:55:22 +0100
+From:	Kay Sievers <kay.sievers@vrfy.org>
+To:	Rob Landley <rob@landley.net>
+Cc:	git@vger.kernel.org
+Subject: Re: UI tweak suggestion for kernel.org git web gui.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051121165522.GA3217@vrfy.org>
+References: <200511211019.51110.rob@landley.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200511211019.51110.rob@landley.net>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:12448
+
+On Mon, Nov 21, 2005 at 10:19:50AM -0600, Rob Landley wrote:
+> When I view the changelog at:
+> http://www.kernel.org/git/?p=linux/kernel/git/torvalds/linux-2.6.git;a=shortlog
+> 
+> It mixes in tags, which is cool, but they're the same color as regular 
+> commits.
+
+They are all commits. There is nothing "mixed". Tags usually just point
+to a commit.
+
+> Is there any way that tags could stand out visually?  (Bold them, 
+> give them a different color background, etc.)
+
+You mean, you want to see in the list of commits, the ones marked, which
+a tag is pointing to? Similar to what gitk is doing?
+
+> I'd try to ask this in the right place, but the above page doesn't even say 
+> which git web display package kernel.org is using.  (A small discreet link at 
+> the bottom would be nice...)
+
+There is no package for gitweb. Just the single gitweb.cgi file, which is
+copied there. You can get the gitweb version in the html source. Just do
+"view source" in your browser.
+
+Kay
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

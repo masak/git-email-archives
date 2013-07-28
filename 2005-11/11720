@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 13 03:21:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5A64A1E4487
+	for <tkil@scrye.com>; Sun, 13 Nov 2005 03:21:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932301AbVKMKVk (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 13 Nov 2005 05:21:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932314AbVKMKVk
+	(ORCPT <rfc822;git-outgoing>); Sun, 13 Nov 2005 05:21:40 -0500
+Received: from eastrmmtao04.cox.net ([68.230.240.35]:34289 "EHLO
+	eastrmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S932301AbVKMKVk (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 13 Nov 2005 05:21:40 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by eastrmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051113102010.KGD4997.eastrmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 13 Nov 2005 05:20:10 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: GIT character codecs
+References: <20051113081443.38296.qmail@web26309.mail.ukl.yahoo.com>
+cc:	git@vger.kernel.org
+Date:	Sun, 13 Nov 2005 02:21:36 -0800
+In-Reply-To: <20051113081443.38296.qmail@web26309.mail.ukl.yahoo.com> (Marco
+	Costalba's message of "Sun, 13 Nov 2005 00:14:43 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3bm0c0gf.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:11720
+
+Marco Costalba <mcostalba@yahoo.it> writes:
+
+> But I'm a bit reclutant to add this 'codec list' stuff
+> because, as said, is *not* the real solution.
+
+Why isn't it real?  UNIX files do not declare what encoding they
+are in, and people get their work done with existing viewing or
+editing tools (e.g.  vi, less, emacs, firefox [*1*], ...).  How
+is your situation any different?
+
+I suspect you could just take the default from LANG and LC_CTYPE
+to cover 98% of the cases, and to cover the rest 2% the
+problematic cases have a per-window override menu.  If you first
+implement only the locale support without per-window override
+and tell your users to set these environment variables to
+iso-8859-15 when running qgit on your Italian project repository
+(or use utf-8 on git.git), wouldn't that be sufficient for most
+everyday uses?
+
+[Footnotes]
+
+*1* Ok, firefox is a bit different because they can read charset
+attribute from content type, but even so they have a manual
+override from View->CharEncoding menu to let their users cope
+with broken pages.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

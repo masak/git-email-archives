@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  9 02:33:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 8EE6F16415
+	for <tkil@scrye.com>; Mon,  9 May 2005 02:33:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261158AbVEIIdP (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 9 May 2005 04:33:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261159AbVEIIdP
+	(ORCPT <rfc822;git-outgoing>); Mon, 9 May 2005 04:33:15 -0400
+Received: from gate.ebshome.net ([64.81.67.12]:10457 "EHLO gate.ebshome.net")
+	by vger.kernel.org with ESMTP id S261158AbVEIIdN (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 9 May 2005 04:33:13 -0400
+Received: (qmail 17516 invoked by uid 1000); 9 May 2005 01:33:12 -0700
+Date:	Mon, 9 May 2005 01:33:12 -0700
+From: Eugene Surovegin <ebs@ebshome.net>
+To: Marcel Holtmann <marcel@holtmann.org>
+Cc: git@vger.kernel.org
+Subject: Re: [RFC] allow file list editing during cg-commit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050509083312.GA17447@gate.ebshome.net>
+Mail-Followup-To: Marcel Holtmann <marcel@holtmann.org>,
+	git@vger.kernel.org
+References: <20050509041459.GA13475@gate.ebshome.net> <1115627229.8949.132.camel@pegasus>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1115627229.8949.132.camel@pegasus>
+X-ICQ-UIN: 1193073
+X-Operating-System: Linux i686
+X-PGP-Key: http://www.ebshome.net/pubkey.asc
+User-Agent: Mutt/1.5.5.1i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 24
+Xref: brand.scrye.com linux.git:2844
+
+On Mon, May 09, 2005 at 10:27:09AM +0200, Marcel Holtmann wrote:
+> Hi Eugene,
+> 
+> > I just started playing with cogito and failed to find _easy_ way to
+> > select which files will be committed and which won't. cg-commit seems
+> > to support specifying file list in command line, but this isn't very
+> > convenient when the list is big.
+> 
+> do you know any SCM native text interface that supports such a thing? In
+> general this is done by high-level GUI based interfaces to the SCM or a
+> special Emacs mode etc.
+
+Perforce works like that. This is where I "stole" this idea :)
+
+I think cogito _is_ UI, a text one, of course.
+
+-- 
+Eugene
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

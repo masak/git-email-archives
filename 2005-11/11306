@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 23:31:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3497A1C13D7
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 23:31:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965328AbVKHGbr (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 8 Nov 2005 01:31:47 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965315AbVKHGbr
+	(ORCPT <rfc822;git-outgoing>); Tue, 8 Nov 2005 01:31:47 -0500
+Received: from 193.37.26.69.virtela.com ([69.26.37.193]:61357 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S965261AbVKHGbm (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 8 Nov 2005 01:31:42 -0500
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id jA86VanZ010081;
+	Mon, 7 Nov 2005 22:31:36 -0800
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id jA86VaOZ010079;
+	Mon, 7 Nov 2005 22:31:36 -0800
+Date:	Mon, 7 Nov 2005 22:31:36 -0800
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Errors cloning over http -- git-clone and cg-clone fail to fetch a reachable object...
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051108063136.GA3806@reactrix.com>
+References: <46a038f90511061354k5378a92ckc427841f90ec8b4@mail.gmail.com> <46a038f90511061852h5cdf9539o34f69b4deb9f041a@mail.gmail.com> <20051107043737.GI3001@reactrix.com> <46a038f90511062050geee7e73qddcd52e3a2ec86df@mail.gmail.com> <20051107171446.GA4070@reactrix.com> <46a038f90511071837g474bdc44vf60dd0758511f24c@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <46a038f90511071837g474bdc44vf60dd0758511f24c@mail.gmail.com>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:11306
+
+On Tue, Nov 08, 2005 at 03:37:29PM +1300, Martin Langhoff wrote:
+
+> It definitely looks like it's doing a few requests in parallel and
+> getting them mixed up. BTW, this repo is public and sitting on a box
+> that doubles up as kernel mirror -- feel free to hit it ;-)
+
+Can you run git-http-fetch after the failure to attempt to pick up where
+it left off?  It should fail right away, and hopefully contain less
+confusing output from parallel requests.
+
+Was there a request header for pack-9cbe...d3a5.pack earlier in the
+output, and were there response headers for successful or failed
+requests?
+
+FWIW, I've tried cloning that repository a few times and haven't seen
+the problem yet.
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

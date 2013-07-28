@@ -1,0 +1,55 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 02:43:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AA6C22AF47E
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 02:43:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965089AbVINIms (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 04:42:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965088AbVINIms
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 04:42:48 -0400
+Received: from livid.absolutedigital.net ([66.92.46.173]:5836 "EHLO
+	mx2.absolutedigital.net") by vger.kernel.org with ESMTP
+	id S965077AbVINImr (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 14 Sep 2005 04:42:47 -0400
+Received: from lancer.cnet.absolutedigital.net (lancer.cnet.absolutedigital.net [10.7.5.10])
+	by luxor.inet.absolutedigital.net (8.13.2/8.13.2) with ESMTP id j8E8gk1n006606
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 14 Sep 2005 04:42:46 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by lancer.cnet.absolutedigital.net (8.12.11/8.12.11) with ESMTP id j8E8gpKo004934;
+	Wed, 14 Sep 2005 04:42:51 -0400
+Date:	Wed, 14 Sep 2005 04:42:50 -0400 (EDT)
+From:	Cal Peake <cp@absolutedigital.net>
+To:	Git Mailing List <git@vger.kernel.org>
+cc:	postmaster@vger.kernel.org
+Subject: [REQ] git-announce mailing list
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.61.0509060457130.29285@lancer.cnet.absolutedigital.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 13
+Xref: brand.scrye.com linux.git:8505
+
+Any chance for a git-announce list on vger?
+
+thanks,
+-cp
+
+-- 
+". . . tell 'em we use Linux." -- Dave Chappelle
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

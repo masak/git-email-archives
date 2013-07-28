@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun 28 10:56:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4AD2B125A0F
+	for <tkil@scrye.com>; Tue, 28 Jun 2005 10:56:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262142AbVF1Qxx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 28 Jun 2005 12:53:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262155AbVF1Qxx
+	(ORCPT <rfc822;git-outgoing>); Tue, 28 Jun 2005 12:53:53 -0400
+Received: from deuterium.rootr.net ([203.194.209.160]:36534 "EHLO
+	vulcan.rootr.net") by vger.kernel.org with ESMTP id S262142AbVF1QxC
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 28 Jun 2005 12:53:02 -0400
+Received: from [192.168.15.101] (653221hfc195.tampabay.res.rr.com [65.32.21.195])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by vulcan.rootr.net (Postfix) with ESMTP id 5C6763C55;
+	Tue, 28 Jun 2005 16:52:54 +0000 (UTC)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42C1800C.7040506@qualitycode.com>
+Date:	Tue, 28 Jun 2005 12:51:24 -0400
+From: Kevin Smith <yarcs@qualitycode.com>
+User-Agent: Mozilla Thunderbird 1.0.2 (X11/20050404)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Cogito vs. Git (was: Mercurial vs Updated git HOWTO for kernel hackers)
+References: <42B9E536.60704@pobox.com> <20050623235634.GC14426@waste.org> <20050624064101.GB14292@pasky.ji.cz> <20050624130604.GK17715@g5.random> <42BC112C.1040009@qualitycode.com> <20050628150752.GC1275@pasky.ji.cz>
+In-Reply-To: <20050628150752.GC1275@pasky.ji.cz>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:5329
+
+Petr Baudis wrote:
+> Cogito's only unusual requirement (well, expectation) is that HEAD is a
+> symlink to .git/refs/heads/master, and .git/refs/heads/master should
+> reflect your current head. I will try to ease up this restriction so
+> that things will mostly work even if you just have HEAD. I think that
+> most auxiliary commands (e.g. cg-log - you just have to love it) should
+> work on any sensible git tree (but I didn't test it - yet).
+
+So you're saying that aside from that one solveable issue, I could use 
+low-level git tools, third-party over-git tools, and cogito, 
+interchangebly on a single repo without the tools becoming confused? 
+That's cool, and should be made more clear in the cogito readme. I was 
+under the impression that cogito was tracking all kinds of extra meta 
+magic stuff that git tools wouldn't keep updated.
+
+If I were using cogito, I probably wouldn't want to use the low-level 
+git stuff directly, but I might want to use (or maybe even write) some 
+other over-git tools.
+
+You might also consider removing the "Core GIT" section from the README, 
+because I think it increases the confusion between the two.
+
+Cheers,
+
+Kevin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

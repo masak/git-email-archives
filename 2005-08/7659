@@ -1,0 +1,106 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 15:00:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 37AF9E5731
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 15:00:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750821AbVHWU7F (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 23 Aug 2005 16:59:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750849AbVHWU7F
+	(ORCPT <rfc822;git-outgoing>); Tue, 23 Aug 2005 16:59:05 -0400
+Received: from fmr24.intel.com ([143.183.121.16]:45227 "EHLO
+	scsfmr004.sc.intel.com") by vger.kernel.org with ESMTP
+	id S1750840AbVHWU7E (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 23 Aug 2005 16:59:04 -0400
+Received: from scsfmr100.sc.intel.com (scsfmr100.sc.intel.com [10.3.253.9])
+	by scsfmr004.sc.intel.com (8.12.10/8.12.10/d: major-outer.mc,v 1.1 2004/09/17 17:50:56 root Exp $) with ESMTP id j7NKx4DL012147
+	for <git@vger.kernel.org>; Tue, 23 Aug 2005 20:59:04 GMT
+Received: from agluck-lia64.sc.intel.com (agluck-lia64.sc.intel.com [143.183.251.239])
+	by scsfmr100.sc.intel.com (8.12.10/8.12.10/d: major-inner.mc,v 1.2 2004/09/17 18:05:01 root Exp $) with ESMTP id j7NL1WAi015468
+	for <git@vger.kernel.org>; Tue, 23 Aug 2005 21:01:32 GMT
+Received: from agluck-lia64.sc.intel.com (agluck-lia64.sc.intel.com [127.0.0.1])
+	by agluck-lia64.sc.intel.com (8.13.1/8.13.1) with ESMTP id j7NKx35o025340
+	for <git@vger.kernel.org>; Tue, 23 Aug 2005 13:59:03 -0700
+Received: (from aegl@localhost)
+	by agluck-lia64.sc.intel.com (8.13.1/8.13.1/Submit) id j7NKx3nM025339;
+	Tue, 23 Aug 2005 13:59:03 -0700
+Date:	Tue, 23 Aug 2005 13:59:03 -0700
+From:	tony.luck@intel.com
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200508232059.j7NKx3nM025339@agluck-lia64.sc.intel.com>
+To:	git@vger.kernel.org
+Subject: "git checkout" says Entry blah would be overwritten by merge ...
+X-Scanned-By: MIMEDefang 2.44
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.0.4
+Lines: 61
+Xref: brand.scrye.com linux.git:7659
+
+I'm a little closer to understanding how I got into the situation
+where I made that ugly commit last week that included 10 files that
+I didn't want, because I just had another failed merge (but this
+time I know how to recover :).
+
+The approximate sequence of events was:
+
+SGI told me one of the pending fixes in my test tree was causing
+an oops during boot on a whole class of machines.  They asked whether
+it could get into 2.6.13.  I agreed it was a good candidate, and ran
+my script to pull it from its temporary branch (named prarit-bus-sysdata
+in this case) into my release branch.  The script is trivial after the
+argument sanity checks it just does:
+
+ $ git checkout release && git resolve release prarit-bus-sysdata "Pull prarit-bus-sysdata into release branch"
+
+Only one file was touched by this:
+  arch/ia64/sn/kernel/io_init.c
+
+I think that this would have gone through a non-trivial merge as this file
+had subsequently been touched by another patch, but the merge did complete
+automatically.
+
+Next I pushed the release branch up to kernel.org, asked Linus to pull.
+
+I then applied a totally independent patch to a new branch, pulled it
+to the test branch, and pushed to kernel.org ... net effect was that
+my tree ended up in "git checkout test" state.
+
+Later I noticed that Linus had pulled from my tree (and from other
+trees too), so I pulled his latest tree down from kernel.org using:
+
+  $ git checkout linus && git pull linus
+
+Then I tried to update my test branch with these changes using:
+
+  $ git checkout test && git resolve test linus "Auto-update from upstream"
+
+This spat out these messages:
+
+fatal: Entry 'arch/ia64/sn/kernel/io_init.c' would be overwritten by merge. Cannot merge.
+Trying to merge 8065e2... into cde7fe...
+fatal: Entry 'arch/ia64/hp/sim/boot/boot_head.S' would be overwritten by merge. Cannot merge.
+
+There is one obvious bug here: "git checkout test" failed with the first error (from
+its invocation of git-read-tree) ... but returned an exit status of 0, so my
+script went ahead and tried to do the resolve, which the && should have
+prevented.
+
+The less obvious (i.e. I have no clue what I did wrong) thing is why the
+"git checkout" had a problem with this file.  Yes, it had been touched
+earlier ... but in a way that should have left the index up to date. And
+two subsequent "git checkout" commands had switched first to the test
+branch, and then to the linus branch without a complaint.
+
+-Tony
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

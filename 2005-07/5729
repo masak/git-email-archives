@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul  6 20:45:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0ED4D1756B7
+	for <tkil@scrye.com>; Wed,  6 Jul 2005 20:45:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262273AbVGGCnC (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 6 Jul 2005 22:43:02 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262145AbVGGCkh
+	(ORCPT <rfc822;git-outgoing>); Wed, 6 Jul 2005 22:40:37 -0400
+Received: from 203-217-64-103.dyn.iinet.net.au ([203.217.64.103]:39811 "HELO
+	blackcubes.dyndns.org") by vger.kernel.org with SMTP
+	id S262218AbVGGCit (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 6 Jul 2005 22:38:49 -0400
+Received: (qmail 12929 invoked by uid 500); 7 Jul 2005 02:38:44 -0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050707023844.12919.qmail@blackcubes.dyndns.org>
+Date:	Thu, 07 Jul 2005 12:38:44 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+To: git@vger.kernel.org
+Cc: torvalds@osdl.org, jon.seymour@gmail.com
+Subject: [PATCH 1/2] Add test case that shows --topo-order, --max-age break
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 48
+Xref: brand.scrye.com linux.git:5729
+
+
+Uncommented a test case that shows a --topo-order, --max-age break.
+
+A subsequent patch witll fix this defect
+
+Signed-off-by: Jon Seymour <jon.seymour@gmail.com>
+---
+
+ t/t6003-rev-list-topo-order.sh |   20 ++++++++++----------
+ 1 files changed, 10 insertions(+), 10 deletions(-)
+
+9b43fa5416abe653fd900abe491a38c5ec919758
+diff --git a/t/t6003-rev-list-topo-order.sh b/t/t6003-rev-list-topo-order.sh
+--- a/t/t6003-rev-list-topo-order.sh
++++ b/t/t6003-rev-list-topo-order.sh
+@@ -289,16 +289,16 @@ EOF
+ #
+ # this test fails on --topo-order - a fix is required
+ #
+-#test_output_expect_success '--max-age=c3, --topo-order' "git-rev-list --topo-order --max-age=$(commit_date c3) l5" <<EOF
+-#l5
+-#l4
+-#l3
+-#a4
+-#c3
+-#b4
+-#a3
+-#a2
+-#EOF
++test_output_expect_success '--max-age=c3, --topo-order' "git-rev-list --topo-order --max-age=$(commit_date c3) l5" <<EOF
++l5
++l4
++l3
++a4
++c3
++b4
++a3
++a2
++EOF
+ 
+ test_output_expect_success 'one specified head reachable from another a4, c3, --topo-order' "list_duplicates git-rev-list --topo-order a4 c3" <<EOF
+ EOF
+------------
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

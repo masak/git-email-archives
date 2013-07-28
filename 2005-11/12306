@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 18:22:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 072CC217EA1
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 18:22:16 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161086AbVKSBVS (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 20:21:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030271AbVKSBVS
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 20:21:18 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:52727 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1030266AbVKSBVR (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 20:21:17 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051119012042.ZUVU6244.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 18 Nov 2005 20:20:42 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	git@vger.kernel.org
+Subject: Re: [RFC] Applying a graft to a tree and "rippling" the changes through
+References: <20051117230723.GD26122@nowhere.earth> <437DDDB1.60103@b-i-t.de>
+	<Pine.LNX.4.64.0511180915560.13959@g5.osdl.org>
+	<7v3bltea1t.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0511181705390.13959@g5.osdl.org>
+Date:	Fri, 18 Nov 2005 17:21:16 -0800
+In-Reply-To: <Pine.LNX.4.64.0511181705390.13959@g5.osdl.org> (Linus Torvalds's
+	message of "Fri, 18 Nov 2005 17:07:38 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr79dcu0j.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12306
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> I'm not convinced we ever really _need_ a pure "tree-to-tree" thing, 
+> although you can always do that by creating an extra commit with no parent 
+> and thus no history ;)
+
+Nah, it is more like a commit object that records its tree and
+another tree as its parent ;-).
+
+I do not think tree-to-tree thing is very useful and that is
+what I meant to say by "tree-to-tree is still stronger than
+necessary".
+
+What is recorded as a "change" by darcs feels more like "This
+makes it to do Y instead of doing X", and it is not about
+tree-to-tree.  I know David Roundy is lurking on this list;
+David, do you have any comment on this?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

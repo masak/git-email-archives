@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 13:34:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 531E9728D6
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 13:34:22 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030492AbVKPUeI (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 15:34:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030493AbVKPUeI
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 15:34:08 -0500
+Received: from 195.37.26.69.virtela.com ([69.26.37.195]:7431 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S1030492AbVKPUeH (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 15:34:07 -0500
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id jAGKXZ9J008007;
+	Wed, 16 Nov 2005 12:33:35 -0800
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id jAGKXYab008005;
+	Wed, 16 Nov 2005 12:33:34 -0800
+Date:	Wed, 16 Nov 2005 12:33:34 -0800
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Andrew Wozniak <awozniak@mc.com>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: recent patch breaks the build ?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051116203334.GA3968@reactrix.com>
+References: <437B6997.8010903@mc.com> <7v64qs8kuo.fsf@assigned-by-dhcp.cox.net> <437B8CEC.8040002@mc.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <437B8CEC.8040002@mc.com>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12044
+
+On Wed, Nov 16, 2005 at 02:47:56PM -0500, Andrew Wozniak wrote:
+
+> Unfortunately, now there are other failures:
+> 
+> gcc -o http-push.o -c -g -O2 -Wall -DSHA1_HEADER='<openssl/sha.h>'
+> http-push.c
+> http-push.c: In function `start_mkcol':
+> http-push.c:479: `CURLOPT_HTTPGET' undeclared (first use in this
+> function)
+
+http-push requires a curl option that looks like it was added around
+version 7.8.1.  If you have the option to upgrade your version of curl,
+it should fix the problem.  You can also disable building http-push but
+keep http-fetch by defining NO_EXPAT.
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 21:20:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BAEE326D6DB
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 21:20:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030409AbVLWEUR (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 23:20:17 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030410AbVLWEUQ
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 23:20:16 -0500
+Received: from mtai02.charter.net ([209.225.8.182]:34737 "EHLO
+	mtai02.charter.net") by vger.kernel.org with ESMTP id S1030409AbVLWEUP
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 22 Dec 2005 23:20:15 -0500
+Received: from mxip36-10.charter.net ([10.20.203.76]) by mtai02.charter.net
+          (InterMail vM.6.01.05.04 201-2131-123-105-20051025) with ESMTP
+          id <20051223042014.DQZD3855.mtai02.charter.net@mxip36-10.charter.net>
+          for <git@vger.kernel.org>; Thu, 22 Dec 2005 23:20:14 -0500
+Received: from 24-183-46-83.dhcp.mdsn.wi.charter.com (HELO turnip.jamponi.pvt) ([24.183.46.83])
+  by mxip36-10.charter.net with ESMTP; 22 Dec 2005 23:20:14 -0500
+X-BrightmailFiltered: true
+X-Brightmail-Tracker: AAAAAQAAA+k=
+Received: by turnip.jamponi.pvt (Postfix, from userid 1000)
+	id 2FA8FC092; Thu, 22 Dec 2005 22:20:13 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+	by turnip.jamponi.pvt (Postfix) with ESMTP id 1EBFCC091
+	for <git@vger.kernel.org>; Thu, 22 Dec 2005 22:20:13 -0600 (CST)
+Date:	Thu, 22 Dec 2005 22:20:13 -0600 (CST)
+From:	Jon Nelson <jnelson-git@jamponi.net>
+To:	git@vger.kernel.org
+Subject: git-checkout and SUBDIRECTORY_OK='Yes'
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512222217040.6812@gheavc.wnzcbav.cig>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 11
+Xref: brand.scrye.com linux.git:13974
+
+
+Is it safe to set SUBDIRECTORY_OK='Yes' in git-checkout.sh?
+What about the other *.sh that don't already set it?
+
+--
+Jon Nelson <jnelson-git@jamponi.net>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

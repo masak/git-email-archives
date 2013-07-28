@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 14 11:18:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 18954FC37A
+	for <tkil@scrye.com>; Sat, 14 May 2005 11:18:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262804AbVENRSH (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 14 May 2005 13:18:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262806AbVENRSH
+	(ORCPT <rfc822;git-outgoing>); Sat, 14 May 2005 13:18:07 -0400
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:60612 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S262804AbVENRSF (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 14 May 2005 13:18:05 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050514171802.TTXR20235.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 14 May 2005 13:18:02 -0400
+To: Petr Baudis <pasky@ucw.cz>
+Cc: junkio@cox.net, git@vger.kernel.org
+Subject: Re: Test scripts naming
+References: <20050514165321.GX3905@pasky.ji.cz>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Sat, 14 May 2005 10:18:02 -0700
+In-Reply-To: <20050514165321.GX3905@pasky.ji.cz> (Petr Baudis's message of
+ "Sat, 14 May 2005 18:53:21 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3bspzpyt.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:3307
+
+>>>>> "PB" == Petr Baudis <pasky@ucw.cz> writes:
+
+PB>   I'd propose:
+PB> ...
+PB> t0500-ls-files.sh       -> t3010-ls-files-killed.sh
+
+Agreed to all of the above.  I will not be online most of today
+so if you feel like it, I'd really appreciate it if you do the
+renames and documentation yourself without waiting for me.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

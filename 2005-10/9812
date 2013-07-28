@@ -1,0 +1,119 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct  7 16:02:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 57EFBAE3F2
+	for <tkil@scrye.com>; Fri,  7 Oct 2005 16:02:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030465AbVJGWB7 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 7 Oct 2005 18:01:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932678AbVJGWB7
+	(ORCPT <rfc822;git-outgoing>); Fri, 7 Oct 2005 18:01:59 -0400
+Received: from 195.37.26.69.virtela.com ([69.26.37.195]:31914 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S932677AbVJGWB6 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 7 Oct 2005 18:01:58 -0400
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id j97M1qOc014211
+	for <git@vger.kernel.org>; Fri, 7 Oct 2005 15:01:52 -0700
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id j97M1pCD014209
+	for git@vger.kernel.org; Fri, 7 Oct 2005 15:01:51 -0700
+Date:	Fri, 7 Oct 2005 15:01:51 -0700
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	git@vger.kernel.org
+Subject: [PATCH] Don't fetch objects that exist in the local repository
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051007220151.GB4989@reactrix.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 77
+Xref: brand.scrye.com linux.git:9812
+
+Be sure not to fetch objects that already exist in the local repository.
+The main process loop no longer performs this check, http-fetch now checks
+prior to starting a new request queue entry and when fetch_object() is called,
+and local-fetch now checks when fetch_object() is called.
+
+As discussed in this thread: http://marc.theaimsgroup.com/?t=112854890500001
+
+Signed-off-by: Nick Hengeveld <nickh@reactrix.com>
+
+
+---
+
+ fetch.c       |    2 +-
+ http-fetch.c  |   10 +++++++++-
+ local-fetch.c |    5 ++++-
+ 3 files changed, 14 insertions(+), 3 deletions(-)
+
+41b78748fe458224fc1d621f5f0a4df2a3ac3253
+diff --git a/fetch.c b/fetch.c
+--- a/fetch.c
++++ b/fetch.c
+@@ -165,7 +165,7 @@ static int loop(void)
+ 		 * the queue because we needed to fetch it first.
+ 		 */
+ 		if (! (obj->flags & TO_SCAN)) {
+-			if (!has_sha1_file(obj->sha1) && fetch(obj->sha1)) {
++			if (fetch(obj->sha1)) {
+ 				report_missing(obj->type
+ 					       ? obj->type
+ 					       : "object", obj->sha1);
+diff --git a/http-fetch.c b/http-fetch.c
+--- a/http-fetch.c
++++ b/http-fetch.c
+@@ -489,7 +489,10 @@ void process_request_queue()
+ 
+ 	while (active_requests < max_requests && request != NULL) {
+ 		if (request->state == WAITING) {
+-			start_request(request);
++			if (has_sha1_file(request->sha1))
++				release_request(request);
++			else
++				start_request(request);
+ 			curl_multi_perform(curlm, &num_transfers);
+ 		}
+ 		request = request->next;
+@@ -890,6 +893,11 @@ static int fetch_object(struct alt_base 
+ 	if (request == NULL)
+ 		return error("Couldn't find request for %s in the queue", hex);
+ 
++	if (has_sha1_file(request->sha1)) {
++		release_request(request);
++		return 0;
++	}
++
+ #ifdef USE_CURL_MULTI
+ 	int num_transfers;
+ 	while (request->state == WAITING) {
+diff --git a/local-fetch.c b/local-fetch.c
+--- a/local-fetch.c
++++ b/local-fetch.c
+@@ -166,7 +166,10 @@ static int fetch_file(const unsigned cha
+ 
+ int fetch(unsigned char *sha1)
+ {
+-	return fetch_file(sha1) && fetch_pack(sha1);
++	if (has_sha1_file(sha1))
++		return 0;
++	else
++		return fetch_file(sha1) && fetch_pack(sha1);
+ }
+ 
+ int fetch_ref(char *ref, unsigned char *sha1)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov  3 17:43:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DFFFD2898D1
+	for <tkil@scrye.com>; Thu,  3 Nov 2005 17:43:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161008AbVKDAl6 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 3 Nov 2005 19:41:58 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161002AbVKDAl6
+	(ORCPT <rfc822;git-outgoing>); Thu, 3 Nov 2005 19:41:58 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:43744 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1161008AbVKDAl5 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 3 Nov 2005 19:41:57 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 87FDD13F169; Fri,  4 Nov 2005 01:41:56 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6AFA4B4FF0; Fri,  4 Nov 2005 01:41:56 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4A48759CA8; Fri,  4 Nov 2005 01:41:56 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 1CB9E13F169; Fri,  4 Nov 2005 01:41:56 +0100 (CET)
+Date:	Fri, 4 Nov 2005 01:41:56 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Alan Chandler <alan@chandlerfamily.org.uk>
+Cc:	git@vger.kernel.org
+Subject: Re: little conundrum
+In-Reply-To: <200511032202.18900.alan@chandlerfamily.org.uk>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511040141100.6044@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <200511031741.20496.alan@chandlerfamily.org.uk>
+ <Pine.LNX.4.63.0511031845410.3435@wbgn013.biozentrum.uni-wuerzburg.de>
+ <200511032202.18900.alan@chandlerfamily.org.uk>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:11103
+
+Hi,
+
+On Thu, 3 Nov 2005, Alan Chandler wrote:
+
+> Also untested, but what about removing the files from the index that 
+> aren't in the working directory?
+
+IIRC "git-commit -a" includes "git-update-index --remove".
+
+Hth,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

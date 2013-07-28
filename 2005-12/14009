@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec 24 05:10:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2B00180CD4
+	for <tkil@scrye.com>; Sat, 24 Dec 2005 05:10:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932517AbVLXMKJ (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 24 Dec 2005 07:10:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932518AbVLXMKJ
+	(ORCPT <rfc822;git-outgoing>); Sat, 24 Dec 2005 07:10:09 -0500
+Received: from hand.yhbt.net ([66.150.188.102]:26755 "EHLO mail.yhbt.net")
+	by vger.kernel.org with ESMTP id S932517AbVLXMKI (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 24 Dec 2005 07:10:08 -0500
+Received: by mail.yhbt.net (Postfix, from userid 500)
+	id 57B867DC005; Sat, 24 Dec 2005 04:10:07 -0800 (PST)
+Date:	Sat, 24 Dec 2005 04:10:07 -0800
+From:	Eric Wong <normalperson@yhbt.net>
+To:	git list <git@vger.kernel.org>
+Subject: [PATCH 0/4] dietlibc compatibility
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051224121007.GA19136@mail.yhbt.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:14009
+
+I've started statically-linking git binaries against dietlibc to avoid
+having to recompile it for every machine/distro and chroot (lots!) I
+would use it in.
+
+For building git (on a Debian unstable system with dietlibc-dev),
+I used the following make vars:
+
+	CC=diet -v gcc
+	NO_STRCASESTR=YesPlease
+	NO_SETENV=YesPlease
+
+The dietlibc setenv() doesn't seem very nice to **envp in git.c,
+resulting in $PATH being clobbered when it runs execve().  This
+caused tests to fail.  Fortunately, gitsetenv() saved the day.
+
+The following patches fix other issues I had with dietlibc.
+
+-- 
+Eric Wong
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 31 20:21:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 06CB927BFE8
+	for <tkil@scrye.com>; Wed, 31 Aug 2005 20:21:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965021AbVIACVI (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 31 Aug 2005 22:21:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965031AbVIACVI
+	(ORCPT <rfc822;git-outgoing>); Wed, 31 Aug 2005 22:21:08 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:26043 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S965021AbVIACVH (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 31 Aug 2005 22:21:07 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050901022102.KQIO8185.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 31 Aug 2005 22:21:02 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Stephen Rothwell <git@ozlabs.org>
+Subject: Re: bug in git-fsck-cache?
+References: <20050831161529.327a7957.git@ozlabs.org>
+	<7v4q959857.fsf@assigned-by-dhcp.cox.net>
+	<20050901120226.54547107.git@ozlabs.org>
+cc:	git@vger.kernel.org
+Date:	Wed, 31 Aug 2005 19:21:02 -0700
+In-Reply-To: <20050901120226.54547107.git@ozlabs.org> (Stephen Rothwell's
+	message of "Thu, 1 Sep 2005 12:02:26 +1000")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vacix5y0h.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:7980
+
+Stephen Rothwell <git@ozlabs.org> writes:
+
+>> Stephen Rothwell <git@ozlabs.org> writes:
+>> 
+>> > The commit c594adad5653491813959277fb87a2fef54c4e05 is shown as
+>> > "connected" (in Linus' tree, not one of my patches) by gitk, so I am happy
+>> > that git prune did not get rid of it, but why does fsck-cache report it as
+>> > dangling?
+>> 
+>> Hmph.  You ran fsck-cache by hand without --full (i.e. you told
+>> it not to worry about objects already in packs); 'git prune'
+>> runs it with '--full' to do the full connectivity analysis.  I
+>> think that's where the difference comes from.
+>
+> ok, with '--full' nothing gets reported as dangling.  That commit is not
+> in a pack, but is in an object directory referenced through
+> objects/info/alternates.
+
+Ahh.  Yes, it is the same thing.  I said "not in the pack", but I
+should have said "exists locally unpacked".
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

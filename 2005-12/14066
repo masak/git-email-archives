@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 27 07:01:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 38FD42A8DAF
+	for <tkil@scrye.com>; Tue, 27 Dec 2005 07:01:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932309AbVL0OBl (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 27 Dec 2005 09:01:41 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932314AbVL0OBl
+	(ORCPT <rfc822;git-outgoing>); Tue, 27 Dec 2005 09:01:41 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:32723 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932309AbVL0OBl (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 27 Dec 2005 09:01:41 -0500
+Received: from amavis.mail (amavis1.rz.uni-wuerzburg.de [132.187.3.46])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 44DAB1415B2; Tue, 27 Dec 2005 15:01:40 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by amavis.mail (Postfix) with ESMTP id 38F2D3430;
+	Tue, 27 Dec 2005 15:01:40 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by amavis.mail (Postfix) with ESMTP id 1CF5387A;
+	Tue, 27 Dec 2005 15:01:40 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0787E1415B6; Tue, 27 Dec 2005 15:01:40 +0100 (CET)
+Date:	Tue, 27 Dec 2005 15:01:40 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Do not allow git-init-db to be called twice in the same
+ directory
+In-Reply-To: <7vbqz3ibhn.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512271457200.17086@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0512270053030.14928@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vbqz3ibhn.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new at uni-wuerzburg.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:14066
+
+Hi,
+
+On Mon, 26 Dec 2005, Junio C Hamano wrote:
+
+> Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+> 
+> > t5300 is also adapted, since it relies heavily on init-db not complaining 
+> > when $GIT_DIR already exists.
+> 
+> I think it tries not to overwrite things that are already there
+> and is meant to be safe to run in an already populated
+> repository; e.g. you should be able to use it to pick up newly
+> added templates.
+
+Ah, that is a use case I missed. I don't work too much with templates 
+(only on the shared repositories' machine)...
+
+> Is there a particular reason running the current init-db twice
+> is undesirable?
+
+In my case, yes. When I do that, it means that I did not correctly 
+change directories. I fscked up my private git repository twice that way.
+
+I like your point, though.
+
+Ciao,
+Dscho
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

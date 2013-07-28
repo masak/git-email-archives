@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 05:57:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DC6B81C3FD6
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 05:57:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262087AbVD1L5H (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 07:57:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262088AbVD1L5H
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 07:57:07 -0400
+Received: from cantor.suse.de ([195.135.220.2]:65505 "EHLO mx1.suse.de")
+	by vger.kernel.org with ESMTP id S262087AbVD1L5D (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Apr 2005 07:57:03 -0400
+Received: from extimap.suse.de (extimap.suse.de [195.135.220.6])
+	(using TLSv1 with cipher EDH-RSA-DES-CBC3-SHA (168/168 bits))
+	(No client certificate requested)
+	by mx1.suse.de (Postfix) with ESMTP id B9157160DA76;
+	Thu, 28 Apr 2005 13:57:02 +0200 (CEST)
+From: Chris Mason <mason@suse.com>
+To: simon@dreamcraft.com.au
+Subject: Re: Finding file revisions
+Date:	Thu, 28 Apr 2005 07:56:57 -0400
+User-Agent: KMail/1.8
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+References: <200504271251.00635.mason@suse.com> <200504271831.47830.mason@suse.com> <20050428084156.GK17682@himi.org>
+In-Reply-To: <20050428084156.GK17682@himi.org>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200504280756.58293.mason@suse.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 37
+Xref: brand.scrye.com linux.git:2005
+
+On Thursday 28 April 2005 04:41, Simon Fowler wrote:
+> I've got a version of this written in C that I've been working on
+> for a bit - some example output:
+>
+> +040000 tree    bfb75011c32589b282dd9c86621dadb0f0bb3866        ppc
+> +100644 blob    5ba4fc5259b063dab6417c142938d987ee894fc0        ppc/sha1.c
+> +100644 blob    c3c51aa4d487f2e85c02b0257c1f0b57d6158d76        ppc/sha1.h
+> +100644 blob    e85611a4ef0598f45911357d0d2f1fc354039de4       
+> ppc/sha1ppc.S commit
+> b5af9107270171b79d46b099ee0b198e653f3a24->a6ef3518f9ac8a1c46a36c8d27173b1f7
+>3d839c4
+>
+> You run it as:
+> find-changes commit_id file_prefix ...
+>
+> The file_prefix is a path prefix to match - it's not as flexible as
+> regexes, but it shouldn't be too much less useful.
+
+I dropped the regexes for speed with diff-tree, they weren't that important to 
+me...The features I was going for are:
+
+1) ability to see the changeset comments in the output.
+2) ability to look for revs on more than one file at a time.  The single file 
+limit in bk revtool always bugged me.
+3) Some quick cut n' paste method to generate the changeset diff.  This is why 
+I do diff-tree -r in the output, so I can just copy into a different window 
+and go.
+
+Your c version would hopefully end up faster on cpu time by limiting the 
+number of times we read/decompress the commit files.
+
+-chris
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

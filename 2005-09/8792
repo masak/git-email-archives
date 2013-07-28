@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 12:09:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2490D17D3D6
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 12:09:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932150AbVIRSJE (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 14:09:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932151AbVIRSJE
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 14:09:04 -0400
+Received: from ebar091.ebar.dtu.dk ([192.38.93.106]:60355 "HELO
+	ebar091.ebar.dtu.dk") by vger.kernel.org with SMTP id S932150AbVIRSJC
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Sep 2005 14:09:02 -0400
+Received: (qmail 10486 invoked by uid 5842); 18 Sep 2005 17:58:50 -0000
+From:	"Peter Eriksen" <s022018@student.dtu.dk>
+Date:	Sun, 18 Sep 2005 19:58:50 +0200
+To:	git@vger.kernel.org
+Subject: Re: Unexpected behavior in git-rev-list
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050918175847.GA10427@ebar091.ebar.dtu.dk>
+Mail-Followup-To: git@vger.kernel.org
+References: <20050918144931.GA9561@ebar091.ebar.dtu.dk> <Pine.LNX.4.58.0509181013250.26803@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0509181013250.26803@g5.osdl.org>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 42
+Xref: brand.scrye.com linux.git:8792
+
+On Sun, Sep 18, 2005 at 10:18:10AM -0700, Linus Torvalds wrote:
+> 
+> 
+> On Sun, 18 Sep 2005, Peter Eriksen wrote:
+> > 
+> > There's something I don't quite understand about git-rev-list.
+> > After adding two files only one shows up with the --objects option.
+...
+> Well, it looks like some other file has _exactly_ the same contents as the 
+> new "Dependencies", which means that git notices that the blob isn't 
+> actually new.
+> 
+> Which doesn't surprise me at all - you've got a lot of projects there that 
+> seem to have a Dependencies thing. Why wouldn't some other project have 
+> the exact same ones?
+
+Ah!  You are right, there is a Dependencies file in each of the 1000+
+directories and they are generated from almost the same setup, so it
+must be that there is another one like the one, I just commited.  That
+explains it.  Now I will try to see, if I actually can get the effect I
+expected somehow. :-) 
+
+So my new challenge to myself: Given two commit objects A and B list all
+the tree and blob objects which are not in both A and B. 
+
+After that I think writing a command which does the same as 
+'cvs annotate' would be a good exercise.
+
+Thanks for the explanation.
+
+Regards,
+
+Peter
+
+
+P.S.
+I'm on the list, so it's not necessary to cc me. 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

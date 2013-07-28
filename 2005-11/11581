@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 05:05:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 947F02851FA
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 05:05:57 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750738AbVKKME4 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 07:04:56 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750747AbVKKME4
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 07:04:56 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:173 "EHLO smtp-gw1.op5.se")
+	by vger.kernel.org with ESMTP id S1750738AbVKKMEz (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 11 Nov 2005 07:04:55 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 8F8F36BD20
+	for <git@vger.kernel.org>; Fri, 11 Nov 2005 13:04:54 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437488E6.2050100@op5.se>
+Date:	Fri, 11 Nov 2005 13:04:54 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] C implementation of the 'git' program.
+References: <20051110182631.3C5615BF90@nox.op5.se>	<m3lkzv4qnz.fsf@harinath.blr.novell.com> <7vveyzskdk.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vveyzskdk.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:11581
+
+Junio C Hamano wrote:
+> Raja R Harinath <rharinath@novell.com> writes:
+> 
+> 
+>>This is bad, since it does the wrong thing for the correct way:
+>>
+>>  make prefix=/usr
+>>  sudo make prefix=/usr install
+>>
+>>With your patch 'git' will be compiled as root.
+> 
+> 
+> You are correct.
+> 
+> We should allow building as user and installing as root, with
+> the installation step _not_ touching the build directory at all.
+
+Sane point. This doesn't work without a ./configure script or some such 
+though (something external to the Makefile that updates a config-file of 
+some sort), as
+
+make
+(make finishes, user remembers he/she must use prefix= to install somewhere)
+make prefix=/usr
+
+wouldn't rebuild git so binaries produced would still try to use 
+$HOME/bin for libdir. Granted, it's easy enough to do 'touch git.c' 
+before rebuilding, but it's not exactly intuitive.
+
+I'll hack up a configure-script if that's alright. It should be fairly 
+short and just define the GIT_VERSION and GIT_LIBDIR macros.
+
+I imagine this can be done through the config.mak file, included from 
+221 in Makefile, supposing it's forcibly included rather than just if it 
+exists, and we'll have the 'git:' target depend on it. I think this is 
+the least intrusive change. OTOH, it might not be bad to move some of 
+the uname_? logic to a shell-script (and have all targets depend on 
+config.mak).
+
+Thoughts? I've got a feeling I've overlooked something here.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

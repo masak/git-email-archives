@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 15:45:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 57CE523E08E
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 15:45:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751273AbVKFWoY (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 17:44:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751268AbVKFWoY
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 17:44:24 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:12965 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751262AbVKFWoX (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 6 Nov 2005 17:44:23 -0500
+Received: (qmail 23152 invoked by uid 2001); 6 Nov 2005 23:44:22 +0100
+Date:	Sun, 6 Nov 2005 23:44:22 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Fix empty line processing in git-shortlog.perl
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051106224422.GQ1431@pasky.or.cz>
+References: <20051106224218.22797.97260.stgit@machine.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051106224218.22797.97260.stgit@machine.or.cz>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:11227
+
+Dear diary, on Sun, Nov 06, 2005 at 11:42:18PM CET, I got a letter
+where Petr Baudis <pasky@suse.cz> told me that...
+> diff --git a/git-shortlog.perl b/git-shortlog.perl
+> index 0b14f83..7283159 100755
+> --- a/git-shortlog.perl
+> +++ b/git-shortlog.perl
+> @@ -94,7 +94,7 @@ sub changelog_input {
+>  
+>  		# skip to non-blank line
+>  		elsif ($pstate == 3) {
+> -			next unless /^\s*?(.*)/;
+> +			next unless /^\s*?(\S.*)$/;
+>  
+>  			# skip lines that are obviously not
+>  			# a 1-line cset description
+> 
+
+Whoops, the ? was not part of the original regexp and is obviously
+useless. Well, I don't think it really matters, so it is up to you...
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

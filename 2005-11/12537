@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 06:55:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 405292851FC
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 06:55:13 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964938AbVKVNyY (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 08:54:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964932AbVKVNyY
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 08:54:24 -0500
+Received: from serice.org ([206.123.107.184]:37390 "EHLO serice.org")
+	by vger.kernel.org with ESMTP id S964938AbVKVNyX (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 22 Nov 2005 08:54:23 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by serice.org (Postfix) with ESMTP id 341B658230
+	for <git@vger.kernel.org>; Tue, 22 Nov 2005 07:54:23 -0600 (CST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4383230F.7060007@serice.net>
+Date:	Tue, 22 Nov 2005 07:54:23 -0600
+From:	Paul Serice <paul@serice.net>
+User-Agent: Thunderbird 1.5 (X11/20051025)
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: [PATCH] Fixed git:// IPv4 address problem when compiled with -DNO_IPV6.
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:12537
+
+Failure to dereference a pointer caused incorrect initialization of
+the IPv4 address when calling connect() when compiled with -DNO_IPV6.
+
+With this patch and yesterday's patch for git-daemon, it should now be
+possible to use the native git protocol for both the client and server
+on Cygwin.
+
+Signed-off-by: Paul Serice <paul@serice.net>
+
+
+---
+
+ connect.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+applies-to: 5bc7f67c535dbbbb9340285c82226a8dd6e4afec
+b16765657940be2f4d14e8f1e65d35e4b32bea0f
+diff --git a/connect.c b/connect.c
+index 7a417e5..93f6f80 100644
+--- a/connect.c
++++ b/connect.c
+@@ -427,7 +427,7 @@ static int git_tcp_connect(int fd[2], co
+ 		memset(&sa, 0, sizeof sa);
+ 		sa.sin_family = he->h_addrtype;
+ 		sa.sin_port = htons(nport);
+-		memcpy(&sa.sin_addr, ap, he->h_length);
++		memcpy(&sa.sin_addr, *ap, he->h_length);
+ 
+ 		if (connect(sockfd, (struct sockaddr *)&sa, sizeof sa) < 0) {
+ 			close(sockfd);
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

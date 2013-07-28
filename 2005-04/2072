@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 15:53:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A43F7170C10
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 15:53:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262269AbVD1VxJ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 17:53:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262272AbVD1VxJ
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 17:53:09 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:22429 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S262269AbVD1VxD
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 28 Apr 2005 17:53:03 -0400
+Received: from [172.27.0.18] (c-67-169-23-106.hsd1.ca.comcast.net [67.169.23.106])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j3SLqn4p024182
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 28 Apr 2005 14:52:49 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42715B30.6010705@zytor.com>
+Date:	Thu, 28 Apr 2005 14:52:48 -0700
+From: "H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Linus Torvalds <torvalds@osdl.org>, Petr Baudis <pasky@ucw.cz>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: kernel.org now has gitweb installed
+References: <42703E79.8050808@zytor.com>	 <1114673723.12012.324.camel@baythorne.infradead.org>	 <20050428081005.GG8612@pasky.ji.cz>	 <1114676955.12012.346.camel@baythorne.infradead.org>	 <1114680199.12012.363.camel@baythorne.infradead.org>	 <Pine.LNX.4.58.0504281149330.18901@ppc970.osdl.org> <1114723214.2734.9.camel@localhost.localdomain>
+In-Reply-To: <1114723214.2734.9.camel@localhost.localdomain>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 33
+Xref: brand.scrye.com linux.git:2072
+
+David Woodhouse wrote:
+> 
+> Hmm, that's true; albeit unfortunate. 
+> 
+> Still, using the date isn't any better. It'll give results which are
+> about as random as just sorting by the sha1 of each parent.
+> 
+> Yes, the ordering of the parents in a merge is probably meaningless in
+> the general case, but so is the date.
+> 
+> The best we could probably do, from a theoretical standpoint, is to look
+> at the paths via each parent to a common ancestor, and look at how many
+> of the commits on each path were done by the same committer. Even that
+> isn't ideal, and it's probably fairly expensive -- but it's pointless to
+> pretend we can infer anything from _either_ the dates or the ordering of
+> the parents in a merge.
+> 
+
+I thought about this for a few seconds (I really should do that more 
+often...) and realized what it is you want: you want a primary search 
+criterion which is "when did event X become visible to me", where "me" 
+in this case is the web tool.  That is not repository information, but 
+it is perfectly possible for the webtool to be aware of what it has 
+previously seen and when.
+
+And yes, this ordering is clearly different for each observer.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

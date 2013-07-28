@@ -1,0 +1,100 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun  6 07:30:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D6E6727B008
+	for <tkil@scrye.com>; Mon,  6 Jun 2005 07:30:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261449AbVFFN3l (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 6 Jun 2005 09:29:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261484AbVFFN3g
+	(ORCPT <rfc822;git-outgoing>); Mon, 6 Jun 2005 09:29:36 -0400
+Received: from mail.timesys.com ([65.117.135.102]:38890 "EHLO
+	exchange.timesys.com") by vger.kernel.org with ESMTP
+	id S261449AbVFFN3P (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 6 Jun 2005 09:29:15 -0400
+X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
+Received:  from jmcmullan by owa.timesys.com; 06 Jun 2005 09:29:10 -0400
+Content-Type: multipart/signed;
+	boundary="=-8uRQSm5RzcaLqrXWqkEr";
+	micalg=pgp-sha1;
+	protocol="application/pgp-signature"
+In-Reply-To: <7vzmu4weod.fsf@assigned-by-dhcp.cox.net>
+Date:	Mon, 06 Jun 2005 09:29:09 -0400
+References: <7voeak1o0q.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0506051509490.1876@ppc970.osdl.org> <7vk6l8xue5.fsf_-_@assigned-by-dhcp.cox.net> <7vzmu4weod.fsf@assigned-by-dhcp.cox.net>
+X-Mailer: Evolution 2.0.4-3mdk 
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <1118064550.8970.29.camel@jmcmullan.timesys>
+Content-Class: urn:content-classes:message
+MIME-Version: 1.0
+Subject: Re: Last mile for 1.0
+X-Mailer: Evolution 2.0.4-3mdk 
+Date:	Mon, 6 Jun 2005 09:22:11 -0400
+Message-ID: <1118064550.8970.29.camel@jmcmullan.timesys>
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+Thread-Topic: Last mile for 1.0
+thread-index: AcVqmr7leQiejFpkRsGLOtGncXb0eA==
+From: "McMullan, Jason" <jason.mcmullan@timesys.com>
+To: "Junio C Hamano" <junkio@cox.net>
+Cc: "GIT Mailling list" <git@vger.kernel.org>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00,INVALID_DATE 
+	autolearn=no version=3.0.3
+Lines: 49
+Xref: brand.scrye.com linux.git:4618
+
+
+--=-8uRQSm5RzcaLqrXWqkEr
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, 2005-06-05 at 16:45 -0700, Junio C Hamano wrote:
+> I did not mention git-sync by Jason McMullan on my list of "what
+> I want to have in 1.0", but that was not because I object to the
+> idea of having a sync mechanism that knows and takes advantage
+> of how GIT works.  Quite the contrary.
+>=20
+> [snip snip]
+>
+> I just do not feel, judging from its current protocol command
+> set, it offers enough improvements over what git-ssh-push/pull
+> pairs already give us; I'd be happy to be corrected, of course,
+> if this is a misconception.
+
+Oh, I definitely agree. git-sync is *not* 1.0 material. The protocol
+and feature set are still being worked on, and git-ssh-* may even
+be a better fix than git-sync for many scenarios.
+
+What I *do* want to get into git 1.0 is a merge of git-sync's=20
+verify-before-write update semantics into pull.c. I should be
+able to get that to you before tomorrow.
+
+--=20
+Jason McMullan <jason.mcmullan@timesys.com>
+TimeSys Corporation
+
+
+--=-8uRQSm5RzcaLqrXWqkEr
+Content-Type: application/pgp-signature; name=signature.asc
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQBCpE+l8/0vJ5szK6kRAsHsAJ9OKUUBVHbWIDPfTuSo36EQOrGkXQCglFmE
+1pU6wuIzutw6J0km3Vjw1y4=
+=qydD
+-----END PGP SIGNATURE-----
+
+--=-8uRQSm5RzcaLqrXWqkEr--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

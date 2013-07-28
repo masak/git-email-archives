@@ -1,0 +1,109 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 28 10:46:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2362F189AD4
+	for <tkil@scrye.com>; Fri, 28 Oct 2005 10:46:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030247AbVJ1QqK (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 28 Oct 2005 12:46:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030249AbVJ1QqK
+	(ORCPT <rfc822;git-outgoing>); Fri, 28 Oct 2005 12:46:10 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:28872 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1030247AbVJ1QqJ (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 28 Oct 2005 12:46:09 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9SGjsFC017870
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 28 Oct 2005 09:45:55 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9SGjrH6005338;
+	Fri, 28 Oct 2005 09:45:54 -0700
+Date:	Fri, 28 Oct 2005 09:45:53 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Be marginally more careful about removing objects
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510280935130.4664@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 66
+Xref: brand.scrye.com linux.git:10760
+
+
+The git philosophy when it comes to disk accesses is "Laugh in the face of 
+danger".
+
+Notably, since we never modify an existing object, we don't really care 
+that deeply about flushing things to disk, since even if the machine 
+crashes in the middle of a git operation, you can never really have lost 
+any old work. At most, you'd need to figure out the proper heads (which 
+git-fsck-objects can do for you) and re-do the operation.
+
+However, there's two exceptions to this: pruning and repacking. Those 
+operations will actually _delete_ old objects that they know about in 
+other ways (ie that they just repacked, or that they have found in other 
+places).
+
+However, since they actually modify old state, we should thus be a bit 
+more careful about them. If the machine crashes and the duplicate new 
+objects haven't been flushed to disk, you can actually be in trouble.
+
+This is trivially stupid about it by calling "sync" before removing the 
+objects. Not very smart, but we're talking about special operations than 
+are usually done once a week if that.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/git-prune.sh b/git-prune.sh
+index b28630c..ef31bd2 100755
+--- a/git-prune.sh
++++ b/git-prune.sh
+@@ -15,6 +15,7 @@ do
+     shift;
+ done
+ 
++sync
+ git-fsck-objects --full --cache --unreachable "$@" |
+ sed -ne '/unreachable /{
+     s/unreachable [^ ][^ ]* //
+diff --git a/git-repack.sh b/git-repack.sh
+index 49547a7..d341966 100755
+--- a/git-repack.sh
++++ b/git-repack.sh
+@@ -62,6 +62,7 @@ then
+ 	# all-into-one is used.
+ 	if test "$all_into_one" != '' && test "$existing" != ''
+ 	then
++		sync
+ 		( cd "$PACKDIR" &&
+ 		  for e in $existing
+ 		  do
+diff --git a/prune-packed.c b/prune-packed.c
+index 16685d1..26123f7 100644
+--- a/prune-packed.c
++++ b/prune-packed.c
+@@ -71,6 +71,7 @@ int main(int argc, char **argv)
+ 		/* Handle arguments here .. */
+ 		usage(prune_packed_usage);
+ 	}
++	sync();
+ 	prune_packed_objects();
+ 	return 0;
+ }
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

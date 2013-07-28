@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul  7 17:58:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 31CD2838B1
+	for <tkil@scrye.com>; Thu,  7 Jul 2005 17:58:34 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262103AbVGGX6X (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 7 Jul 2005 19:58:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262360AbVGGX6X
+	(ORCPT <rfc822;git-outgoing>); Thu, 7 Jul 2005 19:58:23 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:38881 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262103AbVGGX6V (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 7 Jul 2005 19:58:21 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j67NwEjA025336
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 7 Jul 2005 16:58:14 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j67NwDnv001793;
+	Thu, 7 Jul 2005 16:58:13 -0700
+Date:	Thu, 7 Jul 2005 16:58:13 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] rev-list: add "--objects=self-sufficient" flag.
+In-Reply-To: <7vfyuqfa6r.fsf_-_@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507071657140.25104@g5.osdl.org>
+References: <20050703234629.GF13848@pasky.ji.cz> <42CBC822.30701@didntduck.org>
+ <20050707144501.GG19781@pasky.ji.cz> <7vk6k2sfa4.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0507071158220.3293@g5.osdl.org> <20050707221443.GB7151@pasky.ji.cz>
+ <Pine.LNX.4.58.0507071549330.25104@g5.osdl.org> <7vll4ifbq8.fsf_-_@assigned-by-dhcp.cox.net>
+ <7vfyuqfa6r.fsf_-_@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:5771
+
+
+
+On Thu, 7 Jul 2005, Junio C Hamano wrote:
+>
+> -		if (!strcmp(arg, "--objects")) {
+> +		if (!strncmp(arg, "--objects", 9)) {
+> +			if (!strcmp(arg+9, "=self-sufficient"))
+> +				objects_self_sufficient = 1;
+
+This is nasty - if you mis-spell "self-sufficient" (easy enough to do) 
+you'll never know the end result isn't what you expected. It won't warn 
+you in any way, it will just make a non-self-sufficient pack..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

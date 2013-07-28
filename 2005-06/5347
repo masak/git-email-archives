@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun 28 15:07:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1E1A0B79E9
+	for <tkil@scrye.com>; Tue, 28 Jun 2005 15:07:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261261AbVF1VGQ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 28 Jun 2005 17:06:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261275AbVF1UEF
+	(ORCPT <rfc822;git-outgoing>); Tue, 28 Jun 2005 16:04:05 -0400
+Received: from iabervon.org ([66.92.72.58]:61444 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261261AbVF1UDL (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 28 Jun 2005 16:03:11 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DnMGb-0008CU-00; Tue, 28 Jun 2005 16:01:09 -0400
+Date:	Tue, 28 Jun 2005 16:01:09 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: CAREFUL! No more delta object support!
+In-Reply-To: <Pine.LNX.4.58.0506281111480.19755@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0506281535340.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,
+	MANY_EXCLAMATIONS autolearn=ham version=3.0.4
+Lines: 45
+Xref: brand.scrye.com linux.git:5347
+
+On Tue, 28 Jun 2005, Linus Torvalds wrote:
+
+> On Tue, 28 Jun 2005, Linus Torvalds wrote:
+> > 
+> > I can certainly add an option to git-pack-file that disables writing of
+> > the index file, and just writes the pack-file to stdout.
+> 
+> Done.
+
+What I actually meant was that it would be useful for git-ssh-push to be
+able to pack stuff as a function call rather than execing an external
+program, because just sticking git-ssh-push at the end of a pipeline
+doesn't work if you don't remember what the remote side has.
+
+> >						 I'm not sure I
+> > want to write the "parse incoming pack-file" thing, but git-unpack-objects
+> > comes _reasonably_ close (but right now it seeks around using the index
+> > file to resolve deltas, instead of keeping them in memory and resolving
+> > them when possible).
+> 
+> I'm still thinking about this one. I think I'll just do it.
+
+One possibility would be to put a special type tag (like '\0') before the
+hash, so that the format is more deterministic.
+
+> One problem here is that since we don't know how big the incoming
+> pack-file will be, in a streaming input environment the receiver needs to
+> either make the pack-file reception be the last thing it sees, or it will
+> have to live with the fact that "git-unpack-objects" will read some more
+> than it needs before it notices that it got it all...
+
+In a completely streaming environment, yes; but the receiving side is the
+one sending commands, so you don't run into the next thing unless you're
+overlapping requests. Failing that, we can just keep a 4k buffer of stuff
+we've already read around; we don't have to worry about reading into
+something we won't want to read at all.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 30 03:37:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2FB401D729C
+	for <tkil@scrye.com>; Tue, 30 Aug 2005 03:37:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751339AbVH3Jhe (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 30 Aug 2005 05:37:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751345AbVH3Jhe
+	(ORCPT <rfc822;git-outgoing>); Tue, 30 Aug 2005 05:37:34 -0400
+Received: from leibniz.catalyst.net.nz ([202.78.240.7]:4743 "EHLO
+	localhost.localdomain") by vger.kernel.org with ESMTP
+	id S1751339AbVH3Jhd (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 30 Aug 2005 05:37:33 -0400
+Received: from aporo-debian (localhost.localdomain [127.0.0.1])
+	by localhost.localdomain (Postfix) with SMTP id 27D168AAC3;
+	Tue, 30 Aug 2005 21:37:28 +1200 (NZST)
+Cc:	Martin Langhoff <martin@catalyst.net.nz>
+Subject: [PATCH] cg-update - refuse to update dirty tree
+In-Reply-To: 
+X-Mailer: git-send-email-script
+Date:	Tue, 30 Aug 2005 21:37:28 +1200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <11253946482734-git-send-email-martin@catalyst.net.nz>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Martin Langhoff <martin@catalyst.net.nz>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Martin Langhoff <martin@catalyst.net.nz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:7943
+
+cg-merge currently clobbers local changes while runnign cg-update. Do the
+safe thing and refuse to update on a dirty tree.
+
+Signed-off-by: Martin Langhoff <martin@catalyst.net.nz>
+
+
+---
+
+ cg-update |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+7a961c02ee6228c2a80869b4b3f179a7e279df8e
+diff --git a/cg-update b/cg-update
+--- a/cg-update
++++ b/cg-update
+@@ -27,6 +27,10 @@ while optparse; do
+ 	fi
+ done
+ 
++# Better safe than sorry
++(git-update-cache --refresh >> /dev/null) ||
++        die "Your working tree is dirty - will not update."
++
+ name=${ARGS[0]}
+ [ "$name" ] || { [ -s $_git/refs/heads/origin ] && name=origin; }
+ [ "$name" ] || die "where to update from?"
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

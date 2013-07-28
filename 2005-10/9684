@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct  4 18:10:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C8C9312D28A
+	for <tkil@scrye.com>; Tue,  4 Oct 2005 18:10:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965048AbVJEAK0 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 4 Oct 2005 20:10:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965049AbVJEAK0
+	(ORCPT <rfc822;git-outgoing>); Tue, 4 Oct 2005 20:10:26 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:39070 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965048AbVJEAKZ (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 4 Oct 2005 20:10:25 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j950AK4s010057
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 4 Oct 2005 17:10:21 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j950AIYH019704;
+	Tue, 4 Oct 2005 17:10:19 -0700
+Date:	Tue, 4 Oct 2005 17:10:18 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	"H. Peter Anvin" <hpa@zytor.com>, git@vger.kernel.org
+Subject: Re: What to expect after 0.99.8
+In-Reply-To: <7vu0fx9c1c.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510041706330.31407@g5.osdl.org>
+References: <7v7jcvxxrl.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0510031522590.23242@iabervon.org> <7vmzlqnwmw.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0510031709360.23242@iabervon.org> <7v1x32l0gz.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0510031606550.31407@g5.osdl.org> <20051004071210.GA18716@localdomain>
+ <Pine.LNX.4.63.0510040321170.23242@iabervon.org> <pan.2005.10.04.14.18.59.102722@smurf.noris.de>
+ <434296F1.5030006@zytor.com> <20051004154640.GC4682@kiste.smurf.noris.de>
+ <4342AF4B.7020806@zytor.com> <7vu0fx9c1c.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.119 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:9684
+
+
+
+On Tue, 4 Oct 2005, Junio C Hamano wrote:
+> 
+> I vaguely recall there was an interesting regression in recent
+> kernel history when the implementation of the pipe buffer was
+> changed, with which, writing the same amount of data with
+> different number of writes made things behave differently and
+> making the worst case buffer size less than traditional 4K.
+
+Just for performance reasons, I ended up doing merging anyway, so in fact 
+regardless of how you write the current pipe buffer size is up to 16 
+pages.
+
+I think you can safely assume that pretty much any file descriptor you use 
+has at least 1kB of buffer. Even 4kB is likely a "safe assumption", and in 
+reality, most of them end up having even more.
+
+With something like ssh, you probably end up having even deeper ones, 
+since you end up having the local pty or socket to ssh, and then ssh has 
+the TCP buffer to the network..
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

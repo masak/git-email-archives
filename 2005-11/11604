@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 09:31:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A57902851FA
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 09:31:39 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750850AbVKKQbd (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 11:31:33 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750851AbVKKQbd
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 11:31:33 -0500
+Received: from xproxy.gmail.com ([66.249.82.199]:17467 "EHLO xproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750844AbVKKQbc convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 11 Nov 2005 11:31:32 -0500
+Received: by xproxy.gmail.com with SMTP id i30so755204wxd
+        for <git@vger.kernel.org>; Fri, 11 Nov 2005 08:31:31 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=azBYVfbVsbswZZg7peHRKiL6X4MjuBIy5xdOnqzJWN1KeJa3l+X05uMsg3hFMLzK7r7hxwg+QS8/c1JdVGxWzsdt7w5zHido3ZhK7n9GbDDSEAr4GShfRpGDc5HZihhkcx71Xk+pBQA7XmTPVW/TaR3oIrF/f+/FV6vJQqVltbs=
+Received: by 10.70.115.4 with SMTP id n4mr2332445wxc;
+        Fri, 11 Nov 2005 08:31:31 -0800 (PST)
+Received: by 10.70.94.20 with HTTP; Fri, 11 Nov 2005 08:31:31 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <34a7ae040511110831y3e896738o@mail.gmail.com>
+Date:	Fri, 11 Nov 2005 17:31:31 +0100
+From:	Paolo Teti <paolo.teti@gmail.com>
+To:	git@vger.kernel.org
+Subject: lock
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 11
+Xref: brand.scrye.com linux.git:11604
+
+Just a question probably stupid because I'm a quite new GIT user.
+
+Is possible to apply a lock (as in ClearCase) on a given file etc in order to
+prevent accidental check-out or any other tool operation?
+
+Pao
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

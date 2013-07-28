@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec  3 12:08:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DE6161B82D3
+	for <tkil@scrye.com>; Sat,  3 Dec 2005 12:08:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932156AbVLCTIY (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 3 Dec 2005 14:08:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932157AbVLCTIY
+	(ORCPT <rfc822;git-outgoing>); Sat, 3 Dec 2005 14:08:24 -0500
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:40595 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S932156AbVLCTIY (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 3 Dec 2005 14:08:24 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051203190748.VXRY15695.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 3 Dec 2005 14:07:48 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: gitk does not recognizes ISO-8859-15
+References: <4391C6B8.7010507@yahoo.it>
+cc:	git@vger.kernel.org
+Date:	Sat, 03 Dec 2005 11:08:18 -0800
+In-Reply-To: <4391C6B8.7010507@yahoo.it> (Marco Costalba's message of "Sat, 03
+	Dec 2005 17:24:24 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v4q5qyp5p.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:13148
+
+Marco Costalba <mcostalba@yahoo.it> writes:
+
+> So here we arrive. I see two ways to deal with this:
+>
+> 1) *solution* make gitk use IANA names
+>
+> 2) *workaround* get from somewhere the list of Tcl/Tk recognized codec names and 
+> teach qgit to do the map from IANA when setting a codec with "git-repo-config 
+> i18n.commitencoding"
+
+The intent of i18n.commitencoding is to have something that is
+understood by iconv there, so if gitk does not work with these
+things spelled like. ISO8859-1 or ISO-8859-15, and qgit is happy
+with them, I would say that we should fix gitk, which means
+*workaround* should be on the tcl/tk side.
+
+Tcl/Tk expert may have more thoughts (and I suspect experiences)
+on this, but I am not one of them.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

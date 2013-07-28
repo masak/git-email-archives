@@ -1,0 +1,104 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 27 22:33:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.5 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6720A135804
+	for <tkil@scrye.com>; Thu, 27 Oct 2005 22:33:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965077AbVJ1Edf (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 28 Oct 2005 00:33:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965085AbVJ1Edf
+	(ORCPT <rfc822;git-outgoing>); Fri, 28 Oct 2005 00:33:35 -0400
+Received: from 22.107.233.220.exetel.com.au ([220.233.107.22]:25866 "EHLO
+	arnor.apana.org.au") by vger.kernel.org with ESMTP id S965077AbVJ1Ede
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 28 Oct 2005 00:33:34 -0400
+Received: from gondolin.me.apana.org.au ([192.168.0.6] ident=mail)
+	by arnor.apana.org.au with esmtp (Exim 3.36 #1 (Debian))
+	id 1EVLuX-0000aP-00; Fri, 28 Oct 2005 14:32:13 +1000
+Received: from herbert by gondolin.me.apana.org.au with local (Exim 3.36 #1 (Debian))
+	id 1EVLuV-0000DG-00; Fri, 28 Oct 2005 14:32:11 +1000
+Date:	Fri, 28 Oct 2005 14:32:11 +1000
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Linus Torvalds <torvalds@osdl.org>, smurf@smurf.noris.de,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Avoid using dc in git-count-objects
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051028043211.GA781@gondor.apana.org.au>
+References: <E1EVKmt-0003xn-00@gondolin.me.apana.org.au> <4361A5BB.5040100@zytor.com>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="VbJkn9YxBvnuCH5J"
+Content-Disposition: inline
+In-Reply-To: <4361A5BB.5040100@zytor.com>
+User-Agent: Mutt/1.5.9i
+From:	Herbert Xu <herbert@gondor.apana.org.au>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 59
+Xref: brand.scrye.com linux.git:10749
+
+
+--VbJkn9YxBvnuCH5J
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, Oct 27, 2005 at 09:14:51PM -0700, H. Peter Anvin wrote:
+> 
+> Current ash also has these features, and is about that size compiled 
+> static with klibc :)
+
+Interesting.  I just tried it on my POSIX testsuite and unfortunately
+it failed a number of simple tests including the case statement and
+segfaulted on quite a few occasions too.  I've included one of the
+segfault scripts here.
+
+Dash is already used in busybox where it has been linked with ulibc.
+So it can't be that hard to make it work with klibc.
+
+Perhaps you could use dash for your project as well?
+
+Cheers,
+-- 
+Visit Openswan at http://www.openswan.org/
+Email: Herbert Xu ~{PmV>HI~} <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+
+--VbJkn9YxBvnuCH5J
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename=dotcmd
+
+trap 'rm -f $TMP' EXIT
+TMP=$(tempfile)
+
+cat <<- EOF > $TMP
+	return
+	echo not here
+EOF
+
+a() {
+	. $TMP
+	echo here
+}
+
+a
+
+cat <<- EOF > $TMP
+	exit
+EOF
+
+(false; . $TMP)
+echo $?
+
+--VbJkn9YxBvnuCH5J--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

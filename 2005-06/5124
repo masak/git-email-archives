@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun 22 19:57:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EF87A271439
+	for <tkil@scrye.com>; Wed, 22 Jun 2005 19:57:34 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261818AbVFWBuY (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 22 Jun 2005 21:50:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261987AbVFWBuV
+	(ORCPT <rfc822;git-outgoing>); Wed, 22 Jun 2005 21:50:21 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:31153 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S261972AbVFWBrn (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 22 Jun 2005 21:47:43 -0400
+Received: from cpe-065-184-065-144.nc.res.rr.com ([65.184.65.144] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1DlGoe-0002uB-Cp; Thu, 23 Jun 2005 01:47:40 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42BA14B8.2020609@pobox.com>
+Date:	Wed, 22 Jun 2005 21:47:36 -0400
+From: Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.2-6 (X11/20050513)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Greg KH <greg@kroah.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Updated git HOWTO for kernel hackers
+References: <42B9E536.60704@pobox.com> <20050622230905.GA7873@kroah.com> <Pine.LNX.4.58.0506221623210.11175@ppc970.osdl.org> <42B9FCAE.1000607@pobox.com> <Pine.LNX.4.58.0506221724140.11175@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0506221724140.11175@ppc970.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 34
+Xref: brand.scrye.com linux.git:5124
+
+Linus Torvalds wrote:
+> 
+> On Wed, 22 Jun 2005, Jeff Garzik wrote:
+> 
+>>>But, like branches, it means that if you want a tag, you need to know the 
+>>>tag you want, and download it the same way you download a branch.
+>>
+>>Still -- that's interesting data that no script currently tracks.  You 
+>>gotta fall back to rsync.
+> 
+> 
+> Something like
+> 
+> 	git-ssh/http-pull -w tags/<tagname> tags/<tagname> <url>
+> 
+> _should_ hopefully work now (and the "-a" flag should mean that you also 
+> get all the objects needed for the tag).
+
+The problem isn't pulling tags, the problem is that nothing 
+automatically downloads the 41-byte tag files themselves.  Pulling 
+linux-2.6.git after the 2.6.12 release did not cause refs/tags/v2.6.12 
+to be downloaded.
+
+With BK, tags came with each pull.  With git, you have to go "outside 
+the system" (rsync) just get the new tags.
+
+	Jeff
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

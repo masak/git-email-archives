@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun  6 10:02:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 053CF121B04
+	for <tkil@scrye.com>; Mon,  6 Jun 2005 10:02:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261207AbVFFP7z (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 6 Jun 2005 11:59:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261206AbVFFP7y
+	(ORCPT <rfc822;git-outgoing>); Mon, 6 Jun 2005 11:59:54 -0400
+Received: from fire.osdl.org ([65.172.181.4]:27021 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261207AbVFFP73 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 6 Jun 2005 11:59:29 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j56FxIjA016736
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 6 Jun 2005 08:59:19 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j56FxHQM000796;
+	Mon, 6 Jun 2005 08:59:18 -0700
+Date:	Mon, 6 Jun 2005 09:01:22 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: jon@blackcubes.dyndns.org
+Cc: git@vger.kernel.org, jon.seymour@gmail.com
+Subject: Re: 7fb9de4a830dd8969bc17a219c509a76dd3c9aad
+In-Reply-To: <20050606153940.20039.qmail@blackcubes.dyndns.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506060858140.1876@ppc970.osdl.org>
+References: <20050606153940.20039.qmail@blackcubes.dyndns.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 42
+Xref: brand.scrye.com linux.git:4625
+
+
+
+On Mon, 6 Jun 2005 jon@blackcubes.dyndns.org wrote:
+>
+> [PATCH] Modify git-rev-list to linearise the commit history in merge order.
+
+Much nicer. Will apply after testing, however, not this part:
+
+> @@ -110,6 +145,8 @@ static enum cmit_fmt get_commit_format(c
+>  	if (!strcmp(arg, "=short"))
+>  		return CMIT_FMT_SHORT;
+>  	usage(rev_list_usage);	
+> +
+> +	return CMIT_FMT_DEFAULT;
+>  }			
+>  
+>  
+
+If you're bothered by a compiler warning (that I don't see, wonder why?),
+please mark usage() and die() with "__attribute__ ((__noreturn__))". Make
+it depend on GCC, ie
+
+	#ifdef __GCC__
+	#define NO_RETURN __attribute__((__noreturn__))
+	#else
+	#define NO_RETURN
+	#endif
+
+and then do
+
+	extern void die(const char *, ...) NO_RETURN;
+
+or something like that.
+
+Anyway, that's indepdendent of this patch, but just fyi.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

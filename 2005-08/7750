@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 25 14:19:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1519523821E
+	for <tkil@scrye.com>; Thu, 25 Aug 2005 14:19:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932538AbVHYUTJ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 25 Aug 2005 16:19:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932539AbVHYUTI
+	(ORCPT <rfc822;git-outgoing>); Thu, 25 Aug 2005 16:19:08 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:41159 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S932538AbVHYUTI (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 25 Aug 2005 16:19:08 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050825201907.SVYX3209.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 25 Aug 2005 16:19:07 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	"Kirby C. Bohling" <kbohling@birddog.com>
+Cc:	Carl Baldwin <cnb@fc.hp.com>,
+	Daniel Barkalow <barkalow@iabervon.org>,
+	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [RFC] undo and redo
+References: <20050824181004.GA18790@hpsvcnb.fc.hp.com>
+	<Pine.LNX.4.58.0508241148480.3317@g5.osdl.org>
+	<20050824195615.GA693@hpsvcnb.fc.hp.com>
+	<Pine.LNX.4.63.0508241634350.23242@iabervon.org>
+	<20050824204736.GA13194@hpsvcnb.fc.hp.com>
+	<Pine.LNX.4.63.0508241651420.23242@iabervon.org>
+	<7vd5o3ar4a.fsf@assigned-by-dhcp.cox.net>
+	<20050825024134.GA31886@hpsvcnb.fc.hp.com>
+	<7v1x4izjtm.fsf@assigned-by-dhcp.cox.net>
+	<20050825163201.GA3944@hpsvcnb.fc.hp.com>
+	<20050825195918.GD7461@birddog.com>
+Date:	Thu, 25 Aug 2005 13:19:05 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzn5vkg6.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 43
+Xref: brand.scrye.com linux.git:7750
+
+"Kirby C. Bohling" <kbohling@birddog.com> writes:
+
+> I guess my final question is what does undo/redo have over saving
+> stuff away in a patch assuming that the patch captures all of the
+> SCM meta-data (the add/move/remove file type commands).  If git
+> doesn't capture all the meta-data in a patch, it would seem better
+> to make it do that and get this as a side-affect.
+
+One thing that Carl's undo saves that is not easily available in
+the patch form is the "what is this patch based on" information.
+If you had it, you could do a three-way merge instead of patch
+application.
+
+You were at A (time flows from left to right) when somebody
+(maybe your bright idea) interrupted you.  You take a snapshot
+of your tree state D as a pair <A, D>, and rewind the tree to
+original commit A's state:
+
+ -->A
+     \
+      D
+
+Then you do the work that interrupted you, maybe making commits
+B and then C:
+
+ -->A-->B-->C
+     \
+      D
+
+At this point, you would want to restart working on whatever you
+were doing, which is the difference between A->D applied on top
+of C.
+
+You could keep that information as a patch between A->D and
+apply it on top of C to get there, which is your approach if I
+am reading you correctly.  Carl does a three-way merge between C
+and D using A as the pivot point.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

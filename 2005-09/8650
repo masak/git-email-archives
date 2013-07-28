@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 21:11:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AB9C627632D
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 21:11:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030577AbVIPDJx (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 23:09:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030579AbVIPDJx
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 23:09:53 -0400
+Received: from fencepost.gnu.org ([199.232.76.164]:64716 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S1030577AbVIPDJw
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 15 Sep 2005 23:09:52 -0400
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EG6bi-000266-Bl
+	for git@vger.kernel.org; Thu, 15 Sep 2005 23:09:49 -0400
+Received: from proski by dv.roinet.com with local (Exim 4.52)
+	id 1EG6bd-00010p-KK; Thu, 15 Sep 2005 23:09:41 -0400
+Subject: Re: cg-pull to pull branches, not the whole repository
+From:	Pavel Roskin <proski@gnu.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git <git@vger.kernel.org>
+In-Reply-To: <7vu0gne25j.fsf@assigned-by-dhcp.cox.net>
+References: <1126733516.10827.54.camel@dv>
+	 <7vu0gne25j.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Thu, 15 Sep 2005 23:09:41 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1126840181.2387.8.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:8650
+
+On Wed, 2005-09-14 at 15:05 -0700, Junio C Hamano wrote:
+> Pavel Roskin <proski@gnu.org> writes:
+> 
+> > ...  Unfortunately, listings are
+> > still needed to get refs/tags and refs/heads.  Any fix for that would
+> > involve git core, and I don't see an elegant fix.
+> 
+> All the necessary "core" support should already be there, except
+> for the client side support.  Please look at yesterday's thread
+> with title "dumb transports not being welcomed".
+
+Great.  It looks like my concerns are fully understood and the work is
+underway to address them.  Sorry for the noise.
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

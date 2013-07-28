@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 14:02:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4D6671D6877
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 14:02:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932613AbVISUCf (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 16:02:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932615AbVISUCf
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 16:02:35 -0400
+Received: from [85.8.31.11] ([85.8.31.11]:14496 "EHLO mail6.wasadata.com")
+	by vger.kernel.org with ESMTP id S932613AbVISUCe (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Sep 2005 16:02:34 -0400
+Received: from c165 (unknown [85.8.2.189])
+	by mail6.wasadata.com (Postfix) with ESMTP
+	id EB6F340FF; Mon, 19 Sep 2005 22:07:50 +0200 (CEST)
+Received: from ksorim by c165 with local (Exim 3.36 #1 (Debian))
+	id 1EHRqJ-0002wp-00; Mon, 19 Sep 2005 22:02:23 +0200
+Date:	Mon, 19 Sep 2005 22:02:23 +0200
+From:	Fredrik Kuivinen <freku045@student.liu.se>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Why does git-core 0.99.7 require python 2.4?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050919200222.GA11322@c165.ib.student.liu.se>
+References: <432F0C66.7060402@zytor.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <432F0C66.7060402@zytor.com>
+User-Agent: Mutt/1.5.6+20040907i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:8894
+
+On Mon, Sep 19, 2005 at 12:07:18PM -0700, H. Peter Anvin wrote:
+> I just tried to update the kernel.org hosts to git-core 0.99.7, but I 
+> got stuck due to the fact that git-core 0.99.7 requires python >= 2.4, 
+> which isn't in RHEL4 (python-2.3.2) nor in FC3 (python-2.3.4).
+> 
+> Updating Python beyond what the distribution provides is a major operation.
+> 
+> Can it be changed to work with python 2.3, to give a bit of leeway?
+> 
+
+It is git-merge-recursive which wants Python 2.4. Unfortunately Python
+2.3 do not ship with the 'subprocess' module which is currently used
+by the 'recursive' merge strategy. RPMs for Python 2.4 can be
+downloaded from http://www.python.org/2.4.1/rpms.html
+
+Python isn't used by the rest of Git so if you don't use the recursive
+merge strategy it will work fine without Python.
+
+Not supporting one of the major Linux distributions isn't ideal
+though, so maybe we should do something about this. I will have a look
+at rewriting the code to not use subprocess.
+
+- Fredrik
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

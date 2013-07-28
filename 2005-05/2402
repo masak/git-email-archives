@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  2 19:09:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6A051FC567
+	for <tkil@scrye.com>; Mon,  2 May 2005 19:09:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261264AbVECBJY (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 2 May 2005 21:09:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261265AbVECBJY
+	(ORCPT <rfc822;git-outgoing>); Mon, 2 May 2005 21:09:24 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:10225 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S261264AbVECBJV (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 2 May 2005 21:09:21 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050503010918.JSZW550.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 2 May 2005 21:09:18 -0400
+To: Matt Porter <mporter@kernel.crashing.org>
+Cc: Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+Subject: Re: [PATCH] Add exclude file support to cg-status
+References: <20050502171042.A24299@cox.net>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Mon, 02 May 2005 18:09:19 -0700
+In-Reply-To: <20050502171042.A24299@cox.net> (Matt Porter's message of "Mon,
+ 2 May 2005 17:10:42 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vd5s9nmio.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:2402
+
+>>>>> "MP" == Matt Porter <mporter@kernel.crashing.org> writes:
+
+MP> Adds a trivial per-repository exclude file implementation for
+MP> cg-status on top of the new git-ls-files option.
+
+ 
+MP> +EXCLUDEFILE=.git/exclude
+
+Good intentions, but shouldn't the file be .git/info/exclude
+(i.e. under .git/info)?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

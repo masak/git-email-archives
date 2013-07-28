@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov  4 02:44:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DD342320252
+	for <tkil@scrye.com>; Fri,  4 Nov 2005 02:44:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161094AbVKDJon (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 4 Nov 2005 04:44:43 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161124AbVKDJon
+	(ORCPT <rfc822;git-outgoing>); Fri, 4 Nov 2005 04:44:43 -0500
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:50901 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S1161094AbVKDJon (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 4 Nov 2005 04:44:43 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051104094357.SOFH776.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 4 Nov 2005 04:43:57 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Wolfgang Denk <wd@denx.de>
+Cc:	Petr Baudis <pasky@suse.cz>, Marcel Holtmann <marcel@holtmann.org>,
+	git@vger.kernel.org
+Subject: Re: Problem cloning the Linux history tree
+References: <7vmzkl3yl0.fsf@assigned-by-dhcp.cox.net>
+	<20051104092146.E5E35353C33@atlas.denx.de>
+	<20051104092626.GL1431@pasky.or.cz>
+Date:	Fri, 04 Nov 2005 01:44:41 -0800
+In-Reply-To: <20051104092626.GL1431@pasky.or.cz> (Petr Baudis's message of
+	"Fri, 4 Nov 2005 10:26:26 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x1w21di.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:11117
+
+Petr Baudis <pasky@suse.cz> writes:
+
+>> 09:58:42 URL:http://www.denx.de/git/linux-2.6-denx.git/refs/tags/DENX-2005-10-02-18:30 [41/41] -> "refs/tags/DENX-2005-10-02-18:30" [1]
+
+I do not know if Cogito works it around or the above just
+happens to work, but (notice colon there) tag names that do not
+pass git-check-ref-format(1) are not supported.
+
+>> And I did run git-update-server-info, even with --force.
+
+You may want to double check that all your refs appear in
+denx.git/info/refs file, and similarly all your packs are
+described in denx.git/objects/info/packs file.
+
+> And what exactly is the problem? It seemed to clone ok.
+
+Oh, if that is the case I would stop worrying about it, then.
+
+However, there is this bit that looks suspicious.
+
+>> Missing object of tag v2.6.14-rc3... unable to retrieve
+
+This does not look like an error message I generate, so I am
+assuming it is coming from cg-fetch.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

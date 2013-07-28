@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 11 00:58:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9CFCA46832
+	for <tkil@scrye.com>; Sun, 11 Dec 2005 00:58:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751330AbVLKH6D (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Dec 2005 02:58:03 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751331AbVLKH6D
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Dec 2005 02:58:03 -0500
+Received: from dsl027-180-168.sfo1.dsl.speakeasy.net ([216.27.180.168]:17893
+	"EHLO sunset.davemloft.net") by vger.kernel.org with ESMTP
+	id S1751330AbVLKH6C (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 11 Dec 2005 02:58:02 -0500
+Received: from localhost.localdomain
+	([127.0.0.1] helo=localhost ident=davem)
+	by sunset.davemloft.net with esmtp (Exim 4.54)
+	id 1ElM6B-0005kd-Cu; Sat, 10 Dec 2005 23:58:23 -0800
+Date:	Sat, 10 Dec 2005 23:58:18 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051210.235818.90276521.davem@davemloft.net>
+To:	freku045@student.liu.se
+Cc:	git@vger.kernel.org
+Subject: Re: t6021-merge-criss-cross.sh fails on some systems
+From:	"David S. Miller" <davem@davemloft.net>
+In-Reply-To: <20051211003353.GA27207@c165.ib.student.liu.se>
+References: <20051210.144235.125914760.davem@davemloft.net>
+	<20051211003353.GA27207@c165.ib.student.liu.se>
+X-Mailer: Mew version 4.2.53 on Emacs 21.4 / Mule 5.0 (SAKAKI)
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:13477
+
+From: Fredrik Kuivinen <freku045@student.liu.se>
+Date: Sun, 11 Dec 2005 01:33:53 +0100
+
+> It looks like 'merge' can't be found. The recursive merge strategy
+> uses 'merge' to do file-level merging. Do you have merge(1)
+> installed?
+
+Yet another weird dependency. :-/  Thanks for the info.
+
+I bet a tiny shell script could run at GIT build time
+to check for the presence of these necessary items. :-)
+Yes, the debian/rpm/etc. packaging dependencies will catch
+this, but a lot of us are doing:
+
+git pull && make && make test && make install
+
+:-)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

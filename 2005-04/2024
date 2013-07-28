@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 10:34:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 15818170B3B
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 10:34:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262159AbVD1Qei (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 12:34:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262162AbVD1Qei
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 12:34:38 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:155 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S262159AbVD1Qe1 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 28 Apr 2005 12:34:27 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050428163427.WXOE22430.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 28 Apr 2005 12:34:27 -0400
+To: Nicolas Pitre <nico@cam.org>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] add a diff-files command
+References: <Pine.LNX.4.62.0504271701080.14033@localhost.localdomain>
+	<7vr7gvevpv.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.62.0504272031330.14033@localhost.localdomain>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 28 Apr 2005 09:34:25 -0700
+In-Reply-To: <Pine.LNX.4.62.0504272031330.14033@localhost.localdomain> (Nicolas
+ Pitre's message of "Wed, 27 Apr 2005 21:02:48 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7gu97xq.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 53
+Xref: brand.scrye.com linux.git:2024
+
+>>>>> "NP" == Nicolas Pitre <nico@cam.org> writes:
+
+Having thought about it more, although I praise your enthusiasm
+to improve git, I suspect your diff-files is a solution to a
+problem that does not exist.
+
+NP> It also has the ability to accept exclude file patterns with
+NP> -x and even a file containing a list of patterns to exclude
+NP> with -X.  This is especially useful to use the famous
+NP> dontdiff file when looking for uncommitted files in a
+NP> compiled kernel tree.
+
+If you want to see if working tree has some junk other than
+those listed in dontdiff, wouldn't this be sufficient?
+
+  $ show-files --others | grep -f dontdiff
+
+NP> First, show-diff doesn't handle files in the work tree which
+NP> are not listed in the cache.
+
+That's the whole point of git (and show-diff).  If it is not
+listed in the cache, it does not exist.
+
+NP> ...  So trust me it _is_ pretty damn useful, unless you
+NP> always run "make clean" on your kernel tree before checking
+NP> for potentially uncommitted files then recompile everything
+NP> afterwards which is a hassle.
+
+Why do you need to "make clean"?  Is it because otherwise you
+would get lots of output for things that are listed in dontdiff
+but not listed in the cache, and the uncommitted but not listed
+in dontdiff file that you care about would get lost in the
+noise?
+
+Earlier you complained show-diff does _not_ look at what are not
+listed in the cache.  Now you want to exclude garbage that comes
+out of it because you have tons of stuff that are not listed in
+the cache, which implies show-diff _does_ look at what are not
+listed in the cache.  Either you are contradicting yourself or I
+am confused.
+
+The truth is, as you said earlier, show-diff does not look at
+them, so I do not understand what problem you are trying to
+describe here.
+
+Again, "checking for potentially uncommitted" files is what
+you use show-files --others for, not show-diff.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

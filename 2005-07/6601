@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 29 21:40:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 525A52B1250
+	for <tkil@scrye.com>; Fri, 29 Jul 2005 21:40:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261617AbVG3DkQ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Jul 2005 23:40:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262768AbVG3DkQ
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Jul 2005 23:40:16 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:20898 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261617AbVG3DkO (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Jul 2005 23:40:14 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6U3dvjA008681
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 29 Jul 2005 20:39:57 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6U3duoJ007720;
+	Fri, 29 Jul 2005 20:39:56 -0700
+Date:	Fri, 29 Jul 2005 20:39:56 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Petr Baudis <pasky@suse.cz>
+Cc: junkio@cox.net, git@vger.kernel.org
+Subject: Re: [PATCH 7/2] Support for NO_OPENSSL
+In-Reply-To: <20050729155051.GJ21909@pasky.ji.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507292038160.29650@g5.osdl.org>
+References: <20050729085819.GL24895@pasky.ji.cz> <20050729155051.GJ21909@pasky.ji.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 16
+Xref: brand.scrye.com linux.git:6601
+
+
+This doesn't work at least in the form that Junio merged it (and from 
+what I can tell, he merged your patch as-is):
+
+  torvalds@shell0:~/src/git> make NO_OPENSSL=1
+  cc -g -O2 -Wall '-DNO_OPENSSL' '-DSHA1_HEADER="mozilla-sha1/sha1.h"' -o git-rev-list rev-list.o libgit.a -lz -lssl
+  /usr/lib/gcc-lib/i586-suse-linux/3.3.4/../../../../i586-suse-linux/bin/ld: cannot find -lssl
+
+it needs to disable the -lssl too..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

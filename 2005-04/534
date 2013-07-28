@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 16:37:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DE2881F71C6
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 16:37:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261533AbVDQWhG (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Apr 2005 18:37:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261535AbVDQWhG
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Apr 2005 18:37:06 -0400
+Received: from viefep14-int.chello.at ([213.46.255.13]:63583 "EHLO
+	viefep14-int.chello.at") by vger.kernel.org with ESMTP
+	id S261533AbVDQWhB (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 17 Apr 2005 18:37:01 -0400
+Received: from lazy.shacknet.nu ([80.109.132.21]) by viefep14-int.chello.at
+          (InterMail vM.6.01.04.04 201-2131-118-104-20050224) with ESMTP
+          id <20050417223659.TCCV7053.viefep14-int.chello.at@lazy.shacknet.nu>
+          for <git@vger.kernel.org>; Mon, 18 Apr 2005 00:36:59 +0200
+Received: from localhost ([127.0.0.1])
+	by lazy.shacknet.nu with esmtp (Exim 3.36 #1 (Debian))
+	id 1DNINw-0002Si-00
+	for <git@vger.kernel.org>; Mon, 18 Apr 2005 00:37:00 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4262E50C.2070006@lazy.shacknet.nu>
+Date:	Mon, 18 Apr 2005 00:37:00 +0200
+From: Nomad Arton <lkml@lazy.shacknet.nu>
+User-Agent: Mozilla Thunderbird 1.0.2 (X11/20050317)
+X-Accept-Language: de-DE, de, en-us, en
+MIME-Version: 1.0
+Cc: git@vger.kernel.org
+Subject: Re: using git directory cache code in darcs?
+References: <20050416132231.GJ2551@abridgegame.org> <Pine.LNX.4.58.0504161531470.7211@ppc970.osdl.org> <20050417121712.GA22772@abridgegame.org> <Pine.LNX.4.58.0504170916080.7211@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0504170916080.7211@ppc970.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+To: unlisted-recipients: ;(no To-header on input)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 20
+Xref: brand.scrye.com linux.git:534
+
+Linus Torvalds schrieb:
+> 
+> In fact, one of my hopes was that other SCM's could just use the git
+> plumbing. But then I'd really suggest that you use "git" itself, not any
+> "libgit". Ie you take _all_ the plumbing as real programs, and instead of
+> trying to link against individual routines, you'd _script_ it.
+
+please excuse; libgit and scripting to me arent a contradiction. many 
+sripting languages are extended by C modules, while still happening to 
+have all the scripting rapidity. its just a matter of how to communicate 
+with the C code, isnt it?
+
+yours,
+
+peter
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

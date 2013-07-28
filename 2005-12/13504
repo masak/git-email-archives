@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 11 18:15:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9567316A967
+	for <tkil@scrye.com>; Sun, 11 Dec 2005 18:15:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750974AbVLLBOO (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Dec 2005 20:14:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750976AbVLLBOO
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Dec 2005 20:14:14 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:6089 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750973AbVLLBOO (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 11 Dec 2005 20:14:14 -0500
+Received: (qmail 4951 invoked by uid 2001); 12 Dec 2005 02:14:11 +0100
+Date:	Mon, 12 Dec 2005 02:14:11 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	git@vger.kernel.org
+Subject: Re: [ANNOUNCE] Cogito-0.16.1
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051212011411.GY22159@pasky.or.cz>
+References: <20051212011210.GC12373@pasky.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051212011210.GC12373@pasky.or.cz>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:13504
+
+Dear diary, on Mon, Dec 12, 2005 at 02:12:10AM CET, I got a letter
+where Petr Baudis <pasky@suse.cz> said that...
+>   this is Cogito version 0.16.1, the next stable release of the
+> human-friendly version control UI for the Linus' GIT tool.
+
+  By the way, did anyone receive the 0.16 announcement? I have it in my
+=sent mailbox, but not in either the git@ or linux-kernel@ mailboxes...
+*perplexed*
+
+  Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

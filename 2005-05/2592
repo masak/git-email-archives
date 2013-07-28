@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May  5 06:32:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 562668424E
+	for <tkil@scrye.com>; Thu,  5 May 2005 06:32:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262076AbVEEMcC (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 5 May 2005 08:32:02 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262080AbVEEMcC
+	(ORCPT <rfc822;git-outgoing>); Thu, 5 May 2005 08:32:02 -0400
+Received: from ppsw-9.csi.cam.ac.uk ([131.111.8.139]:2252 "EHLO
+	ppsw-9.csi.cam.ac.uk") by vger.kernel.org with ESMTP
+	id S262076AbVEEMb7 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 5 May 2005 08:31:59 -0400
+X-Cam-SpamDetails: Not scanned
+X-Cam-AntiVirus: No virus found
+X-Cam-ScannerInfo: http://www.cam.ac.uk/cs/email/scanner/
+Received: from hermes-1.csi.cam.ac.uk ([131.111.8.51]:40162)
+	by ppsw-9.csi.cam.ac.uk (smtp.hermes.cam.ac.uk [131.111.8.159]:25)
+	with esmtpa (EXTERNAL:aia21) id 1DTfWD-0006Do-UF (Exim 4.51)
+	(return-path <aia21@hermes.cam.ac.uk>); Thu, 05 May 2005 13:31:53 +0100
+Received: from aia21 (helo=localhost) by hermes-1.csi.cam.ac.uk (hermes.cam.ac.uk)
+	with local-esmtp id 1DTfWD-0005hk-Az (Exim 4.43)
+	(return-path <aia21@hermes.cam.ac.uk>); Thu, 05 May 2005 13:31:53 +0100
+Date:	Thu, 5 May 2005 13:31:53 +0100 (BST)
+From: Anton Altaparmakov <aia21@cam.ac.uk>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] Fix git rpush.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.60.0505051330260.20553@hermes-1.csi.cam.ac.uk>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_RG 
+	autolearn=ham version=3.0.3
+Lines: 35
+Xref: brand.scrye.com linux.git:2592
+
+Hi Linus,
+
+Following up from my previouos patch to rpull, please also apply the below 
+patch which fixes rpush.c to call git-rpull rather than rpull which no 
+longer exists after the Big Rename(TM)...  Thanks.
+
+Signed-off-by: Anton Altaparmakov <aia21@cantab.net>
+
+Best regards,
+
+	Anton
+-- 
+Anton Altaparmakov <aia21 at cam.ac.uk> (replace at with @)
+Unix Support, Computing Service, University of Cambridge, CB2 3QH, UK
+Linux NTFS maintainer / IRC: #ntfs on irc.freenode.net
+WWW: http://linux-ntfs.sf.net/ & http://www-stu.christs.cam.ac.uk/~aia21/
+
+---
+
+--- git.git/rpush.c.old	2005-05-05 13:28:37.000000000 +0100
++++ git.git/rpush.c	2005-05-05 13:28:57.000000000 +0100
+@@ -61,7 +61,7 @@ int main(int argc, char **argv)
+         }
+ 	commit_id = argv[arg];
+ 	url = argv[arg + 1];
+-	if (setup_connection(&fd_in, &fd_out, "rpull", url, arg, argv + 1))
++	if (setup_connection(&fd_in, &fd_out, "git-rpull", url, arg, argv + 1))
+ 		return 1;
+ 
+ 	service(fd_in, fd_out);
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

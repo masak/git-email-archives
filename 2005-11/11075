@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov  3 11:59:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5DD0323CBA2
+	for <tkil@scrye.com>; Thu,  3 Nov 2005 11:59:12 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030439AbVKCSyq (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 3 Nov 2005 13:54:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030436AbVKCSyq
+	(ORCPT <rfc822;git-outgoing>); Thu, 3 Nov 2005 13:54:46 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:59317 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S1030439AbVKCSyp (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 3 Nov 2005 13:54:45 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051103185421.STRK4527.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 3 Nov 2005 13:54:21 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Paul Collins <paul@briny.ondioline.org>
+Subject: Re: [PATCH] RFC: proxy-command support for git://
+References: <87fyqdbuab.fsf@briny.internal.ondioline.org>
+cc:	git@vger.kernel.org
+Date:	Thu, 03 Nov 2005 10:54:43 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v8xw5h898.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:11075
+
+Paul Collins <paul@briny.ondioline.org> writes:
+
+> I spend some of my time using a network that only allows outgoing TCP
+> connections to certain ports, and the git-daemon port is not one of them.
+> This patch below implements an analogue to ssh's ProxyCommand feature
+> for git, as a less messy alternative to ssh port forwarding.
+
+Wonderful.
+
+> Questions:
+>
+> * Can git already do this and I just failed to notice?
+
+Maybe I just failed to notice this too, but I do not think so.
+
+> * Where should git_use_proxy() look?  Some git configuration file?
+>   An environment variable?  Both?  Somewhere else?
+
+My preference is put something in .git/config to describe which
+proxy command (maybe the same one with different argument) to
+use depending on where you are going.  When you have internal
+hosts and external hosts you would want this to apply only to
+external hosts.  Maybe you have two or more gateways and
+depending on which external host you are going you may want to
+use different proxied connection.  On top of the config file,
+making it overridable from an environment variable would be
+sensible.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul  6 12:41:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A894229E147
+	for <tkil@scrye.com>; Wed,  6 Jul 2005 12:41:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262445AbVGFSle (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 6 Jul 2005 14:41:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262448AbVGFSle
+	(ORCPT <rfc822;git-outgoing>); Wed, 6 Jul 2005 14:41:34 -0400
+Received: from main.gmane.org ([80.91.229.2]:62343 "EHLO ciao.gmane.org")
+	by vger.kernel.org with ESMTP id S262445AbVGFSlR (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 6 Jul 2005 14:41:17 -0400
+Received: from root by ciao.gmane.org with local (Exim 4.43)
+	id 1DqEom-0007Ac-9r
+	for git@vger.kernel.org; Wed, 06 Jul 2005 20:40:20 +0200
+Received: from h-135-207-24-103.research.att.com ([135.207.24.103])
+        by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Wed, 06 Jul 2005 20:40:20 +0200
+Received: from ellson by h-135-207-24-103.research.att.com with local (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Wed, 06 Jul 2005 20:40:20 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: git@vger.kernel.org
+From: John Ellson <ellson@research.att.com>
+Subject:  Re: BUG: cg-clone accepts '_' in git_ssh: URI's, but cg-push does
+ not.
+Date:	Wed, 06 Jul 2005 14:26:04 -0400
+Lines:	18
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Gnus-Warning: This is a duplicate of message <42CC223C.90706@research.att.com>
+Message-ID:  <42CC223C.90706@research.att.com>
+References:  <john.ellson@comcast.net> <200507061658.j66Gw7Me014155@laptop11.inf.utfsm.cl>
+Mime-Version:  1.0
+Content-Type:  text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding:  7bit
+X-Complaints-To: usenet@sea.gmane.org
+Cc: git@vger.kernel.org
+X-Gmane-NNTP-Posting-Host: h-135-207-24-103.research.att.com
+User-Agent: Mozilla Thunderbird 1.0.2-7 (X11/20050623)
+X-Accept-Language: en-us, en
+In-Reply-To: <200507061658.j66Gw7Me014155@laptop11.inf.utfsm.cl>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:5711
+
+Horst von Brand wrote:
+> John Ellson <john.ellson@comcast.net> wrote:
+> 
+>>BUG: cg-clone accepts '_' in git+ssh: URI's, but cg-push does not.
+> 
+> 
+> Right. '_' is illegal in domain names...
+
+
+OK, but its legal in the path part of URI's, I believe, and I'm more 
+bothered by the assymetry between cg-clone and cg-push.  It allowed me 
+to clone a project but not to push updates back.
+
+I was experimenting with git+ssh between two machines locally using:
+
+  git+ssh://ontap/home/ellson/FIX/Linux.x86_64/build/cogito/.git
+
+John
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

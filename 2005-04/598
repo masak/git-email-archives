@@ -1,0 +1,103 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 22:38:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4CC841DF230
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 22:38:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261651AbVDREiV (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 18 Apr 2005 00:38:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261653AbVDREiV
+	(ORCPT <rfc822;git-outgoing>); Mon, 18 Apr 2005 00:38:21 -0400
+Received: from omx2-ext.sgi.com ([192.48.171.19]:33744 "EHLO omx2.sgi.com")
+	by vger.kernel.org with ESMTP id S261651AbVDREiP (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 18 Apr 2005 00:38:15 -0400
+Received: from cthulhu.engr.sgi.com (cthulhu.engr.sgi.com [192.26.80.2])
+	by omx2.sgi.com (8.12.11/8.12.9/linux-outbound_gateway-1.1) with ESMTP id j3I6GxWZ031809;
+	Sun, 17 Apr 2005 23:17:09 -0700
+Received: from vpn2 (mtv-vpn-hw-pj-2.corp.sgi.com [134.15.25.219])
+	by cthulhu.engr.sgi.com (SGI-8.12.5/8.12.5) with SMTP id j3I4ablU15585576;
+	Sun, 17 Apr 2005 21:36:40 -0700 (PDT)
+Date:	Sun, 17 Apr 2005 21:36:32 -0700
+From: Paul Jackson <pj@sgi.com>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: droundy@abridgegame.org, git@vger.kernel.org,
+	darcs-devel@darcs.net
+Subject: Re: using git directory cache code in darcs?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050417213632.1f099ff9.pj@sgi.com>
+In-Reply-To: <Pine.LNX.4.58.0504172005450.7211@ppc970.osdl.org>
+References: <20050416132231.GJ2551@abridgegame.org>
+	<Pine.LNX.4.58.0504161531470.7211@ppc970.osdl.org>
+	<20050417121712.GA22772@abridgegame.org>
+	<Pine.LNX.4.58.0504170916080.7211@ppc970.osdl.org>
+	<20050417195600.6894e576.pj@sgi.com>
+	<Pine.LNX.4.58.0504172005450.7211@ppc970.osdl.org>
+Organization: SGI
+X-Mailer: Sylpheed version 1.0.0 (GTK+ 1.2.10; i686-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 52
+Xref: brand.scrye.com linux.git:598
+
+> Not until all the data structures are really really stable.
+
+Fine by me to wait, though perhaps not for the same reason, and perhaps
+not as long.
+
+A libgit.so can deal with data structure changes just as well as a set
+of command line utilities.  So long as everything funnels through one
+place, you can change by changing that one place.
+
+However I am  willing to agree that its not libgit time yet, for two
+reasons:
+
+ 1) everyone who has two clues on the subject is too busy and
+    too productive on more pressing git issues, and
+
+ 2) in addition to internal data structures being not yet stable,
+    I suspect that the operations (git commands, options and
+    behaviour) are also not stable.
+
+The first step of a good libgit is not coding to the internal data
+structures, but rather designing the interface (the operations,
+arguments, data types, and behaviour).
+
+So, until people have time, and the interface ops are settled down, its
+too early to design libgit.  Or at least too early to publish a design
+and seek concensus.  If I had the time the first thing I'd be doing
+right now would be designing libgit on the side, anticipating the day
+when it was time to publish a draft and engage the community discussion
+that leads to an adequate concensus.
+
+===
+
+By the way, a good libgit design, in my view, would isolate the data
+structures written to files below .git from the data structures
+presented at the library API, to some extent.  Changes in the file
+structures must be handled without disrupting the library API.
+
+If a libgit API didn't isolate the library caller from details of the
+structures in files below .git, then yes you'd want really really stable
+data structures, impossibly stable in fact.  That way leads to hacks and
+workarounds in the future, because the data structures are never
+perfectly stable.
+
+-- 
+                  I won't rest till it's the best ...
+                  Programmer, Linux Scalability
+                  Paul Jackson <pj@engr.sgi.com> 1.650.933.1373, 1.925.600.0401
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

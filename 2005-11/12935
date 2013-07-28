@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 08:01:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 01BB121F50F
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 08:01:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751371AbVK2PAJ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 10:00:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751373AbVK2PAI
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 10:00:08 -0500
+Received: from mail.jdl.com ([66.118.10.122]:18108 "EHLO jdl.com")
+	by vger.kernel.org with ESMTP id S1751371AbVK2PAH (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 29 Nov 2005 10:00:07 -0500
+Received: from jdl (helo=jdl.com)
+	by jdl.com with local-esmtp (Exim 4.44)
+	id 1Eh6xY-0007ul-NI
+	for git@vger.kernel.org; Tue, 29 Nov 2005 08:59:57 -0600
+To:	git@vger.kernel.org
+From:	jdl@freescale.com
+Subject: [PATCH] Fix typos and minor format issues.
+Date:	Tue, 29 Nov 2005 08:59:56 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1Eh6xY-0007ul-NI@jdl.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 56
+Xref: brand.scrye.com linux.git:12935
+
+
+Signed-off-by: Jon Loeliger <jdl@freescale.com>
+
+---
+
+ Documentation/pull-fetch-param.txt |   14 +++++++-------
+ 1 files changed, 7 insertions(+), 7 deletions(-)
+
+applies-to: 116ec987c167ce1489acbe8c1b6161e9e19344f1
+6c335b09a1b8348eb750be4a86f1172e1f6d28ac
+diff --git a/Documentation/pull-fetch-param.txt b/Documentation/pull-fetch-param.txt
+index 6413d52..b5b9792 100644
+--- a/Documentation/pull-fetch-param.txt
++++ b/Documentation/pull-fetch-param.txt
+@@ -15,10 +15,10 @@
+ - ssh://host.xz/~/path/to/repo.git
+ ===============================================================
+ +
+-	SSH Is the default transport protocol and also supports an
+-	scp-like syntax.  Both syntaxes support username expansion,
+-	as does the native git protocol. The following three are
+-	identical to the last three above, respectively:
++SSH Is the default transport protocol and also supports an
++scp-like syntax.  Both syntaxes support username expansion,
++as does the native git protocol. The following three are
++identical to the last three above, respectively:
+ +
+ ===============================================================
+ - host.xz:/path/to/repo.git/
+@@ -26,8 +26,8 @@
+ - host.xz:path/to/repo.git
+ ===============================================================
+ +
+-       To sync with a local directory, use:
+-
++To sync with a local directory, use:
+++
+ ===============================================================
+ - /path/to/repo.git/
+ ===============================================================
+@@ -113,7 +113,7 @@ on the remote branch, merge it into your
+ `git pull . remote-B`, while you are on `my-B` branch.
+ The common `Pull: master:origin` mapping of a remote `master`
+ branch to a local `origin` branch, which is then merged to a
+-ocal development branch, again typically named `master`, is made
++local development branch, again typically named `master`, is made
+ when you run `git clone` for you to follow this pattern.
+ +
+ [NOTE]
+---
+0.99.9j
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

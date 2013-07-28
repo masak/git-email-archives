@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May 25 16:43:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 66F816EFE
+	for <tkil@scrye.com>; Wed, 25 May 2005 16:43:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261583AbVEYWnV (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 25 May 2005 18:43:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261584AbVEYWnV
+	(ORCPT <rfc822;git-outgoing>); Wed, 25 May 2005 18:43:21 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:24256 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S261583AbVEYWnQ (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 25 May 2005 18:43:16 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050525224314.IAVS8651.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 25 May 2005 18:43:14 -0400
+To: Kay Sievers <kay.sievers@vrfy.org>
+Cc: Linus Torvalds <torvalds@osdl.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: change of git-diff-tree and symlinks
+References: <20050525111711.GA27492@vrfy.org>
+	<Pine.LNX.4.58.0505251054110.2307@ppc970.osdl.org>
+	<20050525183546.GA4241@vrfy.org>
+	<7vzmujjdq4.fsf@assigned-by-dhcp.cox.net>
+	<20050525222622.GA8552@vrfy.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 25 May 2005 15:43:14 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v7jhnhqpp.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 27
+Xref: brand.scrye.com linux.git:3931
+
+>>>>> "KS" == Kay Sievers <kay.sievers@vrfy.org> writes:
+
+KS> If we introduce 'T', how is a content _and_ a type change represented
+KS> if they happen at the same time?
+
+If you have this pair in two trees:
+
+    ln -s frotz xyzzy
+    echo -n frotz >xyzzy
+
+it is a 'T'.  If you instead have these in two trees:
+
+    ln -s rezrov xyzzy
+    echo -n frotz >xyzzy
+
+it is also a 'T'.
+
+I do not think we would want patch format to give us a diff
+showing that string rezrov changing into frotz in the latter
+example anyway.  When we have a type change, content change is
+irrelevant.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

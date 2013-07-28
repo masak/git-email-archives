@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 10:18:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,UNPARSEABLE_RELAY 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 66B3ACF931
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 10:18:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751487AbVKPRRN (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 12:17:13 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751486AbVKPRRN
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 12:17:13 -0500
+Received: from iris-63.mc.com ([63.96.239.141]:42200 "EHLO mc.com")
+	by vger.kernel.org with ESMTP id S1751487AbVKPRRM (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 16 Nov 2005 12:17:12 -0500
+Received: from ad-email1.ad.mc.com by mc.com (8.8.8+Sun/SMI-SVR4)
+	id MAA22070; Wed, 16 Nov 2005 12:17:11 -0500 (EST)
+Received: from [172.16.124.85] ([172.16.124.85]) by ad-email1.ad.mc.com with Microsoft SMTPSVC(5.0.2195.6713);
+	 Wed, 16 Nov 2005 12:16:54 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437B6997.8010903@mc.com>
+Date:	Wed, 16 Nov 2005 12:17:11 -0500
+From:	Andrew Wozniak <awozniak@mc.com>
+User-Agent: Thunderbird 1.5 (Windows/20051025)
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: recent patch breaks the build ?
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-OriginalArrivalTime: 16 Nov 2005 17:16:54.0705 (UTC) FILETIME=[8AC35A10:01C5EAD1]
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:12020
+
+Hello,
+
+Have just started using git for u-boot related development. After 
+downloading git-snapshot-20051116 tarball and attempting a build under 
+RH7.2, I get the following failure:
+
+gcc -o http-fetch.o -c -g -O2 -Wall -DSHA1_HEADER='<openssl/sha.h>' 
+http-fetch.c
+http-fetch.c: In function `fetch_alternates':
+http-fetch.c:911: warning: implicit declaration of function 
+`curl_multi_perform'
+http-fetch.c:911: `curlm' undeclared (first use in this function)
+<snip>
+
+It appears that a recent patch "Fix for multiple alternates requests in 
+http" references curlm without the necessary #ifdef USE_CURL_MULTI
+
+I'm not that familiar with the git architecture and codebase, so any 
+suggestions for a workaround are much appreciated.
+
+Thank you
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

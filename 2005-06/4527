@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jun  4 09:49:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 61CD7667A
+	for <tkil@scrye.com>; Sat,  4 Jun 2005 09:49:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261355AbVFDPtR (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 4 Jun 2005 11:49:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261352AbVFDPtR
+	(ORCPT <rfc822;git-outgoing>); Sat, 4 Jun 2005 11:49:17 -0400
+Received: from fire.osdl.org ([65.172.181.4]:36794 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261355AbVFDPtN (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 4 Jun 2005 11:49:13 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j54Fn9jA017050
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 4 Jun 2005 08:49:09 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j54Fn8Cd026650;
+	Sat, 4 Jun 2005 08:49:08 -0700
+Date:	Sat, 4 Jun 2005 08:51:13 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: git-rev-list: proper lazy reachability
+In-Reply-To: <Pine.LNX.4.58.0506040837190.1876@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506040847170.1876@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0505301847120.1876@ppc970.osdl.org>
+ <17052.21846.816147.370354@cargo.ozlabs.ibm.com> <Pine.LNX.4.58.0505310735260.1876@ppc970.osdl.org>
+ <Pine.LNX.4.58.0505310813540.1876@ppc970.osdl.org> <7vekbigo8q.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0506040837190.1876@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 30
+Xref: brand.scrye.com linux.git:4527
+
+
+
+On Sat, 4 Jun 2005, Linus Torvalds wrote:
+> 
+> Does this fix it for you (untested, of course)?
+
+Btw, as shown by this patch, the lazy git-rev-list algorithm is actually
+_supposed_ to be able to handle a lot more complicated cases than what the 
+command line interface allows.
+
+In other words, maybe I should have used the same syntax as for 
+git-rev-tree, because it _can_ handle things like "show me all revisions 
+that are reachable from a or b, but are _not_ reachable from c or d or e.
+
+Is that useful? I dunno. It might be useful for somebody like Jeff, who
+has lots of different heads, and he could say "ok, show me what is in all
+my network driver heads, but isn't in linus' tree".
+
+Would people prefer to have "git-rev-list" take arguments like
+
+	git-rev-list a b ^c ^d
+
+the way git-rev-tree does?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

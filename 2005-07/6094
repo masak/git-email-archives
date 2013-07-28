@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul 13 21:28:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DC40429FFC9
+	for <tkil@scrye.com>; Wed, 13 Jul 2005 21:28:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262877AbVGND15 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 13 Jul 2005 23:27:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262873AbVGND15
+	(ORCPT <rfc822;git-outgoing>); Wed, 13 Jul 2005 23:27:57 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:61164 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S262881AbVGND1n (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 13 Jul 2005 23:27:43 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050714032741.HDAG12158.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 13 Jul 2005 23:27:41 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] Remove leftover comment from documentation.
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 13 Jul 2005 20:27:41 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64vekqxe.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 40
+Xref: brand.scrye.com linux.git:6094
+
+The comment was left over from the days when we had a single
+huge core-git.txt document.  No more.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+
+ Documentation/git-write-tree.txt |   13 -------------
+ 1 files changed, 0 insertions(+), 13 deletions(-)
+
+86eab95db201216395a24c02e88136ddbd007ed8
+diff --git a/Documentation/git-write-tree.txt b/Documentation/git-write-tree.txt
+--- a/Documentation/git-write-tree.txt
++++ b/Documentation/git-write-tree.txt
+@@ -30,19 +30,6 @@ OPTIONS
+ 	Normally "git-write-tree" ensures that the objects referenced by the
+ 	directory exist in the object database.  This option disables this check.
+ 
+-
+-////////////////////////////////////////////////////////////////
+-
+-Producing man pages and html
+-
+-To create a set of html pages run:
+-  perl split-docs.pl -html < core-git.txt
+-
+-To create a set of man pages run:
+-  perl split-docs.pl -man < core-git.txt
+-
+-
+-////////////////////////////////////////////////////////////////
+ Author
+ ------
+ Written by Linus Torvalds <torvalds@osdl.org>
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

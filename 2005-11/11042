@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 14:55:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D6554143170
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 14:55:11 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965286AbVKBVwX (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 16:52:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965284AbVKBVwX
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 16:52:23 -0500
+Received: from [195.140.142.33] ([195.140.142.33]:45521 "EHLO
+	c1-033.cyaris.net") by vger.kernel.org with ESMTP id S965286AbVKBVwV
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 2 Nov 2005 16:52:21 -0500
+Received: from localhost ([127.0.33.1] helo=localhost.localdomain)
+	by c1-033.cyaris.net with esmtps (TLS-1.0:RSA_AES_256_CBC_SHA:32)
+	(Exim 4.50)
+	id 1EXQWb-0003cc-Kq; Wed, 02 Nov 2005 22:52:10 +0100
+Received: from yaslama by localhost.localdomain with local (Exim 4.54)
+	id 1EXQWT-000508-Sz; Wed, 02 Nov 2005 23:51:57 +0200
+Subject: [PATCH 2/7] Add node_kind function to differentiate between file and directory
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EXQWT-000508-Sz@localhost.localdomain>
+From:	Yaacov Akiba Slama <ya@slamail.org>
+Date:	Wed, 02 Nov 2005 23:51:57 +0200
+To:	unlisted-recipients:; (no To-header on input)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 56
+Xref: brand.scrye.com linux.git:11042
+
+Signed-off-by: Yaacov Akiba Slama <ya@slamail.org>
+
+---
+
+ git-svnimport.perl |   21 ++++++++++++++++++---
+ 1 files changed, 18 insertions(+), 3 deletions(-)
+
+applies-to: e230cf653f1af6412e43f9b527465406bdb76ece
+c38f34212ace329637fd87fb11247f6a5733e47f
+diff --git a/git-svnimport.perl b/git-svnimport.perl
+index 5bf9ef2..83b70f9 100755
+--- a/git-svnimport.perl
++++ b/git-svnimport.perl
+@@ -260,10 +260,17 @@ EOM
+ 
+ open BRANCHES,">>", "$git_dir/svn2git";
+ 
+-sub get_file($$$) {
+-	my($rev,$branch,$path) = @_;
++sub node_kind($$$) {
++	my ($branch, $path, $revision) = @_;
++	my $pool=SVN::Pool->new;
++	my $kind = $svn->{'svn'}->check_path(revert_split_path($branch,$path),$revision,$pool);
++	$pool->clear;
++	return $kind;
++}
++
++sub revert_split_path($$) {
++	my($branch,$path) = @_;
+ 
+-	# revert split_path(), below
+ 	my $svnpath;
+ 	$path = "" if $path eq "/"; # this should not happen, but ...
+ 	if($branch eq "/") {
+@@ -274,6 +281,14 @@ sub get_file($$$) {
+ 		$svnpath = "$branch_name/$branch/$path";
+ 	}
+ 
++	return $svnpath
++}
++
++sub get_file($$$) {
++	my($rev,$branch,$path) = @_;
++
++	my $svnpath = revert_split_path($branch,$path);
++
+ 	# now get it
+ 	my $name;
+ 	if($opt_d) {
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

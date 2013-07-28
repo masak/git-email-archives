@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 22 17:28:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 319613295E
+	for <tkil@scrye.com>; Fri, 22 Jul 2005 17:28:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262225AbVGVXYf (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 22 Jul 2005 19:24:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262231AbVGVXWq
+	(ORCPT <rfc822;git-outgoing>); Fri, 22 Jul 2005 19:22:46 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:62217 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262219AbVGVXWa (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 22 Jul 2005 19:22:30 -0400
+Received: (qmail 14108 invoked by uid 2001); 22 Jul 2005 23:22:19 -0000
+Date:	Sat, 23 Jul 2005 01:22:19 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Russell King <rmk@arm.linux.org.uk>
+Cc: git@vger.kernel.org
+Subject: Re: Local cg-pull fails
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050722232218.GO11916@pasky.ji.cz>
+References: <20050714111224.B31383@flint.arm.linux.org.uk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050714111224.B31383@flint.arm.linux.org.uk>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:6324
+
+Dear diary, on Thu, Jul 14, 2005 at 12:12:25PM CEST, I got a letter
+where Russell King <rmk@arm.linux.org.uk> told me that...
+> Last time this was discussed, someone suggested -f, which solved the
+> problem.  Can we please modify the cg-pull script to use -f ?
+
+Thanks, done.
+
+> Secondly, can I suggest that cogito developers consider the above
+> usage scenario and construct a regression test for it to ensure that
+> future breakages of this nature are caught.  For me, cogito has been
+> extremely fragile, and I don't think the above usage is unreasonable.
+
+Done.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

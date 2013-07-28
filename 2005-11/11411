@@ -1,0 +1,115 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 15:06:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BCC7FD9D74
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 15:06:30 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030361AbVKIV66 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 16:58:58 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030786AbVKIV66
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 16:58:58 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:10193 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1030361AbVKIV65 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 16:58:57 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jA9LwYnO031144
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 9 Nov 2005 13:58:35 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jA9LwXWa016640;
+	Wed, 9 Nov 2005 13:58:34 -0800
+Date:	Wed, 9 Nov 2005 13:58:33 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: Comments on recursive merge..
+In-Reply-To: <7virv1efzv.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511091348530.4627@g5.osdl.org>
+References: <Pine.LNX.4.64.0511070837530.3193@g5.osdl.org>
+ <20051107225807.GA10937@c165.ib.student.liu.se> <7vll00ov2l.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0511071629270.3247@g5.osdl.org>
+ <Pine.LNX.4.63.0511081254520.2649@wbgn013.biozentrum.uni-wuerzburg.de>
+ <20051108210211.GA23265@c165.ib.student.liu.se> <Pine.LNX.4.64.0511081351020.3247@g5.osdl.org>
+ <20051108223609.GA4805@c165.ib.student.liu.se> <Pine.LNX.4.64.0511081450080.3247@g5.osdl.org>
+ <20051109003236.GA30496@pasky.or.cz> <Pine.LNX.4.64.0511081646160.3247@g5.osdl.org>
+ <7vlkzyd4aq.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0511081716450.3247@g5.osdl.org>
+ <7v8xvyd2bh.fsf@assigned-by-dhcp.cox.net> <7v4q6mgm1l.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0511090800330.3247@g5.osdl.org> <7virv1efzv.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 61
+Xref: brand.scrye.com linux.git:11411
+
+
+
+On Wed, 9 Nov 2005, Junio C Hamano wrote:
+> 
+> The current show-branch code does the same as merge-base in the
+> pathological example depicted in merge-base.c, but they seem to
+> do different things to this picture (commit grows from bottom to
+> top, time flows alphabetically; find base between G and H).
+> 
+>                  H
+>                 / \
+>            G   A   \
+>            |\ /     \ 
+>            | B       \
+>            |  \       \
+>             \  C       F
+>              \  \     / 
+>               \  D   /   
+>                \ |  /
+>                 \| /
+> 		   E
+> 
+> "git-merge-base --all" says the merge bases are B and E, while
+> "show-branch --merge-base" mentions only B.  In this case the
+> latter is probably the better answer.
+
+I don't agree.
+
+Sure, B _may_ be the right answer for a particular merge strategt, but 
+there's no way of knowing. Maybe all the big changes came in through F, 
+and H is the merge that sorted that out, and E actually ends up being the 
+better base.
+
+So I think from a correctness standpoint, the only thing that matters is 
+"git-merge-base --all", and anything that doesn't know to return both E 
+and B looks potentially buggy.
+
+> Actually git-merge-base without --all only mentions E.
+
+Well, we should really consider anything that doesn't take them all into 
+account to be a bug waiting to happen (or rather, a merge waiting for a 
+disaster), but E is the right one, since it's the more recent one).
+
+Now, this case obviously depends on history being almost maximally insane 
+(ie pretty much _all_ the dates are wrong). So in practice we probably 
+don't care.
+
+So maybe "git-show-branch --merge-base" ends up acceptable as a faster way 
+to do the quick "let's see if we can find _some_ merge-base to do the 
+in-index merge with", but personally I'd much rather always do a 
+"git-merge-base --all", and only do the fast index merge if we only have 
+one potential parent.
+
+That way there would never any question about what the "quick merge" does.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

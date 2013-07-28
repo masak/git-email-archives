@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 14:02:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4B794285235
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 14:02:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751231AbVHQUBs (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 16:01:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751232AbVHQUBr
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 16:01:47 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:41168 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751231AbVHQUBr (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 17 Aug 2005 16:01:47 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7HJupjA030046
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 17 Aug 2005 12:56:52 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7HJuoVa006317;
+	Wed, 17 Aug 2005 12:56:51 -0700
+Date:	Wed, 17 Aug 2005 12:56:50 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Jeff Garzik <jgarzik@pobox.com>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Teach applymbox to keep the Subject: line.
+In-Reply-To: <430375B3.3050307@pobox.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508171253190.3553@g5.osdl.org>
+References: <20050816214707.6842.qmail@web26302.mail.ukl.yahoo.com>
+ <7vek8t7bva.fsf@assigned-by-dhcp.cox.net> <7vk6il2jz8.fsf_-_@assigned-by-dhcp.cox.net>
+ <430375B3.3050307@pobox.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 41
+Xref: brand.scrye.com linux.git:7460
+
+
+
+On Wed, 17 Aug 2005, Jeff Garzik wrote:
+> 
+> 1) Fix applymbox such that it understands RFC822-valid Subject lines 
+> which wrap across multiple text lines.
+
+It already should do this.
+
+> 2) Teach it to understand MIME, and not treat the MIME headers like part 
+> of the message.
+
+But this one I really realyl disagree with.
+
+The fact is, anybody who doesn't edit the emails that come in is BROKEN. 
+There are two kinds of emails:
+
+ - the nicely formatted ones where the author follows all the rules
+
+   This kind of email doesn't need MIME decoding anyway.
+
+ - the others
+
+   This kind might need MIME decoding, but since it _also_ needs 
+   hand-editing to remove all the "Hi, please apply this patch" etc crud
+   that inevitably go along with this kind of patch, trying to handle it 
+   automatically is WRONG WRONG WRONG.
+
+   And if it's mime-encoded you often have trouble editing it anyway.
+
+Ergo: if somebody sends you mime-encoded patches, hit them with a baseball 
+bat (politely) and teach them not to do that. "Fixing" the tools really 
+will just make things worse if it means that you apply raw emails without 
+having edited them.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

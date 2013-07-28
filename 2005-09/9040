@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 09:13:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9EE181A4342
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 09:13:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751073AbVIUPMO (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 11:12:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751088AbVIUPMO
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 11:12:14 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:45767 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751073AbVIUPMN (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Sep 2005 11:12:13 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8LFC7Bo028795
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 21 Sep 2005 08:12:08 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8LFC5Df010466;
+	Wed, 21 Sep 2005 08:12:06 -0700
+Date:	Wed, 21 Sep 2005 08:12:05 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	A Large Angry SCM <gitzilla@gmail.com>
+cc:	webmaster@kernel.org, git Mailing List <git@vger.kernel.org>
+Subject: Re: kernel.org rsync processes
+In-Reply-To: <4331537F.8060402@gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509210808080.2553@g5.osdl.org>
+References: <4331537F.8060402@gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.117 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:9040
+
+
+
+On Wed, 21 Sep 2005, A Large Angry SCM wrote:
+>
+> Did the kernel.org rsync processes get stuck again?
+
+It may still see the effect of a disk failure.. According to hpa as of 
+Monday evening:
+
+> zeus2.kernel.org is coming back online after a severe disk failure.
+> It's pretty out of date (in particular, it's missed the daily --checksum
+> syncs), and I think it's still rebuilding its RAID, so it's running slow.
+
+So it looks like kernel.org just had a few difficult days (fist the move
+of master, then some problems at the outer fringes).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

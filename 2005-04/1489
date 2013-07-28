@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 06:43:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5ECB26BEE
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 06:43:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262320AbVDXMnW (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 08:43:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262321AbVDXMnW
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 08:43:22 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:51395 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262320AbVDXMnT (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Apr 2005 08:43:19 -0400
+Received: (qmail 15124 invoked by uid 2001); 24 Apr 2005 12:43:18 -0000
+Date:	Sun, 24 Apr 2005 14:43:18 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Andreas Gal <gal@uci.edu>
+Cc: Linus Torvalds <torvalds@osdl.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Add -u option to diff-cache to show UNCHANGED files
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050424124318.GD1507@pasky.ji.cz>
+References: <Pine.LNX.4.21.0504232003490.30848-100000@iabervon.org> <Pine.LNX.4.58.0504231906110.2344@ppc970.osdl.org> <Pine.LNX.4.58.0504232022180.4690@sam.ics.uci.edu>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0504232022180.4690@sam.ics.uci.edu>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 22
+Xref: brand.scrye.com linux.git:1489
+
+Dear diary, on Sun, Apr 24, 2005 at 05:28:17AM CEST, I got a letter
+where Andreas Gal <gal@uci.edu> told me that...
+> With -u diff-cache shows unchanged files, instead of files that changed. 
+> This is useful to implement a "git clean" command that throws away all 
+> checked out files that have not changed (yes, I really would like to 
+> have that). One could also do show-files and then substract the 
+> diff-cache output from it, but thats slow and clumsy. 
+> 
+> Signed-off-by: Andreas Gal <gal@uci.edu>
+
+I don't think this fits to diff-cache (since the output is basically
+nonsensical apart of the filename, right?). Maybe rather show-files?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

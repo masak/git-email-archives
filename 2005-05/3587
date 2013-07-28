@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 20 08:56:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E42DF11345E
+	for <tkil@scrye.com>; Fri, 20 May 2005 08:56:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261405AbVETOzy (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 20 May 2005 10:55:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261411AbVETOzy
+	(ORCPT <rfc822;git-outgoing>); Fri, 20 May 2005 10:55:54 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:41347 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S261405AbVETOzu (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 20 May 2005 10:55:50 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j4KEtkS8025491
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <git@vger.kernel.org>; Fri, 20 May 2005 14:55:49 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j4KEtkqe025490
+	for git@vger.kernel.org; Fri, 20 May 2005 16:55:46 +0200 (CEST)
+Date:	Fri, 20 May 2005 16:55:46 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: git@vger.kernel.org
+Subject: Re: [cogito] paged output for cg-diff
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050520145546.GP8105@cip.informatik.uni-erlangen.de>
+Mail-Followup-To: git@vger.kernel.org
+References: <200505201105.08711.michal.rokos@nextsoft.cz> <7v64xevz15.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v64xevz15.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 13
+Xref: brand.scrye.com linux.git:3587
+
+Hello,
+
+> I think that is a sensible thing to do.  But doesn't "less"
+> already do this part without being told?
+
+yes, every pager does.
+
+	Thomas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

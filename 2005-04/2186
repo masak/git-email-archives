@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 29 16:31:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A42B6FC164
+	for <tkil@scrye.com>; Fri, 29 Apr 2005 16:31:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263037AbVD2WbC (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Apr 2005 18:31:02 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263036AbVD2WbC
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Apr 2005 18:31:02 -0400
+Received: from dspnet.fr.eu.org ([213.186.44.138]:1033 "EHLO dspnet.fr.eu.org")
+	by vger.kernel.org with ESMTP id S263034AbVD2Wa5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Apr 2005 18:30:57 -0400
+Received: by dspnet.fr.eu.org (Postfix, from userid 1007)
+	id 4BA1E34D1A; Sat, 30 Apr 2005 00:30:52 +0200 (CEST)
+Date:	Sat, 30 Apr 2005 00:30:52 +0200
+From: Olivier Galibert <galibert@pobox.com>
+To: Andrea Arcangeli <andrea@suse.de>
+Cc: Sean <seanlkml@sympatico.ca>, Matt Mackall <mpm@selenic.com>,
+	Linus Torvalds <torvalds@osdl.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+Subject: Re: Mercurial 0.4b vs git patchbomb benchmark
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050429223052.GD28540@dspnet.fr.eu.org>
+Mail-Followup-To: Olivier Galibert <galibert@pobox.com>,
+	Andrea Arcangeli <andrea@suse.de>, Sean <seanlkml@sympatico.ca>,
+	Matt Mackall <mpm@selenic.com>, Linus Torvalds <torvalds@osdl.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+References: <20050426004111.GI21897@waste.org> <Pine.LNX.4.58.0504251859550.18901@ppc970.osdl.org> <20050429060157.GS21897@waste.org> <3817.10.10.10.24.1114756831.squirrel@linux1> <20050429201957.GJ17379@opteron.random>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050429201957.GJ17379@opteron.random>
+User-Agent: Mutt/1.4.2.1i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:2186
+
+On Fri, Apr 29, 2005 at 10:19:57PM +0200, Andrea Arcangeli wrote:
+> such a system might fall apart under load, converting on the fly from
+> git to network-optimized format sound quite expensive operation, even
+> ignorign the initial decompression of the payload.
+
+Nothing a little caching can't solve.  Given that git's objects are
+immutable caching is especially easy to do, you can have the delta
+reference indexes in the filename.
+
+  OG.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

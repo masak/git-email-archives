@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 14:34:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A6B9B285244
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 14:34:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751232AbVHQUca (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 16:32:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751236AbVHQUca
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 16:32:30 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:733 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751232AbVHQUc3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 17 Aug 2005 16:32:29 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7HKWNjA001255
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 17 Aug 2005 13:32:24 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7HKWMjc008346;
+	Wed, 17 Aug 2005 13:32:23 -0700
+Date:	Wed, 17 Aug 2005 13:32:22 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: [PATCH 2/2] Make git-update-cache take relative pathnames
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508171331540.3553@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_WF 
+	autolearn=ham version=3.0.4
+Lines: 35
+Xref: brand.scrye.com linux.git:7465
+
+
+This also makes "./filename" acceptable as a side effect, since the
+pathname normalization handles that too.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+
+ update-cache.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+ece92eeda777c3141f5692132ccc2ba7e4e801a2
+diff --git a/update-cache.c b/update-cache.c
+--- a/update-cache.c
++++ b/update-cache.c
+@@ -321,6 +321,7 @@ int main(int argc, char **argv)
+ {
+ 	int i, newfd, entries, has_errors = 0;
+ 	int allow_options = 1;
++	const char *prefix = setup_git_directory();
+ 
+ 	newfd = hold_index_file_for_update(&cache_file, get_index_file());
+ 	if (newfd < 0)
+@@ -381,6 +382,7 @@ int main(int argc, char **argv)
+ 			}
+ 			die("unknown option %s", path);
+ 		}
++		path = prefix_path(prefix, prefix ? strlen(prefix) : 0, path);
+ 		if (!verify_path(path)) {
+ 			fprintf(stderr, "Ignoring path %s\n", argv[i]);
+ 			continue;
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

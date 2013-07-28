@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 00:16:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 06EA7208C62
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 00:16:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751174AbVILGQZ (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 02:16:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751154AbVILGQZ
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 02:16:25 -0400
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:7089 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S1751174AbVILGQZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 12 Sep 2005 02:16:25 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050912061623.OTHL3414.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 12 Sep 2005 02:16:23 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] There are several undocumented dependencies
+References: <200509120000.j8C00n9M012603@inti.inf.utfsm.cl>
+Date:	Sun, 11 Sep 2005 23:16:23 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvf16izew.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:8361
+
+Horst von Brand <vonbrand@inf.utfsm.cl> writes:
+
+> There are several undocumented dependencies in the .spec and in the
+> INSTALL files. The following is from Fedora, perhaps other RPM
+> distributions call the packages differently.
+
+Thanks.  Earlier, I was told that it does not make much sense to
+target for RPM based distributions in general because of the
+package naming issue you mention here, and explicitly targetting
+for Fedora is fine by me.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

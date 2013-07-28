@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 18:10:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5963F135C61
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 18:10:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932126AbVKBBKJ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 20:10:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932129AbVKBBKJ
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 20:10:09 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:57744 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932126AbVKBBKH (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 1 Nov 2005 20:10:07 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id C822313F6E2; Wed,  2 Nov 2005 02:10:06 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id ADA4CB4F9C; Wed,  2 Nov 2005 02:10:06 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 9273FB1690; Wed,  2 Nov 2005 02:10:06 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6ECEC13F6E3; Wed,  2 Nov 2005 02:10:06 +0100 (CET)
+Date:	Wed, 2 Nov 2005 02:10:06 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: HTTP pushes
+In-Reply-To: <7v1x1z51id.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511020209400.13811@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051101020248.GA3928@reactrix.com>
+ <Pine.LNX.4.63.0511012008310.11979@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7v1x1z51id.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:10980
+
+Hi,
+
+On Tue, 1 Nov 2005, Junio C Hamano wrote:
+
+> I had an impression that DAV has its own notion of version
+> control, so using git as a backend on the server side might be
+> an interesting exercise.
+
+IIRC Subversion can operate over DAV, too.
+
+Ciao,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

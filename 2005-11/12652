@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 16:45:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F0483182901
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 16:45:05 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030514AbVKWXmw (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 18:42:52 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030513AbVKWXmL
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 18:42:11 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:54408 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1030517AbVKWXmA (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 23 Nov 2005 18:42:00 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 2648413FDE6; Thu, 24 Nov 2005 00:41:57 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0B2EDB52E1; Thu, 24 Nov 2005 00:41:57 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id DA593B521E; Thu, 24 Nov 2005 00:41:56 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 65F0013FDE6; Thu, 24 Nov 2005 00:41:56 +0100 (CET)
+Date:	Thu, 24 Nov 2005 00:41:56 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Carl Baldwin <cnb@fc.hp.com>, git@vger.kernel.org
+Subject: Re: Why not clone to a remote directory over SSH
+In-Reply-To: <7vd5kr3pz1.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511240038001.11106@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051123211601.GA2260@hpsvcnb.fc.hp.com> <7vd5kr3pz1.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12652
+
+Hi,
+
+On Wed, 23 Nov 2005, Junio C Hamano wrote:
+
+> 	$ ssh machine 'git clone '`hostname`:`pwd`' /path/to/new/repository'
+
+Obviously, this only works if the other side can connect to this side via 
+ssh. Hmm. Firewalls? Disabled sshd? `hostname` not reliably returning a 
+valid address for the remote side?
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

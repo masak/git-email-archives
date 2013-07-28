@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 16 18:45:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3FBA97CD
+	for <tkil@scrye.com>; Sun, 16 Oct 2005 18:45:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932106AbVJQApc (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 16 Oct 2005 20:45:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932107AbVJQApc
+	(ORCPT <rfc822;git-outgoing>); Sun, 16 Oct 2005 20:45:32 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:1717 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932106AbVJQApc (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 16 Oct 2005 20:45:32 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9H0jPFC032563
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 16 Oct 2005 17:45:26 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9H0jO5J001821;
+	Sun, 16 Oct 2005 17:45:25 -0700
+Date:	Sun, 16 Oct 2005 17:45:24 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: Do you use "git-apply --show-files"?
+In-Reply-To: <7vek6lxq1d.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510161740000.23590@g5.osdl.org>
+References: <7vek6lxq1d.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:10167
+
+
+
+On Sun, 16 Oct 2005, Junio C Hamano wrote:
+>
+> As a part of "funny pathname character" updates, I was reviewing
+> "apply.c" and have two questions on its "--show-files" flag.
+> 
+>  * Unlike other informational flags like --stat and --summary,
+>    it does not turn off "apply".  Is it intentional? 
+> 
+>  * Do you (or anybody else) use it, and if so how?
+
+As far as I'm concerned, you can remove it.
+
+The point of show-files was to have the index update be based on the files 
+that were updated, it I was originally not planning to updating the index 
+directly in git-apply, but instead do something like
+
+	files=$(git-apply --show-files)
+	git-update-cache --add --delete -- $files
+
+but it turned out to be a lot easier to just update the index.
+
+So just remove that flag, I doubt it has ever been used.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

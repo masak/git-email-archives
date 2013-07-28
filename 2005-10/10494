@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 23 13:30:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D8B37179CC0
+	for <tkil@scrye.com>; Sun, 23 Oct 2005 13:30:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750716AbVJWTaf (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 23 Oct 2005 15:30:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750751AbVJWTae
+	(ORCPT <rfc822;git-outgoing>); Sun, 23 Oct 2005 15:30:34 -0400
+Received: from web26303.mail.ukl.yahoo.com ([217.146.176.14]:52845 "HELO
+	web26303.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S1750716AbVJWTae (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 23 Oct 2005 15:30:34 -0400
+Received: (qmail 2439 invoked by uid 60001); 23 Oct 2005 19:30:27 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=eCnuqMVDhv0HQ3rsBpLTYZO0sR3flV3loQckzDlKOlO9rRuYOEVLQ7Q1c9yYqeoOjoG13q4qEIewgoUqz/G1fponRfp8IKrtVnUo7lqUxtg9wvP2LjdsPpDXQ/EIzEipEMruE4HZBkhYEPtxeUOXnPm3Qh2Ynit6954MD9p14BI=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051023193027.2437.qmail@web26303.mail.ukl.yahoo.com>
+Received: from [151.42.224.10] by web26303.mail.ukl.yahoo.com via HTTP; Sun, 23 Oct 2005 12:30:27 PDT
+Date:	Sun, 23 Oct 2005 12:30:27 -0700 (PDT)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: git-rev-list: add "--dense" flag
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Git Mailing List <git@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:10494
+
+Linus Torvalds wrote:
+
+>
+>And it scales pretty well too. On the historical linux archive, which is 
+>three years of history, the same thing takes me just over 12 seconds and 
+>52MB, and that's for the _whole_ history. And it's not just following one 
+>file: it's following that subdirectory.
+>
+>So it really is pretty damn cool. 
+>
+
+Yes, it is. Very powerful and useful tool indeed. IMHO kudos!
+
+>Of course, I might have a bug somewhere, but it all _seems_ to work very 
+>well indeed.
+>
+
+The only bug I found is in qgit ;-) that failed to correctly handle --dense option.
+
+It is now fixed in my GIT archive: http://digilander.libero.it/mcostalba/qgit.git
+
+
+    Marco
+
+
+
+		
+__________________________________ 
+Yahoo! FareChase: Search multiple travel sites in one click.
+http://farechase.yahoo.com
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

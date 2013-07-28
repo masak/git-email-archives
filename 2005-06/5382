@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun 29 00:00:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 8FD2AAC04B
+	for <tkil@scrye.com>; Wed, 29 Jun 2005 00:00:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262436AbVF2F7y (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 29 Jun 2005 01:59:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262437AbVF2F7y
+	(ORCPT <rfc822;git-outgoing>); Wed, 29 Jun 2005 01:59:54 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:27811 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S262436AbVF2F7w (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 29 Jun 2005 01:59:52 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050629055948.CGXF550.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 29 Jun 2005 01:59:48 -0400
+To: Nicolas Pitre <nico@cam.org>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] denser delta header encoding
+References: <Pine.LNX.4.63.0506290021050.1667@localhost.localdomain>
+	<7vmzp9kbcf.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0506282217010.19755@ppc970.osdl.org>
+	<7virzxk9nd.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0506282244110.19755@ppc970.osdl.org>
+	<Pine.LNX.4.63.0506290146270.1667@localhost.localdomain>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Tue, 28 Jun 2005 22:59:48 -0700
+In-Reply-To: <Pine.LNX.4.63.0506290146270.1667@localhost.localdomain> (Nicolas Pitre's message of "Wed, 29 Jun 2005 01:49:04 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vacl9k8iz.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:5382
+
+>>>>> "NP" == Nicolas Pitre <nico@cam.org> writes:
+
+NP> On Tue, 28 Jun 2005, Linus Torvalds wrote:
+>> 
+>> 
+>> On Tue, 28 Jun 2005, Junio C Hamano wrote:
+>> > 
+>> > OK, not too much damage done.  I'll fix the rest up.
+>> 
+>> Actually, I already did, and pushed out. And this time I verified it by 
+>> doing a "git-cat-file -s" on every object on a packed repo.
+
+NP> Damn!
+
+NP> And just when I was about to send a new patch with the thing nicely 
+NP> abstracted to fix the dammage.
+
+Double Damn!!  Three people working on the same piece of code.
+
+And Linus head still breaks with t5300.  Triple damn X-<.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May  4 08:40:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0FF36660E
+	for <tkil@scrye.com>; Wed,  4 May 2005 08:40:05 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261857AbVEDOjr (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 4 May 2005 10:39:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261856AbVEDOjr
+	(ORCPT <rfc822;git-outgoing>); Wed, 4 May 2005 10:39:47 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:8851 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S261860AbVEDOjf
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 4 May 2005 10:39:35 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j44EcxMo024601
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 4 May 2005 07:39:00 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4278DE7D.3000005@zytor.com>
+Date:	Wed, 04 May 2005 07:38:53 -0700
+From: "H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Chris Wright <chrisw@osdl.org>, Mark Allen <mrallen1@yahoo.com>,
+	git@vger.kernel.org
+Subject: Re: [PATCH 0/3] cogito spec file updates
+References: <20050503211527.42339.qmail@web41208.mail.yahoo.com> <20050503182850.GL18917@shell0.pdx.osdl.net> <20050503193536.GE5324@shell0.pdx.osdl.net> <20050503212142.GB15995@pasky.ji.cz> <20050503213216.GF5324@shell0.pdx.osdl.net> <20050503214401.GE15995@pasky.ji.cz>
+In-Reply-To: <20050503214401.GE15995@pasky.ji.cz>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.84, clamav-milter version 0.84e on localhost
+X-Virus-Status:	Clean
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_CV,TW_VF,
+	TW_VV autolearn=no version=3.0.3
+Lines: 38
+Xref: brand.scrye.com linux.git:2547
+
+Petr Baudis wrote:
+> 
+> I wouldn't accept this neither. If git.spec is already version
+> controlled, it should be up-to-date in the version control. Therefore,
+> you need to update it at the time of release, not at the time of
+> generating the tarball.
+> 
+
+What I usually do is to have a *.spec.in file, and have my release 
+script generate the *.spec file.  I usually have a "version" file 
+checked into the SCM from which all version information derives, 
+including what to put in the *.spec file as well as what to name the 
+subdirectory.
+
+The release script then ends up being some variant on:
+
+#!/bin/sh -xe
+PACKAGE=pkgname
+VERSION=`cat version`
+scm-of-choice tag --force $PACKAGE-$VERSION
+mkdir /var/tmp/$PACKAGE-$VERSION
+cd /var/tmp/$PACKAGE-$VERSION
+scm-of-choice export -r $PACKAGE-$VERSION
+make release
+cd ..
+tar cvvfz $PACKAGE-$VERSION.tar.gz $PACKAGE-$VERSION
+rm -rf $PACKAGE-$VERSION
+
+... where "make release" creates the specfile and anything else that 
+needs to be created (like autoconf files.)
+
+	-hpa
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 07:20:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7F3371383B9
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 07:20:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261382AbVDSNTi (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 09:19:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261504AbVDSNTi
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 09:19:38 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:17388 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S261382AbVDSNT1 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 19 Apr 2005 09:19:27 -0400
+Received: from [203.53.50.91] (helo=[172.18.240.72])
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DNsdQ-0003He-NQ; Tue, 19 Apr 2005 14:19:26 +0100
+Subject: Re: naive question
+From: David Woodhouse <dwmw2@infradead.org>
+To: Paul Mackerras <paulus@samba.org>
+Cc: git@vger.kernel.org
+In-Reply-To: <16997.222.917219.386956@cargo.ozlabs.ibm.com>
+References: <16997.222.917219.386956@cargo.ozlabs.ibm.com>
+Content-Type: text/plain
+Date:	Tue, 19 Apr 2005 23:19:00 +1000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1113916741.4166.0.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-1) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.2
+Lines: 20
+Xref: brand.scrye.com linux.git:793
+
+On Tue, 2005-04-19 at 23:00 +1000, Paul Mackerras wrote:
+> Is there a way to check out a tree without changing the mtime of any
+> files that you have already checked out and which are the same as the
+> version you are checking out?  It seems that checkout-cache -a doesn't
+> overwrite any existing files, and checkout-cache -f -a overwrites all
+> files and gives them the current mtime.  This is a pain if you are
+> using make and your tree is large (like, for instance, the linux
+> kernel :), because it means that after a checkout-cache -f -a you get
+> to recompile everything.
+
+Corollary: why aren't we storing mtime in the tree objects?
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

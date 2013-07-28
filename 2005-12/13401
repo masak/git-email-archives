@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  8 18:19:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5B4A8E7539
+	for <tkil@scrye.com>; Thu,  8 Dec 2005 18:19:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750728AbVLIBTl (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 20:19:41 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750798AbVLIBTl
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 20:19:41 -0500
+Received: from mail.gmx.net ([213.165.64.20]:36830 "HELO mail.gmx.net")
+	by vger.kernel.org with SMTP id S1750728AbVLIBTl (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 8 Dec 2005 20:19:41 -0500
+Received: (qmail invoked by alias); 09 Dec 2005 01:19:39 -0000
+Received: from p5496AA54.dip0.t-ipconnect.de (EHLO [192.168.178.21]) [84.150.170.84]
+  by mail.gmx.net (mp031) with SMTP; 09 Dec 2005 02:19:39 +0100
+X-Authenticated: #352111
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	linux@horizon.com
+Subject: Re: as promised, docs: git for the confused
+Date:	Fri, 9 Dec 2005 02:19:38 +0100
+User-Agent: KMail/1.9
+References: <20051208063409.31967.qmail@science.horizon.com>
+In-Reply-To: <20051208063409.31967.qmail@science.horizon.com>
+Cc:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200512090219.38297.Josef.Weidendorfer@gmx.de>
+X-Y-GMX-Trusted: 0
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:13401
+
+On Thursday 08 December 2005 07:34, you wrote:
+> As I mentioned with all my questions, I was writing up the answers
+> I got.  Here's the current status.  If anyone would like to comment on
+> its accuracy or usefulness, feedback is appreciated.
+> ...
+
+> + Oddballs
+> git-mv.perl
+> 	I have to admit, I'm not quite sure what advantages this is
+> 	supposed to have over plain "mv" followed by "git-update-index",
+> 	or why it's complex enough to need perl.
+> 
+> 	Basically, this renames a file, deleting its old name and adding
+> 	its new name to the index.  Otherwise, it's a two-step process
+> 	to rename a file:
+> 	- Rename the file
+> 	- git-add the new name
+> 	Followed by which you must commit both the old and new names
+
+The nice thing about it is that you can move huge directories around,
+or multiple files/dirs at once, and it will do the right thing. E.g.
+	git-mv -k foo* bar/
+will only move files which are version controlled.
+
+It is actually a 3-step process: rename, delete old, add new.
+Perhaps it should be noted that this has nothing to do with any
+explicit renaming feature like in other SCMs.
+
+Josef
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

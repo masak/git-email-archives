@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun  6 01:01:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id AF8186EB1
+	for <tkil@scrye.com>; Mon,  6 Jun 2005 01:01:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261188AbVFFHBX (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 6 Jun 2005 03:01:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261192AbVFFHBX
+	(ORCPT <rfc822;git-outgoing>); Mon, 6 Jun 2005 03:01:23 -0400
+Received: from fire.osdl.org ([65.172.181.4]:25777 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261188AbVFFHBS (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 6 Jun 2005 03:01:18 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j56716jA031265
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 6 Jun 2005 00:01:06 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j56714l6012126;
+	Mon, 6 Jun 2005 00:01:05 -0700
+Date:	Mon, 6 Jun 2005 00:03:09 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>,
+	git@vger.kernel.org
+Subject: Re: Last mile for 1.0
+In-Reply-To: <7vis0sugp7.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506052358330.1876@ppc970.osdl.org>
+References: <7voeak1o0q.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0506051509490.1876@ppc970.osdl.org> <7vk6l8xue5.fsf_-_@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0506051658100.1876@ppc970.osdl.org>
+ <20050606054356.GB3669@cip.informatik.uni-erlangen.de>
+ <Pine.LNX.4.58.0506052300350.1876@ppc970.osdl.org> <7vis0sugp7.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 25
+Xref: brand.scrye.com linux.git:4613
+
+
+
+On Sun, 5 Jun 2005, Junio C Hamano wrote:
+> 
+> Is test 44 in t1000 (the first one in t1000 after the lib-
+> read-tree-m-3way prepares the test trees) good enough?  Or do
+> you want more specific tests to make sure the logic catches
+> individual cases right?
+
+I was more thinking of all the individual cases, and also the 2-way merge
+issue (which _should_ be a lot easier, but hey, I had tons of bugs there
+too).
+
+For example, what should happen if you do a merge and you have a file in
+the index that isn't mentioned by any of the trees involved. I consider 
+that a failure, since the merge will remove the file, and since it wasn't 
+committed, it's now a "data lost" issue. But did I actually get it right? 
+I have no idea.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

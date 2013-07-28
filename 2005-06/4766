@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  9 08:56:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 26BCFAA5C2
+	for <tkil@scrye.com>; Thu,  9 Jun 2005 08:56:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261350AbVFIO4j (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 9 Jun 2005 10:56:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261795AbVFIO4j
+	(ORCPT <rfc822;git-outgoing>); Thu, 9 Jun 2005 10:56:39 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:59008 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261350AbVFIO4h (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 9 Jun 2005 10:56:37 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j59EuWjA007900
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 9 Jun 2005 07:56:32 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j59EuUtp005326;
+	Thu, 9 Jun 2005 07:56:31 -0700
+Date:	Thu, 9 Jun 2005 07:58:36 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Paul Mackerras <paulus@samba.org>
+Cc: git@vger.kernel.org
+Subject: Re: gitk-1.1 out
+In-Reply-To: <17064.15104.847009.390149@cargo.ozlabs.ibm.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506090728280.2286@ppc970.osdl.org>
+References: <17053.35147.52729.794561@cargo.ozlabs.ibm.com>
+ <Pine.LNX.4.58.0506080743040.2286@ppc970.osdl.org>
+ <17064.15104.847009.390149@cargo.ozlabs.ibm.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 46
+Xref: brand.scrye.com linux.git:4766
+
+
+
+On Thu, 9 Jun 2005, Paul Mackerras wrote:
+> 
+> Try this patch against gitk-1.1 and let me know what you think.  I
+> draw the heads as a green rectangle with a black border.
+
+Works for me. My cvs-import testing "syslinux" tree now has the heads of
+the different branches nicely named.
+
+However, I also changed it to allow the "direct" kinds of tags which the 
+cvs2git thing creates, where the tag file contains just a direct pointer 
+to the commit, rather than a pointer to a tag object.
+
+I'm not a TCL weenie, so this is just a very quick hack, and you may want 
+to re-do things properly, but something like the appended works for me..
+
+> I also added a -t option to gitk which makes it use gitk-rev-tree
+> instead of git-rev-list, so that you can do
+> 
+> 	gitk -t $(ls .git/refs/heads)
+
+No need, I think yoy may have an old version of git.
+
+		Linus
+
+--- hacky hack hack ---
+--- gitk	2005-06-09 07:26:50.000000000 -0700
++++ gitk	2005-06-09 07:55:00.000000000 -0700
+@@ -151,6 +151,11 @@
+ 	    set fd [open $f r]
+ 	    set line [read $fd]
+ 	    if {[regexp {^[0-9a-f]{40}} $line id]} {
++		if {[regexp {[^/]*$} $f direct]} {
++		    set tagids($direct) $id
++		    lappend idtags($id) $direct
++		}
++
+ 		set contents [split [exec git-cat-file tag $id] "\n"]
+ 		set obj {}
+ 		set type {}
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

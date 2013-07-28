@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 10 14:13:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CCF45198F59
+	for <tkil@scrye.com>; Mon, 10 Oct 2005 14:13:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751198AbVJJUNj (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 10 Oct 2005 16:13:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751199AbVJJUNj
+	(ORCPT <rfc822;git-outgoing>); Mon, 10 Oct 2005 16:13:39 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:8069 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751198AbVJJUNj (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 10 Oct 2005 16:13:39 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id ED53513F09B; Mon, 10 Oct 2005 22:13:37 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id D398B9E398; Mon, 10 Oct 2005 22:13:37 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id B914F9DFD4; Mon, 10 Oct 2005 22:13:37 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8FDBD13F09B; Mon, 10 Oct 2005 22:13:37 +0200 (CEST)
+Date:	Mon, 10 Oct 2005 22:13:37 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: [PATCH] Teach git-status about spaces in file names also on MacOSX
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510102212230.8106@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 51
+Xref: brand.scrye.com linux.git:9909
+
+
+Not that I really understand what Kai's original patch really does, but on
+my iBook, sed does not understand '\t' and consequently cuts of every file
+name at the first "t" (or backslash...).
+
+Signed-off-by: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+
+---
+
+ git-status.sh |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
+applies-to: b7dbad9daef37a781daa3942e9258797f23fa635
+ab97728bc4bebd99406cefa55de8530b1fe35620
+diff --git a/git-status.sh b/git-status.sh
+index 6e2783a..fbdd377 100755
+--- a/git-status.sh
++++ b/git-status.sh
+@@ -45,10 +45,10 @@ then
+ 	sed -e '
+ 		s/^:// 
+ 		h
+-		s/^[^\t]*//
++		s/^[^	]*//
+ 		s/ /\\ /g
+ 		x
+-		s/\t.*$//
++		s/	.*$//
+ 		G
+ 		s/\n/ /' |
+ 	report "Updated but not checked in" "will commit"
+@@ -71,10 +71,10 @@ git-diff-files |
+ sed -e '
+ 	s/^:// 
+ 	h
+-	s/^[^\t]*//
++	s/^[^	]*//
+ 	s/ /\\ /g
+ 	x
+-	s/\t.*$//
++	s/	.*$//
+ 	G
+ 	s/\n/ /' |
+ report "Changed but not updated" "use git-update-index to mark for commit"
+---
+0.99.8.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

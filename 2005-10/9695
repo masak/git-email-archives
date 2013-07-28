@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 05:27:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D748F1A0932
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 05:27:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965108AbVJELYs (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 07:24:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932632AbVJELYr
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 07:24:47 -0400
+Received: from nproxy.gmail.com ([64.233.182.196]:26016 "EHLO nproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932624AbVJELYp convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 5 Oct 2005 07:24:45 -0400
+Received: by nproxy.gmail.com with SMTP id a4so51826nfc
+        for <git@vger.kernel.org>; Wed, 05 Oct 2005 04:24:40 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=YfeAT10nWtK/o0zQT1RY2BAHgeXGWvS/nSPZx8ZsBTUyM/RtkYvn9yjTPa53fsh4BnXSUZMtx3UZ3pchtvTHtEOmLYKXsS9Sw+nxPkWe9iOIVss/YTgOs1EM/dKZvnK3ke+LhRe3iU2y3r5Hacx7oa8q6DU+PnlbrOfgFjagSW0=
+Received: by 10.49.5.11 with SMTP id h11mr33672nfi;
+        Wed, 05 Oct 2005 04:24:40 -0700 (PDT)
+Received: by 10.48.247.10 with HTTP; Wed, 5 Oct 2005 04:24:40 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <81b0412b0510050424h21fc06bav7677911f52b38426@mail.gmail.com>
+Date:	Wed, 5 Oct 2005 13:24:40 +0200
+From:	Alex Riesen <raa.lkml@gmail.com>
+Reply-To: Alex Riesen <raa.lkml@gmail.com>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: First cut at git port to Cygwin
+Cc:	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <434299DB.7020805@zytor.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <433B3B10.5050407@zytor.com>
+	 <81b0412b0510040531m441ca759k6d1f3fbf0cd248ce@mail.gmail.com>
+	 <434299DB.7020805@zytor.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:9695
+
+On 10/4/05, H. Peter Anvin <hpa@zytor.com> wrote:
+> > I noticed that rename(2) in my copy of cygwin (1.5.18-1) does not remove the
+> > target and returns an error (probably EPERM, but I have reasons not to trust
+> > strerror on that thing).
+> > The repository was on FAT.
+> > Taking "rename(2)" from cygwin's libiberty solved this (they unlink if link(2)
+> > returns EEXIST).
+> >
+> > PS: Does broken rename(2) qualify a system "not worthy to support"?
+>
+> I just tried this with Cygwin 1.5.18-1 and didn't have any such
+> problems.  I tried it on NTFS, FAT and Samba, using WinXP.
+
+It's on Win2k, there was multiple cygwin installations in path, the other one
+supposedly is 1.5.5 (it's from QNX Momentics installation).
+I had that old "cygwin1.dll" renamed into "cygwin1.dll-disabled" long
+ago, though...
+I can't reproduce this out of GIT context, and the error is not
+reproducable after
+I removed the other cygwin installation out of PATH.
+Anyway, sorry, I should have tried this before posting.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

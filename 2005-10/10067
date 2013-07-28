@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 13 09:44:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6998F125A53
+	for <tkil@scrye.com>; Thu, 13 Oct 2005 09:44:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751214AbVJMPoW (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 13 Oct 2005 11:44:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751343AbVJMPoW
+	(ORCPT <rfc822;git-outgoing>); Thu, 13 Oct 2005 11:44:22 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:33748 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S1751214AbVJMPoV (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 13 Oct 2005 11:44:21 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051013154355.SOYT11356.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 13 Oct 2005 11:43:55 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: Usage of isspace and friends
+References: <118833cc0510111840k715e1190l54ad65f821c77848@mail.gmail.com>
+	<7vachd6hdx.fsf@assigned-by-dhcp.cox.net> <434E60AB.8030607@zytor.com>
+cc:	git@vger.kernel.org
+Date:	Thu, 13 Oct 2005 08:44:14 -0700
+In-Reply-To: <434E60AB.8030607@zytor.com> (H. Peter Anvin's message of "Thu,
+	13 Oct 2005 06:27:07 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vbr1t4e29.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 12
+Xref: brand.scrye.com linux.git:10067
+
+"H. Peter Anvin" <hpa@zytor.com> writes:
+
+> The problem is that isspace() is defined to operate on an integer which 
+> can be an unsigned char value promoted to int or EOF (-1).
+
+Ah, thanks.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

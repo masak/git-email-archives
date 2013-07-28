@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 14 03:02:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E281CFC308
+	for <tkil@scrye.com>; Sat, 14 May 2005 03:01:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262711AbVENJBw (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 14 May 2005 05:01:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262712AbVENJBw
+	(ORCPT <rfc822;git-outgoing>); Sat, 14 May 2005 05:01:52 -0400
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:50144 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S262711AbVENJBu (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 14 May 2005 05:01:50 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050514090150.WXTT7275.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 14 May 2005 05:01:50 -0400
+To: David Greaves <david@dgreaves.com>
+Cc: Petr Baudis <pasky@ucw.cz>,
+	GIT Mailing Lists <git@vger.kernel.org>
+Subject: Re: [PATCH] Ignore file filter
+References: <4283CAF8.3050304@dgreaves.com>
+	<20050513231229.GI32232@pasky.ji.cz> <4285B6A8.4080309@dgreaves.com>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Sat, 14 May 2005 02:01:49 -0700
+In-Reply-To: <4285B6A8.4080309@dgreaves.com> (David Greaves's message of
+ "Sat, 14 May 2005 09:28:24 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vy8ai2nb6.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 30
+Xref: brand.scrye.com linux.git:3270
+
+>>>>> "DG" == David Greaves <david@dgreaves.com> writes:
+
+>>> if [[ $file =~ $patt ]]; then
+>> 
+>> I'm sorry but this is really nothing my bash-2.05.0(1)-release supports.
+DG> OK
+DG> I don't know how to do that.
+
+Is that regexp or shell glob?  If regexp, expr is your friend,
+like this:
+
+    if expr "$file" : "$patt" >/dev/null; then
+
+For a glob:
+
+    patt='?.sh'
+    file=1.sh
+
+    case "$file" in
+    $patt)
+            echo Yeah ;;
+    *)
+            echo No ;;
+    esac
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

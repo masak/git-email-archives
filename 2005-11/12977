@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 23:09:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 528631F7704
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 23:09:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750882AbVK3GJJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 01:09:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751074AbVK3GJJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 01:09:09 -0500
+Received: from science.horizon.com ([192.35.100.1]:28993 "HELO
+	science.horizon.com") by vger.kernel.org with SMTP id S1750882AbVK3GJH
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 30 Nov 2005 01:09:07 -0500
+Received: (qmail 13278 invoked by uid 1000); 30 Nov 2005 01:09:06 -0500
+Date:	30 Nov 2005 01:09:06 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051130060906.13277.qmail@science.horizon.com>
+From:	linux@horizon.com
+To:	junkio@cox.net, torvalds@osdl.org
+Subject: Re: git-name-rev off-by-one bug
+Cc:	git@vger.kernel.org, linux@horizon.com, pasky@suse.cz
+In-Reply-To: <Pine.LNX.4.64.0511292031280.3099@g5.osdl.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12977
+
+> +-0 -1 -2::
+> +	When an unmerged entry is seen, diff against the base version,
+> +	the "first branch" or the "second branch" respectively.
+> +
+> +	The default is to diff against the first branch.
+> +
+
+Er... why are these flags zero-based?
+
+git-ls-files -s displays them as "1", "2" and "3".  All the docs talk
+about "stage1", "stage2" and "stage3".
+
+Change the nomenclature if you want, but this mixed messages business is
+kind of weird...
+
+(Heartened by the response to my previous question of "why do you do
+this thing that makes no sense to me", I'm going to be bold and not ask
+why this is a good idea.)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

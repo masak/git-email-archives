@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 11 02:33:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 858EB134F5D
+	for <tkil@scrye.com>; Sun, 11 Sep 2005 02:33:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932225AbVIKIdY (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Sep 2005 04:33:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932320AbVIKIdY
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Sep 2005 04:33:24 -0400
+Received: from smtp14.wxs.nl ([195.121.6.28]:20167 "EHLO smtp14.wxs.nl")
+	by vger.kernel.org with ESMTP id S932225AbVIKIdX (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 11 Sep 2005 04:33:23 -0400
+Received: from greensroom.kotnet.org (ip54515aaa.direct-adsl.nl [84.81.90.170])
+ by smtp14.wxs.nl (iPlanet Messaging Server 5.2 Patch 2 (built Jul 14 2004))
+ with SMTP id <0IMN00E0393MZ9@smtp14.wxs.nl> for git@vger.kernel.org; Sun,
+ 11 Sep 2005 10:33:23 +0200 (CEST)
+Received: (qmail 20459 invoked by uid 500); Sun, 11 Sep 2005 08:33:22 +0000
+Date:	Sun, 11 Sep 2005 10:33:22 +0200
+From:	Sven Verdoolaege <skimo@kotnet.org>
+Subject: Re: [ANNOUNCE qgit-0.94]
+In-reply-to: <20050911075805.3984.qmail@web26306.mail.ukl.yahoo.com>
+To:	Marco Costalba <mcostalba@yahoo.it>
+Cc:	git@vger.kernel.org
+Reply-to: skimo@liacs.nl
+Mail-followup-to: Marco Costalba <mcostalba@yahoo.it>, git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20050911083322.GR15165MdfPADPa@greensroom.kotnet.org>
+MIME-version: 1.0
+Content-type: text/plain; charset=us-ascii
+Content-transfer-encoding: 7BIT
+Content-disposition: inline
+User-Agent: Mutt/1.5.10i
+References: <20050911075805.3984.qmail@web26306.mail.ukl.yahoo.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:8268
+
+On Sun, Sep 11, 2005 at 12:58:05AM -0700, Marco Costalba wrote:
+> Please, what compiler version and qt dev libraries do you have?
+
+I had installed qt 4.0.1 in the mean time, because apparently
+the 3.1.2 I had installed before was too old.
+It seems to have installed itself in /usr though.
+Removing the -I/usr/include/qt3 from SConstruct _seems_
+to make annotate.cpp compile.
+
+But now I get this:
+
+bash-3.00$ QTDIR=/usr/ make
+scons
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+/usr//bin/uic -o src/commitbase.h src/commitbase.ui
+/usr//bin/uic -impl commitbase.h -o src/uic_commitbase.cc src/commitbase.ui
+/usr//bin/moc -o src/moc_commitbase.cc src/commitbase.h
+uic: File generated with too old version of Qt Designer
+File 'src/commitbase.ui' is not valid
+scons: *** [src/commitbase.h] Error 1
+scons: building terminated because of errors.
+make: *** [all] Error 2
+
+How can I create src/commitbase.ui ?
+
+skimo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 09:30:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EEF4A2851FA
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 09:30:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030184AbVINPah (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 11:30:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965246AbVINPah
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 11:30:37 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:23733 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965243AbVINPag (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Sep 2005 11:30:36 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8EFU6Bo026129
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 14 Sep 2005 08:30:06 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8EFU3JH007220;
+	Wed, 14 Sep 2005 08:30:05 -0700
+Date:	Wed, 14 Sep 2005 08:30:03 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Jeff Garzik <jgarzik@pobox.com>
+cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: does git prune packs?
+In-Reply-To: <43283E66.5080101@pobox.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509140824090.26803@g5.osdl.org>
+References: <432805E6.6030905@pobox.com> <Pine.LNX.4.58.0509140808010.26803@g5.osdl.org>
+ <43283E66.5080101@pobox.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 38
+Xref: brand.scrye.com linux.git:8523
+
+
+
+On Wed, 14 Sep 2005, Jeff Garzik wrote:
+> 
+> I never repack, I just use your packs.
+
+Oh, ok. Then, do something like this:
+
+	mv .git/objects/pack .git/objects/old-packs
+	mkdir .git/objects/pack
+	for i in .git/objects/old-packs/*.pack
+	do
+		echo $i:
+		git-unpack-objects < $i
+	done
+
+and it will do the right thing. Doing the right thing means, among other 
+things, that if an object already exists in an alternate object directory, 
+it won't be written to disk again.
+
+(So if you have an "alternates" file pointing to my objects, and your 
+packs contain mainly/only objects that I've pulled, basically nothing will 
+actually be unpacked.)
+
+After that, do a git-fsck-cache to make sure everything looks good, and 
+just "rm -rf .git/objects/old-packs".
+
+And yes, we could make something like this a helper script.
+
+NOTE! During the unpacking, the repository may not be usable, so make sure 
+that nobody else tries to access it while you do this.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

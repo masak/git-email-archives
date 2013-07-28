@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Wed May 25 13:19:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E10986EA7
+	for <tkil@scrye.com>; Wed, 25 May 2005 13:19:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261535AbVEYTSi (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 25 May 2005 15:18:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261539AbVEYTSi
+	(ORCPT <rfc822;git-outgoing>); Wed, 25 May 2005 15:18:38 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:5800 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S261535AbVEYTSb (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 25 May 2005 15:18:31 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050525191827.FLGZ23392.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 25 May 2005 15:18:27 -0400
+To: Nicolas Pitre <nico@cam.org>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] show changed tree objects with recursive git-diff-tree
+References: <Pine.LNX.4.62.0505202131520.4397@localhost.localdomain>
+	<7vsm0hpbub.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0505202025480.2206@ppc970.osdl.org>
+	<Pine.LNX.4.62.0505231724270.16151@localhost.localdomain>
+	<7vmzqjn7qh.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.62.0505250934040.16151@localhost.localdomain>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 25 May 2005 12:18:27 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vd5rfktbw.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 15
+Xref: brand.scrye.com linux.git:3923
+
+>>>>> "NP" == Nicolas Pitre <nico@cam.org> writes:
+
+NP> Now there is only the minor inconsistency that the recursive output 
+NP> without -t doesn't display tree objects while the non recursive output 
+NP> does output tree objects regardless.  Do we care?
+
+Hmph.  I agree, although I do not care about that much myself
+enough to start coding right now.  With luck I may have
+something by tomorrow morning US Pacific time though.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

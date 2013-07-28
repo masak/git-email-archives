@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  8 14:03:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 151BC240B5A
+	for <tkil@scrye.com>; Thu,  8 Dec 2005 14:03:46 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751229AbVLHVDS (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 16:03:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751230AbVLHVDS
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 16:03:18 -0500
+Received: from devrace.com ([198.63.210.113]:55053 "EHLO devrace.com")
+	by vger.kernel.org with ESMTP id S1751229AbVLHVDR (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 8 Dec 2005 16:03:17 -0500
+Received: from tigra.home (p54A0D4D7.dip.t-dialin.net [84.160.212.215])
+	(authenticated bits=0)
+	by devrace.com (8.12.11/8.12.11) with ESMTP id jB8L2qOH006239;
+	Thu, 8 Dec 2005 15:02:53 -0600 (CST)
+	(envelope-from fork0@users.sourceforge.net)
+Received: from steel.home ([192.168.1.2])
+	by tigra.home with esmtp (Exim 3.36 #1 (Debian))
+	id 1EkSuh-0001H7-00; Thu, 08 Dec 2005 22:02:51 +0100
+Received: from raa by steel.home with local (Exim 4.42 #1 (Debian))
+	id 1EkSuh-0005xk-6y; Thu, 08 Dec 2005 22:02:51 +0100
+Date:	Thu, 8 Dec 2005 22:02:51 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] use "git init-db" in tests
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051208210251.GB19423@steel.home>
+Reply-To: Alex Riesen <raa.lkml@gmail.com>
+References: <20051208202555.GA3046@steel.home> <7vu0dje2oi.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vu0dje2oi.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:13367
+
+Junio C Hamano, Thu, Dec 08, 2005 21:47:41 +0100:
+> 
+> > Unless there was a special reason to use git-init-db from $PATH, could
+> > the patch below be accepted? It makes the test suite use git-init-db
+> > from the "the binaries we have just built".
+> 
+> A few lines above what you patched we do make sure the PATH
+> starts with the top of the build directory where you would find
+> git-init-db we have just built, so unless I am missing something...
+> 
+
+You do miss something. glibc will happily continue lookup if
+git-init-db in the top of the build directory is not executable, and
+it will take the next one it finds (and people _will_ have git-init-db
+in PATH).
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

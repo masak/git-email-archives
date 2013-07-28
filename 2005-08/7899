@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 11:34:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 772592851FB
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 11:34:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751154AbVH2RcS (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 13:32:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751157AbVH2RcS
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 13:32:18 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:27341 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751154AbVH2RcR (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 29 Aug 2005 13:32:17 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7THWAjA009151
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 29 Aug 2005 10:32:10 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7THW9JF013833;
+	Mon, 29 Aug 2005 10:32:09 -0700
+Date:	Mon, 29 Aug 2005 10:32:09 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Paul Mackerras <paulus@samba.org>
+cc:	linuxppc64-dev@ozlabs.org, Git Mailing List <git@vger.kernel.org>
+Subject: Re: please pull ppc64-2.6.git
+In-Reply-To: <17170.25803.413408.44080@cargo.ozlabs.ibm.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508291006440.3243@g5.osdl.org>
+References: <17170.25803.413408.44080@cargo.ozlabs.ibm.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:7899
+
+
+
+On Mon, 29 Aug 2005, Paul Mackerras wrote:
+> 
+> Please do a pull from:
+> 
+> rsync://rsync.kernel.org/pub/scm/linux/kernel/git/paulus/ppc64-2.6.git
+
+Gaah.
+
+This is not a valid git repository.
+
+Guys, if you do partially populated repositories, _please_ make sure that 
+you still make it a valid git repository. These days you can trivially do 
+so by doing a
+
+	echo /pub/scm/linux/kernel/git/torvalds/linux-2.6/objects > objects/info/alternates
+
+or similar. That also makes gitweb able to show diffs etc, something it 
+can't do for a broken partial repository.
+
+Not pulled,
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

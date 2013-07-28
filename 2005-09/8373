@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 07:24:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7ECA62851FA
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 07:24:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750824AbVILNXt (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 09:23:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750825AbVILNXt
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 09:23:49 -0400
+Received: from mx01.cybersurf.com ([209.197.145.104]:8122 "EHLO
+	mx01.cybersurf.com") by vger.kernel.org with ESMTP id S1750824AbVILNXt
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 12 Sep 2005 09:23:49 -0400
+Received: from mail.cyberus.ca ([209.197.145.21])
+	by mx01.cybersurf.com with esmtp (Exim 4.30)
+	id 1EEoHj-0003AT-6z
+	for git@vger.kernel.org; Mon, 12 Sep 2005 07:23:47 -0600
+Received: from cpe0030ab124d2f-cm014500000962.cpe.net.cable.rogers.com ([24.103.96.183] helo=[10.0.0.229])
+	by mail.cyberus.ca with esmtp (Exim 4.20)
+	id 1EEoHl-00056m-KD
+	for git@vger.kernel.org; Mon, 12 Sep 2005 09:23:49 -0400
+Subject: cg-rm suggestion
+From:	jamal <hadi@cyberus.ca>
+Reply-To: hadi@cyberus.ca
+To:	git@vger.kernel.org
+Content-Type: text/plain
+Organization: unknown
+Date:	Mon, 12 Sep 2005 09:23:46 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1126531426.6380.2.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 20
+Xref: brand.scrye.com linux.git:8373
+
+
+Folks,
+
+I am not on the list so cc if you respond.
+
+A small suggestion for cg-rm: Can you make the default not to physically
+remove the file since that is more destructive?
+Unless there is a way to recover it.
+
+Let someone who wants to delete explicitly specify it. Or maybe even do
+the rm -i like option of prompting.
+
+cheers,
+jamal
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

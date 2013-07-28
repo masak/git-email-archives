@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 16 22:47:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 90458F5642
+	for <tkil@scrye.com>; Sat, 16 Apr 2005 22:47:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261255AbVDQErW (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Apr 2005 00:47:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261256AbVDQErW
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Apr 2005 00:47:22 -0400
+Received: from fire.osdl.org ([65.172.181.4]:23195 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261255AbVDQErQ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 17 Apr 2005 00:47:16 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3H4l2s4007153
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 16 Apr 2005 21:47:02 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3H4l128007539;
+	Sat, 16 Apr 2005 21:47:02 -0700
+Date:	Sat, 16 Apr 2005 21:48:59 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Paul Jackson <pj@sgi.com>
+Cc: Morten Welinder <mwelinder@gmail.com>, mj@ucw.cz,
+	git@vger.kernel.org
+Subject: Re: Storing permissions
+In-Reply-To: <20050416183023.0b27b3a4.pj@sgi.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504162138020.7211@ppc970.osdl.org>
+References: <20050416230058.GA10983@ucw.cz> <118833cc05041618017fb32a2@mail.gmail.com>
+ <20050416183023.0b27b3a4.pj@sgi.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 46
+Xref: brand.scrye.com linux.git:409
+
+
+
+On Sat, 16 Apr 2005, Paul Jackson wrote:
+>
+> Morten wrote:
+> > It makes some sense in principle, but without storing what they mean
+> > (i.e., group==?) it certainly makes no sense. 
+> 
+> There's no "they" there.
+> 
+> I think Martin's proposal, to which I agreed, was to store a _single_
+> bit.  If any of the execute permissions of the incoming file are set,
+> then the bit is stored ON, else it is stored OFF.  On 'checkout', if the
+> bit is ON, then the file permission is set mode 0777 (modulo umask),
+> else it is set mode 0666 (modulo umask).
+
+I think I agree.
+
+Anybody willing to send me a patch? One issue is that if done the obvious
+way it's an incompatible change, and old tree objects won't be valid any
+more. It might be ok to just change the "compare cache" check to only care
+about a few bits, though: S_IXUSR and S_IFDIR. And then always write new 
+"tree" objects out with mode set to one of
+ - 040000: we already do this for directories
+ - 100644: normal files without S_IXUSR set
+ - 100755: normal files _with_ S_IXUSR set
+
+Then, at compare time, we only look at S_IXUSR matching for files (we
+never compare directory modes anyway). And at file create time, we create
+them with 0666 and 0777 respectively, and let the users umask sort it out
+(and if the user has 0100 set in his umask, he can damn well blame
+himself).
+
+This would pretty much match the existing kernel tree, for example. We'd 
+end up with some new trees there (and in git), but not a lot of 
+incompatibility. And old trees would still work fine, they'd just get 
+written out differently.
+
+Anybody want to send a patch to do this?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

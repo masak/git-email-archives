@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 17 17:20:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 10943187B19
+	for <tkil@scrye.com>; Mon, 17 Oct 2005 17:20:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932327AbVJQXUF (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 17 Oct 2005 19:20:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932370AbVJQXUF
+	(ORCPT <rfc822;git-outgoing>); Mon, 17 Oct 2005 19:20:05 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:29588 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932327AbVJQXUC (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 17 Oct 2005 19:20:02 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9HNJrFC024127
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 17 Oct 2005 16:19:54 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9HNJquP016933;
+	Mon, 17 Oct 2005 16:19:53 -0700
+Date:	Mon, 17 Oct 2005 16:19:52 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+cc:	Junio C Hamano <junkio@cox.net>,
+	Nick Hengeveld <nickh@reactrix.com>, git@vger.kernel.org
+Subject: Re: [kernel.org users] Re: auto-packing on kernel.org? please?
+In-Reply-To: <Pine.LNX.4.63.0510171830030.23242@iabervon.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510171617460.3369@g5.osdl.org>
+References: <Pine.LNX.4.64.0510131422161.23590@g5.osdl.org>
+ <435264B1.2010204@de.bosch.com> <Pine.LNX.4.63.0510161122570.23242@iabervon.org>
+ <20051016161244.GE5509@reactrix.com> <43527E86.8000907@didntduck.org>
+ <7vzmp9xuwe.fsf@assigned-by-dhcp.cox.net> <20051016213341.GF5509@reactrix.com>
+ <7vwtkd6rik.fsf@assigned-by-dhcp.cox.net> <20051017060659.GH5509@reactrix.com>
+ <7voe5o366d.fsf@assigned-by-dhcp.cox.net> <20051017174123.GI5509@reactrix.com>
+ <7v3bmzzz30.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0510171830030.23242@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:10189
+
+
+
+On Mon, 17 Oct 2005, Daniel Barkalow wrote:
+> 
+> Wouldn't "git fetch http://.../foo.git/ master^{tree}" do the right thing?
+
+The pack pullers have trouble with anything that isn't commit-based, 
+because they do all the "figure out what we have in common" logic based on 
+the commit history.
+
+So if you fetch a tree, it by definition doesn't _have_ any history, and 
+the pack pullers will always pack the whole tree. I think.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

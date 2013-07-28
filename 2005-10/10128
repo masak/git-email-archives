@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 15 11:41:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 913742851FA
+	for <tkil@scrye.com>; Sat, 15 Oct 2005 11:41:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750976AbVJORlF (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 15 Oct 2005 13:41:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751188AbVJORlF
+	(ORCPT <rfc822;git-outgoing>); Sat, 15 Oct 2005 13:41:05 -0400
+Received: from dsl092-000-086.sfo1.dsl.speakeasy.net ([66.92.0.86]:32134 "EHLO
+	tumblerings.org") by vger.kernel.org with ESMTP id S1750976AbVJORlE
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 15 Oct 2005 13:41:04 -0400
+Received: from zbrown by tumblerings.org with local (Exim 4.52)
+	id 1EQq1n-0002xF-Q2
+	for git@vger.kernel.org; Sat, 15 Oct 2005 10:41:03 -0700
+Date:	Sat, 15 Oct 2005 10:41:03 -0700
+From:	Zack Brown <zbrown@tumblerings.org>
+To:	git@vger.kernel.org
+Subject: getting rid of extra directories
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051015174103.GA2609@tumblerings.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:10128
+
+Hi folks,
+
+I've been using the latest Cogito. When I seek back and forth in a git repo,
+directories I've created tend to persist backward in time, cluttering up
+earlier versions.
+
+By the discussions on this list, I'm pretty sure there's a way to stop this,
+but I don't know clearly what it is, and I'm worried about trying things
+that might corrupt my repository. Could someone spell it out for me please?
+
+Be well,
+Zack
+
+-- 
+Zack Brown
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

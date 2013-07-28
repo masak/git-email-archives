@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 00:55:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	NORMAL_HTTP_TO_IP,TW_SV autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E45A614C127
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 00:55:06 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751068AbVK3Hy0 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 02:54:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751116AbVK3Hy0
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 02:54:26 -0500
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:12230 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S1751068AbVK3Hy0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 30 Nov 2005 02:54:26 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051130075251.BNDH20050.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 30 Nov 2005 02:52:51 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Matthias Urlichs <smurf@smurf.noris.de>
+Subject: Re: [PATCH] SVN import: Use one log call
+References: <pan.2005.11.29.07.13.02.145977@smurf.noris.de>
+	<7vhd9vdx1o.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0511292247591.3122@localhost.localdomain>
+	<20051130065241.GY20418@kiste.smurf.noris.de>
+cc:	git@vger.kernel.org
+Date:	Tue, 29 Nov 2005 23:54:24 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtiqwoy7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:12982
+
+Matthias Urlichs <smurf@smurf.noris.de> writes:
+
+> Nicolas Pitre:
+>> Same here, with the following public repo: svn://mielke.cc/main/brltty
+>> 
+> Same thing -- should work with a "-T main/brltty" option.
+
+So would the full command line be like this?
+
+	$ rm -rf try1; mkdir try1; cd try1
+        $ git-svnimport -T main/brltty svn://mielke.cc/main/brltty
+
+I realize my first attempt was incorrectly using "-t" (tags)
+instead of "-T" (trunk), which was obviously incorrect, but
+replacing that lowercase -t with -T did not work well.  However,
+as you told me:
+
+	$ git svnimport -T main/sources \
+	    http://127.0.0.1/svn/private/main/sources/photocat
+
+seems to be doing something.  But I do not understand why.  How
+did you decide "-T main/sources" is good for my case while "-T
+main/brltty" is good for Nicolas?  I would have guessed you may
+say "-T main" for Nicolas, dropping the last path component.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

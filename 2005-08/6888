@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug  6 23:50:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BFD962AC217
+	for <tkil@scrye.com>; Sat,  6 Aug 2005 23:50:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751005AbVHGFuJ (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 7 Aug 2005 01:50:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751094AbVHGFuJ
+	(ORCPT <rfc822;git-outgoing>); Sun, 7 Aug 2005 01:50:09 -0400
+Received: from soundwarez.org ([217.160.171.123]:64187 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S1751005AbVHGFuJ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 7 Aug 2005 01:50:09 -0400
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id AF9F73C38D; Sun,  7 Aug 2005 07:50:05 +0200 (CEST)
+Date:	Sun, 7 Aug 2005 07:50:05 +0200
+From: Kay Sievers <kay.sievers@vrfy.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: gitweb "tag" display
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050807055005.GA14883@vrfy.org>
+References: <17130.56620.137642.941175@cargo.ozlabs.ibm.com> <Pine.LNX.4.58.0508050658260.3258@g5.osdl.org> <Pine.LNX.4.58.0508050710460.3258@g5.osdl.org> <20050806033654.GA27953@vrfy.org> <7vacju9az9.fsf_-_@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vacju9az9.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:6888
+
+On Sat, Aug 06, 2005 at 11:27:54AM -0700, Junio C Hamano wrote:
+> A git tag object can have its own text contents, but I do not
+> see how I can get to it from gitweb.  
+> 
+> For example, I have "junio-gpg-pub" tag in my git.git
+> repository.  This is a tag to a "blob" which is my public GPG
+> key.  The "tag" object itself says:
+> 
+>     object b92c9c07fe2d0d89c4f692573583c4753b5355d2
+>     type blob
+>     tag junio-gpg-pub
+>     tagger Junio C Hamano <junkio@cox.net> 1123226972 -0700
+> 
+>     This is the GPG key I use to sign GIT releases.
+
+Check it out. But it still has no "picture tag" support. :)
+
+Thanks,
+Kay
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

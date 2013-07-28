@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 12:05:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8B451B6525
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 12:05:11 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964998AbVKOTDy (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 14:03:54 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965004AbVKOTDy
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 14:03:54 -0500
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:25250 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S964998AbVKOTDx (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 14:03:53 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051115190239.PPWW20050.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 15 Nov 2005 14:02:39 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Mike McCormack <mike@codeweavers.com>
+Cc:	git@vger.kernel.org, Martin Langhoff <martin@catalyst.net.nz>
+Subject: Re: pushing patches to an imap folder
+References: <43799A67.9030705@codeweavers.com>
+	<7vd5l2qnq6.fsf@assigned-by-dhcp.cox.net>
+	<4379B9F6.5020402@codeweavers.com>
+Date:	Tue, 15 Nov 2005 11:03:51 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vzmo5ka20.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:11926
+
+Mike McCormack <mike@codeweavers.com> writes:
+
+> We have a (semi-experimental) wine.git tree, which is updated at the 
+> same time as the Wine CVS, by the project maintainer:
+>
+> http://source.winehq.org/git/wine.git
+
+Wow.  How is the acceptance by wine community?  Favorable, I
+hope.
+
+It would be nice before 1.0 happens to have a list of publicly
+visible projects and people who use git as part of the workflow;
+the degree would vary per project, from using it as the primary
+repository (the kernel, I guess) to merely accessible with git.
+
+> It will probably be maintained in parallel with the Wine CVS for a 
+> while, unless somebody writes a GIT->CVS gateway.
+
+git-cvsexportcommit?  I haven't had a chance to use it myself,
+although I have to interoperate with CVS in some projects.
+Martin, do you want to do a plug (or brag) here?
+
+> I find git-rebase to be particularly useful.
+
+It is handy, especially for simple things like rebasing topic
+branches, when the things are of managable size without using
+quilt or StGIT.  Do you manage binary files?
+
+> Pushing patches from git into a drafts folder means I don't have to 
+> manually generate a diff, open a mail, type the mailing list address, 
+> attach the patch and write/copy-paste a ChangeLog entry.
+
+Yes, I saw that value there.  Maybe adding hooks to format-patch
+so that it can do form-letter-ish things you had to add there
+without patching might help?  I dunno.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

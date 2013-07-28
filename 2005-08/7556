@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 19 04:25:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 509481A6974
+	for <tkil@scrye.com>; Fri, 19 Aug 2005 04:25:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964936AbVHSKZS (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 19 Aug 2005 06:25:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964937AbVHSKZS
+	(ORCPT <rfc822;git-outgoing>); Fri, 19 Aug 2005 06:25:18 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:55458 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S964936AbVHSKZR (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 19 Aug 2005 06:25:17 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050819102514.WVE17043.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 19 Aug 2005 06:25:14 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	git@vger.kernel.org
+Subject: Re: Multi-head fetches, pulls, and a King Ghidorah
+References: <7vy86y1ibg.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.63.0508191039460.11916@wgmdd8.biozentrum.uni-wuerzburg.de>
+Date:	Fri, 19 Aug 2005 03:25:13 -0700
+In-Reply-To: <Pine.LNX.4.63.0508191039460.11916@wgmdd8.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Fri, 19 Aug 2005 11:14:54 +0200
+	(CEST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vslx6z0ja.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:7556
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> Hi,
+>
+> If I understand correctly, the multi-head fetch would not write any ref if 
+> used like this:
+>
+> 	git fetch remote:repository/ head tail
+>
+> but it would try a fast-forward when used like this:
+>
+> 	git fetch remote:repository/ head:head tail:tail
+>
+> Correct? If yes: This is fantastic! It obsoletes my dumb script.
+
+That is the intent, but what is currently in "pu" is somewhat
+broken.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

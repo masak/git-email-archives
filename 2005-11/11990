@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 20:22:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 76C2A20D353
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 20:22:02 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965203AbVKPDVq (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 22:21:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965205AbVKPDVq
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 22:21:46 -0500
+Received: from mail.codeweavers.com ([216.251.189.131]:48774 "EHLO
+	mail.codeweavers.com") by vger.kernel.org with ESMTP
+	id S965203AbVKPDVp (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 22:21:45 -0500
+Received: from foghorn.codeweavers.com ([216.251.189.130] helo=[127.0.0.1])
+	by mail.codeweavers.com with esmtp (Exim 4.50)
+	id 1EcDrh-0007g5-F8; Tue, 15 Nov 2005 21:21:44 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437AA519.5050304@codeweavers.com>
+Date:	Wed, 16 Nov 2005 12:18:49 +0900
+From:	Mike McCormack <mike@codeweavers.com>
+Organization: CodeWeavers
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.12) Gecko/20050923
+X-Accept-Language: en, en-us
+MIME-Version: 1.0
+To:	Junio C Hamano <junkio@cox.net>
+CC:	git@vger.kernel.org, Martin Langhoff <martin@catalyst.net.nz>
+References: <43799A67.9030705@codeweavers.com>	<7vd5l2qnq6.fsf@assigned-by-dhcp.cox.net>	<4379B9F6.5020402@codeweavers.com>	<7vzmo5ka20.fsf@assigned-by-dhcp.cox.net>	<437A9109.6010101@codeweavers.com> <7vek5hcmh4.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vek5hcmh4.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 216.251.189.130
+X-SA-Exim-Mail-From: mike@codeweavers.com
+Subject: Re: pushing patches to an imap folder
+X-SA-Exim-Version: 4.2 (built Thu, 03 Mar 2005 10:44:12 +0100)
+X-SA-Exim-Scanned: Yes (on mail.codeweavers.com)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:11990
+
+
+Junio C Hamano wrote:
+
+> Hmph.  Kinda surprised.  You guys do not do icons?
+
+We do, but we have a tool called bin2res that converts them to text and 
+stores them in a comment in the .rc file that they're associated with:
+
+http://cvs.winehq.org/cvsweb/~checkout~/wine/dlls/shell32/shres.rc?rev=1.42&content-type=text/plain
+
+This was done because of trouble with binary files in CVS.
+
+Mike
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

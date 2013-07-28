@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 21 01:55:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CEA99289614
+	for <tkil@scrye.com>; Thu, 21 Apr 2005 01:55:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261491AbVDUHyq (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 21 Apr 2005 03:54:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261506AbVDUHym
+	(ORCPT <rfc822;git-outgoing>); Thu, 21 Apr 2005 03:54:42 -0400
+Received: from admin.kkcable.cz ([213.29.14.23]:19369 "EHLO admin.kkcable.cz")
+	by vger.kernel.org with ESMTP id S261491AbVDUHtV (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 21 Apr 2005 03:49:21 -0400
+Received: by admin.kkcable.cz (Postfix, from userid 1007)
+	id 9BDF0600C9; Thu, 21 Apr 2005 09:49:20 +0200 (CEST)
+Received: from admin.kkcable.cz (admin.kkcable.cz [213.29.14.23])
+	by admin.kkcable.cz (Postfix) with SMTP id BF68C61273;
+	Thu, 21 Apr 2005 09:49:19 +0200 (CEST)
+Subject: Re: [Gnu-arch-users] Re: [GNU-arch-dev] [ANNOUNCEMENT] /Arch/
+	embraces `git'
+From: Tomas Mraz <t8m@centrum.cz>
+To: Tom Lord <lord@emf.net>
+Cc: gnu-arch-users@gnu.org, gnu-arch-dev@lists.seyza.com,
+	git@vger.kernel.org
+In-Reply-To: <200504202304.QAA17069@emf.net>
+References: <200504202304.QAA17069@emf.net>
+Content-Type: text/plain
+Date:	Thu, 21 Apr 2005 09:49:18 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114069758.5886.9.camel@perun.redhat.usu>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.4 (2.0.4-2) 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.9 required=5.0 tests=AWL,BAYES_00,
+	DNS_FROM_AHBL_RHSBL,SARE_MILLIONSOF autolearn=no version=3.0.2
+Lines: 32
+Xref: brand.scrye.com linux.git:1084
+
+On Wed, 2005-04-20 at 16:04 -0700, Tom Lord wrote:
+
+> I think that to a large extent you are seeing artifacts
+> of the questionable trade-offs that (reports tell me) the
+> ext* filesystems make.   With a different filesystem, the 
+> results would be very different.
+Tom, please stop this ext* filesystem bashing ;-) Even with filesystem
+which compresses the tails of files into one filesystem block it
+wouldn't make a difference that there are potentially (and very probably
+even with blob numbers in order of 100000) 65536 directories on the
+first level. This doesn't help much in fast reading the first level.
+
+> I'm imagining a blob database containing may revisions of the linux
+> kernel.  It will contain millions of blobs.
+> 
+> It's fine that some filesystems and some blob operations work fine
+> on a directory with millions of files but what about other operations
+> on the database?   I pity the poor program that has to `readdir' through
+> millions of files.
+
+Even with milions of files this key structure doesn't make much sense -
+the keys on the first and second levels are too long. However you're
+right that the original structure proposed by Linus is too flat.
+
+-- 
+Tomas Mraz <t8m@centrum.cz>
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

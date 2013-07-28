@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 20:24:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 306BD1F5ED2
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 20:24:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932294AbVISCYP (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 22:24:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932297AbVISCYP
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 22:24:15 -0400
+Received: from b3162.static.pacific.net.au ([203.143.238.98]:41898 "EHLO
+	cunningham.myip.net.au") by vger.kernel.org with ESMTP
+	id S932294AbVISCYO (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Sep 2005 22:24:14 -0400
+Received: (qmail 19957 invoked by uid 89); 19 Sep 2005 02:24:01 -0000
+Received: from unknown (HELO ?127.0.0.1?) (127.0.0.1)
+  by 0 with SMTP; 19 Sep 2005 02:24:01 -0000
+Subject: Re: [ANNOUNCE] GIT 0.99.7
+From:	Nigel Cunningham <ncunningham@cyclades.com>
+Reply-To: ncunningham@cyclades.com
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+In-Reply-To: <7vwtleyml5.fsf@assigned-by-dhcp.cox.net>
+References: <7vr7c02zgg.fsf@assigned-by-dhcp.cox.net>
+	 <7vwtleyml5.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+Organization: Cyclades
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1127096641.9696.44.camel@localhost>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6-1mdk 
+Date:	Mon, 19 Sep 2005 12:24:01 +1000
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:8821
+
+Hi.
+
+On Mon, 2005-09-19 at 09:37, Junio C Hamano wrote:
+> I am hoping that sending this out to the kernel list is not
+> considered too much of useless spamming, but I promise I
+> wouldn't do thit next time for 0.99.8, if I hear from somebody
+> not to.
+> 
+> Here comes GIT 0.99.7
+
+Could you please include a url for anyone who might not know the
+canonical address from which to download?
+
+Regards,
+
+Nigel
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

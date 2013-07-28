@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 27 19:03:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5D7AE17052C
+	for <tkil@scrye.com>; Fri, 27 May 2005 19:03:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261895AbVE1BD3 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 27 May 2005 21:03:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261898AbVE1BD3
+	(ORCPT <rfc822;git-outgoing>); Fri, 27 May 2005 21:03:29 -0400
+Received: from wproxy.gmail.com ([64.233.184.200]:24806 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261895AbVE1BDZ convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 27 May 2005 21:03:25 -0400
+Received: by wproxy.gmail.com with SMTP id 68so959034wri
+        for <git@vger.kernel.org>; Fri, 27 May 2005 18:03:25 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=Q4oIG6y0X+JG/vdFbh+SjTJMX3UvuBNSsniTG/yUiC9LavuKE0HZa5f46l1myfqLeZA0DuLmUNchLq/ihUNrxZLME+jngxT+tM78lB7tjBjSo2/+vQLj9t2s2fuIjzhoc0kBKOcDGUFyShp/XYQQPVCV+allFtweMsIzn8PZsuY=
+Received: by 10.54.82.13 with SMTP id f13mr715975wrb;
+        Fri, 27 May 2005 18:03:24 -0700 (PDT)
+Received: by 10.54.18.68 with HTTP; Fri, 27 May 2005 18:03:24 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <f0796bb705052718035cd5dbe2@mail.gmail.com>
+Date:	Fri, 27 May 2005 21:03:24 -0400
+From: Daniel Serpell <daniel.serpell@gmail.com>
+Reply-To: Daniel Serpell <daniel.serpell@gmail.com>
+To: Git Mailing List <git@vger.kernel.org>
+Subject: Re: More gitweb queries..
+In-Reply-To: <20050527235924.GB19491@vrfy.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8BIT
+Content-Disposition: inline
+References: <Pine.LNX.4.58.0505271145570.17402@ppc970.osdl.org>
+	 <20050527235924.GB19491@vrfy.org>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.3
+Lines: 31
+Xref: brand.scrye.com linux.git:4094
+
+Hi!
+
+On 5/27/05, Kay Sievers <kay.sievers@vrfy.org> wrote:
+> On Fri, May 27, 2005 at 12:24:20PM -0700, Linus Torvalds wrote:
+> >   Combining some of the features of the two (that über-cool revision
+> >   history graph from gitk rules, for example) might be cool. I get the
+> >   urge to do octopus-merges in the kernel just because of how good they
+> >   look in gitk ;) ]
+> 
+> I would like to show something like the graph too, but I don't really know
+> how to do this in html. Seems slippery if not impossible.
+> If anybody has a nice idea how to represent that, I will give it a try.
+
+Well, you could draw them in javascript, using
+http://www.walterzorn.com/jsgraphics/jsgraphics_e.htm :-)
+
+Alternatively, you could use a fixed set of little images, a bar "|", a
+dot "o" and branches like "Y", "7" and "\". Obviously, octopus-merges
+are very difficult to draw using only those.
+
+BTW, I tried searching on gitweb, and I think that found a problem, see:
+http://ehlo.org/~kay/gitweb.cgi?p=git/git.git;a=search;s=check
+At the bottom of the page, highlighting of the search term stops and the
+commits are all the same color.
+
+        Daniel.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

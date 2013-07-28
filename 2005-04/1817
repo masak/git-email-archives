@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 20:36:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DD4A7170A24
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 20:36:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261893AbVD0Cfp (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 22:35:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261894AbVD0Cfp
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 22:35:45 -0400
+Received: from arnor.apana.org.au ([203.14.152.115]:25353 "EHLO
+	arnor.apana.org.au") by vger.kernel.org with ESMTP id S261893AbVD0Cfk
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 26 Apr 2005 22:35:40 -0400
+Received: from gondolin.me.apana.org.au ([192.168.0.6] ident=mail)
+	by arnor.apana.org.au with esmtp (Exim 3.35 #1 (Debian))
+	id 1DQcOj-0002jQ-00; Wed, 27 Apr 2005 12:35:34 +1000
+Received: from herbert by gondolin.me.apana.org.au with local (Exim 3.36 #1 (Debian))
+	id 1DQcOc-00054l-00; Wed, 27 Apr 2005 12:35:26 +1000
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: rhys@rhyshardwick.co.uk
+Subject: Re: git add / update-cache --add fails.
+Cc: git@vger.kernel.org
+Organization: Core
+In-Reply-To: <200504260726.04908.rhys@rhyshardwick.co.uk>
+X-Newsgroups: apana.lists.os.linux.git
+User-Agent: tin/1.7.4-20040225 ("Benbecula") (UNIX) (Linux/2.4.27-hx-1-686-smp (i686))
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1DQcOc-00054l-00@gondolin.me.apana.org.au>
+Date:	Wed, 27 Apr 2005 12:35:26 +1000
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 18
+Xref: brand.scrye.com linux.git:1817
+
+Rhys Hardwick <rhys@rhyshardwick.co.uk> wrote:
+> 
+> rhys@metatron:~/repo/learning.repo$ strace update-cache --add w1d4p1.c
+...
+> open("w1d4p1.c", O_RDONLY)              = -1 ENOENT (No such file or 
+> directory)
+
+The file that you're trying to add doesn't exist.
+-- 
+Visit Openswan at http://www.openswan.org/
+Email: Herbert Xu ~{PmV>HI~} <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

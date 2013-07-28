@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 10:07:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id ED0BDED157
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 10:07:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030506AbVIOQHT (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 12:07:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030507AbVIOQHT
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 12:07:19 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:24753 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1030506AbVIOQHS (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 15 Sep 2005 12:07:18 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8FG7EBo029384
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 15 Sep 2005 09:07:15 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8FG768K008669;
+	Thu, 15 Sep 2005 09:07:11 -0700
+Date:	Thu, 15 Sep 2005 09:07:05 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	=?ISO-8859-1?Q?David_K=E5gedal?= <davidk@lysator.liu.se>
+cc:	git@vger.kernel.org
+Subject: Re: "Read my lips: no more merges" - aka Linux 2.6.14-rc1
+In-Reply-To: <u5tvf12sp1v.fsf@lysator.liu.se>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509150905070.26803@g5.osdl.org>
+References: <7255.1126583985@kao2.melbourne.sgi.com>
+ <1126674993.5681.9.camel@localhost.localdomain> <1126745323.7199.3.camel@localhost.localdomain>
+ <Pine.LNX.4.58.0509142018410.26803@g5.osdl.org> <43290486.5020301@zytor.com>
+ <7v7jdibwqq.fsf@assigned-by-dhcp.cox.net> <u5tvf12sp1v.fsf@lysator.liu.se>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:8605
+
+
+
+On Thu, 15 Sep 2005, David Kågedal wrote:
+>
+> On my Debian system, there is a "sensible-pager" which does a
+> ${PAGER:-pager}, and "pager" which is a symlink to an installed pager
+> (using the 'alternatives' system).  So a Debian package should
+> probably use one of those.
+
+Ok, this is now indisputable proof that Debian people are insane.
+
+They have "sensible-pager", but not "less"?
+
+Guys, somebody should visit a few Debian people with a baseball bat that 
+is painted bright neon yellow, and has "CLUEBAT" written in big purple 
+letters on it. And beat them to a quivering pulp.
+
+There's "being flexible", and there's "being a total ass". Debian is being 
+a total ass.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

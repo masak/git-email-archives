@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 19:41:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 69E8B2389AB
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 19:41:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750992AbVKMCli (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 21:41:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751000AbVKMCli
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 21:41:38 -0500
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:50872 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S1750990AbVKMCli (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 12 Nov 2005 21:41:38 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051113024040.LCWI776.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 12 Nov 2005 21:40:40 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Andreas Ericsson <ae@op5.se>
+Subject: Re: [PATCH] Building git on NetBSD
+References: <Pine.LNX.4.64.0511120649430.2695@x2.ybpnyarg>
+	<43760AF5.1010704@op5.se>
+cc:	git@vger.kernel.org
+Date:	Sat, 12 Nov 2005 18:41:34 -0800
+In-Reply-To: <43760AF5.1010704@op5.se> (Andreas Ericsson's message of "Sat, 12
+	Nov 2005 16:32:05 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhdahclr5.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:11715
+
+Andreas Ericsson <ae@op5.se> writes:
+
+> Yes it should. Currently the git makefile doesn't distinguish between 
+> CFLAGS and LDFLAGS which results in a fair few warnings.
+
+Very well.  Maybe LDFLAGS and ALL_LDFLAGS pair to parallel
+CFLAGS and ALL_CFLAGS (the former is for the end user to
+override from make command line, the latter is for Makefile to
+augment and use)?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

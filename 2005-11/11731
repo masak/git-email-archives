@@ -1,0 +1,221 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 13 07:08:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4E26F2B52A2
+	for <tkil@scrye.com>; Sun, 13 Nov 2005 07:08:37 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964914AbVKMOII (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 13 Nov 2005 09:08:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932505AbVKMOII
+	(ORCPT <rfc822;git-outgoing>); Sun, 13 Nov 2005 09:08:08 -0500
+Received: from mail.gmx.net ([213.165.64.20]:32687 "HELO mail.gmx.net")
+	by vger.kernel.org with SMTP id S932503AbVKMOIH (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 13 Nov 2005 09:08:07 -0500
+Received: (qmail invoked by alias); 13 Nov 2005 14:08:04 -0000
+Received: from p549699FE.dip0.t-ipconnect.de (EHLO [192.168.178.21]) [84.150.153.254]
+  by mail.gmx.net (mp016) with SMTP; 13 Nov 2005 15:08:04 +0100
+X-Authenticated: #352111
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	Junio C Hamano <junkio@cox.net>
+Subject: [PATCH] Remove git-rename. git-mv does the same
+Date:	Sun, 13 Nov 2005 15:08:00 +0100
+User-Agent: KMail/1.8.2
+Cc:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511131508.00964.Josef.Weidendorfer@gmx.de>
+X-Y-GMX-Trusted: 0
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 178
+Xref: brand.scrye.com linux.git:11731
+
+Signed-off-by: Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+---
+
+We have git-mv now since quite some time, and it does all which
+git-rename did, as it is derived from it. Even if you want to
+keep git-rename, it should be a symlink to git-mv instead.
+
+ .gitignore                   |    1 -
+ Documentation/git-rename.txt |   32 -------------------
+ Documentation/git.txt        |    3 --
+ Makefile                     |    2 +
+ git-rename.perl              |   70 ------------------------------------------
+ 5 files changed, 1 insertions(+), 107 deletions(-)
+ delete mode 100644 Documentation/git-rename.txt
+ delete mode 100755 git-rename.perl
+
+applies-to: e915ab830dbf42430138b4542278097d16f9f2f1
+9a06e0c0981cae2417e4355ae7220f1e4bae5e85
+diff --git a/.gitignore b/.gitignore
+index 328b399..26398b3 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -74,7 +74,6 @@ git-read-tree
+ git-rebase
+ git-receive-pack
+ git-relink
+-git-rename
+ git-repack
+ git-request-pull
+ git-reset
+diff --git a/Documentation/git-rename.txt b/Documentation/git-rename.txt
+deleted file mode 100644
+index 583cb03..0000000
+--- a/Documentation/git-rename.txt
++++ /dev/null
+@@ -1,32 +0,0 @@
+-git-rename(1)
+-=============
+-
+-NAME
+-----
+-git-rename - Script used to rename a file, directory or symlink.
+-
+-
+-SYNOPSIS
+---------
+-'git-rename' <source> <destination>
+-
+-DESCRIPTION
+------------
+-This script is used to rename a file, directory or symlink.
+-
+-The index is updated after successful completion, but the change must still be
+-committed.
+-
+-Author
+-------
+-Written by Linus Torvalds <torvalds@osdl.org>
+-Rewritten by Ryan Anderson <ryan@michonline.com>
+-
+-Documentation
+---------------
+-Documentation by David Greaves, Junio C Hamano and the git-list <git@vger.kernel.org>.
+-
+-GIT
+----
+-Part of the gitlink:git[7] suite
+-
+diff --git a/Documentation/git.txt b/Documentation/git.txt
+index a9d47c1..62c8ce7 100644
+--- a/Documentation/git.txt
++++ b/Documentation/git.txt
+@@ -262,9 +262,6 @@ gitlink:git-push[1]::
+ gitlink:git-rebase[1]::
+ 	Rebase local commits to new upstream head.
+ 
+-gitlink:git-rename[1]::
+-	Rename files and directories.
+-
+ gitlink:git-repack[1]::
+ 	Pack unpacked objects in a repository.
+ 
+diff --git a/Makefile b/Makefile
+index 514ab60..24884ab 100644
+--- a/Makefile
++++ b/Makefile
+@@ -94,7 +94,7 @@ SCRIPT_SH = \
+ 
+ SCRIPT_PERL = \
+ 	git-archimport.perl git-cvsimport.perl git-relink.perl \
+-	git-rename.perl git-shortlog.perl git-fmt-merge-msg.perl \
++	git-shortlog.perl git-fmt-merge-msg.perl \
+ 	git-svnimport.perl git-mv.perl git-cvsexportcommit.perl
+ 
+ SCRIPT_PYTHON = \
+diff --git a/git-rename.perl b/git-rename.perl
+deleted file mode 100755
+index 3b1127b..0000000
+--- a/git-rename.perl
++++ /dev/null
+@@ -1,70 +0,0 @@
+-#!/usr/bin/perl
+-#
+-# Copyright 2005, Ryan Anderson <ryan@michonline.com>
+-#
+-# This file is licensed under the GPL v2, or a later version
+-# at the discretion of Linus Torvalds.
+-
+-
+-use warnings;
+-use strict;
+-
+-sub usage($);
+-
+-# Sanity checks:
+-my $GIT_DIR = $ENV{'GIT_DIR'} || ".git";
+-
+-unless ( -d $GIT_DIR && -d $GIT_DIR . "/objects" && 
+-	-d $GIT_DIR . "/objects/" && -d $GIT_DIR . "/refs") {
+-	usage("Git repository not found.");
+-}
+-
+-usage("") if scalar @ARGV != 2;
+-
+-my ($src,$dst) = @ARGV;
+-
+-unless (-f $src || -l $src || -d $src) {
+-	usage("git rename: bad source '$src'");
+-}
+-
+-if (-e $dst) {
+-	usage("git rename: destinations '$dst' already exists");
+-}
+-
+-my (@allfiles,@srcfiles,@dstfiles);
+-
+-$/ = "\0";
+-open(F,"-|","git-ls-files","-z")
+-	or die "Failed to open pipe from git-ls-files: " . $!;
+-
+-@allfiles = map { chomp; $_; } <F>;
+-close(F);
+-
+-my $safesrc = quotemeta($src);
+-@srcfiles = grep /^$safesrc/, @allfiles;
+-@dstfiles = @srcfiles;
+-s#^$safesrc(/|$)#$dst$1# for @dstfiles;
+-
+-rename($src,$dst)
+-	or die "rename failed: $!";
+-
+-my $rc = system("git-update-index","--add","--",@dstfiles);
+-die "git-update-index failed to add new name with code $?\n" if $rc;
+-
+-$rc = system("git-update-index","--remove","--",@srcfiles);
+-die "git-update-index failed to remove old name with code $?\n" if $rc;
+-
+-
+-sub usage($) {
+-	my $s = shift;
+-	print $s, "\n" if (length $s != 0);
+-	print <<EOT;
+-$0 <source> <dest>
+-source must exist and be either a file, symlink or directory.
+-dest must NOT exist.
+-
+-Renames source to dest, and updates the git cache to reflect the change.
+-Use "git commit" to make record the change permanently.
+-EOT
+-	exit(1);
+-}
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

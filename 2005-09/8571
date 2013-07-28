@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 20:28:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0C415C65C5
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 20:28:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030341AbVIOC0v (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 22:26:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030348AbVIOC0v
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 22:26:51 -0400
+Received: from ozlabs.org ([203.10.76.45]:3503 "EHLO ozlabs.org")
+	by vger.kernel.org with ESMTP id S1030341AbVIOC0u (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Sep 2005 22:26:50 -0400
+Received: by ozlabs.org (Postfix, from userid 1003)
+	id 79D3868270; Thu, 15 Sep 2005 12:26:49 +1000 (EST)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <17192.56292.867933.739867@cargo.ozlabs.ibm.com>
+Date:	Thu, 15 Sep 2005 12:26:44 +1000
+From:	Paul Mackerras <paulus@samba.org>
+To:	Linus Torvalds <torvalds@osdl.org>, Wayne Scott <wsc9tt@gmail.com>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: git-diff-tree rename detection bug
+In-Reply-To: <17192.56103.803096.526568@cargo.ozlabs.ibm.com>
+References: <59a6e583050914094777c4fe96@mail.gmail.com>
+	<7vwtljjzc3.fsf@assigned-by-dhcp.cox.net>
+	<59a6e583050914114054b1564d@mail.gmail.com>
+	<Pine.LNX.4.58.0509141321180.26803@g5.osdl.org>
+	<17192.56103.803096.526568@cargo.ozlabs.ibm.com>
+X-Mailer: VM 7.19 under Emacs 21.4.1
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 14
+Xref: brand.scrye.com linux.git:8571
+
+I wrote:
+
+> How about... today? :-)  My port of Valgrind-2.4.1 to ppc32 works
+> pretty well.  You can get it from:
+
+I meant to say explicitly that it runs quite happily under a ppc64
+kernel, but only does 32-bit executables at present.
+
+Paul.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

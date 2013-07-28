@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 19:54:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DBFB62761D3
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 19:54:22 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932337AbVLMCyM (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 21:54:12 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751260AbVLMCyM
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 21:54:12 -0500
+Received: from vds.fauxbox.com ([208.210.124.75]:4005 "EHLO thorn.pobox.com")
+	by vger.kernel.org with ESMTP id S1751256AbVLMCyL (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Dec 2005 21:54:11 -0500
+Received: from thorn (localhost [127.0.0.1])
+	by thorn.pobox.com (Postfix) with ESMTP id A39A8110
+	for <git@vger.kernel.org>; Mon, 12 Dec 2005 21:54:32 -0500 (EST)
+Received: from red.pwd.internal (ip68-230-78-84.ph.ph.cox.net [68.230.78.84])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by thorn.sasl.smtp.pobox.com (Postfix) with ESMTP id 74E55515A
+	for <git@vger.kernel.org>; Mon, 12 Dec 2005 21:54:32 -0500 (EST)
+Received: from white.pwd.internal ([192.168.1.9])
+	by red.pwd.internal (8.13.5/8.13.4) with SMTP id jBD2s9Ym014403
+	for <git@vger.kernel.org>; Mon, 12 Dec 2005 19:54:09 -0700
+Date:	Mon, 12 Dec 2005 19:54:08 -0700
+From:	Paul Dickson <paul@permanentmail.com>
+To:	git@vger.kernel.org
+Subject: Re: [ANNOUNCE] GIT 0.99.9m aka 1.0rc5
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051212195408.40af06f1.paul@permanentmail.com>
+In-Reply-To: <20051212192013.9ef4c8b2.paul@permanentmail.com>
+References: <7vbqznm4b7.fsf@assigned-by-dhcp.cox.net>
+	<20051212183723.c4b09964.paul@permanentmail.com>
+	<7vd5k1dax6.fsf@assigned-by-dhcp.cox.net>
+	<20051212192013.9ef4c8b2.paul@permanentmail.com>
+X-Mailer: Sylpheed version 2.1.6 (GTK+ 2.8.8; i686-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:13556
+
+On Mon, 12 Dec 2005 19:20:13 -0700, Paul Dickson wrote:
+
+>   $ rpm -q xmlto asciidoc man groff
+>   xmlto-0.0.18-9
+>   asciidoc-7.0.2-1.fc5
+>   man-1.6b-1
+>   groff-1.18.1.1-5
+> 
+> I would suspect groff (as used by man).
+> 
+>   $ zcat /usr/share/man/man1/git-repack.1.gz|grep '^[A-Z][a-z]* by'
+> 
+
+I think it's up one level to the creator of the man files:
+
+.SH "DESCRIPTION"
+This script is used to combine all objects that do not currently reside in a "pack", into a pack..sp
+A pack is a collection of objects, individually compressed, with delta compression applied, stored in a single file, with
+an associated index file..sp
+Packs are used to reduce the load on mirror systems, backup engines, disk storage, etc..sp
+
+Results in:
+
+DESCRIPTION
+       This script is used to combine all objects that do not currently reside
+       in a "pack", into a pack..sp A pack is a collection of objects,
+       individually compressed, with delta compression applied, stored in a
+       single file, with an associated index file..sp Packs are used to reduce
+       the load on mirror systems, backup engines, disk storage, etc..sp
+
+It's only the .sp function.
+
+So it's likely my version of asciidoc or xmlto.
+
+	-Paul
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

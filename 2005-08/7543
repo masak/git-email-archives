@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 19 01:05:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A294517C1F3
+	for <tkil@scrye.com>; Fri, 19 Aug 2005 01:05:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964857AbVHSHE2 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 19 Aug 2005 03:04:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964880AbVHSHE2
+	(ORCPT <rfc822;git-outgoing>); Fri, 19 Aug 2005 03:04:28 -0400
+Received: from rproxy.gmail.com ([64.233.170.196]:2177 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S964857AbVHSHE1 convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 19 Aug 2005 03:04:27 -0400
+Received: by rproxy.gmail.com with SMTP id i8so454287rne
+        for <git@vger.kernel.org>; Fri, 19 Aug 2005 00:04:24 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=HFJNKJL9E7RsYxe4FMzmjqFLjW0afHPB9+wlqTUIBtj8RLCn4yaAts2xQ3RkAHwB+/vqrA4wQ4u2woo9CjJmi+krNETym5cmdBAJcKT+L4yyNct5nOvD3Zf0agbuqgK22fqOuwclN9LyRuEFQ3i4squ1RxJGmNFsaV7SKfDf+6s=
+Received: by 10.38.101.7 with SMTP id y7mr20617rnb;
+        Fri, 19 Aug 2005 00:04:24 -0700 (PDT)
+Received: by 10.38.101.8 with HTTP; Fri, 19 Aug 2005 00:04:24 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f9050819000417ed436e@mail.gmail.com>
+Date:	Fri, 19 Aug 2005 19:04:24 +1200
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	GIT <git@vger.kernel.org>
+Subject: [RFC] Importing from a patch-oriented SCM
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 47
+Xref: brand.scrye.com linux.git:7543
+
+I am drafting an import script to turn a GNU Arch into a GIT archive.
+Importing the branches and commits increamentally is reasonably
+straightforward -- or so it seems so far. Note: the repository
+manipulation is based on cvsimport -- so my knowledge of the git repo
+internals is still pertty close to zero.
+
+Each patchset has a unique identifier, and can carry metadata with the
+identifiers of the patches it "includes". If you are using gnu arch,
+when you merge across branches, it'll know to skip a particular
+patchset if it has been applied already. AFAICT there is no such
+concept in GIT, and I wonder what to do with all this metadata about
+merges.
+
+My proto-plan is to keep track of merged stuff (in a cache file
+somewhere), and if a particular merge means that the branches are
+fully merged up to the last patch of the series (if no commits from
+the source branch have been skipped) mark it as a merge in GIT.
+
+If the merges have been done out-of-order, that may show up in the
+latest merge. For example, branch A and B of the same project each
+have 10 commits from the branching point. If a merge A -> B does
+commits 1,2,3,7,8 it gets imported to git as a merge up to commit "3",
+although there is more there. The next merge, which does 4,5,6,10 will
+show up as a merge of commit 8.
+
+Yuk. 
+
+If I remember correctly, Junio added some stuff in the merge & rebase
+code that will identify if a particular patch has been seen and
+applied, and skip it even if it's a bit out of order. But I don't know
+what that is based on, and whether I can somehow maximize the chances
+of the patch being identified as already merged across branches. If
+it's based on the initial commit identifier being carried through
+(does that travel with commits when you merge?) I stand a small
+chance. Otherwise, I'm lost.
+
+Suggestions? 
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

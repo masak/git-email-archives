@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep  1 15:25:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 71CE216A30E
+	for <tkil@scrye.com>; Thu,  1 Sep 2005 15:25:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030391AbVIAVWI (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Sep 2005 17:22:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030392AbVIAVWI
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Sep 2005 17:22:08 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:43486 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1030391AbVIAVWG
+	(ORCPT <rfc822;git@vger.kernel.org>); Thu, 1 Sep 2005 17:22:06 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j81LM16H030801
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 1 Sep 2005 14:22:02 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <431770F5.8080806@zytor.com>
+Date:	Thu, 01 Sep 2005 14:21:57 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Cogito(?): git+ssh pulling broken with tcsh as default shell
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.86.2, clamav-milter version 0.86 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 21
+Xref: brand.scrye.com linux.git:7992
+
+: tazenda 54 ; cg-clone -s 
+git+ssh://terminus.zytor.com/home/hpa/klibc/official/.git/
+defaulting to local storage area
+mkdir: cannot create directory `.git/branches': File exists
+master 
+           100%   41     0.0KB/s   00:00
+GIT_DIR=/home/hpa/klibc/official/.git: Command not found.
+error: Couldn't read version from remote end
+cg-pull: objects pull failed
+cg-clone: pull failed
+
+
+It looks like it tries to execute a sh/bash script on the remote end, 
+without forcing the remote end to use sh/bash to execute the script.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

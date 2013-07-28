@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 24 17:53:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9C7D9292EE6
+	for <tkil@scrye.com>; Thu, 24 Nov 2005 17:53:20 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932677AbVKYAxM (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 24 Nov 2005 19:53:12 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932678AbVKYAxM
+	(ORCPT <rfc822;git-outgoing>); Thu, 24 Nov 2005 19:53:12 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:48913 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S932677AbVKYAxK convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 24 Nov 2005 19:53:10 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jAP0kTtZ024737;
+	Fri, 25 Nov 2005 00:51:45 GMT
+In-Reply-To: <7v4q65sst3.fsf@assigned-by-dhcp.cox.net>
+References: <Pine.LNX.4.63.0511211452470.13775@wbgn013.biozentrum.uni-wuerzburg.de> <7v4q65sst3.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0 (Apple Message framework v734)
+Content-Type: text/plain; charset=UTF-8; delsp=yes; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <41D1FCC0-E031-48FB-82A2-6CFDA2E03AC0@hawaga.org.uk>
+Cc:	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	git@vger.kernel.org
+Content-Transfer-Encoding: 8BIT
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: Re: [RFC 1/2] Use remote information in .git/config
+Date:	Fri, 25 Nov 2005 08:33:56 +1000
+To:	Junio C Hamano <junkio@cox.net>
+X-Mailer: Apple Mail (2.734)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:12712
+
+
+On 22 Nov 2005, at 05:29, Junio C Hamano wrote:
+
+>
+> Personally I do not mind moving remotes/branches information
+> there, except that I suspect the git-config-set interface makes
+> it cumbersome to (1) find out what remotes I defined (i.e. an
+> equivalent of "ls .git/remotes")
+
+(1) is useful to be able to do in a very lightweight way when doing  
+tab completion on remotes. Having heads, tags, remotes in nicely  
+named separate files makes that pretty straightforward; I don't know  
+if using a git-config- accessor would make this noticeably worse,  
+though, as I haven't tried anything out there yet.
+
+-- 
+Ben • ベン • Бэн • 벤 • 班明
+http://www.hawaga.org.uk/ben/
+My email is high latency but best way to contact me. Alternatively,  
+SMS number(s) at above URL.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

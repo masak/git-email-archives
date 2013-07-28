@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May 16 16:47:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id F277812E210
+	for <tkil@scrye.com>; Mon, 16 May 2005 16:47:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261994AbVEPWo7 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 16 May 2005 18:44:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261986AbVEPWl3
+	(ORCPT <rfc822;git-outgoing>); Mon, 16 May 2005 18:41:29 -0400
+Received: from fire.osdl.org ([65.172.181.4]:39639 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261976AbVEPWa3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 16 May 2005 18:30:29 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j4GMULU3025065
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 16 May 2005 15:30:21 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j4GMUKeG032533;
+	Mon, 16 May 2005 15:30:20 -0700
+Date:	Mon, 16 May 2005 15:32:24 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH 3/4] Implement git-checkout-cache -u to update stat
+ information in the cache.
+In-Reply-To: <20050516220153.GA8609@pasky.ji.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505161530230.18337@ppc970.osdl.org>
+References: <7vll6gqj3z.fsf@assigned-by-dhcp.cox.net> <20050516220153.GA8609@pasky.ji.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 31
+Xref: brand.scrye.com linux.git:3401
+
+
+
+On Tue, 17 May 2005, Petr Baudis wrote:
+>
+> Dear diary, on Sun, May 15, 2005 at 11:23:12PM CEST, I got a letter
+> where Junio C Hamano <junkio@cox.net> told me that...
+> > With -u flag, git-checkout-cache picks up the stat information
+> > from newly created file and updates the cache.  This removes the
+> > need to run git-update-cache --refresh immediately after running
+> > git-checkout-cache.
+> 
+> I actually feel ok with this, but I wonder about Linus' opinion about
+> it.  :-)
+
+I don't think I mind any more.
+
+My initial reluctance to do this was based on the fact that I wanted to 
+avoid having something that updates things "both ways" (ie updates both 
+the index file _and_ the checked-out stuff), and the largest reason for 
+that was just worrying about stability.
+
+However, it's not like we've been having major stability issues, afaik, 
+and as long as the index file locking is honoured (which the patch seemed 
+to do), I don't have any real issues with it.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

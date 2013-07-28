@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  1 13:50:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 70207196F8D
+	for <tkil@scrye.com>; Thu,  1 Dec 2005 13:50:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932434AbVLAUtA (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Dec 2005 15:49:00 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751725AbVLAUtA
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Dec 2005 15:49:00 -0500
+Received: from az33egw01.freescale.net ([192.88.158.102]:8626 "EHLO
+	az33egw01.freescale.net") by vger.kernel.org with ESMTP
+	id S1751714AbVLAUtA (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 1 Dec 2005 15:49:00 -0500
+Received: from az33smr02.freescale.net (az33smr02.freescale.net [10.64.34.200])
+	by az33egw01.freescale.net (8.12.11/az33egw01) with ESMTP id jB1Krt67020409;
+	Thu, 1 Dec 2005 13:53:55 -0700 (MST)
+Received: from [10.82.19.2] (cashmere.am.freescale.net [10.82.19.2])
+	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id jB1KmZUQ015989;
+	Thu, 1 Dec 2005 14:48:35 -0600 (CST)
+Subject: Re: [Question] Fetching a new branch from remote
+From:	Jon Loeliger <jdl@freescale.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Carl Baldwin <cnb@fc.hp.com>, Git List <git@vger.kernel.org>
+In-Reply-To: <7vk6eoinqa.fsf@assigned-by-dhcp.cox.net>
+References: <7vk6eoinqa.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1133469656.30767.76.camel@cashmere.sps.mot.com>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6 (1.4.6-2.ydl.1) 
+Date:	Thu, 01 Dec 2005 14:40:56 -0600
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:13063
+
+On Thu, 2005-12-01 at 14:09, Junio C Hamano wrote:
+
+> 
+> I just found out that the documentation for '-f' flag is simply
+> missing.  I'd propose to add the following.  Thanks for noticing.
+
+Hmm.  Apologies.  I had mentioned it back here, but
+didn't know what it did and so didn't document it:
+
+        
+    From: 	Jon Loeliger <jdl@freescale.com>
+    To: 	git@vger.kernel.org
+    Subject: 	[PATCH] Add --tags documentation, scraped from JC mail.
+    Date: 	Mon, 7 Nov 2005 07:03:30 -0700 	
+
+    Signed-off-by: Jon Loeliger <jdl@freescale.com>
+
+    ---
+
+    Thin territory here for me.  Feel free to alter if not right! :-)
+    Also notice the lonely --force option still...
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

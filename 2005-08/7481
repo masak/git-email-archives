@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 23:16:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4CED31B0C33
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 23:16:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750729AbVHRFQa (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 18 Aug 2005 01:16:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750754AbVHRFQa
+	(ORCPT <rfc822;git-outgoing>); Thu, 18 Aug 2005 01:16:30 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:25576 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750729AbVHRFQa (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 18 Aug 2005 01:16:30 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7I5GKjA005345
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 17 Aug 2005 22:16:21 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7I5GJrd032341;
+	Wed, 17 Aug 2005 22:16:20 -0700
+Date:	Wed, 17 Aug 2005 22:16:19 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Paul Mackerras <paulus@samba.org>
+cc:	Junio C Hamano <junkio@cox.net>, Wolfgang Denk <wd@denx.de>,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Teach parse_commit_buffer about grafting.
+In-Reply-To: <17155.64070.264664.926461@cargo.ozlabs.ibm.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508172209220.3412@g5.osdl.org>
+References: <7vslxw4tb1.fsf_-_@assigned-by-dhcp.cox.net>
+ <20050818003036.C53FD353BF9@atlas.denx.de> <7vd5ocouus.fsf@assigned-by-dhcp.cox.net>
+ <17155.64070.264664.926461@cargo.ozlabs.ibm.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 31
+Xref: brand.scrye.com linux.git:7481
+
+
+
+On Thu, 18 Aug 2005, Paul Mackerras wrote:
+> 
+> I added support for grafts to gitk just yesterday, and it should be on
+> kernel.org by now.  I also committed the changes to send lines into
+> hyperspace.
+
+Paul, I hate to tell you about yet another flag to git-rev-list, but did 
+you realize that in addition to all the other magic flags, there's a flag 
+called "--parents"?
+
+Right now you use "git-rev-list --header --topo-order", which gives you 
+both the commit ID's and the header. Add a "--parents" there, and you'll 
+notice that the first line of each NUL-terminated record changes from just 
+the commit ID to the "commit ID + parent list".
+
+That way gitk wouldn't need to actually know about grafts, because it 
+would just pick it up from the git-rev-list output which gets it from the 
+regular commit parsing code.
+
+Umm. git-rev-list really does everything. Rule of thumb: if you _ever_
+need to look at any other internal git information, you're probably doing
+something wrong, or you've missed yet another flag ;)
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

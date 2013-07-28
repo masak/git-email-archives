@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 05:47:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E6D4B170AF9
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 05:46:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262081AbVD1LpS (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 07:45:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262087AbVD1LpR
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 07:45:17 -0400
+Received: from user-10mt71s.cable.mindspring.com ([65.110.156.60]:34344 "EHLO
+	localhost") by vger.kernel.org with ESMTP id S262081AbVD1LpA (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Apr 2005 07:45:00 -0400
+Received: from droundy by localhost with local (Exim 4.50)
+	id 1DR7N2-0003Am-Mq; Thu, 28 Apr 2005 07:39:52 -0400
+Date:	Thu, 28 Apr 2005 07:39:52 -0400
+From: David Roundy <droundy@abridgegame.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>,
+	Git Mailing List <git@vger.kernel.org>, darcs-devel@darcs.net
+Subject: Re: [darcs-devel] Re: Darcs-git pulling from the Linux repo: a Linux VM question
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050428113947.GC9422@abridgegame.org>
+Mail-Followup-To: Linus Torvalds <torvalds@osdl.org>,
+	Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>,
+	Git Mailing List <git@vger.kernel.org>, darcs-devel@darcs.net
+References: <7i7jionz5q.fsf@lanthane.pps.jussieu.fr> <Pine.LNX.4.58.0504270823480.18901@ppc970.osdl.org> <7iu0lskyfb.fsf@lanthane.pps.jussieu.fr> <Pine.LNX.4.58.0504270910510.18901@ppc970.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0504270910510.18901@ppc970.osdl.org>
+User-Agent: Mutt/1.5.6+20040907i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 32
+Xref: brand.scrye.com linux.git:2003
+
+On Wed, Apr 27, 2005 at 09:16:03AM -0700, Linus Torvalds wrote:
+> On Wed, 27 Apr 2005, Juliusz Chroboczek wrote:
+> > Here we're speaking about the initial import.  Committed on 17 April
+> > 2005 by Linus Torvalds, with the comment ``Let it rip''.  220 MB of
+> > changed files in a single commit.  2 minutes real time just to read
+> > all the files, never mind doing anything useful with them.
+> 
+> I think you may well want to consider the initial commit special. In many 
+> ways it is - it has no parents etc, so even apart from the fact that the 
+> initial commit obviously tends to be a lot bigger than any other commit, 
+> it actually fundamnetally is _technically_ different too.
+
+This has been discussed, and while I'm not opposed to special-casing the
+initial commit, mostly we've taken the stance so far of not special-casing.
+It's much nicer if we can make darcs efficient enough to perform the
+initial commit without a special case, which has the nice side-effect of
+also improving other cases.
+
+When we're desperate, we'll special-case the initial commit, but currently
+I'm sure we can pretty easily adjust things by making the git-tree-reading
+lazy, which should pretty well address both the memory and speed
+concerns--and also improve performance of other commands.  Perhaps more to
+the point, it will also ensure that the same optimizations that work for
+working with darcs repos will help when dealing with git repos.
+-- 
+David Roundy
+http://www.darcs.net
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

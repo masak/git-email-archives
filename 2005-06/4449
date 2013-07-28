@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 22:34:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A5961194690
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 22:34:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261203AbVFCD4G (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 23:56:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261225AbVFCD4G
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 23:56:06 -0400
+Received: from gate.crashing.org ([63.228.1.57]:1493 "EHLO gate.crashing.org")
+	by vger.kernel.org with ESMTP id S261203AbVFCD4D (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 23:56:03 -0400
+Received: from gaston (localhost [127.0.0.1])
+	by gate.crashing.org (8.12.8/8.12.8) with ESMTP id j533lvZn015500;
+	Thu, 2 Jun 2005 22:47:58 -0500
+Subject: Re: qgit-0.3
+From: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To: Marco Costalba <mcostalba@yahoo.it>
+Cc: git@vger.kernel.org, berkus@gmail.com
+In-Reply-To: <20050601111949.90043.qmail@web26303.mail.ukl.yahoo.com>
+References: <20050601111949.90043.qmail@web26303.mail.ukl.yahoo.com>
+Content-Type: text/plain
+Date:	Fri, 03 Jun 2005 13:55:09 +1000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1117770909.31082.121.camel@gaston>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.0.3
+Lines: 27
+Xref: brand.scrye.com linux.git:4449
+
+On Wed, 2005-06-01 at 13:19 +0200, Marco Costalba wrote:
+> New version of qgit, the QT/C++ git viewer.
+> 
+> Download at:
+> 
+> http://prdownloads.sourceforge.net/qgit/qgit-0.3.tar.gz?download
+> 
+> This time we use scons instead of qmake as build system (many thanks to Stanislav Karchebny), I
+> hope people have less problems compiling it.
+> 
+> As before just run make and copy the bin in the path.
+> 
+> New feature is async loading of diff and file blobs, should be much faster navigate the logs with
+> secondary windows (double click on logs or file names to show) opened.
+
+I spent 1/2h and never managed to build it. When it doesn't find some
+includes, it doesn't look for some Qt related binaries in the right
+path, or whatever, it's just basically unbuildable.
+
+Ben.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

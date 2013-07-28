@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 14:30:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 52324A5DAA
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 14:30:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261483AbVDQU2l (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Apr 2005 16:28:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261534AbVDQU1W
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Apr 2005 16:27:22 -0400
+Received: from fire.osdl.org ([65.172.181.4]:38292 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261507AbVDQUYh (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 17 Apr 2005 16:24:37 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3HKOTs4016451
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 17 Apr 2005 13:24:30 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3HKOSCm003305;
+	Sun, 17 Apr 2005 13:24:29 -0700
+Date:	Sun, 17 Apr 2005 13:26:27 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Russell King <rmk@arm.linux.org.uk>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: Re-done kernel archive - real one?
+In-Reply-To: <20050417211116.F13233@flint.arm.linux.org.uk>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504171324340.7211@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0504161543590.7211@ppc970.osdl.org>
+ <20050417162448.A13233@flint.arm.linux.org.uk> <Pine.LNX.4.58.0504170926410.7211@ppc970.osdl.org>
+ <20050417195742.D13233@flint.arm.linux.org.uk> <Pine.LNX.4.58.0504171226530.7211@ppc970.osdl.org>
+ <20050417205149.E13233@flint.arm.linux.org.uk> <Pine.LNX.4.58.0504171306360.7211@ppc970.osdl.org>
+ <20050417211116.F13233@flint.arm.linux.org.uk>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 20
+Xref: brand.scrye.com linux.git:511
+
+
+
+On Sun, 17 Apr 2005, Russell King wrote:
+> 
+> It's trivial to change - it's either sort -n or sort -nr !
+
+Yes.
+
+Btw, it might make sense to do the "grep" before the sort, since the sort 
+doesn't scale as nicely with lots of output. On the other hand, then the 
+grep pattern needs to be a bit more complex (so that it doesn't pick up on 
+things that have _parents_ with ":1"). I think the rev-tree output is 
+obvious enough that it's pretty trivial to grep for..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 18 13:16:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B4516806B3
+	for <tkil@scrye.com>; Sun, 18 Dec 2005 13:16:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965264AbVLRUQX (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Dec 2005 15:16:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965265AbVLRUQX
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Dec 2005 15:16:23 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:30600 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965264AbVLRUQX (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 18 Dec 2005 15:16:23 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBIKG4DZ010361
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 18 Dec 2005 12:16:08 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBIKFx8n024577;
+	Sun, 18 Dec 2005 12:16:00 -0800
+Date:	Sun, 18 Dec 2005 12:15:58 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>,
+	Andreas Ericsson <exon@op5.se>
+Subject: Make "git help" react to window size correctly
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512181211160.4827@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.129 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 46
+Xref: brand.scrye.com linux.git:13792
+
+
+Currently the git "show commands" function will react to the environment 
+variable COLUMNS, or just default to a width of 80 characters.
+
+That's just soo eighties. Nobody sane sets COLUMNS any more, unless they 
+need to support some stone-age software from before the age of steam 
+engines, SIGWINCH and TIOCGWINSZ.
+
+So get with the new century, and use TIOCGWINSZ to get the terminal size.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/git.c b/git.c
+index c26cac6..157c549 100644
+--- a/git.c
++++ b/git.c
+@@ -8,6 +8,7 @@
+ #include <errno.h>
+ #include <limits.h>
+ #include <stdarg.h>
++#include <sys/ioctl.h>
+ #include "git-compat-util.h"
+ 
+ #ifndef PATH_MAX
+@@ -26,6 +27,16 @@ static int term_columns(void)
+ 	if (col_string && (n_cols = atoi(col_string)) > 0)
+ 		return n_cols;
+ 
++#ifdef TIOCGWINSZ
++	{
++		struct winsize ws;
++		if (!ioctl(1, TIOCGWINSZ, &ws)) {
++			if (ws.ws_col)
++				return ws.ws_col;
++		}
++	}
++#endif
++
+ 	return 80;
+ }
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

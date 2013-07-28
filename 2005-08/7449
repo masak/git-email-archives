@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 11:37:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B7B3D285218
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 11:37:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751170AbVHQRhE (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 13:37:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751173AbVHQRhE
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 13:37:04 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:53188 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S1751170AbVHQRhC (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 17 Aug 2005 13:37:02 -0400
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1E5RqR-00007Z-Ra; Wed, 17 Aug 2005 17:36:58 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <430375B3.3050307@pobox.com>
+Date:	Wed, 17 Aug 2005 13:36:51 -0400
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Junio C Hamano <junkio@cox.net>
+CC:	git@vger.kernel.org, Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [PATCH] Teach applymbox to keep the Subject: line.
+References: <20050816214707.6842.qmail@web26302.mail.ukl.yahoo.com>	<7vek8t7bva.fsf@assigned-by-dhcp.cox.net> <7vk6il2jz8.fsf_-_@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vk6il2jz8.fsf_-_@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 15
+Xref: brand.scrye.com linux.git:7449
+
+
+If someone is thus motivated, I have two requests in this area:
+
+1) Fix applymbox such that it understands RFC822-valid Subject lines 
+which wrap across multiple text lines.
+
+2) Teach it to understand MIME, and not treat the MIME headers like part 
+of the message.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,95 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 19:58:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 23C702B6382
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 19:58:03 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932412AbVKGC4K (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 21:56:10 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932413AbVKGC4K
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 21:56:10 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:7911 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932412AbVKGC4J (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 6 Nov 2005 21:56:09 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051107025543.RNKL4527.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 6 Nov 2005 21:55:43 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	<git@vger.kernel.org>
+Subject: Re: [PATCH] Fix empty line processing in git-shortlog.perl
+References: <20051106224218.22797.97260.stgit@machine.or.cz>
+Date:	Sun, 06 Nov 2005 18:56:07 -0800
+In-Reply-To: <20051106224218.22797.97260.stgit@machine.or.cz> (Petr Baudis's
+	message of "Sun, 06 Nov 2005 23:42:18 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3bm9upx4.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 51
+Xref: brand.scrye.com linux.git:11242
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> Faced with a commit such as
+>
+> 	commit f1b2646c7f2713c3ea4bce120e1d0d8091808be4
+> 	Author: Adrian Bunk <bunk@r063144.stusta.swh.mhn.de>
+> 	Date:   Sun Nov 6 20:30:38 2005 +0100
+>
+> 	    From: Michal Wronski <wrona@mat.uni.torun.pl>
+>
+> 	    I've jchanged my email. Please apply this patch so as to everybody
+> 	    could send me a remarks about mqueuefs.
+>
+> 	    Signed-off-by: Michal Wronski <Michal.Wronski@motorola.com>
+> 	    Signed-off-by: Adrian Bunk <bunk@stusta.de>
+>
+> git-shortlog.perl would produce a line with an empty commit title.
+
+> This patch fixes that...
+
+> -			next unless /^\s*?(.*)/;
+> +			next unless /^\s*?(\S.*)$/;
+
+I suspect /(\S.*)$/ would do the same thing, but in any case
+I do not think it is the right fix.
+
+I think the problem is deeper than that.  Shortlog summarizes to
+only one line per commit, so I suspect what you would be feeding
+it would say something like this for the above example:
+
+        commit f1b2646c7f2713c3ea4bce120e1d0d8091808be4
+        Author: Adrian Bunk <bunk@r063144.stusta.swh.mhn.de>
+
+            From: Michal Wronski <wrona@mat.uni.torun.pl>
+
+That is, the commit you quoted is done by 'git log --pretty',
+but a typical shortlog invocation would be:
+
+	git log --pretty=short rev1..rev2 | git shortlog
+
+With or without your fix, the command barfs.
+
+Of course, that "From: " line should have been used as the
+commit author by the tool that created the commit out of e-mail
+Adrian received, but that is a separate issue.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

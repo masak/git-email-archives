@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 22:30:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 25FBB59497
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 22:30:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261926AbVD1Ead (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 00:30:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261937AbVD1Ead
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 00:30:33 -0400
+Received: from iabervon.org ([66.92.72.58]:18436 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261926AbVD1Ea0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Apr 2005 00:30:26 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DR0fR-00006w-00; Thu, 28 Apr 2005 00:30:25 -0400
+Date:	Thu, 28 Apr 2005 00:30:25 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: "Zed A. Shaw" <zedshaw@zedshaw.com>
+Cc: git@vger.kernel.org
+Subject: Re: suffix array/tree deltas (Was: The criss-cross merge case)
+In-Reply-To: <1114659700.5910.10.camel@thamachine>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0504280016000.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 41
+Xref: brand.scrye.com linux.git:1965
+
+On Wed, 27 Apr 2005, Zed A. Shaw wrote:
+
+> On Wed, 2005-04-27 at 19:32 -0400, Daniel Barkalow wrote:
+> 
+> > My plan is to implement multi-file diff and merge with a suffix tree-based
+> > algorithm, and then revisit the history stuff once we have a merger that
+> > can do sensible things with this information.
+> 
+> Hey, that's neat.  I've already implemented two versions of this very
+> thing with FastCST.  The original used suffix trees, but I found that
+> there were plenty of pathological cases which chewed memory and
+> processor.  Most of these cases were large (>1MB) PDF files.  Don't ask
+> me why PDF drove suffix tree algorithms insane, but they just did.
+
+I'm not too surprised; but can you hope to merge or compare PDFs
+anyway? I'd think that you'd just screw up alignment or something. (Note
+that we aren't using deltas for history storage, so we're not interested
+in the "compressing multiple versions" aspect of diffs.) I think I want to
+punt anything too binary-like and try to find an unambiguous history-based
+difference (i.e., there was some commit in the past that replaced one of
+the versions with the other; therefore, we want the replacing one).
+
+I'm thinking of line-based compressed suffix trees, with the obvious delta
+algorithm: make the trees, find the longest prefix of the file, find the
+longest prefix of the rest of the file, add an insertion for a line
+that doesn't match, repeat. I probably need a few extra things to
+stabilize the process (prefer that the next chunk come from the same file,
+prefer that it come from next in the file, ignore copied lines without
+enough content).
+
+I haven't actually started yet; I'm waiting for a weekend when I'm feeling
+inspired and not too fried.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

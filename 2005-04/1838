@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 09:01:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 01EBE1DCC0C
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 09:01:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261694AbVD0PBM (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Apr 2005 11:01:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261703AbVD0PBM
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Apr 2005 11:01:12 -0400
+Received: from sincerity-forever.csail.mit.edu ([128.30.67.31]:11980 "EHLO
+	sincerity-forever.csail.mit.edu") by vger.kernel.org with ESMTP
+	id S261694AbVD0PBJ (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 27 Apr 2005 11:01:09 -0400
+Received: from catfish.lcs.mit.edu ([128.30.67.25] helo=cag.csail.mit.edu)
+	by sincerity-forever.csail.mit.edu with esmtp (Exim 3.36 #1 (Debian))
+	id 1DQo27-0000ZM-00; Wed, 27 Apr 2005 11:00:59 -0400
+Date:	Wed, 27 Apr 2005 11:00:46 -0400 (EDT)
+From: "C. Scott Ananian" <cscott@cscott.net>
+To: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: A shortcoming of the git repo format
+In-Reply-To: <426F2671.1080105@zytor.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.61.0504271058120.5008@cag.csail.mit.edu>
+References: <426F2671.1080105@zytor.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 22
+Xref: brand.scrye.com linux.git:1838
+
+On Tue, 26 Apr 2005, H. Peter Anvin wrote:
+
+> Additionally, there is the question of the handling of strings that may 
+> contain \n or even \0 (which may be necessary for some applications).
+
+While we're at it, I'll just mention that '\0' is a rather bad delimiter 
+for zlib-compressed files; it usually ends up enlarging the file by three 
+or more bytes compared to using any whitespace character.  The reason is 
+obvious: \0 isn't actually used anywhere else in the compressed contents, 
+so it tends to pollute zlib's dictionary.
+
+It's probably too late to do anything about this, but hey.
+  --scott
+
+Soviet  STANDEL Yakima JMTRAX Hussein Ft. Meade algorithm JMBLUG CIA 
+SEQUIN Bejing Morwenstow Boston nuclear Sigint Ft. Bragg ZRBRIEF Peking
+                          ( http://cscott.net/ )
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

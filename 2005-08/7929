@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 19:24:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7CA9F1C7963
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 19:24:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751446AbVH3BYs (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 21:24:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751447AbVH3BYs
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 21:24:48 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:43753 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751446AbVH3BYs (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 29 Aug 2005 21:24:48 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7U1OfjA012870
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 29 Aug 2005 18:24:41 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7U1Oeuu003730;
+	Mon, 29 Aug 2005 18:24:41 -0700
+Date:	Mon, 29 Aug 2005 18:24:40 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Robert Fitzsimons <robfitz@273k.net>, git@vger.kernel.org
+Subject: Re: [PATCH 1/9] Fix git patch header processing in git-apply.
+In-Reply-To: <7vacj06xi6.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508291821010.3243@g5.osdl.org>
+References: <11252426672473-git-send-email-robfitz@273k.net>
+ <7vslwtein3.fsf@assigned-by-dhcp.cox.net> <20050829235823.GA19351@localhost>
+ <Pine.LNX.4.58.0508291744400.3243@g5.osdl.org> <7vacj06xi6.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:7929
+
+
+
+On Mon, 29 Aug 2005, Junio C Hamano wrote:
+> 
+> I, however, am not 100% convinced --ignore-applied is too
+> dangerous to be useful in any conceivable use cases, at least
+> not yet.  For example, you might be cherry-picking a change from
+> a foreign branch with 'git-diff-tree -p other~45 | git apply',
+> where the current branch may have already aquired part of the
+> changes that foreign branch contains since 45 generations ago.
+
+.. and that's why we use a three-way merge, and not diffs, to merge two 
+branches. 
+
+--ignore-applied really is a pretty dangerous thing. I can see that it 
+might do the right thing in many cases, but definitely not in a scripted 
+environment, much less in an "import". 
+
+By definition, importing stuff must apply, since it clearly applied in
+whatever original source control tool you are importing from. So if an 
+importer needs --ignore-applied, it is fundamentally doing something 
+wrong.
+
+And I just realized what "SourcePuller" is. Gaah. Trust me, that export is 
+bad, and the original source control tool did everything very well indeed.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

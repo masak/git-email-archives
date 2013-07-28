@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 16:20:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B61A116EBFB
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 16:19:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161009AbVKPXTX (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 18:19:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161007AbVKPXTX
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 18:19:23 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:40919 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1030564AbVKPXTW (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 18:19:22 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8B963E3302; Thu, 17 Nov 2005 00:19:21 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 707249F324; Thu, 17 Nov 2005 00:19:21 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 524C17E7A6; Thu, 17 Nov 2005 00:19:21 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 17882E3302; Thu, 17 Nov 2005 00:19:21 +0100 (CET)
+Date:	Thu, 17 Nov 2005 00:19:21 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Fix git_config_set() for mean cases
+In-Reply-To: <7vhdac738c.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511170013470.9284@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0511161045310.16596@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vhdac738c.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:12056
+
+Hi,
+
+On Wed, 16 Nov 2005, Junio C Hamano wrote:
+
+> Why do you spell apostrophe with 0xb4 not ASCII 0x27?  Not that
+> it matters because I'll apply it with -u flag to git-am to
+> convert it to UTF-8 in the log message, but I am just curious.
+
+Efficiency. I often do the patches on my iBook w/ German keyboard. The 
+apostrophe 0xb4 (upward accent) is just beside my back space key, i.e. in 
+a favorite location for my right little finger.
+
+OTOH, 0x27 (the real apostrophe) is just beside the Enter key, which is 
+the only key Apple made too small. Way too small. So I try to avoid that 
+key, since I hit it by accident already too often. Furthermore, on the 
+German keyboard you have to hold Shift down for the apostrophe, while you 
+do not for 0xb4.
+
+Besides, the character is there, so why not use it? ;-)
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

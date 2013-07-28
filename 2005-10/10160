@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 16 12:41:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CD15D6E4EE
+	for <tkil@scrye.com>; Sun, 16 Oct 2005 12:41:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751343AbVJPSlw (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 16 Oct 2005 14:41:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751358AbVJPSlw
+	(ORCPT <rfc822;git-outgoing>); Sun, 16 Oct 2005 14:41:52 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:59903 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1751343AbVJPSlw (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 16 Oct 2005 14:41:52 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051016184141.KCOX16347.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 16 Oct 2005 14:41:41 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	torvalds@osdl.org
+Subject: Do you use "git-apply --show-files"?
+cc:	git@vger.kernel.org
+Date:	Sun, 16 Oct 2005 11:41:50 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vek6lxq1d.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 37
+Xref: brand.scrye.com linux.git:10160
+
+As a part of "funny pathname character" updates, I was reviewing
+"apply.c" and have two questions on its "--show-files" flag.
+
+ * Unlike other informational flags like --stat and --summary,
+   it does not turn off "apply".  Is it intentional? 
+
+ * Do you (or anybody else) use it, and if so how?
+
+The current code in the proposed updates branch decodes the same
+C-style encoded pathnames GNU patch with proposed enhancements
+would understand before applying patches, and when it needs to
+show pathnames with --index-info, --stat, and --summary, it uses
+the same encoded pathname to keep things on one line.
+
+I think --show-files should also do the same for consistency,
+but before I update it I wanted to ask the above questions.  If
+nobody uses it, I can just ignore the issues and probably
+remove the flag.
+
+The plan is to backport the git-apply change to the maint branch
+to do a 0.99.8e before updated git-diff-* hits the master
+branch.  The only thing that would make a difference is embedded
+SP.  Currently they are not quoted, but they will be, like this:
+
+        : siamese; git diff
+        diff --git "a/Read Me" "b/Read Me"
+        index 3deac99..543a8f0 100644
+        --- "a/Read Me"
+        +++ "b/Read Me"
+        ...
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 28 02:29:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1BEFB13CC41
+	for <tkil@scrye.com>; Fri, 28 Oct 2005 02:29:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751618AbVJ1I3M (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 28 Oct 2005 04:29:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751620AbVJ1I3M
+	(ORCPT <rfc822;git-outgoing>); Fri, 28 Oct 2005 04:29:12 -0400
+Received: from linux-server1.op5.se ([193.201.96.2]:22196 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1751618AbVJ1I3L
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 28 Oct 2005 04:29:11 -0400
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id D0AB56BD01
+	for <git@vger.kernel.org>; Fri, 28 Oct 2005 10:29:09 +0200 (CEST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4361E155.2020201@op5.se>
+Date:	Fri, 28 Oct 2005 10:29:09 +0200
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [PATCH gitweb] Visually indicating patch size with horizontal
+ bars
+References: <20051027203945.GC1622@pe.Belkin> <7vfyqm1uvx.fsf@assigned-by-dhcp.cox.net> <20051027234813.GA512@pe.Belkin> <Pine.LNX.4.64.0510271709120.4664@g5.osdl.org> <20051028005029.GA2654@pe.Belkin> <43617B47.3070008@zytor.com>
+In-Reply-To: <43617B47.3070008@zytor.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:10753
+
+H. Peter Anvin wrote:
+> Chris Shoemaker wrote:
+> 
+>>
+>> Ok, but that cache would live inside GIT_DIR an be shared with gitk,
+>> right?
+>>
+> 
+> That would be bad.  Don't assume that the person running gitweb (or 
+> gitk, for that matter) has write permission.
+> 
+
+Not necessarily in the archive, but it could support a --cache-dir 
+option. If no cache-dir directive is used it could try GIT_DIR/cache and 
+go on as usual if that fails too.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

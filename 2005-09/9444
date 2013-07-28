@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 28 20:31:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6CA9D1B7200
+	for <tkil@scrye.com>; Wed, 28 Sep 2005 20:31:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750831AbVI2CbW (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 28 Sep 2005 22:31:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751316AbVI2CbW
+	(ORCPT <rfc822;git-outgoing>); Wed, 28 Sep 2005 22:31:22 -0400
+Received: from main.gmane.org ([80.91.229.2]:9179 "EHLO ciao.gmane.org")
+	by vger.kernel.org with ESMTP id S1750831AbVI2CbW (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 28 Sep 2005 22:31:22 -0400
+Received: from root by ciao.gmane.org with local (Exim 4.43)
+	id 1EKoBq-0005wF-Ck
+	for git@vger.kernel.org; Thu, 29 Sep 2005 04:30:30 +0200
+Received: from cm218-255-247-62.hkcable.com.hk ([218.255.247.62])
+        by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Thu, 29 Sep 2005 04:30:30 +0200
+Received: from hysoka by cm218-255-247-62.hkcable.com.hk with local (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Thu, 29 Sep 2005 04:30:30 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To:	git@vger.kernel.org
+From:	Kevin Leung <hysoka@gmail.com>
+Subject:  Edit log message after commit
+Date:	Thu, 29 Sep 2005 10:28:39 +0800
+Lines:	7
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <dhfjcu$36f$1@sea.gmane.org>
+Mime-Version:  1.0
+Content-Type:  text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding:  7bit
+X-Complaints-To: usenet@sea.gmane.org
+X-Gmane-NNTP-Posting-Host: cm218-255-247-62.hkcable.com.hk
+User-Agent: Mozilla Thunderbird 1.0.6 (Windows/20050716)
+X-Accept-Language: en-us, en
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 13
+Xref: brand.scrye.com linux.git:9444
+
+Hi,
+
+Is there any method to edit the log message after committed? I couldn't find any information in Documentation and in git mailing list.
+
+
+Regards,
+Kevin Leung
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

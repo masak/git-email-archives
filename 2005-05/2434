@@ -1,0 +1,53 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May  3 02:40:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3F189FC7B6
+	for <tkil@scrye.com>; Tue,  3 May 2005 02:40:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261424AbVECIkS (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 3 May 2005 04:40:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261425AbVECIkS
+	(ORCPT <rfc822;git-outgoing>); Tue, 3 May 2005 04:40:18 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:6125 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S261424AbVECIkP (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 3 May 2005 04:40:15 -0400
+Received: from shinybook.infradead.org ([81.187.226.99])
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DSswu-00049n-CV
+	for git@vger.kernel.org; Tue, 03 May 2005 09:40:13 +0100
+Subject: gitweb on kernel.org lies?
+From: David Woodhouse <dwmw2@infradead.org>
+To: git@vger.kernel.org
+Content-Type: text/plain
+Date:	Tue, 03 May 2005 09:40:03 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1115109604.8508.34.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-1) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.3
+Lines: 11
+Xref: brand.scrye.com linux.git:2434
+
+http://www.kernel.org/git/gitweb.cgi?p=linux%2Fkernel%2Fgit%2Fdwmw2%2Faudit-2.6.git;a=log
+doesn't seem to show the commits which were just put there. Why?
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 13:17:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 106FB179630
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 13:17:43 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965216AbVKBUQS (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 15:16:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965218AbVKBUQR
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 15:16:17 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:1491 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S965216AbVKBUQQ (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 2 Nov 2005 15:16:16 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A537B13F249; Wed,  2 Nov 2005 21:16:13 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 85FB4B4FCE; Wed,  2 Nov 2005 21:16:13 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 64A9C591CA; Wed,  2 Nov 2005 21:16:13 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0540F13F249; Wed,  2 Nov 2005 21:16:13 +0100 (CET)
+Date:	Wed, 2 Nov 2005 21:16:13 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Fix segfaults caused by invalid tags
+In-Reply-To: <20051102200751.26904.5780.stgit@machine.or.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511022115250.13746@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051102200751.26904.5780.stgit@machine.or.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:11027
+
+Hi,
+
+On Wed, 2 Nov 2005, Petr Baudis wrote:
+
+> On many places, we didn't bother checking deref_tag() return value against
+> NULL, causing GIT segfaulting e.g. on some old Cogito checkouts containing
+> residual tags from GIT.
+
+Shouldn't a warning be issued in every of those cases? I don't know, but 
+those tags pointing nowhere don't seem useful to me.
+
+Ciao,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

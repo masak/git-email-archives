@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jul 23 08:48:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D38232927DA
+	for <tkil@scrye.com>; Sat, 23 Jul 2005 08:48:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261748AbVGWOrz (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 23 Jul 2005 10:47:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261754AbVGWOry
+	(ORCPT <rfc822;git-outgoing>); Sat, 23 Jul 2005 10:47:54 -0400
+Received: from deuterium.rootr.net ([203.194.209.160]:48906 "EHLO
+	vulcan.rootr.net") by vger.kernel.org with ESMTP id S261748AbVGWOry
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 23 Jul 2005 10:47:54 -0400
+Received: from [192.168.15.100] (186-49.35-65.tampabay.res.rr.com [65.35.49.186])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by vulcan.rootr.net (Postfix) with ESMTP id 360983C09;
+	Sat, 23 Jul 2005 14:47:47 +0000 (UTC)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42E25874.2090201@qualitycode.com>
+Date:	Sat, 23 Jul 2005 10:47:16 -0400
+From: Kevin Smith <yarcs@qualitycode.com>
+User-Agent: Mozilla Thunderbird 1.0.2 (X11/20050404)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Ryan Anderson <ryan@michonline.com>
+Cc: git@vger.kernel.org
+Subject: Re: Last mile to 1.0?
+References: <7vwtnqhcfb.fsf@assigned-by-dhcp.cox.net> <20050723085031.GD3255@mythryan2.michonline.com>
+In-Reply-To: <20050723085031.GD3255@mythryan2.michonline.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_SV 
+	autolearn=ham version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:6366
+
+Ryan Anderson wrote:
+> Git falls into the category of distributed source code management tools,
+> similar to Arch or Darcs (or, in the commercial world, BitKeeper).  This
+> means that every working directory is a full-fledged repository with
+> full revision tracking capabilities.
+
+That's not actually what "distributed" means. There are several 
+distributed SCM tools[1] that store repo information outside the actual 
+working directory.
+
+Perhaps that last sentence could be something like "This means that each 
+developer has a local full-fledged repository with full revision 
+tracking capabilities, not dependent on network access to a central 
+server." I'm sure there are better wordings, but I hate to point out an 
+problem without offering at least one possible improvement.
+
+Kevin
+
+[1] I believe that ArX, monotone, codeville, and svk all fall into this 
+category. Possibly even Arch itself, although I haven't researched that.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

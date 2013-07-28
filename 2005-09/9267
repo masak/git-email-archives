@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 25 13:06:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F40E7123ECE
+	for <tkil@scrye.com>; Sun, 25 Sep 2005 13:06:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932268AbVIYTGl (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 25 Sep 2005 15:06:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932269AbVIYTGl
+	(ORCPT <rfc822;git-outgoing>); Sun, 25 Sep 2005 15:06:41 -0400
+Received: from smtp.nildram.co.uk ([195.112.4.54]:25862 "EHLO
+	smtp.nildram.co.uk") by vger.kernel.org with ESMTP id S932268AbVIYTGk
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 25 Sep 2005 15:06:40 -0400
+Received: from [192.168.0.4] (unknown [84.12.195.36])
+	by smtp.nildram.co.uk (Postfix) with ESMTP
+	id 63B5824E361; Sun, 25 Sep 2005 20:06:36 +0100 (BST)
+In-Reply-To: <20050925163201.GA29198@tumblerings.org>
+References: <20050925163201.GA29198@tumblerings.org>
+Mime-Version: 1.0 (Apple Message framework v623)
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <4d4586301dca616f42880612fae01492@cream.org>
+Content-Transfer-Encoding: 7bit
+Cc:	git@vger.kernel.org
+From:	Martin Coxall <quasi@cream.org>
+Subject: Re: rsync deprecated but promoted?
+Date:	Sun, 25 Sep 2005 20:06:37 +0100
+To:	Zack Brown <zbrown@tumblerings.org>
+X-Mailer: Apple Mail (2.623)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:9267
+
+
+On 25 Sep 2005, at 17:32, Zack Brown wrote:
+
+> Hi folks,
+>
+> When I use cogito, it gives a warning saying the rsync method is 
+> deprecated and
+> will be removed in the future. But when I visit kernel.org/git, the 
+> page says to
+> use an rsync URL with cg-clone.
+>
+> Maybe kernel.org should be updated?
+>
+
+It does seem to be sending out a confusing message to us users too, 
+since an initial clone of Linus's tree with rsync is on my machine 10x 
+faster than an http clone, so it seems to be sending out something of a 
+confused/confusing message re: rsync.
+
+Am I right in thinking it's because rsync didn't originally have pack 
+support, but now it does, Petr has simply forgotten to deprecate the 
+deprecation message?
+
+Kind Regards,
+
+Martin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

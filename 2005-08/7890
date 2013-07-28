@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 03:35:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5B67715B477
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 03:35:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750804AbVH2JfG (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 05:35:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750816AbVH2JfG
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 05:35:06 -0400
+Received: from web53602.mail.yahoo.com ([206.190.37.35]:61533 "HELO
+	web53602.mail.yahoo.com") by vger.kernel.org with SMTP
+	id S1750804AbVH2JfF (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 29 Aug 2005 05:35:05 -0400
+Received: (qmail 54244 invoked by uid 60001); 29 Aug 2005 09:35:00 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Message-ID:Received:Date:From:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=wYA1iUFPZZeKt0vijyYZkq4uVd2GhyryhuVDsDesl1acPswX1LJ3G0/4jGtlNH5+esdjfCwfIg0Oic53Ii+WjEP09yvf2iSZ5lV3HioBFZMPPidSku+en5YnIti+aG+f8cTUb1SWUSxwYUebOHBt1wLAWfTyPvZm4t6OxmJlVZw=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050829093500.54242.qmail@web53602.mail.yahoo.com>
+Received: from [203.145.155.10] by web53602.mail.yahoo.com via HTTP; Mon, 29 Aug 2005 02:35:00 PDT
+Date:	Mon, 29 Aug 2005 02:35:00 -0700 (PDT)
+From:	Komal Shah <komal_shah802003@yahoo.com>
+Subject: gitweb : index.aux
+To:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FROM_HAS_ULINE_NUMS 
+	autolearn=no version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:7890
+
+Kay,
+
+I am able to setup gitweb tree for my linux-omap tree internally, but
+for this I am using $project_list equals to $projectroot. I want to add
+more projects, but I don't know how write/generate index.aux file?
+
+Me don't know much about cgi-bin/perl :(
+
+---Komal Shah
+http://komalshah.blogspot.com/
+
+
+		
+____________________________________________________
+Start your day with Yahoo! - make it your home page 
+http://www.yahoo.com/r/hs 
+ 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

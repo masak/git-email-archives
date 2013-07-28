@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 10 09:46:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C8353D9820
+	for <tkil@scrye.com>; Sun, 10 Jul 2005 09:46:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261961AbVGJPqW (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 10 Jul 2005 11:46:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261962AbVGJPqW
+	(ORCPT <rfc822;git-outgoing>); Sun, 10 Jul 2005 11:46:22 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:40163 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261961AbVGJPqU (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 10 Jul 2005 11:46:20 -0400
+Received: (qmail 9593 invoked by uid 2001); 10 Jul 2005 15:46:18 -0000
+Date:	Sun, 10 Jul 2005 17:46:18 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Pavel Roskin <proski@gnu.org>
+Cc: git <git@vger.kernel.org>
+Subject: Re: New script: cg-clean
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050710154618.GF24249@pasky.ji.cz>
+References: <1120862084.17812.6.camel@dv>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1120862084.17812.6.camel@dv>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 41
+Xref: brand.scrye.com linux.git:5876
+
+Dear diary, on Sat, Jul 09, 2005 at 12:34:44AM CEST, I got a letter
+where Pavel Roskin <proski@gnu.org> told me that...
+> Hello, Petr!
+
+Hello,
+
+> Please consider this script for Cogito.
+> 
+> Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+the script is definitively interesting, but I have couple of notes
+about it first:
+
+(i) -i sounds wrong for anything but being interactive here ;-) What
+about -A?
+
+(ii) I'm confused - if -a is all of the above, how do I clean _only_
+regular files, and only those not ignored by cg-status?
+
+(iii) Makes it any sense to remove only special files?
+
+(iv) -r implies being recursive, but it has nothing to do with that
+here.
+
+(v) Semantically, I think it's quite close to cg-reset. What about
+making it part of cg-reset instead of a separate command? I tend to be
+careful about command inflation. (That's part of being careful about the
+usability in general.) That's just an idea and possibly a bad one, what
+do you think?
+
+Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+<Espy> be careful, some twit might quote you out of context..
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

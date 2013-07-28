@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 20 07:57:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8F8592864EE
+	for <tkil@scrye.com>; Sat, 20 Aug 2005 07:57:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932242AbVHTN46 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 20 Aug 2005 09:56:58 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932247AbVHTN45
+	(ORCPT <rfc822;git-outgoing>); Sat, 20 Aug 2005 09:56:57 -0400
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:61837
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S932242AbVHTN45 convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 20 Aug 2005 09:56:57 -0400
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1E6TqC-0000uB-NK
+	for git@vger.kernel.org; Sat, 20 Aug 2005 14:56:56 +0100
+From:	Alan Chandler <alan@chandlerfamily.org.uk>
+To:	git@vger.kernel.org
+Subject: "Publishing your work" questions?
+Date:	Sat, 20 Aug 2005 14:57:00 +0100
+User-Agent: KMail/1.8.1
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 8BIT
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200508201457.00725.alan@chandlerfamily.org.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_SV 
+	autolearn=ham version=3.0.4
+Lines: 39
+Xref: brand.scrye.com linux.git:7579
+
+I am planning my way through switching over to using git (as opposed to 
+subversion - via svnserve) to publish some stuff.
+
+At the moment I leave a hole in my firewall for port 3690 and svnserve is run 
+as a daemon from inetd.  I use svnserve's own user/realm management to limit 
+the repositories I make public.
+
+If I switch over to git, I assume I run git-daemon from inetd.
+
+BUT
+
+a) Is this what the git://my.domain.com/path/to/repository url refers to 
+(neither get-pull-script nor git-fetch-script man pages actually say what 
+this form means) ?
+
+b) I can't find any mention in the documentation of what the default port 
+should be. What is it?
+
+c) Is git-daemon multithreaded (ie do I use nowait in inetd.conf)?
+
+d) Is it possible to ensure that external accesses can't access anywhere in my 
+filesystem? 
+
+e) If I put my public key in ~git/.ssh/authorized_keys on the server, I can 
+act as user git on the server via ssh.  Does git push support this?  
+
+f) If I can do e), then perhaps [need to read the docs a bit harder] I can set 
+up my user git on the machine to use git-receive-pack as its login shell.  
+Will this work? - the tutorial talks about needing .bashrc to set up the 
+$PATH environment, but are there any other hidden gotchas?
+
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

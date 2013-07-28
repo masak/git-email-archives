@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 17 06:09:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 633ED27B000
+	for <tkil@scrye.com>; Sat, 17 Sep 2005 06:09:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751085AbVIQMJo (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Sep 2005 08:09:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751086AbVIQMJo
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Sep 2005 08:09:44 -0400
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:59546
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S1751085AbVIQMJn (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 17 Sep 2005 08:09:43 -0400
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1EGbVm-0008Sm-M5
+	for git@vger.kernel.org; Sat, 17 Sep 2005 13:09:42 +0100
+From:	Alan Chandler <alan@chandlerfamily.org.uk>
+To:	git@vger.kernel.org
+Subject: Newbie falls at first hurdle
+Date:	Sat, 17 Sep 2005 13:09:46 +0100
+User-Agent: KMail/1.8.2
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200509171309.46893.alan@chandlerfamily.org.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:8755
+
+I have been lurking on this mailing list since the beginning, but have just 
+got to the point where I want to use git to manage something I am doing.
+
+I have already got a working directory (or rather a directory hierarchy) of an 
+application with files (combination of html and java), and I need to start 
+applying some control to it.  The Tutorial unfortunately does not cover this 
+case.  Nevertheless I have proceeded.
+
+So at the top-level I have done 'git-init-db'
+
+but I now assume I have to add all the files to the cache
+
+So 'git-update-cache --add *' would seem to be the next step.
+
+However this fails with a message 
+
+error: JavaSource: is a directory
+fatal: Unable to add JavaSource to database; maybe you want to use --add 
+option?
+
+Since I am already using the --add option, I really don't understand what I am 
+doing wrong.
+
+Help please.
+
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

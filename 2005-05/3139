@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 12 10:37:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E1CF41FAC3A
+	for <tkil@scrye.com>; Thu, 12 May 2005 10:37:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262073AbVELQhX (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 12:37:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262075AbVELQhX
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 12:37:23 -0400
+Received: from rproxy.gmail.com ([64.233.170.205]:36134 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262073AbVELQhT convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 12 May 2005 12:37:19 -0400
+Received: by rproxy.gmail.com with SMTP id a41so264274rng
+        for <git@vger.kernel.org>; Thu, 12 May 2005 09:37:19 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=dV2vjKZ/3fklkOvAwsGKi4eLL8L/1WMsQoEoCT0E+kGj41sd9voJY6zC3/asRMYsmm8MeKP1kRJReteZ21yQHKi/X5huujtDDyG6ZeHKAY9ldododVyhwj+1UdYWRHrD3S/1Hn7Xl1VuxggdUHcRCIVA+GgBOAVeVBeDQEM9XZM=
+Received: by 10.38.6.75 with SMTP id 75mr888479rnf;
+        Thu, 12 May 2005 09:37:19 -0700 (PDT)
+Received: by 10.38.76.77 with HTTP; Thu, 12 May 2005 09:37:19 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <118833cc050512093750db7d55@mail.gmail.com>
+Date:	Thu, 12 May 2005 12:37:19 -0400
+From: Morten Welinder <mwelinder@gmail.com>
+Reply-To: Morten Welinder <mwelinder@gmail.com>
+To: David Greaves <david@dgreaves.com>
+Subject: Re: [PATCH] cg-init should only process files
+Cc: Petr Baudis <pasky@ucw.cz>,
+	GIT Mailing Lists <git@vger.kernel.org>
+In-Reply-To: <E1DWG9b-0001VV-V0@ash.dgreaves.com>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <E1DWG9b-0001VV-V0@ash.dgreaves.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.3
+Lines: 18
+Xref: brand.scrye.com linux.git:3139
+
+> -       find * | xargs cg-add
+> +       find * -type f | xargs cg-add
+
+I think we went through that a day or two ago:  Problems:
+
+1. You forgot symlinks.
+2. It does not work if nothing matches "*".  (Nor does the original.)
+3. Either it should not match dotfiles in subdirectories, or else it
+should match
+   them in the top directory too.
+4. With needs some -print0 and "--" protection.
+
+Morten
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 11 17:16:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1BB131D7B86
+	for <tkil@scrye.com>; Tue, 11 Oct 2005 17:16:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932080AbVJKXQZ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 11 Oct 2005 19:16:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932095AbVJKXQZ
+	(ORCPT <rfc822;git-outgoing>); Tue, 11 Oct 2005 19:16:25 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:27025 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932080AbVJKXQY (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 11 Oct 2005 19:16:24 -0400
+Received: (qmail 14500 invoked by uid 2001); 12 Oct 2005 01:16:17 +0200
+Date:	Wed, 12 Oct 2005 01:16:17 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Fix cg-admin-uncommit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051011231617.GG30889@pasky.or.cz>
+References: <20050930183545.15895.61691.stgit@zion.home.lan>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050930183545.15895.61691.stgit@zion.home.lan>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:9981
+
+Dear diary, on Fri, Sep 30, 2005 at 08:35:46PM CEST, I got a letter
+where Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it> told me that...
+> Btw, why doesn't optparse consume all the cmd arguments via shift, making thus
+> sure that $1 never works at all?
+
+I did something hopefully equivalent, thanks for the idea (and for the
+patch as well :-).
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

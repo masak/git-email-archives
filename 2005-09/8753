@@ -1,0 +1,108 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 17 02:50:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B0E401C9589
+	for <tkil@scrye.com>; Sat, 17 Sep 2005 02:50:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750985AbVIQIuj (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Sep 2005 04:50:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750995AbVIQIuj
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Sep 2005 04:50:39 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:19920 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1750844AbVIQIuj (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 17 Sep 2005 04:50:39 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050917085037.EEKK26890.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 17 Sep 2005 04:50:37 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Cc:	Daniel Barkalow <barkalow@iabervon.org>, torvalds@osdl.org
+Subject: Help cloning over http.
+References: <Pine.LNX.4.63.0509142120020.23242@iabervon.org>
+	<7vhdckceas.fsf@assigned-by-dhcp.cox.net>
+	<7vacicccxl.fsf@assigned-by-dhcp.cox.net>
+Date:	Sat, 17 Sep 2005 01:50:37 -0700
+In-Reply-To: <7vacicccxl.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Sat, 17 Sep 2005 01:32:06 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvf10axia.fsf_-_@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 62
+Xref: brand.scrye.com linux.git:8753
+
+Even when repository is packed, the new "we trust only the refs
+we already have" code wasted too much time verifying what are
+already in packs, walking down to the root commits.  Since we
+slurp all the necessary packs upfront and run verify pack on
+them, temporarily register their edge commits as "known to be
+good" before invoking git-http-fetch.
+
+I am not proud of this workaround -- this would probably break
+in a pathological case where the remote repository has packs
+that depend on ancient unpacked objects, but people should not
+be making such packs anyway (git repack would not create such
+packs).
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+
+---
+
+ git-clone.sh |   19 +++++++++++++++++++
+ 1 files changed, 19 insertions(+), 0 deletions(-)
+
+34414e4170ab8d1d2a9ef582256530dc3b42d3e2
+diff --git a/git-clone.sh b/git-clone.sh
+--- a/git-clone.sh
++++ b/git-clone.sh
+@@ -50,11 +50,30 @@ Perhaps git-update-server-info needs to 
+ 		git-verify-pack ".git/objects/pack/$idx" || exit 1
+ 	done <"$clone_tmp/packs"
+ 
++	while read type idx sha1 commit
++	do
++		case "$type,$commit" in
++		T,commit) ;;
++		*) continue ;;
++		esac &&
++		echo "$sha1" >.git/refs/tags/clone-tmp-$sha1
++	done <"$clone_tmp/packs"
++
+ 	while read sha1 refname
+ 	do
+ 		name=`expr "$refname" : 'refs/\(.*\)'` &&
+ 		git-http-fetch -v -a -w "$name" "$name" "$1/" || exit 1
+ 	done <"$clone_tmp/refs"
++
++	while read type idx sha1 commit
++	do
++		case "$type,$commit" in
++		T,commit) ;;
++		*) continue ;;
++		esac &&
++		rm -f .git/refs/tags/clone-tmp-$sha1
++	done <"$clone_tmp/packs"
++
+ 	rm -fr "$clone_tmp"
+ }
+ 
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

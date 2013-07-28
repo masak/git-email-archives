@@ -1,0 +1,53 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 14:31:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A015A1709A3
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 14:31:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261614AbVDZUa2 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 16:30:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261616AbVDZUa2
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 16:30:28 -0400
+Received: from emf.emf.net ([205.149.0.19]:62986 "EHLO emf.net")
+	by vger.kernel.org with ESMTP id S261614AbVDZUaQ (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 26 Apr 2005 16:30:16 -0400
+Received: (from lord@localhost) by emf.net (K/K) id NAA21304; Tue, 26 Apr 2005 13:30:04 -0700 (PDT)
+Date:	Tue, 26 Apr 2005 13:30:04 -0700 (PDT)
+From: Tom Lord <lord@emf.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200504262030.NAA21304@emf.net>
+To: torvalds@osdl.org
+Cc: bram@bitconjurer.org, git@vger.kernel.org
+In-reply-to: <Pine.LNX.4.58.0504261256150.18901@ppc970.osdl.org> (message from Linus Torvalds on Tue, 26 Apr 2005 12:58:18 -0700 (PDT))
+Subject: Re: Merge with git-pasky II.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 19
+Xref: brand.scrye.com linux.git:1763
+
+
+
+   From: Linus Torvalds <torvalds@osdl.org>
+
+   On Tue, 26 Apr 2005, Bram Cohen wrote:
+   > 
+   > If one person renames a file and another person modifies it then the
+   > changes should be applied to the moved file.
+
+   Bzzt. Wrong answer.
+
+You're a little bit nuts, guy.
+
+-t
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

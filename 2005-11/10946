@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 13:50:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 776371C924A
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 13:50:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751138AbVKAUrO (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 15:47:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751152AbVKAUrO
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 15:47:14 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:3263 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751138AbVKAUrM (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 1 Nov 2005 15:47:12 -0500
+Received: (qmail 19374 invoked from network); 1 Nov 2005 21:47:10 +0100
+Received: from localhost (HELO machine.or.cz) (127.0.0.1)
+  by localhost with SMTP; 1 Nov 2005 21:47:10 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	<git@vger.kernel.org>
+Subject: [PATCH] git-am.txt is no stub anymore
+Date:	Tue, 01 Nov 2005 21:47:10 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051101204710.19362.89407.stgit@machine.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:10946
+
+That notice was added by me for the emergency documentation, but Junio
+already expanded it to a full-fledged manual page. This patch removes
+the notice.
+
+Signed-off-by: Petr Baudis <pasky@suse.cz>
+---
+
+ Documentation/git-am.txt |    2 --
+ 1 files changed, 0 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/git-am.txt b/Documentation/git-am.txt
+index 704dc51..e4df4a4 100644
+--- a/Documentation/git-am.txt
++++ b/Documentation/git-am.txt
+@@ -82,8 +82,6 @@ Documentation
+ --------------
+ Documentation by Petr Baudis, Junio C Hamano and the git-list <git@vger.kernel.org>.
+ 
+-This manual page is a stub. You can help the git documentation by expanding it.
+-
+ GIT
+ ---
+ Part of the gitlink:git[7] suite
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 19:45:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 796F41D6FD6
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 19:45:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964816AbVITBov (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 21:44:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964825AbVITBov
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 21:44:51 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:20933 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S964816AbVITBou (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Sep 2005 21:44:50 -0400
+Received: (qmail 3377 invoked by uid 2001); 20 Sep 2005 03:44:48 +0200
+Date:	Tue, 20 Sep 2005 03:44:48 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	junkio@cox.net, git@vger.kernel.org
+Subject: Re: [Terminology] Push vs. upload?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050920014448.GA30912@pasky.or.cz>
+References: <20050920001136.GK18320@pasky.or.cz> <Pine.LNX.4.58.0509191753100.2553@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0509191753100.2553@g5.osdl.org>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 39
+Xref: brand.scrye.com linux.git:8935
+
+Dear diary, on Tue, Sep 20, 2005 at 02:55:08AM CEST, I got a letter
+where Linus Torvalds <torvalds@osdl.org> told me that...
+> 
+> 
+> On Tue, 20 Sep 2005, Petr Baudis wrote:
+> > 
+> >   I've realized today that I "forgot" to rename cg-push to cg-upload, so
+> > I impulsively did so right away, but now I'm seeing that the core git
+> > still has git-push and no git-upload. This is confusing and appears to
+> > be quite inconsistent - push should be the opposite of pull
+> 
+> No. There is no opposite of pull. You can't update the tree on the other 
+> end. It's fundamentally an unsafe operation - the other end is by 
+> definition not a private tree.
+> 
+> (Or, if you want to see it another way: "pull" is "pull"s own opposite:  
+> "ssh other-end + git pull from that end" ends up being what you mean.)
+
+Yes, but I'm just arguing about the naming - if you just take the word
+"pull", "push" is the obvious opposite to that and vice versa, so if we
+are going to use words "pull" and "push" in the same context, this
+relation should be preserved. So "push" really _should_ mean
+
+	ssh other-end 'git-pull'
+
+whether it's a safe operation or not - if not, then GIT should have
+nothing called "push". But the current "push" is really an opposite of
+"fetch", so it should be called "upload", I believe.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

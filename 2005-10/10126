@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 15 10:37:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5EF0B2851FA
+	for <tkil@scrye.com>; Sat, 15 Oct 2005 10:37:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751183AbVJOQhl (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 15 Oct 2005 12:37:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751185AbVJOQhl
+	(ORCPT <rfc822;git-outgoing>); Sat, 15 Oct 2005 12:37:41 -0400
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:43943 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S1751183AbVJOQhl (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 15 Oct 2005 12:37:41 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051015163730.KBWA19461.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 15 Oct 2005 12:37:30 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	merlyn@stonehenge.com (Randal L. Schwartz)
+Cc:	Daniel Barkalow <barkalow@iabervon.org>, git@vger.kernel.org
+Subject: Re: maybe breakage with latest git-pull and http protocol
+References: <867jciz18w.fsf@blue.stonehenge.com>
+	<864q7kqsa4.fsf@blue.stonehenge.com>
+	<7vhdbkt8ad.fsf@assigned-by-dhcp.cox.net>
+	<86achcoyvz.fsf@blue.stonehenge.com>
+	<Pine.LNX.4.63.0510141543030.23242@iabervon.org>
+	<863bn3lypn.fsf@blue.stonehenge.com>
+Date:	Sat, 15 Oct 2005 09:37:39 -0700
+In-Reply-To: <863bn3lypn.fsf@blue.stonehenge.com> (Randal L. Schwartz's
+	message of "15 Oct 2005 06:03:00 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtkeohws.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 42
+Xref: brand.scrye.com linux.git:10126
+
+merlyn@stonehenge.com (Randal L. Schwartz) writes:
+
+>>>>>> "Daniel" == Daniel Barkalow <barkalow@iabervon.org> writes:
+>
+> Daniel> Can you give a general description of what happens? I've
+> Daniel> noticed that I sometimes get spurious error messages that
+> Daniel> don't actually affect the download, which I haven't tracked
+> Daniel> down yet.
+>
+> OK, it happened this morning.  While syncing to update from
+> yesterday's version, I got:
+>
+>     localhost:~/MIRROR/git-GIT % git-pull
+>     Fetching refs/heads/master from http://www.kernel.org/pub/scm/git/git.git using http
+>     Getting alternates list
+>     got 4546738b58a0134eef154231b07d60fc174d56e3
+>     walk 4546738b58a0134eef154231b07d60fc174d56e3
+>     got d402d5566fdf226697a386dfb9858e5d954e9b91
+>     got 873d8e5652c06c3891278f33546c437efc209c2d
+>     walk d402d5566fdf226697a386dfb9858e5d954e9b91
+>     error: 
+>     Getting pack list
+>     got 0207ab18a3876249a928e7539d8f594a4f6921f1
+>     got 9f7534accdf34b980a2de670cb1009dd84ee56c4
+>     error: Unable to find 5ad4a2766d34569f3a1278544ab64978fab14cc8 under http://www.kernel.org/pub/scm/git/git.git/
+>
+>     Cannot obtain needed blob 5ad4a2766d34569f3a1278544ab64978fab14cc8
+>     while processing commit d402d5566fdf226697a386dfb9858e5d954e9b91.
+>
+> Definitely broken.  But I can "rsync" just fine.
+>
+> -- 
+> Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+> <merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+> Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+> See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

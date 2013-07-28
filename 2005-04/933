@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 02:59:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 248B61019E5
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 02:59:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261498AbVDTI6q (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 04:58:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261515AbVDTI6q
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 04:58:46 -0400
+Received: from ylpvm29-ext.prodigy.net ([207.115.57.60]:43404 "EHLO
+	ylpvm29.prodigy.net") by vger.kernel.org with ESMTP id S261498AbVDTI6m
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 20 Apr 2005 04:58:42 -0400
+Received: from pimout2-ext.prodigy.net (pimout2-ext.prodigy.net [207.115.63.101])
+	by ylpvm29.prodigy.net (8.12.10 outbound/8.12.10) with ESMTP id j3K8w3D9021966
+	for <git@vger.kernel.org>; Wed, 20 Apr 2005 04:58:06 -0400
+X-ORBL:	[67.124.119.21]
+Received: from taniwha.stupidest.org (adsl-67-124-119-21.dsl.snfc21.pacbell.net [67.124.119.21])
+	by pimout2-ext.prodigy.net (8.12.10 milter /8.12.10) with ESMTP id j3K8wPcU440696;
+	Wed, 20 Apr 2005 04:58:31 -0400
+Received: by taniwha.stupidest.org (Postfix, from userid 38689)
+	id D14C2115C85B; Wed, 20 Apr 2005 01:58:22 -0700 (PDT)
+Date:	Wed, 20 Apr 2005 01:58:22 -0700
+From: Chris Wedgwood <cw@f00f.org>
+To: Ingo Molnar <mingo@elte.hu>
+Cc: Linus Torvalds <torvalds@osdl.org>,
+	"H. Peter Anvin" <hpa@zytor.com>, git@vger.kernel.org
+Subject: Re: enforcing DB immutability
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050420085822.GC3263@taniwha.stupidest.org>
+References: <Pine.LNX.4.58.0504131027210.4501@ppc970.osdl.org> <20050413182909.GA25221@elte.hu> <Pine.LNX.4.58.0504131144160.4501@ppc970.osdl.org> <20050413200237.GA26635@elte.hu> <425D7C0F.2050109@zytor.com> <20050413201523.GC27088@elte.hu> <Pine.LNX.4.58.0504131404380.4501@ppc970.osdl.org> <20050420074053.GA22436@elte.hu> <20050420074948.GA22620@elte.hu> <20050420075320.GA22676@elte.hu>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050420075320.GA22676@elte.hu>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 20
+Xref: brand.scrye.com linux.git:933
+
+On Wed, Apr 20, 2005 at 09:53:20AM +0200, Ingo Molnar wrote:
+
+> so the only sensible thing the editor/tool can do when it wants to
+> change the file is precisely what we want: it will copy the
+> hardlinked files's contents to a new file, and will replace the old
+> file with the new file - a copy on write. No accidental corruption
+> of the DB's contents.
+
+editors that have SCM smarts and know about the files different states
+can do this
+
+i really like the way this works under BK btw --- files are RO until i
+do the magic thing which will do a 'bk edit' and i can then do
+checkins or similar as needed (this assumes you can do per-file
+deltas)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

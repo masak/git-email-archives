@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 17:31:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5F1DB147F18
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 17:31:13 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751122AbVKJAaA (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 19:30:00 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751121AbVKJAaA
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 19:30:00 -0500
+Received: from iabervon.org ([66.92.72.58]:55056 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751117AbVKJA37 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 19:29:59 -0500
+Received: (qmail 31031 invoked by uid 1000); 9 Nov 2005 19:29:54 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 9 Nov 2005 19:29:54 -0500
+Date:	Wed, 9 Nov 2005 19:29:54 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: Regarding: git-lost+found
+In-Reply-To: <7vwtjh8kxu.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511091926350.25300@iabervon.org>
+References: <Pine.LNX.4.63.0511081811080.18406@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vvez1bjjv.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0511091759520.25300@iabervon.org>
+ <7vwtjh8kxu.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:11446
+
+On Wed, 9 Nov 2005, Junio C Hamano wrote:
+
+> Daniel Barkalow <barkalow@iabervon.org> writes:
+> 
+> > Why have git-lost+found write to files at all? It seems to me easiest to 
+> > have the list go to standard out, and you could do "gitk `git-lost+found 
+> > -t commit`" to see lost commits, and reconnect them as desired. (Making up 
+> > command line syntax for listing only the commits.)
+> 
+> That is certainly cleaner.  The only downside is fsck-objects
+> that lost+found uses tends to be expensive operation, and what
+> you would want to do with the information may be more than just
+> use it on the command line of gitk.  But in any case the user
+> could store git-lost+found output in a file to do whatever she
+> wants, so it may not matter.
+
+Actually, my next suggestion would be to have gitk able to write 
+hashes as refs, so that, having put it on the gitk command line, you could 
+then do the things you want from there.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

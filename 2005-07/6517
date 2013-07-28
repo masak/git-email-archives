@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul 28 18:33:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 31F5223D01B
+	for <tkil@scrye.com>; Thu, 28 Jul 2005 18:33:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262184AbVG2Abu (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Jul 2005 20:31:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262222AbVG2Abu
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Jul 2005 20:31:50 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:41429 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262217AbVG2Aag (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Jul 2005 20:30:36 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6T0UUjA016260
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 28 Jul 2005 17:30:30 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6T0UTGm031221;
+	Thu, 28 Jul 2005 17:30:29 -0700
+Date:	Thu, 28 Jul 2005 17:30:29 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Morten Welinder <mwelinder@gmail.com>
+Cc: Pavel Roskin <proski@gnu.org>, git <git@vger.kernel.org>
+Subject: Re: [PATCH] mmap error handling
+In-Reply-To: <118833cc05072816294f80a829@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507281725440.3307@g5.osdl.org>
+References: <1122586842.17837.9.camel@dv> <118833cc05072816294f80a829@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:6517
+
+
+
+On Thu, 28 Jul 2005, Morten Welinder wrote:
+>
+> > I have verified that successful close() after failed mmap() won't reset
+> > the output of perror() to "Success".
+> 
+> Does $standard guarantee that?
+> 
+> In general, successful libc calls can set errno to whatever they
+> please, except zero.  And they sometimes do.  This follows from
+> C99.
+
+Indeed. 
+
+_always_ save the value of errno before doing any other calls. Even 
+successful calls are perfectly allowed to change errno.
+
+"close()" may not _normally_ change errno, but the fact is, not only can 
+close sometimes return an error, but it could validly have some debugging 
+wrapper that does logging, and change errno because of that.
+
+Yeah, we'd be better off if UNIX had always used the linux kernel practice
+of hiding errno as a negative return value (and the "IS_ERR()" test for
+pointers), but hey, crud happens to the best of us.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

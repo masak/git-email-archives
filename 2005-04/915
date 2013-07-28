@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 22:55:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 06D6F27F8E6
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 22:55:40 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261399AbVDTEza (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 00:55:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261403AbVDTEza
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 00:55:30 -0400
+Received: from ns2.superlucidity.net ([63.224.205.131]:25274 "EHLO
+	linux.superlucidity.net") by vger.kernel.org with ESMTP
+	id S261399AbVDTEz0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 20 Apr 2005 00:55:26 -0400
+Received: from [10.0.0.160] (fluffy.superlucidity.net [63.224.205.132])
+	by linux.superlucidity.net (8.11.6/8.11.6) with ESMTP id j3K4tN801809;
+	Tue, 19 Apr 2005 21:55:23 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4265E0BB.4040700@superlucidity.net>
+Date:	Tue, 19 Apr 2005 21:55:23 -0700
+From: Zach Welch <zw@superlucidity.net>
+User-Agent: Mozilla Thunderbird 1.0.2 (X11/20050326)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH 2/3] init-db.c: normalize env var handling.
+References: <mailbox-1242-1113971319-971926@spoon> <Pine.LNX.4.58.0504192142040.6467@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0504192142040.6467@ppc970.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 16
+Xref: brand.scrye.com linux.git:915
+
+Linus Torvalds wrote:
+> For future reference, this is in the wrong order.
+
+I feel even more abashed for my earlier scripting faux pas. Would you
+like me to resend them to you off-list?
+
+Cheers,
+
+Zach
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

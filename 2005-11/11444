@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 17:26:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 40E34147F10
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 17:26:41 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751108AbVKJAZG (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 19:25:06 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751107AbVKJAZG
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 19:25:06 -0500
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:53378
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S1751108AbVKJAZF (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 9 Nov 2005 19:25:05 -0500
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1Ea0FU-0002E7-LC
+	for git@vger.kernel.org; Thu, 10 Nov 2005 00:25:04 +0000
+From:	Alan Chandler <alan@chandlerfamily.org.uk>
+To:	git@vger.kernel.org
+Subject: Do I misunderstand cg-merge --squash option
+Date:	Thu, 10 Nov 2005 00:25:05 +0000
+User-Agent: KMail/1.8.2
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511100025.05993.alan@chandlerfamily.org.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:11444
+
+I am trying to take my current development repository which has several 
+hundred commits in it as I was developing my application and make a 
+simplified branch for pushing to my public repository.
+
+I basically created a new branch (public) from the tag at the point where I 
+started the repository.
+
+git-checkout -b public initial_commit
+
+I then did a merge
+
+cg-merge --squash v1.0
+
+This seemed to work fine (although it had trouble prompting me with an open 
+editor to edit the commit message)
+
+But I don't know how to move forward and merge in changes after my v1.0 tag.  
+Any attempt to merge anything else into this "public" branch seems to throw 
+up what appears to be merge conflict, but I can't see why - when I look at 
+the results one side has extra lines, but there is no other overlap.
+
+
+
+
+
+
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+Open Source. It's the difference between trust and antitrust.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

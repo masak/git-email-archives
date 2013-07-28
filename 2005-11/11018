@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 09:02:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,SUBJECT_FUZZY_TION autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BC73B27BC89
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 09:02:39 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965106AbVKBQCO (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 11:02:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965108AbVKBQCO
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 11:02:14 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:20402 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965106AbVKBQCN (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 2 Nov 2005 11:02:13 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jA2G24W6004470
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 2 Nov 2005 08:02:04 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jA2G23Id025023;
+	Wed, 2 Nov 2005 08:02:03 -0800
+Date:	Wed, 2 Nov 2005 08:02:03 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Alex Riesen <raa.lkml@gmail.com>
+cc:	git@vger.kernel.org, Junio C Hamano <junkio@cox.net>
+Subject: Re: remove CR/LF from .gitignore
+In-Reply-To: <81b0412b0511020505u1b6b7649l924e252d561b8e9e@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511020759500.27915@g5.osdl.org>
+References: <81b0412b0511020505u1b6b7649l924e252d561b8e9e@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:11018
+
+
+
+On Wed, 2 Nov 2005, Alex Riesen wrote:
+>
+> For everyone cursed by dos/windows line endings (aka CRLF):
+
+Btw, it would be good if somebody verified that the .git/config file also 
+works with CR/LF. 
+
+I'm pretty sure "\" at the end of line will break, but I didn't care 
+enough. And maybe nobody does. Normal config files _should_ work, but 
+you can guess how eager I'm to test it ;)
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

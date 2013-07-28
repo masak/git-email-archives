@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 21 09:15:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5A116CC1F2
+	for <tkil@scrye.com>; Fri, 21 Oct 2005 09:15:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964974AbVJUPOy (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 21 Oct 2005 11:14:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964975AbVJUPOy
+	(ORCPT <rfc822;git-outgoing>); Fri, 21 Oct 2005 11:14:54 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:39824 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S964974AbVJUPOx (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 21 Oct 2005 11:14:53 -0400
+Received: (qmail 12600 invoked by uid 2001); 21 Oct 2005 17:14:51 +0200
+Date:	Fri, 21 Oct 2005 17:14:51 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Martin Langhoff <martin@catalyst.net.nz>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Cogito README: add a block describing team workflow with git+ssh
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051021151451.GH30889@pasky.or.cz>
+References: <11298728883894-git-send-email-martin@catalyst.net.nz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <11298728883894-git-send-email-martin@catalyst.net.nz>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:10426
+
+Dear diary, on Fri, Oct 21, 2005 at 07:34:48AM CEST, I got a letter
+where Martin Langhoff <martin@catalyst.net.nz> told me that...
+> This is a resend, with a silly typo (chgroup/chgrp) fixed.
+
+It was missing the signoff, but I worked that around by taking your
+original patch from the end of September. ;-)
+
+> The README doesn't talk about teams with "peer" access to a shared repo.
+> It took me a while to figure our the /right/ way to do it. Document for
+> future generations and general happiness.
+
+Thanks. The long sequence of permissions setup inspired me to adding
+cg-admin-setuprepo which automates that. I also changed the git-push
+to cg-push. Please review the final result.
+
+Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

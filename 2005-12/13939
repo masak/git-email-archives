@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 07:38:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 50DC0DDE68
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 07:38:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965169AbVLVOiL (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 09:38:11 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965170AbVLVOiL
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 09:38:11 -0500
+Received: from nproxy.gmail.com ([64.233.182.205]:58917 "EHLO nproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S965169AbVLVOiJ convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 22 Dec 2005 09:38:09 -0500
+Received: by nproxy.gmail.com with SMTP id x29so133859nfb
+        for <git@vger.kernel.org>; Thu, 22 Dec 2005 06:38:08 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=LXeWQU+hjYHnsnayI2b1wNiDY1ocgWwnpXl/xPL1VjV6cX6+7hRtDnsR9aKFVbn4ZAHUF/R7/JofDWV6w4N4A4VlIkOVU5JXyM+QhoskQE5INpve4cSy0svo9nrSHxfcs91QdZNLI8z90AIbG27aYWfEEeD1RVZNbFhDPs/936c=
+Received: by 10.48.247.14 with SMTP id u14mr91448nfh;
+        Thu, 22 Dec 2005 06:38:08 -0800 (PST)
+Received: by 10.48.247.10 with HTTP; Thu, 22 Dec 2005 06:38:08 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <81b0412b0512220638j382252b5l24e1c6b261165bd6@mail.gmail.com>
+Date:	Thu, 22 Dec 2005 15:38:08 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: git /objects directory created 755 by default?
+Cc:	Junio C Hamano <junkio@cox.net>,
+	Martin Langhoff <martin.langhoff@gmail.com>,
+	git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.63.0512221227190.7112@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <46a038f90512201525k5eb7cf62u65de2cd51424df37@mail.gmail.com>
+	 <7vacevgwqr.fsf@assigned-by-dhcp.cox.net>
+	 <7vlkyffcxp.fsf@assigned-by-dhcp.cox.net>
+	 <Pine.LNX.4.63.0512211502130.25834@wbgn013.biozentrum.uni-wuerzburg.de>
+	 <7vek465cev.fsf@assigned-by-dhcp.cox.net>
+	 <Pine.LNX.4.63.0512212317400.18684@wbgn013.biozentrum.uni-wuerzburg.de>
+	 <81b0412b0512220211o74f7f533j11b8e48311b61ec2@mail.gmail.com>
+	 <Pine.LNX.4.63.0512221227190.7112@wbgn013.biozentrum.uni-wuerzburg.de>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:13939
+
+On 12/22/05, Johannes Schindelin <Johannes.Schindelin@gmx.de> wrote:
+> > > > >
+> > > > >     [core]
+> > > > >             umask = 0002
+> > > So, I tend to say: use core.umask only in shared setups (in which you
+> > > should not checkout files unless you know exactly what you are doing).
+> >
+> > May be "shell.umask" or "shared.umask" ?
+>
+> What would shell.umask do? Be set only when git-shell is called? Then you
+> better have the policy to access that particular repository *only* via
+> git-shell. Voila, it is the same effect as of core.umask.
+
+I mean it to be set only when git-shell called, but with explicit semantics
+("for git-shell only").
+
+> What would shared.umask do? Be set only when writing to GIT_DIR? This is a
+> major task, since you have to find out which writes are to the working
+> directory, which ones go to GIT_DIR.
+
+shared.mask = shell.mask. Just a name to express what it is for
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

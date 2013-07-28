@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 02:26:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 16D7B2974FA
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 02:26:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932443AbVJSI0q (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 04:26:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932461AbVJSI0p
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 04:26:45 -0400
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:41432 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932443AbVJSI0p (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 19 Oct 2005 04:26:45 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051019082631.GBNU4527.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 19 Oct 2005 04:26:31 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Nico -telmich- Schottelius <nico-linux-git@schottelius.org>
+Subject: Re: Problem getting older version
+References: <20051019080046.GI22986@schottelius.org>
+cc:	git@vger.kernel.org
+Date:	Wed, 19 Oct 2005 01:26:43 -0700
+In-Reply-To: <20051019080046.GI22986@schottelius.org>
+	(nico-linux-git@schottelius.org's message of "Wed, 19 Oct 2005
+	10:00:46 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vach5ewu4.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:10265
+
+Nico -telmich- Schottelius <nico-linux-git@schottelius.org> writes:
+
+> The following situation:
+>
+> - The last commit was a merge, mhich broke some files
+> - We want three files from the commit before
+
+With only git-core tool, with the tip of the master branch,
+would be:
+
+    $ git pull somewhere ;# this caused the mismerge
+    $ git checkout HEAD^ foo.c bar.c baz.c
+
+This assumes that HEAD is a merge and HEAD^ (= HEAD^1) is the tip
+of your branch before that merge (HEAD^2 would be what you
+pulled from "somewhere").
+
+The latest "git checkout", when given extra paths parameters,
+does not switch branches.  Instead it pulls out named files from
+the given version into your index, and checks them out. 
+
+> Now I was told to do the following:
+
+These 5 steps look correct; after that, you probably would want
+to run git-update-index on those three paths.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul  6 02:01:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 72FA21171EB
+	for <tkil@scrye.com>; Wed,  6 Jul 2005 02:01:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262194AbVGFIAJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 6 Jul 2005 04:00:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262192AbVGFIAJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 6 Jul 2005 04:00:09 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:48269 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262101AbVGFH7q (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 6 Jul 2005 03:59:46 -0400
+Received: (qmail 5335 invoked by uid 2001); 6 Jul 2005 07:59:38 -0000
+Date:	Wed, 6 Jul 2005 09:59:38 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Frank Sorenson <frank@tuxrocks.com>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Add commify function to cg-Xlib
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050706075938.GB7054@pasky.ji.cz>
+References: <42CB81A2.7080405@tuxrocks.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42CB81A2.7080405@tuxrocks.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:5676
+
+Dear diary, on Wed, Jul 06, 2005 at 09:00:50AM CEST, I got a letter
+where Frank Sorenson <frank@tuxrocks.com> told me that...
+> Here is a patch to add a commify function to cg-Xlib.  I'll follow 
+> this up with a patch that uses the new function to commify the 
+> number and size of objects pulled in cg-pull.
+> 
+> Signed-off-by: Frank Sorenson <frank@tuxrocks.com>
+
+I don't know. Could you give some supporting argumentation, please? Is
+it really that hard to read for the Americans without the commas? It is
+at least harder to read for me as an European - we don't have any
+commas in there, just spaces (if anything at all). Besides, the number
+is usually not in higher order than thousands, so... why is it worth it?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+<Espy> be careful, some twit might quote you out of context..
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

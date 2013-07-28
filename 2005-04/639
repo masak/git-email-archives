@@ -1,0 +1,98 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 18 09:37:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9EB241BA089
+	for <tkil@scrye.com>; Mon, 18 Apr 2005 09:37:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262108AbVDRPhL (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 18 Apr 2005 11:37:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262115AbVDRPhL
+	(ORCPT <rfc822;git-outgoing>); Mon, 18 Apr 2005 11:37:11 -0400
+Received: from fire.osdl.org ([65.172.181.4]:10990 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262108AbVDRPgx (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 18 Apr 2005 11:36:53 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3IFaSs4000959
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 18 Apr 2005 08:36:28 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3IFaR54018114;
+	Mon, 18 Apr 2005 08:36:27 -0700
+Date:	Mon, 18 Apr 2005 08:38:25 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: David Roundy <droundy@abridgegame.org>
+Cc: darcs-devel@darcs.net, Git Mailing List <git@vger.kernel.org>
+Subject: Re: [darcs-devel] Darcs and git: plan of action
+In-Reply-To: <20050418122011.GA13769@abridgegame.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504180832330.7211@ppc970.osdl.org>
+References: <7ivf6lm594.fsf@lanthane.pps.jussieu.fr> <20050418122011.GA13769@abridgegame.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 53
+Xref: brand.scrye.com linux.git:639
+
+
+
+On Mon, 18 Apr 2005, David Roundy wrote:
+> 
+> I'm cc'ing you on this email, since Juliusz had some interesting ideas as
+> to how darcs could interact with git, which then gave me an idea concerning
+> which I'd like feedback from you.  In particular, it would make life (that
+> is, life interacting back and forth with git) easier if we were to embed
+> darcs patches in their entirety in the git comment block.
+
+Hell no.
+
+The commit _does_ specify the patch uniquely and exactly, so I really 
+don't see the point. You can always get the patch by just doing a
+
+	git diff $parent_tree $thistree
+
+so putting the patch in the comment is not an option.
+
+Then you can use the patch to index to whatever extra "darcs index" 
+information you want to.
+
+> As I say, it's a bit ugly, and before we explore the idea further, it would
+> be nice to know if this would cause Linus to vomit in disgust and/or refuse
+> patches from darcs users.
+
+That's definitely the case. I will _not_ be taking random files etc just 
+to keep other peoples stuff straightened up.
+
+If you want to add a "log ID", you can certainly do that, but the data the 
+ID refers to is _you_ data, and will not go into the git archive. So:
+
+> Another slightly less noxious possibility would
+> be to store the darcs patch as a "hidden" file, if git were given the
+> concept of commit-specific files.
+
+No, git will not track commit-specific files. There's the comment section,
+and that _is_ the commit-specific file. But I will refuse to take any
+comments that aren't just human-readable explanations, together with maybe 
+one extra line of
+
+	# Darcs ID: 780c057447d4feef015a905aaf6c87db894ff58c
+
+(others will want to track _their_ PR numbers etc) and that's it. The 
+actual darcs data that that ID refers to can obviously be maintained in 
+_another_ git archive, but it's not one I'm going to carry about.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

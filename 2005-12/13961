@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 13:54:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 27B8028AFBE
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 13:54:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030307AbVLVUxh (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 15:53:37 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030311AbVLVUxh
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 15:53:37 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:16563 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1030307AbVLVUxg (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 22 Dec 2005 15:53:36 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 5093313F5A3; Thu, 22 Dec 2005 21:53:35 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 350839E3DF; Thu, 22 Dec 2005 21:53:35 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 1C2FE9E231; Thu, 22 Dec 2005 21:53:35 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0747913F5A3; Thu, 22 Dec 2005 21:53:35 +0100 (CET)
+Date:	Thu, 22 Dec 2005 21:53:35 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Andreas Ericsson <ae@op5.se>, git@vger.kernel.org
+Subject: Re: [PATCH] send-pack: reword non-fast-forward error message.
+In-Reply-To: <7vu0d0j24z.fsf_-_@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512222152550.5677@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0512220048360.13453@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vd5jqvsn1.fsf@assigned-by-dhcp.cox.net> <43AA79EB.6040800@op5.se>
+ <7vek45lyor.fsf@assigned-by-dhcp.cox.net> <7vu0d0j24z.fsf_-_@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:13961
+
+Hi,
+
+On Thu, 22 Dec 2005, Junio C Hamano wrote:
+
+> That is reasonable.  How about this?
+
+I like it.
+
+Ciao,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

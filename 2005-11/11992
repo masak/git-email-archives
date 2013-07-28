@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 20:46:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 59B9C20D710
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 20:46:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965220AbVKPDpp (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 22:45:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965222AbVKPDpp
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 22:45:45 -0500
+Received: from wproxy.gmail.com ([64.233.184.205]:50103 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S965220AbVKPDpp convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 22:45:45 -0500
+Received: by wproxy.gmail.com with SMTP id 67so2028366wri
+        for <git@vger.kernel.org>; Tue, 15 Nov 2005 19:45:44 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=hU+E/GN0fTkrz6ZG24P5GdWg1iPGTCrxEI9M3B4YlbbM7wEgFymQiCZn2fc9U4z20Lqqw83kw0eP9kQDuiz96UGMDA3pKvrlCItQVC8wqCLdNhXFm0zbJzpPtmbVf7YN1XT+o/U37xeA4OVVesG5TqUts2wcuy/qYlE6RLahl1A=
+Received: by 10.64.193.9 with SMTP id q9mr5181180qbf;
+        Tue, 15 Nov 2005 19:45:43 -0800 (PST)
+Received: by 10.64.242.4 with HTTP; Tue, 15 Nov 2005 19:45:41 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90511151945q62f59e3cl18ffedc5dd000c7c@mail.gmail.com>
+Date:	Wed, 16 Nov 2005 16:45:41 +1300
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Mike McCormack <mike@codeweavers.com>
+Subject: Re: pushing patches to an imap folder
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org,
+	Kevin Geiss <kevin@desertsol.com>
+In-Reply-To: <4379B9F6.5020402@codeweavers.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <43799A67.9030705@codeweavers.com>
+	 <7vd5l2qnq6.fsf@assigned-by-dhcp.cox.net>
+	 <4379B9F6.5020402@codeweavers.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:11992
+
+On 11/15/05, Mike McCormack <mike@codeweavers.com> wrote:
+> It will probably be maintained in parallel with the Wine CVS for a
+> while, unless somebody writes a GIT->CVS gateway.
+
+The missing 'git-cvsexport' command should be the missing part for the
+gateway. I am not hacking on it right now, but Kevin seemed to be
+getting started in that direction. If not, I'll probably hack
+something together eventually.
+
+I don't have any project currently migrating to GIT... yet ;-)
+
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

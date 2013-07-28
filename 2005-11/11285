@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 16:47:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CAC386E696
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 16:47:28 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030195AbVKGXpz (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 18:45:55 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965610AbVKGXpz
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 18:45:55 -0500
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:28917 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S965606AbVKGXpy (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 7 Nov 2005 18:45:54 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051107234500.IWJT11356.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 7 Nov 2005 18:45:00 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Cogito: Support for implicit remote branches in cloned repositories
+References: <200511041701.48881.Josef.Weidendorfer@gmx.de>
+	<7vvez8wbpz.fsf@assigned-by-dhcp.cox.net>
+	<20051104210820.GM1431@pasky.or.cz>
+	<7voe50rskh.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0511041359050.28804@g5.osdl.org>
+	<7v8xw216q9.fsf@assigned-by-dhcp.cox.net>
+	<20051107232122.GZ1431@pasky.or.cz>
+Date:	Mon, 07 Nov 2005 15:45:52 -0800
+In-Reply-To: <20051107232122.GZ1431@pasky.or.cz> (Petr Baudis's message of
+	"Tue, 8 Nov 2005 00:21:22 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhdaoqaxb.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:11285
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> This loses the pretty nice property that 'origin' refers to the HEAD
+> branch of the remote repository,...
+
+I think the code actually honors what your HEAD points at;
+I did not go into that detail in the above description.
+
+>> *1* I say "by default" here; I think there should be an
+>> operating mode for git clone that acts as a straight copy, not
+>> even the current "HEAD" -> "origin" renaming.  In fact that is
+>> what you do with low-level git-clone-pack.
+>
+> What would it be useful for?
+
+Cheap back-up, Linus style.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

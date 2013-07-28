@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 10 16:45:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6A3316E72
+	for <tkil@scrye.com>; Tue, 10 May 2005 16:45:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261844AbVEJWoy (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 10 May 2005 18:44:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261842AbVEJWoy
+	(ORCPT <rfc822;git-outgoing>); Tue, 10 May 2005 18:44:54 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:43944 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261822AbVEJWom (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 10 May 2005 18:44:42 -0400
+Received: (qmail 5682 invoked by uid 2001); 10 May 2005 22:44:33 -0000
+Date:	Wed, 11 May 2005 00:44:33 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Diego Calleja <diegocg@gmail.com>
+Cc: eduardo@tendencies.com.br, dwmw2@infradead.org,
+	jon@blackcubes.dyndns.org, git@vger.kernel.org
+Subject: Re: Core and Not-So Core
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050510224433.GC26384@pasky.ji.cz>
+References: <2cfc40320505100800426d38ca@mail.gmail.com> <1115739511.16187.432.camel@hades.cambridge.redhat.com> <17115.200.158.14.67.1115740220.squirrel@www.tendencies.com.br> <1115740844.16187.445.camel@hades.cambridge.redhat.com> <26021.200.158.14.67.1115741989.squirrel@www.tendencies.com.br> <20050510234501.79eea7a4.diegocg@gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050510234501.79eea7a4.diegocg@gmail.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 19
+Xref: brand.scrye.com linux.git:2979
+
+Dear diary, on Tue, May 10, 2005 at 11:45:01PM CEST, I got a letter
+where Diego Calleja <diegocg@gmail.com> told me that...
+> Someone who is going to hack the kernel can very well install more things.
+> And anyway, git is "the linux SCM tool" so all distros will package it. Also,
+> people who hacks the linux kernel usually runs it, so "git is not ported
+> to win32" is not a big problem.
+
+It's not like everything git is ever going to be used for is kernel and
+only the kernel.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

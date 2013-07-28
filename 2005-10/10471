@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 22 18:30:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5FB1FFC1E7
+	for <tkil@scrye.com>; Sat, 22 Oct 2005 18:30:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751321AbVJWAai (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 22 Oct 2005 20:30:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751326AbVJWAai
+	(ORCPT <rfc822;git-outgoing>); Sat, 22 Oct 2005 20:30:38 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:16061 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1751321AbVJWAah (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 22 Oct 2005 20:30:37 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051023003020.CGYU9394.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 22 Oct 2005 20:30:20 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Andreas Ericsson <ae@op5.se>
+Subject: Re: Server side programs
+References: <435ABB99.5020908@op5.se>
+cc:	git@vger.kernel.org
+Date:	Sat, 22 Oct 2005 17:30:36 -0700
+In-Reply-To: <435ABB99.5020908@op5.se> (Andreas Ericsson's message of "Sun, 23
+	Oct 2005 00:22:17 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vll0l6pn7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 55
+Xref: brand.scrye.com linux.git:10471
+
+Andreas Ericsson <ae@op5.se> writes:
+
+> Are git-receive-pack and git-upload-pack the only two binaries that get 
+> called directly over a SSH-tunnel?
+
+There are git-ssh-fetch and git-ssh-upload which call each other
+(and the older name pairs git-ssh-push and git-sh-pull do so as
+well).  However, you do not have to use these commit walkers
+over ssh; fetch-pack/upload-pack pair work quite well.
+
+I think your question is "what is the absolute minimum set of
+binaries you need to allow", so I think the two listed are
+enough.  If you want to let your users coming over SSH *create*
+a new repository on your machine, you would need a bit more,
+though (namely, shell access to run mkdir and git-init-db).
+
+> The reason I'm asking is that I'm adding support for userrelative paths 
+> (git pull ssh://host:~user/somedir) and removing the possibilities to 
+> use a compromised but limited account for finding out what other 
+> useraccounts are available.
+
+Sorry, it is not clear to me what you are adding.  I do this
+regularly:
+
+	$ git push kernel.org:git/
+	$ git fetch kernel.org:git/
+
+to push into and fetch from $HOME/git/ repository on the other
+end.
+
+Also I can do this already (assuming the other end hangs all
+users under the same directory, presumably /home/$user):
+
+	$ git fetch kernel.org:../torvalds/git/
+
+Are you in addition trying to let me do this:
+
+	$ git fetch kernel.org:~torvalds/git/
+
+which would work even when ~torvalds == /home/torvalds and
+~junio == /home2/junio, without having to tell people where
+the user home directories are?
+
+At one point, Linus posted an outline of "restricted login shell
+for use with git over ssh".  I think you could start from there,
+perhaps extend it so that it checks the binaries *and* pathnames
+the user can specify (e.g. only under your own $HOME is allowed,
+and no /../ in them, or something silly like that).
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

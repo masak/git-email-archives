@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun  1 07:01:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 42ACD1972E1
+	for <tkil@scrye.com>; Wed,  1 Jun 2005 07:01:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261203AbVFAM7r (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 1 Jun 2005 08:59:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261216AbVFAM7q
+	(ORCPT <rfc822;git-outgoing>); Wed, 1 Jun 2005 08:59:46 -0400
+Received: from ifae-s0.ifae.es ([192.101.162.68]:44937 "EHLO ifae-s0.ifae.es")
+	by vger.kernel.org with ESMTP id S261203AbVFAM7X (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 1 Jun 2005 08:59:23 -0400
+Received: from bela (ifae-s1.ifae.es [192.101.162.148])
+	by ifae-s0.ifae.es (8.11.6/8.11.6) with ESMTP id j51CxKZ11215
+	for <git@vger.kernel.org>; Wed, 1 Jun 2005 14:59:20 +0200
+To: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [COGITO PATCH] Heads and tags in subdirectories
+References: <87is0zginw.fsf@ifae.es>
+From: =?utf-8?q?Santi_B=C3=A9jar?= <sbejar@gmail.com>
+Date:	Wed, 01 Jun 2005 14:59:22 +0200
+In-Reply-To: <87is0zginw.fsf@ifae.es> (
+ =?utf-8?q?Santi_B=C3=A9jar's_message_of?= "Wed, 01 Jun 2005 00:00:35
+ +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <87is0yi66t.fsf@ifae.es>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 29
+Xref: brand.scrye.com linux.git:4341
+
+
+Teach cg-init about the origin directory.
+
+Signed-off-by: "Santi Béjar" <sbejar@gmail.com>
+---
+ cg-init |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/cg-init b/cg-init
+--- a/cg-init
++++ b/cg-init
+@@ -29,8 +29,9 @@ ln -s refs/heads/master $_git/HEAD
+ if [ "$uri" ]; then
+ 	echo "$uri" >$_git/branches/origin
+ 	cg-pull origin || die "pull failed"
+-
+-	cp $_git/refs/heads/origin $_git/refs/heads/master
++	uribranch=$(echo $uri | cut -d '#' -f 2 -s)
++	uribranch=${uribranch:-master}
++	cp $_git/refs/heads/origin/$uribranch $_git/refs/heads/master
+ 	git-read-tree HEAD
+ 	git-checkout-cache -a
+ 	git-update-cache --refresh
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

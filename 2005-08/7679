@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 18:14:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D21862B6043
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 18:14:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932504AbVHXAOU (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 23 Aug 2005 20:14:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932506AbVHXAOU
+	(ORCPT <rfc822;git-outgoing>); Tue, 23 Aug 2005 20:14:20 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:40072 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932504AbVHXAOU (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 23 Aug 2005 20:14:20 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7O0EEjA013466
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 23 Aug 2005 17:14:15 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7O0EDFR016239;
+	Tue, 23 Aug 2005 17:14:14 -0700
+Date:	Tue, 23 Aug 2005 17:14:13 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Fix silly pathspec bug in git-ls-files
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508231711350.3317@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:7679
+
+
+The "verify_pathspec()" function doesn't test for ending NUL character in 
+the pathspec, causing some really funky and unexpected behaviour. It just 
+happened to work in the cases I had tested.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/ls-files.c b/ls-files.c
+--- a/ls-files.c
++++ b/ls-files.c
+@@ -496,7 +496,7 @@ static void verify_pathspec(void)
+ 			char c = n[i];
+ 			if (prev && prev[i] != c)
+ 				break;
+-			if (c == '*' || c == '?')
++			if (!c || c == '*' || c == '?')
+ 				break;
+ 			if (c == '/')
+ 				len = i+1;
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

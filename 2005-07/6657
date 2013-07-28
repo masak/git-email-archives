@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 31 14:13:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 84D531D26A1
+	for <tkil@scrye.com>; Sun, 31 Jul 2005 14:13:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261982AbVGaUMO (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 31 Jul 2005 16:12:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261984AbVGaUMN
+	(ORCPT <rfc822;git-outgoing>); Sun, 31 Jul 2005 16:12:13 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:59847 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261982AbVGaUMI (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 31 Jul 2005 16:12:08 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6VKBxjA005648
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 31 Jul 2005 13:12:00 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6VKBwEY001157;
+	Sun, 31 Jul 2005 13:11:59 -0700
+Date:	Sun, 31 Jul 2005 13:11:58 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Josef Weidendorfer <Josef.Weidendorfer@gmx.de>,
+	Junio C Hamano <junkio@cox.net>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Added hook in git-receive-pack
+In-Reply-To: <200507312117.43957.Josef.Weidendorfer@gmx.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507311305170.29650@g5.osdl.org>
+References: <200507312117.43957.Josef.Weidendorfer@gmx.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:6657
+
+
+
+On Sun, 31 Jul 2005, Josef Weidendorfer wrote:
+>
+> Added hook in git-receive-pack
+> 
+> After successful update of a ref,
+> 
+>  $GIT_DIR/hooks/update refname old-sha1 new-sha2
+> 
+> is called if present. This allows e.g sending of a mail
+> with pushed commits on the remote repository.
+> Documentation update with example hook included.
+
+This looks sane. However, I also get the strong feeling that
+git-update-server-info should be run as part of a hook and not be built 
+into receive-pack..
+
+Personally, I simply don't want to update any dumb server info stuff for 
+my own local repositories - it's not like I'm actually serving those out 
+anyway.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

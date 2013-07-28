@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep  5 08:38:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B5B1127654D
+	for <tkil@scrye.com>; Mon,  5 Sep 2005 08:38:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750717AbVIEOic (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Sep 2005 10:38:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751231AbVIEOic
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Sep 2005 10:38:32 -0400
+Received: from wproxy.gmail.com ([64.233.184.206]:57151 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750717AbVIEOib convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 5 Sep 2005 10:38:31 -0400
+Received: by wproxy.gmail.com with SMTP id i22so285473wra
+        for <git@vger.kernel.org>; Mon, 05 Sep 2005 07:38:29 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=YVBi/TyKJSmUIEEUQSweGqbLbFDQHIKhV1SeWoNSDKBLlBlFtdr8mD9NRPyZ1It9MSkYFLg2/2O2/l+RMZm9a8bOBa0Trp9zpLtsVJKsj5CMfUJUEsO1ghEyhuSKKaxKLC9YsmWoB1938aHnupnvPGuHHX1dL/qx5MNO9rEXiRg=
+Received: by 10.54.83.10 with SMTP id g10mr3729120wrb;
+        Mon, 05 Sep 2005 07:38:29 -0700 (PDT)
+Received: by 10.54.36.41 with HTTP; Mon, 5 Sep 2005 07:38:29 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <59a6e58305090507387d412b3d@mail.gmail.com>
+Date:	Mon, 5 Sep 2005 09:38:29 -0500
+From:	Wayne Scott <wsc9tt@gmail.com>
+Reply-To: wsc9tt@gmail.com
+To:	git@vger.kernel.org
+Subject: bogus merges
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:8083
+
+A recent commit in linux-2.6 looks like this:
+
+commit b129a8ccd53f74c43e4c83c8e0031a4990040830
+Merge: 6b39374a27eb4be7e9d82145ae270ba02ea90dc8
+194d0710e1a7fe92dcf860ddd31fded8c3103b7a
+Author: Russell King <rmk@dyn-67.arm.linux.org.uk>
+Date:   Wed Aug 31 10:12:14 2005 +0100
+
+    [SERIAL] Clean up and fix tty transmission start/stoping
+    
+The problem is that two parents of this merge are separate.  One is an
+ancestor of the other.  This means the merge is really pointless and
+probably accidental.
+
+Really 'git commit' should detect problems like this automatically and
+prevent them from getting in the tree.
+
+-Wayne
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

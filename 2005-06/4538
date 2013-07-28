@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jun  4 18:20:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DA9BB6B8C
+	for <tkil@scrye.com>; Sat,  4 Jun 2005 18:20:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261448AbVFEAT6 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 4 Jun 2005 20:19:58 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261453AbVFEAT6
+	(ORCPT <rfc822;git-outgoing>); Sat, 4 Jun 2005 20:19:58 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:9411 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S261450AbVFEATv (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 4 Jun 2005 20:19:51 -0400
+Received: from cpe-065-184-065-144.nc.res.rr.com ([65.184.65.144] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1Deirl-0002Vo-U3; Sun, 05 Jun 2005 00:19:51 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42A24523.5010404@pobox.com>
+Date:	Sat, 04 Jun 2005 20:19:47 -0400
+From: Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.6) Gecko/20050328 Fedora/1.7.6-1.2.5
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Git Mailing List <git@vger.kernel.org>,
+	Linux Kernel <linux-kernel@vger.kernel.org>
+Subject: Re: git-shortlog script
+References: <42A22C20.10002@pobox.com> <Pine.LNX.4.58.0506041642530.1876@ppc970.osdl.org> <42A24274.7040906@pobox.com> <Pine.LNX.4.58.0506041715170.1876@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0506041715170.1876@ppc970.osdl.org>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_HF 
+	autolearn=ham version=3.0.3
+Lines: 41
+Xref: brand.scrye.com linux.git:4538
+
+Linus Torvalds wrote:
+> 
+> On Sat, 4 Jun 2005, Jeff Garzik wrote:
+> 
+>>I'm surprised git doesn't fall back to GIT_COMMITTER_NAME if 
+>>GIT_AUTHOR_NAME doesn't exist, though.
+> 
+> 
+> GIT_AUTHOR_NAME existed first ;)
+> 
+> Btw, what does your /etc/passwd look like, and I'll try to hack it up to 
+> just get that case right by default too..
+
+ah, it looks like I forget the name when I was creating the account.
+
+> [jgarzik@pretzel libata-dev]$ grep jgarzik /etc/passwd
+> jgarzik:x:500:500::/g/g:/bin/bash
+
+> [jgarzik@pretzel libata-dev]$ chfn
+> Changing finger information for jgarzik.
+> Password: 
+> Name []: Jeff Garzik
+> Office []: 
+> Office Phone []: 
+> Home Phone []: 
+> 
+> Finger information changed.
+
+Fixed.  :)
+
+In any case, I'll set GIT_AUTHOR_NAME in .bash_profile, to get my proper 
+email addy rather than the local one.
+
+	Jeff
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

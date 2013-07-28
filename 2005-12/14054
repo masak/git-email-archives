@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 26 16:01:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D511049D97
+	for <tkil@scrye.com>; Mon, 26 Dec 2005 16:01:11 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750770AbVLZXBB (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 26 Dec 2005 18:01:01 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751095AbVLZXBA
+	(ORCPT <rfc822;git-outgoing>); Mon, 26 Dec 2005 18:01:00 -0500
+Received: from wrzx35.rz.uni-wuerzburg.de ([132.187.3.35]:45985 "EHLO
+	wrzx35.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750770AbVLZXBA (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 26 Dec 2005 18:01:00 -0500
+Received: from amavis.mail (amavis2.rz.uni-wuerzburg.de [132.187.3.47])
+	by wrzx35.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 341A2E3DBC; Tue, 27 Dec 2005 00:00:59 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by amavis.mail (Postfix) with ESMTP id 26C6D2B7C;
+	Tue, 27 Dec 2005 00:00:59 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by amavis.mail (Postfix) with ESMTP id 0BA34905;
+	Tue, 27 Dec 2005 00:00:59 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id E2273141576; Tue, 27 Dec 2005 00:00:58 +0100 (CET)
+Date:	Tue, 27 Dec 2005 00:00:58 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: Re: [PATCH] Handle symlinks graciously
+In-Reply-To: <Pine.LNX.4.63.0512262231350.21076@wbgn013.biozentrum.uni-wuerzburg.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512270000070.347@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0512262231350.21076@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new at uni-wuerzburg.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:14054
+
+Hi,
+
+to make the test t4011 pass all the time, this little patch is needed on 
+top:
+
+diff --git a/t/t4011-diff-symlink.sh b/t/t4011-diff-symlink.sh
+index 9e70063..e3ebf38 100755
+--- a/t/t4011-diff-symlink.sh
++++ b/t/t4011-diff-symlink.sh
+@@ -32,6 +32,7 @@ test_expect_success \
+ test_expect_success \
+     'diff unchanged symlink' \
+     'tree=$(git-write-tree) &&
++    git-update-index frotz &&
+     test -z "$(git-diff-index --name-only $tree)"'
+ 
+ cat > expected << EOF
+
+Ciao,
+Dscho
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

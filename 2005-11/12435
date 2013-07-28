@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 07:23:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2FC2425CF47
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 07:23:50 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932298AbVKUOXD (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 09:23:03 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932312AbVKUOXC
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 09:23:02 -0500
+Received: from nproxy.gmail.com ([64.233.182.193]:27054 "EHLO nproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932298AbVKUOXB convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 09:23:01 -0500
+Received: by nproxy.gmail.com with SMTP id x4so91775nfb
+        for <git@vger.kernel.org>; Mon, 21 Nov 2005 06:22:59 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=OJebekmtX03ybdIeHXxLIxgGOzNvF1/8EGLhv0yqzKeS/Xl76L00V94NpKDvh/q8MyYceppFw3tjLJ6sVFf0MEiA7aMRril0mUhvWyuOBC3QBTzKX2ng4//V4S5zZ2WPlg9cdzKW5Jalj/6mOMtKR8mkILeKkTRyCKa03755LgU=
+Received: by 10.49.5.19 with SMTP id h19mr267882nfi;
+        Mon, 21 Nov 2005 06:22:59 -0800 (PST)
+Received: by 10.48.248.18 with HTTP; Mon, 21 Nov 2005 06:22:59 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <81b0412b0511210622v87ecab6y7dbe703cb4395dad@mail.gmail.com>
+Date:	Mon, 21 Nov 2005 15:22:59 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: [PATCH] merge-one-file: remove empty directories
+Cc:	Linus Torvalds <torvalds@osdl.org>,
+	Junio C Hamano <junkio@cox.net>,
+	Christoph Hellwig <hch@lst.de>,
+	Paul Mackerras <paulus@samba.org>, linuxppc64-dev@ozlabs.org,
+	Git Mailing List <git@vger.kernel.org>,
+	Fredrik Kuivinen <freku045@student.liu.se>
+In-Reply-To: <4380BB97.7070407@zytor.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <17279.1674.22992.607091@cargo.ozlabs.ibm.com>
+	 <20051119140736.GA24901@lst.de>
+	 <Pine.LNX.4.64.0511190957320.13959@g5.osdl.org>
+	 <7v4q683qhe.fsf@assigned-by-dhcp.cox.net>
+	 <Pine.LNX.4.64.0511200901450.13959@g5.osdl.org>
+	 <4380BB97.7070407@zytor.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:12435
+
+On 11/20/05, H. Peter Anvin <hpa@zytor.com> wrote:
+> Linus Torvalds wrote:
+> >
+> > Even VMS seems to have it (although if git is ever ported to VMS, I'll
+> > just have to shoot myself. I used VMS in -88, and the scars are _still_
+> > fresh).
+> >
+>
+> Yeah, well, WinNT is basically the successor to VMS.  (I have heard from
+> several ex-DECers that WNT was done on top of a stolen copy of what was
+> supposed-to-have-been the successor to VMS.)
+
+...and yes, the users of NT are almost ready to shoot themselves.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

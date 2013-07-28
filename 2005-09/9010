@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 20 13:40:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2B934184F2A
+	for <tkil@scrye.com>; Tue, 20 Sep 2005 13:40:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965099AbVITTj6 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Sep 2005 15:39:58 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965104AbVITTj6
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Sep 2005 15:39:58 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:29382 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S965099AbVITTj5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 20 Sep 2005 15:39:57 -0400
+Received: (qmail 5908 invoked by uid 2001); 20 Sep 2005 21:39:56 +0200
+Date:	Tue, 20 Sep 2005 21:39:56 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Martin Langhoff <martin@catalyst.net.nz>, git@vger.kernel.org
+Subject: Re: [PATCH] cg-diff fixed to work with BSD xargs
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050920193956.GE28621@pasky.or.cz>
+References: <11253960093915-git-send-email-martin@catalyst.net.nz> <7v7je3ld53.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v7je3ld53.fsf@assigned-by-dhcp.cox.net>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:9010
+
+Dear diary, on Tue, Aug 30, 2005 at 04:20:40PM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> But the code you are fixing looks to me like it is already
+> somewhat obsolete, even if it is still working.  The munging of
+> user-given paths into $filter temporary file was necessary only
+> because older git-diff-* family did not work from anywhere but
+> the top-level directory; they do, thanks to Linus' enhancements,
+> these days.
+> 
+> I think it is time to start updating Cogito to take advantage of
+> the modern core.  I do not do Porcelains, but here is my stab at
+> it.
+
+Thanks for the patch - it'd be actually very nice to get rid of the
+complexity. But more than that, I want to be consistent - so do all the
+GIT core commands work in subdirectories by now, or only a subset of
+them? I'd hate to have half of the scripts stay in the subdirectory
+and half use the Cogito's old relpath logic, so it's either everything
+or anything from my POV.
+
+Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

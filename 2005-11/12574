@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 16:15:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 457BF102571
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 16:15:22 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030184AbVKVXOV (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 18:14:21 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030243AbVKVXOV
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 18:14:21 -0500
+Received: from pne-smtpout2-sn1.fre.skanova.net ([81.228.11.159]:48564 "EHLO
+	pne-smtpout2-sn1.fre.skanova.net") by vger.kernel.org with ESMTP
+	id S1030184AbVKVXOU (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 18:14:20 -0500
+Received: from [192.168.0.82] (213.66.95.18) by pne-smtpout2-sn1.fre.skanova.net (7.2.069.1)
+        id 438346970001A7C1; Wed, 23 Nov 2005 00:14:18 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4383A66D.2030201@etek.chalmers.se>
+Date:	Wed, 23 Nov 2005 00:14:53 +0100
+From:	=?ISO-8859-1?Q?Lukas_Sandstr=F6m?= <lukass@etek.chalmers.se>
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051015)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Alex Riesen <raa.lkml@gmail.com>
+CC:	git@vger.kernel.org, Junio C Hamano <junkio@cox.net>
+Subject: Re: [PATCH] speedup allocation in pack-redundant.c
+References: <81b0412b0511220656l528436b1xea80ee18965e4dda@mail.gmail.com> <7vek58ct4b.fsf@assigned-by-dhcp.cox.net> <20051122230011.GA2916@steel.home>
+In-Reply-To: <20051122230011.GA2916@steel.home>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:12574
+
+Alex Riesen wrote:
+> Junio C Hamano, Tue, Nov 22, 2005 21:41:56 +0100:
+>>I think making allocation/deallocation to the central place is a
+>>good cleanup, but I am not sure about the free-nodes reusing.
+>>Does this make difference in real life?
+> 
+> 
+> It definitely does, though nor very much. I have no real numbers at
+> hand (being home now), but I remember it was 1 min with against 3 min
+> without the patch on cygwin+fat32, which is already bad enough all by
+> itself. Very big repository with no redundant packs in it.
+> 
+
+Would you mind sharing the .idx files?
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

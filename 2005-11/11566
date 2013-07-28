@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 02:15:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C358810262C
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 02:15:48 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932306AbVKKJPl (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 04:15:41 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932307AbVKKJPl
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 04:15:41 -0500
+Received: from kleinhenz.com ([213.239.205.196]:6825 "EHLO kleinhenz.com")
+	by vger.kernel.org with ESMTP id S932306AbVKKJPk (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 11 Nov 2005 04:15:40 -0500
+Received: from [192.168.115.35] (p54996A14.dip.t-dialin.net [84.153.106.20])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "Simon Richter", Issuer "Kleinhenz Elektronik CA" (verified OK))
+	by kleinhenz.com (Postfix) with ESMTP id 278BF4A800D;
+	Fri, 11 Nov 2005 10:15:25 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43746118.30404@hogyros.de>
+Date:	Fri, 11 Nov 2005 10:15:04 +0100
+From:	Simon Richter <Simon.Richter@hogyros.de>
+User-Agent: Debian Thunderbird 1.0.7 (X11/20051019)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	Pavel Roskin <proski@gnu.org>, git <git@vger.kernel.org>
+Subject: Re: Getting rid of symlinks in .git?
+References: <20051110204543.GZ30496@pasky.or.cz>
+In-Reply-To: <20051110204543.GZ30496@pasky.or.cz>
+X-Enigmail-Version: 0.93.0.0
+OpenPGP: url=http://www.hogyros.de/simon.asc
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature";
+ boundary="------------enig7E765C7AA9F55284B8E21786"
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:11566
+
+This is an OpenPGP/MIME signed message (RFC 2440 and 3156)
+--------------enig7E765C7AA9F55284B8E21786
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hello,
+
+Petr Baudis wrote:
+
+> I personally would not mind getting rid of symlinks completely, but we
+> will still have to support them for some reasonable time period (several
+> major releases, as far as Cogito is concerned - actually, there is
+> plenty of people still using 0.13 and such).
+
+As someone who carries around git repositories on VFAT formatted USB 
+sticks, I welcome our symlink-deprived overlords.
+
+    Simon
+
+--------------enig7E765C7AA9F55284B8E21786
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2 (GNU/Linux)
+
+iQCVAwUBQ3RhJFYr4CN7gCINAQKRDwP+IEvNbgkcMCqMdjVtlxxPRHf6WQKW12Ka
+q2JN1P/ufsJ8sZgxkDv1D9ZVenbgCCn9f5aMLtji+0P81YRuyjD0Zf4OHKxW6aIY
+09MsyE3EXDJm8BxfrkdedenpIoPak3MiGsPLYJZ3yEx/W90tPJccAAPXpsROKGhm
+JUmmvfmj7xk=
+=t+Pc
+-----END PGP SIGNATURE-----
+
+--------------enig7E765C7AA9F55284B8E21786--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

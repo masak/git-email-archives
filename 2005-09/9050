@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 10:21:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 428DA27B05E
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 10:20:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751125AbVIUQTM (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 12:19:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751128AbVIUQTL
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 12:19:11 -0400
+Received: from mivlgu.ru ([81.18.140.87]:4230 "EHLO center4.mivlgu.local")
+	by vger.kernel.org with ESMTP id S1751125AbVIUQTK (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Sep 2005 12:19:10 -0400
+Received: by center4.mivlgu.local (Postfix, from userid 500)
+	id C39C5E2FFC7; Wed, 21 Sep 2005 20:19:09 +0400 (MSD)
+Subject: [PATCH 8/8] fetch.c: Remove call to parse_object() from process()
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+In-Reply-To: <20050921161829.GA20944@master.mivlgu.local>
+References: <20050921161829.GA20944@master.mivlgu.local>
+From:	Sergey Vlasov <vsu@altlinux.ru>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050921161909.C39C5E2FFC7@center4.mivlgu.local>
+Date:	Wed, 21 Sep 2005 20:19:09 +0400 (MSD)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 36
+Xref: brand.scrye.com linux.git:9050
+
+The call to parse_object() in process() is not actually needed - if
+the object type is unknown, parse_object() will be called by loop();
+if the type is known, the object will be parsed by the appropriate
+process_*() function.
+
+After this change blobs which exist locally are no longer parsed,
+which gives about 2x CPU usage improvement; the downside is that there
+will be no warnings for existing corrupted blobs, but detecting such
+corruption is the job of git-fsck-objects, not the fetch programs.
+Newly fetched objects are still checked for corruption in http-fetch.c
+and ssh-fetch.c (local-fetch.c does not seem to do it, but the removed
+parse_object() call would not be reached for new objects anyway).
+
+---
+
+ fetch.c |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+b8a4d51743787be17f9572dce2eb2f4040ac241b
+diff --git a/fetch.c b/fetch.c
+--- a/fetch.c
++++ b/fetch.c
+@@ -134,7 +134,6 @@ static int process(struct object *obj)
+ 	obj->flags |= SEEN;
+ 
+ 	if (has_sha1_file(obj->sha1)) {
+-		parse_object(obj->sha1);
+ 		/* We already have it, so we should scan it now. */
+ 		obj->flags |= TO_SCAN;
+ 	} else {
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

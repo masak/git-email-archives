@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun 15 16:04:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4395E36658
+	for <tkil@scrye.com>; Wed, 15 Jun 2005 16:04:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261636AbVFOWDD (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 15 Jun 2005 18:03:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261633AbVFOWDC
+	(ORCPT <rfc822;git-outgoing>); Wed, 15 Jun 2005 18:03:02 -0400
+Received: from zproxy.gmail.com ([64.233.162.201]:30494 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261668AbVFOWCQ convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 15 Jun 2005 18:02:16 -0400
+Received: by zproxy.gmail.com with SMTP id 16so69658nzp
+        for <git@vger.kernel.org>; Wed, 15 Jun 2005 15:02:16 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=M2odxZgolEe4maofi9WZw1Wnn5gQ6fHSPT1trvinakdWX+gIE2kNJ1DqSpulBJdVMgTdgf09c0/XU6X8z8iAe70p8r3fFjyBDgIDhWIvNZW+uLqw2j8Px3CYE0fW27LUOdAKwXqzprYecjdjcjQram6kuRUn4+pCAFqZe3yu6oY=
+Received: by 10.36.89.14 with SMTP id m14mr111999nzb;
+        Wed, 15 Jun 2005 15:02:15 -0700 (PDT)
+Received: by 10.36.109.1 with HTTP; Wed, 15 Jun 2005 15:02:15 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <799406d605061515024f8d1fd6@mail.gmail.com>
+Date:	Wed, 15 Jun 2005 23:02:15 +0100
+From: Adam Mercer <ramercer@gmail.com>
+Reply-To: Adam Mercer <ramercer@gmail.com>
+To: git@vger.kernel.org
+Subject: Re: Converting SVN repository to git
+In-Reply-To: <20050615184720.GF31997@artsapartment.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20050615184720.GF31997@artsapartment.org>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP,TW_SV 
+	autolearn=no version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:4960
+
+On 15/06/05, Art Haas <ahaas@airmail.net> wrote:
+
+> The utilities for converting CVS repositories to git repos have become
+> part of the standard git package, and hopefully they'll be used to
+> convert many CVS based projects to git. I've not seen anything, though,
+> on switching Subversion repositories to git. Has there been any public
+> activity in writing a tool/script to do this? Perhaps some offline
+> discussion about doing this?
+
+You could use something like svn2cvs (http://svn2cvs.tigris.org) and
+then use the cvs2git tools.
+
+Cheers
+
+Adam
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 11:15:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 05E5127B075
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 11:15:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751261AbVIURMo (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 13:12:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751263AbVIURMn
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 13:12:43 -0400
+Received: from blue.stonehenge.com ([209.223.236.162]:63166 "EHLO
+	blue.stonehenge.com") by vger.kernel.org with ESMTP
+	id S1751261AbVIURMn (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Sep 2005 13:12:43 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by blue.stonehenge.com (Postfix) with ESMTP id A3C088F70C
+	for <git@vger.kernel.org>; Wed, 21 Sep 2005 10:12:36 -0700 (PDT)
+Received: from blue.stonehenge.com ([127.0.0.1])
+ by localhost (blue.stonehenge.com [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 00110-02-5 for <git@vger.kernel.org>;
+ Wed, 21 Sep 2005 10:12:36 -0700 (PDT)
+Received: by blue.stonehenge.com (Postfix, from userid 1001)
+	id 45DAB8F716; Wed, 21 Sep 2005 10:12:36 -0700 (PDT)
+To:	git@vger.kernel.org
+Subject: git/Documentation/Makefile - "install" doesn't depend on "all"
+x-mayan-date: Long count = 12.19.12.11.12; tzolkin = 8 Eb; haab = 10 Chen
+From:	merlyn@stonehenge.com (Randal L. Schwartz)
+Date:	21 Sep 2005 10:12:36 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <868xxq73az.fsf@blue.stonehenge.com>
+Lines:	20
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.1 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:9056
+
+
+I traditionally simply say "make install" to a Makefile, which should
+always have the installed components depend on their sources.
+
+For the past few days, apparently I've been doing nothing but the final
+"install" command, even though the sources have been changed.
+
+On a whim, I typed "make all install", and there ya go, everything got
+made.
+
+So, apparently, the manpages don't properly depend on the sources,
+or "install" doesn't properly depend on "all", or both.
+
+Therefore, broken.
+
+-- 
+Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+<merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

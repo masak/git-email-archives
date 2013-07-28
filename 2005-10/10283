@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 08:31:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 42B1B2851FA
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 08:31:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750988AbVJSObP (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 10:31:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751003AbVJSObP
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 10:31:15 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:15517 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750981AbVJSObO (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 19 Oct 2005 10:31:14 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9JEV7FC017730
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 19 Oct 2005 07:31:08 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9JEV6x1002795;
+	Wed, 19 Oct 2005 07:31:07 -0700
+Date:	Wed, 19 Oct 2005 07:31:06 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: git-send-pack segfaulting on DebianPPC (was: Re: cg-clone, tag
+ objects and cg-push/git-push don't play nice)
+In-Reply-To: <46a038f90510190202n60101c5cgf27bd714dce00513@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510190724000.3369@g5.osdl.org>
+References: <46a038f90510190202n60101c5cgf27bd714dce00513@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:10283
+
+
+
+On Wed, 19 Oct 2005, Martin Langhoff wrote:
+> 
+> On Debian i386 and Ubuntu i386, the exact same versions work correctly.
+
+Interesting.
+
+As you say, I'm obviously testing on ppc all the time, and if 
+git-fetch-pack has problems on ppc, I haven't seen them. And I fetch a 
+lot.
+
+It might be just the repo you're using. I can't test, since I obviously 
+cannot ssh into the repo you pointed at (I tried to see if you had a 
+git-daemon running, but no such luck).
+
+> I'll post more info as soon as I can get my hands on strace,
+
+Even more interesting than strace might be for you to try to run 
+git-send-pack (even on an x86) under valgrind. valgrind really is a 
+wonderful tool.
+
+One other potential issue: I'm not running debian. I've run YDL, but right 
+now the machine I use is FC4. There are likely _lots_ of library 
+differences etc there.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

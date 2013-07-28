@@ -1,0 +1,110 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 20 19:14:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 01E101E7C04
+	for <tkil@scrye.com>; Tue, 20 Dec 2005 19:14:30 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932257AbVLUCN2 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Dec 2005 21:13:28 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932258AbVLUCN2
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Dec 2005 21:13:28 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:1262 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932257AbVLUCN1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 20 Dec 2005 21:13:27 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBL2D3DZ012407
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 20 Dec 2005 18:13:04 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBL2D20j008079;
+	Tue, 20 Dec 2005 18:13:03 -0800
+Date:	Tue, 20 Dec 2005 18:13:02 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Make "git-send-pack" less verbose by default
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512201809210.4827@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.129 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 67
+Xref: brand.scrye.com linux.git:13851
+
+
+It used to make sense to have git-send-pack talk about the things it sent 
+when (a) it was a new program and (b) nobody had a lot of tags and 
+branches.
+
+These days, it's just distracting to see tons of
+
+	'refs/tags/xyz': up-to-date
+	...
+
+when updating a remote repo.
+
+So shut it up by default, and add a "--verbose" flag for those who really 
+want to see it.
+
+Also, since this makes he case of everything being up-to-date just totally 
+silent, make it say "Everything up-to-date" if no refs needed updating.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/send-pack.c b/send-pack.c
+index 6ce0d9f..a41bbe5 100644
+--- a/send-pack.c
++++ b/send-pack.c
+@@ -8,6 +8,7 @@ static const char send_pack_usage[] =
+ "git-send-pack [--all] [--exec=git-receive-pack] <remote> [<head>...]\n"
+ "  --all and explicit <head> specification are mutually exclusive.";
+ static const char *exec = "git-receive-pack";
++static int verbose = 0;
+ static int send_all = 0;
+ static int force_update = 0;
+ 
+@@ -206,7 +207,8 @@ static int send_pack(int in, int out, in
+ 		if (!ref->peer_ref)
+ 			continue;
+ 		if (!memcmp(ref->old_sha1, ref->peer_ref->new_sha1, 20)) {
+-			fprintf(stderr, "'%s': up-to-date\n", ref->name);
++			if (verbose)
++				fprintf(stderr, "'%s': up-to-date\n", ref->name);
+ 			continue;
+ 		}
+ 
+@@ -270,6 +272,8 @@ static int send_pack(int in, int out, in
+ 	packet_flush(out);
+ 	if (new_refs)
+ 		pack_objects(out, remote_refs);
++	else
++		fprintf(stderr, "Everything up-to-date\n");
+ 	close(out);
+ 	return ret;
+ }
+@@ -301,6 +305,10 @@ int main(int argc, char **argv)
+ 				force_update = 1;
+ 				continue;
+ 			}
++			if (!strcmp(arg, "--verbose")) {
++				verbose = 1;
++				continue;
++			}
+ 			usage(send_pack_usage);
+ 		}
+ 		if (!dest) {
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

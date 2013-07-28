@@ -1,0 +1,266 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug  2 00:21:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 28D38268E89
+	for <tkil@scrye.com>; Tue,  2 Aug 2005 00:21:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261387AbVHBGT7 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 2 Aug 2005 02:19:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261391AbVHBGT7
+	(ORCPT <rfc822;git-outgoing>); Tue, 2 Aug 2005 02:19:59 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:37884 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S261387AbVHBGTo (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 2 Aug 2005 02:19:44 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050802061941.FYYK1367.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 2 Aug 2005 02:19:41 -0400
+To: git@vger.kernel.org
+Subject: [PATCH] send-pack/receive-pack minor fixups.
+From: Junio C Hamano <junkio@cox.net>
+Date:	Mon, 01 Aug 2005 23:19:40 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x5czwqr.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_RG,TW_WF 
+	autolearn=no version=3.0.4
+Lines: 226
+Xref: brand.scrye.com linux.git:6707
+
+I munged the receive-pack update from Josef Weidendorfer to run
+the same hook with different calling signature once again at the
+very end.  Of course, this was an ugly hack, and Josef correctly
+pointed out it should be a separate hook.  This commit changes
+it to run hooks/post-update instead, with the names of refs
+actually updated.
+
+send-pack had a confusing misfeature that "send-pack --all
+master" updated all refs, while "send-pack --all" did not do
+anything.  Make --all and explicit refs mutually exclusive, and
+make sure "send-pack --all" updates all refs.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+
+ receive-pack.c |   55 +++++++++++++++++++++++++++++++++++++++++++++----------
+ run-command.c  |   12 +++++-------
+ run-command.h  |    1 +
+ send-pack.c    |    7 +++++--
+ 4 files changed, 56 insertions(+), 19 deletions(-)
+
+7b33caa5938e3e6deb4d6a9ef803d7221997f2ed
+diff --git a/receive-pack.c b/receive-pack.c
+--- a/receive-pack.c
++++ b/receive-pack.c
+@@ -21,6 +21,7 @@ static void write_head_info(void)
+ 
+ struct command {
+ 	struct command *next;
++	unsigned char updated;
+ 	unsigned char old_sha1[20];
+ 	unsigned char new_sha1[20];
+ 	char ref_name[0];
+@@ -88,7 +89,8 @@ static int run_update_hook(const char *r
+ 	}
+ }
+ 
+-static void update(const char *name, unsigned char *old_sha1, unsigned char *new_sha1)
++static int update(const char *name,
++		  unsigned char *old_sha1, unsigned char *new_sha1)
+ {
+ 	char new_hex[60], *old_hex, *lock_name;
+ 	int newfd, namelen, written;
+@@ -101,11 +103,13 @@ static void update(const char *name, uns
+ 	strcpy(new_hex, sha1_to_hex(new_sha1));
+ 	old_hex = sha1_to_hex(old_sha1);
+ 	if (!has_sha1_file(new_sha1))
+-		die("unpack should have generated %s, but I can't find it!", new_hex);
++		return error("unpack should have generated %s, "
++			     "but I can't find it!", new_hex);
+ 
+ 	newfd = open(lock_name, O_CREAT | O_EXCL | O_WRONLY, 0666);
+ 	if (newfd < 0)
+-		die("unable to create %s (%s)", lock_name, strerror(errno));
++		return error("unable to create %s (%s)",
++			     lock_name, strerror(errno));
+ 
+ 	/* Write the ref with an ending '\n' */
+ 	new_hex[40] = '\n';
+@@ -117,24 +121,54 @@ static void update(const char *name, uns
+ 	close(newfd);
+ 	if (written != 41) {
+ 		unlink(lock_name);
+-		die("unable to write %s", lock_name);
++		return error("unable to write %s", lock_name);
+ 	}
+ 	if (verify_old_ref(name, old_hex) < 0) {
+ 		unlink(lock_name);
+-		die("%s changed during push", name);
++		return error("%s changed during push", name);
+ 	}
+ 	if (run_update_hook(name, old_hex, new_hex)) {
+ 		unlink(lock_name);
+-		fprintf(stderr, "hook declined to update %s\n", name);
++		return error("hook declined to update %s\n", name);
+ 	}
+ 	else if (rename(lock_name, name) < 0) {
+ 		unlink(lock_name);
+-		die("unable to replace %s", name);
++		return error("unable to replace %s", name);
+ 	}
+-	else
++	else {
+ 		fprintf(stderr, "%s: %s -> %s\n", name, old_hex, new_hex);
++		return 0;
++	}
+ }
+ 
++static char update_post_hook[] = "hooks/post-update";
++
++static void run_update_post_hook(struct command *cmd)
++{
++	struct command *cmd_p;
++	int argc;
++	char **argv;
++
++	if (access(update_post_hook, X_OK) < 0)
++		return;
++	for (argc = 1, cmd_p = cmd; cmd_p; cmd_p = cmd_p->next) {
++		if (!cmd_p->updated)
++			continue;
++		argc++;
++	}
++	argv = xmalloc(sizeof(*argv) * (1 + argc));
++	argv[0] = update_post_hook;
++
++	for (argc = 1, cmd_p = cmd; cmd_p; cmd_p = cmd_p->next) {
++		if (!cmd_p->updated)
++			continue;
++		argv[argc] = xmalloc(strlen(cmd_p->ref_name) + 1);
++		strcpy(argv[argc], cmd_p->ref_name);
++		argc++;
++	}
++	argv[argc] = NULL;
++	run_command_v(argc, argv);
++}
+ 
+ /*
+  * This gets called after(if) we've successfully
+@@ -145,10 +179,11 @@ static void execute_commands(void)
+ 	struct command *cmd = commands;
+ 
+ 	while (cmd) {
+-		update(cmd->ref_name, cmd->old_sha1, cmd->new_sha1);
++		cmd->updated = !update(cmd->ref_name,
++				       cmd->old_sha1, cmd->new_sha1);
+ 		cmd = cmd->next;
+ 	}
+-	run_update_hook("", NULL, NULL);
++	run_update_post_hook(commands);
+ }
+ 
+ static void read_head_info(void)
+diff --git a/run-command.c b/run-command.c
+--- a/run-command.c
++++ b/run-command.c
+@@ -2,7 +2,7 @@
+ #include "run-command.h"
+ #include <sys/wait.h>
+ 
+-static int run_external_command(int argc, const char **argv)
++int run_command_v(int argc, char **argv)
+ {
+ 	pid_t pid = fork();
+ 
+@@ -10,7 +10,7 @@ static int run_external_command(int argc
+ 		return -ERR_RUN_COMMAND_FORK;
+ 	if (!pid) {
+ 		execvp(argv[0], (char *const*) argv);
+-		return -ERR_RUN_COMMAND_EXEC;
++		die("exec %s failed.", argv[0]);
+ 	}
+ 	for (;;) {
+ 		int status, code;
+@@ -39,14 +39,12 @@ static int run_external_command(int argc
+ int run_command(const char *cmd, ...)
+ {
+ 	int argc;
+-	const char *argv[MAX_RUN_COMMAND_ARGS];
++	char *argv[MAX_RUN_COMMAND_ARGS];
+ 	const char *arg;
+ 	va_list param;
+ 
+-	fprintf(stderr, "run-command %s (%d)\n", cmd, ERR_RUN_COMMAND_EXEC);
+-
+ 	va_start(param, cmd);
+-	argv[0] = cmd;
++	argv[0] = (char*) cmd;
+ 	argc = 1;
+ 	while (argc < MAX_RUN_COMMAND_ARGS) {
+ 		arg = argv[argc++] = va_arg(param, char *);
+@@ -56,5 +54,5 @@ int run_command(const char *cmd, ...)
+ 	va_end(param);
+ 	if (MAX_RUN_COMMAND_ARGS <= argc)
+ 		return error("too many args to run %s", cmd);
+-	return run_external_command(argc, argv);
++	return run_command_v(argc, argv);
+ }
+diff --git a/run-command.h b/run-command.h
+--- a/run-command.h
++++ b/run-command.h
+@@ -11,6 +11,7 @@ enum {
+ 	ERR_RUN_COMMAND_WAITPID_NOEXIT,
+ };
+ 
++int run_command_v(int argc, char **argv);
+ int run_command(const char *cmd, ...);
+ 
+ #endif
+diff --git a/send-pack.c b/send-pack.c
+--- a/send-pack.c
++++ b/send-pack.c
+@@ -4,7 +4,8 @@
+ #include "pkt-line.h"
+ 
+ static const char send_pack_usage[] =
+-"git-send-pack [--exec=git-receive-pack] [host:]directory [heads]*";
++"git-send-pack [--all] [--exec=git-receive-pack] <remote> [<head>...]\n"
++"  --all and explicit <head> specification are mutually exclusive.";
+ static const char *exec = "git-receive-pack";
+ static int send_all = 0;
+ static int force_update = 0;
+@@ -214,7 +215,7 @@ static int send_pack(int in, int out, in
+ 	/*
+ 	 * See if we have any refs that the other end didn't have
+ 	 */
+-	if (nr_match) {
++	if (nr_match || send_all) {
+ 		local_ref_nr_match = nr_match;
+ 		local_ref_match = match;
+ 		local_ref_list = ref_list;
+@@ -281,6 +282,8 @@ int main(int argc, char **argv)
+ 	}
+ 	if (!dest)
+ 		usage(send_pack_usage);
++	if (heads && send_all)
++		usage(send_pack_usage);
+ 	pid = git_connect(fd, dest, exec);
+ 	if (pid < 0)
+ 		return 1;
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

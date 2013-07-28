@@ -1,0 +1,109 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 07:16:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7EB88C6064
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 07:16:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965164AbVJENQg (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 09:16:36 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965166AbVJENQf
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 09:16:35 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:17120 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S965164AbVJENQf (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 5 Oct 2005 09:16:35 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id E5BA06E1520; Wed,  5 Oct 2005 15:16:26 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 92CEA6E147C; Wed,  5 Oct 2005 15:16:24 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 10D4060F42; Wed,  5 Oct 2005 15:16:32 +0200 (CEST)
+Date:	Wed, 5 Oct 2005 15:16:31 +0200
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: First cut at git port to Cygwin
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051005131631.GA9442@diku.dk>
+References: <433B3B10.5050407@zytor.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <433B3B10.5050407@zytor.com>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 64
+Xref: brand.scrye.com linux.git:9697
+
+I have a few things I experienced with the merged cygwin stuff. Sorry I
+haven't investigated it further, but there should be enough for a few
+fixes.
+
+When I ...
+
+  user@machine /usr/local/dev/git/git
+  $ make prefix=/usr/local install
+  install -d -m755 /usr/local/bin
+  install git-apply.exe [...]
+  sh ./cmd-rename.sh /usr/local/bin
+  ln: creating symbolic link `/usr/local/bin/git-http-pull.exe' to `git-http-fetch.exe': File exists
+  make: *** [install] Error 1
+
+Can be fixed by the patch below. I don't know if it would be cleaner to
+pass cmd-rename.sh "$X" as a second argument from the Makefile.
+
+--- cmd-rename.sh	2005-10-05 14:42:00.000000000 +0200
++++ cmd-rename.sh-orig	2005-10-05 14:43:48.000000000 +0200
+@@ -3,7 +3,7 @@
+ test -d "$d" || exit
+ while read old new
+ do
+-	rm -f "$d/$old" "$d/$old.exe" 
++	rm -f "$d/$old"
+ 	if test -f "$d/$new"
+ 	then
+ 		ln -s "$new" "$d/$old" || exit
+
+
+Some other obscurities ...
+
+  user@machine /usr/local/dev/git/git
+  $ git-log
+  fatal: Not a git repository
+
+  user@machine /usr/local/dev/git/git
+  $ GIT_DIR=.git git-log | wc -l
+  26094
+
+and I cannot rebuild the index file with git-reset. First time I run it
+it creates the index.lock file and errors out when writing. The second
+time it errors out because the lock file was not removed in the first
+case.
+
+  user@machine /usr/local/dev/git/git
+  $ GIT_DIR=.git git-reset
+  fatal: unable to write new index file
+  
+  user@machine /usr/local/dev/git/git
+  $ GIT_DIR=.git git-reset
+  fatal: unable to create new cachefile
+  
+  user@machine /usr/local/dev/git/git
+  $ uname -a
+  CYGWIN_NT-5.1 antimatter 1.5.18(0.132/4/2) 2005-07-02 20:30 i686 unknown unknown Cygwin
+
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

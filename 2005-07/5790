@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul  8 01:43:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 600E4157170
+	for <tkil@scrye.com>; Fri,  8 Jul 2005 01:43:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261476AbVGHHnD (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 8 Jul 2005 03:43:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261834AbVGHHnD
+	(ORCPT <rfc822;git-outgoing>); Fri, 8 Jul 2005 03:43:03 -0400
+Received: from wproxy.gmail.com ([64.233.184.192]:3528 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261476AbVGHHnB (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 8 Jul 2005 03:43:01 -0400
+Received: by wproxy.gmail.com with SMTP id i25so377293wra
+        for <git@vger.kernel.org>; Fri, 08 Jul 2005 00:42:59 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:from:to:subject:date:user-agent:mime-version:content-type:content-transfer-encoding:content-disposition:message-id;
+        b=CdVDSqIUj0zJMyHY198xddDjo2uZptLDjFsZhhuwZyPR4eFtDwD70tGWuSsDbqsU1lLARk30CWm+M6mRA49oZ5nj+no/yq1fdWc9u38u6sf0unTu7qmQuxUnvtBA0S1SWO4QCCoOmUJ6bfByI9nfS0k1AzzihznC8Gl2q9kkJs4=
+Received: by 10.54.16.77 with SMTP id 77mr415702wrp;
+        Fri, 08 Jul 2005 00:42:59 -0700 (PDT)
+Received: from mipter.zuzino.mipt.ru ([217.10.38.130])
+        by mx.gmail.com with ESMTP id d75sm2229029wra.2005.07.08.00.42.58;
+        Fri, 08 Jul 2005 00:42:59 -0700 (PDT)
+From: Alexey Dobriyan <adobriyan@gmail.com>
+To: git@vger.kernel.org
+Subject: pack-e3117bbaf6a59cb53c3f6f0d9b17b9433f0e4135.pack
+Date:	Fri, 8 Jul 2005 11:49:45 +0400
+User-Agent: KMail/1.8.1
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200507081149.45344.adobriyan@gmail.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP,TW_AV 
+	autolearn=no version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:5790
+
+Being a happy user of
+
+	$ cat ./rsync-linus
+	#!/bin/sh -x
+
+	cd linux-linus
+	rsync -avz --progress \
+	        rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/ \
+	        .git/
+
+I'm confused now. This pack file is ~60M in size. Will rsync download
+another 60M next time? What command should I use now to a) get latest and
+greatest and b) be nice with my traffic?
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

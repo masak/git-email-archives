@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 28 17:02:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4E99C1FADCD
+	for <tkil@scrye.com>; Fri, 28 Oct 2005 17:02:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751894AbVJ1XAy (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 28 Oct 2005 19:00:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751896AbVJ1XAx
+	(ORCPT <rfc822;git-outgoing>); Fri, 28 Oct 2005 19:00:53 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:47560 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751894AbVJ1XAu (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 28 Oct 2005 19:00:50 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9SN0gFC007335
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 28 Oct 2005 16:00:42 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9SN0fND025668;
+	Fri, 28 Oct 2005 16:00:41 -0700
+Date:	Fri, 28 Oct 2005 16:00:41 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Pavel Roskin <proski@gnu.org>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: gitk shows an empty line between "Comments" and changed files
+In-Reply-To: <1130539503.10531.43.camel@dv>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510281557580.3348@g5.osdl.org>
+References: <1130434230.19641.21.camel@dv>  <7vslum3l2w.fsf@assigned-by-dhcp.cox.net>
+ <1130463389.2186.14.camel@dv>  <7v4q72xavz.fsf@assigned-by-dhcp.cox.net>
+ <1130539503.10531.43.camel@dv>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:10769
+
+
+
+On Fri, 28 Oct 2005, Pavel Roskin wrote:
+> > 
+> > I do not oppose dropping the commit-id line from the default
+> > output, but having it optionally available would be useful in
+> > one application.  Somebody _could_ write a tool that does
+> > something like:
+> > 
+> >     git-rev-list ^$old_head $new_head |
+> >     git-diff-tree -p -m --stdin --with-commit-ids |
+> >     git-patch-id
+> 
+> Sounds good.  Perhaps the commit IDs should have a prefix identifying
+> them.
+
+Guys, why do you want to drop it? We've always had it, and it doesn't 
+really hurt.
+
+Yes, gitk got a new empty line because I didn't realize that the output of 
+"git-diff-tree $commit" is slightly different from "git-diff-tree $t2 
+$t2", but hey, that was due to a gitk change, and I think it should be 
+trivial for gitk to just react to it.
+
+So if we add a new flag, please make it go the other way: one that makes 
+the output really quiet, but keeps the standard output the same.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

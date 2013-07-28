@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 29 18:41:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 869B21C7E6F
+	for <tkil@scrye.com>; Sun, 29 May 2005 18:41:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261487AbVE3AjM (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 29 May 2005 20:39:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261483AbVE3AfU
+	(ORCPT <rfc822;git-outgoing>); Sun, 29 May 2005 20:35:20 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:23686 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261485AbVE3Acs (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 29 May 2005 20:32:48 -0400
+Received: (qmail 32239 invoked by uid 2001); 30 May 2005 00:32:42 -0000
+Date:	Mon, 30 May 2005 02:32:42 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+	GIT Mailing List <git@vger.kernel.org>
+Subject: Re: Problem with cg-diff <file>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050530003242.GA1036@pasky.ji.cz>
+References: <1117408555.7072.109.camel@pegasus> <20050529233840.GY1036@pasky.ji.cz> <7vis11ftvm.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vis11ftvm.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 37
+Xref: brand.scrye.com linux.git:4199
+
+Dear diary, on Mon, May 30, 2005 at 02:19:09AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> >>>>> "PB" == Petr Baudis <pasky@ucw.cz> writes:
+> 
+> PB> ... git-diff-tree (in contrast to
+> PB> git-diff-cache) won't take the pathspec as its trailing arguments,
+> 
+> PB> Junio, is there any specific reason for that, or is the end of
+> PB> git-diff-tree argument list the right spot for the pathspec stuff?
+> 
+> Baffled.  Are you at Linus tip?
+> 
+> Linus correctly decided that diff-tree does not have to call
+> diffcore_pathspec(), which may be what confused you to make the
+> comment "... in contrast to git-diff-cache) won't take ...".
+> But it does not call it only because it does not need to.  It
+> filters the filepairs itself on the input side using the
+> trailing arguments; since diffcore_pathspec filters as the first
+> one in the chain as the input filter, calling it from diff-tree
+> would not cull anything further.
+
+Ok, so this is what you get when you mix: sleepiness, performing only
+mental experiments not verified in practice, and inattentive reading of
+the code.
+
+I'm sorry for bothering. Instruct yourself from my bad example, please.
+:-)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

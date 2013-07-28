@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep  6 15:03:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 755FC285200
+	for <tkil@scrye.com>; Tue,  6 Sep 2005 15:03:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750935AbVIFVBr (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Sep 2005 17:01:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750937AbVIFVBr
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Sep 2005 17:01:47 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:38554 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1750935AbVIFVBr
+	(ORCPT <rfc822;git@vger.kernel.org>); Tue, 6 Sep 2005 17:01:47 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j86L1UMc019647
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 6 Sep 2005 14:01:31 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <431E03A5.6060709@zytor.com>
+Date:	Tue, 06 Sep 2005 14:01:25 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>, Petr Baudis <pasky@ucw.cz>
+Subject: cg-update (cogito-0.13) bug: changed heads
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.86.2, clamav-milter version 0.86 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:8138
+
+I just found a bug in cogito-0.13, at least to the best of my 
+understanding of the situation.
+
+Simplified, the problem looks like this: two sides, A and B, pull from 
+repository C.  The head of this pull we call 0.
+
+Now commit 1 is added to A.  B pulls commit 1 from A, not though C. 
+Later, A pushes commit 1 to C.
+
+Next time B tries to pull from C, cg-update will not advance 
+refs/heads/origin, even though C now has a new head.  Thus, B will think 
+that C is in a different state than it actually is.
+
+This has, for me, broken safeguards of the form "make sure you're merged 
+before you pull."
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

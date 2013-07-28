@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 12:42:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6158418662A
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 12:42:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750893AbVILSmk (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 14:42:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932122AbVILSmj
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 14:42:39 -0400
+Received: from mail.autoweb.net ([198.172.237.26]:26345 "EHLO mail.autoweb.net")
+	by vger.kernel.org with ESMTP id S1750893AbVILSmj (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 14:42:39 -0400
+Received: from pcp01184054pcs.strl301.mi.comcast.net ([68.60.186.73] helo=michonline.com)
+	by mail.autoweb.net with esmtp (Exim 4.44)
+	id 1EEtFv-0000Lc-P2; Mon, 12 Sep 2005 14:42:15 -0400
+Received: from mythical ([10.254.251.11] ident=Debian-exim)
+	by michonline.com with esmtp (Exim 3.35 #1 (Debian))
+	id 1EEtFv-0003Em-00; Mon, 12 Sep 2005 14:42:15 -0400
+Received: from ryan by mythical with local (Exim 4.52)
+	id 1EEtFv-0001Sc-0O; Mon, 12 Sep 2005 14:42:15 -0400
+Date:	Mon, 12 Sep 2005 14:42:14 -0400
+From:	Ryan Anderson <ryan@michonline.com>
+To:	Dmitry Torokhov <dtor_core@ameritech.net>
+Cc:	git@vger.kernel.org, Junio C Hamano <junkio@cox.net>,
+	Linus Torvalds <torvalds@osdl.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Peter Osterlund <petero2@telia.com>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: What's up with the GIT archive on www.kernel.org?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050912184214.GB5276@mythryan2.michonline.com>
+References: <m3mzmjvbh7.fsf@telia.com> <Pine.LNX.4.58.0509111431400.3242@g5.osdl.org> <7virx7njxa.fsf@assigned-by-dhcp.cox.net> <200509112145.33994.dtor_core@ameritech.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200509112145.33994.dtor_core@ameritech.net>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:8407
+
+On Sun, Sep 11, 2005 at 09:45:33PM -0500, Dmitry Torokhov wrote:
+> 
+> Call me brain-dead but all of this just makes me rsync my tree to
+> kernel.org and then manually do "ln -f" for all the packs that Linus
+> has. This way I am sure tht the tree is what I have plus and it is
+> "pullable".
+
+If you have access to make hardlinks, you should be able to use
+git-relink to do the hard work for you.
+
+>From memory:
+	git relink my_dir1 my_dir2 ... master_dir
+
+or:
+	git relink my-kernel-tree /pub/scm/.../torvalds/linux.git/
+
+(I think that will work - via a bug in my initial attempt to write
+git-relink, I look to make sure the path ends in ".git/" not "/.git/".
+So the above should work.  I think.)
+
+-- 
+
+Ryan Anderson
+  sometimes Pug Majere
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

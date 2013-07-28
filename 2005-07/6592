@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 29 19:49:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2D89A15C84E
+	for <tkil@scrye.com>; Fri, 29 Jul 2005 19:49:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262884AbVG3BdX (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Jul 2005 21:33:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262845AbVG3Bap
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Jul 2005 21:30:45 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:7822 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262808AbVG3B2z (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Jul 2005 21:28:55 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6U1SmjA000339
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 29 Jul 2005 18:28:49 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6U1SlRw002444;
+	Fri, 29 Jul 2005 18:28:48 -0700
+Date:	Fri, 29 Jul 2005 18:28:47 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Ryan Anderson <ryan@michonline.com>
+Cc: Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Fix interesting git-rev-list corner case
+In-Reply-To: <Pine.LNX.4.58.0507291816060.29650@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507291827000.29650@g5.osdl.org>
+References: <Pine.LNX.4.58.0507291542060.29650@g5.osdl.org>
+ <20050730001158.GF32263@mythryan2.michonline.com> <Pine.LNX.4.58.0507291816060.29650@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:6592
+
+
+
+On Fri, 29 Jul 2005, Linus Torvalds wrote:
+> 
+>		, but any time we _depend_ on dates
+> one way or the other that would be a good.
+
+"_not_ be a good _thing_". I don't know what strange brain-glitch I had
+there.
+
+I had kind of hoped my kids would be all grown up before their dad started 
+losing his marbles. Oh, well..
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

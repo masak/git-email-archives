@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 13 07:33:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id ACF09F7661
+	for <tkil@scrye.com>; Fri, 13 May 2005 07:33:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262362AbVEMNci (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 13 May 2005 09:32:38 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262363AbVEMNcf
+	(ORCPT <rfc822;git-outgoing>); Fri, 13 May 2005 09:32:35 -0400
+Received: from rproxy.gmail.com ([64.233.170.200]:16185 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262362AbVEMNcc convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 13 May 2005 09:32:32 -0400
+Received: by rproxy.gmail.com with SMTP id a41so397760rng
+        for <git@vger.kernel.org>; Fri, 13 May 2005 06:32:32 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=nZjtoZ7ntwqU+nVtwtx4F/3CpRzIOKX0GqDZw7SuOZFVoPXUUZQx9jfcO9bBVXAiP16/vAOtEzsnpzRfNUBuR0sm4eJrTEpAzGWmMoyIMW6CdovOZEqMeBGUPcDfyWeCpE+Cl46Bk6sT0cg9B5botS+Q5C0rRIENDnFmsY4nBok=
+Received: by 10.38.152.1 with SMTP id z1mr1397102rnd;
+        Fri, 13 May 2005 06:32:32 -0700 (PDT)
+Received: by 10.38.76.77 with HTTP; Fri, 13 May 2005 06:32:32 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <118833cc050513063251cf8ecb@mail.gmail.com>
+Date:	Fri, 13 May 2005 09:32:32 -0400
+From: Morten Welinder <mwelinder@gmail.com>
+Reply-To: Morten Welinder <mwelinder@gmail.com>
+To: "Petr \"Pasky\" Baudis" <pasky@ucw.cz>,
+	GIT Mailing List <git@vger.kernel.org>
+Subject: cg-init
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.3
+Lines: 10
+Xref: brand.scrye.com linux.git:3222
+
+1. This still doesn't work from an empty directory.
+2. The rm/cp/mkdir/touch will not work if $_git starts with a dash. 
+Lots of -- needed.
+
+Morten
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

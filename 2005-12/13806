@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 18 22:43:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2F2A3282CFF
+	for <tkil@scrye.com>; Sun, 18 Dec 2005 22:43:31 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030283AbVLSFnE (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Dec 2005 00:43:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030284AbVLSFnE
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Dec 2005 00:43:04 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:36780 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1030283AbVLSFnC (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Dec 2005 00:43:02 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051219054107.MXUE17437.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 19 Dec 2005 00:41:07 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	"Brown, Len" <len.brown@intel.com>
+Subject: Re: using-topic-branches.txt
+References: <F7DC2337C7631D4386A2DF6E8FB22B30056F93AC@hdsmsx401.amr.corp.intel.com>
+cc:	git@vger.kernel.org
+Date:	Sun, 18 Dec 2005 21:43:00 -0800
+In-Reply-To: <F7DC2337C7631D4386A2DF6E8FB22B30056F93AC@hdsmsx401.amr.corp.intel.com>
+	(Len Brown's message of "Sun, 18 Dec 2005 23:13:28 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyoplk0r.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:13806
+
+"Brown, Len" <len.brown@intel.com> writes:
+
+> This works for me, but now it requires a password to update
+> when before it did not.
+
+You are right.  I do not have preference either way myself what
+to put in this document.  However, the change stops recommending
+rsync://, which is something I prefer to keep.
+
+The reason for the change from public machine to master already
+got an objection from Jeff.  The reasoning was because I
+understand that Linus pulls from master to avoid mirroring lags
+(and he publicly stated he does so number of times), and the
+workflow recommended for subsystem maintainers, the primary
+audience of this document, should not slow them down by pulling
+from public machines.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

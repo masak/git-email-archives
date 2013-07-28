@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep  5 12:46:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 913D527E4EA
+	for <tkil@scrye.com>; Mon,  5 Sep 2005 12:46:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932400AbVIESpy (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Sep 2005 14:45:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932402AbVIESpy
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Sep 2005 14:45:54 -0400
+Received: from dsl092-000-086.sfo1.dsl.speakeasy.net ([66.92.0.86]:62357 "EHLO
+	tumblerings.org") by vger.kernel.org with ESMTP id S932400AbVIESpx
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 5 Sep 2005 14:45:53 -0400
+Received: from zbrown by tumblerings.org with local (Exim 4.50)
+	id 1ECLyZ-0004tv-Pi
+	for git@vger.kernel.org; Mon, 05 Sep 2005 11:45:51 -0700
+Date:	Mon, 5 Sep 2005 11:45:51 -0700
+From:	Zack Brown <zbrown@tumblerings.org>
+To:	git@vger.kernel.org
+Subject: git/cogito suggestion: tags with descriptions
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050905184551.GA14720@tumblerings.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:8100
+
+Hi folks,
+
+I've been using git on my new projects, and loving it!
+
+When I use tags, I typically will use a name like "0.3_basic_description"
+and "0.4_full_outline", because I want to know not only what version number I'm
+considering, but also the reason why I chose to tag that particular version.
+
+The problem is that when I want to seek to a particular version to see where my
+head was at, I have to do all that typing, or cut and paste the full text of the
+tag, which is not terribly annoying, but it seems unnecessary. The version
+number is the unique ID I'm really interested in, and the descriptive part of
+the name is just extra, so I know what I'm talking about.
+
+It would be great if tags also allowed a brief description to go along with
+them, that would show up in cg-tag-ls. Then I could seek to a tag that's just
+an easy-to-type version number, and still have an idea of what's significant
+about that version because of the descriptive text.
+
+Be well,
+Zack
+
+-- 
+Zack Brown
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

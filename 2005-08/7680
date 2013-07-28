@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 23 18:24:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1E5CC1E7BBA
+	for <tkil@scrye.com>; Tue, 23 Aug 2005 18:24:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932506AbVHXAWv (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 23 Aug 2005 20:22:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932475AbVHXAWu
+	(ORCPT <rfc822;git-outgoing>); Tue, 23 Aug 2005 20:22:50 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:974 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S932506AbVHXAWu (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 23 Aug 2005 20:22:50 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050824002248.WWMX15197.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 23 Aug 2005 20:22:48 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Yasushi SHOJI <yashi@atmark-techno.com>
+Cc:	Sam Ravnborg <sam@ravnborg.org>, git@vger.kernel.org,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [PATCH] Introduce "reset type" flag to "git reset"
+References: <7vu0hhzcj1.fsf@assigned-by-dhcp.cox.net>
+	<20050823202637.GA8061@mars.ravnborg.org>
+	<7vacj8nw5v.fsf@assigned-by-dhcp.cox.net>
+	<87y86s2nvi.wl@mail2.atmark-techno.com>
+Date:	Tue, 23 Aug 2005 17:22:47 -0700
+In-Reply-To: <87y86s2nvi.wl@mail2.atmark-techno.com> (Yasushi SHOJI's message
+	of "Wed, 24 Aug 2005 09:13:21 +0900")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpss4mbe0.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:7680
+
+Yasushi SHOJI <yashi@atmark-techno.com> writes:
+
+> for --hard option, what you want to do is to completely revert the
+> current state of your index file and work tree to known point.
+>
+> for that, how about git-revert-script?
+
+"git revert" is to create a commit that reverts a previous
+commit, which I think is quite different from what we have been
+discussing so far.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

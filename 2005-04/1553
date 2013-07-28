@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 20:01:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0FCE26FB5
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 20:01:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262426AbVDYCBk (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 22:01:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262433AbVDYCBk
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 22:01:40 -0400
+Received: from rproxy.gmail.com ([64.233.170.192]:42091 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262426AbVDYCBi convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 24 Apr 2005 22:01:38 -0400
+Received: by rproxy.gmail.com with SMTP id a41so834232rng
+        for <git@vger.kernel.org>; Sun, 24 Apr 2005 19:01:38 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=sTG8BFNAVMdydBp1XGpepIXqXC9E0CToXcUpNqrJdcF6D8YEno/b5CIB3CUAKS4cP/0whQtmzxDVYrZQIlf4dW2vsbyfMaeCQ9CfA8KBljj2i8aha84PwluYRFCV0xCLXoQtcguHFwdQW/OB5x++HXb2o+E6FNoXwrzQdiUZE8s=
+Received: by 10.38.86.49 with SMTP id j49mr3451888rnb;
+        Sun, 24 Apr 2005 19:01:38 -0700 (PDT)
+Received: by 10.38.76.77 with HTTP; Sun, 24 Apr 2005 19:01:38 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <118833cc05042419012f425f0d@mail.gmail.com>
+Date:	Sun, 24 Apr 2005 22:01:38 -0400
+From: Morten Welinder <mwelinder@gmail.com>
+Reply-To: Morten Welinder <mwelinder@gmail.com>
+To: GIT Mailing List <git@vger.kernel.org>,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: unpack_sha1_file issues
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.2
+Lines: 18
+Xref: brand.scrye.com linux.git:1553
+
+unpack_sha1_file is being called by fsck-cache.  Therefore it should
+not assume that
+a \0 occurs within the first 8192 bytes of the uncompressed data. 
+However, currently
+both the sscanf and strlen calls do just that.
+
+Also, unpack_sha1_file should call inflateEnd in a couple of the error cases.
+
+Finally, if *size==0, shouldn't unpack_sha1_file allocate a single
+byte to prevent
+malloc from returning NULL?
+
+Morten
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

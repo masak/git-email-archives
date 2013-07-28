@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 15 15:18:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1DC6E2851FA
+	for <tkil@scrye.com>; Sat, 15 Oct 2005 15:18:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751181AbVJOVSY (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 15 Oct 2005 17:18:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751222AbVJOVSY
+	(ORCPT <rfc822;git-outgoing>); Sat, 15 Oct 2005 17:18:24 -0400
+Received: from devrace.com ([198.63.210.113]:64521 "EHLO devrace.com")
+	by vger.kernel.org with ESMTP id S1751181AbVJOVSX (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 15 Oct 2005 17:18:23 -0400
+Received: from tigra.home (p54A0EFC1.dip.t-dialin.net [84.160.239.193])
+	(authenticated bits=0)
+	by devrace.com (8.12.11/8.12.11) with ESMTP id j9FLIArd099068;
+	Sat, 15 Oct 2005 16:18:11 -0500 (CDT)
+	(envelope-from fork0@users.sourceforge.net)
+Received: from steel.home ([192.168.1.2])
+	by tigra.home with esmtp (Exim 3.36 #1 (Debian))
+	id 1EQtPs-00018F-00; Sat, 15 Oct 2005 23:18:08 +0200
+Received: from raa by steel.home with local (Exim 4.42 #1 (Debian))
+	id 1EQtPs-00021k-AB; Sat, 15 Oct 2005 23:18:08 +0200
+Date:	Sat, 15 Oct 2005 23:18:08 +0200
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	git@vger.kernel.org
+Subject: Re: cygwin: t3200-branch.sh fails with "List form of pipe open not implemented at -e line 22."
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051015211808.GA3497@steel.home>
+Reply-To: Alex Riesen <raa.lkml@gmail.com>
+References: <81b0412b0510140546ya10bc8fg3dd5eaab429eba6f@mail.gmail.com> <434FF189.3080806@zytor.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <434FF189.3080806@zytor.com>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:10136
+
+H. Peter Anvin, Fri, Oct 14, 2005 19:57:29 +0200:
+> >Now, how broken is that:
+> >
+> >The message comes from one of the hooks, which are executed even
+> >though they never meant to, because cygwin apparently uses file
+> >content or name to detect executability (on FAT).
+> >
+> >I just remove the hooks from repositories atm.
+> 
+> I think the bottom line is "don't use FAT".
+> 
+
+I'm afraid I have to. NTFS isn't much better (newly created files
+still have no correct attribute) and is slower (sometimes much
+slower). Not that I have a choice, anyway: it's a typical corporate
+workstation locked as down as possible.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

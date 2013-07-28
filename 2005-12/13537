@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 16:32:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A6E772F726
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 16:32:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932234AbVLLXcm (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 18:32:42 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932236AbVLLXcm
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 18:32:42 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:15558 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932234AbVLLXcl (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Dec 2005 18:32:41 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBCNVmDZ007786
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 12 Dec 2005 15:31:51 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBCNVgQO022990;
+	Mon, 12 Dec 2005 15:31:45 -0800
+Date:	Mon, 12 Dec 2005 15:31:42 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Nicolas Pitre <nico@cam.org>, git@vger.kernel.org
+Subject: Re: Delitifier broken (Re: diff-core segfault)
+In-Reply-To: <7vek4igevq.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512121529200.15597@g5.osdl.org>
+References: <1134404990.5928.4.camel@localhost.localdomain>
+ <7vmzj6i206.fsf@assigned-by-dhcp.cox.net> <7virtui1kj.fsf_-_@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0512121620380.26663@localhost.localdomain>
+ <7vek4igevq.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:13537
+
+
+
+On Mon, 12 Dec 2005, Junio C Hamano wrote:
+> Nicolas Pitre <nico@cam.org> writes:
+> >
+> > I would say involving an empty blob with deltas _is_ the bug in the 
+> > first place.  Please don't let that happen.
+
+I agree with Nicolas.
+
+> Not all use of delta is to produce a pack.  An empty->empty
+> delta is a valid two byte \0\0 sequence, and I do not see any
+> reason to forbid it.  Although using such delta to represent
+> anything in a pack does *not* make any sense as you say, it
+> makes other callers simpler if they do not have to check if
+> from_len and to_len are empty before calling the delta code.
+
+And you don't need to.
+
+Do what pack-objects.c does: just call "diff_delta()" and check the result 
+for NULL. If the result is NULL, then you have to do some special code, 
+because that means that it's a full create or a full delete (or it's an 
+unchanged empty file). Regardless, it really _is_ a special case, and it 
+would be silly to generate a delta for it.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

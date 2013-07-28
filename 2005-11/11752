@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 13 19:01:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 38D172851FA
+	for <tkil@scrye.com>; Sun, 13 Nov 2005 19:01:39 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750758AbVKNCBh (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 13 Nov 2005 21:01:37 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750830AbVKNCBh
+	(ORCPT <rfc822;git-outgoing>); Sun, 13 Nov 2005 21:01:37 -0500
+Received: from hand.yhbt.net ([66.150.188.102]:47513 "EHLO mail.yhbt.net")
+	by vger.kernel.org with ESMTP id S1750758AbVKNCBg (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 13 Nov 2005 21:01:36 -0500
+Received: by mail.yhbt.net (Postfix, from userid 500)
+	id EDCFD2DC03B; Sun, 13 Nov 2005 18:01:34 -0800 (PST)
+Date:	Sun, 13 Nov 2005 18:01:34 -0800
+From:	Eric Wong <normalperson@yhbt.net>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+Cc:	git list <git@vger.kernel.org>
+Subject: Re: [PATCH 5/5] -D <depth> option to recurse into merged branches
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051114020134.GC10998@mail.yhbt.net>
+References: <20051112092336.GA16218@Muzzle> <20051112092533.GB16218@Muzzle> <20051112092721.GC16218@Muzzle> <20051112092920.GD16218@Muzzle> <20051112093045.GE16218@Muzzle> <20051112093208.GF16218@Muzzle>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051112093208.GF16218@Muzzle>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:11752
+
+One small fix on top of this one:
+
+Don't check for parents if the only revision we have is a base-0
+and @psets is empty.
+
+Signed-off-by: Eric Wong <normalperson@yhbt.net>
+
+---
+
+ git-archimport.perl |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+applies-to: 8a7e18ff0884cae74a1127d5c96577a85acca3f4
+5f2896558284724bcc87eb64daa0933b544ec20d
+diff --git a/git-archimport.perl b/git-archimport.perl
+index a0ea016..b624ba6 100755
+--- a/git-archimport.perl
++++ b/git-archimport.perl
+@@ -186,7 +186,7 @@ sub do_abrowse {
+ 
+         if (%ps && !exists $psets{ $ps{id} }) {
+             my %temp = %ps;         # break references
+-            if ($psets[$#psets]{branch} eq $ps{branch}) {
++            if (@psets && $psets[$#psets]{branch} eq $ps{branch}) {
+                 $temp{parent_id} = $psets[$#psets]{id};
+             }
+             push (@psets, \%temp);  
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

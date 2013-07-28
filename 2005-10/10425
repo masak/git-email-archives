@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 21 07:50:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4F90026F5EA
+	for <tkil@scrye.com>; Fri, 21 Oct 2005 07:50:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964951AbVJUNt3 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 21 Oct 2005 09:49:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964952AbVJUNt3
+	(ORCPT <rfc822;git-outgoing>); Fri, 21 Oct 2005 09:49:29 -0400
+Received: from blue.stonehenge.com ([209.223.236.162]:19858 "EHLO
+	blue.stonehenge.com") by vger.kernel.org with ESMTP id S964951AbVJUNt2
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 21 Oct 2005 09:49:28 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by blue.stonehenge.com (Postfix) with ESMTP id 352978F5E3;
+	Fri, 21 Oct 2005 06:49:49 -0700 (PDT)
+Received: from blue.stonehenge.com ([127.0.0.1])
+ by localhost (blue.stonehenge.com [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 12414-02-9; Fri, 21 Oct 2005 06:49:48 -0700 (PDT)
+Received: by blue.stonehenge.com (Postfix, from userid 1001)
+	id C6B628FAD8; Fri, 21 Oct 2005 06:49:48 -0700 (PDT)
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Junio C Hamano <junkio@twinsun.com>, git@vger.kernel.org
+Subject: Re: rsync update appears broken now
+References: <86vezs9wy9.fsf@blue.stonehenge.com>
+	<81b0412b0510200608l61c00ed0yd4dbc00c313665fe@mail.gmail.com>
+	<Pine.LNX.4.64.0510201038320.3369@g5.osdl.org>
+	<loom.20051020T220751-355@post.gmane.org>
+	<Pine.LNX.4.64.0510201432260.10477@g5.osdl.org>
+	<7vek6f220h.fsf@arte.twinsun.com>
+	<Pine.LNX.4.64.0510201645450.10477@g5.osdl.org>
+	<loom.20051021T022509-63@post.gmane.org>
+	<Pine.LNX.4.64.0510201752050.10477@g5.osdl.org>
+x-mayan-date: Long count = 12.19.12.13.2; tzolkin = 12 Ik; haab = 0 Zac
+From:	merlyn@stonehenge.com (Randal L. Schwartz)
+Date:	21 Oct 2005 06:49:48 -0700
+In-Reply-To: <Pine.LNX.4.64.0510201752050.10477@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <861x2fdloj.fsf@blue.stonehenge.com>
+Lines:	23
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:10425
+
+>>>>> "Linus" == Linus Torvalds <torvalds@osdl.org> writes:
+
+Linus> On Fri, 21 Oct 2005, Junio C Hamano wrote:
+>> 
+>> I am reasonably sure that the screw-up was only rewinding one commit too much.
+>> I've done the merge so things should look better once mirrors catch up.
+
+Linus> Yup, works at least for me. Thx,
+
+Doesn't yet work for me.  What do I need to do now?
+
+    * committish: 4ae22d96fe9248dac4f26b1fc91154ba5e879799
+      branch 'master' of rsync://rsync.kernel.org/pub/scm/git/git
+    * refs/heads/origin: same as branch 'master' of rsync://rsync.kernel.org/pub/scm/git/git
+    Updating from ea5a65a59916503d2a14369c46b1023384d51645 to 4ae22d96fe9248dac4f26b1fc91154ba5e879799.
+    fetch-pack.c: needs update
+    fatal: Entry 'daemon.c' would be overwritten by merge. Cannot merge.
+
+-- 
+Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+<merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

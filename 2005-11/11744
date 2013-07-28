@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 13 16:01:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6BB942A0015
+	for <tkil@scrye.com>; Sun, 13 Nov 2005 16:01:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750791AbVKMXBv (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 13 Nov 2005 18:01:51 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750792AbVKMXBv
+	(ORCPT <rfc822;git-outgoing>); Sun, 13 Nov 2005 18:01:51 -0500
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:17033 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S1750791AbVKMXBv (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 13 Nov 2005 18:01:51 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051113230054.EUND26964.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 13 Nov 2005 18:00:54 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Adrien Beau <adrienbeau@gmail.com>
+Subject: Re: Git 0.99.9h
+References: <94fc236b0511131231u69f570c7ta083485694aa3a4@mail.gmail.com>
+cc:	git@vger.kernel.org
+Date:	Sun, 13 Nov 2005 15:01:49 -0800
+In-Reply-To: <94fc236b0511131231u69f570c7ta083485694aa3a4@mail.gmail.com>
+	(Adrien Beau's message of "Sun, 13 Nov 2005 21:31:59 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vu0eg884i.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 14
+Xref: brand.scrye.com linux.git:11744
+
+Adrien Beau <adrienbeau@gmail.com> writes:
+
+> Is there a reason you did not release Git 0.99.9h? No package of any
+> sort is available, and no announcement has been sent, as far as I
+> know.
+
+Sorry, just an interruption immediately before doing the final
+moving of built packages into public space distracted me.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

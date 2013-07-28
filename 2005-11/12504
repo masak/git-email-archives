@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 18:57:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C736631DF25
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 18:57:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964856AbVKVBxq (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 20:53:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964857AbVKVBxq
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 20:53:46 -0500
+Received: from web31809.mail.mud.yahoo.com ([68.142.207.72]:2203 "HELO
+	web31809.mail.mud.yahoo.com") by vger.kernel.org with SMTP
+	id S964856AbVKVBxp (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 20:53:45 -0500
+Received: (qmail 63370 invoked by uid 60001); 22 Nov 2005 01:53:44 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Message-ID:Received:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=qNecVWmEUCPSfa21+Fy3meBJd7xbxDQ2dMn1bNFL+nH+2LrfM+wXcUIH209GOnaGzL5Uf8cp49xQPm1Px1hNJIYQ4fVS325HE+KWG+nvPn/iia1tI28yp/0F1VUc7qyBceDPYhaUdXIehaQdDeCxZGXotA0yqK0ev+6LBjJXbN8=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051122015344.63368.qmail@web31809.mail.mud.yahoo.com>
+Received: from [68.221.112.229] by web31809.mail.mud.yahoo.com via HTTP; Mon, 21 Nov 2005 17:53:44 PST
+Date:	Mon, 21 Nov 2005 17:53:44 -0800 (PST)
+From:	Luben Tuikov <ltuikov@yahoo.com>
+Reply-To: ltuikov@yahoo.com
+Subject: Re: [RFC] git-format-patch options
+To:	Ryan Anderson <ryan@michonline.com>
+Cc:	Andreas Ericsson <ae@op5.se>, git@vger.kernel.org
+In-Reply-To: <43821BE7.5000306@michonline.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 14
+Xref: brand.scrye.com linux.git:12504
+
+--- Ryan Anderson <ryan@michonline.com> wrote:
+
+> Doesn't git-format-patch $commit^1..$commit do what you want?
+> 
+
+Yes, this is the one.  Thanks!
+
+    Luben
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

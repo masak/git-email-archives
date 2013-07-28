@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec  3 20:55:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2CEAF9FBB3
+	for <tkil@scrye.com>; Sat,  3 Dec 2005 20:55:00 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751307AbVLDDyq (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 3 Dec 2005 22:54:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751309AbVLDDyp
+	(ORCPT <rfc822;git-outgoing>); Sat, 3 Dec 2005 22:54:45 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:27919 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S1751307AbVLDDyp convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 3 Dec 2005 22:54:45 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jB43qRQg023927;
+	Sun, 4 Dec 2005 03:54:15 GMT
+Mime-Version: 1.0 (Apple Message framework v734)
+Content-Type: text/plain; charset=UTF-8; delsp=yes; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <6CC092B0-101F-4D98-9761-B4E24A7CA35A@hawaga.org.uk>
+Content-Transfer-Encoding: 8BIT
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: gitk - ewww
+Date:	Sun, 4 Dec 2005 12:27:06 +1100
+To:	Git Mailing List <git@vger.kernel.org>
+X-Mailer: Apple Mail (2.734)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:13164
+
+Here's a screen shot that surprised me with a really high 'ewwww'  
+factor when I fired up gitk this morning on my local git repo, given  
+that it looks pretty the rest of the time.
+
+This repo tracking git master with just one extra commit that I've  
+added and rebase off origin repeatedly.
+
+The area around where the 'master' green tag is displayed  
+(specifically the two lines below it) are surprisingly poor.
+
+I'm not going to learn tcl/tk and how gitk works to investigate,  
+though, but maybe someone else cares enough and/or can see a trivial  
+fix...
+
+Screen shot is at:
+http://www/hawaga.org.uk/ben/tech/gitk-eww-1.png
+
+If trying to recreate, e011472b550b27a4644403c6fa99543ee9004a63 is  
+only on my local machine, but I can supply a copy of my tree too.
+
+
+$ cg status
+Heads:
+    >master      e011472b550b27a4644403c6fa99543ee9004a63
+   R origin      56b5e946f2ba4fd57bbe14f9e3ec2e0ae314d5e6
+
+
+-- 
+Ben • ベン • Бэн • 벤 • 班明
+http://www.hawaga.org.uk/ben/
+My email is high latency but best way to contact me. Alternatively,  
+SMS number(s) at above URL.
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

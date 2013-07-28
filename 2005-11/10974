@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  1 17:37:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 40057B2FCC
+	for <tkil@scrye.com>; Tue,  1 Nov 2005 17:37:59 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751484AbVKBAgp (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 1 Nov 2005 19:36:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751485AbVKBAgp
+	(ORCPT <rfc822;git-outgoing>); Tue, 1 Nov 2005 19:36:45 -0500
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:9202 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S1751484AbVKBAgo (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 1 Nov 2005 19:36:44 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051102003624.YJDQ1668.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 1 Nov 2005 19:36:24 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: HTTP pushes
+References: <20051101020248.GA3928@reactrix.com>
+	<Pine.LNX.4.63.0511012008310.11979@wbgn013.biozentrum.uni-wuerzburg.de>
+cc:	git@vger.kernel.org
+Date:	Tue, 01 Nov 2005 16:36:42 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x1z51id.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:10974
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> On Mon, 31 Oct 2005, Nick Hengeveld wrote:
+>
+>> HTTP is currently listed as a read-only/unsupported method for doing
+>> pushes, is that due to inherent problems with HTTP or just because
+>> it hasn't been written yet?
+>> 
+>> I've built a working prototype of an HTTP push implementation using DAV.
+
+I had an impression that DAV has its own notion of version
+control, so using git as a backend on the server side might be
+an interesting exercise.
+
+> I think this is useful. There are restrictive firewalls out there, which 
+> only allow ports 80 and 443 to be connected to. Your work would fit in 
+> right there.
+
+Another solution for this would be to allow connect.c to use a
+HTTP connect passthru proxy. CVS does this with an ugly but easy
+to understand notation:
+
+    ':pserver;proxy=firewall;proxyport=3128:user@host:/path/to/repo
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

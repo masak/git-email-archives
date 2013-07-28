@@ -1,0 +1,54 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 23 16:20:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D15B611528B
+	for <tkil@scrye.com>; Fri, 23 Sep 2005 16:20:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751323AbVIWWUc (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Sep 2005 18:20:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751324AbVIWWUc
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Sep 2005 18:20:32 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:58304 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1751323AbVIWWUb
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 23 Sep 2005 18:20:31 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j8NMKDQR007898
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 23 Sep 2005 15:20:14 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43347F98.6020101@zytor.com>
+Date:	Fri, 23 Sep 2005 15:20:08 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+CC:	Petr Baudis <pasky@ucw.cz>
+Subject: How to make Cogito use git-fetch-pack?
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 9
+Xref: brand.scrye.com linux.git:9200
+
+Is there any way to make Cogito use git-fetch-pack instead of 
+git-ssh-fetch?  git+ssh:// seems to invoke the latter.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

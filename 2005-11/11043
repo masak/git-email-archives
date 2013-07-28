@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  2 14:55:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 42C0D143171
+	for <tkil@scrye.com>; Wed,  2 Nov 2005 14:55:12 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965291AbVKBVw0 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 2 Nov 2005 16:52:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965281AbVKBVwZ
+	(ORCPT <rfc822;git-outgoing>); Wed, 2 Nov 2005 16:52:25 -0500
+Received: from [195.140.142.33] ([195.140.142.33]:46545 "EHLO
+	c1-033.cyaris.net") by vger.kernel.org with ESMTP id S965287AbVKBVwW
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 2 Nov 2005 16:52:22 -0500
+Received: from localhost ([127.0.33.1] helo=localhost.localdomain)
+	by c1-033.cyaris.net with esmtps (TLS-1.0:RSA_AES_256_CBC_SHA:32)
+	(Exim 4.50)
+	id 1EXQWb-0003ch-Kp; Wed, 02 Nov 2005 22:52:11 +0100
+Received: from yaslama by localhost.localdomain with local (Exim 4.54)
+	id 1EXQWU-00050S-09; Wed, 02 Nov 2005 23:51:58 +0200
+Subject: [PATCH 7/7] Now that the leak is gone, there is by default no limit of revisions to
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EXQWU-00050S-09@localhost.localdomain>
+From:	Yaacov Akiba Slama <ya@slamail.org>
+Date:	Wed, 02 Nov 2005 23:51:58 +0200
+To:	unlisted-recipients:; (no To-header on input)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 54
+Xref: brand.scrye.com linux.git:11043
+
+import.
+No more message about leak when the limit (given by the -l parameter)
+is reached.
+
+Signed-off-by: Yaacov Akiba Slama <ya@slamail.org>
+
+---
+
+ git-svnimport.perl |   12 ++++++------
+ 1 files changed, 6 insertions(+), 6 deletions(-)
+
+applies-to: 339bb970b075dfbbd321dcd817591cb739a29584
+7410494b72db4c48a27d707a18168076e1b5a3dc
+diff --git a/git-svnimport.perl b/git-svnimport.perl
+index e97f470..ab690f3 100755
+--- a/git-svnimport.perl
++++ b/git-svnimport.perl
+@@ -53,7 +53,6 @@ my $branch_name = $opt_b || "branches";
+ 
+ $opt_o ||= "origin";
+ $opt_s ||= 1;
+-$opt_l = 100 unless defined $opt_l;
+ my $git_tree = $opt_C;
+ $git_tree ||= ".";
+ 
+@@ -727,15 +726,16 @@ sub commit_all {
+ }
+ 
+ while(++$current_rev <= $svn->{'maxrev'}) {
++	if (defined $opt_l) {
++		$opt_l--;
++		if ($opt_l < 0) {
++			last;
++		}
++	}
+ 	my $pool=SVN::Pool->new;
+ 	$svn->{'svn'}->get_log("/",$current_rev,$current_rev,1,1,1,\&_commit_all,$pool);
+ 	$pool->clear;
+ 	commit_all();
+-	if($opt_l and not --$opt_l) {
+-		print STDERR "Stopping, because there is a memory leak (in the SVN library).\n";
+-		print STDERR "Please repeat this command; it will continue safely\n";
+-		last;
+-	}
+ }
+ 
+ 
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

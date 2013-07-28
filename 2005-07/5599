@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul  3 20:50:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CA8EE2176D8
+	for <tkil@scrye.com>; Sun,  3 Jul 2005 20:50:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261335AbVGDCuP (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 3 Jul 2005 22:50:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261356AbVGDCuP
+	(ORCPT <rfc822;git-outgoing>); Sun, 3 Jul 2005 22:50:15 -0400
+Received: from h-64-105-159-118.phlapafg.covad.net ([64.105.159.118]:18402
+	"HELO roinet.com") by vger.kernel.org with SMTP id S261335AbVGDCuB
+	(ORCPT <rfc822;git@vger.kernel.org>); Sun, 3 Jul 2005 22:50:01 -0400
+Received: (qmail 4741 invoked from network); 4 Jul 2005 02:50:00 -0000
+Received: from mtproxy.roinet.com (HELO dv) (192.168.1.1)
+  by roinet.com with SMTP; 4 Jul 2005 02:50:00 -0000
+Subject: [PATCH] Warning in apply.c
+From: Pavel Roskin <proski@gnu.org>
+To: git <git@vger.kernel.org>
+Content-Type: text/plain
+Date:	Sun, 03 Jul 2005 22:50:00 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1120445400.1265.23.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-8) 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 35
+Xref: brand.scrye.com linux.git:5599
+
+Hello!
+
+gcc 4.0.0 reports one warning while compiling git on x86_64:
+
+gcc -g -O2 -Wall '-DSHA1_HEADER=<openssl/sha.h>' -o git-apply apply.c libgit.a -lz -lcrypto
+apply.c: In function 'show_rename_copy':
+apply.c:1147: warning: field precision should have type 'int', but argument 3 has type 'long int'
+
+The fix is to cast pointer difference to int.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/apply.c b/apply.c
+--- a/apply.c
++++ b/apply.c
+@@ -1143,7 +1143,7 @@ static void show_rename_copy(struct patc
+ 	 */
+ 	if (old != p->old_name)
+ 		printf(" %s %.*s{%s => %s} (%d%%)\n", renamecopy,
+-		       old - p->old_name, p->old_name,
++		       (int)(old - p->old_name), p->old_name,
+ 		       old, new, p->score);
+ 	else
+ 		printf(" %s %s => %s (%d%%)\n", renamecopy,
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

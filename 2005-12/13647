@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 16:35:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B88EA320390
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 16:35:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965066AbVLNXet (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 18:34:49 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965086AbVLNXet
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 18:34:49 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:54926 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S965066AbVLNXes (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 14 Dec 2005 18:34:48 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A162313FC43; Thu, 15 Dec 2005 00:34:45 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8A4AA9DDE1; Thu, 15 Dec 2005 00:34:45 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 78FAF9DDDC; Thu, 15 Dec 2005 00:34:45 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 15E8813FC43; Thu, 15 Dec 2005 00:34:45 +0100 (CET)
+Date:	Thu, 15 Dec 2005 00:34:45 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	"Brown, Len" <len.brown@intel.com>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: RE: new file leaked onto release branch
+In-Reply-To: <F7DC2337C7631D4386A2DF6E8FB22B30056B8748@hdsmsx401.amr.corp.intel.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512150034120.8992@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <F7DC2337C7631D4386A2DF6E8FB22B30056B8748@hdsmsx401.amr.corp.intel.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:13647
+
+Hi,
+
+On Wed, 14 Dec 2005, Brown, Len wrote:
+
+> >BTW, are 5165, 3410, 5452, 5571... topic branch names?
+> 
+> yes, the are bugzilla ids
+
+So, it could have been
+
+	git pull . 5165
+
+which mistakes 5165 for a short SHA1?
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

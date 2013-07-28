@@ -1,0 +1,136 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 01:18:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D60DD235B5C
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 01:18:34 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261898AbVD1HQn (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 03:16:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261837AbVD1HP2
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 03:15:28 -0400
+Received: from smtpauth07.mail.atl.earthlink.net ([209.86.89.67]:3768 "EHLO
+	smtpauth07.mail.atl.earthlink.net") by vger.kernel.org with ESMTP
+	id S261862AbVD1HOT (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 28 Apr 2005 03:14:19 -0400
+Received: from [68.164.169.208] (helo=[172.16.1.11])
+	by smtpauth07.mail.atl.earthlink.net with asmtp (TLSv1:RC4-MD5:128)
+	(Exim 4.34)
+	id 1DR3Dy-0008UH-R8; Thu, 28 Apr 2005 03:14:15 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42708D45.8070303@mindspring.com>
+Date:	Thu, 28 Apr 2005 00:14:13 -0700
+From: Philip Pokorny <ppokorny@mindspring.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20041217
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: Re: PATCH[1/4]: Allow tree-id to return the ID of a tree object
+References: <426FBBE7.1090806@mindspring.com> <20050427232223.GM22956@pasky.ji.cz>
+In-Reply-To: <20050427232223.GM22956@pasky.ji.cz>
+Content-Type: multipart/mixed;
+ boundary="------------020607080608090808030502"
+X-ELNK-Trace: 662518af21fc89ef9c7f779228e2f6aeda0071232e20db4d0466520703f220d61fb92f62fe49309c350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 68.164.169.208
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_MK 
+	autolearn=ham version=3.0.2
+Lines: 90
+Xref: brand.scrye.com linux.git:1985
+
+This is a multi-part message in MIME format.
+--------------020607080608090808030502
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Patch to re-introduce cg-Xnormid for common ID normalizing.
+
+Signed-off-by: Philip Pokorny <ppokorny@mindspring.com>
+
+
+
+--------------020607080608090808030502
+Content-Type: text/plain;
+ name="cogito-0.8-cg-Xnormid.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+ filename="cogito-0.8-cg-Xnormid.patch"
+
+Index: cg-Xnormid
+===================================================================
+--- /dev/null  (tree:6ad600e20c89323c1d3049f75b8ca9b0a2d72167)
++++ uncommitted/cg-Xnormid  (mode:100755 sha1:6dc089c8d571f330e2e01d96f79616d6146840ee)
+@@ -0,0 +1,47 @@
++#!/usr/bin/env bash
++#
++# Normalize an ID to an SHA1 hash value
++#    Strings resolve in order:
++#       NULL, this, HEAD  => .git/HEAD
++#       <tags>
++#       <heads>
++#       short SHA1 (4 or more hex digits)
++#
++# Copyright (c) Philip Pokorny, 2005
++
++id="$1"
++
++if [ ! "$id" ] || [ "$id" = "this" ] || [ "$id" = "HEAD" ]; then
++	read id < .git/HEAD
++
++elif [ -r ".git/refs/tags/$id" ]; then
++	read id < ".git/refs/tags/$id"
++
++elif [ -r ".git/refs/heads/$id" ]; then
++	read id < ".git/refs/heads/$id"
++
++# Short id's must be lower case and at least 4 digits.
++elif [[ "$id" == [0-9a-z][0-9a-z][0-9a-z][0-9a-z]* ]]; then
++	idpost=${id#??}
++	idpref=${id%$idpost}
++
++	# Assign array elements to matching names
++	idmatch=(.git/objects/$idpref/$idpost*)
++
++	if [ ${#idmatch[*]} -eq 1 ] && [ -r "$idmatch" ]; then
++		id=$idpref${idmatch#.git/objects/$idpref/}
++	elif [ ${#idmatch[*]} -gt 1 ]; then
++		echo "Ambiguous id: $id" >&2
++		exit 1
++	fi
++fi
++
++# FIXME? Should we verify the existance of the ID in the object cache?
++
++# If we don't have a 40-char ID by now, it's an error
++if [ ${#id} -ne 40 ]; then
++	echo "Invalid id: $id" >&2
++	exit 1
++fi
++
++echo $id
+Index: Makefile
+===================================================================
+--- 6ad600e20c89323c1d3049f75b8ca9b0a2d72167/Makefile  (mode:100644 sha1:d73bea1cbb9451a89b03d6066bf2ed7fec32fd31)
++++ uncommitted/Makefile  (mode:100664)
+@@ -44,7 +44,7 @@
+ 	cg-add cg-admin-lsobj cg-cancel cg-clone cg-commit cg-diff \
+ 	cg-export cg-help cg-init cg-log cg-ls cg-merge cg-mkpatch \
+ 	cg-patch cg-pull cg-branch-add cg-branch-ls cg-rm cg-seek cg-status \
+-	cg-tag cg-update cg-Xlib
++	cg-tag cg-update cg-Xlib cg-Xnormid
+ 
+ COMMON=	read-cache.o
+ 
+
+--------------020607080608090808030502--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

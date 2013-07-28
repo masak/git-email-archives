@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 24 16:09:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B60046DD5
+	for <tkil@scrye.com>; Tue, 24 May 2005 16:09:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262207AbVEXWJl (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 24 May 2005 18:09:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262208AbVEXWJl
+	(ORCPT <rfc822;git-outgoing>); Tue, 24 May 2005 18:09:41 -0400
+Received: from fire.osdl.org ([65.172.181.4]:38281 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262207AbVEXWJg (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 24 May 2005 18:09:36 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j4OM9SjA028009
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 24 May 2005 15:09:28 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j4OM9QAL020823;
+	Tue, 24 May 2005 15:09:27 -0700
+Date:	Tue, 24 May 2005 15:11:32 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+Cc: David Mansfield <david@cobite.com>,
+	"H. Peter Anvin" <hpa@zytor.com>, Kay Sievers <kay.sievers@vrfy.org>,
+	Petr Baudis <pasky@ucw.cz>, Git Mailing List <git@vger.kernel.org>
+Subject: Re: gitweb wishlist
+In-Reply-To: <20050524215238.GG25606@cip.informatik.uni-erlangen.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505241502160.2307@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0505240110580.2307@ppc970.osdl.org>
+ <20050524161745.GA9537@cip.informatik.uni-erlangen.de>
+ <Pine.LNX.4.58.0505240929051.2307@ppc970.osdl.org>
+ <Pine.LNX.4.58.0505240943080.2307@ppc970.osdl.org>
+ <Pine.LNX.4.58.0505241017510.2307@ppc970.osdl.org>
+ <20050524184612.GA23637@cip.informatik.uni-erlangen.de>
+ <Pine.LNX.4.58.0505241236020.2307@ppc970.osdl.org>
+ <Pine.LNX.4.58.0505241259250.2307@ppc970.osdl.org>
+ <20050524202846.GC25606@cip.informatik.uni-erlangen.de>
+ <Pine.LNX.4.58.0505241345280.2307@ppc970.osdl.org>
+ <20050524215238.GG25606@cip.informatik.uni-erlangen.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 33
+Xref: brand.scrye.com linux.git:3868
+
+
+
+On Tue, 24 May 2005, Thomas Glanzmann wrote:
+> 
+> I did one sampling and though it would be representative which it isn't.
+> What I don't understand why noone ever fixed this? cvs has its own rcs
+> implementation anyway to speed things up, hasn't it?
+
+CVS has so many warts, that people can't even be bothered to fix things
+like this. It's file-based, and that's that.
+
+Using "-z 1" with cvsps doesn't seem to work well for me, but "-z 5" seems
+ok, and together with the new git that allows .cvsignore, it doesn't
+generate any warnings, nor any unreachable blobs. It does generate 300 new
+changesets, and how many of those are required, I dunno. Clearly 102 of
+them were, to disambiguate those changelog things.
+
+Maybe "-z 10" would have generated a better thing with fewer changes yet
+still unique changesets without dup files.
+
+That's a bit irritating, that there's this magic tweakable that generates
+different trees. Oh, well.
+
+Anyway, what worries me more is that cvsps might have re-ordered other 
+changesets than just the first two. It probably doesn't _matter_, but 
+still...
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

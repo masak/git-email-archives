@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct  7 08:34:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D8B5B1672A8
+	for <tkil@scrye.com>; Fri,  7 Oct 2005 08:34:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030205AbVJGOdf (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 7 Oct 2005 10:33:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030211AbVJGOdf
+	(ORCPT <rfc822;git-outgoing>); Fri, 7 Oct 2005 10:33:35 -0400
+Received: from dsl092-000-086.sfo1.dsl.speakeasy.net ([66.92.0.86]:22406 "EHLO
+	tumblerings.org") by vger.kernel.org with ESMTP id S1030205AbVJGOde
+	(ORCPT <rfc822;git@vger.kernel.org>); Fri, 7 Oct 2005 10:33:34 -0400
+Received: from zbrown by tumblerings.org with local (Exim 4.52)
+	id 1ENtHy-000511-1b
+	for git@vger.kernel.org; Fri, 07 Oct 2005 07:33:34 -0700
+Date:	Fri, 7 Oct 2005 07:33:33 -0700
+From:	Zack Brown <zbrown@tumblerings.org>
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: cg-mv
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051007143333.GA18843@tumblerings.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:9792
+
+Hi,
+
+IIRC, file renaming is something we only care about at read time, we don't
+actually need to track it while making the change, because git allows us to
+track data from file to file without having to tell it that the data is moving.
+
+So, just to keep certain people happy, why not have the cg-mv command defined to
+something like this:
+
+#!/bin/bash
+cp $1 $2
+cg-rm $1
+cg-add $2
+
+
+Be well,
+Zack
+
+-- 
+Zack Brown
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

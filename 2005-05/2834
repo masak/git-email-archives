@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  8 22:15:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 31EDDEF4CD
+	for <tkil@scrye.com>; Sun,  8 May 2005 22:15:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263040AbVEIEPJ (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 9 May 2005 00:15:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263042AbVEIEPJ
+	(ORCPT <rfc822;git-outgoing>); Mon, 9 May 2005 00:15:09 -0400
+Received: from gate.ebshome.net ([64.81.67.12]:31192 "EHLO gate.ebshome.net")
+	by vger.kernel.org with ESMTP id S263040AbVEIEPA (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 9 May 2005 00:15:00 -0400
+Received: (qmail 13541 invoked by uid 1000); 8 May 2005 21:14:59 -0700
+Date:	Sun, 8 May 2005 21:14:59 -0700
+From: Eugene Surovegin <ebs@ebshome.net>
+To: git@vger.kernel.org
+Subject: [RFC] allow file list editing during cg-commit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050509041459.GA13475@gate.ebshome.net>
+Mail-Followup-To: git@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-ICQ-UIN: 1193073
+X-Operating-System: Linux i686
+X-PGP-Key: http://www.ebshome.net/pubkey.asc
+User-Agent: Mutt/1.5.5.1i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 52
+Xref: brand.scrye.com linux.git:2834
+
+Hi!
+
+I just started playing with cogito and failed to find _easy_ way to
+select which files will be committed and which won't. cg-commit seems
+to support specifying file list in command line, but this isn't very
+convenient when the list is big.
+
+I tend to have many modified files in my repo, but commit them in
+several different changeset.
+
+I just made simple change to cg-commit which allows  editing file
+list while editing log message; for example, if I have 30 files  ready
+for commit, but want to commit only 29, I just remove this file
+from "CG:" list.
+
+Patch which demonstrates the idea follows. Please note, this is
+just a quick hack, and I probably missed some cg-commit cases, when
+such behavior is undesirable; also, I cheated a little to make
+grepping easy :).
+
+Signed-off-by: Eugene Surovegin <ebs@ebshome.net>
+
+Index: cg-commit
+===================================================================
+--- 3974261da777f55a7a11aff6e02f584bbfe2b475/cg-commit  (mode:100755)
++++ uncommitted/cg-commit  (mode:100755)
+@@ -116,7 +116,7 @@
+ 	for file in "${commitfiles[@]}"; do
+ 		# TODO: Prepend a letter describing whether it's addition,
+ 		# removal or update. Or call git status on those files.
+-		echo "CG:    $file" >>$LOGMSG
++		echo "CG:F    $file" >>$LOGMSG
+ 		[ "$msgs" ] && ! [ "$forceeditor" ] && echo $file
+ 	done
+ fi
+@@ -131,6 +131,11 @@
+ 		rm $LOGMSG $LOGMSG2
+ 		die 'Commit message not modified, commit aborted'
+ 	fi
++	eval commitfiles=($(grep ^CG:F $LOGMSG2 | sed 's/^CG:F//'))
++	if [ ! "${commitfiles[*]}" ]; then
++		rm $LOGMSG $LOGMSG2
++		die 'Nothing to commit'
++	fi
+ else
+ 	cat >>$LOGMSG2
+ fi
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

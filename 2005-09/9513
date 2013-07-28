@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 29 16:29:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A31FD1BE37E
+	for <tkil@scrye.com>; Thu, 29 Sep 2005 16:29:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751344AbVI2W3E (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 29 Sep 2005 18:29:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751334AbVI2W3E
+	(ORCPT <rfc822;git-outgoing>); Thu, 29 Sep 2005 18:29:04 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:898 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750776AbVI2W3C (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 29 Sep 2005 18:29:02 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8TMPa4s031857
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 29 Sep 2005 15:25:36 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8TMPY0B008458;
+	Thu, 29 Sep 2005 15:25:35 -0700
+Date:	Thu, 29 Sep 2005 15:25:34 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Anton Altaparmakov <aia21@cam.ac.uk>
+cc:	Dave Jones <davej@redhat.com>, Jeff Garzik <jgarzik@pobox.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [howto] Kernel hacker's guide to git, updated
+In-Reply-To: <Pine.LNX.4.60.0509292309470.17860@hermes-1.csi.cam.ac.uk>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0509291521300.5362@g5.osdl.org>
+References: <433BC9E9.6050907@pobox.com> <20050929200252.GA31516@redhat.com>
+ <Pine.LNX.4.60.0509292106080.17860@hermes-1.csi.cam.ac.uk>
+ <20050929201127.GB31516@redhat.com> <Pine.LNX.4.64.0509291413060.5362@g5.osdl.org>
+ <Pine.LNX.4.64.0509291425560.5362@g5.osdl.org> <20050929213312.GD31516@redhat.com>
+ <Pine.LNX.4.64.0509291451540.5362@g5.osdl.org>
+ <Pine.LNX.4.60.0509292309470.17860@hermes-1.csi.cam.ac.uk>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.118 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:9513
+
+
+
+On Thu, 29 Sep 2005, Anton Altaparmakov wrote:
+> 
+> Why don't you enable "enable-alternate-editor-implicitly" and set 
+> editor = "your-editor-of-choice" in the pine config?  It is integrated in 
+> a quite seamless way.
+
+You think so? I don't find it that way.
+
+With an alternate editor you have to edit the headers separately, and 
+things like postponing a message suddenly turns into a big deal, not just 
+a trivial ^O. In fact, almost everything gets more involved.
+
+And pico _is_ pretty close to uemacs.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

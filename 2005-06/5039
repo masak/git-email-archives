@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun 19 20:31:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 696891F7483
+	for <tkil@scrye.com>; Sun, 19 Jun 2005 20:31:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261403AbVFTCbX (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 19 Jun 2005 22:31:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261409AbVFTCbX
+	(ORCPT <rfc822;git-outgoing>); Sun, 19 Jun 2005 22:31:23 -0400
+Received: from 203-166-247-224.dyn.iinet.net.au ([203.166.247.224]:47491 "HELO
+	blackcubes.dyndns.org") by vger.kernel.org with SMTP
+	id S261403AbVFTC3f (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 19 Jun 2005 22:29:35 -0400
+Received: (qmail 28609 invoked by uid 500); 20 Jun 2005 02:29:33 -0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050620022933.28599.qmail@blackcubes.dyndns.org>
+Date:	Mon, 20 Jun 2005 12:29:33 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+To: git@vger.kernel.org
+Cc: torvalds@osdl.org, jon.seymour@gmail.com, paulus@samba.org
+Subject: [PATCH 4/7] Relaxes error checking in epoch.c to allow duplicate parents
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 44
+Xref: brand.scrye.com linux.git:5039
+
+
+Given that real trees in the wild include parents with duplicate parents, I have relaxed
+over-zealous error checking in epoch.c and dealt with the problem a different way - duplicate
+parents are now silently ignored.
+
+Signed-off-by: Jon Seymour <jon.seymour@gmail.com>
+---
+
+ epoch.c |   16 ++++++----------
+ 1 files changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/epoch.c b/epoch.c
+--- a/epoch.c
++++ b/epoch.c
+@@ -224,17 +224,13 @@ static int find_base_for_list(struct com
+ 	for (; list; list = list->next) {
+ 		struct commit *item = list->item;
+ 
+-		if (item->object.util) {
+-			die("%s:%d:%s: logic error: this should not have happened - commit %s",
+-			    __FILE__, __LINE__, __FUNCTION__,
+-			    sha1_to_hex(item->object.sha1));
+-		}
+-
+-		new_mass_counter(list->item, get_one());
+-		add(&injected, &injected, get_one());
++		if (!item->object.util) {
++			new_mass_counter(list->item, get_one());
++			add(&injected, &injected, get_one());
+ 
+-		commit_list_insert(list->item, &cleaner);
+-		commit_list_insert(list->item, &pending);
++			commit_list_insert(list->item, &cleaner);
++			commit_list_insert(list->item, &pending);
++		}
+ 	}
+ 
+ 	while (!*boundary && pending && !ret) {
+------------
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

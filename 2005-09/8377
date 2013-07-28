@@ -1,0 +1,144 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 09:07:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7DDDE23D0D4
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 09:07:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751304AbVILO42 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 10:56:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751061AbVILO41
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 10:56:27 -0400
+Received: from citi.umich.edu ([141.211.133.111]:60064 "EHLO citi.umich.edu")
+	by vger.kernel.org with ESMTP id S1751302AbVILO4O (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 10:56:14 -0400
+Received: from dexter.citi.umich.edu (dexter.citi.umich.edu [141.211.133.33])
+	by citi.umich.edu (Postfix) with ESMTP id 142AB1BAF3
+	for <git@vger.kernel.org>; Mon, 12 Sep 2005 10:56:14 -0400 (EDT)
+From:	Chuck Lever <cel@netapp.com>
+Subject: [PATCH 14/22] move read_cache_unmerged into read-cache.c
+Date:	Mon, 12 Sep 2005 10:56:14 -0400
+To:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050912145613.28120.32935.stgit@dexter.citi.umich.edu>
+In-Reply-To: <20050912145543.28120.7086.stgit@dexter.citi.umich.edu>
+References: <20050912145543.28120.7086.stgit@dexter.citi.umich.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 108
+Xref: brand.scrye.com linux.git:8377
+
+Clean-up: put read_cache_unmerged() right next to read_cache().
+read_cache_unmerged() will likely need to be reconstructed if
+the active cache data type changes.
+
+Signed-off-by: Chuck Lever <cel@netapp.com>
+---
+
+ cache.h      |    1 +
+ read-cache.c |   31 +++++++++++++++++++++++++++++++
+ read-tree.c  |   28 ----------------------------
+ 3 files changed, 32 insertions(+), 28 deletions(-)
+
+diff --git a/cache.h b/cache.h
+--- a/cache.h
++++ b/cache.h
+@@ -157,6 +157,7 @@ extern char *prefix_path(const char *pre
+ 
+ /* Initialize and use the cache information */
+ extern int read_cache(void);
++extern int read_cache_unmerged(void);
+ extern int write_cache(int newfd);
+ extern int cache_name_pos(const char *name, int namelen);
+ #define ADD_CACHE_OK_TO_ADD 1		/* Ok to add */
+diff --git a/read-cache.c b/read-cache.c
+--- a/read-cache.c
++++ b/read-cache.c
+@@ -453,6 +453,37 @@ unmap:
+ 	return error("verify header failed");
+ }
+ 
++static int deleted = 0;
++static struct cache_cursor dst;
++
++static int read_one_unmerged(struct cache_cursor *cc, struct cache_entry *ce)
++{
++	if (ce_stage(ce)) {
++		deleted++;
++		goto out;
++	}
++	if (deleted)
++		set_ce_at_cursor(&dst, ce);
++	next_cc(&dst);
++out:
++	next_cc(cc);
++	return 0;
++}
++
++/*
++ * Read in the cache, then throw away the unmerged entries
++ */
++int read_cache_unmerged(void)
++{
++	if (read_cache() > 0) {
++		init_cc(&dst);
++		walk_cache(read_one_unmerged);
++	}
++
++	active_nr -= deleted;
++	return deleted;
++}
++
+ #define WRITE_BUFFER_SIZE 8192
+ static unsigned char write_buffer[WRITE_BUFFER_SIZE];
+ static unsigned long write_buffer_len;
+diff --git a/read-tree.c b/read-tree.c
+--- a/read-tree.c
++++ b/read-tree.c
+@@ -555,34 +555,6 @@ static int oneway_merge(struct cache_ent
+ 	return merged_entry(a, NULL);
+ }
+ 
+-static int deleted = 0;
+-static struct cache_cursor dst;
+-
+-static int read_one_unmerged(struct cache_cursor *cc, struct cache_entry *ce)
+-{
+-	if (ce_stage(ce)) {
+-		deleted++;
+-		goto out;
+-	}
+-	if (deleted)
+-		set_ce_at_cursor(&dst, ce);
+-	next_cc(&dst);
+-out:
+-	next_cc(cc);
+-	return 0;
+-}
+-
+-static int read_cache_unmerged(void)
+-{
+-	if (read_cache() > 0) {
+-		init_cc(&dst);
+-		walk_cache(read_one_unmerged);
+-	}
+-
+-	active_nr -= deleted;
+-	return deleted;
+-}
+-
+ static const char read_tree_usage[] = "git-read-tree (<sha> | -m [-u] <sha1> [<sha2> [<sha3>]])";
+ 
+ static struct cache_file cache_file;
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 09:44:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1F7D6255CF5
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 09:44:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965225AbVJEPnE (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 11:43:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965229AbVJEPnD
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 11:43:03 -0400
+Received: from magic.adaptec.com ([216.52.22.17]:35717 "EHLO magic.adaptec.com")
+	by vger.kernel.org with ESMTP id S965225AbVJEPm6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 5 Oct 2005 11:42:58 -0400
+Received: from redfish.adaptec.com (redfish.adaptec.com [162.62.50.11])
+	by magic.adaptec.com (8.11.6/8.11.6) with ESMTP id j95Fguc24975
+	for <git@vger.kernel.org>; Wed, 5 Oct 2005 08:42:56 -0700
+Received: from rtpe2k01.adaptec.com (rtpe2k01.adaptec.com [10.110.12.40])
+	by redfish.adaptec.com (8.11.6/8.11.6) with ESMTP id j95Fgvg15623
+	for <git@vger.kernel.org>; Wed, 5 Oct 2005 08:42:57 -0700
+Received: from [10.110.10.142] ([10.110.10.142]) by rtpe2k01.adaptec.com with Microsoft SMTPSVC(5.0.2195.6713);
+	 Wed, 5 Oct 2005 11:42:57 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4343F480.30501@adaptec.com>
+Date:	Wed, 05 Oct 2005 11:42:56 -0400
+From:	Luben Tuikov <luben_tuikov@adaptec.com>
+User-Agent: Mozilla Thunderbird 1.0.6 (X11/20050716)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git <git@vger.kernel.org>
+Subject: Question on git clone
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+X-OriginalArrivalTime: 05 Oct 2005 15:42:57.0367 (UTC) FILETIME=[754C5670:01C5C9C3]
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:9702
+
+Hi,
+
+Any reason why "git clone" barfs, but cg-clone works without
+a problem?
+
+The message I get is this:
+
+Cannot get remote repository information.
+Perhaps git-update-server-info needs to be run there?
+
+Thanks,
+	Luben
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

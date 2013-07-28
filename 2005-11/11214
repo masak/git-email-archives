@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 12:29:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_JD 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 845781AEA48
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 12:29:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750821AbVKFT2s (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 14:28:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751097AbVKFT2s
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 14:28:48 -0500
+Received: from colo.jdl.com ([66.118.10.122]:15293 "EHLO jdl.com")
+	by vger.kernel.org with ESMTP id S1751062AbVKFT2s (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 6 Nov 2005 14:28:48 -0500
+Received: from jdl (helo=jdl.com)
+	by jdl.com with local-esmtp (Exim 4.44)
+	id 1EYqC3-0002yv-NU
+	for git@vger.kernel.org; Sun, 06 Nov 2005 13:28:44 -0600
+From:	Jon Loeliger <jdl@freescale.com>
+To:	git@vger.kernel.org
+Subject: Re: Documentation Directions
+In-Reply-To: E1EYoQE-0002QX-VM@jdl.com
+Date:	Sun, 06 Nov 2005 13:28:43 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1EYqC3-0002yv-NU@jdl.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:11214
+
+
+Also:
+
+    - Do you want to standardize on using a '$' prompt
+      for all the example command executions samples?
+      Like so:
+
+          Do do the thing, run the command:
+
+                $ git-frobnicate --weirdly
+
+Do you/we care?  Consistency uber alles?
+
+Thanks,
+jdl
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

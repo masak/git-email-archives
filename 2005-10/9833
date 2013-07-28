@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct  8 11:41:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8343A1945F6
+	for <tkil@scrye.com>; Sat,  8 Oct 2005 11:41:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932168AbVJHRlJ (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 8 Oct 2005 13:41:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932170AbVJHRlJ
+	(ORCPT <rfc822;git-outgoing>); Sat, 8 Oct 2005 13:41:09 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:16859 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S932168AbVJHRlI (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 8 Oct 2005 13:41:08 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id A00B36E0E7D; Sat,  8 Oct 2005 19:40:55 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id EBDA26E0CD5; Sat,  8 Oct 2005 19:40:54 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 78EB960F95; Sat,  8 Oct 2005 19:41:06 +0200 (CEST)
+Date:	Sat, 8 Oct 2005 19:41:06 +0200
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	Petr Baudis <pasky@ucw.cz>
+Cc:	git@vger.kernel.org
+Subject: [PATCH Cogito] Allow spaces in $HOME
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051008174106.GA28875@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:9833
+
+Fixes sourcing of ~/.cgrc
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+
+---
+
+diff --git a/cg-Xlib b/cg-Xlib
+index b27e8b9..1644913 100755
+--- a/cg-Xlib
++++ b/cg-Xlib
+@@ -336,8 +336,8 @@ ARGPOS=0
+ 
+ if [ -t 1 -a -e "$HOME/.cgrc" ]; then
+ 	_cg_name=${_cg_cmd#cg-}
+-	_cg_defaults1="$(sed -n "/^$_cg_cmd/s/^$_cg_cmd //p" < $HOME/.cgrc)"
+-	_cg_defaults2="$(sed -n "/^$_cg_name/s/^$_cg_name //p" < $HOME/.cgrc)"
++	_cg_defaults1="$(sed -n "/^$_cg_cmd/s/^$_cg_cmd //p" < "$HOME/.cgrc")"
++	_cg_defaults2="$(sed -n "/^$_cg_name/s/^$_cg_name //p" < "$HOME/.cgrc")"
+ 	ARGS=($_cg_defaults1 $_cg_defaults2 "${ARGS[@]}")
+ fi
+ 
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

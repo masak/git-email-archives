@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 27 11:51:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5694B2B7338
+	for <tkil@scrye.com>; Thu, 27 Oct 2005 11:51:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751351AbVJ0RvH (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 27 Oct 2005 13:51:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751353AbVJ0RvG
+	(ORCPT <rfc822;git-outgoing>); Thu, 27 Oct 2005 13:51:06 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:35753 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1751351AbVJ0RvF (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 27 Oct 2005 13:51:05 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051027175050.YLKK16347.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 27 Oct 2005 13:50:50 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Pavel Roskin <proski@gnu.org>
+Subject: Re: gitk shows an empty line between "Comments" and changed files
+References: <1130434230.19641.21.camel@dv>
+cc:	git@vger.kernel.org
+Date:	Thu, 27 Oct 2005 10:51:03 -0700
+In-Reply-To: <1130434230.19641.21.camel@dv> (Pavel Roskin's message of "Thu,
+	27 Oct 2005 13:30:30 -0400")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vslum3l2w.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:10712
+
+Pavel Roskin <proski@gnu.org> writes:
+
+> Or maybe the SHA1 header should never be printed at all?  It looks like
+> it's not documented anywhere.  It doesn't break the tests.
+
+AFAIK, its only user (except humans) is patch-id.
+
+> P.S. I consider printing the SHA1 header in git-diff-tree an
+> undocumented feature (in other words, a bug).
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

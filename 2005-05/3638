@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 20 18:53:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id F312A131DCC
+	for <tkil@scrye.com>; Fri, 20 May 2005 18:53:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261557AbVEUAvX (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 20 May 2005 20:51:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261196AbVEUAvX
+	(ORCPT <rfc822;git-outgoing>); Fri, 20 May 2005 20:51:23 -0400
+Received: from iabervon.org ([66.92.72.58]:28420 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S261615AbVEUAtx (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 20 May 2005 20:49:53 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DZIAz-0007N2-00; Fri, 20 May 2005 20:49:13 -0400
+Date:	Fri, 20 May 2005 20:49:13 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] Fix use of wc in t0000-basic
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0505202045580.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 25
+Xref: brand.scrye.com linux.git:3638
+
+The version of wc I have (GNU textutils-2.1) puts spaces at the beginning
+of lines. This patch should work for any version of wc.
+
+Signed-off-by: Daniel Barkalow <barkalow@iabervon.org>
+Acked-by: Junio C Hamano <junkio@cox.net>
+Index: t/t0000-basic.sh
+===================================================================
+--- 58741c69570705801db4b785681790d636475695/t/t0000-basic.sh  (mode:100755 sha1:9a557129d98b499bcd601903d6646de29ba4bfc5)
++++ uncommitted/t/t0000-basic.sh  (mode:100755)
+@@ -32,7 +32,7 @@
+ find .git/objects -type d -print >full-of-directories
+ test_expect_success \
+     '.git/objects should have 256 subdirectories.' \
+-    'test "$(wc -l full-of-directories | sed -e "s/ .*//")" = 257'
++    'test $(cat full-of-directories | wc -l) = 257'
+ 
+ ################################################################
+ # Basics of the basics
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

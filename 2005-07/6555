@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 29 04:30:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9BB8C2A904E
+	for <tkil@scrye.com>; Fri, 29 Jul 2005 04:30:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262581AbVG2K2t (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Jul 2005 06:28:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262587AbVG2K2j
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Jul 2005 06:28:39 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:55014 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S262568AbVG2K1B (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 29 Jul 2005 06:27:01 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6D6FFE25C8; Fri, 29 Jul 2005 12:27:00 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4D780A8704; Fri, 29 Jul 2005 12:27:00 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 3091558E51; Fri, 29 Jul 2005 12:27:00 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx68.rz.uni-wuerzburg.de [132.187.3.68])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0F4BEE25C8; Fri, 29 Jul 2005 12:27:00 +0200 (CEST)
+Date:	Fri, 29 Jul 2005 12:27:00 +0200 (CEST)
+From: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [RFD] socklen_t needs to be defined and libssl to be linked on
+ old Mac OS X
+In-Reply-To: <7vfytyqrhq.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507291225000.5849@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.58.0507281649230.25783@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <7vfytyqrhq.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:6555
+
+Hi,
+
+On Thu, 28 Jul 2005, Junio C Hamano wrote:
+
+> I'll keep this in the proposed updates queue until somebody
+> comes up with a bit cleaner solution.
+
+Agreed. That's why I put in "RFD", not "PATCH"
+
+> By the way, Johannes, what mailer do you use?  Many of your
+> patches seem to be whitespace damaged.
+
+Why, I use pine! The whitespace could be the consequence of a very tired
+yours truly doing copy and paste. Anyway, this was not really meant as a
+patch, but rather as documentation of my thoughts.
+
+Ciao,
+Dscho
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 14:36:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 490FF12E5AC
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 14:36:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750933AbVKOVgH (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 16:36:07 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750934AbVKOVgH
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 16:36:07 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:4556 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750935AbVKOVgG (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 16:36:06 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id AD56C13F700; Tue, 15 Nov 2005 22:36:05 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8ECB5B51E5; Tue, 15 Nov 2005 22:36:05 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 695C4B51D2; Tue, 15 Nov 2005 22:36:05 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 5214D13F700; Tue, 15 Nov 2005 22:36:05 +0100 (CET)
+Date:	Tue, 15 Nov 2005 22:36:05 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: [PATCH 0/3] Support setting SymrefsOnly=true from scripts
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511152233430.2152@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:11932
+
+Hi,
+
+this series of patches does three things:
+
+	- support for setting config variables
+	- ditto, but from scripts
+	- set SymrefsOnly=true right from the start with
+
+		git-init-db --dont-use-symrefs
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

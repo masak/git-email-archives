@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 00:26:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 700A36DB4
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 00:26:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262270AbVDXG0H (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 02:26:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262271AbVDXG0H
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 02:26:07 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:5869 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S262270AbVDXG0E (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 24 Apr 2005 02:26:04 -0400
+Received: from [203.53.50.91] (helo=[172.18.240.72])
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DPaZ8-0002Jp-Vr; Sun, 24 Apr 2005 07:26:04 +0100
+Subject: Re: [GIT PATCH] Selective diff-tree
+From: David Woodhouse <dwmw2@infradead.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <Pine.LNX.4.58.0504232202340.19877@ppc970.osdl.org>
+References: <1113400651.20848.135.camel@hades.cambridge.redhat.com>
+	 <Pine.LNX.4.58.0504232202340.19877@ppc970.osdl.org>
+Content-Type: text/plain
+Date:	Sun, 24 Apr 2005 16:25:13 +1000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114323914.3419.70.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-1) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.2
+Lines: 20
+Xref: brand.scrye.com linux.git:1476
+
+On Sat, 2005-04-23 at 22:09 -0700, Linus Torvalds wrote:
+> It passes all the tests I threw at it, but they weren't exhaustive (but I 
+> do think I tested the border cases). Mind double-checking that it works 
+> for your cases too?
+
+It seems to work at least as well as my version did -- which is to say
+it's fine for the handful of test cases I tried, which is probably about
+the same as what you did.
+
+On the other hand, my gitfilelog.sh is fairly fundamentally flawed and
+probably needs rewriting in C based on rev-tree.
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

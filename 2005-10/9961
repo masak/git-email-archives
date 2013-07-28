@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 11 09:20:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7E1AA17E089
+	for <tkil@scrye.com>; Tue, 11 Oct 2005 09:20:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932160AbVJKPOy (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 11 Oct 2005 11:14:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932126AbVJKPNG
+	(ORCPT <rfc822;git-outgoing>); Tue, 11 Oct 2005 11:13:06 -0400
+Received: from mx3.ust.hk ([143.89.13.11]:46605 "EHLO mx3.ust.hk")
+	by vger.kernel.org with ESMTP id S1751330AbVJKPMl (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 11 Oct 2005 11:12:41 -0400
+Received: from [221.125.13.158] ([221.125.13.158])
+	(authenticated bits=0)
+	by mx3.ust.hk (8.12.11/8.12.11) with ESMTP id j9BFCQ2b063529
+	for <git@vger.kernel.org>; Tue, 11 Oct 2005 23:12:29 +0800 (HKT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <434BD65A.9000108@ust.hk>
+Date:	Tue, 11 Oct 2005 23:12:26 +0800
+From:	Ben Lau <benlau@ust.hk>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.7) Gecko/20050420 Debian/1.7.7-2
+X-Accept-Language: en, zh-tw, zh-cn
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: How to restore the original head after `git-reset --hard master^`
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:9961
+
+Hi all,
+
+   After involves the command `git-reset --hard master^` in a 
+repository, the working
+tree , current head and index are restored to the parent of master. That 
+includes
+the content of '.git/refs/head/master'. Although the original commit 
+object is still existed
+, I couldn't find it back.
+
+  Is there anyway to recover the original master branch ? or I have to 
+restore the branch
+manually by finding out all the child of current head? If that is the 
+solution , what command
+could provide this information?
+
+Thanks
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

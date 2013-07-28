@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May 29 10:13:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 25637C57CF
+	for <tkil@scrye.com>; Sun, 29 May 2005 10:13:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261347AbVE2QNj (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 29 May 2005 12:13:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261350AbVE2QNj
+	(ORCPT <rfc822;git-outgoing>); Sun, 29 May 2005 12:13:39 -0400
+Received: from sccrmhc14.comcast.net ([204.127.202.59]:23037 "EHLO
+	sccrmhc14.comcast.net") by vger.kernel.org with ESMTP
+	id S261347AbVE2QNi (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 29 May 2005 12:13:38 -0400
+Received: from highlab.com ([24.8.179.27])
+          by comcast.net (sccrmhc14) with ESMTP
+          id <2005052916132901400dmdq4e>; Sun, 29 May 2005 16:13:38 +0000
+Received: from seb (helo=highlab.com)
+	by highlab.com with local-esmtp (Exim 4.50)
+	id 1DcQRD-00057h-Vh; Sun, 29 May 2005 10:14:56 -0600
+To: Jochen Roemling <jochen@roemling.net>
+Cc: Kay Sievers <kay.sievers@vrfy.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: change of git-diff-tree and symlinks 
+In-reply-to: <4299E88E.7090306@roemling.net> 
+References: <20050525111711.GA27492@vrfy.org> <4299CED5.5070508@roemling.net> <20050529150656.GA27127@vrfy.org> <4299E88E.7090306@roemling.net>
+Comments: In-reply-to Jochen Roemling <jochen@roemling.net>
+   message dated "Sun, 29 May 2005 18:06:38 +0200."
+Date:	Sun, 29 May 2005 10:14:55 -0600
+From: Sebastian Kuzminsky <seb@highlab.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1DcQRD-00057h-Vh@highlab.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 15
+Xref: brand.scrye.com linux.git:4150
+
+Jochen Roemling <jochen@roemling.net> wrote:
+> Sebastian, could you include a matching gitweb.cgi into your 
+> Debian-Package?
+
+I'm planning to package gitweb as a separate Debian package.  I'll try
+to get to it next week.
+
+
+-- 
+Sebastian Kuzminsky
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,95 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 12:03:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 11358154212
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 12:03:09 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965003AbVKOTB2 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 14:01:28 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964999AbVKOTB1
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 14:01:27 -0500
+Received: from fed1rmmtai09.cox.net ([68.230.241.50]:24224 "EHLO
+	fed1rmmtai09.cox.net") by vger.kernel.org with ESMTP
+	id S965001AbVKOTB0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 14:01:26 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051115181213.MVEA17690.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 15 Nov 2005 13:12:13 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Pavel Roskin <proski@gnu.org>
+Cc:	Petr Baudis <pasky@suse.cz>,
+	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Disable USE_SYMLINK_HEAD by default
+References: <1132034390.22207.18.camel@dv>
+	<7vveyuqto5.fsf@assigned-by-dhcp.cox.net>
+	<1132042427.3512.50.camel@dv>
+	<7vpsp2qpx4.fsf@assigned-by-dhcp.cox.net>
+	<7vd5l2mco1.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.63.0511151207070.21671@wbgn013.biozentrum.uni-wuerzburg.de>
+	<20051115121854.GV30496@pasky.or.cz>
+	<7v8xvpn8ne.fsf@assigned-by-dhcp.cox.net>
+	<1132075295.25640.59.camel@dv>
+Date:	Tue, 15 Nov 2005 10:13:15 -0800
+In-Reply-To: <1132075295.25640.59.camel@dv> (Pavel Roskin's message of "Tue,
+	15 Nov 2005 12:21:35 -0500")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v4q6dn5j8.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:11925
+
+Pavel Roskin <proski@gnu.org> writes:
+
+> On Tue, 2005-11-15 at 09:05 -0800, Junio C Hamano wrote:
+>> Petr Baudis <pasky@suse.cz> writes:
+>> 
+>> > Yes, I would very much like to have this. I still want to go
+>> > symrefs-only for public repositories created for cg-admin-setuprepo, so
+>> > that fetching over HTTP works properly.
+>> 
+>> Sorry, I must have missed that part.  How does fetch-over-HTTP
+>> break with symlinked HEAD?
+>
+> With symlinks, cogito doesn't know which branch it is fetching if the
+> branch is not explicitly specified.
+
+Ah, thanks.
+
+git-clone-pack has the same problem.  It basically "guesses" by:
+
+	- If the master branch exists, and the object name of
+          the branch tip matches the object name of HEAD, assume
+          HEAD points at master.  Even when there are other
+          branches that happen to share the same branch head.
+
+	- Otherwise, if there is a branch whose tip matches the
+          object name of HEAD, assume HEAD points at it.  It
+          just picks "one-of-them" if more than one branches
+          match.
+
+	- If there is no branch that matches HEAD, issue a
+          warning and create HEAD that records the object name,
+          not pointing anywhere.
+
+To solve this generally we would need to extend what ls-remote
+returns, I suppose.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

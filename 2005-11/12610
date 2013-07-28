@@ -1,0 +1,100 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 06:52:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 770682851FA
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 06:52:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750775AbVKWNwD (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 08:52:03 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750799AbVKWNwD
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 08:52:03 -0500
+Received: from mail.autoweb.net ([198.172.237.26]:22253 "EHLO
+	mail.internal.autoweb.net") by vger.kernel.org with ESMTP
+	id S1750775AbVKWNv5 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 23 Nov 2005 08:51:57 -0500
+Received: from pcp01184054pcs.strl301.mi.comcast.net ([68.60.186.73] helo=michonline.com)
+	by mail.internal.autoweb.net with esmtp (Exim 4.50)
+	id 1Eev2N-0007JG-L3; Wed, 23 Nov 2005 08:51:53 -0500
+Received: from mythical ([10.254.251.11] ident=Debian-exim)
+	by michonline.com with esmtp (Exim 3.35 #1 (Debian))
+	id 1Eev2M-00023A-00; Wed, 23 Nov 2005 08:51:50 -0500
+Received: from ryan by mythical with local (Exim 4.54)
+	id 1Eev2M-0001Ph-Ke; Wed, 23 Nov 2005 08:51:50 -0500
+Date:	Wed, 23 Nov 2005 08:51:50 -0500
+From:	Ryan Anderson <ryan@michonline.com>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Add git-graft-ripple, a tool for permanently grafting history into a tree.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051123135150.GA16995@mythryan2.michonline.com>
+References: <11326926501602-git-send-email-ryan@michonline.com> <Pine.LNX.4.64.0511221652530.13959@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.64.0511221652530.13959@g5.osdl.org>
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 53
+Xref: brand.scrye.com linux.git:12610
+
+On Tue, Nov 22, 2005 at 04:55:04PM -0800, Linus Torvalds wrote:
+> On Tue, 22 Nov 2005, Ryan Anderson wrote:
+> >
+> > Enhancements over the original example:
+> > 
+> > 	o Each newly created commit A' references A, and (A^1)' (The first try
+> > 	referenced A^1 and (A^1)' but not A)
+> > 
+> > 	o Support for incrementally rewriting history is present.
+> 
+> How about the case of having commits that have pointers to other commits 
+> in the comments? 
+> 
+> For example, on the kernel do
+> 
+> 	gitk 19842d67340e4a8f616552d344e97fc7452aa37a
+> 
+> and see how gitk highlights the SHA1's in the commit message and makes 
+> hyperlinks to the commits they point to..
+
+For some reason, my gut says that this goes too far.  I'm having a hard
+time pinning down a way to explain that.
+
+I guess something (untested) like this could do it, right before I call
+git_commit_tree():
+
+	my $found;
+	do {
+		$found = 0;
+		if ($csets{$old}{comments} =~ /\s([a-f0-9]{40})\s/ &&
+			exists $newcsets{$1}) {
+
+			my $tcommit = $1;
+
+			$found = 1;
+			$csets{$old}{comments} =~ s/$tcommit/$newcsets{$tcommit}/g;
+		}
+	} while ($found);
+
+I'm not entirely convinced this is a good idea, but there it is.
+
+I'll write up a patch later for this (probably switching to GetOpt in
+the process.)
+
+-- 
+
+Ryan Anderson
+  sometimes Pug Majere
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

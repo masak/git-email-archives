@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 05:36:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.8 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6679F2851FA
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 05:36:29 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932216AbVLUMgJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 07:36:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932217AbVLUMgJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 07:36:09 -0500
+Received: from ns1.suse.de ([195.135.220.2]:50090 "EHLO mx1.suse.de")
+	by vger.kernel.org with ESMTP id S932216AbVLUMgI (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Dec 2005 07:36:08 -0500
+Received: from Relay1.suse.de (mail2.suse.de [195.135.221.8])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mx1.suse.de (Postfix) with ESMTP id A3AFCEE8A;
+	Wed, 21 Dec 2005 13:35:56 +0100 (CET)
+Date:	Wed, 21 Dec 2005 13:35:56 +0100
+From:	Olaf Hering <olh@suse.de>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [ANNOUNCE] GIT 0.99.9n aka 1.0rc6
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051221123556.GA20431@suse.de>
+References: <7v7ja7rsqv.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7v7ja7rsqv.fsf@assigned-by-dhcp.cox.net>
+X-DOS:	I got your 640K Real Mode Right Here Buddy!
+X-Homeland-Security: You are not supposed to read this line! You are a terrorist!
+User-Agent: Mutt und vi sind doch schneller als Notes (und GroupWise)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:13866
+
+ On Wed, Dec 14, Junio C Hamano wrote:
+
+> No more big changes from now on will be merged to the "master"
+> branch, except fixes and documentation enhancements.
+
+Can you add a 'git bisect doesnotcompile' at some point? Just marking
+one commit as bad will not work, because the next offer may not compile
+either.
+
+-- 
+short story of a lazy sysadmin:
+ alias appserv=wotan
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

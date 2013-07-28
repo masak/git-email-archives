@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  9 23:17:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 42780635D
+	for <tkil@scrye.com>; Mon,  9 May 2005 23:17:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261546AbVEJFQ5 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 10 May 2005 01:16:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261559AbVEJFQ5
+	(ORCPT <rfc822;git-outgoing>); Tue, 10 May 2005 01:16:57 -0400
+Received: from quark.didntduck.org ([69.55.226.66]:63399 "EHLO
+	quark.didntduck.org") by vger.kernel.org with ESMTP id S261546AbVEJFQx
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 10 May 2005 01:16:53 -0400
+Received: from [192.168.1.2] (24-236-201-214.dhcp.aldl.mi.charter.com [24.236.201.214])
+	(authenticated)
+	by quark.didntduck.org (8.11.6/8.11.6) with ESMTP id j4A5GeC27718;
+	Tue, 10 May 2005 01:16:40 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <428043EB.7010004@didntduck.org>
+Date:	Tue, 10 May 2005 01:17:31 -0400
+From: Brian Gerst <bgerst@didntduck.org>
+User-Agent: Mozilla Thunderbird 1.0.2-1 (X11/20050323)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Matthias Urlichs <smurf@smurf.noris.de>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH Cogito] cg-init breaks if . contains sub-dir
+References: <20050509233904.GB878@osuosl.org> <pan.2005.05.10.03.41.15.683163@smurf.noris.de>
+In-Reply-To: <pan.2005.05.10.03.41.15.683163@smurf.noris.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 27
+Xref: brand.scrye.com linux.git:2928
+
+Matthias Urlichs wrote:
+> Hi, Brandon Philips wrote:
+> 
+> 
+>>-	find * | xargs cg-add
+>>+	find * ! -type d | xargs cg-add
+> 
+> 
+> Actually, (almost) every use of "find | xargs" which is not a subset of
+> "find -print0 | xargs -0r" is a bug.
+> 
+> So please don't do that. Special files aren't liked by git either, thus:
+> 
+>         find * -type f -print0 | xargs -0r cg-add
+> 
+
+But it can handle symlinks:
+
+	find * -type f -o -type l -print0 | xargs -0r cg-add
+
+--
+				Brian Gerst
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

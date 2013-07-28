@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 24 02:58:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 16002228B62
+	for <tkil@scrye.com>; Sun, 24 Jul 2005 02:58:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261944AbVGXI6A (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Jul 2005 04:58:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262122AbVGXI6A
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Jul 2005 04:58:00 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:19727 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261944AbVGXI57 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Jul 2005 04:57:59 -0400
+Received: (qmail 14600 invoked by uid 2001); 24 Jul 2005 08:57:57 -0000
+Date:	Sun, 24 Jul 2005 10:57:57 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Linus Torvalds <torvalds@osdl.org>, Marc Singer <elf@buici.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Bootstrapping into git, commit gripes at me
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050724085757.GB7601@pasky.ji.cz>
+References: <20050711222046.GA21376@buici.com> <7vll4dndwu.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0507111646000.17536@g5.osdl.org> <Pine.LNX.4.58.0507111833380.17536@g5.osdl.org> <20050712021004.GA27576@buici.com> <Pine.LNX.4.58.0507112005540.17536@g5.osdl.org> <Pine.LNX.4.58.0507112045420.17536@g5.osdl.org> <Pine.LNX.4.58.0507112132170.17536@g5.osdl.org> <20050712074801.GD6363@pasky.ji.cz> <7vy88c5r4w.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vy88c5r4w.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 35
+Xref: brand.scrye.com linux.git:6390
+
+Dear diary, on Tue, Jul 12, 2005 at 11:07:43AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> If you block certain operations while you have seeked to non-top
+> anyway, wouldn't it be cleaner to have .git/seeked-to that
+> records the commit ID you are at, which at the same time
+> indicates that you are in a special situation, and not touching
+> HEAD at all?  Then .git/HEAD will always have that line of
+> development information.
+> 
+> Well, that was half tongue-in-cheek suggestion; I have a feeling
+> that you may feel it is a bit too late to change this kind of
+> thing easily.
+
+The thing is, _everything_ assumes .git/HEAD is the current commit
+checked out in the index. All the Cogito (that wouldn't be hard to
+change at all), all the other Porcelains, the core GIT tools. So
+changing that would be difficult and it's much easier this way.
+
+> But if we are going to agree on using .git/head-name, I'd rather
+> see it exist all times, so that cat "$GIT_DIR/head-name" would
+> always tell us which branch we are working in.
+
+After some thought, I like Linus' approach more now, having head-name
+only when it's really necessary.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

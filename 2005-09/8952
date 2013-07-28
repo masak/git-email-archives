@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 20:32:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8B194276F3D
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 20:32:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964849AbVITCcB (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 22:32:01 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964850AbVITCcA
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 22:32:00 -0400
+Received: from fencepost.gnu.org ([199.232.76.164]:43436 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S964849AbVITCcA
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Sep 2005 22:32:00 -0400
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EHXvL-0006RE-HE
+	for git@vger.kernel.org; Mon, 19 Sep 2005 22:31:59 -0400
+Received: from proski by dv.roinet.com with local (Exim 4.52)
+	id 1EHXvK-0001is-IC
+	for git@vger.kernel.org; Mon, 19 Sep 2005 22:31:58 -0400
+Subject: [PATCH 0/8] cogito: cg-object-id
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Mon, 19 Sep 2005 22:31:58 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1127183518.31115.44.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.8 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:8952
+
+Hello!
+
+These are the patches that implement cg-object-id and fix the bugs I
+found in process.  The patches show separate stages of changes.
+Otherwise it would be a huge patch.
+
+This applies to all patches in the series
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

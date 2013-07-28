@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 17:26:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EF5C6170D34
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 17:26:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262333AbVD1X0K (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 19:26:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262334AbVD1X0K
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 19:26:10 -0400
+Received: from fire.osdl.org ([65.172.181.4]:41933 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262333AbVD1X0D (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Apr 2005 19:26:03 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3SNPos4025570
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 28 Apr 2005 16:25:50 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3SNPnMc019217;
+	Thu, 28 Apr 2005 16:25:49 -0700
+Date:	Thu, 28 Apr 2005 16:27:48 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Morten Welinder <mwelinder@gmail.com>
+Cc: Junio C Hamano <junkio@cox.net>, Dave Jones <davej@redhat.com>,
+	git@vger.kernel.org
+Subject: Re: diff against a tag ?
+In-Reply-To: <118833cc05042816141ba672a4@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504281619080.18901@ppc970.osdl.org>
+References: <20050428200953.GD8514@redhat.com>  <7vpswe7hvj.fsf@assigned-by-dhcp.cox.net>
+  <Pine.LNX.4.58.0504281358060.18901@ppc970.osdl.org>
+ <118833cc05042816141ba672a4@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 39
+Xref: brand.scrye.com linux.git:2086
+
+
+
+On Thu, 28 Apr 2005, Morten Welinder wrote:
+> 
+> Which begs the question: why wasn't the type of the object made part of the
+> file name?
+
+Because it would just have complicated the code and made it less flexible.
+
+As it is, we can open an object by just knowing its name, and by "name" I 
+mean the true one, the SHA1. No need for "open_blob()" or anything like 
+that. You just do
+
+	sha1_file_name(const unsigned char *sha1)
+
+to find out what the filesystem name of the object is, and this works for 
+_any_ object.
+
+And thanks to this, we can pass in a sha1 _without_ knowing whether it's a 
+tree or a commit (or a tag) and just open in. Then, when we figure out 
+that it was a commit rather than a tree, we look up the tree instead. 
+
+Being able to open files _without_ knowing what they are is hugely useful. 
+The user passes you a name, and you can just do the right thing. 
+
+Besides, I _still_ don't want scripts mucking around with the objects
+directly. Remember? They're encrypted with my super-sekrit zlib encoder
+ring, just because people shouldn't be mucking around in them.
+
+Trust me, when the object directories have a million files, you'll thank
+me. You do _not_ want to do a readdir and try to figure out tags that way. 
+You want to do it the way I _force_ you to do it, ie the right way.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

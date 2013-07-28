@@ -1,0 +1,102 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct 22 18:14:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 19EF6FC1E7
+	for <tkil@scrye.com>; Sat, 22 Oct 2005 18:14:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751314AbVJWAOO (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 22 Oct 2005 20:14:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751316AbVJWAOO
+	(ORCPT <rfc822;git-outgoing>); Sat, 22 Oct 2005 20:14:14 -0400
+Received: from eastrmmtao05.cox.net ([68.230.240.34]:20400 "EHLO
+	eastrmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S1751314AbVJWAOO (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 22 Oct 2005 20:14:14 -0400
+Received: from localhost ([24.250.31.7]) by eastrmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051023001411.KCCJ28234.eastrmmtao05.cox.net@localhost>
+          for <git@vger.kernel.org>; Sat, 22 Oct 2005 20:14:11 -0400
+Received: from chris by localhost with local (Exim 4.43)
+	id 1ETTV6-0005wo-UC
+	for git@vger.kernel.org; Sat, 22 Oct 2005 20:14:12 -0400
+Date:	Sat, 22 Oct 2005 20:14:12 -0400
+From:	Chris Shoemaker <c.shoemaker@cox.net>
+To:	git@vger.kernel.org
+Subject: git and gitweb inconsistencies
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051023001412.GA22679@pe.Belkin>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 59
+Xref: brand.scrye.com linux.git:10470
+
+I've been experimenting with git and gitweb, but I've reached deadend.
+Maybe someone can help?
+
+
+Short Version:
+
+In sub git_get_type in gitweb.cgi, this line:
+  open my $fd, "-|", "$gitbin/git-cat-file -t $hash" or return;
+
+results in:
+error: unable to find e71b869f3333ad10a492251e099ed9176248a420
+fatal: git-cat-file e71b869f3333ad10a492251e099ed9176248a420: bad file
+
+BUT, from the shell:
+$ git-cat-file -t e71b869f3333ad10a492251e099ed9176248a420
+commit
+
+
+Longer explanation:
+
+Initially I created the git repository using git-cvsimport as
+described in the cvs-migration document.  I also installed gitweb.cgi
+and everything seemed to be fine.  In particular the refs/heads/* files
+referred to the tips of current branches in cvs.  I was quite pleased.
+
+A few days later, I ran git-cvsimport again, with -i.  This imported
+just the recent changes, but the view from gitweb didn't change.  :(
+
+At first, I thought that the git-cvsimport hadn't worked.  But,
+git-whatchanged clearly showed the new changes.  (I later learned that
+git-rev-list also returned the tip-of-branch commits.)  After reading
+gitweb.cgi, I realized that the refs/heads/* files had not been
+changed, so they still referred to the tip-of-branch for the initial
+import.  (I expected the refs/heads/* to point to the last commit on
+each branch.  Was that wrong?)
+
+Anyway, I tried to make a new head that actually pointed to what I
+expected: 
+
+$ echo `git-rev-list tip --max-count=1` > refs/heads/mytest
+$ git-cat-file -t `cat refs/heads/mytest`
+commit
+
+No problem.  But, this same task doesn't seem to work from gitweb.cgi:
+
+$ ./gitweb.cgi http://localhost/cgi-bin/gitweb.cgi?p=test\;a=heads > /dev/null
+error: unable to find e71b869f3333ad10a492251e099ed9176248a420
+fatal: git-cat-file e71b869f3333ad10a492251e099ed9176248a420: bad file
+
+How can this be?  Have I messed something up, or am I just totally confused?
+
+-chris
+
+ps. please cc, not subscribed.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

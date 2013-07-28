@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 09:27:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 59030171A9C
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 09:27:12 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932382AbVKUQZn (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 11:25:43 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932384AbVKUQZn
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 11:25:43 -0500
+Received: from web31812.mail.mud.yahoo.com ([68.142.207.75]:35212 "HELO
+	web31812.mail.mud.yahoo.com") by vger.kernel.org with SMTP
+	id S932382AbVKUQZm (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 11:25:42 -0500
+Received: (qmail 4724 invoked by uid 60001); 21 Nov 2005 16:25:40 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Message-ID:Received:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=b9YvPkrBEUt0NMzsEr8HXlXv4hEXWPjw6v/tRJ3yIKU6Bwn/M8pWkCdWoCHIqEC1Wk6UV2RFjRA+jrjvfNvEd9kyA5NK696FU39OvjhzUl2eQNGCONmeON3js+dGMN8y4tLGJvdkhONfy0hGtL+DPxkV4i9ZgiECepFyeeGHIYY=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051121162540.4722.qmail@web31812.mail.mud.yahoo.com>
+Received: from [68.221.112.229] by web31812.mail.mud.yahoo.com via HTTP; Mon, 21 Nov 2005 08:25:40 PST
+Date:	Mon, 21 Nov 2005 08:25:40 -0800 (PST)
+From:	Luben Tuikov <ltuikov@yahoo.com>
+Reply-To: ltuikov@yahoo.com
+Subject: [RFC] git-format-patch options
+To:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:12443
+
+It is often the case that "since <mine> head forked from
+<his> head" (quoting the manual page of git-format-patch),
+for various projects, some patches have been accepted and
+some have not.
+
+I was wondering about the value of
+
+  git-format-patch <commit-ish>
+
+to output/prepare a diff patch between the indicated commit
+and its parent.  As opposed to the current behaviour giving
+all changes between the indicated commit and HEAD.
+
+So in effect the form above would become the trivial:
+
+  git-format-patch <commit-ish>..HEAD
+
+and
+
+  git-format-patch <commit-ish>
+
+would give the diff patch between the indicated commit and
+its parent.
+
+?
+
+    Luben
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

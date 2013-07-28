@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 20 19:36:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6DE9B1B0572
+	for <tkil@scrye.com>; Thu, 20 Oct 2005 19:36:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964838AbVJUBfV (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 20 Oct 2005 21:35:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964839AbVJUBfV
+	(ORCPT <rfc822;git-outgoing>); Thu, 20 Oct 2005 21:35:21 -0400
+Received: from terminus.zytor.com ([192.83.249.54]:9432 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S964838AbVJUBfU
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 20 Oct 2005 21:35:20 -0400
+Received: from [172.27.0.18] (c-67-180-238-27.hsd1.ca.comcast.net [67.180.238.27])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j9L1YxgJ005325
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 20 Oct 2005 18:35:02 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <435845C2.3010504@zytor.com>
+Date:	Thu, 20 Oct 2005 18:34:58 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: [PATCH] Fix git-daemon argument-parsing bug
+Content-Type: multipart/mixed;
+ boundary="------------030601090600040900030405"
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:10396
+
+This is a multi-part message in MIME format.
+--------------030601090600040900030405
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Fix stupid bug in parsing the --init-timeout option.
+
+Signed-off-by: H. Peter Anvin <hpa@zytor.com>
+
+--------------030601090600040900030405
+Content-Type: text/plain;
+ name="diff"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+ filename="diff"
+
+ZGlmZiAtLWdpdCBhL2RhZW1vbi5jIGIvZGFlbW9uLmMKLS0tIGEvZGFlbW9uLmMKKysrIGIv
+ZGFlbW9uLmMKQEAgLTYxMiw3ICs2MTIsNyBAQCBpbnQgbWFpbihpbnQgYXJnYywgY2hhciAq
+KmFyZ3YpCiAJCWlmICghc3RybmNtcChhcmcsICItLXRpbWVvdXQ9IiwgMTApKSB7CiAJCQl0
+aW1lb3V0ID0gYXRvaShhcmcrMTApOwogCQl9Ci0JCWlmICghc3RybmNtcChhcmcsICItLWlu
+aXQtdGltZW91dD0iLCAxMCkpIHsKKwkJaWYgKCFzdHJuY21wKGFyZywgIi0taW5pdC10aW1l
+b3V0PSIsIDE1KSkgewogCQkJaW5pdF90aW1lb3V0ID0gYXRvaShhcmcrMTUpOwogCQl9CiAJ
+CWlmICghc3RyY21wKGFyZywgIi0tIikpIHsK
+--------------030601090600040900030405--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

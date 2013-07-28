@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov  6 17:11:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EFDD310EB2B
+	for <tkil@scrye.com>; Sun,  6 Nov 2005 17:11:41 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932378AbVKGALg (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 19:11:36 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932379AbVKGALg
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 19:11:36 -0500
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:35779 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S932378AbVKGALf (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 6 Nov 2005 19:11:35 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051107001051.DMKC29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 6 Nov 2005 19:10:51 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	<git@vger.kernel.org>
+Subject: Re: [PATCH] Support for passing path to custom map in git-shortlog.perl
+References: <20051106230757.24941.19267.stgit@machine.or.cz>
+Date:	Sun, 06 Nov 2005 16:11:33 -0800
+In-Reply-To: <20051106230757.24941.19267.stgit@machine.or.cz> (Petr Baudis's
+	message of "Mon, 07 Nov 2005 00:07:57 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vek5twc3u.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 14
+Xref: brand.scrye.com linux.git:11232
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> Aside of looking into .mailmap, add support for -m MAPFILE.
+
+I thought about this when I did .mailmap because I felt 
+the more flexibility the better, but wouldn't maintaining the
+project-wide .mailmap as part of the project easier to manage?
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

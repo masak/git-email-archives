@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep  7 13:18:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 669E52851FC
+	for <tkil@scrye.com>; Wed,  7 Sep 2005 13:18:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751274AbVIGTSG (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 7 Sep 2005 15:18:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751277AbVIGTSG
+	(ORCPT <rfc822;git-outgoing>); Wed, 7 Sep 2005 15:18:06 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:53502 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1751274AbVIGTSF (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 7 Sep 2005 15:18:05 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050907191804.YIGQ7185.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 7 Sep 2005 15:18:04 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	David =?iso-2022-jp-2?B?SxsuQRtOZWdlZGFs?= <davidk@lysator.liu.se>
+Subject: Re: [PATCH] Added an option to cvsimport to specify email domain
+References: <u5tzmqp8fzx.fsf@lysator.liu.se>
+cc:	git@vger.kernel.org
+Date:	Wed, 07 Sep 2005 12:18:03 -0700
+In-Reply-To: <u5tzmqp8fzx.fsf@lysator.liu.se> (David
+ =?iso-2022-jp-2?B?SxsuQRtOZWdlZGFsJ3M=?= message of
+	"Wed, 07 Sep 2005 10:00:02 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhdcw661g.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-2022-jp-2
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 34
+Xref: brand.scrye.com linux.git:8166
+
+David K.ANegedal <davidk@lysator.liu.se> writes:
+
+> The authorship info in commits created by git-cvsimport-script
+> only contains the username of the CVS committer.  This patch
+> adds a flag -e <domain> to git-cvsimport-script that makes it
+> possible to specify an email domain that is added to all email
+> addresses in the commit "author" and "committer" fields.
+>
+> ---
+> I have stopped using cvsimport, because cvsps seems to produce bad
+> output on the repository I'm using it with, but I had already prepared
+> this patch.
+
+Hmph.  One reason the original implementation did not do this is
+because Linus and other people wanted to have a repeatability,
+so making this an optional thing is good, but if we go this
+route, I think if it would be nicer to have a --author-map
+option that lets you feed a list of:
+
+    <author> ==> "A U Thor <author@author.dom>"
+
+mappings, instead of a single -e, which essentially does not add
+much information to the result.
+
+I take that your oob comment indicates that you do not have much
+incentive/inclination to further hack on this, so I am not
+asking you to do the above even if you find my suggestion
+worthwhile.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

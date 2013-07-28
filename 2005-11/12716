@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 24 18:37:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 49A50238877
+	for <tkil@scrye.com>; Thu, 24 Nov 2005 18:37:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161083AbVKYBhN (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 24 Nov 2005 20:37:13 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161084AbVKYBhN
+	(ORCPT <rfc822;git-outgoing>); Thu, 24 Nov 2005 20:37:13 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:43931 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1161083AbVKYBhL
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 24 Nov 2005 20:37:11 -0500
+Received: from nox.op5.se (1-2-9-7a.gkp.gbg.bostream.se [82.182.116.44])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 766AC6BCBE
+	for <git@vger.kernel.org>; Fri, 25 Nov 2005 02:37:10 +0100 (CET)
+Received: by nox.op5.se (Postfix, from userid 500)
+	id EDBC25C7F8; Fri, 25 Nov 2005 02:37:09 +0100 (CET)
+To:	git@vger.kernel.org
+Subject: [PATCH] cvsimport: Don't let local settings hinder cvs user-migration.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051125013709.EDBC25C7F8@nox.op5.se>
+Date:	Fri, 25 Nov 2005 02:37:09 +0100 (CET)
+From:	exon@op5.se (Andreas Ericsson)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:12716
+
+
+Avoid this by passing "--norc" to cvsps.
+
+Signed-off-by: Andreas Ericsson <ae@op5.se>
+
+---
+
+ git-cvsimport.perl |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+applies-to: c183291c9f13912f9111ee0ab2e24ac47f3147ed
+11f061ae28cca5071bfd7a344808b84c399bdbbe
+diff --git a/git-cvsimport.perl b/git-cvsimport.perl
+index efe1934..08a890c 100755
+--- a/git-cvsimport.perl
++++ b/git-cvsimport.perl
+@@ -502,7 +502,7 @@ unless($pid) {
+ 	if ($opt_P) {
+ 	    exec("cat", $opt_P);
+ 	} else {
+-	    exec("cvsps",@opt,"-u","-A",'--root',$opt_d,$cvs_tree);
++	    exec("cvsps","--norc",@opt,"-u","-A",'--root',$opt_d,$cvs_tree);
+ 	    die "Could not start cvsps: $!\n";
+ 	}
+ }
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

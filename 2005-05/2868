@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  9 11:14:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E378C635A
+	for <tkil@scrye.com>; Mon,  9 May 2005 11:14:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261262AbVEIRN5 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 9 May 2005 13:13:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261447AbVEIRN5
+	(ORCPT <rfc822;git-outgoing>); Mon, 9 May 2005 13:13:57 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:34214 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S261262AbVEIRN4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 9 May 2005 13:13:56 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j49H6CS8027744
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 9 May 2005 17:06:12 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j49H6CkT027743;
+	Mon, 9 May 2005 19:06:12 +0200 (CEST)
+Date:	Mon, 9 May 2005 19:06:11 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: git@vger.kernel.org, David Woodhouse <dwmw2@infradead.org>,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: History messup
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050509170611.GJ24216@cip.informatik.uni-erlangen.de>
+Mail-Followup-To: Thomas Gleixner <tglx@linutronix.de>,
+	git@vger.kernel.org, David Woodhouse <dwmw2@infradead.org>,
+	Linus Torvalds <torvalds@osdl.org>
+References: <1115657971.19236.33.camel@tglx>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1115657971.19236.33.camel@tglx>
+X-URL:	http://wwwcip.informatik.uni-erlangen.de/~sithglan/
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 17
+Xref: brand.scrye.com linux.git:2868
+
+Hello,
+if merging with a repository just means to bring the head forward (e.g.
+no local development since the fork) there is no seperate commit object,
+just an update of the HEAD. Linus did explain this behaviour and the
+thoughts behind this decission on the ML:
+
+If two repositories pull alternating from each other one has never the
+exact state the other has. They would play ping-pong and this is a bad
+thing. That was AFAIK the reason there is no COMMIT object introduced on
+'head forward' merges.
+
+	Thomas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

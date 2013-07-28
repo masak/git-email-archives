@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 28 17:43:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C436B153FE6
+	for <tkil@scrye.com>; Mon, 28 Nov 2005 17:43:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932277AbVK2Ana (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 28 Nov 2005 19:43:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932295AbVK2Ana
+	(ORCPT <rfc822;git-outgoing>); Mon, 28 Nov 2005 19:43:30 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:37770 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932277AbVK2An3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 28 Nov 2005 19:43:29 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAT0hEnO004220
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 28 Nov 2005 16:43:14 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAT0hDp1031463;
+	Mon, 28 Nov 2005 16:43:13 -0800
+Date:	Mon, 28 Nov 2005 16:43:13 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+cc:	Petr Baudis <pasky@suse.cz>, Junio C Hamano <junkio@cox.net>,
+	git@vger.kernel.org
+Subject: Re: keeping remote repo checked out?
+In-Reply-To: <Pine.LNX.4.64.0511281845280.25300@iabervon.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511281637480.3177@g5.osdl.org>
+References: <m3k6et9rdw.fsf@lugabout.cloos.reno.nv.us>
+ <7vbr051ad1.fsf@assigned-by-dhcp.cox.net> <20051128105736.GO22159@pasky.or.cz>
+ <7vsltgtvk4.fsf@assigned-by-dhcp.cox.net> <20051128212804.GV22159@pasky.or.cz>
+ <Pine.LNX.4.64.0511281420390.3263@g5.osdl.org> <Pine.LNX.4.64.0511281845280.25300@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 39
+Xref: brand.scrye.com linux.git:12902
+
+
+
+On Mon, 28 Nov 2005, Daniel Barkalow wrote:
+> 
+> We really ought to keep track of what the current checked out tree is, 
+> independant of the head that it's supposed to match. Then it would be safe 
+> to push to a head that's checked out (it wouldn't update it, but the 
+> system would understand what's going on).
+
+Well, that's what branches are all about. 
+
+You really have two choices:
+ - do it all yourself
+ - use git branches
+
+but if you use a special git branch for the checked-out state, then you 
+have to realize that nobody can push directly to it.
+
+You'd have a trigger that triggers on a push to _another_ branch, and then 
+the trigger basically does an automatic "git pull" from that branch (and 
+updates the checked-out state as part of that).
+
+But you _still_ need to do the locking. That's very fundamental. There is 
+no locking in a "git push", exactly because it can push in parallel, by 
+design. And you _cannot_ check out a tree in parallel, so you have to do 
+locking for that.
+
+There's no way you can avoid the locking. You can do shortcuts: for 
+example, you could avoid any explicit locking by having the "checkout" 
+just happen once an hour, with an automatic "pull" from the changed 
+branch. Again, that means that the branch that is checked out can NOT be 
+one of the branches that people push to.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 10 11:42:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 230A16DC6
+	for <tkil@scrye.com>; Tue, 10 May 2005 11:42:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261725AbVEJRmI (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 10 May 2005 13:42:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261723AbVEJRmI
+	(ORCPT <rfc822;git-outgoing>); Tue, 10 May 2005 13:42:08 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:59034 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S261722AbVEJRlx (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 10 May 2005 13:41:53 -0400
+Received: from hch by pentafluge.infradead.org with local (Exim 4.43 #1 (Red Hat Linux))
+	id 1DVYju-0000Yb-B2; Tue, 10 May 2005 18:41:50 +0100
+Date:	Tue, 10 May 2005 18:41:50 +0100
+From: Christoph Hellwig <hch@infradead.org>
+To: jon@blackcubes.dyndns.org
+Cc: David Woodhouse <dwmw2@infradead.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Core and Not-So Core
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050510174150.GA2072@infradead.org>
+References: <2cfc40320505100800426d38ca@mail.gmail.com> <1115739511.16187.432.camel@hades.cambridge.redhat.com> <2cfc4032050510092238259b63@mail.gmail.com> <1115744609.16187.455.camel@hades.cambridge.redhat.com> <2cfc403205051010151304d88a@mail.gmail.com> <2cfc4032050510101553d391b2@mail.gmail.com> <1115745912.16187.468.camel@hades.cambridge.redhat.com> <2cfc4032050510103664ebef28@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2cfc4032050510103664ebef28@mail.gmail.com>
+User-Agent: Mutt/1.4.1i
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 33
+Xref: brand.scrye.com linux.git:2963
+
+On Wed, May 11, 2005 at 03:36:29AM +1000, Jon Seymour wrote:
+> This might surprise you, but everything in the world is not a unix
+> command line. Using tools designed for use on a unix command line in a
+> highly interactive environment like Eclipse would produce an
+> abominably clunky result.
+
+
+The unix commandline is an highly interactive enviroment aswell,
+and supports scripting in addition :)
+
+> I have already explained all the pragmatic reasons for doing a GIT
+> implementation in Java but you are prepared to ignore all of those
+> reasons. You have ignored all these reasons rather than lift a finger
+> to compose a well-reasoned rebuttal.
+
+You tried to argue for re-inventing the wheel.  Fortunately you are
+allowed to reinvent the wheel here (which isn't given anymore these
+days).  Just don't expect any support from people who have been burnt
+by that before.  And the Java world is re-inventing the wheel far to
+often - I suspect that'll be cured when the community gets more mature
+in a few years..
+
+> Instead you cling to a dogmatic insistence that GIT respositories only
+> be accessed via the C toolsets.
+
+The C toolchain is a well-defined interface.  One that makes a lot
+of sense.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

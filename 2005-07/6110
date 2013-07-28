@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jul 14 03:15:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 87B5B1E11A7
+	for <tkil@scrye.com>; Thu, 14 Jul 2005 03:15:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262983AbVGNJMO (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 14 Jul 2005 05:12:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262982AbVGNJJg
+	(ORCPT <rfc822;git-outgoing>); Thu, 14 Jul 2005 05:09:36 -0400
+Received: from cam-admin0.cambridge.arm.com ([193.131.176.58]:11215 "EHLO
+	cam-admin0.cambridge.arm.com") by vger.kernel.org with ESMTP
+	id S262981AbVGNJJU (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 14 Jul 2005 05:09:20 -0400
+Received: from cam-mail2.cambridge.arm.com (cam-mail2.cambridge.arm.com [10.1.127.39])
+	by cam-admin0.cambridge.arm.com (8.12.10/8.12.10) with ESMTP id j6E98Ms4008889;
+	Thu, 14 Jul 2005 10:08:23 +0100 (BST)
+Received: from ZIPPY.Emea.Arm.com (cam-exch2.emea.arm.com [10.1.255.58])
+	by cam-mail2.cambridge.arm.com (8.9.3/8.9.3) with ESMTP id KAA25132;
+	Thu, 14 Jul 2005 10:08:58 +0100 (BST)
+Received: from localhost.localdomain ([10.1.69.144]) by ZIPPY.Emea.Arm.com with Microsoft SMTPSVC(6.0.3790.211);
+	 Thu, 14 Jul 2005 10:08:56 +0100
+To: Russell King <rmk@arm.linux.org.uk>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: Is cogito really this inefficient
+References: <20050713135052.C6791@flint.arm.linux.org.uk>
+	<Pine.LNX.4.58.0507131325170.17536@g5.osdl.org>
+	<20050714083700.A26322@flint.arm.linux.org.uk>
+From: Catalin Marinas <catalin.marinas@gmail.com>
+Date:	Thu, 14 Jul 2005 10:08:31 +0100
+In-Reply-To: <20050714083700.A26322@flint.arm.linux.org.uk> (Russell King's
+ message of "Thu, 14 Jul 2005 08:37:00 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <tnxu0ixoiuo.fsf@arm.com>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-OriginalArrivalTime: 14 Jul 2005 09:08:56.0924 (UTC) FILETIME=[AA35C1C0:01C58853]
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:6110
+
+Russell King <rmk@arm.linux.org.uk> wrote:
+> it appears that cg-diff does a
+>
+> 	git-update-cache --refresh >/dev/null
+>
+> each time it's run, which is taking the bulk of the time.  Also note
+> that curiously, it exits with status 1.
+
+Does git-ls-files --unmerged show any files?
+
+-- 
+Catalin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

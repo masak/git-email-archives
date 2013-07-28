@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 29 15:05:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F3B2A15EAD7
+	for <tkil@scrye.com>; Thu, 29 Sep 2005 15:05:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751330AbVI2VEs (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 29 Sep 2005 17:04:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751331AbVI2VEs
+	(ORCPT <rfc822;git-outgoing>); Thu, 29 Sep 2005 17:04:48 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:21689 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S1751330AbVI2VEs (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 29 Sep 2005 17:04:48 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050929210444.XSUS29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 29 Sep 2005 17:04:44 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Jeff Garzik <jgarzik@pobox.com>
+Subject: Re: [howto] Kernel hacker's guide to git, updated
+References: <433BC9E9.6050907@pobox.com> <20050929200252.GA31516@redhat.com>
+	<433C4B6D.6030701@pobox.com>
+cc:	git@vger.kernel.org
+Date:	Thu, 29 Sep 2005 14:04:46 -0700
+In-Reply-To: <433C4B6D.6030701@pobox.com> (Jeff Garzik's message of "Thu, 29
+	Sep 2005 16:15:41 -0400")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7virwjegb5.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:9499
+
+Jeff Garzik <jgarzik@pobox.com> writes:
+
+> Nope.  It intentionally includes the manual rsync because clone/pull 
+> doesn't seem to grab tags.  Or at least last time I checked...
+
+clone does (or should), fetch (and hence pull) does not
+automatically.  Running the following one-liner every once in a
+while would sync your set of tags with Linus:
+
+git fetch origin `git-ls-remote --tags origin | sed -ne 's|^.*refs/tags/|tag |p'`
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

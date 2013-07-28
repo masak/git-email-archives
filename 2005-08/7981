@@ -1,0 +1,50 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 31 22:13:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5265D1C91D7
+	for <tkil@scrye.com>; Wed, 31 Aug 2005 22:13:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932074AbVIAENe (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Sep 2005 00:13:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932145AbVIAENe
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Sep 2005 00:13:34 -0400
+Received: from iabervon.org ([66.92.72.58]:38148 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S932074AbVIAENd (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 1 Sep 2005 00:13:33 -0400
+Received: (qmail 9243 invoked by uid 1000); 1 Sep 2005 00:17:18 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 1 Sep 2005 00:17:18 -0400
+Date:	Thu, 1 Sep 2005 00:17:18 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	git@vger.kernel.org
+cc:	Junio C Hamano <junkio@cox.net>
+Subject: Couple of read-tree questions
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509010009350.23242@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 13
+Xref: brand.scrye.com linux.git:7981
+
+Is there any current use for read-tree with multiple trees without -m or 
+equivalent?
+
+Why does --emu23 use I+H for stage 2, rather than just I? Wouldn't this 
+just reintroduce removed files?
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

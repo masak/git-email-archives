@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 29 20:19:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C123D23835F
+	for <tkil@scrye.com>; Fri, 29 Jul 2005 20:19:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262767AbVG3CSQ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Jul 2005 22:18:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262917AbVG3CNc
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Jul 2005 22:13:32 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:34706 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S262934AbVG3CLr (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 29 Jul 2005 22:11:47 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050730021142.TXQM1367.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 29 Jul 2005 22:11:42 -0400
+To: Darrin Thompson <darrint@progeny.com>
+Cc: git@vger.kernel.org
+Subject: Re: Dump http servers still slow?
+References: <1122584423.12374.11.camel@localhost.localdomain>
+	<7vy87qpcwg.fsf@assigned-by-dhcp.cox.net>
+	<1122645821.4263.6.camel@localhost.localdomain>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Fri, 29 Jul 2005 19:11:45 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzo56o0u.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 37
+Xref: brand.scrye.com linux.git:6598
+
+Darrin Thompson <darrint@progeny.com> writes:
+
+> Ok... so lets check my assumptions:
+>
+> 1. Pack files should reduce the number of http round trips.
+> 2. What I'm seeing when I check out mainline git is the acquisition of a
+> single large pack, then 600+ more recent objects. Better than before,
+> but still hundreds of round trips.
+> 3. If I wanted to further speed up the initial checkout on my own
+> repositories I could frequently repack my most recent few hundred
+> objects.
+> 4. If curl had pipelining then less pack management would be needed.
+
+All true.  Another possibility is to make multiple requests in
+parallel; if curl does not do pipelining, either switch to
+something that does, or have more then one process using curl.
+
+The dumb server preparation creates three files, two of which is
+currently used by clone (one is list of packs, the other is list
+of branches and tags).  The third one is commit ancestry
+information.  The commit walker could be taught to read it to
+figure out what commits it still needs to fetch without waiting
+for the commit being retrieved to be parsed.
+
+Sorry, I am not planning to write that part myself.
+
+One potential low hanging fruit is that even for cloning via
+git:// URL we _might_ be better off starting with the dumb
+server protocol; get the list of statically prepared packs and
+obtain them upfront before starting the clone-pack/upload-pack
+protocol pair.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

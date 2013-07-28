@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 27 19:37:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0DDB9D9892
+	for <tkil@scrye.com>; Thu, 27 Oct 2005 19:37:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965042AbVJ1Bge (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 27 Oct 2005 21:36:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965044AbVJ1Bge
+	(ORCPT <rfc822;git-outgoing>); Thu, 27 Oct 2005 21:36:34 -0400
+Received: from fencepost.gnu.org ([199.232.76.164]:62689 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S965042AbVJ1Bgd
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 27 Oct 2005 21:36:33 -0400
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EVJAW-00076e-Ee
+	for git@vger.kernel.org; Thu, 27 Oct 2005 21:36:32 -0400
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EVJAT-0004om-No; Thu, 27 Oct 2005 21:36:29 -0400
+Subject: Re: gitk shows an empty line between "Comments" and changed files
+From:	Pavel Roskin <proski@gnu.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+In-Reply-To: <7vslum3l2w.fsf@assigned-by-dhcp.cox.net>
+References: <1130434230.19641.21.camel@dv>
+	 <7vslum3l2w.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Thu, 27 Oct 2005 21:36:29 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1130463389.2186.14.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:10728
+
+Hi, Junio!
+
+On Thu, 2005-10-27 at 10:51 -0700, Junio C Hamano wrote:
+> Pavel Roskin <proski@gnu.org> writes:
+> 
+> > Or maybe the SHA1 header should never be printed at all?  It looks like
+> > it's not documented anywhere.  It doesn't break the tests.
+> 
+> AFAIK, its only user (except humans) is patch-id.
+
+Thank you for reply!  git-patch-id is badly documented, and its output
+is not documented at all.  It outputs two SHA1 hashes, and the second
+one is taken from the line produced by git-diff-tree.  If there is no
+such line, the second ID is 0.
+
+git-patch-id is only used by git-cherry.  git-cherry writes the second
+SHA1 to some files in a temporary directory, but it never reads those
+files, it only checks that they exist.
+
+I'm pretty confident now that the patch I posted in the last message was
+correct.
+
+Of course, more cleanup will be needed to remove the second ID from
+git-patch-id, to adjust git-cherry accordingly and to remove "p"
+assignments in gitk.
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 14 10:53:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2138EFC384
+	for <tkil@scrye.com>; Sat, 14 May 2005 10:53:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262796AbVENQx1 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 14 May 2005 12:53:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262799AbVENQx1
+	(ORCPT <rfc822;git-outgoing>); Sat, 14 May 2005 12:53:27 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:19356 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262796AbVENQxW (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 14 May 2005 12:53:22 -0400
+Received: (qmail 25582 invoked by uid 2001); 14 May 2005 16:53:21 -0000
+Date:	Sat, 14 May 2005 18:53:21 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: junkio@cox.net
+Cc: git@vger.kernel.org
+Subject: Test scripts naming
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050514165321.GX3905@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 41
+Xref: brand.scrye.com linux.git:3306
+
+  Hello,
+
+  I think we should do something about the test script names. Currently
+it appears almost like the scripts are basically unordered, and the
+digit you increment is chosen mostly randomly. Also, the "freeform"
+field after the test number is not as informative as it could be. What
+are the rules you use for naming the testcases? Could you please
+document it in the README?
+
+  I'd propose:
+
+  First digit: "family", e.g. the absolute basics and global stuff (0),
+the basic db-side commands (read-tree, write-tree, commit-tree), the
+basic working-tree-side commands (checkout-cache, update-cache), the
+other basic commands (ls-files), the diff commands, the pull commands,
+exporting commands, revision tree commands...
+
+  Second digit: the particular command we are testing
+
+  Third digit: (optionally) the particular switch or group of switches
+we are testing
+
+  Freeform part: commandname-details
+
+  How would I rename the current scripts?
+
+t1000-checkout-cache.sh -> t2000-checkout-cache-clash.sh
+t1001-checkout-cache.sh -> t2001-checkout-cache-clash.sh
+t0200-update-cache.sh   -> t2010-update-cache-badpath.sh
+t0400-ls-files.sh       -> t3000-ls-files-others.sh
+t0500-ls-files.sh       -> t3010-ls-files-killed.sh
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

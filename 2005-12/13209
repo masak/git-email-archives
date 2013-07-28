@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec  5 10:42:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7DD8B102562
+	for <tkil@scrye.com>; Mon,  5 Dec 2005 10:42:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932488AbVLERkX (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Dec 2005 12:40:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932487AbVLERkX
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Dec 2005 12:40:23 -0500
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:55006 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S932484AbVLERkW (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 5 Dec 2005 12:40:22 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051205173946.QXZB15695.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 5 Dec 2005 12:39:46 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Subject: Re: make gitfakemmap standalone to fix linking error in git.c
+References: <81b0412b0512050519k5ed80035x9eb4907f569e0a4b@mail.gmail.com>
+	<81b0412b0512050524w7b632651n93c836fda41a39d@mail.gmail.com>
+cc:	git@vger.kernel.org
+Date:	Mon, 05 Dec 2005 09:40:21 -0800
+In-Reply-To: <81b0412b0512050524w7b632651n93c836fda41a39d@mail.gmail.com>
+	(Alex Riesen's message of "Mon, 5 Dec 2005 14:24:47 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyp7cuii.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:13209
+
+Alex Riesen <raa.lkml@gmail.com> writes:
+
+> Why does it always happen...
+
+Because you touched you did not absolutely have to ;-).
+
+When I took setenv patch for git.c, I was thinking about
+something similar.  It may be cleaner to split out the pieces so
+that the functions like usage(), die(), xmalloc() and friends
+could be linkable in git.c and others that want to link in only
+the minimum set without including "cache.h" which has more
+intimate knowledge of other git internals.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 11:01:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 03C5E2851FC
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 11:01:50 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030293AbVKPSBR (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 13:01:17 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030294AbVKPSBR
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 13:01:17 -0500
+Received: from mail.dvmed.net ([216.237.124.58]:56757 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S1030293AbVKPSBQ (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 16 Nov 2005 13:01:16 -0500
+Received: from cpe-069-134-188-146.nc.res.rr.com ([69.134.188.146] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1EcRao-0004UA-AY; Wed, 16 Nov 2005 18:01:11 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437B73E2.3080903@pobox.com>
+Date:	Wed, 16 Nov 2005 13:01:06 -0500
+From:	Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	"H. Peter Anvin" <hpa@zytor.com>
+CC:	Linus Torvalds <torvalds@osdl.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [RFC] git email submissions
+References: <437B4472.1080401@pobox.com> <Pine.LNX.4.64.0511160847250.13959@g5.osdl.org> <437B7213.2020406@zytor.com>
+In-Reply-To: <437B7213.2020406@zytor.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:12024
+
+H. Peter Anvin wrote:
+> Linus Torvalds wrote:
+> 
+>>
+>> On Wed, 16 Nov 2005, Jeff Garzik wrote:
+>>
+>>> For people without _any_ hosting, it would be nice to give them a 
+>>> method to
+>>> submit some git changes via email.
+>>
+>>
+>> Well, as long as you don't expect me to take those things..
+>>
+>> BK had it with "bk send"/"bk receive", I used it a couple of times and 
+>> refuse to do it again.
+>>
+> 
+> Personally I think it would be nice if you could do an augmented 
+> patchset so that the end result is the same (with the same SHA1 IDs) as 
+> if one had merged a pull, while still being a human-readable patchset. 
+> The advantage with that is that once merged it'll do the right thing on 
+> the author's end.  I think that's pretty much my answer to Jeff's 
+> question :)
+
+Agreed.
+
+Though as a disclaimer to Linus and others, I don't plan to use this in 
+my own submissions to Linus.  Just thinking it would be a nice thing to 
+have, because there are definitely users out there who don't (for 
+whatever reason) have git-capable hosting.
+
+I would presume an email body would look like
+
+overall description of changes
+git log master..HEAD | git shortlog
+git diff master..HEAD | diffstat -p1
+git diff master..HEAD
+<pack file MIME attachment>
+
+Smarter programs would send the overall description and pack file as 
+"[patch 0/N]", and then post the for-review patches in separate emails 
+as "[patch M/N]".
+
+	Jeff
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

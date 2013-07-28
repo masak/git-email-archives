@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 13 13:56:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2F49D1DB08A
+	for <tkil@scrye.com>; Sat, 13 Aug 2005 13:56:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932276AbVHMT4D (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 13 Aug 2005 15:56:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932277AbVHMT4C
+	(ORCPT <rfc822;git-outgoing>); Sat, 13 Aug 2005 15:56:02 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:49166 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S932276AbVHMT4A (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 13 Aug 2005 15:56:00 -0400
+Received: (qmail 17263 invoked by uid 2001); 13 Aug 2005 19:55:57 -0000
+Date:	Sat, 13 Aug 2005 21:55:56 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Carl Baldwin <cnb@fc.hp.com>, git@vger.kernel.org
+Subject: Re: Add an empty directory?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050813195556.GK5608@pasky.ji.cz>
+References: <20050813173043.GA25013@hpsvcnb.fc.hp.com> <20050813180008.GJ5608@pasky.ji.cz> <20050813181945.GA2191@hpsvcnb.fc.hp.com> <Pine.LNX.4.58.0508131238150.3553@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0508131238150.3553@g5.osdl.org>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 31
+Xref: brand.scrye.com linux.git:7208
+
+Dear diary, on Sat, Aug 13, 2005 at 09:41:45PM CEST, I got a letter
+where Linus Torvalds <torvalds@osdl.org> told me that...
+> On Sat, 13 Aug 2005, Carl Baldwin wrote:
+> > 
+> > The bottom line is that I don't really see many situations where it is
+> > absolutely necessary but it is a convenience.  Not supporting it may
+> > seem like an artificial limit that really didn't need to be there.
+> 
+> Well, there is an argument for not supporting it, namely that the way 
+> patches work, traditionally a directory that became empty is deleted 
+> (because patches have no way of saying "remove directory" or "create 
+> directory").
+
+If we have rename patches, why couldn't our patches deal with
+directories as well? And git-apply, cg-patch etc might have a way to
+behave in a "traditional" way for non-git patches and if a patch removes
+all files in a directory, kill the directory.
+
+That is, I would solve this on the SCM<->patches boundary, not
+fundamentally limit the SCM itself.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

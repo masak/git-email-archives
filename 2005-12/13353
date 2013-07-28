@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  8 00:31:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.8 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EB2C43946
+	for <tkil@scrye.com>; Thu,  8 Dec 2005 00:31:00 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750710AbVLHHaF (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 02:30:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750709AbVLHHaF
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 02:30:05 -0500
+Received: from science.horizon.com ([192.35.100.1]:43306 "HELO
+	science.horizon.com") by vger.kernel.org with SMTP id S1750710AbVLHHaC
+	(ORCPT <rfc822;git@vger.kernel.org>); Thu, 8 Dec 2005 02:30:02 -0500
+Received: (qmail 7098 invoked by uid 1000); 8 Dec 2005 02:30:00 -0500
+Date:	8 Dec 2005 02:30:00 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051208073000.7097.qmail@science.horizon.com>
+From:	linux@horizon.com
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: Re: Wine + GIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:13353
+
+> The paragraph "Once you have finished editting [sic]..." needs
+> to be followed by:
+> 
+>	git-update-index those paths you hand corrected
+>        git-commit
+
+This is what happens when you have people too used to using the
+pre-porcelain plumbing.
+
+How about just
+git-commit <the paths you hand corrected>
+
+If you forget any, the commit will fail, but they will have been
+updated in the index, and you don't need to mention them again in the
+next attempt.
+
+
+(Grump... I just noticed that the "recursive" merge stratgy *doesn't*
+generate a merged file containing conflict markers, at least not in
+the case I tried.  Instead I get "a~HEAD" and "a~branch" files.
+Time to fix the docs...)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 09:41:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 205572851FA
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 09:41:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750863AbVKKQlF (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 11:41:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750866AbVKKQlF
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 11:41:05 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:18620 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750863AbVKKQlE (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 11 Nov 2005 11:41:04 -0500
+Received: (qmail 15562 invoked by uid 2001); 11 Nov 2005 17:41:01 +0100
+Date:	Fri, 11 Nov 2005 17:41:01 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Paolo Teti <paolo.teti@gmail.com>
+Cc:	git@vger.kernel.org
+Subject: Re: lock
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051111164101.GV30496@pasky.or.cz>
+References: <34a7ae040511110831y3e896738o@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <34a7ae040511110831y3e896738o@mail.gmail.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:11606
+
+Dear diary, on Fri, Nov 11, 2005 at 05:31:31PM CET, I got a letter
+where Paolo Teti <paolo.teti@gmail.com> said that...
+> Just a question probably stupid because I'm a quite new GIT user.
+> 
+> Is possible to apply a lock (as in ClearCase) on a given file etc in order to
+> prevent accidental check-out or any other tool operation?
+
+Can you be a bit more detailed in the description of what do you exactly
+want?
+
+Do you want to lock the file so that noone else will be able to check it
+out? That's impossible from GIT's very nature of distributed version
+control system.
+
+Do you want to lock the file in your working copy so that you won't be
+able to remove it or change it? In that case, this is possible, but not
+implemented yet. Part of the solution would involve making the file
+read-only, the rest would be probably to make sure all the tools handle
+that case gracefully.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

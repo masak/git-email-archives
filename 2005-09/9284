@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 25 17:28:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 079DD1C57C3
+	for <tkil@scrye.com>; Sun, 25 Sep 2005 17:28:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751557AbVIYX1t (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 25 Sep 2005 19:27:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751558AbVIYX1t
+	(ORCPT <rfc822;git-outgoing>); Sun, 25 Sep 2005 19:27:49 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:29950 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S1751553AbVIYX1s (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 25 Sep 2005 19:27:48 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050925232746.PKZ29747.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 25 Sep 2005 19:27:46 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Git Mailing List <git@vger.kernel.org>,
+	Davide Libenzi <davidel@xmailserver.org>
+Subject: Re: Add "git-update-ref" to update the HEAD (or other) ref
+References: <Pine.LNX.4.58.0509251134480.3308@g5.osdl.org>
+Date:	Sun, 25 Sep 2005 16:27:44 -0700
+In-Reply-To: <Pine.LNX.4.58.0509251134480.3308@g5.osdl.org> (Linus Torvalds's
+	message of "Sun, 25 Sep 2005 11:43:05 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vhdc8n2xb.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 46
+Xref: brand.scrye.com linux.git:9284
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> +	 * FIXME!
+
+Is something like the one at the end acceptable?
+
+I'd like to take these patches in two stages (I am not asking
+you for a resend):
+
+ - Drop the emulated symlink part from the update-ref.c; have it
+   graduate to "master" branch and use it in existing scripts.
+
+ - Take the read_ref() change, along with a patch to re-add the
+   emulated symlink part to update-ref.c (after making its
+   interpretation to match that of read_ref() -- which requires
+   the prefix to be exactly "ref: " five bytes); keep it in "pu"
+   branch a bit longer.
+
+
+---
+diff --git a/update-ref.c b/update-ref.c
+--- a/update-ref.c
++++ b/update-ref.c
+@@ -97,11 +97,13 @@ int main(int argc, char **argv)
+ 	}
+ 
+ 	/*
+-	 * FIXME!
+-	 *
+-	 * We should re-read the old ref here, and re-verify that it
++	 * We re-read the old ref here, and re-verify that it
+ 	 * matches "oldsha1". Otherwise there's a small race.
+ 	 */
++	if (!resolve_ref(git_path("%s", refname), oldsha1))
++		die("Cannot verify ref: %s", refname); 
++	if (memcmp(oldsha1, currsha1, 20))
++		die("Ref %s changed to %s", refname, sha1_to_hex(oldsha1));
+ 
+ 	if (rename(lockpath, path) < 0) {
+ 		unlink(lockpath);
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

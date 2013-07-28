@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 18 06:25:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E90B01CA02C
+	for <tkil@scrye.com>; Mon, 18 Apr 2005 06:25:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262055AbVDRMZL (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 18 Apr 2005 08:25:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262054AbVDRMZL
+	(ORCPT <rfc822;git-outgoing>); Mon, 18 Apr 2005 08:25:11 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:18643 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S262055AbVDRMZB (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 18 Apr 2005 08:25:01 -0400
+Received: from [203.53.50.91] (helo=[172.18.240.72])
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DNVJC-00062F-JN; Mon, 18 Apr 2005 13:25:00 +0100
+Subject: Re: [PATCH] Pretty-print date in 'git log'
+From: David Woodhouse <dwmw2@infradead.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Sanjoy Mahajan <sanjoy@mrao.cam.ac.uk>, git@vger.kernel.org
+In-Reply-To: <20050418102744.GK1461@pasky.ji.cz>
+References: <E1DNPz9-0003lm-00@skye.ra.phy.cam.ac.uk>
+	 <1113808105.5286.1.camel@localhost.localdomain>
+	 <20050418102744.GK1461@pasky.ji.cz>
+Content-Type: text/plain
+Date:	Mon, 18 Apr 2005 22:24:39 +1000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1113827080.5286.10.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 (2.2.1.1-2) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.2
+Lines: 36
+Xref: brand.scrye.com linux.git:626
+
+On Mon, 2005-04-18 at 12:27 +0200, Petr Baudis wrote:
+> Yes. As far as I'm concerned, I'd put such stuff to git log, and extend
+> it usage so that it is possible to print individual log entries with it
+> - just make it accept a _range_ of commits, and then do
+> 
+>         git log $commit $commit
+
+That's fairly trivial. In the current (and misguided) version with
+chronological output, rev-tree will do it all for you, in fact:
+
+	rev-tree $1 ^$2
+
+In the older and more useful version, it was only slightly more complex:
+
+ base=$(gitXnormid.sh -c $1) || exit 1
+ 
++if [ -n "$2" ]; then
++    endpoint=$(gitXnormid.sh -c $2) || exit 1
++    if rev-tree $base $endpoint | grep -q $base:3; then
++        base=
++    else
++        rev-tree --edges $base $endpoint | sed 's/[a-z0-9]*:1//g' > $TMPCL
++    fi
++fi
+ changelog $base
+ rm $TMPCL $TMPCM
+
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 18:20:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 202321709BE
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 18:20:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261862AbVD0AUj (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 20:20:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261864AbVD0AUj
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 20:20:39 -0400
+Received: from fire.osdl.org ([65.172.181.4]:26514 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261862AbVD0AUf (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 26 Apr 2005 20:20:35 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3R0KVs4009359
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 26 Apr 2005 17:20:31 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3R0KTqQ019916;
+	Tue, 26 Apr 2005 17:20:30 -0700
+Date:	Tue, 26 Apr 2005 17:22:29 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Add -r flag to show-diff for diff-cache/diff-tree like
+ output.
+In-Reply-To: <7vd5shkrs5.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504261721550.18901@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0504232202340.19877@ppc970.osdl.org>
+ <7v1x8zsamn.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0504251832480.18901@ppc970.osdl.org>
+ <7vy8b5mawy.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0504261534590.18901@ppc970.osdl.org>
+ <7vd5shm94l.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0504261639420.18901@ppc970.osdl.org>
+ <7vd5shkrs5.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 19
+Xref: brand.scrye.com linux.git:1811
+
+
+
+On Tue, 26 Apr 2005, Junio C Hamano wrote:
+> 
+> By the way, how about renaming show-diff to diff-file?
+> 
+>     diff-tree  : compares two trees.
+>     diff-cache : compares a tree and the cache, or a tree and files.
+>     diff-file  : compares the cache and files.
+
+Yes. Except I think that the "big renaming" is coming up, and we should 
+just rename them to have a "git-" prefix too.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

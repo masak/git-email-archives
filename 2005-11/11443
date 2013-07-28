@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 17:16:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E00F0147F0E
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 17:16:11 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751096AbVKJAPU (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 19:15:20 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751098AbVKJAPU
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 19:15:20 -0500
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:42200 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S1751096AbVKJAPS (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 9 Nov 2005 19:15:18 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051110001413.OVXW24014.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 9 Nov 2005 19:14:13 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Subject: Re: [PATCH 0/4] Add git-pack-intersect
+References: <43714EFB.5070705@etek.chalmers.se>
+	<20051109111917.GB30496@pasky.or.cz> <4371E472.4030902@op5.se>
+	<43728523.1040209@etek.chalmers.se>
+Date:	Wed, 09 Nov 2005 16:15:17 -0800
+In-Reply-To: <43728523.1040209@etek.chalmers.se> (Lukas
+ =?iso-2022-jp-2?B?U2FuZHN0chsuQRtOdm0ncw==?= message
+	of "Thu, 10 Nov 2005 00:24:19 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vy83x73ze.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-2022-jp-2
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:11443
+
+Lukas Sandstr.ANvm <lukass@etek.chalmers.se> writes:
+
+> Perhaps if git-daemon ever does caching of packfiles, removing the smaller
+> packfiles might not be optimal.
+
+Ah, that reminds me of something.
+
+I did not advertise it too much, but you can put a prepackaged
+packs in $GIT_DIR/pack-cache/ and it is used when upload-pack
+notices it is creating that exact pack.
+
+This is useless for ordinary repository, but can be useful for
+historical repositories whose heads/tags never change (e.g. the
+Linux kernel repository resurrected from bkcvs).  There you
+could:
+
+	$ git repack -a -d
+	$ ln $GIT_DIR/objects/pack/pack-* $GIT_DIR/pack-cache/.
+
+and a clone request would feed the pack, without regenerating
+the pack data from scratch.  upload-pack still reads, sorts and
+computes SHA1 hash of the list of objects to find the pack name,
+but that is a fairly quick operation, compared to the rest of
+the pack generation process.
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

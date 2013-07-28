@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 12:59:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 767102899B9
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 12:59:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932217AbVIOS6u (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 14:58:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932251AbVIOS6u
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 14:58:50 -0400
+Received: from iabervon.org ([66.92.72.58]:14097 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S932217AbVIOS6u (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 15 Sep 2005 14:58:50 -0400
+Received: (qmail 14829 invoked by uid 1000); 15 Sep 2005 15:02:59 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 15 Sep 2005 15:02:59 -0400
+Date:	Thu, 15 Sep 2005 15:02:59 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Matthias Urlichs <smurf@smurf.noris.de>
+cc:	git@vger.kernel.org
+Subject: Re: [PATCH 0/4] Recovery after interrupted HTTP(s) fetch
+In-Reply-To: <pan.2005.09.15.10.34.59.363606@smurf.noris.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509151458240.23242@iabervon.org>
+References: <20050914124206.GC24405@master.mivlgu.local>
+ <7vpsrbjz0t.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0509141325310.26803@g5.osdl.org>
+ <Pine.LNX.4.63.0509141641290.23242@iabervon.org> <Pine.LNX.4.58.0509141411510.26803@g5.osdl.org>
+ <Pine.LNX.4.63.0509141722500.23242@iabervon.org> <7vk6hjfh9u.fsf@assigned-by-dhcp.cox.net>
+ <pan.2005.09.15.10.34.59.363606@smurf.noris.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:8617
+
+On Thu, 15 Sep 2005, Matthias Urlichs wrote:
+
+> Hi, Junio C Hamano wrote:
+> 
+> > Daniel Barkalow <barkalow@iabervon.org> writes:
+> >> Oh, right. Yeah, that's the obvious solution. I'll do that tonight.
+> > 
+> > Thanks.  In the meantime I have Sergey's patch in the "pu"
+> > branch but we can replace it with your fix.
+> 
+> Personally I'd rather combine the two. The point being, broken
+> repositories do happen -- for instance, when the file system is
+> inconsistent after a crash, or when the referent of an info/alternates
+> directory vanishes. :-/
+> 
+> I'd rather have a simple repair flag than do a "download everything again
+> and then throw most of it away" job when something like that happens.
+
+Agreed; but we want a new patch for --recover, because with the new code, 
+the easy way is to skip the for_each_ref call, at which point it will just 
+not assume you have anything.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

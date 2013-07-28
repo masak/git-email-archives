@@ -1,0 +1,54 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 15 08:11:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 077E7FC2DD
+	for <tkil@scrye.com>; Thu, 15 Dec 2005 08:11:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750748AbVLOPLZ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Dec 2005 10:11:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750754AbVLOPLZ
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Dec 2005 10:11:25 -0500
+Received: from ifae-s0.ifae.es ([192.101.162.68]:54483 "EHLO ifae-s0.ifae.es")
+	by vger.kernel.org with ESMTP id S1750748AbVLOPLZ (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 15 Dec 2005 10:11:25 -0500
+Received: from bela (caronte.ifae.es [192.101.162.199])
+	by ifae-s0.ifae.es (8.11.6/8.11.6) with ESMTP id jBFFBHJ19770
+	for <git@vger.kernel.org>; Thu, 15 Dec 2005 16:11:17 +0100
+From:	=?utf-8?Q?Santi_B=C3=A9jar?= <sbejar@gmail.com>
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: gitk: color in the merge diffs
+Date:	Thu, 15 Dec 2005 16:13:03 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <87d5jytmv4.fsf@ifae.es>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/22.0.50 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:13688
+
+Hello *,
+
+      In the diff of a merge it is used some colors for the parents, red
+      for the first parent, blue for the second, then green, purple,
+      brown, and the rest are grey. It would help to remember this code
+      if the Parent's line in the comments used the same colors.
+
+Parent: 2db8aaeca1dca4e940829b87d1164e5b42ff49b4 (rebase: ....)
+Parent: b3f041fb0f7de167dbb6711b0a231d36c4b5de08 (git-am ...)
+        ^^^^ in red the first and blue the second...
+
+      Thanks.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov  3 00:41:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 02A1412B1F6
+	for <tkil@scrye.com>; Thu,  3 Nov 2005 00:41:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750811AbVKCHkY (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 3 Nov 2005 02:40:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751107AbVKCHkY
+	(ORCPT <rfc822;git-outgoing>); Thu, 3 Nov 2005 02:40:24 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:38827 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1750811AbVKCHkX (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 3 Nov 2005 02:40:23 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051103073958.ZEPG9394.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 3 Nov 2005 02:39:58 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] rev-list: make --max- and --min-age a bit more usable.
+References: <7vd5lnztav.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0510301838110.27915@g5.osdl.org>
+	<7vbr12swj3.fsf_-_@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0511021908220.27915@g5.osdl.org>
+Date:	Wed, 02 Nov 2005 23:40:21 -0800
+In-Reply-To: <Pine.LNX.4.64.0511021908220.27915@g5.osdl.org> (Linus Torvalds's
+	message of "Wed, 2 Nov 2005 19:11:00 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64ranpqy.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:11058
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> All the magic is in "git-rev-parse". Try it.
+
+Ahhhh.  I missed that.  Thanks.
+
+-- >8 -- cut here -- >8 --
+Document --since and --until options to rev-parse.
+
+The usability magic were hidden in the source code without being
+documented, and even the maintainer did not know about them ;-).
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+
+diff --git a/Documentation/git-rev-parse.txt b/Documentation/git-rev-parse.txt
+index 099db29..8b8068c 100644
+--- a/Documentation/git-rev-parse.txt
++++ b/Documentation/git-rev-parse.txt
+@@ -72,6 +72,14 @@ OPTIONS
+ 	path of the current directory relative to the top-level
+ 	directory.
+ 
++--since=datestring, --after=datestring::
++	Parses the date string, and outputs corresponding
++	--max-age= parameter for git-rev-list command.
++
++--until=datestring, --before=datestring::
++	Parses the date string, and outputs corresponding
++	--min-age= parameter for git-rev-list command.
++
+ <args>...::
+ 	Flags and parameters to be parsed.
+ 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

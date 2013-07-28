@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 12:02:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AA408277B60
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 12:02:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964835AbVLNTBy (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 14:01:54 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964865AbVLNTBy
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 14:01:54 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:44755 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S964835AbVLNTBy (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Dec 2005 14:01:54 -0500
+Received: (qmail 32738 invoked by uid 2001); 14 Dec 2005 20:01:46 +0100
+Date:	Wed, 14 Dec 2005 20:01:46 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Jon Loeliger <jdl@freescale.com>
+Cc:	Git List <git@vger.kernel.org>
+Subject: Re: [PATCH] Make git-send-pack exit with error when some refs cou ldn't be pushed out
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051214190146.GI22159@pasky.or.cz>
+References: <20051214023005.GS10680@pasky.or.cz> <1134576909.2478.53.camel@cashmere.sps.mot.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1134576909.2478.53.camel@cashmere.sps.mot.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:13628
+
+Dear diary, on Wed, Dec 14, 2005 at 05:15:09PM CET, I got a letter
+where Jon Loeliger <jdl@freescale.com> said that...
+> On Tue, 2005-12-13 at 20:30, Petr Baudis wrote:
+> > Jonas only reported it on IRC as weird cg-commit behaviour (which it
+> 
+> Gah.  Are we IRCing now too these days?  Did I miss a step
+> or an announcment?
+
+I mentioned the #git channel on the FreeNode network in several Cogito
+announcements, but this problem report was actually in a different
+channel (#elinks, since it occurred during work on ELinks) and it
+wouldn't make a difference if it was on a query or in a private mail.
+
+> I thought we were all doing a reasonably good job of communicating
+> here on list...
+
+Sure, all important things are going on here, but it's often much more
+convenient to do some troubleshooting and stuff over IRC, and way too
+many people also mail me privately (sometimes it makes sense, sometimes
+they would be better off cc'ing the list).
+
+#git serves mainly as quick help wrt. GIT usage, sometimes people report
+problems there (but for non-Cogito problems, I usually redir them to the
+mailing list), and sometimes (but quite rarely) larger feature-wise
+discussion spins out; but if it's about to get anything near real, it
+usually hits the mailing list anyway. Oh, and CIA reports Cogito commits
+on the channel.
+
+The only IRC-only effort ever (so far) was I believe adding the
+cg-switch command.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

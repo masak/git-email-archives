@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 02:37:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_VN 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EE0E717FEF7
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 02:37:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932250AbVLNJgq (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 04:36:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932254AbVLNJgq
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 04:36:46 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:42155 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S932250AbVLNJgq
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 14 Dec 2005 04:36:46 -0500
+Received: from [192.168.1.19] (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 508536BD08
+	for <git@vger.kernel.org>; Wed, 14 Dec 2005 10:36:45 +0100 (CET)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <439FE7AD.6080602@op5.se>
+Date:	Wed, 14 Dec 2005 10:36:45 +0100
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: git cole give unexpected error message
+References: <20051213212820.GB5232@mars.ravnborg.org> <20051213222829.GE22159@pasky.or.cz>
+In-Reply-To: <20051213222829.GE22159@pasky.or.cz>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:13614
+
+Petr Baudis wrote:
+> Dear diary, on Tue, Dec 13, 2005 at 10:28:20PM CET, I got a letter
+> where Sam Ravnborg <sam@ravnborg.org> said that...
+> 
+>>cogito being a nice porcelain gives the git errormessage but manage to
+>>clean up when the clone fails.
+>>So also cogito would benefit from a more descriptive errormessage.
+> 
+> 
+> Well, git clone can fail for many reasons and I don't think the "no such
+> repository" one is completely overwhelming, so hinting that by Cogito
+> could be quite confusing (theme of the day: usability ;-)).
+> 
+> The real solution would be proper error reporting by the git daemon.
+> 
+
+But that would open up for an information disclosure. If someone's 
+hacking on a patch, please make it configurable at least.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

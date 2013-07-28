@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  2 07:00:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5CEF13198E6
+	for <tkil@scrye.com>; Fri,  2 Dec 2005 07:00:05 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750748AbVLBN7l (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 2 Dec 2005 08:59:41 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750750AbVLBN7k
+	(ORCPT <rfc822;git-outgoing>); Fri, 2 Dec 2005 08:59:40 -0500
+Received: from web31811.mail.mud.yahoo.com ([68.142.207.74]:55890 "HELO
+	web31811.mail.mud.yahoo.com") by vger.kernel.org with SMTP
+	id S1750748AbVLBN7k (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 2 Dec 2005 08:59:40 -0500
+Received: (qmail 86551 invoked by uid 60001); 2 Dec 2005 13:59:37 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Message-ID:Received:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=4lA6+xDSRoTNqthCQt3yKTAv+64zhPt/ve8upTCfyRep0TUW5TAYwQAslwh0fj8C0t2dQVJljt7/QH5o4Y3Z891hVLWjFPMkiWXoVfQaGGBwojp3UpqfWA9FuSOgaAC1ZBXG6OXrIKadzStUxcOZnTTQK1a/pl8FrXjHfmL+SZ4=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051202135937.86549.qmail@web31811.mail.mud.yahoo.com>
+Received: from [68.221.13.176] by web31811.mail.mud.yahoo.com via HTTP; Fri, 02 Dec 2005 05:59:37 PST
+Date:	Fri, 2 Dec 2005 05:59:37 -0800 (PST)
+From:	Luben Tuikov <ltuikov@yahoo.com>
+Reply-To: ltuikov@yahoo.com
+Subject: Re: resolve (merge) problems
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+In-Reply-To: <7vk6eo9jag.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:13108
+
+--- Junio C Hamano <junkio@cox.net> wrote:
+
+> Luben Tuikov <ltuikov@yahoo.com> writes:
+> 
+> > $python -V
+> > Python 2.4.2
+> > $which python
+> > /usr/local/bin/python
+> 
+> Since you do not want to use /usr/bin/python but from your own
+> location /usr/local/bin/python, I presume you built git with
+> 
+> 	$ make PYTHON_PATH=/usr/local/bin/python
+> 
+> among other installation specific override needed on your
+> machine?
+
+Oops :-) (lol)
+
+Thanks,
+    Luben
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec 16 14:14:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_VN 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A37071648C6
+	for <tkil@scrye.com>; Fri, 16 Dec 2005 14:14:04 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932412AbVLPVMg (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 16 Dec 2005 16:12:36 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932425AbVLPVMg
+	(ORCPT <rfc822;git-outgoing>); Fri, 16 Dec 2005 16:12:36 -0500
+Received: from quark.didntduck.org ([69.55.226.66]:44483 "EHLO
+	quark.didntduck.org") by vger.kernel.org with ESMTP id S932420AbVLPVMf
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 16 Dec 2005 16:12:35 -0500
+Received: from [172.21.26.77] (ip-2.provia.com [208.224.1.2])
+	(authenticated)
+	by quark.didntduck.org (8.11.6/8.11.6) with ESMTP id jBGLCVS26561;
+	Fri, 16 Dec 2005 16:12:31 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43A32E33.6040709@didntduck.org>
+Date:	Fri, 16 Dec 2005 16:14:27 -0500
+From:	Brian Gerst <bgerst@didntduck.org>
+User-Agent: Mozilla Thunderbird 1.0.7 (Windows/20050923)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Sam Ravnborg <sam@ravnborg.org>
+CC:	git@vger.kernel.org
+Subject: Re: Why do we need [PATCH]?
+References: <20051216210145.GA25311@mars.ravnborg.org>
+In-Reply-To: <20051216210145.GA25311@mars.ravnborg.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:13742
+
+Sam Ravnborg wrote:
+> Hi git's.
+> 
+> I've just applied a patch to my git tree using git-applymbox.
+> It worked like a charm as it often do.
+> But then when I did a quick check with gitk it stuck me that
+> the subject was prefixed with [PATCH].
+> I am aware that the [PATCH] in subject tell me:
+> "patch is received from somewhere and applied by me to the .git tree".
+> This is in comparsion to patches received when I merge a git tree for
+> example.
+> 
+> But with common practice to use sign-off I wonder the value of this
+> patch marker.
+> When browsing the kernel shortlog I often focus on first word in subject
+> - cause this tells me what system/drivers is changed. But with the
+>   [PATCH] marker I have to read some non-sense to see actual subject.
+> 
+> The information is redundant since metadata already tell me who is the
+> author and who committed the change.
+> So could we have it removed or if people continue to find it usefull
+> then at least hide it behind some option. Using the [PATCH] prefix is
+> not the natural thing to do with git.
+> 
+> I looked at the source and found the -k option, but adding [PATCH]
+> should not be default behaviour so this is not the correct solution.
+> 
+> 	Sam
+
+[PATCH] makes sense for the actual email message so that the recipient 
+knows that the message contains a patch.  But I agree that it does not 
+add any value to the commit message in git.  It actually detracts value, 
+because it takes up limited space in the shortlog message.
+
+--
+				Brian Gerst
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

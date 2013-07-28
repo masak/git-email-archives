@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 27 20:43:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 674B112D09D
+	for <tkil@scrye.com>; Tue, 27 Sep 2005 20:43:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965246AbVI1Cmz (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 27 Sep 2005 22:42:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965256AbVI1Cmz
+	(ORCPT <rfc822;git-outgoing>); Tue, 27 Sep 2005 22:42:55 -0400
+Received: from 195.37.26.69.virtela.com ([69.26.37.195]:30335 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S965246AbVI1Cmy (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 27 Sep 2005 22:42:54 -0400
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id j8S2dlHC000562;
+	Tue, 27 Sep 2005 19:39:47 -0700
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id j8S2dl6B000560;
+	Tue, 27 Sep 2005 19:39:47 -0700
+Date:	Tue, 27 Sep 2005 19:39:47 -0700
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Cc:	Nick Hengeveld <Nick.Hengeveld@reactrix.com>, git@vger.kernel.org
+Subject: Re: [PATCH 0/3] http-fetch enhancements
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050928023947.GA385@reactrix.com>
+References: <Pine.LNX.4.63.0509261823590.23242@iabervon.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.63.0509261823590.23242@iabervon.org>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:9411
+
+On Mon, Sep 26, 2005 at 03:29:02PM -0700, Daniel Barkalow wrote:
+
+>    If you happen to know how to have curl do multiple simultaneous downloads,
+>    that would be a big performance win, and I should be able to explain how
+>    to get this to work. I haven't gotten around to learning libcurl well
+>    enough to do the flow control.
+
+The curl multi interface looks pretty straightforward.  What did you have
+in mind as far as which requests would be running concurrently and how they
+would need to be limited?
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

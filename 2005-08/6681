@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  1 02:16:29 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id ABDA115E1A8
+	for <tkil@scrye.com>; Mon,  1 Aug 2005 02:16:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263220AbVHAIPf (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 1 Aug 2005 04:15:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263233AbVHAIPd
+	(ORCPT <rfc822;git-outgoing>); Mon, 1 Aug 2005 04:15:33 -0400
+Received: from fed1rmmtao01.cox.net ([68.230.241.38]:52379 "EHLO
+	fed1rmmtao01.cox.net") by vger.kernel.org with ESMTP
+	id S263220AbVHAIOP (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 1 Aug 2005 04:14:15 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao01.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050801081413.FXIJ19627.fed1rmmtao01.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 1 Aug 2005 04:14:13 -0400
+To: Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Added hook in git-receive-pack
+References: <200507312117.43957.Josef.Weidendorfer@gmx.de>
+	<7v3bpuenpi.fsf@assigned-by-dhcp.cox.net>
+	<200508010117.41848.Josef.Weidendorfer@gmx.de>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Mon, 01 Aug 2005 01:14:13 -0700
+In-Reply-To: <200508010117.41848.Josef.Weidendorfer@gmx.de> (Josef Weidendorfer's message of "Mon, 1 Aug 2005 01:17:41 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vzms2xeei.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:6681
+
+Josef, I've committed a version that has slightly different
+semantics from what you originally posted.
+
+The differences are:
+
+ - Instead of being post-change hook, the script is run just
+   before each ref is updated.  The script can exit with
+   non-zero status to tell receive-pack not to update that ref
+   if it wants to.  This means that you should explicitly exit
+   with zero status if all you want to do in the hook is to send
+   a mail out.
+
+ - The script is called once at the very end with a single
+   parameter "" (i.e. $refname == ""), to signal that
+   receive-pack is about to finish.  This is a good place to add
+   any "final cleanup" hook.
+
+The latter change allowed me to remove the mandatory
+update_server_info call Linus did not like and make it
+optional.
+
+-jc
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 14:13:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 27B5A19884D
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 14:13:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261798AbVDTUNa (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 16:13:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261799AbVDTUNa
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 16:13:30 -0400
+Received: from fire.osdl.org ([65.172.181.4]:43670 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261798AbVDTUN0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 20 Apr 2005 16:13:26 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3KKDLs4029816
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 20 Apr 2005 13:13:22 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3KKDKBn025648;
+	Wed, 20 Apr 2005 13:13:21 -0700
+Date:	Wed, 20 Apr 2005 13:15:19 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: David Greaves <david@dgreaves.com>
+Cc: "C. Scott Ananian" <cscott@cscott.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Some documentation...
+In-Reply-To: <426692D1.20304@dgreaves.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504201311300.6467@ppc970.osdl.org>
+References: <42668C8D.3000209@dgreaves.com> <Pine.LNX.4.61.0504201321380.2630@cag.csail.mit.edu>
+ <426692D1.20304@dgreaves.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 30
+Xref: brand.scrye.com linux.git:1000
+
+
+
+On Wed, 20 Apr 2005, David Greaves wrote:
+> 
+> So maybe it's left as documented behaviour and higher level tools must 
+> manage the data they feed to it...
+
+That was the plan.
+
+I agree that "find . -type f | xargs update-cache --add --" in _theory_ is
+a nice thing to do. But in practice, you want to make sure that find 
+doesn't incldue the ".git" directory and that we always use the canonical 
+names for all files etc etc.
+
+I could do it in the low-level tools (ie do pathname cleanup there), and
+indeed I did exactly that in the original code sequence. However, it very
+quickly became obvious that the low-level code really doesn't want to
+care, and that it's a lot easier to just do it at a higher level when 
+necessary.
+
+For example, if you have to add a sed-script or something that just 
+removes '^./' and "^.git/", then that's trivial to do, and it leaves the 
+core tools with a very clear agenda in life.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

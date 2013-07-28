@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  8 03:55:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 81FB0F65B8
+	for <tkil@scrye.com>; Mon,  8 Aug 2005 03:55:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750792AbVHHJyb (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 8 Aug 2005 05:54:31 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750793AbVHHJyb
+	(ORCPT <rfc822;git-outgoing>); Mon, 8 Aug 2005 05:54:31 -0400
+Received: from cam-admin0.cambridge.arm.com ([193.131.176.58]:11482 "EHLO
+	cam-admin0.cambridge.arm.com") by vger.kernel.org with ESMTP
+	id S1750792AbVHHJya (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 8 Aug 2005 05:54:30 -0400
+Received: from cam-mail2.cambridge.arm.com (cam-mail2.cambridge.arm.com [10.1.127.39])
+	by cam-admin0.cambridge.arm.com (8.12.10/8.12.10) with ESMTP id j789reOU010603
+	for <git@vger.kernel.org>; Mon, 8 Aug 2005 10:53:41 +0100 (BST)
+Received: from ZIPPY.Emea.Arm.com (cam-exch2.emea.arm.com [10.1.255.58])
+	by cam-mail2.cambridge.arm.com (8.9.3/8.9.3) with ESMTP id KAA20195
+	for <git@vger.kernel.org>; Mon, 8 Aug 2005 10:54:29 +0100 (BST)
+Received: from localhost.localdomain ([10.1.69.144]) by ZIPPY.Emea.Arm.com with Microsoft SMTPSVC(6.0.3790.211);
+	 Mon, 8 Aug 2005 10:53:54 +0100
+From: Catalin Marinas <catalin.marinas@gmail.com>
+Subject: [PATCH] Make curl fail on server error
+Date:	Mon, 08 Aug 2005 10:53:23 +0100
+To: git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050808095323.31602.76855.stgit@localhost.localdomain>
+X-OriginalArrivalTime: 08 Aug 2005 09:53:54.0330 (UTC) FILETIME=[1650FFA0:01C59BFF]
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 53
+Xref: brand.scrye.com linux.git:6925
+
+Some http servers return an HTML error page and git reads it as normal
+data. Adding -f option makes curl fail silently.
+
+Signed-off-by: Catalin Marinas <catalin.marinas@gmail.com>
+---
+
+ git-clone-dumb-http  |    2 +-
+ git-fetch-script     |    2 +-
+ git-ls-remote-script |    2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/git-clone-dumb-http b/git-clone-dumb-http
+--- a/git-clone-dumb-http
++++ b/git-clone-dumb-http
+@@ -14,7 +14,7 @@ if [ -n "$GIT_SSL_NO_VERIFY" ]; then
+ fi
+ http_fetch () {
+ 	# $1 = Remote, $2 = Local
+-	curl -ns $curl_extra_args "$1" >"$2"
++	curl -nsf $curl_extra_args "$1" >"$2"
+ }
+ 
+ cd "$D" && 
+diff --git a/git-fetch-script b/git-fetch-script
+--- a/git-fetch-script
++++ b/git-fetch-script
+@@ -15,7 +15,7 @@ http://* | https://*)
+         fi
+ 	_x40='[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]' &&
+ 	_x40="$_x40$_x40$_x40$_x40$_x40$_x40$_x40$_x40" &&
+-	head=$(curl -ns $curl_extra_args "$merge_repo/$merge_head") &&
++	head=$(curl -nsf $curl_extra_args "$merge_repo/$merge_head") &&
+ 	expr "$head" : "$_x40\$" >/dev/null || {
+ 		echo >&2 "Failed to fetch $merge_head from $merge_repo"
+ 	        exit 1
+diff --git a/git-ls-remote-script b/git-ls-remote-script
+--- a/git-ls-remote-script
++++ b/git-ls-remote-script
+@@ -46,7 +46,7 @@ http://* | https://* )
+         if [ -n "$GIT_SSL_NO_VERIFY" ]; then
+             curl_extra_args="-k"
+         fi
+-	curl -ns $curl_extra_args "$peek_repo/info/refs" || exit 1
++	curl -nsf $curl_extra_args "$peek_repo/info/refs" || exit 1
+ 	;;
+ 
+ rsync://* )
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 19 16:30:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5D9BF29E13B
+	for <tkil@scrye.com>; Tue, 19 Apr 2005 16:30:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261702AbVDSWaa (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 19 Apr 2005 18:30:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261703AbVDSWa3
+	(ORCPT <rfc822;git-outgoing>); Tue, 19 Apr 2005 18:30:29 -0400
+Received: from imf25aec.mail.bellsouth.net ([205.152.59.73]:34998 "EHLO
+	imf25aec.mail.bellsouth.net") by vger.kernel.org with ESMTP
+	id S261702AbVDSWaZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 19 Apr 2005 18:30:25 -0400
+Received: from ibm71aec.bellsouth.net ([65.10.203.194])
+          by imf25aec.mail.bellsouth.net
+          (InterMail vM.5.01.06.11 201-253-122-130-111-20040605) with ESMTP
+          id <20050419223024.GBNO22125.imf25aec.mail.bellsouth.net@ibm71aec.bellsouth.net>;
+          Tue, 19 Apr 2005 18:30:24 -0400
+Received: from localhost ([65.10.203.194]) by ibm71aec.bellsouth.net
+          (InterMail vG.1.02.00.01 201-2136-104-101-20040929) with ESMTP
+          id <20050419223024.TWXP1909.ibm71aec.bellsouth.net@localhost>;
+          Tue, 19 Apr 2005 18:30:24 -0400
+Date:	Tue, 19 Apr 2005 18:30:27 -0400
+From: David Meybohm <dmeybohmlkml@bellsouth.net>
+To: Andy Isaacson <adi@hexapodia.org>
+Cc: omb@bluewin.ch, git@vger.kernel.org
+Subject: Re: SHA1 hash safety
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050419223027.GA26100@localhost>
+References: <Pine.LNX.4.62.0504160519330.21837@qynat.qvtvafvgr.pbz> <20050416123155.GA19908@elte.hu> <Pine.LNX.4.62.0504160542190.21837@qynat.qvtvafvgr.pbz> <4261132A.3090907@khandalf.com> <Pine.LNX.4.61.0504161040310.29343@cag.csail.mit.edu> <4261852B.6090507@khandalf.com> <20050418074323.GA29765@hexapodia.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050418074323.GA29765@hexapodia.org>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.5) Gecko/20030927
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 25
+Xref: brand.scrye.com linux.git:854
+
+On Mon, Apr 18, 2005 at 12:43:23AM -0700, Andy Isaacson wrote:
+> 
+> I'm not going to do the sums, but I would hazard a guess that it's more
+> likely your PC suffered a cosmic-ray-induced memory fault - EACH OF THE
+> FOUR TIMES YOU TESTED IT - causing it to report the same MD5, than that
+> you actually discovered a collision with a measly million (or even
+> hundred million) plaintexts.
+
+But doesn't this require assuming the distribution of MD5 is uniform,
+and don't the papers finding collisions in less show it's not? So, your
+birthday-argument for calculating the probability wouldn't apply, because
+it rests on the assumption MD5 is uniform, and it isn't.
+
+For example, say most people are married in June, get pregnant, and
+there are more births around March, 9 months later, than in other
+months. Then if you are born in March you have a higher chance of seeing
+a collision of your birthday with someone else's. The same is true for
+someone else born in March too, and this makes the chances of seeing a
+collision for the whole function higher.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

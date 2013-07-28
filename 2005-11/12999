@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 10:45:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AF7071097B1
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 10:45:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751483AbVK3Rpa (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 12:45:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751490AbVK3Rpa
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 12:45:30 -0500
+Received: from iabervon.org ([66.92.72.58]:52491 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751483AbVK3Rp3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 30 Nov 2005 12:45:29 -0500
+Received: (qmail 29992 invoked by uid 1000); 30 Nov 2005 12:46:00 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 30 Nov 2005 12:46:00 -0500
+Date:	Wed, 30 Nov 2005 12:46:00 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	linux@horizon.com, git@vger.kernel.org
+Subject: Re: git-name-rev off-by-one bug
+In-Reply-To: <7vhd9wngn6.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511301235390.25300@iabervon.org>
+References: <20051128234256.1508.qmail@science.horizon.com>
+ <7vhd9wngn6.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:12999
+
+On Mon, 28 Nov 2005, Junio C Hamano wrote:
+
+> *1* It is a shame that the most comprehensive definition of
+> 3-way read-tree semantics is in t/t1000-read-tree-m-3way.sh test
+> script.
+
+Isn't Documentation/technical/trivial-merge.txt more comprehensive?
+
+Probably the tables in various other places should be replaced with 
+references to this document.
+
+	-Daniel
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 14 12:40:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 13A541D00B1
+	for <tkil@scrye.com>; Fri, 14 Oct 2005 12:40:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750849AbVJNSje (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 14 Oct 2005 14:39:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750855AbVJNSje
+	(ORCPT <rfc822;git-outgoing>); Fri, 14 Oct 2005 14:39:34 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:3749 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750849AbVJNSje (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 14 Oct 2005 14:39:34 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9EIdUFC010727
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 14 Oct 2005 11:39:31 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9EIdUDU012575;
+	Fri, 14 Oct 2005 11:39:30 -0700
+Date:	Fri, 14 Oct 2005 11:39:30 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	David Ho <davidkwho@gmail.com>
+cc:	git@vger.kernel.org
+Subject: Re: git-whatchanged does not show merge result?
+In-Reply-To: <4dd15d180510141031n531b9e0enc8e7d668b1e61b83@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510141138030.23590@g5.osdl.org>
+References: <4dd15d180510140929x2c69f61ag19a1409cfd993e7b@mail.gmail.com> 
+ <4dd15d180510140933j7a730c49hb9cdaa98ea0a5b07@mail.gmail.com> 
+ <Pine.LNX.4.64.0510141007290.23590@g5.osdl.org>
+ <4dd15d180510141031n531b9e0enc8e7d668b1e61b83@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:10111
+
+
+
+On Fri, 14 Oct 2005, David Ho wrote:
+>
+> I was a little worried when I did git-whatchanged on a file and there
+> was a hole in the history where the merge is.  This reassured me that
+> all changes to the file is accessible (I'm sure they are all stored
+> safely in the repo =).
+
+Btw, "git-whatchanged" really _can_ hide real stuff, namely when nothing 
+changed.
+
+A commit that has no changes at all (which is quite possible) will never 
+be shown by git-whatchanged. 
+
+So in many ways, "git log" is the way to see all commits. 
+"git-whatchanged" is really just a way to see the _changes_, and by 
+defauly it ignores merges just because the changes are "complicated".
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,105 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 01:12:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id ECB391797FF
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 01:12:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932217AbVKUIKc (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 03:10:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932220AbVKUIKc
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 03:10:32 -0500
+Received: from nproxy.gmail.com ([64.233.182.196]:36731 "EHLO nproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932217AbVKUIKb (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 21 Nov 2005 03:10:31 -0500
+Received: by nproxy.gmail.com with SMTP id n28so63681nfc
+        for <git@vger.kernel.org>; Mon, 21 Nov 2005 00:10:29 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:mime-version:content-type;
+        b=iteVWNM5XmNfvTS82ASEJkGN9rGvul0z6bf8LjZy8HSi9FI+RU+XBvd+9QbZqoRZwOQC6Fpug1zhAyUu/7Yt87l5IcIORze3zkwVe4NG3OB7X1Aa+j8yxUZNdS2Nu9FJn1NfFFmh7SZ3nYzrpTNDNYG495ksR+i+WWc07YOIcck=
+Received: by 10.48.163.13 with SMTP id l13mr229599nfe;
+        Mon, 21 Nov 2005 00:10:29 -0800 (PST)
+Received: by 10.48.248.18 with HTTP; Mon, 21 Nov 2005 00:10:29 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <81b0412b0511210010m66a3f898q6d108a799de023d9@mail.gmail.com>
+Date:	Mon, 21 Nov 2005 09:10:29 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Andreas Ericsson <exon@op5.se>
+Subject: [PATCH] Fix git.c compilation target
+Cc:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_12543_30691208.1132560629727"
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 61
+Xref: brand.scrye.com linux.git:12417
+
+------=_Part_12543_30691208.1132560629727
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+The target for "git" was missing $(X), strangely essential for some
+exotic platform.
+
+Signed-off-by: Alex Riesen <ariesen@harmanbecker.com>
+
+------=_Part_12543_30691208.1132560629727
+Content-Type: text/plain; name=0001-fix-compilation-of-git-.exe.txt; 
+	charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="0001-fix-compilation-of-git-.exe.txt"
+
+Subject: [PATCH] fix compilation of git(.exe)
+(cherry picked from b0911b2af7c52639a2c6ae8f038ba5753f886a28 commit)
+
+Signed-off-by: Alex Riesen <ariesen@harmanbecker.com>
+
+
+---
+
+ Makefile |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+applies-to: e12ceef6841365e64bb765294235a67e9263d7de
+2323c0467c437c337c0ad59e9660ccea920ff866
+diff --git a/Makefile b/Makefile
+index 092931a..65b948b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -342,15 +342,15 @@ SCRIPTS = $(patsubst %.sh,%,$(SCRIPT_SH)
+ export prefix TAR INSTALL DESTDIR SHELL_PATH template_dir
+ ### Build rules
+ 
+-all: $(PROGRAMS) $(SCRIPTS) git
++all: $(PROGRAMS) $(SCRIPTS) git$(X)
+ 
+ all:
+ 	$(MAKE) -C templates
+ 
+ # Only use $(CFLAGS). We don't need anything else.
+-git: git.c Makefile
++git$(X): git.c Makefile
+ 	$(CC) -DGIT_EXEC_PATH='"$(bindir)"' -DGIT_VERSION='"$(GIT_VERSION)"' \
+-		$(CFLAGS) $@.c -o $@
++		$(CFLAGS) $< -o $@
+ 
+ $(filter-out git,$(patsubst %.sh,%,$(SCRIPT_SH))) : % : %.sh
+ 	rm -f $@
+---
+0.99.9.GIT
+
+------=_Part_12543_30691208.1132560629727--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

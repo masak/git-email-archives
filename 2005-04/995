@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 13:47:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 77D3D16A8D2
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 13:47:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261753AbVDTTqQ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 15:46:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261743AbVDTTqQ
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 15:46:16 -0400
+Received: from fire.osdl.org ([65.172.181.4]:10123 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261753AbVDTTqF (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 20 Apr 2005 15:46:05 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3KJk1s4026985
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 20 Apr 2005 12:46:01 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3KJk0RS024058;
+	Wed, 20 Apr 2005 12:46:00 -0700
+Date:	Wed, 20 Apr 2005 12:47:59 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Chris Mason <mason@suse.com>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] write-tree performance problems
+In-Reply-To: <Pine.LNX.4.58.0504201218360.6467@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504201237340.6467@ppc970.osdl.org>
+References: <200504191250.10286.mason@suse.com> <200504201323.05447.mason@suse.com>
+ <Pine.LNX.4.58.0504201040400.6467@ppc970.osdl.org> <200504201504.59541.mason@suse.com>
+ <Pine.LNX.4.58.0504201218360.6467@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 45
+Xref: brand.scrye.com linux.git:995
+
+
+
+On Wed, 20 Apr 2005, Linus Torvalds wrote:
+>
+> It would be nicer for the cache to make the index file "header" be a 
+> "footer", and write it out last - that way we'd be able to do the SHA1 as 
+> we write rather than doing a two-pass thing. That's for another time.
+
+That other time was now.
+
+The header is still a header, but the sha1 is now at the end of the file, 
+which means that the header version has been incremented by 1 (to 2).
+
+This is also sadly an incompatible change, so once you update and install
+the new tools, you'll need to do
+
+	tree=$(cat-file commit $(cat .git/HEAD) | sed 's/tree //;q')
+	read-tree $tree
+	update-cache --refresh
+
+to re-build your index file.
+
+Sorry about that, but the end result should be quite fast (especially if
+your sha1 is fast). The best benchmark is probably to just do a "time
+update-cache Makefile" in the kernel (before and after), when the cache
+was already up-to-date and with no time spent on stating lots of files.  
+That kind of "one file changed" timing is actually the common case (in
+this case Makefile won't have changed, but update-cache doesn't care).
+
+(Of course, I could optimize it to notice that the update-cache didn't do
+anything and avoid the write altogether, but that's likely optimizing for
+the wrong case, since normally you'd call update-cache when you know
+something changed).
+
+Yeah, it's somewhat silly doing optimizations at this point, but I want to
+make sure that the data structures are all ready for a real release, and
+as part of that I want to make sure there are no stupid low-hanging fruit
+that we'll curse later. Better get it done with now.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

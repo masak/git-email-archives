@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 14 21:21:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2D43E692B3
+	for <tkil@scrye.com>; Wed, 14 Sep 2005 21:21:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750891AbVIODVm (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Sep 2005 23:21:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750896AbVIODVm
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Sep 2005 23:21:42 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:30178 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750891AbVIODVm (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Sep 2005 23:21:42 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8F3LaBo011326
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 14 Sep 2005 20:21:37 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8F3LXie010738;
+	Wed, 14 Sep 2005 20:21:34 -0700
+Date:	Wed, 14 Sep 2005 20:21:33 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: "Read my lips: no more merges" - aka Linux 2.6.14-rc1
+In-Reply-To: <1126745323.7199.3.camel@localhost.localdomain>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509142018410.26803@g5.osdl.org>
+References: <7255.1126583985@kao2.melbourne.sgi.com> 
+ <1126674993.5681.9.camel@localhost.localdomain> <1126745323.7199.3.camel@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:8572
+
+
+
+On Wed, 14 Sep 2005, Alejandro Bonilla Beeche wrote:
+> 
+> debian:~# cd linux-2.6/
+> debian:~/linux-2.6# git log
+> /usr/local/bin/git-log-script: line 4: less: command not found
+
+A very strange Linux installation that doesn't come with "less"...
+
+What a strange box. Anyway, that does point out that maybe the git RPM 
+spec should have "less" as a dependency. 
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

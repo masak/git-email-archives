@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 11:13:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 831036E27
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 11:13:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261793AbVDXRNo (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 13:13:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262283AbVDXRNo
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 13:13:44 -0400
+Received: from fire.osdl.org ([65.172.181.4]:32488 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261793AbVDXRNn (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Apr 2005 13:13:43 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3OHDcs4001760
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 24 Apr 2005 10:13:39 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3OHDbDY012992;
+	Sun, 24 Apr 2005 10:13:37 -0700
+Date:	Sun, 24 Apr 2005 10:15:37 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [GIT PATCH] Selective diff-tree
+In-Reply-To: <1114323914.3419.70.camel@localhost.localdomain>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504241013110.15879@ppc970.osdl.org>
+References: <1113400651.20848.135.camel@hades.cambridge.redhat.com> 
+ <Pine.LNX.4.58.0504232202340.19877@ppc970.osdl.org>
+ <1114323914.3419.70.camel@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 22
+Xref: brand.scrye.com linux.git:1505
+
+
+
+On Sun, 24 Apr 2005, David Woodhouse wrote:
+> 
+> On the other hand, my gitfilelog.sh is fairly fundamentally flawed and
+> probably needs rewriting in C based on rev-tree.
+
+Yeah, I think I'll make the "tree-diff" functions be available to others,
+since they are actually _very_ cheap, and it's a bit sad to have to
+execute a whole new process just to get a tree-diff. Then writing some
+rev-list thing that just does tree-diff between different versions should
+be trivial and quite efficient for finding things like "when did this set
+of files/subdirectory last change".
+
+Which definitely is very useful information.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

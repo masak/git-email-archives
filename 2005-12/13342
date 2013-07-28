@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec  7 15:26:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DF392117890
+	for <tkil@scrye.com>; Wed,  7 Dec 2005 15:26:20 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030403AbVLGWTs (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 7 Dec 2005 17:19:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030402AbVLGWTr
+	(ORCPT <rfc822;git-outgoing>); Wed, 7 Dec 2005 17:19:47 -0500
+Received: from nhugin.diku.dk ([130.225.96.140]:54216 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S1030403AbVLGWTq (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 7 Dec 2005 17:19:46 -0500
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id 6A84E6DFF00; Wed,  7 Dec 2005 23:18:51 +0100 (CET)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 310BF6DFEF4; Wed,  7 Dec 2005 23:18:51 +0100 (CET)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 909A261557; Wed,  7 Dec 2005 23:19:45 +0100 (CET)
+Date:	Wed, 7 Dec 2005 23:19:45 +0100
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] cg-object-id: comment the alternate id shortcut parsing
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051207221945.GB27619@diku.dk>
+References: <20051207213943.GC25890@diku.dk> <20051207220521.GM22159@pasky.or.cz> <20051207221449.GA27619@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051207221449.GA27619@diku.dk>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:13342
+
+Jonas Fonseca <fonseca@diku.dk> wrote Wed, Dec 07, 2005:
+> Petr Baudis <pasky@suse.cz> wrote Wed, Dec 07, 2005:
+> > Dear diary, on Wed, Dec 07, 2005 at 10:39:43PM CET, I got a letter
+> > where Jonas Fonseca <fonseca@diku.dk> said that...
+> > > -	# Short id's must be lower case and at least 4 digits.
+> > > +	# Short id's must be lower case and at least 4 digits. git-rev-parse(1)
+> > > +	# allows only down to 5 digits and we want to show the list of matched
+> > > +	# ids.
+> > 
+> > Huh. The code in sha1_name.c speaks differently and it works as well:
+> > 
+> > 	$ git-rev-parse b1fc
+> > 	b1fcca45069d4f6b00a9ac7136be4268d09fd6b9
+> 
+> I had this one testcase:
+> 
+	~/src/elinks/0.11 > git-rev-parse --verify e6b6
+	error: short SHA1 e6b6 is ambiguous.
+	fatal: Needed a single revision
+> 	~/src/elinks/0.11 > cg-object-id e6b6
+> 	e6b65b543108bfeb95ea24978112b46e34cfde87
+> 
+> Could it have something to do with the local packing?
+
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

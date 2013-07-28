@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 07:16:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6D5331A9782
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 07:16:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261433AbVFBNOx (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 09:14:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261415AbVFBNOL
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 09:14:11 -0400
+Received: from nhugin.diku.dk ([130.225.96.140]:54987 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S261404AbVFBNKE (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 09:10:04 -0400
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id 5ABD16E18A1; Thu,  2 Jun 2005 15:09:24 +0200 (CEST)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 275276E167E; Thu,  2 Jun 2005 15:09:24 +0200 (CEST)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id 22C3B61FE0; Thu,  2 Jun 2005 15:10:01 +0200 (CEST)
+Date:	Thu, 2 Jun 2005 15:10:00 +0200
+From: Jonas Fonseca <fonseca@diku.dk>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org
+Subject: [PATCH] cg-log: also search the initial commit for files
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050602131000.GA16143@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 30
+Xref: brand.scrye.com linux.git:4392
+
+When restricting the log to a set of files pass --root to git-diff-tree if
+no parent is found so the initial commit is also checked.
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+---
+
+ cg-log |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+diff --git a/cg-log b/cg-log
+--- a/cg-log
++++ b/cg-log
+@@ -167,7 +167,9 @@ $revls | $revsort | while read time comm
+ 	[ "$revfmt" = "git-rev-list" ] && commit="$time"
+ 	if [ $# -ne 0 ]; then
+ 		parent=$(git-cat-file commit $commit | sed -n '2s/parent //p;2Q')
+-		[ "$parent" ] && [ "$(git-diff-tree -r $commit $parent "$@")" ] || continue
++		diff_ops=
++		[ "$parent" ] || diff_ops=--root
++		[ "$(git-diff-tree -r $diff_ops $commit $parent "$@")" ] || continue
+ 	fi
+ 	if [ "$user" ]; then
+ 		git-cat-file commit $commit | grep -e '^author ' -e '^committer ' | grep -qi "$user" || continue
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

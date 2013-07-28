@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 11:04:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AFEA02851FC
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 11:04:46 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030299AbVKPSCI (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 13:02:08 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030304AbVKPSCI
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 13:02:08 -0500
+Received: from terminus.zytor.com ([192.83.249.54]:37510 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1030299AbVKPSCG
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 13:02:06 -0500
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id jAGI2211004200
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 16 Nov 2005 10:02:02 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437B7416.8030704@zytor.com>
+Date:	Wed, 16 Nov 2005 10:01:58 -0800
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Git Mailing List <git@vger.kernel.org>
+Subject: Sourceforge doesn't like git cvsimport
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87.1, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:12025
+
+		die "Socket to $serv: $!\n" unless defined $s;
+		$s->write("BEGIN AUTH REQUEST\n$repo\n$user\n$pass\nEND AUTH REQUEST\n")
+			or die "Write to $serv: $!\n";
+		$s->flush();
+
+		my $rep = <$s>;
+
+		if($rep ne "I LOVE YOU\n") {
+			$rep="<unknown>" unless $rep;
+			die "AuthReply: $rep\n";
+		}
+
+-------
+
+: tazenda 23 ; telnet cvs.sourceforge.net 2401
+Trying 66.35.250.207...
+Connected to cvs.sourceforge.net.
+Escape character is '^]'.
+BEGIN AUTH REQUEST
+/cvsroot/bochs
+anonymous
+
+END AUTH REQUEST
+cvs [pserver aborted]: descramble: unknown scrambling method
+Connection closed by foreign host.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

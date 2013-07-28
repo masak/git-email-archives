@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 29 11:08:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9C6C5FC087
+	for <tkil@scrye.com>; Fri, 29 Apr 2005 11:08:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262842AbVD2RHt (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Apr 2005 13:07:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262840AbVD2RHt
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Apr 2005 13:07:49 -0400
+Received: from fire.osdl.org ([65.172.181.4]:58303 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262838AbVD2RHn (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Apr 2005 13:07:43 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3TH7es4018219
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 29 Apr 2005 10:07:40 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3TH7d8m024327;
+	Fri, 29 Apr 2005 10:07:39 -0700
+Date:	Fri, 29 Apr 2005 10:09:38 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Matt Mackall <mpm@selenic.com>
+Cc: Sean <seanlkml@sympatico.ca>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+Subject: Re: Mercurial 0.4b vs git patchbomb benchmark
+In-Reply-To: <20050429163705.GU21897@waste.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504291006450.18901@ppc970.osdl.org>
+References: <20050426004111.GI21897@waste.org> <Pine.LNX.4.58.0504251859550.18901@ppc970.osdl.org>
+ <20050429060157.GS21897@waste.org> <3817.10.10.10.24.1114756831.squirrel@linux1>
+ <20050429074043.GT21897@waste.org> <Pine.LNX.4.58.0504290728090.18901@ppc970.osdl.org>
+ <20050429163705.GU21897@waste.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 24
+Xref: brand.scrye.com linux.git:2120
+
+
+
+On Fri, 29 Apr 2005, Matt Mackall wrote:
+> 
+> That's because no one paid attention until I posted performance
+> numbers comparing it to git! Mercurial's goals are:
+> 
+> - to scale to the kernel development process
+> - to do clone/pull style development
+> - to be efficient in CPU, memory, bandwidth, and disk space
+>   for all the common SCM operations
+> - to have strong repo integrity
+
+Ok, sounds good. Have you looked at how it scales over time, ie what 
+happens with files that have a lot of delta's?
+
+Let's see how these things work out..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

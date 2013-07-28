@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 10 23:12:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7339CDF21B
+	for <tkil@scrye.com>; Mon, 10 Oct 2005 23:12:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751361AbVJKFMs (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 11 Oct 2005 01:12:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751374AbVJKFMs
+	(ORCPT <rfc822;git-outgoing>); Tue, 11 Oct 2005 01:12:48 -0400
+Received: from ore.jhcloos.com ([64.240.156.239]:15365 "EHLO ore.jhcloos.com")
+	by vger.kernel.org with ESMTP id S1751361AbVJKFMs (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 11 Oct 2005 01:12:48 -0400
+Received: from lugabout.jhcloos.org (host-69-48-12-147.roc.choiceone.net [69.48.12.147])
+	(using TLSv1 with cipher EDH-RSA-DES-CBC3-SHA (168/168 bits))
+	(Client CN "lugabout.jhcloos.org", Issuer "ca.jhcloos.com" (verified OK))
+	by ore.jhcloos.com (Postfix) with ESMTP
+	id E5F211C591; Tue, 11 Oct 2005 00:12:42 -0500 (CDT)
+Received: by lugabout.jhcloos.org (Postfix, from userid 500)
+	id 4BC73220895; Tue, 11 Oct 2005 05:12:31 +0000 (GMT)
+From:	James Cloos <cloos@jhcloos.com>
+To:	git@vger.kernel.org
+Cc:	Christian Meder <chris@absolutegiganten.org>
+Subject: Re: [PATCH] Convert usage of GIT and Git into git
+In-Reply-To: <1128979592.7097.38.camel@localhost> (Christian Meder's message
+	of "Mon, 10 Oct 2005 23:26:31 +0200")
+References: <1128979592.7097.38.camel@localhost>
+Copyright: Copyright 2005 James Cloos
+X-Hashcash: 1:21:051011:git@vger.kernel.org::RK+B2oUBEdJeKwkw:0000000000000000000000000000000000000000002mLX
+X-Hashcash: 1:21:051011:chris@absolutegiganten.org::CaN6hPCUETA7Qor9:000000000000000000000000000000000003h5R
+Date:	Tue, 11 Oct 2005 01:12:30 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <m3ll10iqm9.fsf@lugabout.cloos.reno.nv.us>
+Lines:	10
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/23.0.0 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:9945
+
+,----
+| -manager, and you'll thus be happy with almost anything else. Git,
+| +manager, and you'll thus be happy with almost anything else. git,
+`----
+
+An initial majuscule should still be used at the start of a sentence, yes?
+
+-JimC
+-- 
+James H. Cloos, Jr. <cloos@jhcloos.com>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

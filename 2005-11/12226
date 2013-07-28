@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 09:08:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C2DF62851FA
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 09:08:19 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932287AbVKRQIL (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 11:08:11 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932302AbVKRQIL
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 11:08:11 -0500
+Received: from xenotime.net ([66.160.160.81]:56463 "HELO xenotime.net")
+	by vger.kernel.org with SMTP id S932287AbVKRQIK (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 18 Nov 2005 11:08:10 -0500
+Received: from shark.he.net ([66.160.160.2]) by xenotime.net for <git@vger.kernel.org>; Fri, 18 Nov 2005 08:08:06 -0800
+Date:	Fri, 18 Nov 2005 08:08:06 -0800 (PST)
+From:	"Randy.Dunlap" <rdunlap@xenotime.net>
+X-X-Sender: rddunlap@shark.he.net
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+cc:	David Roundy <droundy@abridgegame.org>, git@vger.kernel.org
+Subject: Re: Teach "approxidate" about weekday syntax
+In-Reply-To: <Pine.LNX.4.63.0511181419340.28109@wbgn013.biozentrum.uni-wuerzburg.de>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0511180806550.25159@shark.he.net>
+References: <Pine.LNX.4.64.0511171223110.13959@g5.osdl.org>
+ <7v1x1eubpr.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0511171505080.13959@g5.osdl.org>
+ <Pine.LNX.4.64.0511171520390.13959@g5.osdl.org> <20051118121210.GA19714@abridgegame.org>
+ <Pine.LNX.4.63.0511181419340.28109@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:12226
+
+On Fri, 18 Nov 2005, Johannes Schindelin wrote:
+
+> On Fri, 18 Nov 2005, David Roundy wrote:
+>
+> > Don't forget "high noon"!  (and perhaps "tea time"?)  :)
+>
+> How about "dooms day"? I would like to do this:
+>
+> 	git-whatchanged -p --until="dooms day"
+>
+> Hmm?
+
+Sure, and throw in "ides" (15th afaik) and moon phases
+while you are at it.
+
+-- 
+~Randy  [who would just use ISO standard date format]
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

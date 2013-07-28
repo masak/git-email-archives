@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 12:18:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 02989239DBF
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 12:18:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932155AbVIRSSh (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 14:18:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932156AbVIRSSh
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 14:18:37 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:9125 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932155AbVIRSSh (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 18 Sep 2005 14:18:37 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8IIIVBo009084
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 18 Sep 2005 11:18:32 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8IIIVdU024174;
+	Sun, 18 Sep 2005 11:18:31 -0700
+Date:	Sun, 18 Sep 2005 11:18:30 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Add "--git-dir" flag to git-rev-parse
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509181114190.26803@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 40
+Xref: brand.scrye.com linux.git:8794
+
+
+Especially when you're deep inside the git repository, it's not all that
+trivial for scripts to figure out where GIT_DIR is if it isn't set.
+
+So add a flag to git-rev-parse to show where it is, since it will have 
+figured it out anyway.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+diff --git a/rev-parse.c b/rev-parse.c
+--- a/rev-parse.c
++++ b/rev-parse.c
+@@ -191,6 +191,22 @@ int main(int argc, char **argv)
+ 					puts(prefix);
+ 				continue;
+ 			}
++			if (!strcmp(arg, "--git-dir")) {
++				const char *gitdir = getenv(GIT_DIR_ENVIRONMENT);
++				static char cwd[PATH_MAX];
++				if (gitdir) {
++					puts(gitdir);
++					continue;
++				}
++				if (!prefix) {
++					puts(".git");
++					continue;
++				}
++				if (!getcwd(cwd, PATH_MAX))
++					die("unable to get current working directory");
++				printf("%s/.git\n", cwd);
++				continue;
++			}
+ 			if (verify)
+ 				die("Needed a single revision");
+ 			show_flag(arg);
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

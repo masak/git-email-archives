@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  9 16:47:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 640ED635A
+	for <tkil@scrye.com>; Mon,  9 May 2005 16:47:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261337AbVEIWqd (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 9 May 2005 18:46:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261311AbVEIWqd
+	(ORCPT <rfc822;git-outgoing>); Mon, 9 May 2005 18:46:33 -0400
+Received: from shiva.jussieu.fr ([134.157.0.129]:22999 "EHLO shiva.jussieu.fr")
+	by vger.kernel.org with ESMTP id S261254AbVEIWqS (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 9 May 2005 18:46:18 -0400
+Received: from hydrogene.pps.jussieu.fr (hydrogene.pps.jussieu.fr [134.157.168.1])
+          by shiva.jussieu.fr (8.12.11/jtpda-5.4) with ESMTP id j49Mk0t0001022
+          ; Tue, 10 May 2005 00:46:00 +0200 (CEST)
+X-Ids:	164
+Received: from lanthane.pps.jussieu.fr (lanthane.pps.jussieu.fr [134.157.168.57])
+          by hydrogene.pps.jussieu.fr (8.13.3/jtpda-5.4) with ESMTP id j49MkAFc025045
+          ; Tue, 10 May 2005 00:46:10 +0200
+Received: from jch by lanthane.pps.jussieu.fr with local (Exim 4.34)
+	id 1DVH0s-0007Ne-Qj; Tue, 10 May 2005 00:46:10 +0200
+To: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Git Mailing List <git@vger.kernel.org>,
+	darcs-devel@abridgegame.org
+Subject: Re: Darcs-git: a few notes for Git hackers
+References: <7ihdhc5le2.fsf@lanthane.pps.jussieu.fr>
+	<20050509212842.GC15712@pasky.ji.cz>
+	<7iu0lc129m.fsf@lanthane.pps.jussieu.fr> <427FE248.7040403@zytor.com>
+From: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>
+Date:	Tue, 10 May 2005 00:46:10 +0200
+In-Reply-To: <427FE248.7040403@zytor.com> (H. Peter Anvin's message of "Mon,
+ 09 May 2005 15:20:56 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7ipsw010i5.fsf@lanthane.pps.jussieu.fr>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.3 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-1.7.2 (shiva.jussieu.fr [134.157.0.164]); Tue, 10 May 2005 00:46:00 +0200 (CEST)
+X-Antivirus: scanned by sophie at shiva.jussieu.fr
+X-Miltered: at shiva.jussieu.fr with ID 427FE828.000 by Joe's j-chkmail (http://j-chkmail.ensmp.fr)!
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 27
+Xref: brand.scrye.com linux.git:2894
+
+>> I see.  Let me know if you decide to use a different name for the
+>> lock file so I can switch to using the same one as yours.
+
+> Are you using flock(), or some other contraption that breaks if a
+> process dies unexpectedly?
+
+No, I'm using a file that is created by the NFS-safe equivalent of
+open(O_CREAT | O_EXCL).  This is what Darcs has been doing basically
+forever.
+
+Darcs usually doesn't die unexpectedly -- it's a Haskell program, so
+bugs usually manifest themselves with an exception being thrown
+allowing Darcs to clean-up after itself.
+
+The one exception is when Darcs gets killed by the OOM killer (which,
+as you doubtless know, doesn't give any advance warning to a process,
+thus making it impossible for a process to deal with it gracefully).
+In such cases, manual intervention is necessary anyway -- a file could
+have been written half-way.
+
+                                        Juliusz
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

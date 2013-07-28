@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 25 03:11:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 77E06D9217
+	for <tkil@scrye.com>; Tue, 25 Oct 2005 03:11:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932101AbVJYJLB (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 25 Oct 2005 05:11:01 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932103AbVJYJLB
+	(ORCPT <rfc822;git-outgoing>); Tue, 25 Oct 2005 05:11:01 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:41871 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932101AbVJYJLA (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 25 Oct 2005 05:11:00 -0400
+Received: (qmail 15411 invoked by uid 2001); 25 Oct 2005 11:10:57 +0200
+Date:	Tue, 25 Oct 2005 11:10:57 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Brad Roberts <braddr@gameboy2.puremagic.com>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Add a --prefix option to git-daemon
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051025091057.GA30889@pasky.or.cz>
+References: <200510250708.j9P78pG3024087@gameboy2.puremagic.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200510250708.j9P78pG3024087@gameboy2.puremagic.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:10567
+
+Dear diary, on Tue, Oct 25, 2005 at 09:08:51AM CEST, I got a letter
+where Brad Roberts <braddr@gameboy2.puremagic.com> told me that...
+> Add a --prefix option to git-daemon.  This path is prepended to the search
+> path for repositories.  In other words, git://hostname/path/to/gitdir will
+> result in looking for /prefix/path/to/gitdir.
+> 
+> Signed-off-by: Brad Roberts <braddr@puremagic.com>
+
+You forgot to document the option. :-)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

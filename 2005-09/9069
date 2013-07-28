@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 15:00:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5DDCB27B7FE
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 15:00:17 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964838AbVIUU7M (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 16:59:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964835AbVIUU7M
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 16:59:12 -0400
+Received: from iabervon.org ([66.92.72.58]:63494 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S964833AbVIUU7K (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Sep 2005 16:59:10 -0400
+Received: (qmail 10498 invoked by uid 1000); 21 Sep 2005 17:03:31 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 21 Sep 2005 17:03:31 -0400
+Date:	Wed, 21 Sep 2005 17:03:31 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Sergey Vlasov <vsu@altlinux.ru>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH 0/8] fetch.c optimizations
+In-Reply-To: <20050921161829.GA20944@master.mivlgu.local>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509211700161.23242@iabervon.org>
+References: <20050921161829.GA20944@master.mivlgu.local>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 22
+Xref: brand.scrye.com linux.git:9069
+
+On Wed, 21 Sep 2005, Sergey Vlasov wrote:
+
+> Hello!
+> 
+> I have noticed that git-*-fetch now uses much more CPU than it was
+> before the modifications to fix recovery after interrupted fetch.
+> Here is a series of small patches which fix the problems which I have
+> found (some of the fixes give pretty impressive results, like a 14x
+> decrease of CPU time); as a positive side effect, fetch.c becomes
+> slightly smaller and hopefully simpler than before.
+
+These all look like good changes. It would also be worth doing some 
+optimization in the library, like making parse_object just return the 
+object if we already have it.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

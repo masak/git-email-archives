@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 11 15:43:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EAA3017E468
+	for <tkil@scrye.com>; Tue, 11 Oct 2005 15:43:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751146AbVJKVn1 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 11 Oct 2005 17:43:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751152AbVJKVn1
+	(ORCPT <rfc822;git-outgoing>); Tue, 11 Oct 2005 17:43:27 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:31698 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751146AbVJKVn1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 11 Oct 2005 17:43:27 -0400
+Received: (qmail 4635 invoked by uid 2001); 11 Oct 2005 23:43:18 +0200
+Date:	Tue, 11 Oct 2005 23:43:18 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Jonas Fonseca <fonseca@diku.dk>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH Cogito] Fix README asciidoc formatting
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051011214318.GY22079@pasky.or.cz>
+References: <20051002105601.GB9934@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051002105601.GB9934@diku.dk>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 45
+Xref: brand.scrye.com linux.git:9979
+
+Dear diary, on Sun, Oct 02, 2005 at 12:56:01PM CEST, I got a letter
+where Jonas Fonseca <fonseca@diku.dk> told me that...
+> BTW, what about adding some notatation info for those boxes? It looks
+> very creative for an introduction document.
+
+What do you mean by "notation info"?
+
+> commit ca52918a9a6e02e55d878d8f5e68672432940337
+> tree 60d270e8b45beeee9361b13284ff2eefec746fd6
+> parent 9356837de630644323c800e2accad2618d7393f9
+> author Jonas Fonseca <fonseca@diku.dk> Sun, 02 Oct 2005 12:45:03 +0200
+> committer Jonas Fonseca <fonseca@antimatter.(none)> Sun, 02 Oct 2005 12:45:03 +0200
+> 
+>  README |    5 +++++
+>  1 files changed, 5 insertions(+), 0 deletions(-)
+> 
+> diff --git a/README b/README
+> --- a/README
+> +++ b/README
+> @@ -305,11 +305,13 @@ will `cg-clone` do?
+>  
+>  	+--------+
+>  	+--------+
+> +
+>  First it creates an empty repository
+>  
+>  	+--------+
+>  	$  origin<
+>  	+--------+
+> +
+>  Then it creates an 'origin' head, and will copy all the history from the
+>  remote repository's 'master' head there. So this head exists to reflect
+>  the state of the remote repository. The important point is that it is
+..snip..
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

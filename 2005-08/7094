@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 11 20:09:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6BDFD1D0624
+	for <tkil@scrye.com>; Thu, 11 Aug 2005 20:09:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964777AbVHLCJZ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 11 Aug 2005 22:09:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964778AbVHLCJZ
+	(ORCPT <rfc822;git-outgoing>); Thu, 11 Aug 2005 22:09:25 -0400
+Received: from iabervon.org ([66.92.72.58]:3588 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S964777AbVHLCJZ (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 11 Aug 2005 22:09:25 -0400
+Received: (qmail 16023 invoked by uid 1000); 11 Aug 2005 22:12:38 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 11 Aug 2005 22:12:38 -0400
+Date:	Thu, 11 Aug 2005 22:12:38 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Petr Baudis <pasky@suse.cz>, git@vger.kernel.org
+Subject: Re: [PATCH] Re: git-http-pull broken in latest git
+In-Reply-To: <7vzmrnc3qt.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508112211080.12816@iabervon.org>
+References: <42F8D472.3080404@de.bosch.com> <20050811223349.GI25280@pasky.ji.cz>
+ <7v4q9wf4ad.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0508111929010.12816@iabervon.org>
+ <7vzmrnc3qt.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 21
+Xref: brand.scrye.com linux.git:7094
+
+On Thu, 11 Aug 2005, Junio C Hamano wrote:
+
+> Daniel Barkalow <barkalow@iabervon.org> writes:
+> 
+> > It should work anyway,...
+> 
+> That is true.  Please forget about the "recommendation" to slurp
+> packs and not falling back on commit walker.
+> 
+> Thanks for the patch.
+
+No problem; I had been wondering what the rest of those lines were about 
+anyway.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

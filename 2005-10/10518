@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 23 21:32:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 01FF4999D0
+	for <tkil@scrye.com>; Sun, 23 Oct 2005 21:32:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750949AbVJXDcQ (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 23 Oct 2005 23:32:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750950AbVJXDcQ
+	(ORCPT <rfc822;git-outgoing>); Sun, 23 Oct 2005 23:32:16 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:38121 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750948AbVJXDcQ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 23 Oct 2005 23:32:16 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9O3W5FC002684
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 23 Oct 2005 20:32:06 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9O3W4KK008624;
+	Sun, 23 Oct 2005 20:32:04 -0700
+Date:	Sun, 23 Oct 2005 20:32:04 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	"Martin Langhoff (CatalystIT)" <martin@catalyst.net.nz>,
+	git@vger.kernel.org
+Subject: Re: LCA2006 Git/Cogito tutorial
+In-Reply-To: <7vy84jsn1o.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510232020030.10477@g5.osdl.org>
+References: <4352F4C9.1040703@catalyst.net.nz> <20051021005145.GB30889@pasky.or.cz>
+ <200510202137.22311.dtor_core@ameritech.net> <4358597A.6000306@catalyst.net.nz>
+ <7vu0f7u3xc.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0510231804430.10477@g5.osdl.org>
+ <7vy84jsn1o.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 36
+Xref: brand.scrye.com linux.git:10518
+
+
+
+On Sun, 23 Oct 2005, Junio C Hamano wrote:
+> 
+> The current callers only feed commits for "$heads" parameters,
+> so the merge strategy backends are free to figure out the common
+> ancestor or even generate weave on the fly, but an unwritten
+> rule was that strategy backends are expected to do something
+> sensible even when the "common ancestors" and "heads" fed to
+> them are tree objects, which was my comment about 3-way was
+> about.
+
+Ahh. Yes, if you use raw trees, you're screwed - you can only ever do a 
+3-way merge, since you can't try to figure out any history.
+
+I agree that the "tree only" case is interesting too - it's how you can 
+merge trees that may be related content-wise but don't share a history (eg 
+the same project maintained in separate source trees), and it's obviously 
+how you can merge totally unrelated projects (eg the gitk merge). At the 
+same time, I think that's a different kind of merge, in general. And we 
+definitely shouldn't limit ourselves to things where such merges work.
+
+Yes, tree-merges are wonderful, and they work really quite well, but I 
+definitely want to keep the window open for merges that end up taking the 
+full history into account.
+
+I just don't think they are nearly as important as some people seem to 
+think. They should be a very special and unusual case, rather than 
+something you expect to happen.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

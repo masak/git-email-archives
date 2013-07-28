@@ -1,0 +1,131 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 12:39:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 749F72877CD
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 12:39:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964816AbVKQThX (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 14:37:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964811AbVKQThX
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 14:37:23 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:36826 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S964821AbVKQThP
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 14:37:15 -0500
+Received: from nox.op5.se (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 6CC2E6BD10
+	for <git@vger.kernel.org>; Thu, 17 Nov 2005 20:37:14 +0100 (CET)
+Received: by nox.op5.se (Postfix, from userid 500)
+	id 35B275BF8E; Thu, 17 Nov 2005 20:37:14 +0100 (CET)
+To:	git@vger.kernel.org
+Subject: [PATCH 2/5] Server-side support for user-relative paths.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051117193714.35B275BF8E@nox.op5.se>
+Date:	Thu, 17 Nov 2005 20:37:14 +0100 (CET)
+From:	exon@op5.se (Andreas Ericsson)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 94
+Xref: brand.scrye.com linux.git:12134
+
+
+This patch basically just removes the redundant code from
+{receive,upload}-pack.c in favour of the library code in path.c.
+
+Signed-off-by: Andreas Ericsson <ae@op5.se>
+
+---
+
+ receive-pack.c |   17 ++++-------------
+ upload-pack.c  |   15 +++------------
+ 2 files changed, 7 insertions(+), 25 deletions(-)
+
+applies-to: b08588da04c14104d2e158d26881062c8f21598a
+03ddd42c1ad92bafbb536e9b50368a57013fdba2
+diff --git a/receive-pack.c b/receive-pack.c
+index 8f157bc..1873506 100644
+--- a/receive-pack.c
++++ b/receive-pack.c
+@@ -248,11 +248,11 @@ static void unpack(void)
+ int main(int argc, char **argv)
+ {
+ 	int i;
+-	const char *dir = NULL;
++	char *dir = NULL;
+ 
+ 	argv++;
+ 	for (i = 1; i < argc; i++) {
+-		const char *arg = *argv++;
++		char *arg = *argv++;
+ 
+ 		if (*arg == '-') {
+ 			/* Do flag handling here */
+@@ -265,18 +265,9 @@ int main(int argc, char **argv)
+ 	if (!dir)
+ 		usage(receive_pack_usage);
+ 
+-	/* chdir to the directory. If that fails, try appending ".git" */
+-	if (chdir(dir) < 0) {
+-		if (chdir(mkpath("%s.git", dir)) < 0)
+-			die("unable to cd to %s", dir);
+-	}
+-
+-	/* If we have a ".git" directory, chdir to it */
+-	chdir(".git");
+-	putenv("GIT_DIR=.");
++	if(!enter_repo(dir, 0))
++		die("'%s': unable to chdir or not a git archive", dir);
+ 
+-	if (access("objects", X_OK) < 0 || access("refs/heads", X_OK) < 0)
+-		die("%s doesn't appear to be a git directory", dir);
+ 	write_head_info();
+ 
+ 	/* EOF */
+diff --git a/upload-pack.c b/upload-pack.c
+index be63132..1834b6b 100644
+--- a/upload-pack.c
++++ b/upload-pack.c
+@@ -248,7 +248,7 @@ static int upload_pack(void)
+ 
+ int main(int argc, char **argv)
+ {
+-	const char *dir;
++	char *dir;
+ 	int i;
+ 	int strict = 0;
+ 
+@@ -275,18 +275,9 @@ int main(int argc, char **argv)
+ 		usage(upload_pack_usage);
+ 	dir = argv[i];
+ 
+-	/* chdir to the directory. If that fails, try appending ".git" */
+-	if (chdir(dir) < 0) {
+-		if (strict || chdir(mkpath("%s.git", dir)) < 0)
+-			die("git-upload-pack unable to chdir to %s", dir);
+-	}
+-	if (!strict)
+-		chdir(".git");
+-
+-	if (access("objects", X_OK) || access("refs", X_OK))
+-		die("git-upload-pack: %s doesn't seem to be a git archive", dir);
++	if (!enter_repo(dir, strict))
++		die("'%s': unable to chdir or not a git archive", dir);
+ 
+-	putenv("GIT_DIR=.");
+ 	upload_pack();
+ 	return 0;
+ }
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

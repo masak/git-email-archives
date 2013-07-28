@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 20 16:39:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E246522C7FA
+	for <tkil@scrye.com>; Sun, 20 Nov 2005 16:39:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750934AbVKTXjE (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 20 Nov 2005 18:39:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932127AbVKTXjE
+	(ORCPT <rfc822;git-outgoing>); Sun, 20 Nov 2005 18:39:04 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:22411 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750934AbVKTXjC (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 20 Nov 2005 18:39:02 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id C42B613FFB0; Mon, 21 Nov 2005 00:39:01 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id AB8BE9F39C; Mon, 21 Nov 2005 00:39:01 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 980959C8E8; Mon, 21 Nov 2005 00:39:01 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4850E13FFAE; Mon, 21 Nov 2005 00:39:01 +0100 (CET)
+Date:	Mon, 21 Nov 2005 00:39:01 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Ismail Donmez <ismail@uludag.org.tr>
+Cc:	git@vger.kernel.org
+Subject: Re: non-trivial merge failures
+In-Reply-To: <200511202351.42320.ismail@uludag.org.tr>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511210037320.24681@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <20051120.134945.104623647.davem@davemloft.net>
+ <200511202351.42320.ismail@uludag.org.tr>
+MIME-Version: 1.0
+Content-Type: MULTIPART/MIXED; BOUNDARY="-1148973799-1853156163-1132529941=:24681"
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:12401
+
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+---1148973799-1853156163-1132529941=:24681
+Content-Type: TEXT/PLAIN; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Sun, 20 Nov 2005, Ismail Donmez wrote:
+
+> Sunday 20 November 2005 23:49 tarihinde =FF=FFunlar=FF=FF yazm=FF=FF=FF=
+=FFt=FF=FFn=FF=FFz:
+> > ImportError: No module named subprocess
+>=20
+> You need Python 2.4.x, subprocess is a new module in Python 2.4
+
+No, you don't need 2.4, but at least 2.3. If you don't install git, but=20
+run it from where you compile it, be sure to set GIT_PYTHON_PATH in your=20
+config.mak. In any case, you need to set WITH_OWN_SUBPROCESS_PY for 2.3
+
+Hth,
+Dscho
+
+---1148973799-1853156163-1132529941=:24681--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

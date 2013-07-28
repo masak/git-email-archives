@@ -1,0 +1,111 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 20 05:55:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_QG autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2D6E62851FA
+	for <tkil@scrye.com>; Tue, 20 Dec 2005 05:55:41 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750990AbVLTMzb (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Dec 2005 07:55:31 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750988AbVLTMza
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Dec 2005 07:55:30 -0500
+Received: from web26308.mail.ukl.yahoo.com ([217.146.176.19]:42614 "HELO
+	web26308.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S1750731AbVLTMza (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 20 Dec 2005 07:55:30 -0500
+Received: (qmail 1210 invoked by uid 60001); 20 Dec 2005 12:55:29 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=Y/d65VXxOT+nruwEHvBjrb0tV6AJwi2++BjPi5MdMartRN30cushXaPdQJZr1WZ/wnNrFtqU31R3m5IjEzF4uIYWyZj5SdD5OcBejrSO2WY4oEnIWNu1xHbk/ZOJyE1PsmObv/LbNJfk9bauuIEE2TP1+1Il7XPKLMQEXmoO6Bg=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051220125529.1208.qmail@web26308.mail.ukl.yahoo.com>
+Received: from [195.103.152.66] by web26308.mail.ukl.yahoo.com via HTTP; Tue, 20 Dec 2005 04:55:29 PST
+Date:	Tue, 20 Dec 2005 04:55:29 -0800 (PST)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: [ANNOUNCE qgit-1.0rc1]
+To:	Pavel Roskin <proski@gnu.org>
+Cc:	git@vger.kernel.org
+In-Reply-To: <1135047865.2259.46.camel@dv>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 68
+Xref: brand.scrye.com linux.git:13839
+
+> OK, here you go.  qgit just crashed on me.  I opened the patch pane, the
+> tree pane and the annotate window.  While the annotate window was
+> focused, I tried to select multiple files in the tree pane. 
+ 
+Hi Pavel,
+
+ thanks for crash report, I will investigate it.
+> 
+> Also, qgit doesn't look well with large fonts (not excessively large,
+> mind you, just with Sans 12):
+> 
+> http://red-bean.com/proski/qgit/
+> 
+> I see sizes are hardcoded in the *.ui files.  Probably there should be a
+> way to make the widgets resize together with the font.
+> 
+
+I will investigate what Qt designer allows abot font resizing.
+
+
+> I don't want to be asked about range every time I start qgit.  Can it be
+> an option?  In half of the cases I just want to see commits in the last
+> 2-4 days.  In other cases, I want to see the whole history.  Tags are
+> usually irrelevant.
+> 
+
+I know what you mean ;-)
+
+To avoid range select dialog simply call qgit with some command line option (arguments are feeded
+to git-rev-parse, so the same options of gitk are allowed), qgit shows the dialog only if called
+with no arguments.
+
+If you don't want to type options just call qgit and press enter as soon as range select appears, 
+by default you will see commits from HEAD to latest tag.
+
+If, instead, you want to see whole the history, press "Canc" to delete "to" field tag and then
+press enter. That's the reason the focus is on "to" field by default ;-)
+
+An option at startup to bybass range select could be an idea tough.
+
+
+> The "Show All" checkbox in the range select dialog doesn't seem to have
+> any effect.  I think it should disable "top" and "bottom" comboboxes.
+> 
+
+"Show All" is simply a shortcut for git-rev-parse --show-all option, to see all the branches
+between selected commit range.
+
+Tags selection is to define selected commit range
+
+Peraphs it should be better call it "Show all branches" and add a new check "Show whole history"
+
+
+Thanks for your feedback.
+
+Marco
+
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

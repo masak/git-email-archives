@@ -1,0 +1,107 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul  8 05:12:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 99F2C85271
+	for <tkil@scrye.com>; Fri,  8 Jul 2005 05:12:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262509AbVGHLIa (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 8 Jul 2005 07:08:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262505AbVGHLHb
+	(ORCPT <rfc822;git-outgoing>); Fri, 8 Jul 2005 07:07:31 -0400
+Received: from zproxy.gmail.com ([64.233.162.202]:22190 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262468AbVGHLEZ (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 8 Jul 2005 07:04:25 -0400
+Received: by zproxy.gmail.com with SMTP id z31so182568nzd
+        for <git@vger.kernel.org>; Fri, 08 Jul 2005 04:04:24 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:user-agent:x-accept-language:mime-version:to:subject:content-type:content-transfer-encoding;
+        b=Gu3+ARGdnmCw7xYkj93XBPh/iecps+j7mrJcyW70+OC5a80CHP8ZvgBXNw7X3RkPSKzGhNYX0OGAn4+smw2WRRu58vIj5Eh1yBcAZR+/GAmEDyhw1tgV/7lCD6BQgM7kgQwXh8mx6iDJU0STu8LGRlLFU7ke43NCPQlYwDKf2Fs=
+Received: by 10.36.222.4 with SMTP id u4mr659076nzg;
+        Fri, 08 Jul 2005 04:04:24 -0700 (PDT)
+Received: from ?192.168.1.100? ([70.26.43.137])
+        by mx.gmail.com with ESMTP id 24sm757949nzn.2005.07.08.04.04.24;
+        Fri, 08 Jul 2005 04:04:24 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42CE5B74.8090409@gmail.com>
+Date:	Fri, 08 Jul 2005 06:54:44 -0400
+From: Bryan Larsen <bryan.larsen@gmail.com>
+User-Agent: Mozilla Thunderbird 1.0.2 (Macintosh/20050317)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: git@vger.kernel.org
+Subject: [PATCH] 5/7 Add the -N option to cg-add.
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 60
+Xref: brand.scrye.com linux.git:5802
+
+
+
+Add the -N option to cg-add.
+
+Signed-off-by: Bryan Larsen <bryan.larsen@gmail.com>
+---
+
+  cg-add |   21 ++++++++++++++++++---
+  1 files changed, 18 insertions(+), 3 deletions(-)
+
+diff --git a/cg-add b/cg-add
+--- a/cg-add
++++ b/cg-add
+@@ -13,20 +13,35 @@
+  # is that 'Cogito' manages content and empty directories have no content.
+  # Instead, directories are added automatically when adding files inside
+  # them.
++#
++# OPTIONS
++# -------
++# -N::
++#   Only update the cache: do not copy the data into the object database.
++#
+
+-USAGE="cg-add FILE..."
++USAGE="cg-add [-N] FILE..."
+
+  . ${COGITO_LIB}cg-Xlib
+
+  [ "$1" ] || usage
+
++infoonly=
++while optparse; do
++	if optparse -N; then
++		infoonly=--info-only
++	else
++		optfail
++	fi
++done
++
+  TMPFILE=$(mktemp -t gitadd.XXXXXX) || exit 1
+-find "$@" -type f -print0 > $TMPFILE || {
++find "${ARGS[@]}" -type f -print0 > $TMPFILE || {
+  	die "not all files exist, nothing added"
+  	rm $TMPFILE
+  }
+
+  cat $TMPFILE | tr '\0' '\n' | sed 's/^/Adding file /'
+-cat $TMPFILE | xargs -0r git-update-cache --add --
++cat $TMPFILE | xargs -0r git-update-cache --add ${infoonly} --
+
+  rm $TMPFILE
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

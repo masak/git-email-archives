@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul  8 13:55:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0596827D595
+	for <tkil@scrye.com>; Fri,  8 Jul 2005 13:55:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262837AbVGHTyR (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 8 Jul 2005 15:54:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262838AbVGHTwM
+	(ORCPT <rfc822;git-outgoing>); Fri, 8 Jul 2005 15:52:12 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:46989 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262837AbVGHTuI (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 8 Jul 2005 15:50:08 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j68Jo4jA014267
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 8 Jul 2005 12:50:04 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j68Jo3T5021665;
+	Fri, 8 Jul 2005 12:50:04 -0700
+Date:	Fri, 8 Jul 2005 12:50:03 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Alexey Dobriyan <adobriyan@gmail.com>
+Cc: git@vger.kernel.org
+Subject: Re: pack-e3117bbaf6a59cb53c3f6f0d9b17b9433f0e4135.pack
+In-Reply-To: <200507081149.45344.adobriyan@gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507081242540.17536@g5.osdl.org>
+References: <200507081149.45344.adobriyan@gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 41
+Xref: brand.scrye.com linux.git:5812
+
+
+
+On Fri, 8 Jul 2005, Alexey Dobriyan wrote:
+> 
+> I'm confused now. This pack file is ~60M in size. Will rsync download
+> another 60M next time? What command should I use now to a) get latest and
+> greatest and b) be nice with my traffic?
+
+Your existing command should work fine.
+
+You may (or may not) want to use the "--delete" argument to the rsync, 
+which will remove any old objects as they get packed. That won't change 
+your network traffic, but will just keep your disk usage down (and may 
+make rsync a bit more efficient).
+
+And no, the way I'm setting up the kernel repo is that I won't re-pack the 
+_whole_ archive next time around, I'll only create a new incremental pack. 
+So next time a "git repack" happens, you'll see a new pack, probably in 
+the couple-of-megabytes size range (depending on how much work has done 
+on, of course), and the old pack you already downloaded will continue to 
+contain the older history.
+
+Depending on how well - or badly - the incremental packing ends up
+working, I _may_ end up doing a full, non-incremental pack at some point,
+but that would be something that happens just a couple of times a year, so
+then you'd get to do one big update every once in a while.
+
+But I'm hoping that the incrementals work well enough that I literally
+need to do that maybe once a year or something (replacing 50 incrementals
+with one new big complete re-pack). Or maybe the incrementals work so well
+that we don't need to do that at all.
+
+So this "ugh, a new 60MB pack" thing should be something that happens
+quite infrequently.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

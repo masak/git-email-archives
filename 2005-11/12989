@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 07:00:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CBF3E2999BE
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 07:00:12 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751232AbVK3N6Q (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 08:58:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751233AbVK3N6Q
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 08:58:16 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:42710 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751232AbVK3N6O (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 30 Nov 2005 08:58:14 -0500
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id C445ADEF2C; Wed, 30 Nov 2005 14:58:11 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A0A0CB5398; Wed, 30 Nov 2005 14:58:11 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 7FDD2B5383; Wed, 30 Nov 2005 14:58:11 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4420CDEF2C; Wed, 30 Nov 2005 14:58:11 +0100 (CET)
+Date:	Wed, 30 Nov 2005 14:58:11 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Alex Riesen <raa.lkml@gmail.com>
+Cc:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>, git@vger.kernel.org
+Subject: Re: Question about handling of heterogeneous repositories
+In-Reply-To: <81b0412b0511300515u5d2840ccv92be6e374dd795be@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511301457040.2284@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <81b0412b0511220850w429d2f36lafe9de7ce19ce8f@mail.gmail.com> 
+ <20051127131147.GF22159@pasky.or.cz>  <20051129204729.GA3033@steel.home> 
+ <200511301405.19541.Josef.Weidendorfer@gmx.de>
+ <81b0412b0511300515u5d2840ccv92be6e374dd795be@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:12989
+
+Hi,
+
+On Wed, 30 Nov 2005, Alex Riesen wrote:
+
+> On 11/30/05, Josef Weidendorfer <Josef.Weidendorfer@gmx.de> wrote:
+> >
+> > To detect inter-repository renaming, one has to see both repositories. 
+> > Currently, git/cogito etc. commands only work with one repository 
+> > only.
+> 
+> This case is somewhat special: one is _guaranteed_ to see both 
+> repositories.
+
+It is even more so: it is guaranteed that git cannot reconstruct this 
+as a move operation.
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

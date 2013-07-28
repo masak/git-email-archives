@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec 24 02:44:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0770C2851FA
+	for <tkil@scrye.com>; Sat, 24 Dec 2005 02:44:55 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1422641AbVLXJoa (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 24 Dec 2005 04:44:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1422642AbVLXJoa
+	(ORCPT <rfc822;git-outgoing>); Sat, 24 Dec 2005 04:44:30 -0500
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:24752 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1422641AbVLXJo3 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 24 Dec 2005 04:44:29 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051224094347.QYIN3131.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 24 Dec 2005 04:43:47 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Cc:	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] whatchanged: customize diff-tree output
+References: <Pine.LNX.4.63.0512212336230.18908@wbgn013.biozentrum.uni-wuerzburg.de>
+	<7vvexhr6rc.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0512212245440.4827@g5.osdl.org>
+	<Pine.LNX.4.63.0512221200190.7112@wbgn013.biozentrum.uni-wuerzburg.de>
+	<20051222210620.GA4679@steel.home>
+	<7vvexgfns4.fsf@assigned-by-dhcp.cox.net>
+	<20051223182047.GB3165@steel.home>
+Date:	Sat, 24 Dec 2005 01:44:27 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vzmmqu8w4.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:14001
+
+> But you cannot know which ones you have to give, unless you parsed
+> output of git-repo-config!
+
+Why?
+
+I was suggesting that you would literally write something like
+this in your script:
+
+	git-whatchanged --name-status "$1".."$2"
+
+Then whatchanged uses the '--name-status', and ignores whatever
+is in the repository configuration, so you do not need to care
+what repo-config says.  Neither used are its built-in defaults.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

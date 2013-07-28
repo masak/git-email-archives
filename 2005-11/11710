@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 16:21:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9B52521F60D
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 16:21:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964857AbVKLXVs (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 18:21:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964858AbVKLXVs
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 18:21:48 -0500
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:64952 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S964857AbVKLXVr (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 12 Nov 2005 18:21:47 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051112232115.UZKM9394.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 12 Nov 2005 18:21:15 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	merlyn@stonehenge.com (Randal L. Schwartz)
+Subject: Re: http protocol, cloning git.git, fails (too many open files)
+References: <86acg9ijwa.fsf@blue.stonehenge.com>
+cc:	git@vger.kernel.org
+Date:	Sat, 12 Nov 2005 15:21:45 -0800
+In-Reply-To: <86acg9ijwa.fsf@blue.stonehenge.com> (Randal L. Schwartz's
+	message of "12 Nov 2005 14:25:09 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzk9e9km.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:11710
+
+merlyn@stonehenge.com (Randal L. Schwartz) writes:
+
+>     $ mkdir foo
+>     $ cd foo
+>     $ cg-clone http://www.kernel.org/pub/scm/git/git.git git.new
+>     Fetching head...
+>     Fetching objects...
+>     progress: 1 objects, 191 bytes
+> progress: 2 objects, 519 bytes
+> progress: 3 objects, 5851 bytes
+> progress: 4 objects, 7671 bytes
+>...
+>
+>     progress: 66 objects, 187452 bytes
+>
+> And at this point, it hung.  I had to ^C.
+
+This sounds like the problem the patch Pasky posted last night
+addresses.
+
+However, one thing puzzles me.  I just tried to reproduce it by
+doing this:
+
+	$ rm -fr git-http
+        $ ulimit -n 16
+        $ git clone http://www.kernel.org/pub/scm/git/git.git git-http
+
+and it did not fail on my Linux box.  This is from the tip of
+the master tree (essentially the same as 0.99.9h aka 1.0rc1),
+built without Pasky's patch.  Maybe the number of in-transit
+requests in your case is much higher with your connection while
+waiting for a packfile to arrive than my setup.
+
+Could you please try with the patch Nick posted (which covers
+less) and then with Pasky's patch?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

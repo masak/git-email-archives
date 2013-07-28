@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 15:57:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7763E147F11
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 15:57:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161044AbVKIWyO (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 17:54:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161045AbVKIWyO
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 17:54:14 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:8634 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1161044AbVKIWyL (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 17:54:11 -0500
+Received: (qmail 7030 invoked by uid 2001); 9 Nov 2005 23:54:09 +0100
+Date:	Wed, 9 Nov 2005 23:54:09 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Blaisorblade <blaisorblade@yahoo.it>
+Cc:	git@vger.kernel.org
+Subject: Re: [cogito] cg-merge does not remove files removed upstream on fast-forward
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051109225409.GH30496@pasky.or.cz>
+References: <200511090108.51776.blaisorblade@yahoo.it>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200511090108.51776.blaisorblade@yahoo.it>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:11420
+
+Dear diary, on Wed, Nov 09, 2005 at 01:08:33AM CET, I got a letter
+where Blaisorblade <blaisorblade@yahoo.it> said that...
+> Once again, (not the first time) when doing "cg-merge origin" (or cg-update I 
+> guess, too) I find a tons of files which were removed upstream and cogito 
+> didn't remove. It was a fast-forward merge on Linus' tree:
+> 
+> $ cg merge origin
+> Fast-forwarding d83c671fb7023f69a9582e622d01525054f23b66 -> 
+> a52e8381c430896d3bd6065a34fda99cb5c74c82
+>         on top of d83c671fb7023f69a9582e622d01525054f23b66...
+
+Strange. I've just added a test against this, and it seems to work fine
+for me. Hmm.
+
+Could you please test any post-1936f62c0756d8051bd3a8ee4214e058f168d395
+Cogito version?
+
+Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

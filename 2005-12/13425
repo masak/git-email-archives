@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Dec  9 13:38:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CFFFD175E2D
+	for <tkil@scrye.com>; Fri,  9 Dec 2005 13:38:30 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932448AbVLIUiX (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 9 Dec 2005 15:38:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932450AbVLIUiX
+	(ORCPT <rfc822;git-outgoing>); Fri, 9 Dec 2005 15:38:23 -0500
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:44197 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S932448AbVLIUiW (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 9 Dec 2005 15:38:22 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051209203633.UVLH20050.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 9 Dec 2005 15:36:33 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	"Peter Eriksen" <s022018@student.dtu.dk>
+Subject: Re: [RFC/PATCH] git-prune: never lose objects reachable from our refs.
+References: <1134084485547-git-send-email-mailing-lists.git@rawuncut.elitemail.org>
+	<1134084485869-git-send-email-mailing-lists.git@rawuncut.elitemail.org>
+	<7v4q5jb149.fsf@assigned-by-dhcp.cox.net>
+	<7vzmnb9m7w.fsf@assigned-by-dhcp.cox.net>
+	<7voe3r9krf.fsf@assigned-by-dhcp.cox.net>
+	<7vmzja91gp.fsf_-_@assigned-by-dhcp.cox.net>
+	<20051209193922.GA31228@ebar091.ebar.dtu.dk>
+cc:	git@vger.kernel.org
+Date:	Fri, 09 Dec 2005 12:38:20 -0800
+In-Reply-To: <20051209193922.GA31228@ebar091.ebar.dtu.dk> (Peter Eriksen's
+	message of "Fri, 9 Dec 2005 20:39:22 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvexy2egz.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:13425
+
+"Peter Eriksen" <s022018@student.dtu.dk> writes:
+
+> On Thu, Dec 08, 2005 at 11:25:10PM -0800, Junio C Hamano wrote:
+>> Explicit <head> arguments to git-prune replaces, instead of
+>> extends, the list of heads used for reachability analysis by
+>> fsck-objects.  By giving a subset of heads by mistake, objects
+>> reachable only from other heads can be removed, resulting in a
+>> corrupted repository.
+>> 
+>> This commit stops replacing the list of heads, and makes the
+>> command line arguments to add to them instead for safety.
+>
+> Shouldn't the first sentence be "Explicit <head> arguments to git-prune
+> extends, instead of replaces,...", that is, interchange the words 
+> extends and replaces?  Did I miss something?
+
+Sorry, what I meant was: "before this proposed change, it
+replaces instead of extends --- which means DANGER.  This
+proposed change is to make things safer".
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 16:07:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 841CB153726
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 16:07:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030385AbVJEWGy (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 18:06:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030389AbVJEWGy
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 18:06:54 -0400
+Received: from a15181680.alturo-server.de ([217.160.108.75]:34007 "EHLO
+	a15181680.alturo-server.de") by vger.kernel.org with ESMTP
+	id S1030385AbVJEWGx (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 5 Oct 2005 18:06:53 -0400
+Received: from p54a2345f.dip0.t-ipconnect.de ([84.162.52.95] helo=localhost)
+	by a15181680.alturo-server.de with esmtpsa (TLS-1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.52)
+	id 1ENHPY-0001xT-CB
+	for git@vger.kernel.org; Thu, 06 Oct 2005 00:06:52 +0200
+Received: from chris by localhost with local (Exim 4.52)
+	id 1ENHOp-0004ov-Bf
+	for git@vger.kernel.org; Thu, 06 Oct 2005 00:06:07 +0200
+Subject: Notes and questions while reading the documentation
+From:	Christian Meder <chris@absolutegiganten.org>
+To:	git@vger.kernel.org
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Thu, 06 Oct 2005 00:06:06 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1128549966.11363.29.camel@localhost>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 43
+Xref: brand.scrye.com linux.git:9730
+
+Hi,
+
+while (proof-)reading the Documentation I noted down some remarks and
+questions:
+
+* a lot of the manpages include something like "v0.1, June 2005" in the
+header; these versions tags are pretty obscure to interpret, timestamp
+when last edited ? version of the manpage ? version of git when the
+manpage was included ? maturity the author assigned to the content ?
+If these tags don't follow some sane schema they should be removed.
+
+* git-applymbox: -q for interactivity seems like a strange choice, ok I
+knew -i for interactive and -q for quiet but -q for interactive editing
+is _not_ really intuitive
+
+* the usage of git, Git and GIT isn't consistent in the documentation.
+I'd vote for only using git.
+
+* git-clone says that http transport is not supported yet I used it to
+clone the git repo from kernel.org yesterday. Should the documentation
+get updated ?
+
+* the manpage synopsises aren't consistent wrt command naming; it's "git
+commit" but "git-branch"; I guess all the manpages should reference
+their commands as "git-x" and not "git x"
+
+Greetings,
+
+
+
+				Christian 
+-- 
+Christian Meder, email: chris@absolutegiganten.org
+
+The Way-Seeking Mind of a tenzo is actualized 
+by rolling up your sleeves.
+
+                (Eihei Dogen Zenji)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

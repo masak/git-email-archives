@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 10:20:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F3B442851FA
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 10:20:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751158AbVHQQUN (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 12:20:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751159AbVHQQUN
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 12:20:13 -0400
+Received: from smtpauth05.mail.atl.earthlink.net ([209.86.89.65]:47016 "EHLO
+	smtpauth05.mail.atl.earthlink.net") by vger.kernel.org with ESMTP
+	id S1751158AbVHQQUM (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 17 Aug 2005 12:20:12 -0400
+Received: from [24.41.6.91] (helo=approximate.corpus.cam.ac.uk)
+	by smtpauth05.mail.atl.earthlink.net with asmtp (TLSv1:AES256-SHA:256)
+	(Exim 4.34)
+	id 1E5QeB-0001yp-On; Wed, 17 Aug 2005 12:20:11 -0400
+Received: from sanjoy by approximate.corpus.cam.ac.uk with local (Exim 4.52)
+	id 1E5Qe5-0001HV-2f; Wed, 17 Aug 2005 12:20:05 -0400
+To:	git@vger.kernel.org
+Subject: rc6-git8 Makefile from cg-export and bz2 patch don't agree
+X-Mailer: MH-E 7.84; nmh 1.1; GNU Emacs 21.4.1
+Date:	Wed, 17 Aug 2005 12:20:04 -0400
+From:	Sanjoy Mahajan <sanjoy@mrao.cam.ac.uk>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <E1E5Qe5-0001HV-2f@approximate.corpus.cam.ac.uk>
+X-ELNK-Trace: dcd19350f30646cc26f3bd1b5f75c9f474bf435c0eb9d47838e41faa7aa56b4a956eefa668d25d8bc88340136506db00350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 24.41.6.91
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:7443
+
+I wanted to get a clean 2.6.12-rc6-git8 tree, so I looked up the commit
+id (3edea4833a1efcd43e1dff082bc8001fdfe74b34) at
+<http://kernel.org/pub/linux/kernel/v2.6/snapshots/>, updated my .git
+repository with
+
+rsync -a --delete --verbose --stats --progress \
+   rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/ \
+   .git/
+
+then did 
+  cg-export /tmp/xyz <commit-id>
+
+Strangely, the Makefile doesn't match what I would get by applying
+patch-2.6.13-rc6-git8.bz2.  In the exported Makefile,
+
+EXTRAVERSION =-rc6
+
+whereas from the patch, Makefile (line 151 of the diff) has 
+
+EXTRAVERSION = -rc6-git8
+
+Was this a case of hand-editing the diff or did I not use the cg/git
+commands correctly?
+
+-Sanjoy
+
+`A society of sheep must in time beget a government of wolves.'
+   - Bertrand de Jouvenal
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

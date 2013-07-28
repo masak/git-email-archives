@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 13:56:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3DE80F638A
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 13:56:41 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161198AbVKRUv7 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 15:51:59 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161199AbVKRUv7
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 15:51:59 -0500
+Received: from mailout1.informatik.tu-muenchen.de ([131.159.0.18]:17349 "EHLO
+	mailout1.informatik.tu-muenchen.de") by vger.kernel.org with ESMTP
+	id S1161198AbVKRUv6 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 15:51:58 -0500
+Received: from dhcp-3s-40.lrr.in.tum.de (dhcp-3s-40.lrr.in.tum.de [131.159.35.40])
+	by mail.in.tum.de (Postfix) with ESMTP id 39851289F
+	for <git@vger.kernel.org>; Fri, 18 Nov 2005 21:51:57 +0100 (MET)
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	git@vger.kernel.org
+Subject: Re: Rss produced by git is not valid xml?
+Date:	Fri, 18 Nov 2005 21:51:56 +0100
+User-Agent: KMail/1.9
+References: <200511181833.40048.ismail@uludag.org.tr> <Pine.LNX.4.64.0511181220350.13959@g5.osdl.org> <437E3971.3060803@zytor.com>
+In-Reply-To: <437E3971.3060803@zytor.com>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511182151.56161.Josef.Weidendorfer@gmx.de>
+X-Virus-Scanned: by amavisd-new/sophie/sophos at mailrelay2.informatik.tu-muenchen.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:12260
+
+On Friday 18 November 2005 21:28, H. Peter Anvin wrote:
+> I think the point is: what do you do with the data?  If it *looks* like 
+> valid UTF-8, you pretty much have to assume it is; if it's not (it 
+> contains invalid UTF-8 sequences), what do you do?  There are only a 
+> small handful of alternatives, and none are really good:
+> 
+> 	- Reject it (it's kind of too late, should have been done at
+> 	  checkin)
+> 	- Show them as SUBSTITUTE characters (U+FFFD).
+> 	- Show them as Latin-1 or Windows-1252
+> 	- Provide a complex configuration mechanism
+> 
+> I think Kay is going with the second option.
+
+In the case of the Linux kernel, UTF-8 of course is the
+way to go. As you can not reject already commited objects, the second
+option seems the best way.
+
+But I think it would be better to have a config option specifying the
+prefered encoding for commit comments in a project. Something like
+
+	core.commit-encoding = Latin-1
+
+gitweb should use this.
+
+Josef
+> 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

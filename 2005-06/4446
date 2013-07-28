@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 19:32:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C17F513E153
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 19:32:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261473AbVFCBcZ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 21:32:25 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261477AbVFCBcZ
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 21:32:25 -0400
+Received: from fire.osdl.org ([65.172.181.4]:17281 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261473AbVFCBcW (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 21:32:22 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j531WDjA005693
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 2 Jun 2005 18:32:14 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j531WCuP031136;
+	Thu, 2 Jun 2005 18:32:13 -0700
+Date:	Thu, 2 Jun 2005 18:34:17 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Rene Scharfe <rene.scharfe@lsrfire.ath.cx>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] git-tar-tree: add a test case (resent)
+In-Reply-To: <20050602185046.GA3717@lsrfire.ath.cx>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506021830340.1876@ppc970.osdl.org>
+References: <20050602185046.GA3717@lsrfire.ath.cx>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:4446
+
+
+
+On Thu, 2 Jun 2005, Rene Scharfe wrote:
+>
+> git-tar-tree: add a simple test case.
+
+I get:
+
+	* FAIL 6: extract tar archive (cd b && tar xf -) <b.tar
+	* FAIL 7: validate filenames (cd b/a && find .) | sort >b.lst &&
+	* FAIL 8: validate file contents diff -r a b/a
+	* FAIL 11: validate filenames with prefix (cd c/prefix/a && find .) | sort >c.lst &&
+	* FAIL 12: validate file contents with prefix diff -r a c/prefix/a
+
+Hmm?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

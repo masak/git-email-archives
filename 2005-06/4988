@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 17 17:51:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2DBB81DB255
+	for <tkil@scrye.com>; Fri, 17 Jun 2005 17:51:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261288AbVFQXvo (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 17 Jun 2005 19:51:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261412AbVFQXvo
+	(ORCPT <rfc822;git-outgoing>); Fri, 17 Jun 2005 19:51:44 -0400
+Received: from mail.dvmed.net ([216.237.124.58]:5264 "EHLO mail.dvmed.net")
+	by vger.kernel.org with ESMTP id S261288AbVFQXvm (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 17 Jun 2005 19:51:42 -0400
+Received: from cpe-065-184-065-144.nc.res.rr.com ([65.184.65.144] helo=[10.10.10.88])
+	by mail.dvmed.net with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1DjQcc-0000MB-72; Fri, 17 Jun 2005 23:51:38 +0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42B36207.3020209@pobox.com>
+Date:	Fri, 17 Jun 2005 19:51:35 -0400
+From: Jeff Garzik <jgarzik@pobox.com>
+User-Agent: Mozilla Thunderbird 1.0.2-6 (X11/20050513)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Jens Axboe <axboe@suse.de>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: git merging
+References: <20050617133440.GI6957@suse.de> <Pine.LNX.4.58.0506170937260.8487@ppc970.osdl.org> <20050617175653.GS6957@suse.de> <Pine.LNX.4.58.0506171101450.2268@ppc970.osdl.org> <20050617181156.GT6957@suse.de> <Pine.LNX.4.58.0506171132390.2268@ppc970.osdl.org> <20050617183914.GX6957@suse.de> <Pine.LNX.4.58.0506171142500.2268@ppc970.osdl.org> <42B357D7.6030302@pobox.com> <Pine.LNX.4.58.0506171629320.2268@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0506171629320.2268@ppc970.osdl.org>
+Content-Type: multipart/mixed;
+ boundary="------------060506030908090101000207"
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 50
+Xref: brand.scrye.com linux.git:4988
+
+This is a multi-part message in MIME format.
+--------------060506030908090101000207
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Linus Torvalds wrote:
+> Ok. The most likely reason is that your main branch is not a symlink to 
+> ".git/refs/***" at all, but just a regular ".git/HEAD" file.
+
+This is definitely not the case; my .git/HEAD is _always_ a symlink.
+
+My git-switch-tree script, attached, demonstrates how .git/HEAD symlink 
+is retargetted to the specified branch.  My workflow depends on 
+.git/HEAD being a symlink.
+
+I'll see if I can reproduce with the latest git.
+
+	Jeff
+
+
+
+--------------060506030908090101000207
+Content-Type: text/plain;
+ name="git-switch-tree"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+ filename="git-switch-tree"
+
+#!/bin/sh
+
+if [ "x$1" != "x" ]
+then
+	if [ ! -f .git/refs/heads/$1 ]
+	then
+		echo Branch $1 not found.
+		exit 1
+	fi
+
+	( cd .git && rm -f HEAD && ln -s refs/heads/$1 HEAD )
+fi
+
+git-read-tree -m HEAD && git-checkout-cache -q -f -u -a
+
+
+--------------060506030908090101000207--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

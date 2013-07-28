@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 31 03:49:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CB6521A996
+	for <tkil@scrye.com>; Tue, 31 May 2005 03:49:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261598AbVEaJsr (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 31 May 2005 05:48:47 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261611AbVEaJsr
+	(ORCPT <rfc822;git-outgoing>); Tue, 31 May 2005 05:48:47 -0400
+Received: from soundwarez.org ([217.160.171.123]:14985 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S261598AbVEaJsn (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 31 May 2005 05:48:43 -0400
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id 686693AF50; Tue, 31 May 2005 11:48:38 +0200 (CEST)
+Date:	Tue, 31 May 2005 11:48:38 +0200
+From: Kay Sievers <kay.sievers@vrfy.org>
+To: Jochen Roemling <jochen@roemling.net>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [gitweb PATCH] Kill warnings in Webserver Error Log
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050531094838.GA22853@vrfy.org>
+References: <429B6AD4.9010107@roemling.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <429B6AD4.9010107@roemling.net>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 25
+Xref: brand.scrye.com linux.git:4270
+
+On Mon, May 30, 2005 at 09:34:44PM +0200, Jochen Roemling wrote:
+> The following patch kills two warnings in the Web Server Error Log:
+> 
+> [Mon May 30 21:24:15 2005] gitweb.cgi: "my" variable %co masks earlier 
+> declaration in same scope at /home/www/html/tools/cgi-bin/gitweb.cgi 
+> line 1658.
+> [Mon May 30 21:25:46 2005] gitweb.cgi: "my" variable %co masks earlier 
+> declaration in same scope at /home/www/html/tools/cgi-bin/gitweb.cgi 
+> line 1615.
+> 
+> There might be a patch offset of few lines because I deleted my local 
+> gitweb settings from the patch.
+
+Dou you get the version from:
+  ftp://ehlo.org/gitweb.cgi
+
+It seems already fixed.
+
+Thanks,
+Kay
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

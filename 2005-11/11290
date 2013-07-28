@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 18:01:05 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7F481DDFA4
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 18:01:05 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964977AbVKHBAL (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 20:00:11 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964987AbVKHBAK
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 20:00:10 -0500
+Received: from warden-p.diginsite.com ([208.29.163.248]:11986 "HELO
+	warden.diginsite.com") by vger.kernel.org with SMTP id S964977AbVKHBAH
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 7 Nov 2005 20:00:07 -0500
+Received: from no.name.available by warden.diginsite.com
+          via smtpd (for vger.kernel.org [209.132.176.167]) with SMTP; Mon, 7 Nov 2005 17:00:07 -0800
+Received: from wlvexc02.digitalinsight.com ([10.201.10.15]) by wlvims02.corp.ad.diginsite.com with InterScan Messaging Security Suite; Mon, 07 Nov 2005 17:00:02 -0800
+Received: by wlvexc02.diginsite.com with Internet Mail Service (5.5.2657.72)
+	id <WL40KY2A>; Mon, 7 Nov 2005 16:55:31 -0800
+Received: from dlang.diginsite.com ([10.201.10.67]) by wlvexc00.digitalinsight.com with SMTP (Microsoft Exchange Internet Mail Service Version 5.5.2657.72)
+	id WLVGS2NZ; Mon, 7 Nov 2005 16:58:44 -0800
+From:	David Lang <david.lang@digitalinsight.com>
+To:	walt <wa1ter@myrealbox.com>
+Cc:	git@vger.kernel.org
+X-X-Sender: dlang@dlang.diginsite.com
+In-Reply-To: <dkosr7$f4s$1@sea.gmane.org>
+References: <dkosr7$f4s$1@sea.gmane.org>
+Date:	Mon, 7 Nov 2005 16:59:58 -0800 (PST)
+X-X-Sender: dlang@dlang.diginsite.com
+Subject: Re: Real-life kernel debugging scenario
+In-Reply-To: <dkosr7$f4s$1@sea.gmane.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.62.0511071657030.9339@qynat.qvtvafvgr.pbz>
+References: <dkosr7$f4s$1@sea.gmane.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:11290
+
+On Mon, 7 Nov 2005, walt wrote:
+
+> My worry:  what happens when I'm not smart enough to guess
+> which developer to email?  My first instinct is to back out
+> the most recent commits one-by-one until the bug goes away.
+>
+> First:  is this an optimal tactic?
+
+it will work, but it's not optimal. this is exactly what git bisect is 
+designed for.
+
+you tell it that the prior night's version was good and the current 
+version is bad. It picks a version 'halfway' in between the two and you 
+test that. tell git if the test failed or not and it will then give 
+you the next one to try. repeat until you identify exactly which commit 
+triggers the problem.
+
+unfortunantly I can't trivially point you at the right place in the docs.
+
+David Lang
+
+-- 
+There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies. And the other way is to make it so complicated that there are no obvious deficiencies.
+  -- C.A.R. Hoare
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

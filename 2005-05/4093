@@ -1,0 +1,55 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 27 18:02:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6089817052C
+	for <tkil@scrye.com>; Fri, 27 May 2005 18:02:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262665AbVE1ACR (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 27 May 2005 20:02:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262666AbVE1ACR
+	(ORCPT <rfc822;git-outgoing>); Fri, 27 May 2005 20:02:17 -0400
+Received: from soundwarez.org ([217.160.171.123]:30936 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S262665AbVE1ACP (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 27 May 2005 20:02:15 -0400
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id 8ABBE3A74F; Sat, 28 May 2005 02:02:11 +0200 (CEST)
+Date:	Sat, 28 May 2005 02:02:11 +0200
+From: Kay Sievers <kay.sievers@vrfy.org>
+To: Jonas Fonseca <fonseca@diku.dk>
+Cc: git@vger.kernel.org
+Subject: Re: [gitweb bug] Pressing commitdiff on first commit returns 403
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050528000211.GA25299@vrfy.org>
+References: <20050527233750.GB25491@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050527233750.GB25491@diku.dk>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 15
+Xref: brand.scrye.com linux.git:4093
+
+On Sat, May 28, 2005 at 01:37:50AM +0200, Jonas Fonseca wrote:
+> Just a minor issue. For example the URL below for the commitdiff of the
+> first git commit gives me ``403 Forbidden - Reading diff-tree failed.''
+> 
+> http://kernel.org/git/?p=git/git.git;a=commitdiff;h=e83c5163316f89bfbde7d9ab23ca2e25604af290
+
+That's already fixed in the next version.
+
+thanks,
+Kay
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

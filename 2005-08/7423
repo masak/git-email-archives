@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 01:03:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C67E14940C
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 01:03:02 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750941AbVHQHC5 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 03:02:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750944AbVHQHC5
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 03:02:57 -0400
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:14800 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S1750941AbVHQHC4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 17 Aug 2005 03:02:56 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050817070253.IXMF7275.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 17 Aug 2005 03:02:53 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: [PATCH] Also handle CVS branches with a '/' in their name
+References: <Pine.LNX.4.63.0508170839030.27628@wgmdd8.biozentrum.uni-wuerzburg.de>
+cc:	git@vger.kernel.org
+Date:	Wed, 17 Aug 2005 00:02:53 -0700
+In-Reply-To: <Pine.LNX.4.63.0508170839030.27628@wgmdd8.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Wed, 17 Aug 2005 08:39:31 +0200
+	(CEST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vk6il11wi.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:7423
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> I track a CVS project which has a branch with a '/' in the branch name.
+> Since git wants the branch name to be a file name at the same time,
+> translate that character to a '-'. This should work well, despite the
+> fact that a division and a difference are completely different :-)
+
+My feeling is that there should be nothing to prevent you from
+having a non-flat namespace in .git/refs/heads; i.e. we should
+allow ".git/refs/heads/foo/bar".  Some of the existing tools may
+be forgetting to call either "mkdir -p $(dirname $ref)" if they
+are written in shell, or safe_create_leading_directories(ref) in
+C, but I consider that is a bug.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

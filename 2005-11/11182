@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov  5 22:01:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 49569175431
+	for <tkil@scrye.com>; Sat,  5 Nov 2005 22:01:27 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932295AbVKFFA5 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 6 Nov 2005 00:00:57 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932297AbVKFFA5
+	(ORCPT <rfc822;git-outgoing>); Sun, 6 Nov 2005 00:00:57 -0500
+Received: from soundwarez.org ([217.160.171.123]:49381 "EHLO soundwarez.org")
+	by vger.kernel.org with ESMTP id S932295AbVKFFA5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 6 Nov 2005 00:00:57 -0500
+Received: by soundwarez.org (Postfix, from userid 2702)
+	id 70397587A4; Sun,  6 Nov 2005 06:00:49 +0100 (CET)
+Date:	Sun, 6 Nov 2005 06:00:49 +0100
+From:	Kay Sievers <kay.sievers@vrfy.org>
+To:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Cc:	Junio C Hamano <junkio@cox.net>,
+	Linus Torvalds <torvalds@osdl.org>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: git binary directory?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051106050049.GA5910@vrfy.org>
+References: <7voe4y5w3v.fsf@assigned-by-dhcp.cox.net> <200511060312.jA63CUcv010887@inti.inf.utfsm.cl>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200511060312.jA63CUcv010887@inti.inf.utfsm.cl>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:11182
+
+On Sun, Nov 06, 2005 at 12:12:30AM -0300, Horst von Brand wrote:
+> Junio C Hamano <junkio@cox.net> wrote:
+> > Linus Torvalds <torvalds@osdl.org> writes:
+> > > Now, I happen to think that 2500+ files in /usr/bin is a bit much (ever 
+> > > try to use the horrid gnome executable finder on it when you want to 
+> > > convince firefox to use xpdf instead of that broken crap called "evince"? 
+> > > Takes absolutely ages and is horrible).
+> > >
+> > > And git made it about 4% worse all on its own.
+> 
+> [...]
+> 
+> > Since we do not have enough clout to have /usr/bin/git/ and ask
+> > the users to put that in their PATH like X11 does,
+> 
+> That is going away. No more /usr/X11R6/{bin,lib,man} junk.
+> 
+> >                                                    we need to
+> > teach some of our commands that use other git commands to
+> > prepend /usr/lib/git/ (or /usr/libexec/git)
+> 
+> AFAIU, /usr/libexec/git (or /usr/libexec/git-<version>) would be better.
+
+Note that "libexec" is not LSB conform - whatever that means, but it
+should probably not be used for new projects. It states: "Applications
+may use a single subdirectory under /usr/lib."
+
+Kay
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

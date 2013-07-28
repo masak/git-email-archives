@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 25 14:25:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B38431613A1
+	for <tkil@scrye.com>; Tue, 25 Oct 2005 14:25:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932348AbVJYUYu (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 25 Oct 2005 16:24:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932349AbVJYUYt
+	(ORCPT <rfc822;git-outgoing>); Tue, 25 Oct 2005 16:24:49 -0400
+Received: from xproxy.gmail.com ([66.249.82.203]:48815 "EHLO xproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S932348AbVJYUYt convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 25 Oct 2005 16:24:49 -0400
+Received: by xproxy.gmail.com with SMTP id t7so492353wxc
+        for <git@vger.kernel.org>; Tue, 25 Oct 2005 13:24:48 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=EESdYZ2lJ4hyBm70lxLhHSEKLNicIEMDbB+y/9icC98tiUbM1Y/P2SWVvsW7o/mFP44L2pp3AEPWK40eUjZCTswVM4NJ6SMWWII+I4pLV2PRrY6jn3tm+0AFH6gSBFatWnP5yPPZ4oFYqHImYF0v9Qkh/1aq7dT4Y2rPK7jHr/A=
+Received: by 10.64.210.13 with SMTP id i13mr85772qbg;
+        Tue, 25 Oct 2005 13:24:48 -0700 (PDT)
+Received: by 10.64.232.18 with HTTP; Tue, 25 Oct 2005 13:24:48 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90510251324s50911b88pb5eabb304644bcad@mail.gmail.com>
+Date:	Wed, 26 Oct 2005 09:24:48 +1300
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	Junio C Hamano <junkio@cox.net>
+Subject: Re: Convention for help in git commands?
+Cc:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>, git@vger.kernel.org
+In-Reply-To: <7vfyqpe87x.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <200510251508.43552.Josef.Weidendorfer@gmx.de>
+	 <7vfyqpe87x.fsf@assigned-by-dhcp.cox.net>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:10605
+
+On 10/26/05, Junio C Hamano <junkio@cox.net> wrote:
+> > * For commands which need at least one argument, the usage
+> > is also printed, if the command is run without argument
+>
+> This is slightly debatable.  I'd rather see it error out for one
+> thing, and we might want to do a sane default given no arguments
+> later.
+
+This could lead to subtle bugs when git is used by porcelains. If
+there are going to be changes in default behaviours, let's have them
+soon-ish ;-)
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

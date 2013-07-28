@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 19 19:12:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E176A494FC
+	for <tkil@scrye.com>; Mon, 19 Dec 2005 19:12:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750740AbVLTCME (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Dec 2005 21:12:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750744AbVLTCMD
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Dec 2005 21:12:03 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:7614 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S1750740AbVLTCMC
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Dec 2005 21:12:02 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EoWx5-0003v8-EY
+	for git@vger.kernel.org; Mon, 19 Dec 2005 21:10:07 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EoWyq-0004Nf-K6; Mon, 19 Dec 2005 21:11:56 -0500
+Subject: Re: qgit reports errors in the git repository
+From:	Pavel Roskin <proski@gnu.org>
+To:	Marco Costalba <mcostalba@gmail.com>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+In-Reply-To: <e5bfff550512170044v59f96262ica6511e981889ea9@mail.gmail.com>
+References: <1134433440.3798.27.camel@dv> <1134624477.5360.6.camel@dv>
+	 <e5bfff550512150501v48bb65abwf44b3fc21f33bdf6@mail.gmail.com>
+	 <1134665095.27212.22.camel@dv>
+	 <e5bfff550512151100k33a66db5tdb2eb1ff2da10a59@mail.gmail.com>
+	 <1134693349.22652.22.camel@dv>
+	 <e5bfff550512152258t3f7b2eb1i1c709572b18fe3f7@mail.gmail.com>
+	 <1134757942.2248.11.camel@dv>
+	 <e5bfff550512161247v4c187cc0gedae8234d454c3b6@mail.gmail.com>
+	 <7virto9pr0.fsf@assigned-by-dhcp.cox.net>
+	 <e5bfff550512170044v59f96262ica6511e981889ea9@mail.gmail.com>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Mon, 19 Dec 2005 21:11:56 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1135044716.2259.24.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:13834
+
+Hello, Marco!
+
+On Sat, 2005-12-17 at 09:44 +0100, Marco Costalba wrote:
+> On 12/17/05, Junio C Hamano <junkio@cox.net> wrote:
+> > Marco Costalba <mcostalba@gmail.com> writes:
+> Pavel, please, test the following patch. If it works I will push the change.
+
+I could not apply your patch (it got mangled), but the git server for
+qgit is working now, so I updated from it, and it looks like your patch
+is already there.
+
+I don't see any error messages from any git repository I'm using.  Thank
+you for the fix!
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

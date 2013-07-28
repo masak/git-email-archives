@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 19:00:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 351B0D1EF8
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 19:00:00 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751110AbVLOB7q (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 20:59:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751261AbVLOB7q
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 20:59:46 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:31941 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751110AbVLOB7q (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Dec 2005 20:59:46 -0500
+Received: (qmail 19322 invoked by uid 2001); 15 Dec 2005 02:59:44 +0100
+Date:	Thu, 15 Dec 2005 02:59:44 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: How to clone-pack the HEAD?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051215015944.GE10680@pasky.or.cz>
+References: <20051215004440.GM22159@pasky.or.cz> <7vfyovtaub.fsf@assigned-by-dhcp.cox.net> <20051215013201.GD10680@pasky.or.cz> <7vpsnzrv43.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vpsnzrv43.fsf@assigned-by-dhcp.cox.net>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:13665
+
+Dear diary, on Thu, Dec 15, 2005 at 02:45:32AM CET, I got a letter
+where Junio C Hamano <junkio@cox.net> said that...
+> Petr Baudis <pasky@suse.cz> writes:
+> 
+> > Except that I cannot do the guessing git-clone-pack does (without
+> > fetching all the branches)
+> 
+> Exactly my point.  If you are not getting all the branches, you
+> are not cloning but doing something else.
+
+Ah, play with the words. Sure I'm cloning - however I'm not cloning
+a repository but a branch. In Cogito world, that's the only thing that
+makes sense to clone, in GIT world it's more complicated (you don't
+always clone the whole repository there either, since git-clone-pack
+lets you narrow down the refs).
+
+> Extending git-fetch-pack would be the right approach if that is
+> what you are trying to do.
+
+I'll then try to extend git-fetch-pack instead. I'll send some fix for
+git-clone-pack anyway, though. ;-)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

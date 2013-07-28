@@ -1,0 +1,133 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 20:19:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7D1DC13AEE6
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 20:19:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965202AbVKPDTS (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 22:19:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965203AbVKPDTS
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 22:19:18 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:19473 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S965202AbVKPDTR (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 22:19:17 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jAG3HrZ7006824;
+	Wed, 16 Nov 2005 03:18:27 GMT
+Mime-Version: 1.0 (Apple Message framework v734)
+Content-Type: multipart/mixed; boundary=Apple-Mail-1--815214712
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <73E454C2-B3C1-44C6-B5FC-28CBAAD7513A@hawaga.org.uk>
+Cc:	Git Mailing List <git@vger.kernel.org>
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: [PATCH] Add missing '--summary' to cg-log usage.
+Date:	Wed, 16 Nov 2005 13:13:27 +1000
+To:	Petr Baudis <pasky@suse.cz>
+X-Mailer: Apple Mail (2.734)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 94
+Xref: brand.scrye.com linux.git:11989
+
+
+--Apple-Mail-1--815214712
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+	charset=US-ASCII;
+	delsp=yes;
+	format=flowed
+
+Cannot get my mailer (Apple Mail on OS X) to insert this pretty  
+trivial patch in a nice way -- included it as an attachment as well.
+
+----- cut ------
+
+Add missing '--summary' to cg-log usage.
+
+Signed-off-by: Ben Clifford
+
+---
+
+cg-log |    2 +-
+1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/cg-log b/cg-log
+index 710ce7b..49c3cc0 100755
+--- a/cg-log
++++ b/cg-log
+@@ -98,7 +98,7 @@
+# things more comfortable to SVN users). See cogito(7) for more details
+# about revision specification.
+-USAGE="cg-log [-c] [-f] [-m] [-M] [-s] [-uUSERNAME] [-d DATE] [-r  
+FROM_ID[..TO_ID]] FILE..."
++USAGE="cg-log [-c] [-f] [-m] [-M] [-s] [-uUSERNAME] [-d DATE] [-r  
+FROM_ID[..TO_ID]] [--summary] FILE..."
+. ${COGITO_LIB}cg-Xlib || exit 1
+# Try to fix the annoying "Broken pipe" output. May not help, but  
+apparently
+
+
+
+
+
+
+
+--Apple-Mail-1--815214712
+Content-Transfer-Encoding: 7bit
+Content-Type: application/octet-stream;
+	x-unix-mode=0644;
+	name="cogito-log-summary.patch"
+Content-Disposition: attachment;
+	filename=cogito-log-summary.patch
+
+Add missing '--summary' to cg-log usage.
+
+Signed-off-by: Ben Clifford
+
+---
+commit a21b69e87d13a210df78a7eb952ed400109c0438
+tree 0ab82b9a97ffaa71e0342e3aa153196ef8e0ac77
+parent c51a232e8115ade2f5d61f4ea9dd1246bd7f7db0
+author Ben Clifford <benc@hawaga.org.uk> Wed, 16 Nov 2005 09:29:57 +1000
+committer Ben Clifford <benc@piva.hawaga.org.uk> Wed, 16 Nov 2005 09:29:57 +1000
+
+ cg-log |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/cg-log b/cg-log
+index 710ce7b..49c3cc0 100755
+--- a/cg-log
++++ b/cg-log
+@@ -98,7 +98,7 @@
+ # things more comfortable to SVN users). See cogito(7) for more details
+ # about revision specification.
+ 
+-USAGE="cg-log [-c] [-f] [-m] [-M] [-s] [-uUSERNAME] [-d DATE] [-r FROM_ID[..TO_ID]] FILE..."
++USAGE="cg-log [-c] [-f] [-m] [-M] [-s] [-uUSERNAME] [-d DATE] [-r FROM_ID[..TO_ID]] [--summary] FILE..."
+ 
+ . ${COGITO_LIB}cg-Xlib || exit 1
+ # Try to fix the annoying "Broken pipe" output. May not help, but apparently
+
+--Apple-Mail-1--815214712
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+	charset=US-ASCII;
+	format=flowed
+
+
+
+
+--Apple-Mail-1--815214712--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

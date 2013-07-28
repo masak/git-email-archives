@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep  6 07:21:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E7FB72851FC
+	for <tkil@scrye.com>; Tue,  6 Sep 2005 07:21:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964858AbVIFNVG (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Sep 2005 09:21:06 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964868AbVIFNVG
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Sep 2005 09:21:06 -0400
+Received: from ifae-s0.ifae.es ([192.101.162.68]:36485 "EHLO ifae-s0.ifae.es")
+	by vger.kernel.org with ESMTP id S964858AbVIFNVF (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 6 Sep 2005 09:21:05 -0400
+Received: from bela (ifae-s1.ifae.es [192.101.162.148])
+	by ifae-s0.ifae.es (8.11.6/8.11.6) with ESMTP id j86DKwi29135;
+	Tue, 6 Sep 2005 15:21:00 +0200
+From:	=?utf-8?Q?Santi_B=C3=A9jar?= <sbejar@gmail.com>
+To:	Kay Sievers <kay.sievers@vrfy.org>
+Cc:	git@vger.kernel.org
+Subject: git/gitweb - feature request: Add description to the branches.
+Date:	Tue, 06 Sep 2005 15:21:20 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <87ll2aib73.fsf@gmail.com>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/22.0.50 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:8122
+
+Hi:
+
+        First, thank you for this great tool.
+
+        One thing I'm missing is a way to describe a branch. It can be
+        done in the $GIT_DIR/description, the first line for the whole
+        repository and the rest for the branches. So description file
+        for the git.git repository could be:
+
+[description]
+The core git plumbing
+pu: Proposed updates
+rc: Release candidate
+todo: Todo list
+[/description]
+
+        And it can be added to the gitweb tool.
+
+        Thanks.
+
+        Santi
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

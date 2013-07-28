@@ -1,0 +1,123 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 04:22:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A35481B4110
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 04:22:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932218AbVISKWT (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 06:22:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932257AbVISKWT
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 06:22:19 -0400
+Received: from main.gmane.org ([80.91.229.2]:18116 "EHLO ciao.gmane.org")
+	by vger.kernel.org with ESMTP id S932218AbVISKWS (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Sep 2005 06:22:18 -0400
+Received: from list by ciao.gmane.org with local (Exim 4.43)
+	id 1EHIlQ-00068C-Bi
+	for git@vger.kernel.org; Mon, 19 Sep 2005 12:20:44 +0200
+Received: from 212214120186-virtutech-ab.host.songnetworks.se ([212.214.120.186])
+        by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Mon, 19 Sep 2005 12:20:44 +0200
+Received: from davidk by 212214120186-virtutech-ab.host.songnetworks.se with local (Gmexim 0.1 (Debian))
+        id 1AlnuQ-0007hv-00
+        for <git@vger.kernel.org>; Mon, 19 Sep 2005 12:20:44 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To:	git@vger.kernel.org
+From:	=?iso-8859-1?Q?David_K=E5gedal?= <davidk@lysator.liu.se>
+Subject:  [PATCH] Added -d and -e options to the "git" script.
+Date:	Mon, 19 Sep 2005 12:19:36 +0200
+Lines:	66
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID:  <u5tmzm9bbrb.fsf@lysator.liu.se>
+References:  <Pine.LNX.4.58.0509181114190.26803@g5.osdl.org>
+Mime-Version:  1.0
+Content-Type:  text/plain; charset=iso-8859-1
+Content-Transfer-Encoding:  8bit
+X-Complaints-To: usenet@sea.gmane.org
+X-Gmane-NNTP-Posting-Host: 212214120186-virtutech-ab.host.songnetworks.se
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+Cancel-Lock: sha1:tg+85bdlLKUvNYlrc27rOTa1wcc=
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 72
+Xref: brand.scrye.com linux.git:8845
+
+These flags override the GIT_DIR and EDITOR environment variables.
+
+---
+This is more generic way to specify GIT_DIR than Linus' suggestion,
+although it is only targeted at more porcelainish usage of the git
+driver script.
+
+I needed this for the Emacs commands I've been hacking on, since it's
+hard to set environment variables for single commands without
+involving /bin/env or a shell.
+
+ git.sh |   37 +++++++++++++++++++++++++------------
+ 1 files changed, 25 insertions(+), 12 deletions(-)
+
+b9a38ed5a16289f86b353c0bb541e607d35180a9
+diff --git a/git.sh b/git.sh
+--- a/git.sh
++++ b/git.sh
+@@ -2,19 +2,32 @@
+ 
+ cmd=
+ path=$(dirname $0)
+-case "$#" in
+-0)	;;
+-*)	cmd="$1"
+-	shift
+-	case "$cmd" in
+-	-v|--v|--ve|--ver|--vers|--versi|--versio|--version)
+-		echo "git version @@GIT_VERSION@@"
+-		exit 0 ;;
+-	esac
+-	test -x $path/git-$cmd && exec $path/git-$cmd "$@" ;;
+-esac
+ 
+-echo "Usage: git COMMAND [OPTIONS] [TARGET]"
++while test "$#" -gt 0
++do
++        case "$1" in
++        -d)	export GIT_DIR
++                GIT_DIR=$2
++                shift
++                ;;
++        -e)	export EDITOR
++                EDITOR=$2
++                shift
++                ;;
++        *)	cmd="$1"
++                shift
++                case "$cmd" in
++                -v|--v|--ve|--ver|--vers|--versi|--versio|--version)
++                        echo "git version @@GIT_VERSION@@"
++                        exit 0 ;;
++                esac
++                test -x $path/git-$cmd && exec $path/git-$cmd "$@"
++                ;;
++        esac
++        shift
++done
++
++echo "Usage: git [GLOBAL OPTIONS] COMMAND [COMMAND OPTIONS]"
+ if [ -n "$cmd" ]; then
+     echo " git command '$cmd' not found: commands are:"
+ else
+
+-- 
+David Kågedal
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

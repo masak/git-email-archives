@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 09:08:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 34B022A4560
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 09:07:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751063AbVILO40 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 10:56:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751301AbVILO4Z
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 10:56:25 -0400
+Received: from citi.umich.edu ([141.211.133.111]:45922 "EHLO citi.umich.edu")
+	by vger.kernel.org with ESMTP id S1751061AbVILO4U (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 10:56:20 -0400
+Received: from dexter.citi.umich.edu (dexter.citi.umich.edu [141.211.133.33])
+	by citi.umich.edu (Postfix) with ESMTP id 998141BAF3
+	for <git@vger.kernel.org>; Mon, 12 Sep 2005 10:56:20 -0400 (EDT)
+From:	Chuck Lever <cel@netapp.com>
+Subject: [PATCH 17/22] teach checkout-index.c to use cache_find_name()
+Date:	Mon, 12 Sep 2005 10:56:20 -0400
+To:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050912145620.28120.86534.stgit@dexter.citi.umich.edu>
+In-Reply-To: <20050912145543.28120.7086.stgit@dexter.citi.umich.edu>
+References: <20050912145543.28120.7086.stgit@dexter.citi.umich.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 41
+Xref: brand.scrye.com linux.git:8395
+
+Signed-off-by: Chuck Lever <cel@netapp.com>
+---
+
+ checkout-index.c |   11 +++++------
+ 1 files changed, 5 insertions(+), 6 deletions(-)
+
+diff --git a/checkout-index.c b/checkout-index.c
+--- a/checkout-index.c
++++ b/checkout-index.c
+@@ -45,20 +45,19 @@ static struct checkout state = {
+ 
+ static int checkout_file(const char *name)
+ {
+-	int pos = cache_name_pos(name, strlen(name));
+-	if (pos < 0) {
++	struct cache_entry *ce;
++
++	if (!cache_find_entry(name, strlen(name), &ce)) {
+ 		if (!state.quiet) {
+-			pos = -pos - 1;
+ 			fprintf(stderr,
+ 				"git-checkout-index: %s is %s.\n",
+ 				name,
+-				(pos < active_nr &&
+-				 !strcmp(active_cache[pos]->name, name)) ?
++				!strcmp(ce->name, name) ?
+ 				"unmerged" : "not in the cache");
+ 		}
+ 		return -1;
+ 	}
+-	return checkout_entry(active_cache[pos], &state);
++	return checkout_entry(ce, &state);
+ }
+ 
+ static int checkout_one(struct cache_cursor *cc, struct cache_entry *ce)
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

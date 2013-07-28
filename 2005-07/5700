@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul  6 10:58:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DC8F22616DB
+	for <tkil@scrye.com>; Wed,  6 Jul 2005 10:58:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262345AbVGFQzF (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 6 Jul 2005 12:55:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262378AbVGFQxO
+	(ORCPT <rfc822;git-outgoing>); Wed, 6 Jul 2005 12:53:14 -0400
+Received: from 203-217-64-103.dyn.iinet.net.au ([203.217.64.103]:4993 "HELO
+	blackcubes.dyndns.org") by vger.kernel.org with SMTP
+	id S262340AbVGFQjn (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 6 Jul 2005 12:39:43 -0400
+Received: (qmail 9801 invoked by uid 500); 6 Jul 2005 16:39:33 -0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050706163933.9791.qmail@blackcubes.dyndns.org>
+Date:	Thu, 07 Jul 2005 02:39:33 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+To: git@vger.kernel.org
+Cc: torvalds@osdl.org, jon.seymour@gmail.com
+Subject: [PATCH 0/13] Patch Series
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_FN 
+	autolearn=ham version=3.0.4
+Lines: 31
+Xref: brand.scrye.com linux.git:5700
+
+
+I have re-issued the patches I have created in the last day after checking
+that they apply correctly when applied in this order to the
+current Linus HEAD (b43d44779bf98977b211256f936d0edda8a9625a)
+
+Introduction of --topo-order and tidy up of rev-list.c
+
+[PATCH 1/13] Temporary fixup to rev-list.c to restore expected order of arguments presented to --merge-order sort.
+[PATCH 2/13] Swap order of insert_by_date arguments
+[PATCH 3/13] Introduce struct rev_list_fns to rev-list.c to reduce amount of conditional processing.
+[PATCH 4/13] Add a topological sort procedure to commit.c [rev 4]
+[PATCH 5/13] Introduce --topo-order switch to git-rev-list
+[PATCH 6/13] Change gitk so that it uses --topo-order rather than --merge-order
+[PATCH 7/13] Tidy up - slight simplification of rev-list.c
+[PATCH 8/13] Fix handling of duplicates by topological order.
+
+Tidy up and extension of t6xxx test cases
+
+[PATCH 9/13] Factor out useful test case infrastructure from t/t6001... into t/t6000-lib.sh
+[PATCH 10/13] Introduce unit tests for git-rev-list --bisect
+[PATCH 11/13] Change the sed seperator in t/t6000-lib.sh.
+
+Test for and fix of recently discovered --merge-order bug
+
+[PATCH 12/13] Add a t/t6001 test case for a --merge-order bug
+[PATCH 13/13] Fixes a problem with --merge-order A B (A is linear descendent of a merge B)
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

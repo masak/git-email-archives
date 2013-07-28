@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 29 04:38:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 404382851FA
+	for <tkil@scrye.com>; Mon, 29 Aug 2005 04:38:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750904AbVH2Kit (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 29 Aug 2005 06:38:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751035AbVH2Kit
+	(ORCPT <rfc822;git-outgoing>); Mon, 29 Aug 2005 06:38:49 -0400
+Received: from zeus2.kernel.org ([204.152.191.36]:2253 "EHLO zeus2.kernel.org")
+	by vger.kernel.org with ESMTP id S1750904AbVH2Kis (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 29 Aug 2005 06:38:48 -0400
+Received: from eurodubx.europlex.local (mail.europlex.ie [83.141.76.10])
+	by zeus2.kernel.org (8.13.1/8.13.1) with ESMTP id j7TAclp2001721
+	for <git@vger.kernel.org>; Mon, 29 Aug 2005 03:38:48 -0700
+Received: from [10.100.10.207] ([10.100.10.207]) by eurodubx.europlex.local with Microsoft SMTPSVC(6.0.3790.211);
+	 Mon, 29 Aug 2005 11:35:46 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4312E74D.5020203@eircom.net>
+Date:	Mon, 29 Aug 2005 11:45:33 +0100
+From:	"Bryan O'Donoghue" <typedef@eircom.net>
+User-Agent: Mozilla Thunderbird 1.0 (X11/20041206)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: cogito/git usage question
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+X-OriginalArrivalTime: 29 Aug 2005 10:35:46.0500 (UTC) FILETIME=[6A5C7840:01C5AC85]
+X-Virus-Scanned: ClamAV version 0.85, clamav-milter version 0.85 on zeus2
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 27
+Xref: brand.scrye.com linux.git:7891
+
+Greetings all.
+
+I have a copy of
+http://www.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+which is currently at revision 2.6.13 as at this morning.
+
+cg-tag-ls lists every version from 2.6.11 to the current 2.6.13
+inclusive. cg-tag-ls also lists kernel version 2.6.13-rc6. What I'm
+wondering is how exactly I set copy of the tree to that version, so that
+I can apply the -mm patchset ?
+
+I've asked uncle Google and searched the git mailing list archives, as
+well as looking through the git and cogito documentation, however, it is
+not immediately obvious to me at this point what the correct command to
+do this is. I'd be very grateful, if somebody could point that out.
+
+Best Regards,
+Bryan
+
+-- 
+"Fiery the angels fell. Deep thunder rolled around their shores, burning
+with the fires of Orc." -- Roy Batty, Blade Runner.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

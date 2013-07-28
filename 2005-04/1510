@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 11:48:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 7E5F56E27
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 11:48:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262356AbVDXRre (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 13:47:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262355AbVDXRre
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 13:47:34 -0400
+Received: from fire.osdl.org ([65.172.181.4]:64902 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262356AbVDXRrV (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Apr 2005 13:47:21 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3OHlGs4004239
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 24 Apr 2005 10:47:16 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3OHlF3C013690;
+	Sun, 24 Apr 2005 10:47:16 -0700
+Date:	Sun, 24 Apr 2005 10:49:15 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: James Bottomley <James.Bottomley@SteelEye.com>
+Cc: git@vger.kernel.org
+Subject: Re: [RFC] updates for git-pull-script
+In-Reply-To: <1114352069.4997.24.camel@mulgrave>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504241045260.15879@ppc970.osdl.org>
+References: <1114352069.4997.24.camel@mulgrave>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 32
+Xref: brand.scrye.com linux.git:1510
+
+
+
+On Sun, 24 Apr 2005, James Bottomley wrote:
+> 
+> The attached addresses all these points.  It's what I use, but since
+> others may prefer the original behaviour, I'm sending it as a straw
+> horse.
+
+I don't think anybody preferes the original behaviour - the reason 
+git-pull-script punted with any non-trivial merge was that when I wrote 
+the damn thing, I was still just testing out the merges, and I definitely 
+didn't trust the automated script.
+
+However, when you remove the "checkout-cache -f -a" thing, it means that 
+you are leaving all teh checked-out files in a state where it's _very_ 
+easy to mess up later, and doign so silently really is very bad.
+
+So at the _very_ least you should do an "update-cache --refresh", and 
+_tell_ the user about the files that are checked-out but not up-to-date.
+
+And it really sounds like the whole and only reason you don't like 
+checkout-cache is that you normally work with an empty tree, so I actually 
+think that the _right_ answer for you is to add a new flag to 
+"checkout-cache" that only updates files that already exist. Something 
+like "-n" for "don't create new files". 
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

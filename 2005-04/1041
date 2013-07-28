@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 18:12:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 51449249801
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 18:12:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261842AbVDUAMO (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 20:12:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261848AbVDUAMO
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 20:12:14 -0400
+Received: from fire.osdl.org ([65.172.181.4]:7296 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261842AbVDUAMI (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 20 Apr 2005 20:12:08 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3L0C4s4020818
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 20 Apr 2005 17:12:05 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3L0C3iC005170;
+	Wed, 20 Apr 2005 17:12:03 -0700
+Date:	Wed, 20 Apr 2005 17:14:03 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Greg KH <greg@kroah.com>, git@vger.kernel.org
+Subject: Re: [ANNOUNCE] git-pasky-0.6.2 && heads-up on upcoming changes
+In-Reply-To: <20050420222815.GM19112@pasky.ji.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504201710500.2344@ppc970.osdl.org>
+References: <20050420205633.GC19112@pasky.ji.cz> <20050420211919.GA20129@kroah.com>
+ <20050420215117.GJ19112@pasky.ji.cz> <Pine.LNX.4.58.0504201503050.6467@ppc970.osdl.org>
+ <20050420222815.GM19112@pasky.ji.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 45
+Xref: brand.scrye.com linux.git:1041
+
+
+
+Pasky,
+ what do you think about this change to "git log"?
+
+It makes it a _lot_ easier to parse the result, as it indents all the
+comments by two spaces, meaning that the header is clearly marked, and you
+can then do various 'sed'/'grep' things with nice normal regular
+expressions like '^parent' without having to worry about there being a 
+line that starts with "parent" in the free-form part..
+
+I also think the end result is more readable from a human standpoint, with 
+indentation as the way to distinguish the headers from the commentary, 
+and less ugly ASCII barfic's with "------" etc.
+
+I'm doing a 2.6.12-rc3 release, so I care more than usual about the 
+changelog ;)
+
+		Linus
+
+---
+gitlog.sh: a496a864f9586e47a4d7bd3ae0af0b3e07b7deb8
+--- a/gitlog.sh
++++ b/gitlog.sh
+@@ -28,7 +28,7 @@ rev-tree $base | sort -rn | while read t
+ 				fi
+ 				;;
+ 			"")
+-				echo; cat
++				echo; sed 's/^/  /'
+ 				;;
+ 			*)
+ 				echo $key $rest
+@@ -36,5 +36,5 @@ rev-tree $base | sort -rn | while read t
+ 			esac
+ 
+ 		done
+-	echo -e "\n--------------------------"
++	echo
+ done
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 23 23:24:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_PG,
+	UNPARSEABLE_RELAY autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AA4CA28B082
+	for <tkil@scrye.com>; Fri, 23 Sep 2005 23:24:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751434AbVIXFYS (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 24 Sep 2005 01:24:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751435AbVIXFYS
+	(ORCPT <rfc822;git-outgoing>); Sat, 24 Sep 2005 01:24:18 -0400
+Received: from x35.xmailserver.org ([69.30.125.51]:60034 "EHLO
+	x35.xmailserver.org") by vger.kernel.org with ESMTP
+	id S1751434AbVIXFYR (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 24 Sep 2005 01:24:17 -0400
+X-AuthUser: davidel@xmailserver.org
+Received: from debstar.dev.mdolabs.com
+	by xmailserver.org with [XMail 1.22 ESMTP Server]
+	id <S1A0DDB> for <git@vger.kernel.org> from <davidel@xmailserver.org>;
+	Fri, 23 Sep 2005 22:25:05 -0700
+Date:	Fri, 23 Sep 2005 22:26:43 -0700 (PDT)
+From:	Davide Libenzi <davidel@xmailserver.org>
+X-X-Sender: davide@localhost.localdomain
+To:	Linus Torvalds <torvalds@osdl.org>
+cc:	Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	Peter TB Brett <peter@peter-b.co.uk>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: git 0.99.7b doesn't build on Cygwin
+In-Reply-To: <Pine.LNX.4.58.0509231935360.3308@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509232220330.30718@localhost.localdomain>
+References: <ud5mznc1x.fsf@peter-b.co.uk>
+ <Pine.LNX.4.63.0509231537390.11109@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0509231647300.3308@g5.osdl.org>
+ <Pine.LNX.4.63.0509240305450.26220@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0509231935360.3308@g5.osdl.org>
+X-GPG-FINGRPRINT: CFAE 5BEE FD36 F65E E640  56FE 0974 BF23 270F 474E
+X-GPG-PUBLIC_KEY: http://www.xmailserver.org/davidel.asc
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:9219
+
+On Fri, 23 Sep 2005, Linus Torvalds wrote:
+
+> But looking at send_pack() or fetch_pack(), for example, they are both
+> _very_ traditional fork()+exec() calls, with just a few close() calls in
+> between.
+>
+> Looking a bit closer at the diff() usage, I actually think that we could
+> move the fork() closer to the exec - we'd just have to move it _into_ all
+> the different cases (ie you'd have two different fork() calls: one for
+> the "builtin" case, one for the external pgm case, but then the child in
+> both cases would be very simple).
+>
+> Oh. Actually, I wonder if we could mke them "vfork()" calls. Does anybody
+> know if cygwin has an easier time with vfork() + eventual exec? That
+> _should_ map better to a non-UNIX process model, so maybe we could do it
+> that way?
+
+If you have only to run diff/patch, just use the native Win32 CreateProcess().
+You abstract that on a git_exec(), and you use fork/exec on Unix and 
+CreateProcess() on Winblows. If fork() is slow on Cygwin, fork+exec is 
+pathetic. They do all that work to give you a fork(), and you throw it 
+away with an exec().
+
+
+- Davide
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

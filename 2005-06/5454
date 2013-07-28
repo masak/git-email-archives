@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun 30 13:46:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C5B292342E0
+	for <tkil@scrye.com>; Thu, 30 Jun 2005 13:46:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263025AbVF3ToL (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 30 Jun 2005 15:44:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263024AbVF3ToD
+	(ORCPT <rfc822;git-outgoing>); Thu, 30 Jun 2005 15:44:03 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:34208 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S263025AbVF3Tm6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 30 Jun 2005 15:42:58 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j5UJgmjA018595
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 30 Jun 2005 12:42:49 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j5UJgldF027799;
+	Thu, 30 Jun 2005 12:42:48 -0700
+Date:	Thu, 30 Jun 2005 12:44:53 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Git Mailing List <git@vger.kernel.org>
+Cc: Daniel Barkalow <barkalow@iabervon.org>,
+	Junio C Hamano <junkio@cox.net>, ftpadmin@kernel.org
+Subject: Re: "git-send-pack"
+In-Reply-To: <Pine.LNX.4.58.0506301025510.14331@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506301242470.14331@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0506301025510.14331@ppc970.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 21
+Xref: brand.scrye.com linux.git:5454
+
+
+
+On Thu, 30 Jun 2005, Linus Torvalds wrote:
+> 
+> Anyway, please do give it a test. I think I'll use this to sync up to
+> kernel.org
+
+In fact, the most recent push was gone with a
+
+	git-send-pack master.kernel.org:/pub/scm/linux/kernel/git/torvalds/git.git
+
+so if the new commit ("Do ref matching on the sender side rather than on 
+receiver") shows up after the mirrors have caught up, then this thing is 
+officially in production use..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

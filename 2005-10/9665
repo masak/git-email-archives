@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct  4 05:32:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2D1D22B747A
+	for <tkil@scrye.com>; Tue,  4 Oct 2005 05:32:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932280AbVJDLcm (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 4 Oct 2005 07:32:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932294AbVJDLcm
+	(ORCPT <rfc822;git-outgoing>); Tue, 4 Oct 2005 07:32:42 -0400
+Received: from baythorne.infradead.org ([81.187.2.161]:37269 "EHLO
+	baythorne.infradead.org") by vger.kernel.org with ESMTP
+	id S932280AbVJDLcl (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 4 Oct 2005 07:32:41 -0400
+Received: from localhost ([127.0.0.1] helo=localhost.localdomain)
+	by baythorne.infradead.org with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1EMl2A-0003AP-QL; Tue, 04 Oct 2005 12:32:34 +0100
+Subject: git-commits-head@vger.kernel.org mailbomb
+From:	David Woodhouse <dwmw2@infradead.org>
+To:	linux-kernel@vger.kernel.org
+Cc:	git@vger.kernel.org
+Content-Type: text/plain
+Date:	Tue, 04 Oct 2005 12:32:33 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1128425554.15094.80.camel@baythorne.infradead.org>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 (2.2.3-2.fc4) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by baythorne.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:9665
+
+Apologies for the mailbomb of ancient patches yesterday; the git
+installation on master.kernel.org was upgraded and one of the tools
+which I was using (git-rev-tree) disappeared.
+
+I've just updated the script which feeds the mailing list, and it ought
+to be behaving itself again with this week's git tools. Until the next
+time... :)
+
+-- 
+dwmw2
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

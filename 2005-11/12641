@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 14:18:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D8E381EC338
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 14:18:01 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932466AbVKWVQF (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 16:16:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932458AbVKWVQF
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 16:16:05 -0500
+Received: from atlrel8.hp.com ([156.153.255.206]:25041 "EHLO atlrel8.hp.com")
+	by vger.kernel.org with ESMTP id S932466AbVKWVQC (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 23 Nov 2005 16:16:02 -0500
+Received: from smtp1.fc.hp.com (smtp.fc.hp.com [15.11.136.119])
+	by atlrel8.hp.com (Postfix) with ESMTP id B060A277F
+	for <git@vger.kernel.org>; Wed, 23 Nov 2005 16:16:01 -0500 (EST)
+Received: from hpsvcnb.fc.hp.com (hpsvcnb.fc.hp.com [15.6.94.42])
+	by smtp1.fc.hp.com (Postfix) with ESMTP id 7A93E387CA
+	for <git@vger.kernel.org>; Wed, 23 Nov 2005 21:16:01 +0000 (UTC)
+Received: by hpsvcnb.fc.hp.com (Postfix, from userid 21523)
+	id 635322A6C; Wed, 23 Nov 2005 14:16:01 -0700 (MST)
+Date:	Wed, 23 Nov 2005 14:16:01 -0700
+From:	Carl Baldwin <cnb@fc.hp.com>
+To:	git@vger.kernel.org
+Subject: Why not clone to a remote directory over SSH
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051123211601.GA2260@hpsvcnb.fc.hp.com>
+Mail-Followup-To: git@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Organization: Hewlett Packard
+X-Origin: hpsvcnb.fc.hp.com
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12641
+
+It might be cool to enable cloning to a remote over ssh if the remote
+doesn't yet exist.
+
+% git clone . machine:/path/to/new/repository
+
+If you try this now it will clone the current working repository to a
+new directory called 'machine:'.
+
+Carl
+
+-- 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ Carl Baldwin                        Systems VLSI Laboratory
+ Hewlett Packard Company
+ MS 88                               work: 970 898-1523
+ 3404 E. Harmony Rd.                 work: Carl.N.Baldwin@hp.com
+ Fort Collins, CO 80525              home: Carl@ecBaldwin.net
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

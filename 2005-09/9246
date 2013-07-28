@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 24 21:00:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 44968B18E9
+	for <tkil@scrye.com>; Sat, 24 Sep 2005 21:00:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751064AbVIYDAV (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 24 Sep 2005 23:00:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751066AbVIYDAV
+	(ORCPT <rfc822;git-outgoing>); Sat, 24 Sep 2005 23:00:21 -0400
+Received: from iabervon.org ([66.92.72.58]:525 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751064AbVIYDAU (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 24 Sep 2005 23:00:20 -0400
+Received: (qmail 7930 invoked by uid 1000); 24 Sep 2005 23:04:46 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 24 Sep 2005 23:04:46 -0400
+Date:	Sat, 24 Sep 2005 23:04:46 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Linus Torvalds <torvalds@osdl.org>,
+	Davide Libenzi <davidel@xmailserver.org>, git@vger.kernel.org
+Subject: Re: git 0.99.7b doesn't build on Cygwin
+In-Reply-To: <7vbr2iw6l3.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0509242248440.23242@iabervon.org>
+References: <ud5mznc1x.fsf@peter-b.co.uk>
+ <Pine.LNX.4.63.0509231537390.11109@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0509231647300.3308@g5.osdl.org>
+ <Pine.LNX.4.63.0509240305450.26220@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0509231935360.3308@g5.osdl.org>
+ <Pine.LNX.4.63.0509232220330.30718@localhost.localdomain>
+ <Pine.LNX.4.58.0509241102450.3308@g5.osdl.org>
+ <Pine.LNX.4.63.0509241129300.31327@localhost.localdomain>
+ <7vbr2iw6l3.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:9246
+
+On Sat, 24 Sep 2005, Junio C Hamano wrote:
+
+> Making really really core part usable on Windows would not need
+> this, but there is another thing: .git/HEAD symlink.
+
+Cygwin supports symlinks without underlying filesystem support. It does 
+basically the standard UNIX thing for symlinks, but inefficiently in 
+userspace.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

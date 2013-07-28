@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 18 13:18:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9AA34806B9
+	for <tkil@scrye.com>; Sun, 18 Dec 2005 13:18:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965265AbVLRUSQ (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Dec 2005 15:18:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965266AbVLRUSQ
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Dec 2005 15:18:16 -0500
+Received: from marski.suomi.net ([212.50.131.142]:39372 "EHLO marski.suomi.net")
+	by vger.kernel.org with ESMTP id S965265AbVLRUSQ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 18 Dec 2005 15:18:16 -0500
+Received: from spartak.suomi.net (spartak.suomi.net [212.50.140.227])
+ by marski.suomi.net (Sun Java System Messaging Server 6.2 (built Dec  2 2004))
+ with ESMTP id <0IRP00EU1N2EZ260@marski.suomi.net> for git@vger.kernel.org;
+ Sun, 18 Dec 2005 22:18:15 +0200 (EET)
+Received: from spam1.suomi.net (spam1.suomi.net [212.50.131.165])
+ by mailstore.suomi.net
+ (Sun Java System Messaging Server 6.2-3.04 (built Jul 15 2005))
+ with ESMTP id <0IRP007R7N8ELQC0@mailstore.suomi.net>; Sun,
+ 18 Dec 2005 22:21:51 +0200 (EET)
+Received: from garlic.home.net (addr-82-128-203-211.suomi.net [82.128.203.211])
+	by spam1.suomi.net (Postfix) with SMTP id 42EF41ACAA4; Sun,
+ 18 Dec 2005 22:18:00 +0200 (EET)
+Date:	Sun, 18 Dec 2005 22:18:00 +0200
+From:	Timo Hirvonen <tihirvon@gmail.com>
+Subject: Re: [PATCH] git-grep: convert from bash to sh
+In-reply-to: <Pine.LNX.4.64.0512181155360.4827@g5.osdl.org>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	junkio@cox.net, git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <20051218221800.744e4565.tihirvon@gmail.com>
+MIME-version: 1.0
+X-Mailer: Sylpheed version 2.0.4 (GTK+ 2.8.9; i686-pc-linux-gnu)
+Content-type: text/plain; charset=US-ASCII
+Content-transfer-encoding: 7BIT
+X-OPOY-MailScanner-Information:	Please contact the OPOY for more information
+X-OPOY-MailScanner: Found to be clean
+X-OPOY-MailScanner-SpamCheck: not spam, SpamAssassin (score=-2.362,	required 5,
+ autolearn=not spam, AWL 0.24, BAYES_00 -2.60)
+X-OPOY-MailScanner-From: tihirvon@gmail.com
+References: <20051218152639.5c14bc26.tihirvon@gmail.com>
+ <Pine.LNX.4.64.0512181155360.4827@g5.osdl.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:13793
+
+On Sun, 18 Dec 2005 11:57:26 -0800 (PST)
+Linus Torvalds <torvalds@osdl.org> wrote:
+
+> On Sun, 18 Dec 2005, Timo Hirvonen wrote:
+> > 
+> > sh does not support arrays so we have to use eval instead.
+> 
+> This seems horribly broken.
+> 
+> If I'm not mistaken, this breaks
+> 
+> 	git grep "it's a happy coincidence"
+> 
+> badly. I didn't test, just looking at the patch.
+
+Actually it works:
+
+/usr/src/linux-2.6: git grep "it's a"
+Documentation/Changes:debugfs.  Obviously, it's a good idea to upgrade.
+Documentation/CodingStyle:and NOT read it.  Burn them, it's a great
+symbolic gesture.
+
+
+but it doesn't work with backslashes.  Need to use \\
+
+/usr/src/linux-2.6: git grep 'e.\\n"'
+Documentation/DMA-mapping.txt:		       "mydev: No suitable DMA
+available.\n");
+Documentation/DMA-mapping.txt:		       "mydev: No suitable DMA
+available.\n");
+
+-- 
+http://onion.dynserv.net/~timo/
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

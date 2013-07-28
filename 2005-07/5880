@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 10 11:22:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 764881B6095
+	for <tkil@scrye.com>; Sun, 10 Jul 2005 11:22:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261978AbVGJRWa (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 10 Jul 2005 13:22:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261979AbVGJRWa
+	(ORCPT <rfc822;git-outgoing>); Sun, 10 Jul 2005 13:22:30 -0400
+Received: from baythorne.infradead.org ([81.187.226.107]:10968 "EHLO
+	baythorne.infradead.org") by vger.kernel.org with ESMTP
+	id S261978AbVGJRW2 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 10 Jul 2005 13:22:28 -0400
+Received: from localhost ([127.0.0.1] helo=localhost.localdomain)
+	by baythorne.infradead.org with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1DrfVb-0000z3-T8; Sun, 10 Jul 2005 18:22:27 +0100
+Subject: Re: What broke snapshots now?
+From: David Woodhouse <dwmw2@infradead.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.58.0507100954080.17536@g5.osdl.org>
+References: <1120907336.8058.293.camel@baythorne.infradead.org>
+	 <Pine.LNX.4.58.0507090908490.17536@g5.osdl.org>
+	 <1120952292.23706.49.camel@baythorne.infradead.org>
+	 <1121006378.23706.65.camel@baythorne.infradead.org>
+	 <Pine.LNX.4.58.0507100954080.17536@g5.osdl.org>
+Content-Type: text/plain
+Date:	Sun, 10 Jul 2005 18:22:27 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1121016147.23706.91.camel@baythorne.infradead.org>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-5) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by baythorne.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=AWL,BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.4
+Lines: 34
+Xref: brand.scrye.com linux.git:5880
+
+On Sun, 2005-07-10 at 10:08 -0700, Linus Torvalds wrote:
+> Which script is this? I'm looking at your scripts, but
+> "cg-feedmaillist.sh" is unreadable for me, so I can't see all of it.
+
+Hm. Dunno why that happened -- it's readable now, and also at
+http://david.woodhou.se/cg-feedmaillist.sh
+
+> Anyway, it's possible that this is a temporary problem: one of the issues 
+> is that since you seem to be using the "rsync:" protocol for updating 
+> things, what happens is that if the mirroring is off a bit, you may have 
+> gotten a new head, but not all the objects. Then you'd get exactly this.
+
+It's done locally on hera though -- so the mirroring shouldn't be a
+problem. IIRC the reason it uses rsync is because I wasn't getting tags
+when it was using whatever other method was the default for a local
+'parent repository'.
+
+That was actually more relevant for the snapshots than the mailing list
+feed, though -- so even if it isn't fixed now, I could live without
+tags.
+
+More usefully though, if ordering really isn't a problem on your
+repository then I should probably rewrite the script to work directly
+from that instead of from a copy.
+
+-- 
+dwmw2
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

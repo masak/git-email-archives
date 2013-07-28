@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 16:49:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 35B17B4D23
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 16:49:23 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751628AbVKIXtJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 18:49:09 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751635AbVKIXtI
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 18:49:08 -0500
+Received: from ebar091.ebar.dtu.dk ([192.38.93.106]:28348 "HELO
+	ebar091.ebar.dtu.dk") by vger.kernel.org with SMTP id S1751633AbVKIXtH
+	(ORCPT <rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 18:49:07 -0500
+Received: (qmail 23429 invoked by uid 5842); 9 Nov 2005 23:33:00 -0000
+From:	"Peter Eriksen" <s022018@student.dtu.dk>
+Date:	Thu, 10 Nov 2005 00:33:00 +0100
+To:	git@vger.kernel.org
+Subject: Re: Problems with binary patches (pull) and spaces in filenames (gitk)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051109233300.GA23244@ebar091.ebar.dtu.dk>
+Mail-Followup-To: git@vger.kernel.org
+References: <20051109213730.GA23052@ebar091.ebar.dtu.dk> <7vfyq5bhi2.fsf@assigned-by-dhcp.cox.net> <7v8xvxbg9y.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v8xvxbg9y.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:11438
+
+On Wed, Nov 09, 2005 at 02:36:09PM -0800, Junio C Hamano wrote:
+> Junio C Hamano <junkio@cox.net> writes:
+> 
+> > Hmm.  Perhaps a suboption to git-apply --stat to tell it not to
+> > barf is helpful?  In the meantime, could you pull with -n flag?
+> 
+> Would this help?
+> 
+> -- >8 -- cut here -- >8 --
+> [PATCH] git-apply: do not barf on binary diff when not applying.
+
+Yes, it seems to work.  With my example it now shows the diff stats and
+puts a "Bin" instead of the number of line changed.  It could show the
+change in the size, but as it is, it's fine with me.  Please apply.
+
+Peter
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

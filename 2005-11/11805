@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 14 09:41:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5101D19709F
+	for <tkil@scrye.com>; Mon, 14 Nov 2005 09:41:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751180AbVKNQlD (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 14 Nov 2005 11:41:03 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751181AbVKNQlD
+	(ORCPT <rfc822;git-outgoing>); Mon, 14 Nov 2005 11:41:03 -0500
+Received: from linux-server1.op5.se ([193.201.96.2]:32963 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S1751180AbVKNQlC
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 14 Nov 2005 11:41:02 -0500
+Received: from nox.op5.se (unknown [213.88.215.14])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 82B216BD01
+	for <git@vger.kernel.org>; Mon, 14 Nov 2005 17:41:01 +0100 (CET)
+Received: by nox.op5.se (Postfix, from userid 500)
+	id 58A495BF92; Mon, 14 Nov 2005 17:41:01 +0100 (CET)
+To:	git@vger.kernel.org
+Subject: [PATCH] git-daemon: --inetd implies --syslog
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051114164101.58A495BF92@nox.op5.se>
+Date:	Mon, 14 Nov 2005 17:41:01 +0100 (CET)
+From:	exon@op5.se (Andreas Ericsson)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:11805
+
+
+Otherwise nothing is logged anywhere, which is a Bad Thing.
+
+Signed-off-by: Andreas Ericsson <ae@op5.se>
+
+---
+
+ Documentation/git-daemon.txt |    2 +-
+ daemon.c                     |    6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+applies-to: 963d67921d6f65c08d51a8c93811f03274c34703
+9fac415ad7ec34c21b20b3c349872304869505df
+diff --git a/Documentation/git-daemon.txt b/Documentation/git-daemon.txt
+index 67c5f22..3783858 100644
+--- a/Documentation/git-daemon.txt
++++ b/Documentation/git-daemon.txt
+@@ -35,7 +35,7 @@ OPTIONS
+ 	do not have the 'git-daemon-export-ok' file.
+ 
+ --inetd::
+-	Have the server run as an inetd service.
++	Have the server run as an inetd service. Implies --syslog.
+ 
+ --port::
+ 	Listen on an alternative port.
+diff --git a/daemon.c b/daemon.c
+index c3f8641..50a3396 100644
+--- a/daemon.c
++++ b/daemon.c
+@@ -627,9 +627,9 @@ int main(int argc, char **argv)
+ 	}
+ 
+ 	if (inetd_mode) {
+-		fclose(stderr); //FIXME: workaround
++		log_syslog = 1;
+ 		return execute();
+-	} else {
+-		return serve(port);
+ 	}
++
++	return serve(port);
+ }
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

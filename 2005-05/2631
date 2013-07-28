@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May  6 01:43:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 061361B4358
+	for <tkil@scrye.com>; Fri,  6 May 2005 01:43:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261162AbVEFHmz (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 6 May 2005 03:42:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261163AbVEFHmz
+	(ORCPT <rfc822;git-outgoing>); Fri, 6 May 2005 03:42:55 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:56039 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S261162AbVEFHmy (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 6 May 2005 03:42:54 -0400
+Received: from shinybook.infradead.org ([81.187.226.99])
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DTxU2-0007W2-IM; Fri, 06 May 2005 08:42:51 +0100
+Subject: Re: Kernel nightly snapshots..
+From: David Woodhouse <dwmw2@infradead.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: "H. Peter Anvin" <hpa@zytor.com>,
+	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <Pine.LNX.4.58.0505050834550.2328@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0505041639130.2328@ppc970.osdl.org>
+	 <42797F9F.9030002@zytor.com>
+	 <1115303933.16187.135.camel@hades.cambridge.redhat.com>
+	 <Pine.LNX.4.58.0505050742180.2328@ppc970.osdl.org>
+	 <1115305813.16187.143.camel@hades.cambridge.redhat.com>
+	 <Pine.LNX.4.58.0505050834550.2328@ppc970.osdl.org>
+Content-Type: text/plain
+Date:	Fri, 06 May 2005 08:42:23 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1115365344.29495.37.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-1) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.3
+Lines: 23
+Xref: brand.scrye.com linux.git:2631
+
+On Thu, 2005-05-05 at 08:46 -0700, Linus Torvalds wrote:
+> So this _should_ work for a while, but will eventually (before a -rc10
+> happens or we get to v2.6.100 ;^) need something better. That something
+> better probably being to ignore any tags that don't point to commits, and
+> then sorting by the date of the commit object.
+
+Enough with the dates already. I don't want to be doing snapshots
+against 2.6.11.9 just because that happened to get tagged more recently
+than 2.6.12-rc4. Time is an illusion; especially so when looking at
+branches which may not even have been merged.
+
+The tag I want is the one which refers to a commit which is made by
+yourself and is accessible from the current HEAD in the lowest number of
+steps. And I don't _care_ if you tagged it 'Woozy Numbat'.
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

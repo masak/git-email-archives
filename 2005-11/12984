@@ -1,0 +1,85 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 01:37:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3C5C43213AA
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 01:37:55 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751128AbVK3Iht (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 03:37:49 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751134AbVK3Iht
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 03:37:49 -0500
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:60037 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S1751128AbVK3Ihs (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 30 Nov 2005 03:37:48 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051130083640.BTPQ17838.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 30 Nov 2005 03:36:40 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	linux@horizon.com
+Cc:	git@vger.kernel.org
+Subject: Re: git-name-rev off-by-one bug
+References: <20051129080529.20705.qmail@science.horizon.com>
+	<7voe43iyyu.fsf@assigned-by-dhcp.cox.net>
+Date:	Wed, 30 Nov 2005 00:37:46 -0800
+In-Reply-To: <7voe43iyyu.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Tue, 29 Nov 2005 01:29:29 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vek4ywmxx.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:12984
+
+Junio C Hamano <junkio@cox.net> writes:
+
+> On a related topic of removing unwanted paths, earlier I said
+> 2-way is used to make sure "git checkout" takes your changes
+> with you when you switch branches.  As a natural consequence of
+> this, if you do not have any local changes, "git checkout"
+> without "-f" does the right thing -- it removes unwanted paths
+> that existed in the original branch but not in the branch you
+> are switching to.
+
+Here is an unsolicited advice ("tip of the day").
+
+I was on a branch which had some local "throwaway" changes, and
+I wanted to switch back to the master branch.  To be honest, I
+even forgot I had local changes there.  So I ran "git checkout",
+and here is what happened.
+
+        junio@siamese:~/git$ git checkout master
+        fatal: Entry 'Documentat...' not uptodate. Cannot merge.
+
+The easiest is "git checkout -f master" at this point, but I
+usually do not do that.  If that entry "git checkout" complains
+about is something that is not in the master branch and I have
+throwaway changes, "git checkout -f master" would leave that
+file with throwaway changes behind.  So I did this first:
+
+        junio@siamese:~/git$ git reset --hard
+
+This would sync my working tree to the current branch.  Then
+
+        junio@siamese:~/git$ git checkout master
+
+would switch branches properly, removing that new file that
+should not exist in the working tree.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

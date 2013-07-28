@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 15:27:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1DA152852BD
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 15:27:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750889AbVJSV0w (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 17:26:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751315AbVJSV0w
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 17:26:52 -0400
+Received: from 193.37.26.69.virtela.com ([69.26.37.193]:36843 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S1750889AbVJSV0v (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 19 Oct 2005 17:26:51 -0400
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id j9JLQieF014416;
+	Wed, 19 Oct 2005 14:26:44 -0700
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id j9JLQiEu014414;
+	Wed, 19 Oct 2005 14:26:44 -0700
+Date:	Wed, 19 Oct 2005 14:26:44 -0700
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Cc:	git@vger.kernel.org
+Subject: Re: Errors from http-fetch
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051019212644.GB6160@reactrix.com>
+References: <Pine.LNX.4.64.0510191536350.25300@iabervon.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.64.0510191536350.25300@iabervon.org>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:10304
+
+On Wed, Oct 19, 2005 at 03:46:10PM -0400, Daniel Barkalow wrote:
+
+> I've now started getting errors from http-fetch; my guess for the output 
+> is that it has problems if an object is not available loose, and is only 
+> available in a pack file which is already being downloaded for a different 
+> object, possibly only if the first request to be made for the loose 
+> object is not the first one to fail.
+
+Are you getting a curl return code of 52/CURLE_GOT_NOTHING?  Any chance
+you have access to the associated server logs?
+
+In the situation you describe, fetch() won't be called for the second
+object until fetch() for the first object is finished - at which point
+the pack will have been fully downloaded for the first object (or
+failed, causing fetch() for the first object to fail as well.)
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 14 16:42:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C40E7154C74
+	for <tkil@scrye.com>; Wed, 14 Dec 2005 16:42:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965060AbVLNXig (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 14 Dec 2005 18:38:36 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965097AbVLNXig
+	(ORCPT <rfc822;git-outgoing>); Wed, 14 Dec 2005 18:38:36 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:14566 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965060AbVLNXif (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 14 Dec 2005 18:38:35 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBENc1DZ014401
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 14 Dec 2005 15:38:02 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBENc0Sw013165;
+	Wed, 14 Dec 2005 15:38:00 -0800
+Date:	Wed, 14 Dec 2005 15:38:00 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Amos Waterland <apw@us.ibm.com>
+cc:	junkio@cox.net, git@vger.kernel.org
+Subject: Re: [PATCH] Do not ignore errors during make check
+In-Reply-To: <20051214210932.GA2642@kvasir.watson.ibm.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512141535130.3292@g5.osdl.org>
+References: <20051214210932.GA2642@kvasir.watson.ibm.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:13650
+
+
+
+On Wed, 14 Dec 2005, Amos Waterland wrote:
+>
+>  check:
+> -	for i in *.c; do sparse $(ALL_CFLAGS) $(SPARSE_FLAGS) $$i; done
+> +	for i in *.c; do sparse $(ALL_CFLAGS) $(SPARSE_FLAGS) $$i || break; done
+
+Actually, you might be better off with just
+
+	sparse $(ALL_CFLAGS) $(SPARSE_FLAGS) *.c
+
+these days. It will cause some interesting warnings (it actually 
+cross-checks things, and is unhappy about multiple "main()" declarations 
+with different types ;), but especially with eventual libification it 
+might even be a good idea to try to avoid global functions with the same 
+names in different programs ("main", of course, is special, sparse is 
+just too stupid to know).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

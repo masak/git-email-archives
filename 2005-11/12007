@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 02:38:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8979BE5F82
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 02:38:12 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030260AbVKPJiG (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 04:38:06 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030261AbVKPJiG
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 04:38:06 -0500
+Received: from diana.vm.bytemark.co.uk ([80.68.90.142]:45074 "EHLO
+	diana.vm.bytemark.co.uk") by vger.kernel.org with ESMTP
+	id S1030260AbVKPJiF (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 04:38:05 -0500
+Received: from kha by diana.vm.bytemark.co.uk with local (Exim 3.36 #1 (Debian))
+	id 1EcJjw-0001B4-00
+	for <git@vger.kernel.org>; Wed, 16 Nov 2005 09:38:04 +0000
+Date:	Wed, 16 Nov 2005 10:38:04 +0100
+From:	Karl =?iso-8859-1?Q?Hasselstr=F6m?= <kha@treskal.com>
+To:	git@vger.kernel.org
+Subject: Re: Cogito and --exclude vs --exclude-per-directory
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051116093804.GB2783@diana.vm.bytemark.co.uk>
+References: <20051116093630.GA2783@diana.vm.bytemark.co.uk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20051116093630.GA2783@diana.vm.bytemark.co.uk>
+X-Manual-Spam-Check: kha@treskal.com, clean
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 15
+Xref: brand.scrye.com linux.git:12007
+
+On 2005-11-16 10:36:30 +0100, Karl Hasselström wrote:
+
+> [Note: this experiment was done with git 0.99.9g and Cogito 0.15.1,
+> so ]
+
+. . . please scream if I should just upgrade to fix all my problems.
+
+-- 
+Karl Hasselström, kha@treskal.com
+      www.treskal.com/kalle
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

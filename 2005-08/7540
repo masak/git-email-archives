@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 18 22:30:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id ADFA6498E4
+	for <tkil@scrye.com>; Thu, 18 Aug 2005 22:30:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932539AbVHSE3y (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 19 Aug 2005 00:29:54 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932541AbVHSE3y
+	(ORCPT <rfc822;git-outgoing>); Fri, 19 Aug 2005 00:29:54 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:9959 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932539AbVHSE3x (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 19 Aug 2005 00:29:53 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7J4TnjA007152
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 18 Aug 2005 21:29:49 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7J4Tm8F027962;
+	Thu, 18 Aug 2005 21:29:48 -0700
+Date:	Thu, 18 Aug 2005 21:29:48 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+cc:	GIT <git@vger.kernel.org>
+Subject: Re: Merge conflicts as .rej .orig files
+In-Reply-To: <46a038f9050818200625d64a12@mail.gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508182125490.3412@g5.osdl.org>
+References: <46a038f9050818200625d64a12@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:7540
+
+
+
+On Fri, 19 Aug 2005, Martin Langhoff wrote:
+> 
+> Is there a way to convince cogito/git to leave reject files around?
+
+Nope.
+
+Git just doesn't deal in patches. There's never any patch rejects: there 
+are just two source files that get merged.
+
+The ".orig" and ".rej" things are signs of patch-based systems. 
+
+I'm sure you could fake it, but I'm also sure that there's an emacs mode 
+for the "merge" style diffs. It is, after all, what CVS and RCS have used, 
+so I'd expect that there be tons of support for making it look nice and 
+help merges.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

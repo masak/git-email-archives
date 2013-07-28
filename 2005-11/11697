@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 14:03:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 15A5C3201D6
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 14:03:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964801AbVKLVDK (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 16:03:10 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964808AbVKLVDK
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 16:03:10 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:24803 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S964801AbVKLVDJ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 12 Nov 2005 16:03:09 -0500
+Received: (qmail 15189 invoked by uid 2001); 12 Nov 2005 22:03:06 +0100
+Date:	Sat, 12 Nov 2005 22:03:06 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Fredrik Kuivinen <freku045@student.liu.se>
+Cc:	git@vger.kernel.org
+Subject: Re: git-merge-recursive: documentation and implementation notes
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051112210306.GG30496@pasky.or.cz>
+References: <20051112203457.GA5234@c165.ib.student.liu.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051112203457.GA5234@c165.ib.student.liu.se>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:11697
+
+  Hi,
+
+Dear diary, on Sat, Nov 12, 2005 at 09:34:57PM CET, I got a letter
+where Fredrik Kuivinen <freku045@student.liu.se> said that...
+> Lets assume there is a merge conflict when we merge B and C in the
+> criss-cross case above. Then both D and E must resolve this
+> conflict. If they have done it in the same way we wont get a merge
+> conflict at M, if they have resolved it differently we will get a
+> merge conflict. In the first case there is no merge conflict at M, in
+> the second case the user has to pick which one of the two different
+> resolutions she wants.
+> 
+> Note that the algorithm will happily write non-clean merge results to
+> the object database during the "merge common ancestors" stage. Hence,
+> when we are merging B and C "internally" we will _not_ ask the user to
+> resolve any eventual merge conflicts.
+
+  I find this part somewhat unclear. So how does the user pick which of
+the two different resolution she wants if we will not ask the user to
+resolve any conflicts?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

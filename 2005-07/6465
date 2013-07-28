@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul 27 10:50:06 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 999A024A550
+	for <tkil@scrye.com>; Wed, 27 Jul 2005 10:50:06 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262394AbVG0Qmv (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Jul 2005 12:42:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262355AbVG0PkD
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Jul 2005 11:40:03 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:58589 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S262389AbVG0Pjz (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 27 Jul 2005 11:39:55 -0400
+Received: from nat-pool-stn.redhat.com ([62.200.124.98] helo=hades.cambridge.redhat.com)
+	by pentafluge.infradead.org with esmtpsa (Exim 4.52 #1 (Red Hat Linux))
+	id 1Dxo0c-0007Jr-9t; Wed, 27 Jul 2005 16:39:52 +0100
+Subject: Re: Linux BKCVS kernel history git import..
+From: David Woodhouse <dwmw2@infradead.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: tglx@linutronix.de, Git Mailing List <git@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+In-Reply-To: <Pine.LNX.4.58.0507270819550.3227@g5.osdl.org>
+References: <Pine.LNX.4.58.0507261136280.19309@g5.osdl.org>
+	 <1122457238.3027.37.camel@baythorne.infradead.org>
+	 <Pine.LNX.4.58.0507270819550.3227@g5.osdl.org>
+Content-Type: text/plain
+Date:	Wed, 27 Jul 2005 16:41:09 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1122478870.28128.52.camel@hades.cambridge.redhat.com>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-5) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.4
+Lines: 29
+Xref: brand.scrye.com linux.git:6465
+
+On Wed, 2005-07-27 at 08:29 -0700, Linus Torvalds wrote:
+> I used to think I wanted to, but these days I really don't. One of the
+> reasons is that I expect to try to pretty up the old bkcvs conversion some
+> time: use the name translation from the old "shortlog" scripts etc, and
+> see if I can do some other improvements on the conversion (I think I'll
+> remove the BK files - "ChangeSet" etc).
+
+Thomas has done all that; it's on kernel.org already.
+
+> And it's really much easier and more general to have a "graft" facility.  
+> It's something that git can do trivially (literally a hook in
+> "parse_commit" to add a special parent), and it's actually a generic
+> mechanism exactly for issues like this ("project had old history in some
+> other format").
+
+Hm, OK. That works and can also be used for the "fake _absence_ of
+parent" thing -- if I'm space-constrained and want only the history back
+to some relatively recent point like 2.6.0, I can do that by turning the
+2.6.0 commit into an orphan instead of also using all the rest of the
+history back to 2.4.0. 
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

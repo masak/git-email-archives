@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 19:35:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6BBBB6FB0
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 19:35:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262425AbVDYBfH (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 21:35:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262426AbVDYBfH
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 21:35:07 -0400
+Received: from iabervon.org ([66.92.72.58]:38919 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262425AbVDYBe5 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Apr 2005 21:34:57 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DPsUw-0004KT-00; Sun, 24 Apr 2005 21:34:54 -0400
+Date:	Sun, 24 Apr 2005 21:34:54 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: David Greaves <david@dgreaves.com>
+Cc: Petr Baudis <pasky@ucw.cz>, Linus Torvalds <torvalds@osdl.org>,
+	GIT Mailing Lists <git@vger.kernel.org>
+Subject: Re: [FILE] Docs update
+In-Reply-To: <426BF790.9070406@dgreaves.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0504242112190.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 19
+Xref: brand.scrye.com linux.git:1550
+
+The current merge-base finds the common ancestor with the most recent
+date. The old algorithm was giving some surprising results, where it
+didn't always take advantage of a straight line from one side to the
+other. At some point, I'm going to try to have it find the ancestor with
+the shortest shorter path, which I think should work best of all.
+
+In any case, I think your documentation should just say it finds as good a
+common ancestor as possible, since that's what it's really for, regardless
+of the details of how it decides. Also, it shouldn't be depended on to
+decide in any particular way.
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

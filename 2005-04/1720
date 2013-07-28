@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 10:14:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 2F2271707F7
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 10:14:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261648AbVDZQKw (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 12:10:52 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261658AbVDZQH2
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 12:07:28 -0400
+Received: from h-64-105-159-118.phlapafg.covad.net ([64.105.159.118]:25494
+	"EHLO localhost.localdomain") by vger.kernel.org with ESMTP
+	id S261618AbVDZQG3 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 26 Apr 2005 12:06:29 -0400
+Received: by localhost.localdomain (Postfix, from userid 500)
+	id DEA8BEFF3B; Tue, 26 Apr 2005 12:06:10 -0400 (EDT)
+Subject: [PATCH] Cogito chicken-and-egg problem
+From: Pavel Roskin <proski@gnu.org>
+To: git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Tue, 26 Apr 2005 12:06:10 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114531570.19478.6.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 44
+Xref: brand.scrye.com linux.git:1720
+
+Hello!
+
+My patch for Makefile was misapplied, so installed commit-id is still
+needed for "make" to succeed.
+
+Shell commands are processed by make before being passed to the shell,
+and $(...) is expanded by make before new PATH is set, as it is done in
+the current Makefile.
+
+Also, the dependency on commit-id was dropped from my patch for some
+reason.  I believe it's still needed.  Also, we need a dependency on
+cat-file, which is used by commit-id internally.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+Index: Makefile
+===================================================================
+--- f262000f302b749e485f5eb971e6aabefbb85680/Makefile  (mode:100644 sha1:4f01bbbbb3fd0e53e9ce968f167b6dae68fcfa92)
++++ uncommitted/Makefile  (mode:100644)
+@@ -87,11 +87,11 @@
+ http-pull: LIBS += -lcurl
+ 
+ 
+-cg-version: $(VERSION)
++cg-version: $(VERSION) commit-id cat-file
+ 	@echo Generating cg-version...
+ 	@rm -f $@
+ 	@echo "#!/bin/sh" > $@
+-	@PATH=.:$(PATH) echo "echo \"$(shell cat $(VERSION)) ($(shell commit-id))\"" >> $@
++	@echo "echo \"$(shell cat $(VERSION)) ($(shell PATH=.:$(PATH) ./commit-id))\"" >> $@
+ 	@chmod +x $@
+ 
+ install: $(PROG) $(SCRIPTS) $(SCRIPT) $(GEN_SCRIPT)
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

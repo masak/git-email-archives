@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 22:46:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 419BA1DF231
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 22:46:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261662AbVDREp7 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 18 Apr 2005 00:45:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261665AbVDREp7
+	(ORCPT <rfc822;git-outgoing>); Mon, 18 Apr 2005 00:45:59 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:55756 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S261662AbVDREpz (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 18 Apr 2005 00:45:55 -0400
+Received: from [150.203.247.9] (helo=[172.24.3.18])
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DNO8t-0004GX-25; Mon, 18 Apr 2005 05:45:52 +0100
+Subject: Re: [RFC] General object parsing
+From: David Woodhouse <dwmw2@infradead.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Daniel Barkalow <barkalow@iabervon.org>,
+	Petr Baudis <pasky@ucw.cz>, git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.58.0504171807590.7211@ppc970.osdl.org>
+References: <Pine.LNX.4.21.0504171958520.30848-100000@iabervon.org>
+	 <Pine.LNX.4.58.0504171807590.7211@ppc970.osdl.org>
+Content-Type: text/plain
+Date:	Mon, 18 Apr 2005 14:45:36 +1000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1113799537.11910.76.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.1.1 (2.2.1.1-2) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.2
+Lines: 32
+Xref: brand.scrye.com linux.git:599
+
+On Sun, 2005-04-17 at 18:15 -0700, Linus Torvalds wrote:
+> In particular, is there some easy way to walk backwards by time? "git log"  
+> definitely needs that, and merge-base clearly wants something similar. 
+
+Actually the ideal output of 'git log' isn't strictly chronological.
+IIRC my bkexport scripts used to make a chronologically sorted list, and
+I ended up changing it.
+
+Simple example: if there are changesets which have been lurking in some
+tree for months waiting for you to pull, and the only thing you did
+since I ran 'git log' on your tree yesterday is pull from that tree,
+then those changesets are what I want to see at the top of 'git log'
+output.
+
+In fact this probably means that the depth-first tree walking of the
+original gitlog.sh is probably the right thing to do, but when we hit a
+merge we want to try to make sure we process the _remote_ parent first.
+
+Are we sorting the 'parent' links in merges so that two merges of the
+same branches are guaranteed to be identical (assuming identical
+contents otherwise)? Or is it just that we didn't think about it, and so
+merges are putting the local and remote parents in the 'wrong' order by
+coincidence?
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

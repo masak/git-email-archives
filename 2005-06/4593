@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun  5 17:16:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3C87A6DC1
+	for <tkil@scrye.com>; Sun,  5 Jun 2005 17:16:11 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261629AbVFEXQC (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 5 Jun 2005 19:16:02 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261631AbVFEXQC
+	(ORCPT <rfc822;git-outgoing>); Sun, 5 Jun 2005 19:16:02 -0400
+Received: from fire.osdl.org ([65.172.181.4]:4511 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261629AbVFEXP6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 5 Jun 2005 19:15:58 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j55NFqjA029439
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 5 Jun 2005 16:15:52 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j55NFpxO028309;
+	Sun, 5 Jun 2005 16:15:51 -0700
+Date:	Sun, 5 Jun 2005 16:17:56 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Daniel Barkalow <barkalow@iabervon.org>, git@vger.kernel.org
+Subject: Re: [PATCH-CAREFUL/RENAME] rename git-rpush and git-rpull to
+ git-ssh-push and git-ssh-pull
+In-Reply-To: <7vmzq4zata.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506051613370.1876@ppc970.osdl.org>
+References: <7vk6l9flzr.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.21.0506050132590.30848-100000@iabervon.org>
+ <7vfyvxb89m.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0506051427280.1876@ppc970.osdl.org>
+ <7vmzq4zata.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 15
+Xref: brand.scrye.com linux.git:4593
+
+
+
+On Sun, 5 Jun 2005, Junio C Hamano wrote:
+> 
+> Here is a rebase.  To apply with git-apply, you need the "Yes,
+> sir" patch to grok "rename from/to".
+
+Seems to have applied correctly. Very nice.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

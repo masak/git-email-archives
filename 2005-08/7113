@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 12 07:56:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1BB8C6123
+	for <tkil@scrye.com>; Fri, 12 Aug 2005 07:56:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751183AbVHLNzz (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 12 Aug 2005 09:55:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751184AbVHLNzz
+	(ORCPT <rfc822;git-outgoing>); Fri, 12 Aug 2005 09:55:55 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:64975 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1751183AbVHLNzy (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 12 Aug 2005 09:55:54 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050812135552.SBKX550.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 12 Aug 2005 09:55:52 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: Petr Baudis <pasky@suse.cz>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Clean generated files a bit more.
+References: <7v8xz75w6p.fsf@assigned-by-dhcp.cox.net>
+	<20050812114053.GB29893@pasky.ji.cz>
+Date:	Fri, 12 Aug 2005 06:55:53 -0700
+In-Reply-To: <20050812114053.GB29893@pasky.ji.cz> (Petr Baudis's message of
+	"Fri, 12 Aug 2005 13:40:53 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpssj1cpi.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 16
+Xref: brand.scrye.com linux.git:7113
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> This makes me a bit nervous - why are you making the rules more general?
+> make clean removing random tarballs of mine happenning to dwell in that
+> directory is fearsome.
+
+That is a valid concern.  I'd drop that *.tar.gz part at
+least and probably the *.deb *.dsc part as well.  Thanks for
+sanity checking.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

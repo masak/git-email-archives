@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 24 12:48:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 36ECA2B70D9
+	for <tkil@scrye.com>; Wed, 24 Aug 2005 12:48:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751399AbVHXSrd (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 24 Aug 2005 14:47:33 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751394AbVHXSrd
+	(ORCPT <rfc822;git-outgoing>); Wed, 24 Aug 2005 14:47:33 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:43188 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751399AbVHXSrc (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 24 Aug 2005 14:47:32 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7OIlQjA024073
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 24 Aug 2005 11:47:27 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7OIlPM1030987;
+	Wed, 24 Aug 2005 11:47:25 -0700
+Date:	Wed, 24 Aug 2005 11:47:25 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	tony.luck@intel.com, git@vger.kernel.org
+Subject: Re: baffled again
+In-Reply-To: <7vek8jhk7y.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508241140290.3317@g5.osdl.org>
+References: <200508232256.j7NMuR1q027892@agluck-lia64.sc.intel.com>
+ <7vek8jhk7y.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 41
+Xref: brand.scrye.com linux.git:7710
+
+
+
+On Wed, 24 Aug 2005, Junio C Hamano wrote:
+> 
+> This does not have much to do with which common ancestor
+> merge-base chooses.  Sorry, I am not sure what is the right way
+> to resolve this offhand.
+
+I think git did the "right thing", it just happened to be the thing that
+Tony didn't want. Which makes it the "wrong thing", of course, but from a
+purely technical standpoint, I don't think there's anything really wrong
+with the merge. 
+
+Basically, he had two branches, A and B, and both contained the same patch
+(but _not_ the same commit). One undid it, the other did not.  There's no
+real way to say which one is "correct", and both cases clearly merge
+perfectly, so both outcomes "patch applied" and "patch reverted" are
+really equally valid.
+
+Now, if the shared patch hadn't been a patch, but a shared _commit_, then 
+the thing would have been unambiguous - the shared commit would have been 
+the merge point, and the revert would have clearly undone that shared 
+commit.
+
+What does this all mean? It just means that merging doesn't necessarily
+even _have_ "one right answer". Automatic merges can be dangerous. The git
+"global three-way" merge (global because it bases it's original state on
+_global_ history, rather than local one) is about as safe as it gets (*), 
+but even it can have these ambigious cases that it resolves automatically, 
+and not the way you wanted it to.
+
+		Linus
+
+(*) "safe as it gets" of course also means "potentially really annoying",
+since it tends to require manual fixups for any even possibly half-way
+ambiguous case.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

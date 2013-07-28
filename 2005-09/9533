@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 30 00:21:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 37F6C2970C2
+	for <tkil@scrye.com>; Fri, 30 Sep 2005 00:21:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964774AbVI3GVj (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 30 Sep 2005 02:21:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932396AbVI3GVj
+	(ORCPT <rfc822;git-outgoing>); Fri, 30 Sep 2005 02:21:39 -0400
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:15830 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S932291AbVI3GVj (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 30 Sep 2005 02:21:39 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050930062138.TRNB9260.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 30 Sep 2005 02:21:38 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Pavel Roskin <proski@gnu.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Fix gcc-4 warning in accept() call
+References: <1128027901.24397.57.camel@dv>
+	<7vachv9kbq.fsf@assigned-by-dhcp.cox.net> <433CD2E7.5090909@zytor.com>
+	<433CD412.8020409@zytor.com>
+Date:	Thu, 29 Sep 2005 23:21:35 -0700
+In-Reply-To: <433CD412.8020409@zytor.com> (H. Peter Anvin's message of "Thu,
+	29 Sep 2005 22:58:42 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvf0j849c.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 13
+Xref: brand.scrye.com linux.git:9533
+
+"H. Peter Anvin" <hpa@zytor.com> writes:
+
+> Apparently I'm wrong; socklen_t is unsigned int at least on glibc for 
+> i386.  I'll shut up now.
+
+Ah, I should shut up too.  Thanks for checking what we should
+use.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

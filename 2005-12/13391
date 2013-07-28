@@ -1,0 +1,96 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  8 16:28:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.4 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,X_MAILER_SPAM autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7EC4016EE50
+	for <tkil@scrye.com>; Thu,  8 Dec 2005 16:28:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932732AbVLHX2a (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 18:28:30 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932733AbVLHX2a
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 18:28:30 -0500
+Received: from mxfep02.bredband.com ([195.54.107.73]:34766 "EHLO
+	mxfep02.bredband.com") by vger.kernel.org with ESMTP
+	id S932732AbVLHX2X (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 8 Dec 2005 18:28:23 -0500
+Received: from ironport.bredband.com ([195.54.107.82] [195.54.107.82])
+          by mxfep02.bredband.com with ESMTP
+          id <20051208232819.VWZJ17186.mxfep02.bredband.com@ironport.bredband.com>
+          for <git@vger.kernel.org>; Fri, 9 Dec 2005 00:28:19 +0100
+Received: from c-fa2b70d5.018-10-67626713.cust.bredbandsbolaget.se (HELO puritan.petwork) ([213.112.43.250])
+  by ironport.bredband.com with ESMTP; 09 Dec 2005 00:28:33 +0100
+X-BrightmailFiltered: true
+X-IronPort-AV: i="3.99,232,1131318000"; 
+   d="scan'208"; a="16674759:sNHT383221656"
+Received: from puritan (localhost [127.0.0.1])
+	by puritan.petwork (Postfix) with SMTP id CAB8BADFF8;
+	Fri,  9 Dec 2005 00:28:05 +0100 (CET)
+Cc:	Nikolai Weibull <nikolai@bitwi.se>
+Subject: [PATCH 13/17] Documentation/git-repack.txt: Add -l and -n.
+In-Reply-To: <11340844853230-git-send-email-mailing-lists.git@rawuncut.elitemail.org>
+X-Mailer: git-send-email
+Date:	Fri, 9 Dec 2005 00:28:05 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <11340844852496-git-send-email-mailing-lists.git@rawuncut.elitemail.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 45
+Xref: brand.scrye.com linux.git:13391
+
+This adds documentation for the -l and -n options to git-repack.
+
+Signed-off-by: Nikolai Weibull <nikolai@bitwi.se>
+
+---
+
+ Documentation/git-repack.txt |    9 ++++++++-
+ 1 files changed, 8 insertions(+), 1 deletions(-)
+
+74b49b4c4f2e04066f36011215106627f3405338
+diff --git a/Documentation/git-repack.txt b/Documentation/git-repack.txt
+index 0c1ae49..9060fe8 100644
+--- a/Documentation/git-repack.txt
++++ b/Documentation/git-repack.txt
+@@ -9,7 +9,7 @@ objects into pack files.
+ 
+ SYNOPSIS
+ --------
+-'git-repack' [-a] [-d]
++'git-repack' [-a] [-d] [-l] [-n]
+ 
+ DESCRIPTION
+ -----------
+@@ -39,6 +39,13 @@ OPTIONS
+ 	After packing, if the newly created packs make some
+ 	existing packs redundant, remove the redundant packs.
+ 
++-l::
++        Pass the `--local` option to `git pack-objects`, see
++        gitlink:git-pack-objects[1].
++
++-n::
++        Do not update the server information with
++        `git update-server-info`.
+ 
+ Author
+ ------
+-- 
+0.99.9l
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

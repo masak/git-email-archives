@@ -1,0 +1,104 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 23:58:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5196C14340E
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 23:58:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751101AbVKJG6N (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 10 Nov 2005 01:58:13 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751238AbVKJG6N
+	(ORCPT <rfc822;git-outgoing>); Thu, 10 Nov 2005 01:58:13 -0500
+Received: from mundungus.clifford.ac ([81.187.211.39]:18445 "EHLO
+	mundungus.clifford.ac") by vger.kernel.org with ESMTP
+	id S1751101AbVKJG6M convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 10 Nov 2005 01:58:12 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mundungus.clifford.ac (8.13.3/8.13.3) with ESMTP id jAA6vaLR021198;
+	Thu, 10 Nov 2005 06:57:54 GMT
+In-Reply-To: <20051109222338.GK16061@pasky.or.cz>
+References: <Pine.LNX.4.60.0510251222510.8565@mundungus.clifford.ac> <200510251642.46169.blaisorblade@yahoo.it> <A44A02AA-BDA8-4623-825E-288F1107A5ED@hawaga.org.uk> <20051109222338.GK16061@pasky.or.cz>
+Mime-Version: 1.0 (Apple Message framework v734)
+Content-Type: text/plain; charset=UTF-8; delsp=yes; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <CDEAA4E3-54FE-4825-BFCF-DCE34DBD138A@hawaga.org.uk>
+Cc:	Blaisorblade <blaisorblade@yahoo.it>,
+	Git Mailing List <git@vger.kernel.org>
+Content-Transfer-Encoding: 8BIT
+From:	Ben Clifford <benc@hawaga.org.uk>
+Subject: Re: latest stg/git commandline completions code
+Date:	Thu, 10 Nov 2005 17:57:34 +1100
+To:	Petr Baudis <pasky@suse.cz>,
+	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+X-Mailer: Apple Mail (2.734)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 60
+Xref: brand.scrye.com linux.git:11458
+
+On 10 Nov 2005, at 09:23, Petr Baudis wrote:
+
+
+
+
+
+
+> Besides, it would be probably best to just autogenerate the
+> auto-completion code - the usage information in Cogito is supposed  
+> to be
+> 100% consistent and correct, so it should be a reliable source for  
+> that.
+>
+>
+>
+>
+
+Maybe reliable and consistent but I think that info would need a bit  
+of augmentation to use for specifying autocompletion - for example,  
+in the case of:
+
+ > Usage: cg-branch-add BRANCH_NAME LOCATION
+
+BRANCH_NAME should *not* exist so it doesn't make sense to  
+autocomplete from the branch list, but in the case of:
+
+ > Usage: cg-fetch [-f] [-v] [BRANCH_NAME]
+
+BRANCH_NAME *must* exist so it makes sense to autocomplete from the  
+branch list.
+
+The amount of augmentation is probably not too much -  probably  
+sufficient  to specify for each parameter a completion-source(s)  
+(heads, branches, filenames, blah) that doesn't get displayed in -- 
+help. But this is more information to maintain and get out of date...
+
+I wonder if Nikolai has had thoughts about that for zsh completion?
+Hopefully if anything gets added, it would be useful for both zsh and  
+bash
+
+(I confess to having pretty much no idea how zsh completion works...)
+
+Ben
+
+-- 
+Ben ベン Бэн
+http://www.hawaga.org.uk/ben/
+My email is high latency but best way to contact me. Alternatively,  
+SMS numbers at above URL.
+
+
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

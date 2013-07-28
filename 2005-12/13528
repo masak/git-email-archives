@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 13:41:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 44EEE1E113C
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 13:41:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751142AbVLLUjq (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 15:39:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751104AbVLLUjq
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 15:39:46 -0500
+Received: from blue.stonehenge.com ([209.223.236.162]:11335 "EHLO
+	blue.stonehenge.com") by vger.kernel.org with ESMTP
+	id S1751142AbVLLUjp (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 12 Dec 2005 15:39:45 -0500
+Received: from localhost (localhost [127.0.0.1])
+	by blue.stonehenge.com (Postfix) with ESMTP id 3B5C88F6B1;
+	Mon, 12 Dec 2005 12:39:40 -0800 (PST)
+Received: from blue.stonehenge.com ([127.0.0.1])
+ by localhost (blue.stonehenge.com [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 24221-01-6; Mon, 12 Dec 2005 12:39:39 -0800 (PST)
+Received: by blue.stonehenge.com (Postfix, from userid 1001)
+	id 989308F6B5; Mon, 12 Dec 2005 12:39:39 -0800 (PST)
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Timo Hirvonen <tihirvon@gmail.com>, junkio@cox.net,
+	linux@horizon.com, git@vger.kernel.org
+Subject: Re: as promised, docs: git for the confused
+References: <20051209215414.14072.qmail@science.horizon.com>
+	<7vmzj9zwfu.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.64.0512120827440.15597@g5.osdl.org>
+	<20051212195319.11d41269.tihirvon@gmail.com>
+	<Pine.LNX.4.64.0512121010550.15597@g5.osdl.org>
+x-mayan-date: Long count = 12.19.12.15.14; tzolkin = 12 Ix; haab = 12 Mac
+From:	merlyn@stonehenge.com (Randal L. Schwartz)
+Date:	12 Dec 2005 12:39:39 -0800
+In-Reply-To: <Pine.LNX.4.64.0512121010550.15597@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <86y82qyrqs.fsf@blue.stonehenge.com>
+Lines:	16
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:13528
+
+>>>>> "Linus" == Linus Torvalds <torvalds@osdl.org> writes:
+
+Linus> So instead of teaching people about "git-read-tree --reset HEAD" etc that 
+Linus> you'd never know on your own, just teach about "git reset". And not 
+Linus> bothering with the "git-write-tree + git-commit-tree + git-update-ref" 
+Linus> approach, just make people use "git commit" from the very beginning.
+
+I learned more by reading the cg-tutorial, at least from the user
+perspective.  I then went back to the git-tutorial, and was able to
+finally understand that these commands are worth ignoring. :)
+
+-- 
+Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+<merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

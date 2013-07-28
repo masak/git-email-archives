@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 11:34:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 150286E27
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 11:34:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262317AbVDXReT (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 13:34:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262353AbVDXReT
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 13:34:19 -0400
+Received: from deuterium.rootr.net ([203.194.209.160]:34238 "EHLO
+	vulcan.rootr.net") by vger.kernel.org with ESMTP id S262317AbVDXReR
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 24 Apr 2005 13:34:17 -0400
+Received: from [10.10.10.20] (147-49.35-65.tampabay.res.rr.com [65.35.49.147])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by vulcan.rootr.net (Postfix) with ESMTP id 1F7813C0A;
+	Sun, 24 Apr 2005 17:34:01 +0000 (UTC)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <426BD887.5040408@qualitycode.com>
+Date:	Sun, 24 Apr 2005 13:33:59 -0400
+From: Kevin Smith <yarcs@qualitycode.com>
+User-Agent: Mozilla Thunderbird 1.0.2 (X11/20050325)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Zack Brown <zbrown@tumblerings.org>, git@vger.kernel.org
+Subject: Rename tracking, revisited (was: unseeking?)
+References: <20050424154754.GA11094@tumblerings.org> <20050424160514.GI1507@pasky.ji.cz>
+In-Reply-To: <20050424160514.GI1507@pasky.ji.cz>
+X-Enigmail-Version: 0.90.2.0
+X-Enigmail-Supports: pgp-inline, pgp-mime
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 16
+Xref: brand.scrye.com linux.git:1509
+
+Petr Baudis wrote:
+> Git does not record renames, and neither does Cogito (for now).
+
+Here's one message in the git list archives where Linus proposes a way
+to track renames without tracking renames:
+
+  http://permalink.gmane.org/gmane.comp.version-control.git/217
+
+I figure this will be an FAQ as more folks join the git community.
+
+Kevin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

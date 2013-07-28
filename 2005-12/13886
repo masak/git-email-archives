@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec 21 13:40:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id AB864287450
+	for <tkil@scrye.com>; Wed, 21 Dec 2005 13:40:27 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964819AbVLUUgw (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Dec 2005 15:36:52 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964810AbVLUUgw
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Dec 2005 15:36:52 -0500
+Received: from fencepost.gnu.org ([199.232.76.164]:16030 "EHLO
+	fencepost.gnu.org") by vger.kernel.org with ESMTP id S964819AbVLUUgv
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Dec 2005 15:36:51 -0500
+Received: from proski by fencepost.gnu.org with local (Exim 4.34)
+	id 1EpAfY-0001co-9g
+	for git@vger.kernel.org; Wed, 21 Dec 2005 15:34:41 -0500
+Received: from proski by dv.roinet.com with local (Exim 4.54)
+	id 1EpAge-0001vk-Sv
+	for git@vger.kernel.org; Wed, 21 Dec 2005 15:35:48 -0500
+Subject: [PATCH] off-by-one bugs found by valgrind
+From:	Pavel Roskin <proski@gnu.org>
+To:	git <git@vger.kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Date:	Wed, 21 Dec 2005 15:35:48 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1135197348.3046.7.camel@dv>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.4.1 (2.4.1-5) 
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:13886
+
+Insufficient memory is allocated in index-pack.c to hold the *.idx name.
+One more byte should be allocated to hold the terminating 0.
+
+quote_c_style_counted() in quote.c uses a dangerous construct, when a
+variable is incremented once and used twice in the same expression.
+Convert this construct to a more traditional form of the for loop.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+
+diff --git a/index-pack.c b/index-pack.c
+index 785fe71..d4ce3af 100644
+--- a/index-pack.c
++++ b/index-pack.c
+@@ -440,7 +440,7 @@ int main(int argc, char **argv)
+ 		if (len < 5 || strcmp(pack_name + len - 5, ".pack"))
+ 			die("packfile name '%s' does not end with '.pack'",
+ 			    pack_name);
+-		index_name_buf = xmalloc(len - 1);
++		index_name_buf = xmalloc(len);
+ 		memcpy(index_name_buf, pack_name, len - 5);
+ 		strcpy(index_name_buf + len - 5, ".idx");
+ 		index_name = index_name_buf;
+diff --git a/quote.c b/quote.c
+index 76eb144..00297b5 100644
+--- a/quote.c
++++ b/quote.c
+@@ -126,8 +126,10 @@ static int quote_c_style_counted(const c
+ 
+ 	if (!no_dq)
+ 		EMIT('"');
+-	for (sp = name; (ch = *sp++) && (sp - name) <= namelen; ) {
+-
++	for (sp = name; sp < name + namelen; sp++) {
++		ch = *sp;
++		if (!ch)
++			break;
+ 		if ((ch < ' ') || (ch == '"') || (ch == '\\') ||
+ 		    (ch == 0177)) {
+ 			needquote = 1;
+
+
+-- 
+Regards,
+Pavel Roskin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

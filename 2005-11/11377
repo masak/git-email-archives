@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  8 22:51:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BCF6B2B7425
+	for <tkil@scrye.com>; Tue,  8 Nov 2005 22:51:09 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932465AbVKIFu4 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 00:50:56 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932479AbVKIFu4
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 00:50:56 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:61667 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932465AbVKIFuz (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 9 Nov 2005 00:50:55 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051109055029.MUBY4527.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 9 Nov 2005 00:50:29 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Fredrik Kuivinen <freku045@student.liu.se>
+Subject: Re: Expected Behavior?
+References: <E1EZKOB-0002j5-VY@jdl.com>
+	<7vwtjjllw4.fsf@assigned-by-dhcp.cox.net>
+	<20051108210332.GB23265@c165.ib.student.liu.se>
+	<7v7jbig6m7.fsf@assigned-by-dhcp.cox.net>
+	<20051108225320.GB4805@c165.ib.student.liu.se>
+cc:	git@vger.kernel.org
+Date:	Tue, 08 Nov 2005 21:50:54 -0800
+In-Reply-To: <20051108225320.GB4805@c165.ib.student.liu.se> (Fredrik
+	Kuivinen's message of "Tue, 8 Nov 2005 23:53:20 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vmzkenzcx.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:11377
+
+Fredrik Kuivinen <freku045@student.liu.se> writes:
+
+>> Oops, I missed that part.  This is unsafe in theory, if you
+>> could overwrite existing file3_master or file3_dev.  Does that
+>> matter in practice?
+>
+> It wont overwrite any existing files. If there is a file named
+> 'file3_master' then the new file will be named 'file3_master_1' and if
+> that file also exists the new file will be named 'file3_master_2', and
+> so on.
+
+Another thing to watch out is that a branch name could have a
+slash in it.  It might make more sense to just name the heads file3~2
+or file3~3 (with as many ~s repeated to avoid name clashes) like
+Pasky does.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

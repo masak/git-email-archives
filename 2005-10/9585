@@ -1,0 +1,54 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct  1 03:03:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7EEE939637
+	for <tkil@scrye.com>; Sat,  1 Oct 2005 03:03:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750780AbVJAJCq (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 1 Oct 2005 05:02:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750781AbVJAJCq
+	(ORCPT <rfc822;git-outgoing>); Sat, 1 Oct 2005 05:02:46 -0400
+Received: from smtp.nildram.co.uk ([195.112.4.54]:30736 "EHLO
+	smtp.nildram.co.uk") by vger.kernel.org with ESMTP id S1750780AbVJAJCq
+	(ORCPT <rfc822;git@vger.kernel.org>); Sat, 1 Oct 2005 05:02:46 -0400
+Received: from [192.168.0.4] (unknown [84.12.75.244])
+	by smtp.nildram.co.uk (Postfix) with ESMTP id 3C178250448
+	for <git@vger.kernel.org>; Sat,  1 Oct 2005 10:02:38 +0100 (BST)
+Mime-Version: 1.0 (Apple Message framework v623)
+In-Reply-To: <Pine.LNX.4.64.0509302320560.3378@g5.osdl.org>
+References: <Pine.LNX.4.64.0509302320560.3378@g5.osdl.org>
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <068ea79fc648433faa44a6d4cc287614@cream.org>
+Content-Transfer-Encoding: 7bit
+From:	Martin Coxall <quasi@cream.org>
+Subject: Packing on kernel.org
+Date:	Sat, 1 Oct 2005 10:02:38 +0100
+To:	Git Mailing List <git@vger.kernel.org>
+X-Mailer: Apple Mail (2.623)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 14
+Xref: brand.scrye.com linux.git:9585
+
+Was there an cron process or kernel.org that should be repacking the 
+public repositories periodically?
+
+The git/cogito/sparse/linux-2.6 repositories all now have several 
+thousand unpacked objects a piece, and it takes so long to do an http 
+clone it's not even funny.
+
+Martin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

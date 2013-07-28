@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 12 15:55:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1E9BD6122
+	for <tkil@scrye.com>; Fri, 12 Aug 2005 15:55:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751297AbVHLVzQ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 12 Aug 2005 17:55:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751299AbVHLVzQ
+	(ORCPT <rfc822;git-outgoing>); Fri, 12 Aug 2005 17:55:16 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:23233 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751297AbVHLVzP (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 12 Aug 2005 17:55:15 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7CLt6jA013423
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 12 Aug 2005 14:55:06 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7CLt1dP013589;
+	Fri, 12 Aug 2005 14:55:04 -0700
+Date:	Fri, 12 Aug 2005 14:55:01 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Use "-script" postfix for scripts
+In-Reply-To: <7vwtmrxjbb.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508121451590.3295@g5.osdl.org>
+References: <Pine.LNX.4.63.0508121526050.25606@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <7vwtmrxjbb.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:7142
+
+
+
+On Fri, 12 Aug 2005, Junio C Hamano wrote:
+> 
+> I have never liked the original -script name convention.  It
+> only meant that they are implemented as scripts (as opposed to
+> those on the $(PROG) Makefile variable), but the end users who
+> end up typing their names from the command line, and to a lesser
+> degree the people who use them in their scripts, should not care
+> how they are implemented to begin with.
+
+Well, end users _don't_ care, since they are supposed to use just a simple
+"git xxx".
+
+The advantage with "git-xxx-script" is for git developers: at least yours 
+truly does "grep xyz *.c" all the time, and the "grep abc *-script" is 
+entirely analogous to that. That's where the "-script" ending comes from: 
+it really helps pick out the stuff you can grep from (as opposed to the 
+stuff that got compiled and isn't greppable).
+
+Sure, I could have called it ".sh" instead to make it look even more like 
+a shell script thing, but I actually think "-script" describes any 
+scripting language - shell, perl, you name it..
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

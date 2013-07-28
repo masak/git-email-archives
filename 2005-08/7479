@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 21:04:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DCB2226DDDD
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 21:04:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932116AbVHRDEJ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 23:04:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932117AbVHRDEJ
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 23:04:09 -0400
+Received: from ozlabs.org ([203.10.76.45]:15770 "EHLO ozlabs.org")
+	by vger.kernel.org with ESMTP id S932116AbVHRDEI (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 17 Aug 2005 23:04:08 -0400
+Received: by ozlabs.org (Postfix, from userid 1003)
+	id 87C3667FC9; Thu, 18 Aug 2005 13:04:07 +1000 (EST)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <17155.64070.264664.926461@cargo.ozlabs.ibm.com>
+Date:	Thu, 18 Aug 2005 13:02:30 +1000
+From:	Paul Mackerras <paulus@samba.org>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Wolfgang Denk <wd@denx.de>, git@vger.kernel.org
+Subject: Re: [PATCH] Teach parse_commit_buffer about grafting.
+In-Reply-To: <7vd5ocouus.fsf@assigned-by-dhcp.cox.net>
+References: <7vslxw4tb1.fsf_-_@assigned-by-dhcp.cox.net>
+	<20050818003036.C53FD353BF9@atlas.denx.de>
+	<7vd5ocouus.fsf@assigned-by-dhcp.cox.net>
+X-Mailer: VM 7.19 under Emacs 21.4.1
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:7479
+
+Junio C Hamano writes:
+
+> My Tcl/Tk is really rusty, and I do not like this patch, but
+> here is my stab at teaching the code that reads commit objects
+> how to use grafts as well.
+
+I added support for grafts to gitk just yesterday, and it should be on
+kernel.org by now.  I also committed the changes to send lines into
+hyperspace.
+
+Regards,
+Paul.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

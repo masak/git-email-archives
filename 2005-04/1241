@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 22 07:33:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4E1766122
+	for <tkil@scrye.com>; Fri, 22 Apr 2005 07:31:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261434AbVDVNal (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 22 Apr 2005 09:30:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261511AbVDVNal
+	(ORCPT <rfc822;git-outgoing>); Fri, 22 Apr 2005 09:30:41 -0400
+Received: from shadow.prohost.de ([216.71.84.228]:7299 "EHLO shadow.prohost.de")
+	by vger.kernel.org with ESMTP id S261434AbVDVNae (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 22 Apr 2005 09:30:34 -0400
+Received: from blue.office.onestepahead.de (h-62.96.100.62.host.de.colt.net [62.96.100.62] (may be forged))
+	by shadow.prohost.de (8.11.6/8.11.6) with ESMTP id j3MDUSf19702;
+	Fri, 22 Apr 2005 15:30:28 +0200
+Subject: Re: First web interface and service API draft
+From: Christian Meder <chris@absolutegiganten.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Jon Seymour <jon.seymour@gmail.com>, git@vger.kernel.org
+In-Reply-To: <20050422121059.GB7173@pasky.ji.cz>
+References: <1114166517.3233.4.camel@localhost>
+	 <2cfc4032050422043419b578cd@mail.gmail.com>
+	 <20050422121059.GB7173@pasky.ji.cz>
+Content-Type: text/plain
+Date:	Fri, 22 Apr 2005 15:30:26 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1114176626.3233.44.camel@localhost>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.4 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 40
+Xref: brand.scrye.com linux.git:1241
+
+On Fri, 2005-04-22 at 14:10 +0200, Petr Baudis wrote:
+> Dear diary, on Fri, Apr 22, 2005 at 01:34:45PM CEST, I got a letter
+> where Jon Seymour <jon.seymour@gmail.com> told me that...
+> > On 4/22/05, Christian Meder <chris@absolutegiganten.org> wrote:
+> > >
+> > > Comments ? Ideas ? Other feedback ?
+> > > 
+> > 
+> > I'd suggest serving XML rather than HTML and using client side XSLT to
+> > transform it into HTML. Client-side XSLT works well in IE 6 and all
+> > versions of Firefox, so there is no question that it is a mature
+> > technology. Provide a fall back via server transformed HTML if need
+> > be, but that is trivial to do once you have the client-side XSLT
+> > stylesheets.
+> > 
+> > Serving XML is as easy as serving HTML and gives you a much more
+> > flexible outcome.
+> 
+> Why "rather than"? Why not "in addition to"?
+> 
+> You just append either .html or .xml, based on what you want.
+
+I agree with Petr. I think we should do both.
+
+
+
+				Christian
+-- 
+Christian Meder, email: chris@absolutegiganten.org
+
+The Way-Seeking Mind of a tenzo is actualized 
+by rolling up your sleeves.
+
+                (Eihei Dogen Zenji)
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

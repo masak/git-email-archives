@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 01:29:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 921901067CA
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 01:29:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161163AbVKQI3G (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 03:29:06 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161164AbVKQI3G
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 03:29:06 -0500
+Received: from nproxy.gmail.com ([64.233.182.202]:34295 "EHLO nproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1161163AbVKQI3E convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 03:29:04 -0500
+Received: by nproxy.gmail.com with SMTP id l37so386936nfc
+        for <git@vger.kernel.org>; Thu, 17 Nov 2005 00:29:03 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=GPNvqilkkCCGhc6DZBoLoPTlCgHYvthfkcIKfYSk5e129cr2hHzHmXdymWJNU7spcCTAvKpklWEsrXr0bpXPgGxG2lbAWipDfTErkZC03m0hauN4a53ZjYwMwbxJiMlyBB8clfoLUZKnAkl1vjahrPppuQsF7HVjllayzX7ApbM=
+Received: by 10.48.211.11 with SMTP id j11mr132994nfg;
+        Thu, 17 Nov 2005 00:29:03 -0800 (PST)
+Received: by 10.48.247.3 with HTTP; Thu, 17 Nov 2005 00:29:03 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <81b0412b0511170029xac34cdbtddf74eb766281b3c@mail.gmail.com>
+Date:	Thu, 17 Nov 2005 09:29:03 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Junio C Hamano <junkio@cox.net>
+Subject: Re: master has some toys
+Cc:	git@vger.kernel.org
+In-Reply-To: <7v7jb83w8m.fsf_-_@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20051115144223.GA18111@diana.vm.bytemark.co.uk>
+	 <b0943d9e0511160311k725526d8v@mail.gmail.com>
+	 <7vr79g8mys.fsf@assigned-by-dhcp.cox.net>
+	 <7v7jb83w8m.fsf_-_@assigned-by-dhcp.cox.net>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 10
+Xref: brand.scrye.com linux.git:12080
+
+On 11/17/05, Junio C Hamano <junkio@cox.net> wrote:
+> Along with the git wrapper fixes and git-apply bugfix (it did
+
+cygwin is completely broken. Still debugging, but it looks like the
+old "windows can't unlink/rename open files" problem.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

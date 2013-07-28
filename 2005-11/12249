@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 13:07:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 012EC2851FF
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 13:07:15 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161155AbVKRUGc (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 15:06:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161165AbVKRUGb
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 15:06:31 -0500
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:24272 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S1161155AbVKRUGb (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 15:06:31 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051118200631.TMIV25099.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 18 Nov 2005 15:06:31 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Tony Luck <tony.luck@gmail.com>
+Subject: Re: git fetch --tags doesn't quite do what I expect
+References: <12c511ca0511181114jf4ca3c0p195a128fa541b8f2@mail.gmail.com>
+cc:	git@vger.kernel.org
+Date:	Fri, 18 Nov 2005 12:06:29 -0800
+In-Reply-To: <12c511ca0511181114jf4ca3c0p195a128fa541b8f2@mail.gmail.com>
+	(Tony Luck's message of "Fri, 18 Nov 2005 11:14:16 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x1diuuy.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 53
+Xref: brand.scrye.com linux.git:12249
+
+Tony Luck <tony.luck@gmail.com> writes:
+
+> Is this intended behaivour?  If so, the "--tags" entry on the
+> git-fetch(1) man page needs a little extra text to say that
+> --tags limits the fetch to only commits reachable from the
+> tags.
+
+I think both Linus (who did the initial implementation of "git
+fetch --tags") and I are in "tags do not matter until you care"
+camp, and the expected usage pattern is that you frequently do
+"git fetch" or "git pull", but "git fetch --tags" is done only
+every once in a while, just to give you known anchors to compare
+against or specify a known bottom for log, whatchanged and
+friends.  The branch heads are necessary for your day to day
+work, the tags are less essential.  That is what I mean by "tags
+do not matter until you care".
+
+A tag usually points at somewhere in the commit chain leading to
+branch heads [*1*], and if your branch heads are up to date,
+"git fetch --tags" does not download anything other than the
+tags themselves, finds the commits they point at are already
+available and complete, and stops there.
+
+Now it happens that "git fetch --tags" slurps commits you do not
+yet have _if_ your branch heads are behind, because git barebone
+Porcelain is designed to keep your object database complete
+(i.e. it does not just fetch and store tags under refs/tags/
+without making sure you have everything they connect to).  What
+you saw that is a side effect of the above design assumption.
+
+I am not good at documenting things, so I'd appreciate if
+somebody paraphrased the above and send it back to me in a patch
+form to update the document ;-).
+
+
+[Footnote]
+
+*1* This is not necessarily true; tags can point at anything,
+and indeed v1.0rc3 tag point at another tag and junio-gpg-tag
+points at a freestanding blob.  Even a tag pointing at a commit,
+as Daniel suggested in
+
+	<Pine.LNX.4.64.0511041745480.25300@iabervon.org>
+
+I could do the "pu" branch as a tag without exposing the actual
+branch.  Then that tag would point at a chain of commits not
+connected to any branch head.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

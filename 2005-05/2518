@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May  3 17:02:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 8188487E9
+	for <tkil@scrye.com>; Tue,  3 May 2005 17:02:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261897AbVECXB4 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 3 May 2005 19:01:56 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261898AbVECXB4
+	(ORCPT <rfc822;git-outgoing>); Tue, 3 May 2005 19:01:56 -0400
+Received: from fire.osdl.org ([65.172.181.4]:54465 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261897AbVECXBz (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 3 May 2005 19:01:55 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j43N1qs4029179
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 3 May 2005 16:01:52 -0700
+Received: from shell0.pdx.osdl.net (localhost [127.0.0.1])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j43N1qXU022770;
+	Tue, 3 May 2005 16:01:52 -0700
+Received: (from chrisw@localhost)
+	by shell0.pdx.osdl.net (8.13.1/8.13.1/Submit) id j43N1q8H022769;
+	Tue, 3 May 2005 16:01:52 -0700
+Date:	Tue, 3 May 2005 16:01:52 -0700
+From: Chris Wright <chrisw@osdl.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Chris Wright <chrisw@osdl.org>, Mark Allen <mrallen1@yahoo.com>,
+	git@vger.kernel.org
+Subject: Re: [PATCH 0/3] cogito spec file updates
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050503230152.GX18917@shell0.pdx.osdl.net>
+References: <20050503211527.42339.qmail@web41208.mail.yahoo.com> <20050503182850.GL18917@shell0.pdx.osdl.net> <20050503193536.GE5324@shell0.pdx.osdl.net> <20050503212142.GB15995@pasky.ji.cz> <20050503213216.GF5324@shell0.pdx.osdl.net> <20050503214401.GE15995@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050503214401.GE15995@pasky.ji.cz>
+User-Agent: Mutt/1.5.6i
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 19
+Xref: brand.scrye.com linux.git:2518
+
+* Petr Baudis (pasky@ucw.cz) wrote:
+> I wouldn't accept this neither. If git.spec is already version
+> controlled, it should be up-to-date in the version control. Therefore,
+> you need to update it at the time of release, not at the time of
+> generating the tarball.
+
+*shrug*
+
+Well, it's guaranteed to be one step out of sync, but I'll just keep
+doing what I've been doing.  Build rpm after you release, and send
+patch ex-post-facto.
+
+thanks,
+-chris
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

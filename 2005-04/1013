@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 15:51:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 89C35D1014
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 15:51:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261823AbVDTVvn (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 17:51:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261825AbVDTVvn
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 17:51:43 -0400
+Received: from mail.timesys.com ([65.117.135.102]:23221 "EHLO
+	exchange.timesys.com") by vger.kernel.org with ESMTP
+	id S261823AbVDTVv3 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 20 Apr 2005 17:51:29 -0400
+Received: from [10.129.129.212] ([67.180.132.225]) by exchange.timesys.com with Microsoft SMTPSVC(5.0.2195.6713);
+	 Wed, 20 Apr 2005 17:46:41 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4266CED2.60806@timesys.com>
+Date:	Wed, 20 Apr 2005 14:51:14 -0700
+From: Mike Taht <mike.taht@timesys.com>
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+Cc: git@vger.kernel.org
+Subject: Re: [ANNOUNCE] git-pasky-0.6.2 && heads-up on upcoming changes
+References: <20050420205633.GC19112@pasky.ji.cz> <20050420211919.GA20129@kroah.com>
+In-Reply-To: <20050420211919.GA20129@kroah.com>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+X-OriginalArrivalTime: 20 Apr 2005 21:46:41.0578 (UTC) FILETIME=[7024A8A0:01C545F2]
+To: unlisted-recipients: ;(no To-header on input)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 49
+Xref: brand.scrye.com linux.git:1013
+
+
+I keep thinking perversely that we need something as obtuse as possible
+in the unix tradition, but easy to type... git requires that the fingers
+move off the home row...
+
+how about "asdf" or "jkl"?  :)
+
+cg is singularly uncomfortable to type. I think that's why it isn't 
+commonly used.....
+
+Greg KH wrote:
+> On Wed, Apr 20, 2005 at 10:56:33PM +0200, Petr Baudis wrote:
+> 
+>>  The short command version will change from 'git' to 'cg', which should
+>>be shorter to type and free the 'git' command for possible eventual
+>>entry gate for the git commands (so that they are more
+>>namespace-friendly, and it might make most sense anyway if we get fully
+>>libgitized; but this is more of long-term ideas).
+> 
+> 
+> Hm, but there already is a 'cg' program out there:
+> 	http://uzix.org/cgvg.html
+> I use it every day :(
+> 
+> How about 'cog' instead?
+> 
+> Or I can just rename my local copy of cg and try to retrain my
+> fingers...
+> 
+> thanks,
+> 
+> greg k-h
+> -
+> To unsubscribe from this list: send the line "unsubscribe git" in
+> the body of a message to majordomo@vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+
+
+-- 
+
+Mike Taht
+
+
+   "New systems generate new problems."
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

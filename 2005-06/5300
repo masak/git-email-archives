@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Jun 27 20:47:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 671261E42EC
+	for <tkil@scrye.com>; Mon, 27 Jun 2005 20:47:28 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262389AbVF1CrF (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 27 Jun 2005 22:47:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262392AbVF1CrF
+	(ORCPT <rfc822;git-outgoing>); Mon, 27 Jun 2005 22:47:05 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:52965 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262389AbVF1Cq6 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 27 Jun 2005 22:46:58 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j5S2kljA006840
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 27 Jun 2005 19:46:47 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j5S2kjbh008929;
+	Mon, 27 Jun 2005 19:46:46 -0700
+Date:	Mon, 27 Jun 2005 19:48:51 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: CAREFUL! No more delta object support!
+In-Reply-To: <7vslz3yzwf.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506271946140.19755@ppc970.osdl.org>
+References: <Pine.LNX.4.58.0506271755140.19755@ppc970.osdl.org>
+ <7vwtofi6jk.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0506271910390.19755@ppc970.osdl.org>
+ <7vslz3yzwf.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,
+	MANY_EXCLAMATIONS autolearn=ham version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:5300
+
+
+
+On Mon, 27 Jun 2005, Junio C Hamano wrote:
+> 
+> By the way, you broke t/t0000 with the last commit.  Now an
+> empty GIT_OBJECT_DIRECTORY has 257 subdirectories.
+
+Yup, I noticed that. Fix pushed out (along with another one that was 
+failing because it wanted to create the "pack" directory itself, and was 
+unhappy when it already existed).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

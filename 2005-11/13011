@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 30 15:07:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2901E32175B
+	for <tkil@scrye.com>; Wed, 30 Nov 2005 15:07:50 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750974AbVK3WHq (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 30 Nov 2005 17:07:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751023AbVK3WHq
+	(ORCPT <rfc822;git-outgoing>); Wed, 30 Nov 2005 17:07:46 -0500
+Received: from az33egw02.freescale.net ([192.88.158.103]:17310 "EHLO
+	az33egw02.freescale.net") by vger.kernel.org with ESMTP
+	id S1750955AbVK3WHp (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 30 Nov 2005 17:07:45 -0500
+Received: from az33smr01.freescale.net (az33smr01.freescale.net [10.64.34.199])
+	by az33egw02.freescale.net (8.12.11/az33egw02) with ESMTP id jAUMHTgo007576;
+	Wed, 30 Nov 2005 15:17:29 -0700 (MST)
+Received: from [10.82.19.2] (cashmere.am.freescale.net [10.82.19.2])
+	by az33smr01.freescale.net (8.13.1/8.13.0) with ESMTP id jAUMDutg004019;
+	Wed, 30 Nov 2005 16:13:56 -0600 (CST)
+Subject: Re: git bisect enhancements?
+From:	Jon Loeliger <jdl@freescale.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Git List <git@vger.kernel.org>
+In-Reply-To: <7vu0dtokqp.fsf@assigned-by-dhcp.cox.net>
+References: <7vu0dtokqp.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1133388429.30767.37.camel@cashmere.sps.mot.com>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6 (1.4.6-2.ydl.1) 
+Date:	Wed, 30 Nov 2005 16:07:09 -0600
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:13011
+
+On Wed, 2005-11-30 at 16:04, Junio C Hamano wrote:
+> Jon Loeliger <jdl@freescale.com> writes:
+> 
+> > ...  I want to "bump" the bisect point
+> > up two commits and _then_ build.
+> >
+> > So, I'm proposing something like:
+> >
+> >     $ git bisect bump +<n>
+> >     $ git bisect bump -<n>
+> >
+> > To move the bisection point "up" or "down" a commit chain.
+> 
+> Hmph.  Doesn't "bisect good" or "bisect bad" let you explicitly
+> say which one is good or bad, instead of just taking what it
+> suggests as the next midpoint?
+
+Sure.  But I'm proposing to alter the new bisection
+middle point.  I don't know its status yet.  I am
+just angling on hedging my bets of a "good midpoint"
+choice by finding something that is likely to be
+more stable than the proposed midpoint.
+
+jdl
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,122 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul  6 02:14:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 554041171EB
+	for <tkil@scrye.com>; Wed,  6 Jul 2005 02:14:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262198AbVGFINh (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 6 Jul 2005 04:13:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262203AbVGFINC
+	(ORCPT <rfc822;git-outgoing>); Wed, 6 Jul 2005 04:13:02 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:52452 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S262157AbVGFIL4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 6 Jul 2005 04:11:56 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050706081152.GVWY23392.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 6 Jul 2005 04:11:52 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH] clone-pack.c:write_one_ref() - Create leading directories.
+References: <7voe9gxw7y.fsf@assigned-by-dhcp.cox.net>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Wed, 06 Jul 2005 01:11:52 -0700
+In-Reply-To: <7voe9gxw7y.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's message of "Tue, 05 Jul 2005 23:52:17 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyusxsjb.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 79
+Xref: brand.scrye.com linux.git:5678
+
+The function write_one_ref() is passed the list of refs received
+from the other end, which was obtained by directory traversal
+under $GIT_DIR/refs; this can contain paths other than what
+git-init-db prepares and would fail to clone when there is
+such.
+
+Signed-off-by: Junio C Hamano <junkio@cox.net>
+---
+
+ cache.h      |    2 ++
+ clone-pack.c |    5 ++++-
+ sha1_file.c  |   19 +++++++++++++++++++
+ 3 files changed, 25 insertions(+), 1 deletions(-)
+
+dfad9e5e585c1c9e1eaf599878f040f7ae519b18
+diff --git a/cache.h b/cache.h
+--- a/cache.h
++++ b/cache.h
+@@ -161,6 +161,8 @@ extern void rollback_index_file(struct c
+ extern char *git_path(const char *fmt, ...);
+ extern char *sha1_file_name(const unsigned char *sha1);
+ 
++int safe_create_leading_directories(char *path);
++
+ /* Read and unpack a sha1 file into memory, write memory to a sha1 file */
+ extern void * map_sha1_file(const unsigned char *sha1, unsigned long *size);
+ extern int unpack_sha1_header(z_stream *stream, void *map, unsigned long mapsize, void *buffer, unsigned long size);
+diff --git a/clone-pack.c b/clone-pack.c
+--- a/clone-pack.c
++++ b/clone-pack.c
+@@ -68,9 +68,12 @@ static int is_master(struct ref *ref)
+ static void write_one_ref(struct ref *ref)
+ {
+ 	char *path = git_path(ref->name);
+-	int fd = open(path, O_CREAT | O_EXCL | O_WRONLY, 0666);
++	int fd;
+ 	char *hex;
+ 
++	if (safe_create_leading_directories(path))
++		die("unable to create leading directory for %s", ref->name);
++	fd = open(path, O_CREAT | O_EXCL | O_WRONLY, 0666);
+ 	if (fd < 0)
+ 		die("unable to create ref %s", ref->name);
+ 	hex = sha1_to_hex(ref->sha1);
+diff --git a/sha1_file.c b/sha1_file.c
+--- a/sha1_file.c
++++ b/sha1_file.c
+@@ -130,6 +130,25 @@ char *git_path(const char *fmt, ...)
+ 	return ret;
+ }
+ 
++int safe_create_leading_directories(char *path)
++{
++	char *pos = path;
++
++	while (pos) {
++		pos = strchr(pos, '/');
++		if (!pos)
++			break;
++		*pos = 0;
++		if (mkdir(path, 0777) < 0)
++			if (errno != EEXIST) {
++				*pos = '/';
++				return -1;
++			}
++		*pos++ = '/';
++	}
++	return 0;
++}
++
+ int get_sha1(const char *str, unsigned char *sha1)
+ {
+ 	static const char *prefix[] = {
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

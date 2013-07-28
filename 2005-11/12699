@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 24 11:37:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DF68A140BBB
+	for <tkil@scrye.com>; Thu, 24 Nov 2005 11:37:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932642AbVKXShc (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 24 Nov 2005 13:37:32 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932645AbVKXShc
+	(ORCPT <rfc822;git-outgoing>); Thu, 24 Nov 2005 13:37:32 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:62089 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932642AbVKXShb (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 24 Nov 2005 13:37:31 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAOIbGnO029869
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 24 Nov 2005 10:37:17 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAOIbFbn006698;
+	Thu, 24 Nov 2005 10:37:15 -0800
+Date:	Thu, 24 Nov 2005 10:37:15 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Ed Tomlinson <tomlins@cam.org>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: Linux 2.6.15-rc2
+In-Reply-To: <200511240737.59153.tomlins@cam.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511241020050.13959@g5.osdl.org>
+References: <Pine.LNX.4.64.0511191934210.8552@g5.osdl.org>
+ <200511240737.59153.tomlins@cam.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:12699
+
+
+
+On Thu, 24 Nov 2005, Ed Tomlinson wrote:
+> 
+> What is happening?
+
+The http transport isn't very good for git, so git adds various special 
+files to make it work at all. They need to be specially updated, and I 
+hadn't done that.
+
+Using the native git protocol through git://git.kernel.org/.. gets around 
+it, as does using rsync. 
+
+I just repacked and updated it now, so how http should work too, although 
+inefficiently (because it will get a whole new pack - just one of the 
+disadvantages of the non-native protocols).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

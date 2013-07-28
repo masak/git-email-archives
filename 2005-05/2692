@@ -1,0 +1,54 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May  6 17:21:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id ED1D1857E9
+	for <tkil@scrye.com>; Fri,  6 May 2005 17:21:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261337AbVEFXUz (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 6 May 2005 19:20:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261327AbVEFXUz
+	(ORCPT <rfc822;git-outgoing>); Fri, 6 May 2005 19:20:55 -0400
+Received: from emf.emf.net ([205.149.0.19]:57352 "EHLO emf.net")
+	by vger.kernel.org with ESMTP id S261337AbVEFXUv (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 6 May 2005 19:20:51 -0400
+Received: (from lord@localhost) by emf.net (K/K) id QAA00974; Fri, 6 May 2005 16:20:46 -0700 (PDT)
+Date:	Fri, 6 May 2005 16:20:46 -0700 (PDT)
+From: Tom Lord <lord@emf.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200505062320.QAA00974@emf.net>
+To: gnu-arch-dev@lists.seyza.com
+Cc: git@vger.kernel.org
+In-reply-to: <Pine.LNX.4.58.0505061558400.2233@ppc970.osdl.org> (message from Linus Torvalds on Fri, 6 May 2005 16:05:06 -0700 (PDT))
+Subject: the blob metanet (welcome to the future)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.2 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:2692
+
+
+
+Check it out...
+
+  http://www.seyza.com/=clients/linus/tree/src/libdx/blob-xmt.html
+
+This is handy background:
+
+  http://www.seyza.com/=clients/linus/tree/src/liblob/index.html
+
+and neither of those documents are works of art yet -- just something
+I should not be sitting on.
+
+-t
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

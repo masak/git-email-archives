@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 20 01:30:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B1D9813E0A8
+	for <tkil@scrye.com>; Tue, 20 Sep 2005 01:30:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964897AbVITH3b (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Sep 2005 03:29:31 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964900AbVITH3b
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Sep 2005 03:29:31 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:13998 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S964897AbVITH3b (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 20 Sep 2005 03:29:31 -0400
+Received: (qmail 18316 invoked by uid 2001); 20 Sep 2005 09:29:28 +0200
+Date:	Tue, 20 Sep 2005 09:29:28 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Brian Gerst <bgerst@didntduck.org>
+Cc:	Linus Torvalds <torvalds@osdl.org>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: GIT - breaking backward compatibility
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050920072928.GA17621@pasky.or.cz>
+References: <7vpsr4cx0f.fsf@assigned-by-dhcp.cox.net> <432F8C33.5080603@didntduck.org> <Pine.LNX.4.58.0509192131260.2553@g5.osdl.org> <432F92FC.4000405@didntduck.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <432F92FC.4000405@didntduck.org>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 42
+Xref: brand.scrye.com linux.git:8978
+
+Dear diary, on Tue, Sep 20, 2005 at 06:41:32AM CEST, I got a letter
+where Brian Gerst <bgerst@didntduck.org> told me that...
+> Linus Torvalds wrote:
+> >
+> >On Tue, 20 Sep 2005, Brian Gerst wrote:
+> >
+> >>Essentially what I want to do is:
+> >>
+> >>git-ls-files --others | xargs git-update-index --add --
+> >>git-ls-files --deleted | xargs git-update-index --remove --
+> >>git-ls-files --modified | xargs git-update-index --
+> >>
+> >>This will completely resync the index and cache to the working tree 
+> >>state after applying a patch.
+> >
+> >
+> >It will also be extremely inefficient.
+> >
+> >If you really have a _patch_, then "git-apply --index" is what you want to 
+> >apply it with. It applies a patch _and_ updates the index as appropriate. 
+> >It's how git-applymbox can apply hundreds of patches in short order.
+> >
+> >		Linus
+> >
+> 
+> That would be great, if git-apply accepted fuzzy patches.  I am trying 
+> to apply the -mm series patches, which often are slightly out of date. 
+> Andrew doesn't rebase them until they won't apply at all.
+
+cg-patch will process fuzzy patches and update the cache properly. It
+doesn't handle rename/copy patches yet, though.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

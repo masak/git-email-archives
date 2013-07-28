@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 20 04:19:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6DE3CEF221
+	for <tkil@scrye.com>; Wed, 20 Apr 2005 04:19:45 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261431AbVDTKTh (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 20 Apr 2005 06:19:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261554AbVDTKTh
+	(ORCPT <rfc822;git-outgoing>); Wed, 20 Apr 2005 06:19:37 -0400
+Received: from wproxy.gmail.com ([64.233.184.196]:7387 "EHLO wproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261431AbVDTKT3 convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 20 Apr 2005 06:19:29 -0400
+Received: by wproxy.gmail.com with SMTP id 40so82648wri
+        for <git@vger.kernel.org>; Wed, 20 Apr 2005 03:19:29 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=Terl1F2mnarwSfsJbxGcX0fvJ16sL+uwJ9cv77JxSpb4BHzee5JkoxbmCqcpp4B70xT3GhGhXwuP+we5vKIZqP1QwSV1qhkt978aVxjbI3x0t7TSi4lbHqImKHFq/Tfk88MC7HHrXzTNLUsIxvUSDlkwCA//JeT8f6EApU6jmFo=
+Received: by 10.54.59.12 with SMTP id h12mr28245wra;
+        Wed, 20 Apr 2005 03:19:29 -0700 (PDT)
+Received: by 10.54.19.32 with HTTP; Wed, 20 Apr 2005 03:19:29 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <fc339e4a050420031953198c2c@mail.gmail.com>
+Date:	Wed, 20 Apr 2005 19:19:29 +0900
+From: Miles Bader <snogglethorpe@gmail.com>
+Reply-To: snogglethorpe@gmail.com, miles@gnu.org
+To: Tom Lord <lord@emf.net>
+Subject: Re: [GNU-arch-dev] [ANNOUNCEMENT] /Arch/ embraces `git'
+Cc: gnu-arch-users@gnu.org, gnu-arch-dev@lists.seyza.com,
+	git@vger.kernel.org, talli@museatech.net, torvalds@osdi.org
+In-Reply-To: <200504201000.DAA04988@emf.net>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <200504201000.DAA04988@emf.net>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.2
+Lines: 10
+Xref: brand.scrye.com linux.git:944
+
+Way to go.
+
+-Miles
+-- 
+Do not taunt Happy Fun Ball.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

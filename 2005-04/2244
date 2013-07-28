@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 30 17:14:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4A002FC356
+	for <tkil@scrye.com>; Sat, 30 Apr 2005 17:14:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261456AbVD3XOh (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 30 Apr 2005 19:14:37 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261457AbVD3XOh
+	(ORCPT <rfc822;git-outgoing>); Sat, 30 Apr 2005 19:14:37 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:39120 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S261456AbVD3XOd
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 30 Apr 2005 19:14:33 -0400
+Received: from [172.27.0.18] (c-67-169-23-106.hsd1.ca.comcast.net [67.169.23.106])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j3UNEOkU000948
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sat, 30 Apr 2005 16:14:24 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4274114F.20706@zytor.com>
+Date:	Sat, 30 Apr 2005 16:14:23 -0700
+From: "H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: "Luck, Tony" <tony.luck@intel.com>
+Cc: Edgar Toernig <froese@gmx.de>, git@vger.kernel.org
+Subject: Re: Trying to use AUTHOR_DATE
+References: <B8E391BBE9FE384DAA4C5C003888BE6F035EDE5C@scsmsx401.amr.corp.intel.com>
+In-Reply-To: <B8E391BBE9FE384DAA4C5C003888BE6F035EDE5C@scsmsx401.amr.corp.intel.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:2244
+
+Luck, Tony wrote:
+>>Fixed version below.
+> 
+> 
+> Yup ... that fixes it for my initial test cases.  Thanks.
+> 
+> -Tony
+> 
+> P.S. The libcurl that I found (curl-7.12.1-3.src.rpm) has curl_getdate()
+> implemented as >1000 lines of yacc.  Which seems like overkill (unless
+> I really need to set AUTHOR_DATE="a week ago last tuesday" :-)
+
+That one is obsolete.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

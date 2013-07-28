@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 15:02:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1705E320227
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 15:02:37 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964821AbVKLWCZ (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 17:02:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964822AbVKLWCZ
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 17:02:25 -0500
+Received: from pne-smtpout1-sn1.fre.skanova.net ([81.228.11.98]:30939 "EHLO
+	pne-smtpout1-sn1.fre.skanova.net") by vger.kernel.org with ESMTP
+	id S964821AbVKLWCZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 12 Nov 2005 17:02:25 -0500
+Received: from [192.168.0.82] (213.66.95.18) by pne-smtpout1-sn1.fre.skanova.net (7.2.060.1)
+        id 4368D4B9002C6403; Sat, 12 Nov 2005 23:02:22 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43766687.2000007@etek.chalmers.se>
+Date:	Sat, 12 Nov 2005 23:02:47 +0100
+From:	=?UTF-8?B?THVrYXMgU2FuZHN0csO2bQ==?= <lukass@etek.chalmers.se>
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051015)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+CC:	Marcel Holtmann <marcel@holtmann.org>
+Subject: Re: Remove unneeded packs
+References: <1131800663.29461.11.camel@blade>  <4375EA80.7070405@op5.se> <1131802238.29461.18.camel@blade>
+In-Reply-To: <1131802238.29461.18.camel@blade>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:11701
+
+Marcel Holtmann wrote:
+> you are right. It is exactly what I was looking for. I just saw it some
+> minutes ago, when I pulled the latest git tree. However to make an old
+> GCC 2.95 happy, the attached patch is needed.
+> 
+> I am not sure if it is fully working. It deletes a lot of old packs, but
+> in case of the linux-2.6 tree it leaves on additional behind.
+> 
+> .git/objects/pack/pack-4d7682fb8230fef33eb518fa8e53885ec675795e.idx
+> .git/objects/pack/pack-4d7682fb8230fef33eb518fa8e53885ec675795e.pack
+> .git/objects/pack/pack-b3c6fbdfa36a326815de6358885c7a570a986b1b.pack
+> .git/objects/pack/pack-b3c6fbdfa36a326815de6358885c7a570a986b1b.idx
+> 
+> The 4d76... is the current pack, but the b3c6... is an old one that is
+> not needed anymore.
+> 
+> Regards
+> 
+> Marcel
+
+This is most likley because the pack b3c6... contains unreachable objects.
+git-pack-redundant only makes sure that all objects present in packfiles
+still are present in packfiles after the redundant packs have been removed.
+
+Thus, unreachable objects will also be considered as required.
+
+Note that I haven't checked if this is the cause in this particular case,
+but I have the same packfiles (I use the HTTP transport too).
+
+I'm thinking of the possibility passing a list of objects to be ignored
+on stdin to git-pack-redundant. This would hopefully solve this problem.
+
+/Lukas Sandström
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

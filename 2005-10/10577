@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 25 07:10:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 08718260D30
+	for <tkil@scrye.com>; Tue, 25 Oct 2005 07:10:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751238AbVJYNIn (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 25 Oct 2005 09:08:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751218AbVJYNIn
+	(ORCPT <rfc822;git-outgoing>); Tue, 25 Oct 2005 09:08:43 -0400
+Received: from mailout1.informatik.tu-muenchen.de ([131.159.0.18]:15862 "EHLO
+	mailout1.informatik.tu-muenchen.de") by vger.kernel.org with ESMTP
+	id S1751188AbVJYNIn (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 25 Oct 2005 09:08:43 -0400
+Received: from dhcp-3s-40.lrr.in.tum.de (dhcp-3s-40.lrr.in.tum.de [131.159.35.40])
+	by mail.in.tum.de (Postfix) with ESMTP id C258B2350
+	for <git@vger.kernel.org>; Tue, 25 Oct 2005 15:08:39 +0200 (MEST)
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	git@vger.kernel.org
+Subject: Convention for help in git commands?
+Date:	Tue, 25 Oct 2005 15:08:43 +0200
+User-Agent: KMail/1.8.2
+MIME-Version: 1.0
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200510251508.43552.Josef.Weidendorfer@gmx.de>
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: by amavisd-new/sophie/sophos at mailrelay2.informatik.tu-muenchen.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:10577
+
+Hi,
+
+is there a commonly accepted way how to handle help messages
+in git commands? In git-mv/git-rename, there is a full help
+message with description of options when "-h" is given.
+This seems to be the Cogito way; git commands seem to be used
+to output an one-liner usage only, and rely on the man
+page otherwise.
+
+This should be more consistent. Proposal:
+* All git commands should react on command line option "-h"
+for help, dumping a few lines to stderr, prefixed by "usage:", giving
+the command usage without further descriptions. For the usage
+output, use the base name of the command, and not the absolute
+path to the binary.
+* For commands which need at least one argument, the usage
+is also printed, if the command is run without argument
+* On a error condition, prefix the message with "error:", and
+do not print out anything else (like the usage line, or things
+produced by the PERL "die", which appends "at scriptname line nn").
+
+Perhaps these things should be done only for commands of the
+git lightwight porcelain?
+
+Josef
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 17 12:04:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 88792285224
+	for <tkil@scrye.com>; Wed, 17 Aug 2005 12:04:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751191AbVHQSD1 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 17 Aug 2005 14:03:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751192AbVHQSD1
+	(ORCPT <rfc822;git-outgoing>); Wed, 17 Aug 2005 14:03:27 -0400
+Received: from web26307.mail.ukl.yahoo.com ([217.146.176.18]:5053 "HELO
+	web26307.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S1751191AbVHQSD0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 17 Aug 2005 14:03:26 -0400
+Received: (qmail 52209 invoked by uid 60001); 17 Aug 2005 18:03:24 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=wF1Q7xJs2UM3FtlG7Amuvf5unVuOJmXZ+StXUSoK62vDUdlsNB0ezzwkmEpp2ASypkeofDHoRZgLWkQ9Fh5Ns4kbrsqTJ/PUg3qDojtLe3fvRwAEkAhRqx9Dve1SgSF5fErfErYQkvotKSkTPVbvDy9bN4Zf8e6kEIpMQSmV5pk=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050817180324.52207.qmail@web26307.mail.ukl.yahoo.com>
+Received: from [151.42.53.158] by web26307.mail.ukl.yahoo.com via HTTP; Wed, 17 Aug 2005 11:03:24 PDT
+Date:	Wed, 17 Aug 2005 11:03:24 -0700 (PDT)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: [RFC] Patches exchange is bad?
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+Cc:	git@vger.kernel.org
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:7451
+
+Marco Costalba wrote:
+
+>>
+>>This way I found StGIT useful for maintainers as well, not only for
+>>contributors.
+>>
+>
+>Sorry if the answer is silly, but I still don't know well StGIT .
+>
+
+'question' not 'answer' !!!!
+
+I don't now if the question is silly, but the typo it is for sure!
+
+
+Sorry
+Marco
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

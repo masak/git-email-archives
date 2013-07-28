@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 15 16:44:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 949731C7047
+	for <tkil@scrye.com>; Mon, 15 Aug 2005 16:44:15 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965024AbVHOWna (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 15 Aug 2005 18:43:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965026AbVHOWna
+	(ORCPT <rfc822;git-outgoing>); Mon, 15 Aug 2005 18:43:30 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:36048 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S965024AbVHOWn3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 15 Aug 2005 18:43:29 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7FMhQjA000916
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 15 Aug 2005 15:43:27 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7FMhQUQ018617;
+	Mon, 15 Aug 2005 15:43:26 -0700
+Date:	Mon, 15 Aug 2005 15:43:26 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Yasushi SHOJI <yashi@atmark-techno.com>
+cc:	git@vger.kernel.org
+Subject: Re: gitweb - option to disable rename detection
+In-Reply-To: <87br3zorjk.wl@mail2.atmark-techno.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508151542290.3553@g5.osdl.org>
+References: <87d5ofoxvt.wl@mail2.atmark-techno.com> <Pine.LNX.4.58.0508151140050.3553@g5.osdl.org>
+ <87br3zorjk.wl@mail2.atmark-techno.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:7314
+
+
+
+On Tue, 16 Aug 2005, Yasushi SHOJI wrote:
+>
+> > Instead of disabling it entirely, how about just having some limit on it?
+> 
+> ah, that's a good idea.  here is a quick and dirty patch.
+
+This makes it somewhat more expensive - I was thinking about disabling it 
+in git-diff-tree, since the rename logic already knows how many 
+new/deleted files there are.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

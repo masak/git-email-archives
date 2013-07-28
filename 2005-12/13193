@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec  4 17:16:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0F940F0AC1
+	for <tkil@scrye.com>; Sun,  4 Dec 2005 17:16:21 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932302AbVLEAQB (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Dec 2005 19:16:01 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932303AbVLEAQB
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Dec 2005 19:16:01 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:32170 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932302AbVLEAQA (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 4 Dec 2005 19:16:00 -0500
+Received: (qmail 14202 invoked by uid 2001); 5 Dec 2005 01:16:16 +0100
+Date:	Mon, 5 Dec 2005 01:16:16 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Ben Clifford <benc@hawaga.org.uk>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: bash completions code for git+porcelain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051205001616.GC22159@pasky.or.cz>
+References: <0039D3CD-8254-4E29-8563-D60487719378@hawaga.org.uk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0039D3CD-8254-4E29-8563-D60487719378@hawaga.org.uk>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:13193
+
+Dear diary, on Sun, Dec 04, 2005 at 03:05:01AM CET, I got a letter
+where Ben Clifford <benc@hawaga.org.uk> said that...
+> just a note that I'm still plodding along slowly adding bits to the  
+> bash completion code available by typing:
+> 
+>   cg clone http://www.hawaga.org.uk/gitcompletion.git
+> 
+> handles (some of) git, gitk, cg, stg commands - enough to be useful  
+> for me, at least ;-)
+
+Thanks a lot. I've added the Cogito-related stuff to its contrib/
+directory (just with a bit saner filenames). I will try to update them
+as new changes appear in, but I would be grateful if you could please
+notify me when you think I really should. ;-)
+
+Thanks again,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

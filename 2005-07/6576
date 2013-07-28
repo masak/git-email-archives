@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 29 09:32:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EB38A1B57AF
+	for <tkil@scrye.com>; Fri, 29 Jul 2005 09:32:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262620AbVG2Pbc (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Jul 2005 11:31:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262628AbVG2P3X
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Jul 2005 11:29:23 -0400
+Received: from zealot.progeny.com ([216.37.46.162]:28295 "EHLO
+	morimoto.progeny.com") by vger.kernel.org with ESMTP
+	id S262636AbVG2P03 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 29 Jul 2005 11:26:29 -0400
+Received: from dhcp-2-246.progeny.com (dhcp-2-246.progeny.com [192.168.2.246])
+	by morimoto.progeny.com (Postfix) with ESMTP
+	id 2F18A636A4; Fri, 29 Jul 2005 10:26:24 -0500 (EST)
+Subject: Re: Dump http servers still slow?
+From: Darrin Thompson <darrint@progeny.com>
+To: Radoslaw AstralStorm Szkodzinski <astralstorm@gorzow.mm.pl>
+Cc: ryan@michonline.com, junkio@cox.net, git@vger.kernel.org
+In-Reply-To: <20050729170824.5a946769.astralstorm@gorzow.mm.pl>
+References: <1122584423.12374.11.camel@localhost.localdomain>
+	 <7vy87qpcwg.fsf@assigned-by-dhcp.cox.net>
+	 <1122645821.4263.6.camel@localhost.localdomain>
+	 <20050729144802.GA2280@mythryan2.michonline.com>
+	 <1122649056.4263.13.camel@localhost.localdomain>
+	 <20050729170824.5a946769.astralstorm@gorzow.mm.pl>
+Content-Type: text/plain
+Date:	Fri, 29 Jul 2005 10:26:24 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1122650784.4263.15.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:6576
+
+On Fri, 2005-07-29 at 17:08 +0200, Radoslaw AstralStorm Szkodzinski
+wrote:
+> On Fri, 29 Jul 2005 09:57:36 -0500
+> Darrin Thompson <darrint@progeny.com> wrote:
+> 
+> > Can't see the code.
+> > 
+> > http://www.kernel.org/pub/software/scm/gitweb/gitweb.cgi
+> > 
+> > Internal Server Error
+> > 
+> 
+> Use FTP.
+> 
+
+Duh. Thanks.
+
+--
+Darrin
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

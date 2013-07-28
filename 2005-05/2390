@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  2 17:22:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4177CFC55E
+	for <tkil@scrye.com>; Mon,  2 May 2005 17:22:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261216AbVEBXVq (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 2 May 2005 19:21:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261220AbVEBXVq
+	(ORCPT <rfc822;git-outgoing>); Mon, 2 May 2005 19:21:46 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:24831 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S261216AbVEBXVl (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 2 May 2005 19:21:41 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050502232134.LCCG1367.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 2 May 2005 19:21:34 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [RFC] git-diff-cache sans --cached and unmerged paths
+From: Junio C Hamano <junkio@cox.net>
+Date:	Mon, 02 May 2005 16:21:33 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7gpnria.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 24
+Xref: brand.scrye.com linux.git:2390
+
+Linus, 
+
+    git-diff-cache without --cached says 'U filename" (or
+"unmerged filename") when working with an unmerged cache entry.
+Since the form without --cached is to mean "look at the work
+tree", I think it should be changed to report the mode and the
+magic 0{40} SHA1.  What do you think?
+
+I was manually fixing up a merge and I wanted to compare the
+merge result in the work tree with the pre-merge HEAD version
+from either heads, but this behaviour (yes I am the guilty one)
+makes it cumbersome, and that is the reason behind this
+question.
+
+BTW, when you have a chance, could you please give the
+executable bit to git-apply-patch-script, pretty please.  This
+is my fourth attempt ;-).
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

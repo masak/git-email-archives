@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov  7 08:47:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5693D13585F
+	for <tkil@scrye.com>; Mon,  7 Nov 2005 08:47:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964850AbVKGPr2 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 7 Nov 2005 10:47:28 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964852AbVKGPr2
+	(ORCPT <rfc822;git-outgoing>); Mon, 7 Nov 2005 10:47:28 -0500
+Received: from 193.37.26.69.virtela.com ([69.26.37.193]:49792 "EHLO
+	teapot.corp.reactrix.com") by vger.kernel.org with ESMTP
+	id S964850AbVKGPr1 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 7 Nov 2005 10:47:27 -0500
+Received: from teapot.corp.reactrix.com (localhost.localdomain [127.0.0.1])
+	by teapot.corp.reactrix.com (8.12.11/8.12.11) with ESMTP id jA7FlIf0030450;
+	Mon, 7 Nov 2005 07:47:18 -0800
+Received: (from nickh@localhost)
+	by teapot.corp.reactrix.com (8.12.11/8.12.11/Submit) id jA7FlIIJ030448;
+	Mon, 7 Nov 2005 07:47:18 -0800
+Date:	Mon, 7 Nov 2005 07:47:18 -0800
+From:	Nick Hengeveld <nickh@reactrix.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: GIT 0.99.9e
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051107154718.GJ3001@reactrix.com>
+References: <7v64r5t3m0.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v64r5t3m0.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4.1i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:11258
+
+On Sun, Nov 06, 2005 at 09:43:19PM -0800, Junio C Hamano wrote:
+
+>  - http-push seems to still have a bug or two but that is to be
+>    expected for any new code, and I am reasonably sure it can be
+>    ironed out; preferably before 1.0 but it is not a
+>    showstopper.
+
+It seems like a minor point, but is this the appropriate name or should
+it be dav-push?  Not that there's anything else in the works AFAIK but
+it's certainly possible that something else could run over HTTP later
+on.
+
+-- 
+For a successful technology, reality must take precedence over public
+relations, for nature cannot be fooled.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

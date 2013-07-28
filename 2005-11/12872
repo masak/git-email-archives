@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 28 07:33:17 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 666042851FA
+	for <tkil@scrye.com>; Mon, 28 Nov 2005 07:33:17 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751253AbVK1Ock (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 28 Nov 2005 09:32:40 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751270AbVK1Ock
+	(ORCPT <rfc822;git-outgoing>); Mon, 28 Nov 2005 09:32:40 -0500
+Received: from mailout1.informatik.tu-muenchen.de ([131.159.0.18]:50313 "EHLO
+	mailout1.informatik.tu-muenchen.de") by vger.kernel.org with ESMTP
+	id S1751253AbVK1Ocj (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 28 Nov 2005 09:32:39 -0500
+Received: from dhcp-3s-61.lrr.in.tum.de (dhcp-3s-61.lrr.in.tum.de [131.159.35.61])
+	by mail.in.tum.de (Postfix) with ESMTP id 8465326F6;
+	Mon, 28 Nov 2005 15:32:38 +0100 (MET)
+From:	Josef Weidendorfer <Josef.Weidendorfer@gmx.de>
+To:	git@vger.kernel.org
+Subject: Generic configuration plumbing (Was: Re: [RFC 2/2] Automatically transform...)
+Date:	Mon, 28 Nov 2005 15:32:35 +0100
+User-Agent: KMail/1.9
+References: <Pine.LNX.4.63.0511211455120.13775@wbgn013.biozentrum.uni-wuerzburg.de> <200511281359.04741.Josef.Weidendorfer@gmx.de> <438B021F.5030204@op5.se>
+In-Reply-To: <438B021F.5030204@op5.se>
+Cc:	Andreas Ericsson <ae@op5.se>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511281532.36054.Josef.Weidendorfer@gmx.de>
+X-Virus-Scanned: by amavisd-new/sophie/sophos at mailrelay2.informatik.tu-muenchen.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:12872
+
+On Monday 28 November 2005 14:11, Andreas Ericsson wrote:
+> Josef Weidendorfer wrote:
+> > 
+> > To allow for this, git_config() should not be hardcoded to only
+> > read .git/config, but perhaps a list of files in environment variable
+> > GIT_CONFIG_FILES.
+> > 
+> 
+> $HOME/.gitrc:$GIT_DIR/conf/*
+
+Yes, perhaps with this as default...
+
+> All files could support the freestanding "include" syntax.
+
+Better run cpp on the config files before loading ;-)
+Or provide a hook which returns the config on stdout.
+The default for .git/hooks/config would be
+
+	cat $GIT_DIR/config
+
+Hmm... this was only meant to be a joke; but now I actually think
+this is a nice idea as basic configuration mechanism of git plumbing.
+
+Josef
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

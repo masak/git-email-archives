@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 10 13:06:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6D3EA81843
+	for <tkil@scrye.com>; Mon, 10 Oct 2005 13:06:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751117AbVJJTGR (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 10 Oct 2005 15:06:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751108AbVJJTGR
+	(ORCPT <rfc822;git-outgoing>); Mon, 10 Oct 2005 15:06:17 -0400
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:48876 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S1751117AbVJJTGQ (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 10 Oct 2005 15:06:16 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051010190601.BUMK29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Mon, 10 Oct 2005 15:06:01 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: openbsd version?
+References: <8664s5gxl9.fsf@blue.stonehenge.com>
+	<Pine.LNX.4.64.0510100939320.14597@g5.osdl.org>
+cc:	git@vger.kernel.org
+Date:	Mon, 10 Oct 2005 12:06:15 -0700
+In-Reply-To: <Pine.LNX.4.64.0510100939320.14597@g5.osdl.org> (Linus Torvalds's
+	message of "Mon, 10 Oct 2005 09:41:05 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvf0542fs.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:9904
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> Either do
+>
+> 	make NO_STRCASESTR=1 ..
+>
+> or add that explicitly to the makefile in the OpenBSD rules and send Junio 
+> a tested patch ;)
+
+Thanks; this has been resolved underwater.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

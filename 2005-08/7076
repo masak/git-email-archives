@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug 11 16:18:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D55C111090F
+	for <tkil@scrye.com>; Thu, 11 Aug 2005 16:18:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932490AbVHKWSN (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 11 Aug 2005 18:18:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932494AbVHKWSN
+	(ORCPT <rfc822;git-outgoing>); Thu, 11 Aug 2005 18:18:13 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:16650 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S932490AbVHKWSN (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 11 Aug 2005 18:18:13 -0400
+Received: (qmail 20617 invoked by uid 2001); 11 Aug 2005 22:18:12 -0000
+Date:	Fri, 12 Aug 2005 00:18:12 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	git@vger.kernel.org
+Subject: Re: A simple script to do the reverse of git-push
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050811221812.GG25280@pasky.ji.cz>
+References: <Pine.LNX.4.63.0508082318400.2911@wgmdd8.biozentrum.uni-wuerzburg.de> <7vslxk125f.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vslxk125f.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 39
+Xref: brand.scrye.com linux.git:7076
+
+Dear diary, on Tue, Aug 09, 2005 at 12:42:36AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+> 
+> > BTW, if you are lazy, like me, you just pull from Junio once in a while 
+> > and do a "make test". Turns out there is a missing dependency though:
+> >
+> > peek-remote.o: cache.h
+> >
+> > which in my case lead to a git-peek-remote program which was unable to 
+> > peek any ref.
+> 
+> You are right.  Thanks for noticing.
+> 
+>     $ (make clean ; make ) >/dev/null 2>/dev/null
+>     $ touch cache.h
+>     $ make 2>&1 | grep peek-remote
+>     cc -g -O2 -Wall  '-DSHA1_HEADER=<openssl/sha.h>' -o git-peek-remote peek-remote.o libgit.a -lz -lcrypto
+> 
+> I think recent "depend on object files" Makefile patch broke
+> some things.
+
+Indeed. I took care to make the new dependencies a superset of previous
+situation when removing the explicit dependencies list, but before,
+rebuilding of libgit.a caused rebuilt from source of all the commands,
+which wouldn't happen anymore after adding the object files, which this
+way sneakily removed an implicit dependency of the command sources on
+$(LIB_H). Eek.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

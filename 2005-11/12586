@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 22 18:49:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2F59855126
+	for <tkil@scrye.com>; Tue, 22 Nov 2005 18:49:41 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965085AbVKWBtf (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 22 Nov 2005 20:49:35 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965079AbVKWBtf
+	(ORCPT <rfc822;git-outgoing>); Tue, 22 Nov 2005 20:49:35 -0500
+Received: from yue.linux-ipv6.org ([203.178.140.15]:10767 "EHLO
+	yue.st-paulia.net") by vger.kernel.org with ESMTP id S965085AbVKWBte
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 22 Nov 2005 20:49:34 -0500
+Received: from localhost (localhost [127.0.0.1])
+	by yue.st-paulia.net (Postfix) with ESMTP
+	id 1B54133CC2; Wed, 23 Nov 2005 09:50:00 +0900 (JST)
+Date:	Wed, 23 Nov 2005 09:49:59 +0900 (JST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051123.094959.53535561.yoshfuji@linux-ipv6.org>
+To:	hpa@zytor.com
+Cc:	mwelinder@gmail.com, git@vger.kernel.org, yoshfuji@linux-ipv6.org
+Subject: Re: pack-redundant.c:689: warning: long unsigned int format,
+ size_t arg (arg 3)
+From:	YOSHIFUJI Hideaki / =?iso-2022-jp?B?GyRCNUhGIzFRTEAbKEI=?= 
+	<yoshfuji@linux-ipv6.org>
+In-Reply-To: <4383CA08.4080604@zytor.com>
+References: <118833cc0511221734r33b20f6au97fe2e93243f5ccf@mail.gmail.com>
+	<4383CA08.4080604@zytor.com>
+Organization: USAGI/WIDE Project
+X-URL:	http://www.yoshifuji.org/%7Ehideaki/
+X-Fingerprint: 9022 65EB 1ECF 3AD1 0BDF  80D8 4807 F894 E062 0EEA
+X-PGP-Key-URL: http://www.yoshifuji.org/%7Ehideaki/hideaki@yoshifuji.org.asc
+X-Face:	"5$Al-.M>NJ%a'@hhZdQm:."qn~PA^gq4o*>iCFToq*bAi#4FRtx}enhuQKz7fNqQz\BYU]
+ $~O_5m-9'}MIs`XGwIEscw;e5b>n"B_?j/AkL~i/MEa<!5P`&C$@oP>ZBLP
+X-Mailer: Mew version 2.2 on Emacs 20.7 / Mule 4.1 (AOI)
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:12586
+
+In article <4383CA08.4080604@zytor.com> (at Tue, 22 Nov 2005 17:46:48 -0800), "H. Peter Anvin" <hpa@zytor.com> says:
+
+> Morten Welinder wrote:
+> > Maybe cast the size to unsigned long to make it match the format.
+> > 
+> > M.
+> > 
+> > pack-redundant.c: In function `main':
+> > pack-redundant.c:689: warning: long unsigned int format, size_t arg (arg 3)
+> 
+> Or use %zu for the format.
+
+It is not widely supported, I think.
+
+--yoshfuji
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

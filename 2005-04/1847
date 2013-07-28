@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 10:14:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EC9F4F790B
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 10:14:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261784AbVD0QOS (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Apr 2005 12:14:18 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261786AbVD0QOS
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Apr 2005 12:14:18 -0400
+Received: from fire.osdl.org ([65.172.181.4]:31952 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261784AbVD0QON (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 27 Apr 2005 12:14:13 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3RGE5s4019732
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 27 Apr 2005 09:14:06 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3RGE3Zd022859;
+	Wed, 27 Apr 2005 09:14:04 -0700
+Date:	Wed, 27 Apr 2005 09:16:03 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Juliusz Chroboczek <Juliusz.Chroboczek@pps.jussieu.fr>
+Cc: Git Mailing List <git@vger.kernel.org>, darcs-devel@darcs.net
+Subject: Re: [darcs-devel] Re: Darcs-git pulling from the Linux repo: a Linux
+ VM question
+In-Reply-To: <7iu0lskyfb.fsf@lanthane.pps.jussieu.fr>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504270910510.18901@ppc970.osdl.org>
+References: <7i7jionz5q.fsf@lanthane.pps.jussieu.fr>
+ <Pine.LNX.4.58.0504270823480.18901@ppc970.osdl.org> <7iu0lskyfb.fsf@lanthane.pps.jussieu.fr>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 40
+Xref: brand.scrye.com linux.git:1847
+
+
+
+On Wed, 27 Apr 2005, Juliusz Chroboczek wrote:
+> 
+> Here we're speaking about the initial import.  Committed on 17 April
+> 2005 by Linus Torvalds, with the comment ``Let it rip''.  220 MB of
+> changed files in a single commit.  2 minutes real time just to read
+> all the files, never mind doing anything useful with them.
+
+I think you may well want to consider the initial commit special. In many 
+ways it is - it has no parents etc, so even apart from the fact that the 
+initial commit obviously tends to be a lot bigger than any other commit, 
+it actually fundamnetally is _technically_ different too.
+
+> To put it mildly, Darcs is not optimised for that sort of usage.
+
+It shouldn't be. Make the initial one a special case, and import things 
+file-by-file for that one special case.
+
+Afterwards, you should be able to handle other commits as "diffs", and
+then it's entirely reasonable to have the difference all in memory. If
+somebody really does end up having a 220MB diff, and darcs sucks at it,
+then at that point I don't think it's darcs' problem any more, it's the
+project that you're trying to track that is doing something wrong..
+
+So if you _just_ consider the initial git commit special (and it's easy to 
+notice by just looking at the lack of parents), then you may not need to 
+change darcs in the other cases.
+
+And almost all SCM's consider the initial state a special case anyway. The 
+fact that GIT doesn't is just a result of the strange way of representing 
+data, which doesn't care. I don't think you should emulate git in that 
+respect.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

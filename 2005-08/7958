@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Aug 30 16:26:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6F750264C9D
+	for <tkil@scrye.com>; Tue, 30 Aug 2005 16:26:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751385AbVH3WZY (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 30 Aug 2005 18:25:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751373AbVH3WZY
+	(ORCPT <rfc822;git-outgoing>); Tue, 30 Aug 2005 18:25:24 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:13047 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S1751385AbVH3WZX (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 30 Aug 2005 18:25:23 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050830222523.MPAF8185.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 30 Aug 2005 18:25:23 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Christian Meder <chris@absolutegiganten.org>
+Subject: Re: please pull ppc64-2.6.git
+References: <17170.25803.413408.44080@cargo.ozlabs.ibm.com>
+	<Pine.LNX.4.58.0508291006440.3243@g5.osdl.org>
+	<17171.39652.237263.484079@cargo.ozlabs.ibm.com>
+	<Pine.LNX.4.58.0508291706230.3243@g5.osdl.org>
+	<1125438048.9705.43.camel@localhost>
+cc:	git@vger.kernel.org
+Date:	Tue, 30 Aug 2005 15:25:22 -0700
+In-Reply-To: <1125438048.9705.43.camel@localhost> (Christian Meder's message
+	of "Tue, 30 Aug 2005 23:40:48 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v8xyjhxkd.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:7958
+
+Christian Meder <chris@absolutegiganten.org> writes:
+
+> Is alternates unthinkable with URLs (e.g. remote alternates).
+
+In order to read an object data, the low level core GIT layer
+does open()/mmap() of a file on the locally mounted filesystem.
+It also does opendir()/readdir()/closedir() to find what's
+available.
+
+If you can arrange to automount via luserfs (or whatever; we do
+not care much about particular implementation) so that it can do
+these filesystem operations, git will happily use it.
+
+Even in that case, the alternate you would tell git should look
+like a local filesystem path --- your automounting from remote
+specified with URL for such a path would happen outside GIT.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

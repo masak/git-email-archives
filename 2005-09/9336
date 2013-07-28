@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 26 16:15:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6659112A42A
+	for <tkil@scrye.com>; Mon, 26 Sep 2005 16:15:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932352AbVIZWPe (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 26 Sep 2005 18:15:34 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932354AbVIZWPe
+	(ORCPT <rfc822;git-outgoing>); Mon, 26 Sep 2005 18:15:34 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:22714 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S932352AbVIZWPd
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 26 Sep 2005 18:15:33 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j8QMFKeV002921
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 26 Sep 2005 15:15:20 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <433872F5.5060807@zytor.com>
+Date:	Mon, 26 Sep 2005 15:15:17 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Davide Libenzi <davidel@xmailserver.org>
+CC:	Giuseppe Bilotta <bilotta78@hotpop.com>, git@vger.kernel.org
+Subject: Re: git 0.99.7b doesn't build on Cygwin
+References: <ud5mznc1x.fsf@peter-b.co.uk> <Pine.LNX.4.63.0509231537390.11109@wgmdd8.biozentrum.uni-wuerzburg.de> <Pine.LNX.4.58.0509231647300.3308@g5.osdl.org> <Pine.LNX.4.63.0509240305450.26220@wgmdd8.biozentrum.uni-wuerzburg.de> <Pine.LNX.4.58.0509231935360.3308@g5.osdl.org> <Pine.LNX.4.63.0509232220330.30718@localhost.localdomain> <Pine.LNX.4.58.0509241102450.3308@g5.osdl.org> <Pine.LNX.4.63.0509241129300.31327@localhost.localdomain> <7vbr2iw6l3.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0509241426240.16554@localhost.localdomain> <Pine.LNX.4.58.0509241524270.3308@g5.osdl.org> <Pine.LNX.4.63.0509241540170.16554@localhost.localdomain> <1o29so2d1zd0i$.1d0cf386vluxi.dlg@40tude.net> <Pine.LNX.4.63.0509252203510.817@localhost.localdomain> <43386E0A.6010607@zytor.com> <Pine.LNX.4.63.0509261502080.1716@localhost.localdomain>
+In-Reply-To: <Pine.LNX.4.63.0509261502080.1716@localhost.localdomain>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:9336
+
+Davide Libenzi wrote:
+>>
+>> Except that Cygwin uses them transparently, so if you do open() and 
+>> read() under Cygwin they work as expected.
+> 
+> With Cygwin you don't even need .lnk files, since it already supports 
+> all the Unix symlinks APIs/cmds. The discussion born thinking about a 
+> native Win32 interface, w/out the Cygwin crud in it.
+> 
+
+Cygwin symbolic links are implemented as .lnk files on the underlying 
+filesystem was my point.
+
+	-hpaa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

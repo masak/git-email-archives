@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May  6 03:50:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 208741BB8CD
+	for <tkil@scrye.com>; Fri,  6 May 2005 03:50:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261199AbVEFJuF (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 6 May 2005 05:50:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261194AbVEFJuF
+	(ORCPT <rfc822;git-outgoing>); Fri, 6 May 2005 05:50:05 -0400
+Received: from www.tuxrocks.com ([64.62.190.123]:9993 "EHLO tuxrocks.com")
+	by vger.kernel.org with ESMTP id S261200AbVEFJtq (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 6 May 2005 05:49:46 -0400
+Received: from [10.0.0.10] (byu-gw.customer.csolutions.net [216.190.206.130])
+	(authenticated bits=0)
+	by tuxrocks.com (8.13.1/8.13.1) with ESMTP id j469nh6h008461
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <git@vger.kernel.org>; Fri, 6 May 2005 03:49:44 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <427B3DB3.4000507@tuxrocks.com>
+Date:	Fri, 06 May 2005 03:49:39 -0600
+From: Frank Sorenson <frank@tuxrocks.com>
+User-Agent: Mozilla Thunderbird 1.0.2 (X11/20050317)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: git@vger.kernel.org
+Subject: How do I...
+X-Enigmail-Version: 0.91.0.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 52
+Xref: brand.scrye.com linux.git:2633
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Okay, I've got some "How can I?" questions.  I hope I'm not the only one
+still working to "git it".
+
+How can I git a list of commits that have modified a particular file?
+For example, I'd like to do something like this:
+# git-file-revs Makefile
+f7eb55878f11575281add2a5726e483aed5e45bb
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+...
+
+How can I output a list of the filename(s) modified by a particular
+commit? (for example)
+# git-commit-info files 6741f3a7f9922391cd02b3ca1329e669497dc22f
+Makefile
+file1
+arch/file2
+
+Can I use cg-log to output just the information about a particular
+commit?  (I don't need all the commits, just the one I'm interested in).
+
+After doing a cg-update, can I cg-log just the changes since the last
+update?  Alternatively, how can I tell cg-log I'm caught up, and don't
+need anything historical?
+
+Can I do these with git/cogito, or will I need to start diving deeper
+into the code?
+
+Thanks,
+
+Frank
+- --
+Frank Sorenson - KD7TZK
+Systems Manager, Computer Science Department
+Brigham Young University
+frank@tuxrocks.com
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.6 (GNU/Linux)
+Comment: Using GnuPG with Thunderbird - http://enigmail.mozdev.org
+
+iD8DBQFCez2zaI0dwg4A47wRAuNAAJ0QsBkwwHFbFQshRGSDCLv/pEaZXQCfeZj6
+rqC9ZoVAYNeMwKqppbyXx9o=
+=pJDl
+-----END PGP SIGNATURE-----
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,77 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 20 06:48:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DC78528522F
+	for <tkil@scrye.com>; Thu, 20 Oct 2005 06:48:08 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932096AbVJTMr5 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 20 Oct 2005 08:47:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932113AbVJTMr5
+	(ORCPT <rfc822;git-outgoing>); Thu, 20 Oct 2005 08:47:57 -0400
+Received: from [209.223.236.162] ([209.223.236.162]:12716 "EHLO
+	blue.stonehenge.com") by vger.kernel.org with ESMTP id S932096AbVJTMr5
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 20 Oct 2005 08:47:57 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by blue.stonehenge.com (Postfix) with ESMTP id 60BC38F9C6
+	for <git@vger.kernel.org>; Thu, 20 Oct 2005 05:47:43 -0700 (PDT)
+Received: from blue.stonehenge.com ([127.0.0.1])
+ by localhost (blue.stonehenge.com [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 11147-02-24 for <git@vger.kernel.org>;
+ Thu, 20 Oct 2005 05:47:42 -0700 (PDT)
+Received: by blue.stonehenge.com (Postfix, from userid 1001)
+	id E91768FA39; Thu, 20 Oct 2005 05:47:42 -0700 (PDT)
+To:	git@vger.kernel.org
+Subject: rsync update appears broken now
+x-mayan-date: Long count = 12.19.12.13.1; tzolkin = 11 Imix; haab = 19 Yax
+From:	merlyn@stonehenge.com (Randal L. Schwartz)
+Date:	20 Oct 2005 05:47:42 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <86vezs9wy9.fsf@blue.stonehenge.com>
+Lines:	26
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 31
+Xref: brand.scrye.com linux.git:10350
+
+
+Doing my daily git-pull now broke in this way (using yesterday's git version):
+
+sent 1196 bytes  received 155984 bytes  4555.94 bytes/sec
+total size is 4511741  speedup is 28.70
+* committish: 6e1c6c103c522d01829f3a63992a023ff031e851
+  branch 'master' of rsync://rsync.kernel.org/pub/scm/git/git
+* refs/heads/origin: does not fast forward to branch 'master' of rsync://rsync.kernel.org/pub/scm/git/git;
+  not updating.
+Trying really trivial in-index merge...
+fatal: Merge requires file-level merging
+Nope.
+Trying simple merge.
+Simple merge failed, trying Automatic merge.
+Auto-merging fetch-pack.c.
+merge: warning: conflicts during merge
+ERROR: Merge conflict in fetch-pack.c.
+fatal: merge program failed
+Automatic merge failed; fix up by hand
+
+
+-- 
+Randal L. Schwartz - Stonehenge Consulting Services, Inc. - +1 503 777 0095
+<merlyn@stonehenge.com> <URL:http://www.stonehenge.com/merlyn/>
+Perl/Unix/security consulting, Technical writing, Comedy, etc. etc.
+See PerlTraining.Stonehenge.com for onsite and open-enrollment Perl training!
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

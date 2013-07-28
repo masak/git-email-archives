@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 02:22:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 48B1F2A22C1
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 02:22:49 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932312AbVKKJW0 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 04:22:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932313AbVKKJW0
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 04:22:26 -0500
+Received: from fed1rmmtao05.cox.net ([68.230.241.34]:34206 "EHLO
+	fed1rmmtao05.cox.net") by vger.kernel.org with ESMTP
+	id S932312AbVKKJWZ (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 11 Nov 2005 04:22:25 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao05.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051111092135.CNDD29333.fed1rmmtao05.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 11 Nov 2005 04:21:35 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Chris Wright <chrisw@osdl.org>
+Subject: Re: [PATCH] specfile cleanups
+References: <20051111091029.GW8041@shell0.pdx.osdl.net>
+cc:	git@vger.kernel.org
+Date:	Fri, 11 Nov 2005 01:22:24 -0800
+In-Reply-To: <20051111091029.GW8041@shell0.pdx.osdl.net> (Chris Wright's
+	message of "Fri, 11 Nov 2005 01:10:29 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vveyzpmi7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:11567
+
+Chris Wright <chrisw@osdl.org> writes:
+
+> Some specfile cleanups after the split.
+
+Thanks.
+
+Does it matter some Requires use comma and others don't?
+
+> -BuildRequires:	zlib-devel, openssl-devel, curl-devel  %{!?_without_docs:, xmlto, asciidoc > 6.0.3}
+> +BuildRequires:	zlib-devel >= 1.2, openssl-devel, curl-devel  %{!?_without_docs:, xmlto, asciidoc > 6.0.3}
+>  BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+>  Requires:	zlib >= 1.2, rsync, rcs, curl, less, openssh-clients, python >= 2.3, tk >= 8.4
+>  
+>  Group:          Development/Tools
+> -Requires:       subversion
+> +Requires:       git-core = %{version}-%{release} subversion
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

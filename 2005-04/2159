@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 29 14:49:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id AF582FC0FF
+	for <tkil@scrye.com>; Fri, 29 Apr 2005 14:49:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262953AbVD2UsN (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Apr 2005 16:48:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262952AbVD2UsK
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Apr 2005 16:48:10 -0400
+Received: from fire.osdl.org ([65.172.181.4]:44442 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262963AbVD2Ur1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 29 Apr 2005 16:47:27 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3TKlJs4004973
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 29 Apr 2005 13:47:20 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3TKlIqG003590;
+	Fri, 29 Apr 2005 13:47:19 -0700
+Date:	Fri, 29 Apr 2005 13:49:18 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Matt Mackall <mpm@selenic.com>
+Cc: Sean <seanlkml@sympatico.ca>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+Subject: Re: Mercurial 0.4b vs git patchbomb benchmark
+In-Reply-To: <20050429202341.GB21897@waste.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504291338540.18901@ppc970.osdl.org>
+References: <20050426004111.GI21897@waste.org> <Pine.LNX.4.58.0504251859550.18901@ppc970.osdl.org>
+ <20050429060157.GS21897@waste.org> <3817.10.10.10.24.1114756831.squirrel@linux1>
+ <20050429074043.GT21897@waste.org> <Pine.LNX.4.58.0504290728090.18901@ppc970.osdl.org>
+ <20050429163705.GU21897@waste.org> <Pine.LNX.4.58.0504291006450.18901@ppc970.osdl.org>
+ <20050429191207.GX21897@waste.org> <Pine.LNX.4.58.0504291248210.18901@ppc970.osdl.org>
+ <20050429202341.GB21897@waste.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 27
+Xref: brand.scrye.com linux.git:2159
+
+
+
+On Fri, 29 Apr 2005, Matt Mackall wrote:
+> 
+> The changeset log (and everything else) has an external index.
+
+I don't actually know exactly how the BK changeset file works, but your 
+explanation really sounds _very_ much like it.
+
+I didn't want to do anything that even smelled of BK. Of course, part of
+my reason for that is that I didn't feel comfortable with a delta model at
+all (I wouldn't know where to start, and I hate how they always end up
+having different rules for "delta"ble and "non-delta"ble objects).
+
+But another was that exactly since I've been using BK for so long, I
+wanted to make sure that my model just emulated the way I've been _using_
+BK, rather than any BK technical details.
+
+So it sounds like it could work fine, but it in fact sounds so much like 
+the ChangeSet file that I'd personally not have done it that way. 
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

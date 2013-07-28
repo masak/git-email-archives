@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  8 11:42:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0A48419B631
+	for <tkil@scrye.com>; Sun,  8 May 2005 11:42:25 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262911AbVEHRmO (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 8 May 2005 13:42:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262912AbVEHRmO
+	(ORCPT <rfc822;git-outgoing>); Sun, 8 May 2005 13:42:14 -0400
+Received: from s2.ukfsn.org ([217.158.120.143]:2955 "EHLO mail.ukfsn.org")
+	by vger.kernel.org with ESMTP id S262911AbVEHRmL (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 8 May 2005 13:42:11 -0400
+Received: from localhost (lucy.ukfsn.org [127.0.0.1])
+	by mail.ukfsn.org (Postfix) with ESMTP
+	id 9B557E6D4F; Sun,  8 May 2005 18:41:13 +0100 (BST)
+Received: from mail.ukfsn.org ([127.0.0.1])
+ by localhost (lucy.ukfsn.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 14332-06; Sun,  8 May 2005 18:41:13 +0100 (BST)
+Received: from oak.dgreaves.com (modem-2142.leopard.dialup.pol.co.uk [217.135.152.94])
+	by mail.ukfsn.org (Postfix) with ESMTP
+	id EB764E6A8B; Sun,  8 May 2005 18:41:12 +0100 (BST)
+Received: from ash.dgreaves.com ([10.0.0.90])
+	by oak.dgreaves.com with esmtp (Exim 4.20)
+	id 1DUpn3-0005kd-7f; Sun, 08 May 2005 18:42:05 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <427E4F6C.6090302@dgreaves.com>
+Date:	Sun, 08 May 2005 18:42:04 +0100
+From: David Greaves <david@dgreaves.com>
+User-Agent: Debian Thunderbird 1.0.2 (X11/20050331)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org, Junio C Hamano <junkio@cox.net>
+Subject: Re: [FILES] core-git documentation update
+References: <427E4AED.9050702@dgreaves.com> <20050508173109.GZ9495@pasky.ji.cz>
+In-Reply-To: <20050508173109.GZ9495@pasky.ji.cz>
+X-Enigmail-Version: 0.91.0.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 28
+Xref: brand.scrye.com linux.git:2766
+
+Petr Baudis wrote:
+
+>Dear diary, on Sun, May 08, 2005 at 07:22:53PM CEST, I got a letter
+>where David Greaves <david@dgreaves.com> told me that...
+>  
+>
+>>I've converted the core-git.txt to asciidoc format and created a trivial
+>>splitter to create individual txt, html and man pages.
+>>    
+>>
+>
+>Is there any reason to keep the source in a single huge monolithic file?
+>  
+>
+it just makes across the board changes easier and at the minute the
+stuff I've been doing is systemic.
+
+I have no problems with breaking it up - hence the script...
+
+David
+
+-- 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

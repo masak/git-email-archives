@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jul 10 08:39:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5063F1E4405
+	for <tkil@scrye.com>; Sun, 10 Jul 2005 08:39:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261949AbVGJOjk (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 10 Jul 2005 10:39:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261950AbVGJOjk
+	(ORCPT <rfc822;git-outgoing>); Sun, 10 Jul 2005 10:39:40 -0400
+Received: from baythorne.infradead.org ([81.187.226.107]:4051 "EHLO
+	baythorne.infradead.org") by vger.kernel.org with ESMTP
+	id S261949AbVGJOjk (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 10 Jul 2005 10:39:40 -0400
+Received: from localhost ([127.0.0.1] helo=localhost.localdomain)
+	by baythorne.infradead.org with esmtpsa (Exim 4.51 #1 (Red Hat Linux))
+	id 1Drcy3-0000QX-59; Sun, 10 Jul 2005 15:39:39 +0100
+Subject: Re: What broke snapshots now?
+From: David Woodhouse <dwmw2@infradead.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+In-Reply-To: <1120952292.23706.49.camel@baythorne.infradead.org>
+References: <1120907336.8058.293.camel@baythorne.infradead.org>
+	 <Pine.LNX.4.58.0507090908490.17536@g5.osdl.org>
+	 <1120952292.23706.49.camel@baythorne.infradead.org>
+Content-Type: text/plain
+Date:	Sun, 10 Jul 2005 15:39:38 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1121006378.23706.65.camel@baythorne.infradead.org>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-5) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by baythorne.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.4
+Lines: 38
+Xref: brand.scrye.com linux.git:5871
+
+On Sun, 2005-07-10 at 00:38 +0100, David Woodhouse wrote:
+> Doh. I thought I'd already done that, but in fact that was for the
+> scripts which feed the mailing list, while the snapshot script kept
+> using my copy. 
+
+Ok, the snapshot script starts working again if I change a few
+environment variables to match what the tools now expect.
+
+Now the mailing list feed isn't happy though -- it stopped being able to
+pull from your tree at around 0600 UTC (which I think is then the last
+DRM fix was added). I got this when trying to update...
+
+Tree change: 0109fd37046de64e8459f8c4f4706df9ac7cc82c:f179bc77d09b9087bfc559d0368bba350342ac76
+error: cannot read sha1_file for ce68a60e5c503aaef0a98f8d754effb6c7d9ee99
+fatal: unable to read destination tree (ce68a60e5c503aaef0a98f8d754effb6c7d9ee99)
+
+Applying changes...
+Fast-forwarding 0109fd37046de64e8459f8c4f4706df9ac7cc82c -> f179bc77d09b9087bfc559d0368bba350342ac76
+        on top of 0109fd37046de64e8459f8c4f4706df9ac7cc82c...
+error: cannot read sha1_file for ce68a60e5c503aaef0a98f8d754effb6c7d9ee99
+fatal: failed to unpack tree object f179bc77d09b9087bfc559d0368bba350342ac76
+
+Since it's just a fast-forward, I just copied the 'origin' tag into the
+'master' to move it forward. But it's still not happy:
+
+hera /home/dwmw2/git/mail-2.6 $ cg-diff -r 0109fd37046de64e8459f8c4f4706df9ac7cc82c:f179bc77d09b9087bfc559d0368bba350342ac76
+error: cannot read sha1_file for ce68a60e5c503aaef0a98f8d754effb6c7d9ee99
+fatal: unable to read destination tree (ce68a60e5c503aaef0a98f8d754effb6c7d9ee99)
+
+-- 
+dwmw2
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

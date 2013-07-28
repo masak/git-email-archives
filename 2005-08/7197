@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 13 11:14:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C062E97130
+	for <tkil@scrye.com>; Sat, 13 Aug 2005 11:14:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932218AbVHMRNs (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 13 Aug 2005 13:13:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932221AbVHMRNs
+	(ORCPT <rfc822;git-outgoing>); Sat, 13 Aug 2005 13:13:48 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:17933 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S932218AbVHMRNs (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 13 Aug 2005 13:13:48 -0400
+Received: (qmail 11113 invoked by uid 2001); 13 Aug 2005 17:13:45 -0000
+Date:	Sat, 13 Aug 2005 19:13:45 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: git@vger.kernel.org
+Subject: [HUP] Pulling broken by late Cogito commits
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050813171345.GI5608@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 34
+Xref: brand.scrye.com linux.git:7197
+
+  Hi,
+
+  if you are following Cogito development closely, please note that
+pulling over HTTP and SSH was broken by a late Cogito commit (74b4f7).
+This also means that you won't be able to pull the fix (which I just
+committed and might take a short while to mirror out) if you pull Cogito
+over HTTP.
+
+  cg-pull and cg-update will print the new commit ID on stdout, like:
+
+	Tree change:
+	ce471851ee8b6147ac57b211d9d76c3e4d625598:75d9f4a22abefd561147f88be9b7eb81af420f1b
+
+  The second ID (75d9f4a22abefd561147f88be9b7eb81af420f1b) is the new
+commit - but it won't get saved and therefore merged. You need to do
+that manually; e.g. if the stock Cogito is the origin branch (the usual
+setup), do this:
+
+	echo 75d9f4a22abefd561147f88be9b7eb81af420f1b >.git/refs/heads/origin
+
+  Then run cg-merge or rerun cg-update.
+
+  Sorry for any inconvenience,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

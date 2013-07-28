@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 13 16:28:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EAA81D1BBB
+	for <tkil@scrye.com>; Sat, 13 Aug 2005 16:28:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932378AbVHMW2x (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 13 Aug 2005 18:28:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932379AbVHMW2x
+	(ORCPT <rfc822;git-outgoing>); Sat, 13 Aug 2005 18:28:53 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:20496 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S932378AbVHMW2w (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 13 Aug 2005 18:28:52 -0400
+Received: (qmail 411 invoked by uid 2001); 13 Aug 2005 22:28:51 -0000
+Date:	Sun, 14 Aug 2005 00:28:51 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Ryan Anderson <ryan@michonline.com>
+Cc: Junio C Hamano <junkio@cox.net>,
+	Linus Torvalds <torvalds@osdl.org>,
+	Johannes Schindelin <Johannes.Schindelin@gmx.de>, git@vger.kernel.org
+Subject: Re: [PATCH] Use "-script" postfix for scripts
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050813222851.GN5608@pasky.ji.cz>
+References: <Pine.LNX.4.63.0508121526050.25606@wgmdd8.biozentrum.uni-wuerzburg.de> <7vwtmrxjbb.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0508121451590.3295@g5.osdl.org> <20050812222716.GD22778@mythryan2.michonline.com> <7v64uaqknh.fsf@assigned-by-dhcp.cox.net> <20050813222512.GA6844@mythryan2.michonline.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050813222512.GA6844@mythryan2.michonline.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:7217
+
+Dear diary, on Sun, Aug 14, 2005 at 12:25:12AM CEST, I got a letter
+where Ryan Anderson <ryan@michonline.com> told me that...
+> Honestly, I think the biggest argument against the "-script" suffix is
+> related to man-page usage:  It requires significant knowledge of the Git
+> project to figure out what name variant to use to find the man page.
+
+.oO(Hey, tcl has own man section as well!)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

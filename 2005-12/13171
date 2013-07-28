@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec  3 23:23:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0FC4E3140EB
+	for <tkil@scrye.com>; Sat,  3 Dec 2005 23:23:55 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932207AbVLDGXv (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Dec 2005 01:23:51 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932208AbVLDGXv
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Dec 2005 01:23:51 -0500
+Received: from fed1rmmtao03.cox.net ([68.230.241.36]:62952 "EHLO
+	fed1rmmtao03.cox.net") by vger.kernel.org with ESMTP
+	id S932207AbVLDGXu (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 4 Dec 2005 01:23:50 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao03.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051204062310.ZANK20875.fed1rmmtao03.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 4 Dec 2005 01:23:10 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: gitk - ewww
+References: <6CC092B0-101F-4D98-9761-B4E24A7CA35A@hawaga.org.uk>
+	<Pine.LNX.4.64.0512032040240.3099@g5.osdl.org>
+cc:	git@vger.kernel.org
+Date:	Sat, 03 Dec 2005 22:23:48 -0800
+In-Reply-To: <Pine.LNX.4.64.0512032040240.3099@g5.osdl.org> (Linus Torvalds's
+	message of "Sat, 3 Dec 2005 20:44:46 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpsodtm6j.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:13171
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> On Sun, 4 Dec 2005, Ben Clifford wrote:
+>> 
+>> Screen shot is at:
+>> http://www/hawaga.org.uk/ben/tech/gitk-eww-1.png
+>
+> Yes. gitk doesn't look wonderful with octopus merges, the lines start 
+> crossing. Oh well. I think you have to live with it, it's done this for a 
+> long time.
+
+FWIW, when the first ever Octopus was made, it looked wonderful.
+The way gitk renders octopus is somehow quite different these
+days.
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

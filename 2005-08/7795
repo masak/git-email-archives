@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 26 05:00:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 8B7DC2B743D
+	for <tkil@scrye.com>; Fri, 26 Aug 2005 05:00:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932552AbVHZLAY (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 26 Aug 2005 07:00:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932543AbVHZLAV
+	(ORCPT <rfc822;git-outgoing>); Fri, 26 Aug 2005 07:00:21 -0400
+Received: from i1.inoi.fi ([194.100.97.46]:56221 "EHLO mail.srv.inoi.fi")
+	by vger.kernel.org with ESMTP id S1751544AbVHZLAR (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 26 Aug 2005 07:00:17 -0400
+Received: from mail.srv.inoi.fi (localhost.localdomain [127.0.0.1])
+	by mail.srv.inoi.fi (Postfix) with ESMTP id 086B4FF9DD;
+	Fri, 26 Aug 2005 14:00:17 +0300 (EEST)
+Received: from pooch.inoi.fi (GMMCMXXXIV.dsl.saunalahti.fi [85.76.243.135])
+	by mail.srv.inoi.fi (Postfix) with ESMTP id B94D6FF7F9;
+	Fri, 26 Aug 2005 14:00:17 +0300 (EEST)
+Received: from pooch (pooch [127.0.0.1])
+	by pooch.inoi.fi (Postfix) with SMTP id 32ADABA069;
+	Fri, 26 Aug 2005 14:00:04 +0300 (EEST)
+Cc:	Tommi Virtanen <tv@debian.org>
+Subject: [PATCH] git bugfixes and cleanups, mainly Debian things
+In-Reply-To: <1125054003873-git-send-email-tv@debian.org>
+X-Mailer: git-send-email-script
+Date:	Fri, 26 Aug 2005 14:00:04 +0300
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <11250540042850-git-send-email-tv@debian.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Tommi Virtanen <tv@debian.org>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Tommi Virtanen <tv@debian.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 34
+Xref: brand.scrye.com linux.git:7795
+
+Make the git deb conflict with cogito versions prior to 0.13, as those
+versions used to contain git. Suggest cogito.
+
+Signed-off-by: Tommi Virtanen <tv@debian.org>
+
+---
+commit 62e16702fdb0cdc13822470f3a19b36956fd0d78
+tree bf96bcbdf1ca99390e6d6cb894da8384270c585f
+parent c87030106cfbe39f0ab2ed095f30f576235328fc
+author Tommi Virtanen <tv@debian.org> Fri, 26 Aug 2005 12:32:27 +0300
+committer Tommi Virtanen <tv@debian.org> Fri, 26 Aug 2005 12:32:27 +0300
+
+ debian/control |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/debian/control b/debian/control
+--- a/debian/control
++++ b/debian/control
+@@ -9,7 +9,8 @@ Package: git-core
+ Architecture: any
+ Depends: ${shlibs:Depends}, ${perl:Depends}, ${misc:Depends}, patch, rcs
+ Recommends: rsync, curl, ssh, libmail-sendmail-perl, libemail-valid-perl
+-Conflicts: git
++Suggests: cogito
++Conflicts: git, cogito (<< 0.13)
+ Description: The git content addressable filesystem
+  GIT comes in two layers. The bottom layer is merely an extremely fast
+  and flexible filesystem-based database designed to store directory trees
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

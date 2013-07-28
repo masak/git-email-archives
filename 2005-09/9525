@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 29 22:09:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F2A5419A022
+	for <tkil@scrye.com>; Thu, 29 Sep 2005 22:09:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751419AbVI3EJT (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 30 Sep 2005 00:09:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751420AbVI3EJT
+	(ORCPT <rfc822;git-outgoing>); Fri, 30 Sep 2005 00:09:19 -0400
+Received: from c62.cesmail.net ([216.154.195.54]:57004 "EHLO c62.cesmail.net")
+	by vger.kernel.org with ESMTP id S1751419AbVI3EJS (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 30 Sep 2005 00:09:18 -0400
+Received: from unknown (HELO gamma.cesmail.net) ([192.168.1.20])
+  by c62.cesmail.net with SMTP; 30 Sep 2005 00:09:17 -0400
+Received: (qmail 30794 invoked by uid 99); 30 Sep 2005 04:09:17 -0000
+Received: from core-philly-4-112.dynamic-dialup.coretel.net
+	(core-philly-4-112.dynamic-dialup.coretel.net [69.72.6.112]) by
+	webmail.spamcop.net (Horde) with HTTP for <proski@spamcop.net@cesmail.net>;
+	Fri, 30 Sep 2005 00:09:17 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050930000917.rrwggw4g0gogs8w4@webmail.spamcop.net>
+Date:	Fri, 30 Sep 2005 00:09:17 -0400
+From:	Pavel Roskin <proski@gnu.org>
+To:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Cc:	git <git@vger.kernel.org>
+Subject: Re: [PATCH] Fix gcc-4 warning in accept() call
+References: <200509292311.j8TNBZDm022135@inti.inf.utfsm.cl>
+In-Reply-To: <200509292311.j8TNBZDm022135@inti.inf.utfsm.cl>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+User-Agent: Internet Messaging Program (IMP) 4.0-cvs
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:9525
+
+Quoting Horst von Brand <vonbrand@inf.utfsm.cl>:
+
+> > +				unsigned int sslen = sizeof(ss);
+>
+> Shouldn't this be size_t?
+
+No.  That would actually break things on big-endian 64-bit platforms.
+
+You can see "info libc" for the whole story.  My (limited!) understanding is
+that it should be 32-bit for compatibility reasons, so socklen_t was a trick to
+fool size_t proponents from the POSIX committee :-)
+
+--
+Regards,
+Pavel Roskin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

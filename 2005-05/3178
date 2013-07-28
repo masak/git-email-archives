@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May 12 15:28:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 87401ACCDF
+	for <tkil@scrye.com>; Thu, 12 May 2005 15:28:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262135AbVELV0u (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 12 May 2005 17:26:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262132AbVELV0u
+	(ORCPT <rfc822;git-outgoing>); Thu, 12 May 2005 17:26:50 -0400
+Received: from iabervon.org ([66.92.72.58]:43013 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262130AbVELVYy (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 12 May 2005 17:24:54 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DWLAR-0002xr-00; Thu, 12 May 2005 17:24:27 -0400
+Date:	Thu, 12 May 2005 17:24:27 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Matt Mackall <mpm@selenic.com>
+Cc: Petr Baudis <pasky@ucw.cz>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org,
+	mercurial@selenic.com, Linus Torvalds <torvalds@osdl.org>
+Subject: Re: Mercurial 0.4e vs git network pull
+In-Reply-To: <20050512205735.GE5914@waste.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0505121709250.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 29
+Xref: brand.scrye.com linux.git:3178
+
+On Thu, 12 May 2005, Matt Mackall wrote:
+
+> Does this need an HTTP request (and round trip) per object? It appears
+> to. That's 2200 requests/round trips for my 800 patch benchmark.
+
+It requires a request per object, but it should be possible (with
+somewhat more complicated code) to overlap them such that it doesn't
+require a serial round trip for each. Since the server is sending static
+files, the overhead for each should be minimal.
+
+> How does git find the outstanding changesets?
+
+In the present mainline, you first have to find the head commit you
+want. I have a patch which does this for you over the same
+connection. Starting from that point, it tracks reachability on the
+receiving end, and requests anything it doesn't have.
+
+For the case of having nothing to do, it should be a single one-line
+request/response for a static file (after which the local end determines
+that it has everything it needs without talking to the server).
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

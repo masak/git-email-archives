@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 16:15:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2E3D0D9D5A
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 16:15:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751572AbVKIXOX (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 18:14:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751573AbVKIXOX
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 18:14:23 -0500
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:5561 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1751570AbVKIXOX (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 9 Nov 2005 18:14:23 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051109231400.CSAQ16347.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 9 Nov 2005 18:14:00 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Subject: Re: Cogito: cg-clone doesn't like packed tag objects
+References: <43348086.2040006@zytor.com> <20050924011833.GJ10255@pasky.or.cz>
+	<7vvf0r6x97.fsf@assigned-by-dhcp.cox.net>
+	<20050924125001.GB25069@pasky.or.cz>
+	<7virwqwd3z.fsf@assigned-by-dhcp.cox.net>
+	<20051109223303.GG30496@pasky.or.cz>
+cc:	git@vger.kernel.org
+Date:	Wed, 09 Nov 2005 15:14:21 -0800
+In-Reply-To: <20051109223303.GG30496@pasky.or.cz> (Petr Baudis's message of
+	"Wed, 9 Nov 2005 23:33:04 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v3bm59zxu.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:11427
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> ...; is it safe to assume that the
+> default template post-update hook shipped with GIT will be
+> good-to-be-autoenabled on public repositories 
+
+I do not think that is an unreasonable assumption.  After all,
+sample hooks are there to help people setting up common usage
+patterns, not to show off flashy but irrelevant-to-the-real-world-needs
+features ;-).
+
+Please yell loudly when somebody posts a patch or brings up a
+proposal to break that assumption in the future.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

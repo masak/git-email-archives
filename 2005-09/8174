@@ -1,0 +1,57 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep  7 16:28:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0C338285206
+	for <tkil@scrye.com>; Wed,  7 Sep 2005 16:28:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932151AbVIGW1A (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 7 Sep 2005 18:27:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932180AbVIGW1A
+	(ORCPT <rfc822;git-outgoing>); Wed, 7 Sep 2005 18:27:00 -0400
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:33927 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S932177AbVIGW07 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 7 Sep 2005 18:26:59 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050907222655.FXXK8185.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 7 Sep 2005 18:26:55 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	gitzilla@gmail.com
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Docs for git-checkout-script.
+References: <431F58DE.2000904@gmail.com>
+	<7v3bog6082.fsf@assigned-by-dhcp.cox.net> <431F5CE3.4000608@gmail.com>
+Date:	Wed, 07 Sep 2005 15:26:55 -0700
+In-Reply-To: <431F5CE3.4000608@gmail.com> (A. Large Angry's message of "Wed,
+	07 Sep 2005 17:34:27 -0400")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64tc4iq8.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 12
+Xref: brand.scrye.com linux.git:8174
+
+A Large Angry SCM <gitzilla@gmail.com> writes:
+
+> Hopefully you did git-diff-script, git-format-patch-script, and 
+> git-rev-parse which don't look easy to document.
+
+Not yet and not likely be in 0.99.6 but immediately after.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

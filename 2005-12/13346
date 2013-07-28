@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec  7 19:25:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 78FCA1A62D0
+	for <tkil@scrye.com>; Wed,  7 Dec 2005 19:25:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932634AbVLHCZQ (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 7 Dec 2005 21:25:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932641AbVLHCZQ
+	(ORCPT <rfc822;git-outgoing>); Wed, 7 Dec 2005 21:25:16 -0500
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:61105 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S932634AbVLHCZP (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 7 Dec 2005 21:25:15 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051208022359.MKPV17006.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 7 Dec 2005 21:23:59 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Subject: Re: [PATCH] Clean up file descriptors when calling hooks.
+References: <Pine.LNX.4.64.0512072052560.25300@iabervon.org>
+cc:	git@vger.kernel.org
+Date:	Wed, 07 Dec 2005 18:25:12 -0800
+In-Reply-To: <Pine.LNX.4.64.0512072052560.25300@iabervon.org> (Daniel
+	Barkalow's message of "Wed, 7 Dec 2005 21:04:38 -0500 (EST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vvey0mik7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:13346
+
+Daniel Barkalow <barkalow@iabervon.org> writes:
+
+> When calling post-update hook, don't leave stdin and stdout connected to 
+> the pushing connection.
+
+A quick question.  I understand "not connected to the pushing
+connection" is desirable, but is there a reason you chose to
+leave them open to /dev/null, not close()d?
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

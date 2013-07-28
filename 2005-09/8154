@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep  6 20:45:00 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 487AD2851FC
+	for <tkil@scrye.com>; Tue,  6 Sep 2005 20:45:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750792AbVIGCoq (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Sep 2005 22:44:46 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750796AbVIGCoq
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Sep 2005 22:44:46 -0400
+Received: from rproxy.gmail.com ([64.233.170.200]:37054 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750792AbVIGCop convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Tue, 6 Sep 2005 22:44:45 -0400
+Received: by rproxy.gmail.com with SMTP id i8so939802rne
+        for <git@vger.kernel.org>; Tue, 06 Sep 2005 19:44:41 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=Sg1DzgH2+VyYLkdMgLxaGzZrRRzLncxQbjohu5D5obJl1RFRikYZmtpaztI2uGOJEZdySxyQlPGbLnMlagADSczJawJxCJDz7Y+oijezGzWFJuRCbzjBtmth+T+ylyq3x8BO1KXFJ4mJql+x4aniyOcnWFJIhJNP9p3lDBq0Vxk=
+Received: by 10.38.181.31 with SMTP id d31mr836716rnf;
+        Tue, 06 Sep 2005 19:44:40 -0700 (PDT)
+Received: by 10.38.101.53 with HTTP; Tue, 6 Sep 2005 19:44:40 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f905090619444f94292e@mail.gmail.com>
+Date:	Wed, 7 Sep 2005 14:44:40 +1200
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+Reply-To: martin.langhoff@gmail.com
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: [PATCH] git-cvsimport-script: handling of tags
+Cc:	Git Mailing List <git@vger.kernel.org>,
+	Junio C Hamano <junkio@cox.net>
+In-Reply-To: <431DD381.4050709@zytor.com>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <431DD381.4050709@zytor.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:8154
+
+On 9/7/05, H. Peter Anvin <hpa@zytor.com> wrote:
+> This patch changes git-cvsimport-script so that it creates tag objects
+> instead of refs to commits, and adds an option, -u, to convert
+> underscores in branch and tag names to dots (since CVS doesn't allow
+> dots in branches and tags.)
+
+looks good. Will it add proper tag objects for tags already imported
+and for tags added to the project post-initial-git-import?
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 22 12:38:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 52C6E28AF72
+	for <tkil@scrye.com>; Thu, 22 Dec 2005 12:38:39 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030180AbVLVTiY (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Dec 2005 14:38:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030271AbVLVTiY
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Dec 2005 14:38:24 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:20907 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1030180AbVLVTiY (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 22 Dec 2005 14:38:24 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 4918D13F9DE; Thu, 22 Dec 2005 20:38:23 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 2FB9C9E3C9; Thu, 22 Dec 2005 20:38:23 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 18B4E9E2AA; Thu, 22 Dec 2005 20:38:23 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 01A2813F9DE; Thu, 22 Dec 2005 20:38:23 +0100 (CET)
+Date:	Thu, 22 Dec 2005 20:38:23 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: [PATCH] git-format-patch should show the correct version
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512222036460.31820@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:13956
+
+
+We want to record the version of the tools the patch was generated with. 
+While these tools could be rebuilt, git-format-patch stayed the same and 
+report the wrong version.
+
+Signed-off-by: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+
+---
+
+ Makefile |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+ca85baee8d11e5c4c6de4678fecf311a029c1d7c
+diff --git a/Makefile b/Makefile
+index d35637c..5dec33a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -406,6 +406,9 @@ $(patsubst %.py,%,$(SCRIPT_PYTHON)) : % 
+ git-cherry-pick: git-revert
+ 	cp $< $@
+ 
++# format-patch records GIT_VERSION
++git-format-patch: Makefile
++
+ %.o: %.c
+ 	$(CC) -o $*.o -c $(ALL_CFLAGS) $<
+ %.o: %.S
+-- 
+1.0.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

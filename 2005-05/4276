@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Tue May 31 07:52:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 781581BAB9F
+	for <tkil@scrye.com>; Tue, 31 May 2005 07:52:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261760AbVEaNwb (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 31 May 2005 09:52:31 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261876AbVEaNwb
+	(ORCPT <rfc822;git-outgoing>); Tue, 31 May 2005 09:52:31 -0400
+Received: from ebiederm.dsl.xmission.com ([166.70.28.69]:6310 "EHLO
+	ebiederm.dsl.xmission.com") by vger.kernel.org with ESMTP
+	id S261760AbVEaNw3 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 31 May 2005 09:52:29 -0400
+Received: from ebiederm.dsl.xmission.com (localhost [127.0.0.1])
+	by ebiederm.dsl.xmission.com (8.12.3/8.12.3/Debian-7.1) with ESMTP id j4VDkY9N032142;
+	Tue, 31 May 2005 07:46:35 -0600
+Received: (from eric@localhost)
+	by ebiederm.dsl.xmission.com (8.12.3/8.12.3/Debian-7.1) id j4VDjZGU032133;
+	Tue, 31 May 2005 07:45:35 -0600
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: I want to release a "git-1.0"
+References: <Pine.LNX.4.58.0505301253070.1876@ppc970.osdl.org>
+From: ebiederm@xmission.com (Eric W. Biederman)
+Date:	31 May 2005 07:45:33 -0600
+In-Reply-To: <Pine.LNX.4.58.0505301253070.1876@ppc970.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <m1psv7bjb6.fsf@ebiederm.dsl.xmission.com>
+Lines:	14
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 19
+Xref: brand.scrye.com linux.git:4276
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> Ok, I'm at the point where I really think it's getting close to a 1.0, and
+> make another tar-ball etc. I obviously feel that it's already way superior
+> to CVS, but I also realize that somebody who is used to CVS may not 
+> actually realize that very easily.
+
+I way behind the power curve on learning git at this point but
+one piece of the puzzle that CVS has that I don't believe git does
+are multiple people committing to the same repository, especially
+remotely.  I don't see that as a down side of git but it is a common
+way people CVS so it is worth documenting.
+
+Eric
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

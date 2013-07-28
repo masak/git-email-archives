@@ -1,0 +1,52 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 15:15:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_06_12 autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2C8FD2385F7
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 15:15:53 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964822AbVKLWPm (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 17:15:42 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932503AbVKLWPl
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 17:15:41 -0500
+Received: from pincoya.inf.utfsm.cl ([200.1.19.3]:35480 "EHLO
+	pincoya.inf.utfsm.cl") by vger.kernel.org with ESMTP
+	id S932353AbVKLWPl (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 12 Nov 2005 17:15:41 -0500
+Received: from pincoya.inf.utfsm.cl (localhost.localdomain [127.0.0.1])
+	by pincoya.inf.utfsm.cl (8.13.5/8.13.1) with ESMTP id jACDrMNk031209
+	for <git@vger.kernel.org>; Sat, 12 Nov 2005 10:53:22 -0300
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511121353.jACDrMNk031209@pincoya.inf.utfsm.cl>
+To:	git@vger.kernel.org
+Subject: RPM report on git and cogito
+X-Mailer: MH-E 7.4.2; nmh 1.1; XEmacs 21.4 (patch 17)
+Date:	Sat, 12 Nov 2005 10:53:22 -0300
+From:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:11704
+
+Fedora rawhide, x86_64
+
+Latest git and cogito build fine, and git-core-arch now has the correct tla
+dependency. But git-core-email still asks for perl(Email::Valid) which is
+/not/ provided by the Fedora repositories. I don't understand enough of
+what it tries to do with that to go in and hack it out.
+-- 
+Dr. Horst H. von Brand                   User #22616 counter.li.org
+Departamento de Informatica                     Fono: +56 32 654431
+Universidad Tecnica Federico Santa Maria              +56 32 654239
+Casilla 110-V, Valparaiso, Chile                Fax:  +56 32 797513
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

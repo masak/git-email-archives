@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  1 16:21:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D4A422A3A3C
+	for <tkil@scrye.com>; Mon,  1 Aug 2005 16:21:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261331AbVHAWNJ (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 1 Aug 2005 18:13:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261250AbVHAWKZ
+	(ORCPT <rfc822;git-outgoing>); Mon, 1 Aug 2005 18:10:25 -0400
+Received: from sccrmhc12.comcast.net ([63.240.76.22]:42175 "EHLO
+	sccrmhc12.comcast.net") by vger.kernel.org with ESMTP
+	id S261171AbVHAWIt (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 1 Aug 2005 18:08:49 -0400
+Received: from uglybox (pcp08381697pcs.wbrmfd01.mi.comcast.net[68.43.216.103])
+          by comcast.net (sccrmhc12) with ESMTP
+          id <20050801220842012006aqhne>; Mon, 1 Aug 2005 22:08:47 +0000
+Received: from noel by uglybox with local (Exim 4.52)
+	id 1DziS0-0003tV-US; Mon, 01 Aug 2005 18:08:01 -0400
+Date:	Mon, 1 Aug 2005 18:08:00 -0400
+From: Noel Maddy <noel@zhtwn.com>
+To: Ryan Anderson <ryan@michonline.com>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH 1/3] Add git-send-email-script - tool to send emails from git-format-patch-script
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050801220800.GA12331@uglybox.localnet>
+Reply-To: Noel Maddy <noel@zhtwn.com>
+References: <11227978451100@foobar.com> <7vbr4jmhqe.fsf@assigned-by-dhcp.cox.net> <20050731235242.GH32263@mythryan2.michonline.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050731235242.GH32263@mythryan2.michonline.com>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 52
+Xref: brand.scrye.com linux.git:6702
+
+On Sun, Jul 31, 2005 at 07:52:42PM -0400, Ryan Anderson wrote:
+> On Sun, Jul 31, 2005 at 02:45:29AM -0700, Junio C Hamano wrote:
+> > Ryan Anderson <ryan@michonline.com> writes:
+...
+> > 
+> > Also you seem to be losing the ordering in @to and @cc by the
+> > use of uniquefying "keys %to" and "keys %cc".  I can not offhand
+> > tell if it matters, but you probably would care, at least for
+> > the primary recipients listed in @to array.
+> 
+> Well, it was kind of annoying to see the same email address appear 2-3
+> times in the email, because of the way I pull in all the relevant emails
+> from various places.  So I really needed a way to cull the duplicates.
+> I don't believe ordering is really significant in To: or Cc: lines, for
+> really anyone.  I could do soemthing like this, instead, I suppose:
+> 
+> 	my @clean_to = ();
+> 	my %dupe_check_to = ();
+> 	foreach my $to_entry (@to) {
+> 		if (!$dupe_check_to{Email::Valid->address($to_entry)}++) {
+> 			push @clean_to, $to_entry;
+> 		}
+> 	}
+> 
+> 	my $to = join(", ", @clean_to);
+> 
+> I just like the first one a little better (though, I can't really pin
+> down why).
+
+Or, more simply (if perl'y):
+
+  my %tmp;
+  @to = grep { ! $tmp{Email::Valid->address($_)}++ } @to;
+
+...although I'd probably defensively localize the temporary var:
+
+  {
+    my %tmp;
+    @to = grep { ! $tmp{Email::Valid->address($_)}++ } @to;
+  }
+
+
+-- 
+Short-term expediency always fails in the long term.
+					    -- The Preacher at Arrakeen
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+Noel Maddy <noel@zhtwn.com>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

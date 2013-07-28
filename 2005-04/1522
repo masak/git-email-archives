@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 15:14:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 725676EDB
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 15:14:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262429AbVDXVOJ (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 17:14:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262431AbVDXVOJ
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 17:14:09 -0400
+Received: from iabervon.org ([66.92.72.58]:58117 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262429AbVDXVOB (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Apr 2005 17:14:01 -0400
+Received: from barkalow (helo=localhost)
+	by iabervon.org with local-esmtp (Exim 2.12 #2)
+	id 1DPoQZ-0003VF-00; Sun, 24 Apr 2005 17:14:07 -0400
+Date:	Sun, 24 Apr 2005 17:14:07 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: git@vger.kernel.org, Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [RFC] Design of name-addressed data portion
+In-Reply-To: <20050424205438.GN1507@pasky.ji.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.21.0504241703060.30848-100000@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 45
+Xref: brand.scrye.com linux.git:1522
+
+On Sun, 24 Apr 2005, Petr Baudis wrote:
+
+> Dear diary, on Sun, Apr 24, 2005 at 08:17:23PM CEST, I got a letter
+> where Daniel Barkalow <barkalow@iabervon.org> told me that...
+> > I'd propose the following structure:
+> > 
+> >  objects/    the content-addressed repository portion
+> >  references/ the name-addressed repository portion
+> 
+> references/ is just too long for my taste. ;-) What about just refs/ ?
+
+Fine with me. I guess you can't just hit tab when writing a script. :)
+
+> >    heads/    the heads that are being used out of this repository
+> >      DEFAULT the head that people pulling this repository mean by default
+> >      ...     other heads, by name, that fsck-cache should mark reachable
+> >    tags/     the tags
+> >      ...     files with the symbolic name of the tags, containing the hash
+> >  info/       other per-repository information
+> >    remotes   URLs of remote repositories
+> >    complete  hashes that the repository contains all references from
+> >    missing   hashes that the repository lacks but wants
+> >    excluded  hashes that the repository doesn't want
+> >  ...         other files are per .git directory, not shared on push/pull
+> >  index       
+> >  HEAD        symlink to the head that is the local default
+> >  tracked     remote that this working directory tracks
+> 
+> I will probably throw the local stuff to local/.
+
+That seems to encourage confusion with the local/remote repository
+contrast. I think branch/ or fork/ would be more clear. Putting it in a
+directory doesn't seem so important to me, since it won't be shared
+anyway. (The reason I want info/ is so that you just symlink info/ to the
+master info/, and you don't have to remember to make a link for each
+file).
+
+	-Daniel
+*This .sig left intentionally blank*
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 18:09:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4A6C727B8E2
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 18:09:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965186AbVIVAJc (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 20:09:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965188AbVIVAJc
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 20:09:32 -0400
+Received: from ozlabs.org ([203.10.76.45]:12505 "EHLO ozlabs.org")
+	by vger.kernel.org with ESMTP id S965186AbVIVAJb (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 21 Sep 2005 20:09:31 -0400
+Received: by ozlabs.org (Postfix, from userid 1003)
+	id 98311682FA; Thu, 22 Sep 2005 10:09:30 +1000 (EST)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <17201.61667.465005.53654@cargo.ozlabs.ibm.com>
+Date:	Thu, 22 Sep 2005 09:46:43 +1000
+From:	Paul Mackerras <paulus@samba.org>
+To:	Sven Verdoolaege <skimo@kotnet.org>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] gitk: add Update menu item.
+In-Reply-To: <20050920122423.GA4228MdfPADPa@greensroom.kotnet.org>
+References: <20050920122423.GA4228MdfPADPa@greensroom.kotnet.org>
+X-Mailer: VM 7.19 under Emacs 21.4.1
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 46
+Xref: brand.scrye.com linux.git:9078
+
+Sven Verdoolaege writes:
+
+> Update will redraw the commits if any commits have been added to any
+> of the selected heads.  The new commits appear on the top.
+
+I like the idea but I am not sure if you have implemented it the best
+way.
+
+Are we sure that all the commits we had before doing the update will
+still be there after the update?  What if I had checked in some
+changes and run gitk, and then decided that the commit I just created
+was wrong, and so I set HEAD to HEAD^1 and did a git prune, then told
+gitk to update - shouldn't I see the top commit disappear?
+
+Maybe it would be better to just clean out everything and re-read all
+the commits from scratch.
+
+Also, I'm not convinced that doing ^$id for all tags, heads and other
+refs is correct.  Although we have read the reference and know the ID,
+that doesn't mean we have seen that commit and displayed it.
+
+The more general problem is to provide a way for the user to change
+the set of commits displayed using a dialog box.  That would require
+gitk to understand its command-line arguments so that the elements of
+the dialog box could be initialized properly, though.
+
+Some other comments:
+
+> +    .bar.file add command -label "Update" -command "updatecommits [list $rargs]"
+
+This would be better as:
+
+    .bar.file add command -label "Update" -command [list updatecommits $rargs]
+
+> +    rereadrefs
+
+We don't need the redrawing part of rereadrefs, just the bit that
+unsets tagids etc. and calls readrefs.
+
+Regards,
+Paul.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

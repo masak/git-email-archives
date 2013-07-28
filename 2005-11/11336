@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  8 10:45:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 45E42D9D7D
+	for <tkil@scrye.com>; Tue,  8 Nov 2005 10:45:42 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030263AbVKHRp2 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 8 Nov 2005 12:45:28 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965207AbVKHRp2
+	(ORCPT <rfc822;git-outgoing>); Tue, 8 Nov 2005 12:45:28 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:10462 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S965156AbVKHRp1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 8 Nov 2005 12:45:27 -0500
+Received: (qmail 19108 invoked by uid 2001); 8 Nov 2005 18:45:24 +0100
+Date:	Tue, 8 Nov 2005 18:45:24 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	git@vger.kernel.org
+Subject: Re: Regarding: git-lost+found
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051108174524.GD1431@pasky.or.cz>
+References: <Pine.LNX.4.63.0511081811080.18406@wbgn013.biozentrum.uni-wuerzburg.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.63.0511081811080.18406@wbgn013.biozentrum.uni-wuerzburg.de>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:11336
+
+Dear diary, on Tue, Nov 08, 2005 at 06:13:06PM CET, I got a letter
+where Johannes Schindelin <Johannes.Schindelin@gmx.de> told me that...
+> I think this is a valuable addition to the "Now what?" part of git. 
+> However, I'd like to see the results stored into .git/refs/lost+found/ 
+> rather than .git/lost+found/, so that it is possible to inspect them 
+> easily with gitk or git-show-branch.
+
+What is it supposed to be?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

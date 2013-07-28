@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May  7 03:03:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DDCE98D642
+	for <tkil@scrye.com>; Sat,  7 May 2005 03:03:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262865AbVEGJBm (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 7 May 2005 05:01:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262867AbVEGJBm
+	(ORCPT <rfc822;git-outgoing>); Sat, 7 May 2005 05:01:42 -0400
+Received: from pentafluge.infradead.org ([213.146.154.40]:37024 "EHLO
+	pentafluge.infradead.org") by vger.kernel.org with ESMTP
+	id S262865AbVEGI7T (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 7 May 2005 04:59:19 -0400
+Received: from shinybook.infradead.org ([81.187.226.99])
+	by pentafluge.infradead.org with esmtpsa (Exim 4.43 #1 (Red Hat Linux))
+	id 1DUL9V-00057x-9G; Sat, 07 May 2005 09:59:14 +0100
+Subject: Re: How do I...
+From: David Woodhouse <dwmw2@infradead.org>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Junio C Hamano <junkio@cox.net>,
+	Frank Sorenson <frank@tuxrocks.com>, git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.58.0505061652240.2233@ppc970.osdl.org>
+References: <427B3DB3.4000507@tuxrocks.com>
+	 <Pine.LNX.4.58.0505060905090.2233@ppc970.osdl.org>
+	 <7vsm10cnx3.fsf@assigned-by-dhcp.cox.net>
+	 <Pine.LNX.4.58.0505061006060.2233@ppc970.osdl.org>
+	 <1115404771.16187.343.camel@hades.cambridge.redhat.com>
+	 <Pine.LNX.4.58.0505061158520.2233@ppc970.osdl.org>
+	 <1115406628.16187.353.camel@hades.cambridge.redhat.com>
+	 <Pine.LNX.4.58.0505061552140.2233@ppc970.osdl.org>
+	 <1115421642.29495.53.camel@localhost.localdomain>
+	 <Pine.LNX.4.58.0505061652240.2233@ppc970.osdl.org>
+Content-Type: text/plain
+Date:	Sat, 07 May 2005 09:58:35 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1115456316.29495.57.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.2 (2.2.2-1) 
+Content-Transfer-Encoding: 7bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by pentafluge.infradead.org
+	See http://www.infradead.org/rpr.html
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,TW_DW,TW_WM 
+	autolearn=no version=3.0.3
+Lines: 17
+Xref: brand.scrye.com linux.git:2716
+
+On Fri, 2005-05-06 at 16:54 -0700, Linus Torvalds wrote:
+> But trying to be clever while building this up is just crazy talk. When
+> diff-tree prints out the changes, it has no way of knowing what the
+> context around it was - it doesn't know about merges far away, and it
+> _shouldn't_ know.
+
+Isn't that what I suggested? Start with full history, mark the
+'interesting' commits which touch the file(s) in question, then prune.
+
+-- 
+dwmw2
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

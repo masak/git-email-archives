@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jun 11 02:51:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0F74D242106
+	for <tkil@scrye.com>; Sat, 11 Jun 2005 02:51:56 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261266AbVFKIvl (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 11 Jun 2005 04:51:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261525AbVFKIvl
+	(ORCPT <rfc822;git-outgoing>); Sat, 11 Jun 2005 04:51:41 -0400
+Received: from rproxy.gmail.com ([64.233.170.202]:19420 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261266AbVFKIve convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 11 Jun 2005 04:51:34 -0400
+Received: by rproxy.gmail.com with SMTP id i8so420480rne
+        for <git@vger.kernel.org>; Sat, 11 Jun 2005 01:51:34 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=qdbV1R/cUgFxCepHHBV2GJdFrO6OVllb8/zHO0NClwBzor96d3b+0V4DWgHh095bLAOBCqQVN4HX0bN1e4bbd1L+2mq+95p1OcpLDQhODwUBnK3hSfnSE3byC7+VRm3ZRkDE2sjHzuExz67PjTzL9rSWh3JvI1ls8ffrceMlIbw=
+Received: by 10.38.101.36 with SMTP id y36mr66596rnb;
+        Sat, 11 Jun 2005 01:51:34 -0700 (PDT)
+Received: by 10.38.104.42 with HTTP; Sat, 11 Jun 2005 01:51:34 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2cfc40320506110151624b3ec1@mail.gmail.com>
+Date:	Sat, 11 Jun 2005 18:51:34 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+Reply-To: jon@blackcubes.dyndns.org
+To: Git Mailing List <git@vger.kernel.org>
+Subject: porcelain question: state of the art for undo-redo?
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.3
+Lines: 17
+Xref: brand.scrye.com linux.git:4845
+
+What porcelain layer solutions currently exist for effective undo-edit-redo?
+
+For example, if you are working on a series of patches in a series,
+then realise there is a mistake in a patch early in the series, how
+does one mod that patch, then reapply all the following patches to
+produce a slightly modified patch series with as little stuffing
+around as possible?
+
+jon.
+-- 
+homepage: http://www.zeta.org.au/~jon/
+blog: http://orwelliantremors.blogspot.com/
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

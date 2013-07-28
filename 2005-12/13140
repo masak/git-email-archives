@@ -1,0 +1,51 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec  3 03:33:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EE73E472EA
+	for <tkil@scrye.com>; Sat,  3 Dec 2005 03:33:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751230AbVLCKdE (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 3 Dec 2005 05:33:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751210AbVLCKdD
+	(ORCPT <rfc822;git-outgoing>); Sat, 3 Dec 2005 05:33:03 -0500
+Received: from [85.8.31.11] ([85.8.31.11]:51133 "EHLO mail6.wasadata.com")
+	by vger.kernel.org with ESMTP id S1751230AbVLCKdD (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 3 Dec 2005 05:33:03 -0500
+Received: from c165 (unknown [85.8.2.189])
+	by mail6.wasadata.com (Postfix) with ESMTP
+	id 7DBDC4116; Sat,  3 Dec 2005 11:42:46 +0100 (CET)
+Received: from ksorim by c165 with local (Exim 3.36 #1 (Debian))
+	id 1EiUhL-0000JU-00; Sat, 03 Dec 2005 11:32:55 +0100
+Date:	Sat, 3 Dec 2005 11:32:55 +0100
+From:	Fredrik Kuivinen <freku045@student.liu.se>
+To:	junkio@cox.net
+Cc:	git@vger.kernel.org
+Subject: [PATCH 0/4] Merge test cases
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051203103255.GA4896@c165.ib.student.liu.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 10
+Xref: brand.scrye.com linux.git:13140
+
+This series adds two test cases for merge strategies. The first one
+test that something sensible is done in case of directory/file
+conflicts, the second one tests a criss-cross merge.
+
+- Fredrik
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,89 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 19 16:18:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0A47E10237C
+	for <tkil@scrye.com>; Fri, 19 Aug 2005 16:18:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932323AbVHSWSk (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 19 Aug 2005 18:18:40 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932326AbVHSWSk
+	(ORCPT <rfc822;git-outgoing>); Fri, 19 Aug 2005 18:18:40 -0400
+Received: from rossby.metr.ou.edu ([129.15.192.80]:43782 "EHLO
+	rossby.metr.ou.edu") by vger.kernel.org with ESMTP id S932323AbVHSWSk
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 19 Aug 2005 18:18:40 -0400
+Received: from rossby.metr.ou.edu (localhost.metr.ou.edu [127.0.0.1])
+	by rossby.metr.ou.edu (8.12.9p2/8.12.9) with ESMTP id j7JMEj5L097824;
+	Fri, 19 Aug 2005 17:14:45 -0500 (CDT)
+	(envelope-from apw@rossby.metr.ou.edu)
+Received: (from apw@localhost)
+	by rossby.metr.ou.edu (8.12.9p2/8.12.9/Submit) id j7JMEjau097823;
+	Fri, 19 Aug 2005 17:14:45 -0500 (CDT)
+	(envelope-from apw)
+Date:	Fri, 19 Aug 2005 17:14:45 -0500
+From:	Amos Waterland <apw@rossby.metr.ou.edu>
+To:	junkio@cox.net
+Cc:	git@vger.kernel.org
+Subject: [PATCH] Make git pull default to origin
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050819221445.GA97789@rossby.metr.ou.edu>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4.1i
+X-yoursite-MailScanner-Information: Please contact the ISP for more information
+X-yoursite-MailScanner:	Not scanned: please contact your Internet E-Mail Service Provider for details
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (score=0,
+	required 6)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 40
+Xref: brand.scrye.com linux.git:7573
+
+Currently, typing `git pull' without a third argument will result in an
+error message.  Make it default to orgin, which is what the user
+typically means.
+
+Signed-off-by: Amos Waterland <apw@rossby.metr.ou.edu>
+
+---
+
+ git-pull-script |   11 +++++++++--
+ 1 files changed, 9 insertions(+), 2 deletions(-)
+
+de9b7753b008a1dc1bdd46f87c76ee3cd9a81d19
+diff --git a/git-pull-script b/git-pull-script
+--- a/git-pull-script
++++ b/git-pull-script
+@@ -1,10 +1,17 @@
+ #!/bin/sh
+ #
+ . git-sh-setup-script || die "Not a git archive"
+-. git-parse-remote "$@"
++
++if [ $# -eq 0 ]; then
++    remote="origin"
++else
++    remote="$@"
++fi
++
++. git-parse-remote "$remote"
+ merge_name="$_remote_name"
+ 
+-git-fetch-script "$@" || exit 1
++git-fetch-script "$remote" || exit 1
+ 
+ git-resolve-script \
+ 	"$(cat "$GIT_DIR"/HEAD)" \
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Aug  4 18:03:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 80529657EB
+	for <tkil@scrye.com>; Thu,  4 Aug 2005 18:03:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262758AbVHEAD0 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 4 Aug 2005 20:03:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262785AbVHEADZ
+	(ORCPT <rfc822;git-outgoing>); Thu, 4 Aug 2005 20:03:25 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:49850 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262758AbVHEADW (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 4 Aug 2005 20:03:22 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7503HjA008379
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 4 Aug 2005 17:03:18 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7503GCD017151;
+	Thu, 4 Aug 2005 17:03:17 -0700
+Date:	Thu, 4 Aug 2005 17:03:17 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Tree tags again..
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508041702180.3258@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 16
+Xref: brand.scrye.com linux.git:6824
+
+
+Junio, maybe there should be some test-case for this:
+
+	error: Object 5dc01c595e6c6ec9ccda4f6f69c131c0dd945f8c is a tree, not a commit
+	error: remote ref 'refs/tags/v2.6.11' is not a strict subset of local ref 'refs/tags/v2.6.11'.
+	error: Object 5dc01c595e6c6ec9ccda4f6f69c131c0dd945f8c is a tree, not a commit
+	error: remote ref 'refs/tags/v2.6.11-tree' is not a strict subset of local ref 'refs/tags/v2.6.11-tree'.
+
+Hmm?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

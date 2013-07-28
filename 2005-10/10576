@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 25 06:53:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5EC2E6E474
+	for <tkil@scrye.com>; Tue, 25 Oct 2005 06:53:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750988AbVJYMxQ (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 25 Oct 2005 08:53:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751161AbVJYMxQ
+	(ORCPT <rfc822;git-outgoing>); Tue, 25 Oct 2005 08:53:16 -0400
+Received: from linux-server1.op5.se ([193.201.96.2]:9703 "EHLO smtp-gw1.op5.se")
+	by vger.kernel.org with ESMTP id S1750988AbVJYMxP (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 25 Oct 2005 08:53:15 -0400
+Received: from [192.168.1.19] (1-2-9-7a.gkp.gbg.bostream.se [82.182.116.44])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id BCBD86BD00
+	for <git@vger.kernel.org>; Tue, 25 Oct 2005 14:53:14 +0200 (CEST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <435E2ABA.8030907@op5.se>
+Date:	Tue, 25 Oct 2005 14:53:14 +0200
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+Subject: Re: [PATCH] git_progname
+References: <435ABB99.5020908@op5.se> <7vll0l6pn7.fsf@assigned-by-dhcp.cox.net> <435B5AE0.1060400@op5.se> <7v1x2cyplw.fsf@assigned-by-dhcp.cox.net> <435DF6DA.6010205@op5.se> <20051025093150.GB30889@pasky.or.cz> <435E1307.3090209@op5.se>
+In-Reply-To: <435E1307.3090209@op5.se>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 29
+Xref: brand.scrye.com linux.git:10576
+
+Andreas Ericsson wrote:
+> Petr Baudis wrote:
+> 
+>>> grep -l "int main" *.c | xargs -- sed -i '/^#include/i#include "main.h"'
+>>
+>>
+>> Urgh. Now this is ugly. What about making it a bit more intrusive while
+>> quite more saner?
+>>
+> 
+> I'm not sure what you're referring to. The one-liner is a one-liner. 
+> It's sort of supposed to be ugly.
+> 
+
+Oh. I saw what you meant now. Lots of main.h included. :)
+
+Silly me. Sorry about that.
+
+I guess some manual editing could be done.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

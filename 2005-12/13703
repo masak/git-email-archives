@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 15 15:26:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0B4AC23D0AC
+	for <tkil@scrye.com>; Thu, 15 Dec 2005 15:26:32 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751151AbVLOWZQ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Dec 2005 17:25:16 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751152AbVLOWZP
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Dec 2005 17:25:15 -0500
+Received: from devrace.com ([198.63.210.113]:58891 "EHLO devrace.com")
+	by vger.kernel.org with ESMTP id S1751151AbVLOWZO (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 15 Dec 2005 17:25:14 -0500
+Received: from tigra.home (p54A0F888.dip.t-dialin.net [84.160.248.136])
+	(authenticated bits=0)
+	by devrace.com (8.12.11/8.12.11) with ESMTP id jBFMOR7V023686;
+	Thu, 15 Dec 2005 16:24:29 -0600 (CST)
+	(envelope-from fork0@users.sourceforge.net)
+Received: from steel.home ([192.168.1.2])
+	by tigra.home with esmtp (Exim 3.36 #1 (Debian))
+	id 1En1WU-0000Kl-00; Thu, 15 Dec 2005 23:24:26 +0100
+Received: from raa by steel.home with local (Exim 4.42 #1 (Debian))
+	id 1En1WT-0002xe-3a; Thu, 15 Dec 2005 23:24:25 +0100
+Date:	Thu, 15 Dec 2005 23:24:24 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Petr Baudis <pasky@suse.cz>, git@vger.kernel.org
+Subject: Re: [PATCH] [COGITO] make cg-tag use git-check-ref-format
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051215222424.GA3094@steel.home>
+Reply-To: Alex Riesen <raa.lkml@gmail.com>
+References: <11344712912199-git-send-email-matlads@dsmagic.com> <7vy82p9rnb.fsf@assigned-by-dhcp.cox.net> <20051213170015.GD22159@pasky.or.cz> <7vu0dcalgo.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vu0dcalgo.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:13703
+
+Junio C Hamano, Tue, Dec 13, 2005 19:41:27 +0100:
+> 
+> > Thank you both for the patch, but I'd be much more comfortable if at
+> > least quotes (both ' and "), backslashes, ? and * would be prohibited in
+> > the names as well.
+> 
+> I second that, and thanks for pointing it out.  Any objections?
+
+Just as a warning, perhaps? It's not like git is anywhere limited in
+this respect...
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

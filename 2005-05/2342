@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  2 09:57:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id AC2D0FC3B7
+	for <tkil@scrye.com>; Mon,  2 May 2005 09:57:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261351AbVEBP4I (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 2 May 2005 11:56:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261349AbVEBP4I
+	(ORCPT <rfc822;git-outgoing>); Mon, 2 May 2005 11:56:08 -0400
+Received: from prgy-npn1.prodigy.com ([207.115.54.37]:15754 "EHLO
+	oddball.prodigy.com") by vger.kernel.org with ESMTP id S261347AbVEBPzc
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 2 May 2005 11:55:32 -0400
+Received: from [127.0.0.1] (oddball.prodigy.com [127.0.0.1])
+	by oddball.prodigy.com (8.11.6/8.11.6) with ESMTP id j42FtGp29772;
+	Mon, 2 May 2005 11:55:20 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42764C0C.8030604@tmr.com>
+Date:	Mon, 02 May 2005 11:49:32 -0400
+From: Bill Davidsen <davidsen@tmr.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.6) Gecko/20050319
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Andrea Arcangeli <andrea@suse.de>
+Cc: Matt Mackall <mpm@selenic.com>,
+	Linus Torvalds <torvalds@osdl.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+Subject: Re: Mercurial 0.4b vs git patchbomb benchmark
+References: <20050429203959.GC21897@waste.org><20050429203959.GC21897@waste.org> <20050430025211.GP17379@opteron.random>
+In-Reply-To: <20050430025211.GP17379@opteron.random>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 39
+Xref: brand.scrye.com linux.git:2342
+
+Andrea Arcangeli wrote:
+> On Fri, Apr 29, 2005 at 01:39:59PM -0700, Matt Mackall wrote:
+> 
+>>Mercurial is ammenable to rsync provided you devote a read-only
+>>repository to it on the client side. In other words, you rsync from
+>>kernel.org/mercurial/linus to local/linus and then you merge from
+>>local/linus to your own branch. Mercurial's hashing hierarchy is
+>>similar to git's (and Monotone's), so you can sign a single hash of
+>>the tree as well.
+> 
+> 
+> Ok fine. It's also interesting how you already enabled partial transfers
+> through http.
+> 
+> Please apply this patch so it doesn't fail on my setup ;)
+> 
+> --- mercurial-0.4b/hg.~1~	2005-04-29 02:52:52.000000000 +0200
+> +++ mercurial-0.4b/hg	2005-04-30 00:53:02.000000000 +0200
+> @@ -1,4 +1,4 @@
+> -#!/usr/bin/python
+> +#!/usr/bin/env python
+>  #
+>  # mercurial - a minimal scalable distributed SCM
+>  # v0.4b "oedipa maas"
+
+Could you explain why this is necessary or desirable? I looked at what 
+env does, and I am missing the point of duplicating bash normal 
+behaviour regarding definition of per-process environment entries.
+
+-- 
+    -bill davidsen (davidsen@tmr.com)
+"The secret to procrastination is to put things off until the
+  last possible moment - but no longer"  -me
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

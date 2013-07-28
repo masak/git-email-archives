@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 11 19:26:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5EE1D1C6500
+	for <tkil@scrye.com>; Sun, 11 Sep 2005 19:26:46 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751120AbVILB0m (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Sep 2005 21:26:42 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751119AbVILB0l
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Sep 2005 21:26:41 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:54958 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751120AbVILB0l (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 11 Sep 2005 21:26:41 -0400
+Received: (qmail 3901 invoked by uid 2001); 12 Sep 2005 03:26:39 +0200
+Date:	Mon, 12 Sep 2005 03:26:39 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Catalin Marinas <catalin.marinas@gmail.com>, git@vger.kernel.org
+Subject: Re: Post 0.99.7 preperation patches
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050912012639.GL15630@pasky.or.cz>
+References: <7vr7c02zgg.fsf@assigned-by-dhcp.cox.net> <7virxbtder.fsf@assigned-by-dhcp.cox.net> <7virxalhqi.fsf_-_@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7virxalhqi.fsf_-_@assigned-by-dhcp.cox.net>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:8350
+
+Dear diary, on Fri, Sep 09, 2005 at 11:20:53AM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> Junio C Hamano <junkio@cox.net> writes:
+> 
+> > The "master" branch post 0.99.6 already has the renamed tools
+> > with backward compatibility symlinks.  I'll be sending a
+> > patch to address an issue raised by some people separately to
+> > see what the list thinks, and also will attempt to send out a
+> > patch for the Pasky and Catalin heads later this week.
+> 
+> I've prepared these and will be sending them out separately to
+> you two, hoping they would help you prepare for post 0.99.7
+> changes.  Note that 0.99.6 does not know about these new names,
+> the current "master" branch knows about both new and old names,
+> so will 0.99.7, and in 0.99.8 the old names will be removed, if
+> things go as planned.
+> 
+> Here is a small script that I used before auditing what it did
+> to your trees by running 'git diff' on its result.
+
+Thanks for the notification. I will do an auxiliary release right
+after 0.99.7 is released.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

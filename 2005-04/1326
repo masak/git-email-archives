@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 22 17:09:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 963116615
+	for <tkil@scrye.com>; Fri, 22 Apr 2005 17:09:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261285AbVDVXJC (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 22 Apr 2005 19:09:02 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261288AbVDVXJC
+	(ORCPT <rfc822;git-outgoing>); Fri, 22 Apr 2005 19:09:02 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:26274 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261285AbVDVXI4 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 22 Apr 2005 19:08:56 -0400
+Received: (qmail 28760 invoked by uid 2001); 22 Apr 2005 23:08:55 -0000
+Date:	Sat, 23 Apr 2005 01:08:55 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Daniel Barkalow <barkalow@iabervon.org>
+Cc: tony.luck@intel.com, Brad Roberts <braddr@puremagic.com>,
+	git@vger.kernel.org
+Subject: Re: [3/5] Add http-pull
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050422230855.GJ21204@pasky.ji.cz>
+References: <20050422224008.GD21204@pasky.ji.cz> <Pine.LNX.4.21.0504221844420.30848-100000@iabervon.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.21.0504221844420.30848-100000@iabervon.org>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 27
+Xref: brand.scrye.com linux.git:1326
+
+Dear diary, on Sat, Apr 23, 2005 at 01:00:33AM CEST, I got a letter
+where Daniel Barkalow <barkalow@iabervon.org> told me that...
+> On Sat, 23 Apr 2005, Petr Baudis wrote:
+> 
+> > Dear diary, on Fri, Apr 22, 2005 at 09:46:35PM CEST, I got a letter
+> > where Daniel Barkalow <barkalow@iabervon.org> told me that...
+> > 
+> > Huh. Why? You just go back to history until you find a commit you
+> > already have. If you did it the way as Tony described, if you have that
+> > commit, you can be sure that you have everything it depends on too.
+> 
+> But if you download 1000 files of the 1010 you need, and then your network
+> goes down, you will need to download those 1000 again when it comes back,
+> because you can't save them unless you have the full history. 
+
+Why can't I? I think I can do that perfectly fine. The worst thing that
+can happen is that fsck-cache will complain a bit.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

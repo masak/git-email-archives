@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 20 03:40:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 964552851FA
+	for <tkil@scrye.com>; Tue, 20 Dec 2005 03:40:28 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750934AbVLTKkK (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Dec 2005 05:40:10 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750937AbVLTKkK
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Dec 2005 05:40:10 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:59836 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750934AbVLTKkJ (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 20 Dec 2005 05:40:09 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id E71EB13FB0F; Tue, 20 Dec 2005 11:40:05 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id C4B0C9E08F; Tue, 20 Dec 2005 11:40:05 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id AA7989DD63; Tue, 20 Dec 2005 11:40:05 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 37B7213F3DB; Tue, 20 Dec 2005 11:40:05 +0100 (CET)
+Date:	Tue, 20 Dec 2005 11:40:05 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	"H. Peter Anvin" <hpa@zytor.com>,
+	Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] xread/xwrite: do not worry about EINTR at calling sites.
+In-Reply-To: <7vvexkpoxf.fsf_-_@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512201136430.29711@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <7vhd95h02o.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.64.0512191142410.4827@g5.osdl.org> <43A732C9.2060509@zytor.com>
+ <7vvexkpoxf.fsf_-_@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:13838
+
+Hi,
+
+On Mon, 19 Dec 2005, Junio C Hamano wrote:
+
+> +static inline ssize_t xwrite(int fd, const void *buf, size_t len)
+> +{
+> +	ssize_t nr;
+> +	while (1) {
+> +		nr = write(fd, buf, len);
+> +		if ((nr < 0) && (errno == EAGAIN || errno == EINTR))
+> +			continue;
+> +		return nr;
+> +	}
+> +}
+
+In another project I'm working on, a user insisted that on Solaris 2.7, 
+write(2) sometimes returns ENOENT when it really means "try again". I 
+cannot verify, since I don't have Solaris 2.7.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

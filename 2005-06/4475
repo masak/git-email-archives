@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun  3 10:29:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id DF44E2B9022
+	for <tkil@scrye.com>; Fri,  3 Jun 2005 10:29:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261376AbVFCQ2z (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 3 Jun 2005 12:28:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261379AbVFCQ2z
+	(ORCPT <rfc822;git-outgoing>); Fri, 3 Jun 2005 12:28:55 -0400
+Received: from fire.osdl.org ([65.172.181.4]:9941 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261376AbVFCQ2q (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 3 Jun 2005 12:28:46 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j53GShjA005472
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 3 Jun 2005 09:28:43 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j53GSg5O031797;
+	Fri, 3 Jun 2005 09:28:42 -0700
+Date:	Fri, 3 Jun 2005 09:30:47 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: "McMullan, Jason" <jason.mcmullan@timesys.com>
+Cc: Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] git-daemon server
+In-Reply-To: <1117814982.32257.64.camel@jmcmullan.timesys>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506030929150.1876@ppc970.osdl.org>
+References: <20050603152212.GA4598@jmcmullan.timesys>
+ <Pine.LNX.4.58.0506030856490.1876@ppc970.osdl.org> <1117814982.32257.64.camel@jmcmullan.timesys>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:4475
+
+
+
+On Fri, 3 Jun 2005, McMullan, Jason wrote:
+> 
+> > Anyway, technically this looks ok, but I'd hate to apply it until there is 
+> > something that actually uses it and an example of that usage.
+> 
+> Well, I use it to keep my home and work repos in sync, but yeah,
+> users == 1 doesn't make a good case for inclusion.
+
+Well, it's fine, but you should at least tell _how_ you use it. What are
+the scripts you use to synchronize etc etc..
+
+So when I said "some_thing_ that actually uses it", I didn't mean more
+_people_ than you personally, but the scaffolding around it, really.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

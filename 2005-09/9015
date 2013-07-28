@@ -1,0 +1,51 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 20 16:29:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C48532412C5
+	for <tkil@scrye.com>; Tue, 20 Sep 2005 16:29:27 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965171AbVITW2f (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 20 Sep 2005 18:28:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965174AbVITW2f
+	(ORCPT <rfc822;git-outgoing>); Tue, 20 Sep 2005 18:28:35 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:1496 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S965171AbVITW2e (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 20 Sep 2005 18:28:34 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050920222832.KDPE26890.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 20 Sep 2005 18:28:32 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Make time-based commit filtering work with topological ordering
+References: <Pine.LNX.4.58.0509201358200.2553@g5.osdl.org>
+Date:	Tue, 20 Sep 2005 15:28:32 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpsr31ii7.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 9
+Xref: brand.scrye.com linux.git:9015
+
+This seems to break t6001 merge-order with max-age test.
+
+* FAIL 23: --max-age=c3, --merge-order
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

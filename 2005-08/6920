@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  8 03:10:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 300F31DE90C
+	for <tkil@scrye.com>; Mon,  8 Aug 2005 03:10:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750783AbVHHJKn (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 8 Aug 2005 05:10:43 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750785AbVHHJKn
+	(ORCPT <rfc822;git-outgoing>); Mon, 8 Aug 2005 05:10:43 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:716 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750783AbVHHJKn (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 8 Aug 2005 05:10:43 -0400
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 06CF2E3306; Mon,  8 Aug 2005 11:10:40 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id D39D29C7F4; Mon,  8 Aug 2005 11:10:39 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A9447990D0; Mon,  8 Aug 2005 11:10:39 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx68.rz.uni-wuerzburg.de [132.187.3.68])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 0A44AE32D5; Mon,  8 Aug 2005 11:10:39 +0200 (CEST)
+Date:	Mon, 8 Aug 2005 11:10:38 +0200 (CEST)
+From: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Teach git push .git/branches shorthand
+In-Reply-To: <7viryhgdo5.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508081106580.26210@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <7viryhgdo5.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:6920
+
+Hi,
+
+On Sun, 7 Aug 2005, Junio C Hamano wrote:
+
+> I hear a lot of people mention $GIT_DIR/branches/ is confusing.
+> Maybe we should rename it to $GIT_DIR/remote/ directory?
+
+I'd prefer $GIT_DIR/remotes/. And I propose another extension: Since the 
+files stored therein right now contain only one <remote> string, it should 
+be possible to add the default head(s) to the file.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

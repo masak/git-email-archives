@@ -1,0 +1,56 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 24 07:10:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 621A023D0D8
+	for <tkil@scrye.com>; Fri, 24 Jun 2005 07:10:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262479AbVFXNIs (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 24 Jun 2005 09:08:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262423AbVFXNIs
+	(ORCPT <rfc822;git-outgoing>); Fri, 24 Jun 2005 09:08:48 -0400
+Received: from ppp-217-133-42-200.cust-adsl.tiscali.it ([217.133.42.200]:63535
+	"EHLO g5.random") by vger.kernel.org with ESMTP id S262416AbVFXNGK
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 24 Jun 2005 09:06:10 -0400
+Received: by g5.random (Postfix, from userid 500)
+	id E5C9557538B; Fri, 24 Jun 2005 15:06:04 +0200 (CEST)
+Date:	Fri, 24 Jun 2005 15:06:04 +0200
+From: Andrea Arcangeli <andrea@suse.de>
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Matt Mackall <mpm@selenic.com>, Jeff Garzik <jgarzik@pobox.com>,
+	Linux Kernel <linux-kernel@vger.kernel.org>,
+	Git Mailing List <git@vger.kernel.org>, mercurial@selenic.com
+Subject: Re: Mercurial vs Updated git HOWTO for kernel hackers
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050624130604.GK17715@g5.random>
+References: <42B9E536.60704@pobox.com> <20050623235634.GC14426@waste.org> <20050624064101.GB14292@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050624064101.GB14292@pasky.ji.cz>
+X-GPG-Key: 1024D/68B9CB43 13D9 8355 295F 4823 7C49  C012 DFA1 686E 68B9 CB43
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.8 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 12
+Xref: brand.scrye.com linux.git:5197
+
+On Fri, Jun 24, 2005 at 08:41:01AM +0200, Petr Baudis wrote:
+> Cool. Except where the concepts are just different, Cogito mostly
+> appears at least equally simple to use as Mercurial. Yes, some features
+> are missing yet. I hope to fix that soon. :-)
+
+The user interface and network protocol isn't the big deal, the big deal
+is the more efficient on-disk storage format IMHO.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

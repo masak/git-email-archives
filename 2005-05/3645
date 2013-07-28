@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Fri May 20 19:43:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4BE2C131DFA
+	for <tkil@scrye.com>; Fri, 20 May 2005 19:43:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261630AbVEUBnb (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 20 May 2005 21:43:31 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261632AbVEUBna
+	(ORCPT <rfc822;git-outgoing>); Fri, 20 May 2005 21:43:30 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:33974 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S261630AbVEUBn1 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 20 May 2005 21:43:27 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050521014327.YIRA12158.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 20 May 2005 21:43:27 -0400
+To: Daniel Barkalow <barkalow@iabervon.org>
+Cc: Sean <seanlkml@sympatico.ca>, Linus Torvalds <torvalds@osdl.org>,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Fix use of wc in t0000-basic
+References: <Pine.LNX.4.21.0505202113500.30848-100000@iabervon.org>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Fri, 20 May 2005 18:43:25 -0700
+In-Reply-To: <Pine.LNX.4.21.0505202113500.30848-100000@iabervon.org> (Daniel
+ Barkalow's message of "Fri, 20 May 2005 21:16:22 -0400 (EDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vzmuppd4y.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 22
+Xref: brand.scrye.com linux.git:3645
+
+>>>>> "DB" == Daniel Barkalow <barkalow@iabervon.org> writes:
+
+DB> Junio was stripping the filename (not whitespace) from wc, not knowing
+DB> that it could be suppressed by using stdin.
+
+Actually the reason I did so initially was because I recalled
+seeing a wc that said "-" instead of omitting the filename.  I
+do not have access to those obscure Unixen so I cannot these
+things easily anymore, though.
+
+DB> of wc that put whitespace at the beginning. I think the
+DB> sed-only solution is far more obscure and no cleaner than
+DB> cat and wc.
+
+This I tend to agree, but that is probably one of the most
+portable.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 12 09:53:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DE9016122
+	for <tkil@scrye.com>; Fri, 12 Aug 2005 09:53:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751204AbVHLPxW (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 12 Aug 2005 11:53:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751054AbVHLPxW
+	(ORCPT <rfc822;git-outgoing>); Fri, 12 Aug 2005 11:53:22 -0400
+Received: from iabervon.org ([66.92.72.58]:34316 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1750831AbVHLPxW (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 12 Aug 2005 11:53:22 -0400
+Received: (qmail 19495 invoked by uid 1000); 12 Aug 2005 11:56:36 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 12 Aug 2005 11:56:36 -0400
+Date:	Fri, 12 Aug 2005 11:56:36 -0400 (EDT)
+From: Daniel Barkalow <barkalow@iabervon.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Add "--sign" option to git-format-patch-script
+In-Reply-To: <7vr7czxj6s.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508121146210.12816@iabervon.org>
+References: <Pine.LNX.4.63.0508121532051.25606@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <7vr7czxj6s.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 21
+Xref: brand.scrye.com linux.git:7118
+
+On Fri, 12 Aug 2005, Junio C Hamano wrote:
+
+> Good intentions, but I'd rather see these S-O-B lines in the
+> actual commit objects.  Giving format-patch this option would
+> discourage people to do so.  Maybe a patch to git commit would
+> be more appropriate, methinks.
+
+Maybe also something in format-patch to check that the commit has one? I, 
+at least, tend to have unsigned commits for tracking stuff I've done but 
+not cleaned up and signed ones that I want to send off as patches. I've 
+confused the branches on occasion, although never when sending stuff, and 
+it would be nice to have format-patch tell you if the commit didn't look 
+right.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

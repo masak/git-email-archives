@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov  9 00:02:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A1EA322B5F
+	for <tkil@scrye.com>; Wed,  9 Nov 2005 00:02:27 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030407AbVKIHCW (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 9 Nov 2005 02:02:22 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030424AbVKIHCW
+	(ORCPT <rfc822;git-outgoing>); Wed, 9 Nov 2005 02:02:22 -0500
+Received: from gw.ac-sw.com ([81.1.223.2]:45021 "EHLO gw.ac-sw.com")
+	by vger.kernel.org with ESMTP id S1030407AbVKIHCV (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 9 Nov 2005 02:02:21 -0500
+Received: from lan.ac-sw.lcl (unknown [192.168.0.69])
+	by gw.ac-sw.com (Postfix) with ESMTP
+	id B48A5BD67; Wed,  9 Nov 2005 13:02:12 +0600 (NOVT)
+Received: by lan.ac-sw.lcl (Postfix, from userid 65534)
+	id AAF5ECC867; Wed,  9 Nov 2005 13:03:01 +0600 (NOVT)
+Received: from localhost (localhost [127.0.0.1])
+	by lan.ac-sw.lcl (Postfix) with ESMTP id C4111A6D9E;
+	Wed,  9 Nov 2005 13:03:00 +0600 (NOVT)
+From:	Alexander Litvinov <lan@ac-sw.com>
+Organization: AcademSoft Ltd.
+To:	Junio C Hamano <junkio@cox.net>
+Subject: [PATCH] fix cvsexportcommit syntax error
+Date:	Wed, 9 Nov 2005 13:02:58 +0600
+User-Agent: KMail/1.8
+Cc:	git@vger.kernel.org
+References: <7vy83zhyu4.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vy83zhyu4.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511091302.58805.lan@ac-sw.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:11380
+
+There is a syntax error in cvsexport script:
+
+--- git-cvsexportcommit.perl.orig       2005-11-09 13:00:51.000000000 +0600
++++ git-cvsexportcommit.perl    2005-11-09 13:00:57.000000000 +0600
+@@ -64,7 +64,7 @@
+            last;
+        }; # found it
+        die "Did not find $parent in the parents for this commit!";
+-s    }
++    }
+ } else { # we don't have a parent from the cmdline...
+     if (@parents == 1) { # it's safe to get it from the commit
+        $parent = $parents[0];
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

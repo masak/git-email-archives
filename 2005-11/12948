@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 15:09:45 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00,SUBJ_ALL_CAPS 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 11BB229FF71
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 15:09:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932428AbVK2WJh (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 17:09:37 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932438AbVK2WJh
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 17:09:37 -0500
+Received: from citi.umich.edu ([141.211.133.111]:53695 "EHLO citi.umich.edu")
+	by vger.kernel.org with ESMTP id S932428AbVK2WJg (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 29 Nov 2005 17:09:36 -0500
+Received: from dexter.citi.umich.edu (dexter.citi.umich.edu [141.211.133.33])
+	by citi.umich.edu (Postfix) with ESMTP id 496FF1BBE0;
+	Tue, 29 Nov 2005 17:09:36 -0500 (EST)
+From:	Chuck Lever <cel@citi.umich.edu>
+Subject: [PATCH 0/7] 
+Date:	Tue, 29 Nov 2005 17:05:52 -0500
+To:	catalin.marinas@gmail.com
+Cc:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051129220552.9885.41086.stgit@dexter.citi.umich.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:12948
+
+These are road-tested and ready for your review.
+
++ export-saves-base       | Make "stg export" save the base commit in the output directory
++ stg-in-subdirectories   | Use git-rev-parse to find the local GIT repository
++ fix-branch-description  | Align branch descriptions in output of "stg branch -l"
++ stg-series-description  | "stg series" option to show patch summary descriptions
++ stg-series-short        | Add facility to print short list of patches around 'top'
++ stg-branch-clone        | Add a "--clone" option to "stg branch"
+> series-directory        | Use a separate directory for patches under each branch subdir
+
+Before 0.8, you might also consider addressing the patch authorship issues
+that come up when mailing out patches, as discussed on git@vger last week.
+
+I've adjusted my patchmail.tmpl file as a workaround.
+
+        -- Chuck Lever
+--
+corporate:    <cel at netapp dot com>
+personal:     <chucklever at bigfoot dot com>
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

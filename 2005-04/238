@@ -1,0 +1,94 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 15 18:30:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CF51D1CA3A3
+	for <tkil@scrye.com>; Fri, 15 Apr 2005 18:30:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262489AbVDPAa2 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 15 Apr 2005 20:30:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262491AbVDPAa2
+	(ORCPT <rfc822;git-outgoing>); Fri, 15 Apr 2005 20:30:28 -0400
+Received: from fire.osdl.org ([65.172.181.4]:59526 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262489AbVDPAaT (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 15 Apr 2005 20:30:19 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3G0UGs4016855
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 15 Apr 2005 17:30:17 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3G0UFYs025049;
+	Fri, 15 Apr 2005 17:30:15 -0700
+Date:	Fri, 15 Apr 2005 17:32:13 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Barry Silverman <barry@disus.com>
+Cc: git@vger.kernel.org
+Subject: RE: Merge with git-pasky II.
+In-Reply-To: <000701c5420e$e89177b0$6400a8c0@gandalf>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504151723530.7211@ppc970.osdl.org>
+References: <000701c5420e$e89177b0$6400a8c0@gandalf>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 49
+Xref: brand.scrye.com linux.git:238
+
+
+
+On Fri, 15 Apr 2005, Barry Silverman wrote:
+>
+> The issue I am trying to come to grips with in the current design, is
+> that the git repository of a number of interrelated projects will soon
+> become the logical OR of all blobs, commits, and trees in ALL the
+> projects. 
+
+Nope. I'm actually against the notion of sharing object directories
+between projects. The git model _allows_ it, and I think it can be a valid 
+approach, but it's absolutely not an approach that I would personally 
+suggest be used for the kernel.
+
+In other words, the default git behaviour - and the one I personally am a 
+proponent of - is to have one object directory per work tree, and really 
+consider all such trees independent. Then you can merge between trees if 
+you want to, and bring in objects that way, but normally you would _not_ 
+have tons of objects from other trees, and _especially_ not from other 
+unrelated projects.
+
+The reason git supports shared object archives is that (a) it falls out 
+trivially as part of the design, so not allowing it is silly and (b) it is 
+part of a merge, where you _do_ want to get the objects of the trees you 
+merge, and in particular you need to generate a seperate tree that has all 
+those objects without having to copy them.
+
+(Before you do the merge, you need to bring the new objects into your 
+repository of course, but that I consider to be a separate issue, not 
+part of the actual technical merge process).
+
+So normally, you'd probably have a totally pruned tree, with only the 
+objects you need (and you might even consider the "commit parent links" 
+less than necessary, especially if you're just a regular user and not a 
+developer who wants to merge).
+
+But the ability to have extra objects is wonderful. It makes going
+backwards in time basically free (while the equivalent "bk undo" in the BK
+world is a very expensive operation), and it makes it easy to
+incrementally keep up-to-date with trees that you know you're _eventually_
+going to merge with. But it's not an excuse to put just any random crap in 
+that object directory..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

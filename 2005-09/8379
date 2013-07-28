@@ -1,0 +1,135 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 09:07:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B8C2923D0D6
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 09:07:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751293AbVILO4t (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 10:56:49 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751301AbVILO4r
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 10:56:47 -0400
+Received: from citi.umich.edu ([141.211.133.111]:5458 "EHLO citi.umich.edu")
+	by vger.kernel.org with ESMTP id S1751296AbVILO4B (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 10:56:01 -0400
+Received: from dexter.citi.umich.edu (dexter.citi.umich.edu [141.211.133.33])
+	by citi.umich.edu (Postfix) with ESMTP id D12A71BAF3
+	for <git@vger.kernel.org>; Mon, 12 Sep 2005 10:56:00 -0400 (EDT)
+From:	Chuck Lever <cel@netapp.com>
+Subject: [PATCH 08/22] teach ls-files.c to use cache iterators
+Date:	Mon, 12 Sep 2005 10:56:00 -0400
+To:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050912145600.28120.86261.stgit@dexter.citi.umich.edu>
+In-Reply-To: <20050912145543.28120.7086.stgit@dexter.citi.umich.edu>
+References: <20050912145543.28120.7086.stgit@dexter.citi.umich.edu>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 99
+Xref: brand.scrye.com linux.git:8379
+
+Signed-off-by: Chuck Lever <cel@netapp.com>
+---
+
+ ls-files.c |   58 +++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 33 insertions(+), 25 deletions(-)
+
+diff --git a/ls-files.c b/ls-files.c
+--- a/ls-files.c
++++ b/ls-files.c
+@@ -414,14 +414,38 @@ static void show_ce_entry(const char *ta
+ 		       ce->name + offset, line_terminator); 
+ }
+ 
+-static void show_files(void)
++static int show_one_cached(struct cache_cursor *cc, struct cache_entry *ce)
+ {
+-	int i;
++	if (excluded(ce->name) != show_ignored)
++		goto out;
++	if (show_unmerged && !ce_stage(ce))
++		goto out;
++	show_ce_entry(ce_stage(ce) ? tag_unmerged : tag_cached, ce);
++out:
++	next_cc(cc);
++	return 0;
++}
+ 
++static int show_one_deleted(struct cache_cursor *cc, struct cache_entry *ce)
++{
++	struct stat st;
++
++	if (excluded(ce->name) != show_ignored)
++		goto out;
++	if (!lstat(ce->name, &st))
++		goto out;
++	show_ce_entry(tag_removed, ce);
++out:
++	next_cc(cc);
++	return 0;
++}
++
++static void show_files(void)
++{
+ 	/* For cached/deleted files we don't need to even do the readdir */
+ 	if (show_others || show_killed) {
+ 		const char *path = ".", *base = "";
+-		int baselen = prefix_len;
++		int i, baselen = prefix_len;
+ 
+ 		if (baselen)
+ 			path = base = prefix;
+@@ -433,27 +457,10 @@ static void show_files(void)
+ 		if (show_killed)
+ 			show_killed_files();
+ 	}
+-	if (show_cached | show_stage) {
+-		for (i = 0; i < active_nr; i++) {
+-			struct cache_entry *ce = active_cache[i];
+-			if (excluded(ce->name) != show_ignored)
+-				continue;
+-			if (show_unmerged && !ce_stage(ce))
+-				continue;
+-			show_ce_entry(ce_stage(ce) ? tag_unmerged : tag_cached, ce);
+-		}
+-	}
+-	if (show_deleted) {
+-		for (i = 0; i < active_nr; i++) {
+-			struct cache_entry *ce = active_cache[i];
+-			struct stat st;
+-			if (excluded(ce->name) != show_ignored)
+-				continue;
+-			if (!lstat(ce->name, &st))
+-				continue;
+-			show_ce_entry(tag_removed, ce);
+-		}
+-	}
++	if (show_cached | show_stage)
++		walk_cache(show_one_cached);
++	if (show_deleted)
++		walk_cache(show_one_deleted);
+ }
+ 
+ /*
+@@ -633,7 +640,8 @@ int main(int argc, char **argv)
+ 	if (!(show_stage | show_deleted | show_others | show_unmerged | show_killed))
+ 		show_cached = 1;
+ 
+-	read_cache();
++	if (read_cache() < 0)
++		die("unable to read index file");
+ 	if (prefix)
+ 		prune_cache();
+ 	show_files();
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

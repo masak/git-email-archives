@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul  1 09:26:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 26B1E2318D8
+	for <tkil@scrye.com>; Fri,  1 Jul 2005 09:26:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S263367AbVGAP0c (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 1 Jul 2005 11:26:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263368AbVGAP0c
+	(ORCPT <rfc822;git-outgoing>); Fri, 1 Jul 2005 11:26:32 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:6575 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S263367AbVGAP02 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 1 Jul 2005 11:26:28 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j61FQ5jA008878
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 1 Jul 2005 08:26:06 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j61FQ2uu011902;
+	Fri, 1 Jul 2005 08:26:04 -0700
+Date:	Fri, 1 Jul 2005 08:28:07 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] pack-objects: emit base before delta.
+In-Reply-To: <7vbr5nxe38.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507010821140.14331@ppc970.osdl.org>
+References: <7vbr5nxe38.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.111 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 35
+Xref: brand.scrye.com linux.git:5516
+
+
+
+On Thu, 30 Jun 2005, Junio C Hamano wrote:
+>
+> This micro-optimizes the order of objects in a pack.  By
+> emitting base objects before deltified ones, unpack-objects do
+> not keep items on delta_list.
+
+So I like this from an unpacking standpoint, but at the same time I don't 
+actually think it's correct from an access pattern standpoint.
+
+When using a pack file as a run-time object store, the current packing 
+order means that we generally traverse the pack-file in a nice forward 
+direction. We don't jump backwards in the file very much, which should be 
+good both for CPU and disk caches (both of them tend to have prefetch 
+logic that often works better for nice access patterns). So I was actually 
+pretty happy with the fact that we packed "optimally" in this sense: if 
+the object was an important delta (ie an early one), we'd basically end up 
+always walking forward until we hit the object it was a delta against.
+
+I dunno. Maybe it doesn't matter. Our other heuristics to pack recent 
+objects before later one might mean that we tend to have mainly 
+backwards-going deltas (both in history _and_ in pack file layout).
+
+The expense of keeping track of delta objects isn't that high, and the 
+"pending delta" logic in unpack-objects isn't that complicated, so ..
+
+Do you have some other reason you want to do this?
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,98 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 01:41:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A5247E955B
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 01:41:38 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261598AbVFBHkI (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 03:40:08 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261601AbVFBHjl
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 03:39:41 -0400
+Received: from scrat.cs.umu.se ([130.239.40.18]:56250 "EHLO scrat.cs.umu.se")
+	by vger.kernel.org with ESMTP id S261598AbVFBHjX (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 03:39:23 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by amavisd-new (Postfix) with ESMTP id 10A23180122;
+	Thu,  2 Jun 2005 09:39:23 +0200 (CEST)
+Received: from peppar.cs.umu.se (peppar.cs.umu.se [130.239.40.13])
+	by scrat.cs.umu.se (Postfix) with ESMTP id 9940D180121;
+	Thu,  2 Jun 2005 09:39:21 +0200 (CEST)
+Received: by peppar.cs.umu.se (Postfix, from userid 12006)
+	id 65E5B2EBAB; Thu,  2 Jun 2005 09:39:21 +0200 (MEST)
+Date:	Thu, 2 Jun 2005 09:39:21 +0200
+From: Peter Hagervall <hager@cs.umu.se>
+To: torvalds@osdl.org
+Cc: git@vger.kernel.org
+Subject: [PATCH] Spelling fixes for git tutorial
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050602073920.GA526@peppar.cs.umu.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4.1i
+X-Virus-Scanned: by amavisd-new at cs.umu.se
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 53
+Xref: brand.scrye.com linux.git:4380
+
+Fix a few spellos in the otherwise excellent tutorial.
+
+Signed-off-by: Peter Hagervall <hager@cs.umu.se>
+
+
+diff --git a/Documentation/tutorial.txt b/Documentation/tutorial.txt
+--- a/Documentation/tutorial.txt
++++ b/Documentation/tutorial.txt
+@@ -405,7 +405,7 @@ can do
+ 	git log
+ 
+ which shows just the log messages, or if we want to see the log together
+-whith the associated patches use the more complex (and much more
++with the associated patches use the more complex (and much more
+ powerful)
+ 
+ 	git-whatchanged -p --root
+@@ -423,10 +423,10 @@ With that, you should now be having some
+ can explore on your own.
+ 
+ 
+-	Copoying archives
++	Copying archives
+ 	-----------------
+ 
+-Git arhives are normally totally self-sufficient, and it's worth noting
++Git archives are normally totally self-sufficient, and it's worth noting
+ that unlike CVS, for example, there is no separate notion of
+ "repository" and "working tree".  A git repository normally _is_ the
+ working tree, with the local git information hidden in the ".git"
+@@ -486,7 +486,7 @@ actual core git files. Such a repository
+ repository.
+ 
+ To create your own local live copy of such a "raw" git repository, you'd
+-first create your own subdirectory for the project, adn then copy the
++first create your own subdirectory for the project, and then copy the
+ raw repository contents into the ".git" directory. For example, to
+ create your own copy of the git repository, you'd do the following
+ 
+@@ -512,7 +512,7 @@ older version of a checked out tree you 
+ file first, to tell git-checkout-cache to _force_ overwriting of any old
+ files). 
+ 
+-You have now successfully copied somebody elses (mine) remote
++You have now successfully copied somebody else's (mine) remote
+ repository, and checked it out. 
+ 
+ [ to be continued.. cvs2git, tagging versions, branches, merging.. ]
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

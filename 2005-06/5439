@@ -1,0 +1,99 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun 30 10:40:22 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 949DC24108A
+	for <tkil@scrye.com>; Thu, 30 Jun 2005 10:40:22 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262930AbVF3QkF (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 30 Jun 2005 12:40:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S263002AbVF3QkF
+	(ORCPT <rfc822;git-outgoing>); Thu, 30 Jun 2005 12:40:05 -0400
+Received: from run.smurf.noris.de ([192.109.102.41]:37530 "EHLO
+	server.smurf.noris.de") by vger.kernel.org with ESMTP
+	id S262930AbVF3Qj6 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 30 Jun 2005 12:39:58 -0400
+Received: from kiste.smurf.noris.de ([192.109.102.35] ident=mail)
+	by server.smurf.noris.de with smtp (Exim 4.50)
+	id 1Do23u-0000TL-Ut; Thu, 30 Jun 2005 18:39:03 +0200
+Received: (nullmailer pid 9777 invoked by uid 501);
+	Thu, 30 Jun 2005 16:38:50 -0000
+Date:	Thu, 30 Jun 2005 18:38:50 +0200
+To: Sven Verdoolaege <skimo@liacs.nl>
+Cc: git@vger.kernel.org
+Subject: [PATCH] cvsimport: Limit the log string to 32k
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050630163850.GU10850@kiste.smurf.noris.de>
+References: <pan.2005.06.28.19.23.08.307486@smurf.noris.de> <20050630145528.GA18553@pc117b.liacs.nl>
+Mime-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="DCTaD1eAmswIDYF2"
+Content-Disposition: inline
+In-Reply-To: <20050630145528.GA18553@pc117b.liacs.nl>
+User-Agent: Mutt/1.5.6+20040907i
+From: Matthias Urlichs <smurf@smurf.noris.de>
+X-Smurf-Spam-Score: -2.5 (--)
+X-Smurf-Whitelist: +relay_from_hosts
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 52
+Xref: brand.scrye.com linux.git:5439
+
+
+--DCTaD1eAmswIDYF2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Teach the new cvsimport script to chop the log string's trailing whitespace.
+
+Limit the log string to 32k, in order to be compatible with the old
+cvs2git program.
+
+Signed-Off-By: Matthias Urlichs <smurf@smurf.noris.de>
+
+---
+
+diff --git a/git-cvsimport-script b/git-cvsimport-script
+--- a/git-cvsimport-script
++++ b/git-cvsimport-script
+@@ -468,7 +468,12 @@ my $commit =3D sub {
+ 	}
+ 	$pw->writer();
+ 	$pr->reader();
+-	print $pw $logmsg
++
++	# compatibility with git2cvs
++	substr($logmsg,32767) =3D "" if length($logmsg) > 32767;
++	$logmsg =3D~ s/[\s\n]+\z//;
++
++	print $pw "$logmsg\n"
+ 		or die "Error writing to git-commit-tree: $!\n";
+ 	$pw->close();
+=20
+
+--DCTaD1eAmswIDYF2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+
+iD8DBQFCxCAa8+hUANcKr/kRApb4AJ4+si+Z5zg2OdHmA8aK/8yVqo77AACcCU9u
+u7f9l+jFaZilCg/2HCZU58E=
+=mLXL
+-----END PGP SIGNATURE-----
+
+--DCTaD1eAmswIDYF2--
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

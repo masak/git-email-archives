@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jul  5 09:24:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D8A581B3692
+	for <tkil@scrye.com>; Tue,  5 Jul 2005 09:24:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261885AbVGEPXP (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 5 Jul 2005 11:23:15 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261889AbVGEPXP
+	(ORCPT <rfc822;git-outgoing>); Tue, 5 Jul 2005 11:23:15 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:14554 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S261838AbVGEPUP (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 5 Jul 2005 11:20:15 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050705152014.OXNW12158.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 5 Jul 2005 11:20:14 -0400
+To: Petr Baudis <pasky@suse.cz>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: [PATCH] Add script for patch submission via e-mail.
+References: <7vll5h7k5t.fsf@assigned-by-dhcp.cox.net>
+	<20050705093441.GD6191@pasky.ji.cz>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Tue, 05 Jul 2005 08:20:13 -0700
+In-Reply-To: <20050705093441.GD6191@pasky.ji.cz> (Petr Baudis's message of "Tue, 5 Jul 2005 11:34:41 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vekadfff6.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:5646
+
+>>>>> "PB" == Petr Baudis <pasky@suse.cz> writes:
+
+PB> Any reason why this was not applied? It appears kind of cool.
+
+FYI, the one in <7vll4s47p3.fsf_-_@assigned-by-dhcp.cox.net> is
+newer than what you quoted.
+
+One thing _I_ am unhappy about what it does is that it does not
+try to be intelligent about merges (I haven't tried the script
+on a merged head myself).
+
+When you think about "project lead" vs "individual developer"
+modes of operation, the latter is primarily "keep rebasing
+commits in my fork and re-throwing them upstream until some of
+them stick", so not supporting merges specially would not be so
+big a flaw.  However, at least it should use --merge-order to
+get the epochs decomposed right, in order to produce anything
+remotely useful when dealing with a merged head.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

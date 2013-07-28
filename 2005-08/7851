@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 27 19:19:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 12B971343EC
+	for <tkil@scrye.com>; Sat, 27 Aug 2005 19:19:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751008AbVH1BTA (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 27 Aug 2005 21:19:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751020AbVH1BTA
+	(ORCPT <rfc822;git-outgoing>); Sat, 27 Aug 2005 21:19:00 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:44472 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750992AbVH1BTA (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 27 Aug 2005 21:19:00 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7S1IrjA011371
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 27 Aug 2005 18:18:53 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7S1IqRh024888;
+	Sat, 27 Aug 2005 18:18:52 -0700
+Date:	Sat, 27 Aug 2005 18:18:52 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: Comments in read-tree about #nALT
+In-Reply-To: <Pine.LNX.4.63.0508271941090.23242@iabervon.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508271814410.3317@g5.osdl.org>
+References: <Pine.LNX.4.63.0508270151590.23242@iabervon.org>
+ <7vwtm726xq.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0508271709530.23242@iabervon.org>
+ <Pine.LNX.4.63.0508271855100.23242@iabervon.org> <Pine.LNX.4.58.0508271621210.3317@g5.osdl.org>
+ <Pine.LNX.4.63.0508271941090.23242@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:7851
+
+
+
+On Sat, 27 Aug 2005, Daniel Barkalow wrote:
+> 
+> It looks like stage 2 is currently special as the stage that's similar to
+> the index/HEAD/working tree.
+
+Ahh, yes. We do actually want that. So yes, we should make only stage 3 
+have the multiple entries.
+
+> I'd be afraid of confusing everything by removing the uniqueness
+> invariant, although I guess not too much does anything with entries in
+> stages other than 0. I probably just don't find the index as intuitive as
+> you do and as the struct tree representation.
+
+Yes, I find the index to be very nice to work with - it basically allows
+you to work with multiple trees in one go, instead of working one file at
+a time. You just slurp in any number of trees (with some trivial rules
+about which stage they go in), and then you can just walk through each
+filename and efficiently handle one file at a time without re-doing the
+tree thing. Very nice.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

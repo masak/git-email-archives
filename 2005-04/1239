@@ -1,0 +1,114 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 22 06:47:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B4AB211358E
+	for <tkil@scrye.com>; Fri, 22 Apr 2005 06:47:34 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262034AbVDVM1Y (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 22 Apr 2005 08:27:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262035AbVDVM1Y
+	(ORCPT <rfc822;git-outgoing>); Fri, 22 Apr 2005 08:27:24 -0400
+Received: from rproxy.gmail.com ([64.233.170.203]:48113 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262034AbVDVM1R convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 22 Apr 2005 08:27:17 -0400
+Received: by rproxy.gmail.com with SMTP id c51so638339rne
+        for <git@vger.kernel.org>; Fri, 22 Apr 2005 05:27:16 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=i8l8Y0oAUWyKpw+6UnlZPVnbKlhlGVUJeXfqcLFydT3HZPa4IxZ4TwdhnMfhhF++gzBez4y74cNlSbQcxvNKF8tlR6Ve9veX/n+G/+0pzoH8HGohE659sOqvoi9YoH1k2E6pHbyYwAva8xIoYoqHewZOzXCRauhhHK3/wazYgLM=
+Received: by 10.38.15.7 with SMTP id 7mr3373760rno;
+        Fri, 22 Apr 2005 05:27:16 -0700 (PDT)
+Received: by 10.38.104.32 with HTTP; Fri, 22 Apr 2005 05:27:16 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2cfc403205042205277b2d9f69@mail.gmail.com>
+Date:	Fri, 22 Apr 2005 22:27:16 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+Reply-To: jon@zeta.org.au
+To: Petr Baudis <pasky@ucw.cz>
+Subject: Re: First web interface and service API draft
+Cc: Christian Meder <chris@absolutegiganten.org>, git@vger.kernel.org
+In-Reply-To: <20050422121059.GB7173@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <1114166517.3233.4.camel@localhost>
+	 <2cfc4032050422043419b578cd@mail.gmail.com>
+	 <20050422121059.GB7173@pasky.ji.cz>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.2
+Lines: 63
+Xref: brand.scrye.com linux.git:1239
+
+On 4/22/05, Petr Baudis <pasky@ucw.cz> wrote:
+> Dear diary, on Fri, Apr 22, 2005 at 01:34:45PM CEST, I got a letter
+> where Jon Seymour <jon.seymour@gmail.com> told me that...
+> > On 4/22/05, Christian Meder <chris@absolutegiganten.org> wrote:
+> > >
+> > > Comments ? Ideas ? Other feedback ?
+> > >
+> >
+> > I'd suggest serving XML rather than HTML and using client side XSLT to
+> > transform it into HTML. ...
+> 
+> Why "rather than"? Why not "in addition to"?
+> 
+> You just append either .html or .xml, based on what you want.
+> 
+
+You are right - there is no good reason that an implementation should
+not to support both.
+
+>From the point of view of a specification, though, I think it would be
+useful to focus on an XML content model rather than the details of one
+particular HTML model - get the XML model right and you can do
+whatever you like with the HTML model at any time after that.
+
+jon.
+
+On 4/22/05, Petr Baudis <pasky@ucw.cz> wrote:
+> Dear diary, on Fri, Apr 22, 2005 at 01:34:45PM CEST, I got a letter
+> where Jon Seymour <jon.seymour@gmail.com> told me that...
+> > On 4/22/05, Christian Meder <chris@absolutegiganten.org> wrote:
+> > >
+> > > Comments ? Ideas ? Other feedback ?
+> > >
+> >
+> > I'd suggest serving XML rather than HTML and using client side XSLT to
+> > transform it into HTML. Client-side XSLT works well in IE 6 and all
+> > versions of Firefox, so there is no question that it is a mature
+> > technology. Provide a fall back via server transformed HTML if need
+> > be, but that is trivial to do once you have the client-side XSLT
+> > stylesheets.
+> >
+> > Serving XML is as easy as serving HTML and gives you a much more
+> > flexible outcome.
+> 
+> Why "rather than"? Why not "in addition to"?
+> 
+> You just append either .html or .xml, based on what you want.
+> 
+> --
+>                                 Petr "Pasky" Baudis
+> Stuff: http://pasky.or.cz/
+> C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+> 
+
+
+-- 
+homepage: http://www.zeta.org.au/~jon/
+blog: http://orwelliantremors.blogspot.com/
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

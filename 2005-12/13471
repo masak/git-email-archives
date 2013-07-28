@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec 10 19:58:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9D3F7316060
+	for <tkil@scrye.com>; Sat, 10 Dec 2005 19:58:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932621AbVLKC6s (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 10 Dec 2005 21:58:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932682AbVLKC6s
+	(ORCPT <rfc822;git-outgoing>); Sat, 10 Dec 2005 21:58:48 -0500
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:13563 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S932621AbVLKC6s (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 10 Dec 2005 21:58:48 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051211025655.EYME20050.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 10 Dec 2005 21:56:55 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Subject: Re: [PATCH 0/25] Usage message clean-up
+References: <1134243476675-git-send-email-freku045@student.liu.se>
+	<Pine.LNX.4.63.0512102349040.3083@wbgn013.biozentrum.uni-wuerzburg.de>
+cc:	git@vger.kernel.org
+Date:	Sat, 10 Dec 2005 18:58:44 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vbqzouyor.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 39
+Xref: brand.scrye.com linux.git:13471
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+>> * -h and --help makes the script die with the usage message.
+>
+> Good.
+
+Supporting -h and --help are good, but we probably do not want
+to exit with non-zero status in such a case.  Not a big deal,
+though.
+
+>> * The message is printed to stderr.
+>
+> Arguable.
+
+One thing I really hate is a program that does more than one
+pageful of help message to stderr which forces me to do "blah
+>&2 --help | less", but our help messages are short and sweet,
+so I feel stderr is OK.
+
+>> * The message is of the form "usage: $0 options"
+>
+> Not good. We are in a transition to "git whatever" from "git-whatever".
+
+But when the user wishes to look at the manual page, he needs to
+say "man git-whatever", so either way you cannot win.  I'm
+neutral either way, as long as we are consistent.
+
+> Besides, I have to admit that I am a bit annoyed by 25 mini mails for the 
+> same purpose.
+
+I'd appreciate the flexibility of reviewing them indivudually,
+especially when some of them seem to change the structure of the
+argument parsing loop.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

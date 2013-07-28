@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Dec  7 07:13:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 790CC8E0E5
+	for <tkil@scrye.com>; Wed,  7 Dec 2005 07:13:26 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751080AbVLGOMt (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 7 Dec 2005 09:12:49 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751079AbVLGOMt
+	(ORCPT <rfc822;git-outgoing>); Wed, 7 Dec 2005 09:12:49 -0500
+Received: from mail1.starcom.co.ug ([217.113.72.31]:45354 "EHLO
+	mail1.infocom.co.ug") by vger.kernel.org with ESMTP
+	id S1751077AbVLGOMs (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 7 Dec 2005 09:12:48 -0500
+Received: from entandikwa.ds.co.ug ([::ffff:217.113.73.39])
+  by mail1.infocom.co.ug with esmtp; Wed, 07 Dec 2005 17:12:28 +0300
+  id 000F9A3A.4396EDCC.000038CC
+Received: from igloo.ds.co.ug (igloo.ds.co.ug [192.168.129.66])
+	by entandikwa.ds.co.ug (Postfix) with ESMTP id F27CB4C7D
+	for <git@vger.kernel.org>; Wed,  7 Dec 2005 17:14:12 +0300 (EAT)
+Received: from matlads by igloo.ds.co.ug with local (Exim 4.60)
+	(envelope-from <matlads@dsmagic.com>)
+	id 1Ek01q-0000Bv-KU
+	for git@vger.kernel.org; Wed, 07 Dec 2005 17:12:18 +0300
+Date:	Wed, 7 Dec 2005 17:12:18 +0300
+To:	git@vger.kernel.org
+Subject: Can GIT_EXEC_PATH behave more like PATH?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051207141218.GA721@igloo.ds.co.ug>
+Mail-Followup-To: git@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+User-Agent: Mutt/1.5.11
+From:	Martin Atukunda <matlads@dsmagic.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:13315
+
+Hi,
+
+I've been wondering if GIT_EXEC_PATH shouldn't be able to behave more
+like the PATH env. variable?
+
+it would allow for instance something like:
+
+GIT_EXEC_PATH=/git/core:/usr/local/git/potty:/usr/lib/git
+
+and naturally git <command> would do the correct thing given.
+
+if so, definetly post 1.0 stuff.
+
+any ideas?
+
+- Martin -
+
+-- 
+Due to a shortage of devoted followers, the production of great leaders has been discontinued.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

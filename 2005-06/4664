@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Jun  7 23:59:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0E36C57E24
+	for <tkil@scrye.com>; Tue,  7 Jun 2005 23:59:58 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262114AbVFHF7p (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 8 Jun 2005 01:59:45 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262111AbVFHF7p
+	(ORCPT <rfc822;git-outgoing>); Wed, 8 Jun 2005 01:59:45 -0400
+Received: from gate.ebshome.net ([64.81.67.12]:63364 "EHLO gate.ebshome.net")
+	by vger.kernel.org with ESMTP id S262115AbVFHF7n (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 8 Jun 2005 01:59:43 -0400
+Received: (qmail 8453 invoked by uid 1000); 7 Jun 2005 22:59:42 -0700
+Date:	Tue, 7 Jun 2005 22:59:42 -0700
+From: Eugene Surovegin <ebs@ebshome.net>
+To: git@vger.kernel.org
+Subject: [PATCH] fix cg-commit new file handling
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050608055942.GA7151@gate.ebshome.net>
+Mail-Followup-To: git@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-ICQ-UIN: 1193073
+X-Operating-System: Linux i686
+X-PGP-Key: http://www.ebshome.net/pubkey.asc
+User-Agent: Mutt/1.5.5.1i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 35
+Xref: brand.scrye.com linux.git:4664
+
+Hi!
+
+There is a problem with committing new files with the current cogito 
+version.
+
+I got an error like this: 
+  fatal: Unable to add arch/ppc/kernel/dcr.S to database
+
+I think this is caused by the incorrect file list parsing in 
+cg-commit precommit_update(): it expects new files prefixed with "A", 
+while they are prefixed with "N".
+
+The following trivial patch fixes this.
+
+Signed-off-by: Eugene Surovegin <ebs@ebshome.net>
+
+diff --git a/cg-commit b/cg-commit
+--- a/cg-commit
++++ b/cg-commit
+@@ -227,7 +227,7 @@ precommit_update () {
+ 	for file in "$@"; do
+ 		op=${file%% *}
+ 		fname=${file#* }
+-		[ "$op" = "A" ] || [ "$op" = "D" ] || [ "$op" = "M" ] || op=M
++		[ "$op" = "N" ] || [ "$op" = "D" ] || [ "$op" = "M" ] || op=M
+ 		eval "queue$op[\${#queue$op[@]}]=\"\$fname\""
+ 	done
+ 	# XXX: Do we even need to do the --add and --remove update-caches?
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

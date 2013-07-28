@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Apr 15 12:30:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5D7C719480C
+	for <tkil@scrye.com>; Fri, 15 Apr 2005 12:30:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261910AbVDOS0v (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 15 Apr 2005 14:26:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261912AbVDOS0q
+	(ORCPT <rfc822;git-outgoing>); Fri, 15 Apr 2005 14:26:46 -0400
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:12163 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S261910AbVDOSZ4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 15 Apr 2005 14:25:56 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050415182555.WIVD19936.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 15 Apr 2005 14:25:55 -0400
+To: Petr Baudis <pasky@ucw.cz>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org
+Subject: Re: ls-tree enhancements
+References: <Pine.LNX.4.58.0504132020550.7211@ppc970.osdl.org>
+	<7vfyxtsurd.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0504140051550.7211@ppc970.osdl.org>
+	<7v64ypsqev.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0504140201130.7211@ppc970.osdl.org>
+	<7vvf6pr4oq.fsf@assigned-by-dhcp.cox.net>
+	<20050414121624.GZ25711@pasky.ji.cz>
+	<7vll7lqlbg.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0504141133260.7211@ppc970.osdl.org>
+	<7vzmw0ok45.fsf_-_@assigned-by-dhcp.cox.net>
+	<20050415161330.GH19078@pasky.ji.cz>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Fri, 15 Apr 2005 11:25:54 -0700
+In-Reply-To: <20050415161330.GH19078@pasky.ji.cz> (Petr Baudis's message of
+ "Fri, 15 Apr 2005 18:13:30 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64ynj3rh.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 16
+Xref: brand.scrye.com linux.git:202
+
+>>>>> "PB" == Petr Baudis <pasky@ucw.cz> writes:
+
+>> +static void _usage(void)
+
+PB>  This infriges the system namespaces. FWIW, I prefer to add the
+PB> underscore at the end of the identifier if wanting to do stuff like
+PB> this. Or just call it my_usage().
+
+Thanks.  My bad.  Noted.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 22 13:12:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 26C0F16E9B5
+	for <tkil@scrye.com>; Thu, 22 Sep 2005 13:12:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750920AbVIVTLE (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 22 Sep 2005 15:11:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751044AbVIVTLD
+	(ORCPT <rfc822;git-outgoing>); Thu, 22 Sep 2005 15:11:03 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:26792 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750920AbVIVTLC (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 22 Sep 2005 15:11:02 -0400
+Received: (qmail 2885 invoked by uid 2001); 22 Sep 2005 21:10:59 +0200
+Date:	Thu, 22 Sep 2005 21:10:58 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	Jon Loeliger <jdl@freescale.com>
+Cc:	git@vger.kernel.org
+Subject: Re: Please undo "Use git-merge instead of git-resolve in
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050922191058.GM21019@pasky.or.cz>
+References: <E1EIVsD-0001Hu-9m@jdl.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1EIVsD-0001Hu-9m@jdl.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:9128
+
+Dear diary, on Thu, Sep 22, 2005 at 08:32:45PM CEST, I got a letter
+where Jon Loeliger <jdl@freescale.com> told me that...
+> Which points out one of the other points of frustration
+> that I feel should be addressed eventually:  A whole section
+> about "What To Do When It Goes Wonky" needs to be written.
+> 
+> OK, so it didn't merge?  Now what?  What got left where?
+> How do I recover?  What bits are in my tree, and what bits
+> are in the Index, and what bits are in the Object store now?
+> 
+> OK, so it didn't download it left you "refs/heads/rigin.remote".
+> What should I do with it now?  And later, should I re-execute
+> the same "git fetch" command and hope it recovers and patches
+> the pieces together?  Should I do a round of house cleaning
+> before attempting to re-run some (the same?) command?
+
+FWIW, with Cogito, interrupted or failed fetch can be safely rerun, no
+extra recovery procedure is required. It *seems* that this holds for
+git-fetch as well.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 20 02:59:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 33B1826177E
+	for <tkil@scrye.com>; Thu, 20 Oct 2005 02:59:40 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750760AbVJTI7f (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 20 Oct 2005 04:59:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750763AbVJTI7f
+	(ORCPT <rfc822;git-outgoing>); Thu, 20 Oct 2005 04:59:35 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:49885 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1750760AbVJTI7e (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 20 Oct 2005 04:59:34 -0400
+Received: (qmail 14644 invoked by uid 2001); 20 Oct 2005 10:59:31 +0200
+Date:	Thu, 20 Oct 2005 10:59:31 +0200
+From:	Petr Baudis <pasky@suse.cz>
+To:	eschvoca <eschvoca@gmail.com>
+Cc:	git@vger.kernel.org
+Subject: Re: How do I clear the directory cache
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051020085931.GW30889@pasky.or.cz>
+References: <2b05065b0510170720n5333f03l1941e84c1288fc5d@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2b05065b0510170720n5333f03l1941e84c1288fc5d@mail.gmail.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.10i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 39
+Xref: brand.scrye.com linux.git:10347
+
+  Hello,
+
+Dear diary, on Mon, Oct 17, 2005 at 04:20:42PM CEST, I got a letter
+where eschvoca <eschvoca@gmail.com> told me that...
+> If I do a:
+> 
+> cg-commit
+> modifiy some files
+> cg-rm <modified files>
+> cg-add <a new file>
+> cg-rm <a unmodified file>
+> 
+> Then how do I get back and undo all of the cg-adds and cg-rms?  I want
+> cg-status to show the the changes from my commit and my current
+> working tree.
+
+  why can't you just do the following?
+
+	cg-add <an unmodified file>
+	cg-rm <a new file>
+	cg-add <modified files>
+
+  Hmm. Would it be non-marginally useful to offer something like
+
+	cg-reset --adds-removals
+
+to just reset the index? (It's not --index because Cogito users aren't
+supposed to have to know what an "index" is.)
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

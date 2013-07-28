@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 18 12:17:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A83B31E1005
+	for <tkil@scrye.com>; Mon, 18 Apr 2005 12:17:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261164AbVDRSRb (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 18 Apr 2005 14:17:31 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262157AbVDRSRb
+	(ORCPT <rfc822;git-outgoing>); Mon, 18 Apr 2005 14:17:31 -0400
+Received: from stat16.steeleye.com ([209.192.50.48]:51178 "EHLO
+	hancock.sc.steeleye.com") by vger.kernel.org with ESMTP
+	id S261164AbVDRSR3 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 18 Apr 2005 14:17:29 -0400
+Received: from midgard.sc.steeleye.com (midgard.sc.steeleye.com [172.17.6.40])
+	by hancock.sc.steeleye.com (8.11.6/8.11.6) with ESMTP id j3IIHKA04205;
+	Mon, 18 Apr 2005 14:17:20 -0400
+Subject: [PATCH] fix bug in read-cache.c which loses files when merging a
+	tree
+From: James Bottomley <James.Bottomley@SteelEye.com>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Content-Type: text/plain
+Date:	Mon, 18 Apr 2005 13:17:19 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1113848239.4998.45.camel@mulgrave>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.0.4 (2.0.4-2) 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 26
+Xref: brand.scrye.com linux.git:649
+
+I noticed this when I tried a non-trivial scsi merge and checked the
+results against BK.  The problem is that remove_entry_at() actually
+decrements active_nr, so decrementing it in add_cache_entry() before
+calling remove_entry_at() is a double decrement (hence we lose cache
+entries at the end).
+
+James
+
+read-cache.c: 4d4d94f75cceb8039eb466c1956f8b54dc0e24b6
+--- read-cache.c
++++ read-cache.c	2005-04-18 13:08:09.000000000 -0500
+@@ -402,7 +402,6 @@
+ 	if (pos < active_nr && ce_stage(ce) == 0) {
+ 		while (same_name(active_cache[pos], ce)) {
+ 			ok_to_add = 1;
+-			active_nr--;
+ 			if (!remove_entry_at(pos))
+ 				break;
+ 		}
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,93 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 23:31:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BDF436E4C5
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 23:31:44 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751423AbVKSGbb (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 19 Nov 2005 01:31:31 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751444AbVKSGbb
+	(ORCPT <rfc822;git-outgoing>); Sat, 19 Nov 2005 01:31:31 -0500
+Received: from web26303.mail.ukl.yahoo.com ([217.146.176.14]:12409 "HELO
+	web26303.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S1751423AbVKSGbb (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 19 Nov 2005 01:31:31 -0500
+Received: (qmail 40237 invoked by uid 60001); 19 Nov 2005 06:31:25 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=PaolBlCqS1sa3joSHXcrcddMRZlC4aM/dlFIlF/pP+vb/06GkyQz/HmEkU6UJCm3c4AMdbgB6RJYRYtyLBDbnPipGR0njel8GeLFbpHbl+/wLmqNIHHezvDZkEHoX0JjvfcSSs/4TF3KgcPDlR+acVCAj8Q13vqYwaDFWQTvB6g=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051119063125.40234.qmail@web26303.mail.ukl.yahoo.com>
+Received: from [151.44.24.124] by web26303.mail.ukl.yahoo.com via HTTP; Fri, 18 Nov 2005 22:31:24 PST
+Date:	Fri, 18 Nov 2005 22:31:24 -0800 (PST)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: Rss produced by git is not valid xml?
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Junio C Hamano <junkio@cox.net>,
+	"git@vger.kernel.org" <git@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 50
+Xref: brand.scrye.com linux.git:12312
+
+H. Peter Anvin wrote:
+
+> Junio C Hamano wrote:
+>
+>> I just looked at the diff this commit introduces:
+>>
+>>     e6bd23911efd0a2bd756c77d9e7ba6576eb739a1
+>>         Documentation: asciidoc sources are utf-8
+>>
+>> with gitk (BTW, I pulled from paulus today, so "master" branch
+>> has the latest gitk) while my locale set to LC_CTYPE=en_US.utf8.
+>>
+>> Surprisingly, the diff to Documentation/git-pack-redundant.txt,
+>> which changes Lukas' name originally incorrectly encoded in
+>> iso-8859-1 to utf-8, was shown and both pre-image and post-image
+>> lines are readable.
+>>
+>> I do not know how tcl/tk does it, but it is doing the right
+>> thing.
+>>
+>
+> Tcl/Tk assumes that anything that isn't valid UTF-8 is Latin-1.
+>
+>     -hpa
+> -
+My locale is set to LC_CTYPE=it_IT (local codec is ISO 8859-15).
+
+Gitk shows correctly pre-image lines, but not post-image. BTW it's 
+the same output I have with
+
+      git-diff-tree -p e6bd23911efd0a2bd756c77d9e7ba6576eb739a1
+
+run from KDE Konsole.
+
+So I think the local encoding (LC_CTYPE) has a role in the story.
+
+Marco
+
+
+
+	
+		
+__________________________________ 
+Yahoo! Mail - PC Magazine Editors' Choice 2005 
+http://mail.yahoo.com
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

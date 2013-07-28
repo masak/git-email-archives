@@ -1,0 +1,96 @@
+X-From-Line: git-owner@vger.kernel.org  Sun May  1 03:43:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4BD688EE84
+	for <tkil@scrye.com>; Sun,  1 May 2005 03:43:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261415AbVEAJnu (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 1 May 2005 05:43:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261576AbVEAJnt
+	(ORCPT <rfc822;git-outgoing>); Sun, 1 May 2005 05:43:49 -0400
+Received: from s2.ukfsn.org ([217.158.120.143]:59043 "EHLO mail.ukfsn.org")
+	by vger.kernel.org with ESMTP id S261415AbVEAJnr (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 1 May 2005 05:43:47 -0400
+Received: from localhost (lucy.ukfsn.org [127.0.0.1])
+	by mail.ukfsn.org (Postfix) with ESMTP
+	id 11A1CE6D99; Sun,  1 May 2005 10:43:35 +0100 (BST)
+Received: from mail.ukfsn.org ([127.0.0.1])
+ by localhost (lucy.ukfsn.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 21721-01; Sun,  1 May 2005 10:43:34 +0100 (BST)
+Received: from oak.dgreaves.com (unknown [217.135.200.138])
+	by mail.ukfsn.org (Postfix) with ESMTP
+	id 58864E6A83; Sun,  1 May 2005 10:43:34 +0100 (BST)
+Received: from ash.dgreaves.com ([10.0.0.90])
+	by oak.dgreaves.com with esmtp (Exim 4.20)
+	id 1DSAz9-0007a1-26; Sun, 01 May 2005 10:43:35 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4274A4C6.3000400@dgreaves.com>
+Date:	Sun, 01 May 2005 10:43:34 +0100
+From: David Greaves <david@dgreaves.com>
+User-Agent: Debian Thunderbird 1.0.2 (X11/20050331)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Lennert Buytenhek <buytenh@wantstofly.org>
+Cc: git@vger.kernel.org, Linus Torvalds <torvalds@osdl.org>
+Subject: Re: update-cache ./test.c
+References: <20050501084145.GA30692@xi.wantstofly.org>
+In-Reply-To: <20050501084145.GA30692@xi.wantstofly.org>
+X-Enigmail-Version: 0.91.0.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 44
+Xref: brand.scrye.com linux.git:2263
+
+Lennert Buytenhek wrote:
+
+>Hi,
+>
+>update-cache seems to ignore paths containing path components
+>starting with a dot:
+>
+>	pi% update-cache --add ./test.c
+>	Ignoring path ./test.c
+>	pi% update-cache --add test.c
+>	pi%
+>
+>This is slightly annoying as 'find -type f | xargs update-cache --add'
+>doesn't work because of this.  ('find * -type f | ...` does.)  Instead
+>of ignoring the file, can we just strip off the leading "./"
+>  
+>
+
+This is documented behaviour:
+<file>
+    Files to act on.
+    Note that files begining with '.' are discarded. This includes
+    "./file" and "dir/./file". If you don't want this, then use   
+    cleaner names.
+    The same applies to directories ending '/' and paths with '//'
+
+
+"Where?" you ask...
+
+Well, Linus hasn't accepted the docs for some reason - you have to
+search the archives...
+
+Sorry about that...
+
+David
+PS Changing this behaviour was discussed and dismissed for the core tools.
+If the problem appears in Cogito however, then it's worth patching...
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

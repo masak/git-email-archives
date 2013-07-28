@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 14 10:22:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3B000FC376
+	for <tkil@scrye.com>; Sat, 14 May 2005 10:22:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262792AbVENQVu (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 14 May 2005 12:21:50 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261406AbVENQVu
+	(ORCPT <rfc822;git-outgoing>); Sat, 14 May 2005 12:21:50 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:44443 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262792AbVENQVf (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 14 May 2005 12:21:35 -0400
+Received: (qmail 22453 invoked by uid 2001); 14 May 2005 16:21:33 -0000
+Date:	Sat, 14 May 2005 18:21:33 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Junio C Hamano <junkio@cox.net>
+Cc: torvalds@osdl.org, git@vger.kernel.org
+Subject: Re: Rename tracking
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050514162133.GW3905@pasky.ji.cz>
+References: <7vk6m260xf.fsf@assigned-by-dhcp.cox.net> <20050514151159.GL3905@pasky.ji.cz> <7v4qd523p1.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7v4qd523p1.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_MK 
+	autolearn=ham version=3.0.3
+Lines: 39
+Xref: brand.scrye.com linux.git:3303
+
+Dear diary, on Sat, May 14, 2005 at 06:05:30PM CEST, I got a letter
+where Junio C Hamano <junkio@cox.net> told me that...
+> >>>>> "PB" == Petr Baudis <pasky@ucw.cz> writes:
+> 
+> PB> I'll postpone it for another while since there is still some discussion
+> PB> about tuning the output.
+> 
+> What discussion did I miss???
+
+Mainly
+
+From: Petr Baudis <pasky@ucw.cz>
+Date: Sat, 14 May 2005 17:03:56 +0200
+Subject: Re: [PATCH] Resurrect diff-tree-helper -R
+Message-ID: <20050514150356.GK3905@pasky.ji.cz>
+
+> PB> I'm thinking about using "\n---\n\n" in commit message to separate some
+> PB> "internal data" like this. cg-log (and web interfaces and other
+> PB> toolkits, if we get to agree on something common) could then by default
+> PB> hide it. Below it would contain something which we could hopefully embed
+> PB> in patches too (actually less work for extracting patches by cg-mkpatch
+> PB> or similar tools). What do you think?
+> 
+> Since I have not been particularly interested in rename tracking
+> (because I myself personally have not felt the need for it), I
+> do not offhand have much idea worth to offer.  Sorry.
+
+Well, I'd say that with those renaming patches we are feeling the need
+for it?
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,95 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 21 17:40:10 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 22CD71CE596
+	for <tkil@scrye.com>; Sat, 21 May 2005 17:40:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261693AbVEUXjo (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 21 May 2005 19:39:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261692AbVEUXjo
+	(ORCPT <rfc822;git-outgoing>); Sat, 21 May 2005 19:39:44 -0400
+Received: from fire.osdl.org ([65.172.181.4]:6877 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261697AbVEUXj0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 21 May 2005 19:39:26 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j4LNdJjA029123
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 21 May 2005 16:39:20 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j4LNdIKp018833;
+	Sat, 21 May 2005 16:39:19 -0700
+Date:	Sat, 21 May 2005 16:41:24 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Sean <seanlkml@sympatico.ca>
+Cc: Sam Ravnborg <sam@ravnborg.org>, git@vger.kernel.org
+Subject: Re: cogito - how do I ???
+In-Reply-To: <2765.10.10.10.24.1116713164.squirrel@linux1>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505211635440.2206@ppc970.osdl.org>
+References: <20050521214700.GA18676@mars.ravnborg.org>
+ <2765.10.10.10.24.1116713164.squirrel@linux1>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_VN 
+	autolearn=ham version=3.0.3
+Lines: 49
+Xref: brand.scrye.com linux.git:3709
+
+
+
+On Sat, 21 May 2005, Sean wrote:
+
+> On Sat, May 21, 2005 5:47 pm, Sam Ravnborg said:
+> > Hi all.
+> >
+> > While trying to get up to speed on cogito/git I stumbled across
+> > a few things that I at least did not find available in cogito.
+> >
+> > 1) Something similar to "bk changes -R". I use this to see what has
+> > happened upstream - to see if I really want to merge stuff.
+> 
+> Not sure what bk did here, but you can do something like:
+> 
+> cg-pull origin
+> cg-log -c -r origin
+
+In the raw git interfaces, you'd basically have to do the same thing that
+"git-pull-script" does, except that _instead_ of calling the
+git-resolve-script thing, you'd do
+
+	git-rev-tree MERGE_HEAD ^HEAD | git-diff-tree -v -m -s --stdin
+
+to show what is in the downloaded MERGE_HEAD but not in HEAD.
+
+> > 2) Export of individual patches. "bk export -tpatch -r1.2345"
+> > I have nu public git repository yet so I have to feed changes as
+> > plain patches. Browsing cg-* I did not find the command to do this.
+> 
+> cg-diff -p -r SHA1
+
+And again, without the porcelain this is:
+
+	git-diff-tree -v -p <name>
+
+(Basically, you can do _anything_ with "git-diff-tree". For example, you 
+want "cg log"? Do
+
+	git-rev-list HEAD | git-diff-tree --stdin -v -m -s
+
+which is basically what "git-whatchanged" does).
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

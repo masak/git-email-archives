@@ -1,0 +1,61 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 14:34:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_JD 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7A24324409D
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 14:34:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030377AbVJEUbf (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 16:31:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030380AbVJEUbf
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 16:31:35 -0400
+Received: from az33egw01.freescale.net ([192.88.158.102]:33432 "EHLO
+	az33egw01.freescale.net") by vger.kernel.org with ESMTP
+	id S1030377AbVJEUbe (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 5 Oct 2005 16:31:34 -0400
+Received: from az33smr02.freescale.net (az33smr02.freescale.net [10.64.34.200])
+	by az33egw01.freescale.net (8.12.11/az33egw01) with ESMTP id j95Kfs69026871
+	for <git@vger.kernel.org>; Wed, 5 Oct 2005 13:41:54 -0700 (MST)
+Received: from [10.82.19.2] (cashmere.am.freescale.net [10.82.19.2])
+	by az33smr02.freescale.net (8.13.1/8.13.0) with ESMTP id j95KbYLY026205
+	for <git@vger.kernel.org>; Wed, 5 Oct 2005 15:37:34 -0500 (CDT)
+Subject: git-show-index rename suggestion?
+From:	Jon Loeliger <jdl@freescale.com>
+To:	Git List <git@vger.kernel.org>
+Content-Type: text/plain
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1128544279.29904.19.camel@cashmere.sps.mot.com>
+Mime-Version: 1.0
+X-Mailer: Ximian Evolution 1.4.6 (1.4.6-2.ydl.1) 
+Date:	Wed, 05 Oct 2005 15:31:20 -0500
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:9721
+
+So, I was reading up on the various "index" operations
+like git-diff-index, git-checkout-index, etc.  Things
+that operated on the index.
+
+Naturally, I was surprised when I realized "git-show-index"
+has nothing to do with the index, but rather the .idx "index"
+files associated with packs.
+
+Um, git-show-pack-index?
+
+Ducking,
+jdl
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

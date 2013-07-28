@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 17 00:20:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 4550722C4B9
+	for <tkil@scrye.com>; Sun, 17 Apr 2005 00:20:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261270AbVDQGUf (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 17 Apr 2005 02:20:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261271AbVDQGUf
+	(ORCPT <rfc822;git-outgoing>); Sun, 17 Apr 2005 02:20:35 -0400
+Received: from cujo.runbox.com ([193.71.199.138]:28801 "EHLO cujo.runbox.com")
+	by vger.kernel.org with ESMTP id S261270AbVDQGU1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 17 Apr 2005 02:20:27 -0400
+Received: from [10.9.9.1] (helo=bolivar.runbox.com)
+	by greyhound.runbox.com with esmtp (Exim 4.34)
+	id 1DN38m-0002Nb-Pu; Sun, 17 Apr 2005 08:20:20 +0200
+Received: from [70.17.101.238] (helo=[192.168.2.73])
+	by bolivar.runbox.com with asmtp (uid:258406) (Exim 4.34)
+	id 1DN38i-0000uc-S0; Sun, 17 Apr 2005 08:20:20 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42620092.9040402@dwheeler.com>
+Date:	Sun, 17 Apr 2005 02:22:10 -0400
+From: "David A. Wheeler" <dwheeler@dwheeler.com>
+Reply-To: dwheeler@dwheeler.com
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Paul Jackson <pj@sgi.com>, Morten Welinder <mwelinder@gmail.com>,
+	mj@ucw.cz, git@vger.kernel.org
+Subject: Re: Storing permissions
+References: <20050416230058.GA10983@ucw.cz> <118833cc05041618017fb32a2@mail.gmail.com> <20050416183023.0b27b3a4.pj@sgi.com> <Pine.LNX.4.58.0504162138020.7211@ppc970.osdl.org>
+In-Reply-To: <Pine.LNX.4.58.0504162138020.7211@ppc970.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Sender: 258406@vger.kernel.org
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 49
+Xref: brand.scrye.com linux.git:423
+
+Linus Torvalds wrote:
+> 
+> On Sat, 16 Apr 2005, Paul Jackson wrote:
+> 
+>>Morten wrote:
+>>
+>>>It makes some sense in principle, but without storing what they mean
+>>>(i.e., group==?) it certainly makes no sense. 
+>>
+>>There's no "they" there.
+>>
+>>I think Martin's proposal, to which I agreed, was to store a _single_
+>>bit.  If any of the execute permissions of the incoming file are set,
+>>then the bit is stored ON, else it is stored OFF.  On 'checkout', if the
+>>bit is ON, then the file permission is set mode 0777 (modulo umask),
+>>else it is set mode 0666 (modulo umask).
+> 
+> 
+> I think I agree.
+> 
+> Anybody willing to send me a patch? One issue is that if done the obvious
+> way it's an incompatible change, and old tree objects won't be valid any
+> more. It might be ok to just change the "compare cache" check to only care
+> about a few bits, though: S_IXUSR and S_IFDIR.
+
+There's a minor reason to write out ALL the perm bit data, but
+only care about a few bits coming back in: Some people use
+SCM systems as a generalized backup system, so you can back up
+your system to an arbitrary known state in the past
+(e.g., "Change my /etc files to the state I was at
+just before I installed that &*#@ program!").
+For more on this, see:
+  http://www.onlamp.com/pub/a/onlamp/2005/01/06/svn_homedir.html
+
+If you store all the bits, then you CAN restore things
+more exactly the way they were.  This is imperfect, since
+it doesn't cover more exotic permission
+values from SELinux, xattrs, whatever.  For some, that's enough.
+
+Yeah, I know, not the main purpose of git.  But what the heck,
+I _like_ flexible infrastructures.
+
+--- David A. Wheeler
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,105 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jun 29 19:33:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C1C898D973
+	for <tkil@scrye.com>; Wed, 29 Jun 2005 19:33:43 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262652AbVF3Bdf (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 29 Jun 2005 21:33:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262679AbVF3Bdc
+	(ORCPT <rfc822;git-outgoing>); Wed, 29 Jun 2005 21:33:32 -0400
+Received: from rproxy.gmail.com ([64.233.170.200]:7043 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262652AbVF3Bd0 convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 29 Jun 2005 21:33:26 -0400
+Received: by rproxy.gmail.com with SMTP id i8so21921rne
+        for <git@vger.kernel.org>; Wed, 29 Jun 2005 18:33:25 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=d8fizLtg8CD9C4rNVWFdjaIiOi9o8xC6h4mLSQQxGGyv1HnbXEZrYN3dDPcUPR0XrBAqLxzShQ2hWasKE5lj/gzz9cOQlO0ABLKnDpJNIEJWaC1wfFwAjSZCjhB/bB+jhFL49OypMn0Ti6x8uE09ATFAVOUf8HxsXlYIjwbY+PE=
+Received: by 10.38.208.73 with SMTP id f73mr214134rng;
+        Wed, 29 Jun 2005 18:33:25 -0700 (PDT)
+Received: by 10.38.104.42 with HTTP; Wed, 29 Jun 2005 18:33:25 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2cfc403205062918336a55e8da@mail.gmail.com>
+Date:	Thu, 30 Jun 2005 11:33:25 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+Reply-To: jon@blackcubes.dyndns.org
+To: Junio C Hamano <junkio@cox.net>
+Subject: Re: [PATCH 2/2] Fix for git-rev-list --merge-order B ^A (A,B share common base)
+Cc: torvalds@osdl.org, git@vger.kernel.org
+In-Reply-To: <7v1x6k1z6c.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20050629234533.28709.qmail@blackcubes.dyndns.org>
+	 <7v1x6k1z6c.fsf@assigned-by-dhcp.cox.net>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 55
+Xref: brand.scrye.com linux.git:5411
+
+On 6/30/05, Junio C Hamano <junkio@cox.net> wrote:
+> >>>>> "JS" == Jon Seymour <jon.seymour@gmail.com> writes:
+> 
+> I am puzzled about this part.
+> 
+> JS> The unit test changes in this patch remove use of the --show-breaks
+> JS> flags from certain unit tests. The changed --merge-order behaviour
+> JS> changed the annotation that --show-breaks prints for certain test cases.
+> JS> The new behaviour is reasonable and irrelevant to the intent of the tests
+> JS> so that tests have been changed to eliminate the spurious behaviour.
+> 
+> If the behaviour of --show-breaks subtly changes, and if that
+> changed behaviour is something still acceptable, why not update
+> the test to show the new expected results since you are updating
+> the test anyway?
+
+I can do it this way, if you prefer. The issue was that the expected output was:
+
+= l2
+| l1 
+| l0
+
+but became:
+
+^ l2
+| l1
+| l0
+
+The annotation changes because there is no longer a single head in the
+start list. There are now multiple heads, it just happens that one of
+the heads is also a prune point.
+
+> 
+> Showing that "subtle" change in the diff may draw people's
+> attention and would help you to verify that the behaviour change
+> is not something that would be unacceptable to them.
+
+Fair enough, I'll resubmit with a less drastic change to the test case.
+
+> 
+> Also if you are changing t6001, could you also merge Mark
+> Allen's BSD portability fix while you are at it?
+> 
+>     Message-ID: <20050628014337.18986.qmail@web41205.mail.yahoo.com>
+> 
+> 
+
+Ok.
+
+jon.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

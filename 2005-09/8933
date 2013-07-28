@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 18:52:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 6826A276EF6
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 18:52:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964811AbVITAv7 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 20:51:59 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964812AbVITAv7
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 20:51:59 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:57279 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S964811AbVITAv7 (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 19 Sep 2005 20:51:59 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8K0pnBo022252
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 19 Sep 2005 17:51:49 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8K0pmm2027048;
+	Mon, 19 Sep 2005 17:51:48 -0700
+Date:	Mon, 19 Sep 2005 17:51:48 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Pavel Machek <pavel@suse.cz>
+cc:	Petr Baudis <pasky@suse.cz>, Junio C Hamano <junkio@cox.net>,
+	git@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [ANNOUNCE] Cogito-0.15
+In-Reply-To: <20050919231538.GA4074@elf.ucw.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509191750480.2553@g5.osdl.org>
+References: <7vr7c02zgg.fsf@assigned-by-dhcp.cox.net> <7vwtleyml5.fsf@assigned-by-dhcp.cox.net>
+ <20050919011428.GF22391@pasky.or.cz> <20050919231538.GA4074@elf.ucw.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.117 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:8933
+
+
+
+On Tue, 20 Sep 2005, Pavel Machek wrote:
+> 
+> Could we keep at least the cg-update name? It is certainly not a
+> *pull* because it does update local repository (and tree, too).
+
+That _is_ what "pull" means.
+
+"fetch" is the one that only updates the history. A "pull" also does a
+merge and updates the current branch _and_ the currently checked out tree.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

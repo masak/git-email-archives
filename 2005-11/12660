@@ -1,0 +1,126 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 20:25:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EEDA4CB38A
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 20:25:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932622AbVKXDYl (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 22:24:41 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932619AbVKXDYl
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 22:24:41 -0500
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:36499 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S932622AbVKXDYk convert rfc822-to-8bit (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 23 Nov 2005 22:24:40 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051124032318.HPPP17437.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 23 Nov 2005 22:23:18 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Kay Sievers <kay.sievers@vrfy.org>,
+	Paul Mackerras <paulus@samba.org>
+Subject: Re: gitweb on kernel.org and UTF-8
+References: <7vzmnw9qo0.fsf@assigned-by-dhcp.cox.net>
+	<4383BEE4.1060800@zytor.com> <20051123033526.GA24098@vrfy.org>
+cc:	git@vger.kernel.org
+Date:	Wed, 23 Nov 2005 19:24:38 -0800
+In-Reply-To: <20051123033526.GA24098@vrfy.org> (Kay Sievers's message of "Wed,
+	23 Nov 2005 04:35:26 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfypm20eh.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 79
+Xref: brand.scrye.com linux.git:12660
+
+Kay Sievers <kay.sievers@vrfy.org> writes:
+
+> Should be fine now. The escapeHTML() garbled the utf8 "ö", and the
+> decode() failed that.
+
+Looking better.  Thanks.
+
+This begs for addressing another issue, although I am hesitant
+to open this can of worms at this moment.
+
+It might be a good idea to have configuration items gitk and
+gitweb can use to get a hint to decide what the commit log
+message and the blob data encodings might be.  gitweb already
+adds its own information to the git repository format
+(.git/description), so this _could_ be stored outside just like
+that (e.g. .git/commit_log_encoding), but using .git/config is
+probably better.
+
+How about doing something like this?
+
+	[i18n]
+        	commitEncoding = utf8
+		blobEncoding = utf8
+
+to mean:
+
+	If you _have_ to make an assumption on an encoding
+	commit and blob objects are in, utf8 is your best bet
+	(but mistakes can happen, and some blobs can be binary).
+
+Then gitweb and gitk can look at commitEncoding and blobEncoding
+as a hint to base its display defaults on.  Sending everything
+out in utf8 would be sane and safe choice these days for gitweb,
+so if commitEncoding is latin-1 it may need to iconv latin-1 to
+utf8 while reading commits.  For blobs, it might be better off
+asking file(1) or File::MMagic (since you are using Perl in
+gitweb --- sorry I do not know tcl equivalent of that) what they
+are; eventually you would want to be able to show repositories
+full of jpeg pictures anyway ;-).
+
+On the commit-producing side, I could have:
+
+	[i18n]
+        	editorEncoding = latin-1
+
+and if editorEncoding is different from commitEncoding,
+"git-commit -c $commit" would first iconv from utf8 to latin-1
+before populating the user's editor, and iconv back from latin-1
+to utf8 before feeding what the user edited to commit-tree.
+
+Pathname encoding is the reason why I was hesitant about bring
+this up.  Although it is too late for 1.0 now, we _could_ have
+declared that the paths recorded in git tree objects and index
+files are internally utf8, and working tree paths can be in
+different encoding.  As a local repository configuration not
+project wide configuration, we could have something like:
+
+	[i18n]
+        	pathnameEncoding = latin-1
+
+to mean that the filesystem paths returned by readdir(3) and
+accepted by open(2) and friends are in latin-1.  Comparison and
+movement between working tree files, the index file, and tree
+objects have to involve iconv and do the right thing.  So if you
+fetch from such a repository into a filesystem that stores
+pathnames in utf8, the right thing should happen.
+
+I personally feel any sane project should restrict its pathname
+to ASCII only, so this issue might be moot (or is the right word
+"mute"?), but something like this _might_ be useful in later
+versions of git.
+
+But not in 1.0.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 11:10:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 89F8ED6522
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 11:10:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262173AbVD1RKJ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 13:10:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262174AbVD1RKJ
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 13:10:09 -0400
+Received: from zproxy.gmail.com ([64.233.162.203]:24870 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S262173AbVD1RKE convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 28 Apr 2005 13:10:04 -0400
+Received: by zproxy.gmail.com with SMTP id 13so526309nzp
+        for <git@vger.kernel.org>; Thu, 28 Apr 2005 10:10:04 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=Kyf8Q5tDAg2WSYpKZ0YHodhoGzunVHI7XL5COjLagRGJlVjY8dAH0GhjADhaFQ2T/igoaV48cdDClU+mpFLvqwrbokyPMsmMEjXjPtd201/J2C4cdVLPTx084aAvvn/Ybjmgm60wPGVhznqIFc7dhkzaXQIThLeC2XrnqHP3gWk=
+Received: by 10.36.24.7 with SMTP id 7mr108699nzx;
+        Thu, 28 Apr 2005 10:10:04 -0700 (PDT)
+Received: by 10.36.60.3 with HTTP; Thu, 28 Apr 2005 10:10:04 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <12c511ca050428101070e12e74@mail.gmail.com>
+Date:	Thu, 28 Apr 2005 10:10:04 -0700
+From: Tony Luck <tony.luck@gmail.com>
+Reply-To: Tony Luck <tony.luck@gmail.com>
+To: Kay Sievers <kay.sievers@vrfy.org>
+Subject: Re: Finding file revisions
+Cc: Chris Mason <mason@suse.com>, Linus Torvalds <torvalds@osdl.org>,
+	git@vger.kernel.org
+In-Reply-To: <1114706099.4212.25.camel@localhost.localdomain>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <200504271251.00635.mason@suse.com>
+	 <200504271423.37433.mason@suse.com>
+	 <Pine.LNX.4.58.0504271506290.18901@ppc970.osdl.org>
+	 <200504280745.05505.mason@suse.com>
+	 <1114706099.4212.25.camel@localhost.localdomain>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.2
+Lines: 26
+Xref: brand.scrye.com linux.git:2029
+
+> Not really happy clicky, but ... :)
+> 
+> Look at the (history) link:
+>   http://ehlo.org/~kay/gitweb.cgi?p=linux/kernel/git/torvalds/linux-2.6.git;a=commit;h=fb3b4ebc0be618dbcc2326482a83c920d51af7de
+
+Looks very useful.  Would it be possible to display the date (from the
+commit) instead of
+the 40-hex-char blobname (but have the link still point to the blob). 
+Like this:
+
+2005-04-27 [PATCH] USB: MODALIAS change for bcdDevice
+2005-04-26 Merge with
+kernel.org:/pub/scm/linux/kernel/git/gregkh/driver-2.6.git/
+2005-04-26 Merge with kernel.org:/pub/scm/linux/kernel/git/gregkh/aoe-2.6.git/
+
+That way you'd trade some screen space that is filled with hex numbers for some
+useful information.  Dates could either be absolute (as in my
+example), or relative
+("4 hours ago", "2 weeks ago", etc.)
+
+-Tony
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

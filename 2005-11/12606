@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 03:19:11 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C36D5277BF6
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 03:19:10 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030386AbVKWKSt (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 23 Nov 2005 05:18:49 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030388AbVKWKSt
+	(ORCPT <rfc822;git-outgoing>); Wed, 23 Nov 2005 05:18:49 -0500
+Received: from gw.ac-sw.com ([81.1.223.2]:49859 "EHLO gw.ac-sw.com")
+	by vger.kernel.org with ESMTP id S1030386AbVKWKSs (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 23 Nov 2005 05:18:48 -0500
+Received: from lan.ac-sw.lcl (unknown [192.168.0.69])
+	by gw.ac-sw.com (Postfix) with ESMTP
+	id 2071DBD1B; Wed, 23 Nov 2005 16:18:47 +0600 (NOVT)
+Received: by lan.ac-sw.lcl (Postfix, from userid 65534)
+	id 602A21C9B38; Wed, 23 Nov 2005 16:21:39 +0600 (NOVT)
+Received: from localhost (localhost [127.0.0.1])
+	by lan.ac-sw.lcl (Postfix) with ESMTP id 816BB1C9376;
+	Wed, 23 Nov 2005 16:21:34 +0600 (NOVT)
+From:	Alexander Litvinov <lan@ac-sw.com>
+Organization: AcademSoft Ltd.
+To:	Andreas Ericsson <ae@op5.se>
+Subject: Re: git-mv is not able to handle directory with one file in it
+Date:	Wed, 23 Nov 2005 16:21:34 +0600
+User-Agent: KMail/1.8
+Cc:	git@vger.kernel.org
+References: <200511231141.57683.lan@ac-sw.com> <200511231326.27972.lan@ac-sw.com> <438420CC.4050303@op5.se>
+In-Reply-To: <438420CC.4050303@op5.se>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200511231621.34259.lan@ac-sw.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:12606
+
+On Wednesday 23 November 2005 13:57, Andreas Ericsson wrote:
+> This is broken. It only checks if there's just one source-file
+> regardless of whether or not it resided in a subdirectory. I'm not
+> exactly fluent in perl so I can't submit a patch, but the src option
+> needs to be directory aware, traverse all source directories and then
+> move the files axing everything but the bottom-most dirname to the
+> destination directory.
+>
+> Any takers?
+
+I still does not understand what this part should do. I know perl enought to 
+fix it but I don't understand the logic.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

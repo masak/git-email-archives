@@ -1,0 +1,97 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 20:28:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4E2A19E14E
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 20:28:47 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964967AbVKAD2h (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 22:28:37 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964968AbVKAD2h
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 22:28:37 -0500
+Received: from iabervon.org ([66.92.72.58]:17164 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S964967AbVKAD2h (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 31 Oct 2005 22:28:37 -0500
+Received: (qmail 24981 invoked by uid 1000); 31 Oct 2005 22:28:16 -0500
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 31 Oct 2005 22:28:16 -0500
+Date:	Mon, 31 Oct 2005 22:28:16 -0500 (EST)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	git@vger.kernel.org
+Subject: [PATCH] Note that '.' is a useful value for <repository> in git-pull.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510312220230.25300@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 61
+Xref: brand.scrye.com linux.git:10915
+
+Mention in the tutorial and in the documentation for git-pull that you can 
+merge local branches with all the bells and whistles with 
+"git pull . <branch>"
+
+Signed-off-by: Daniel Barkalow <barkalow@iabervon.org>
+---
+
+"git pull . <branch>" does, in fact, do exactly what I wanted, and, when 
+the tutorial mentioned that you could do this, it didn't mention why you 
+might want to.
+
+ Documentation/git-pull.txt |    3 ++-
+ Documentation/tutorial.txt |   12 ++++++++++--
+ 2 files changed, 12 insertions(+), 3 deletions(-)
+
+applies-to: 8c8ace55eb085e930dcc9482f7cf66f9399374b4
+0ba51e8c8298aff4256bd63289071f23b4d83db3
+diff --git a/Documentation/git-pull.txt b/Documentation/git-pull.txt
+index bae05de..fe0c18a 100644
+--- a/Documentation/git-pull.txt
++++ b/Documentation/git-pull.txt
+@@ -13,7 +13,8 @@ SYNOPSIS
+ 
+ DESCRIPTION
+ -----------
+-Runs 'git-fetch' with the given parameters.
++Runs 'git-fetch' with the given parameters. This is effectively
++skipped if the repository is '.'
+ 
+ When only one ref is downloaded, runs 'git resolve' to merge it
+ into the local HEAD.  Otherwise uses 'git octopus' to merge them
+diff --git a/Documentation/tutorial.txt b/Documentation/tutorial.txt
+index b9f737e..78443a9 100644
+--- a/Documentation/tutorial.txt
++++ b/Documentation/tutorial.txt
+@@ -1027,8 +1027,16 @@ course, you will pay the price of more d
+ multiple working trees, but disk space is cheap these days.
+ 
+ [NOTE]
+-You could even pull from your own repository by
+-giving '.' as <remote-repository> parameter to `git pull`.
++
++One useful special case is
++
++	git pull . <branch-name>
++
++which does about the same thing as the `git resolve` calls for merging
++local branches, except that you don't have to type in the message or
++the side you're merging into (which is the branch that you have
++checked out).
++
+ 
+ It is likely that you will be pulling from the same remote
+ repository from time to time. As a short hand, you can store
+---
+0.99.8.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

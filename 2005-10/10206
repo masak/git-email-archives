@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 18 09:04:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00,TRACKER_ID 
+	autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3CB00276369
+	for <tkil@scrye.com>; Tue, 18 Oct 2005 09:04:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750771AbVJRPET (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 18 Oct 2005 11:04:19 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750784AbVJRPET
+	(ORCPT <rfc822;git-outgoing>); Tue, 18 Oct 2005 11:04:19 -0400
+Received: from qproxy.gmail.com ([72.14.204.196]:58937 "EHLO qproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1750771AbVJRPET convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 18 Oct 2005 11:04:19 -0400
+Received: by qproxy.gmail.com with SMTP id v28so1163228qbe
+        for <git@vger.kernel.org>; Tue, 18 Oct 2005 08:04:18 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+        b=Z3mWBjQZXwLJKG5Q+07ZxL1J+kDqIlJW/z9XF/BApx0tj+byz7vgTgK/KLT41Huy/6p5Py+CNXTo4TqqADfs0da2PHXRgX8FYtus2/TxuOmfD+DeJeugC7v2QqW71KbhNMcEzzHS1YE60JF2QGsRHYJUy24eVIdgHKUuZiz8Y0I=
+Received: by 10.65.156.16 with SMTP id i16mr60813qbo;
+        Tue, 18 Oct 2005 08:04:18 -0700 (PDT)
+Received: by 10.65.107.8 with HTTP; Tue, 18 Oct 2005 08:04:18 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <118833cc0510180804n633abe42t3d9248ed5145bf14@mail.gmail.com>
+Date:	Tue, 18 Oct 2005 11:04:18 -0400
+From:	Morten Welinder <mwelinder@gmail.com>
+To:	GIT Mailing List <git@vger.kernel.org>
+Subject: 4aaa702794447d9b281dd22fe532fd61e02434e1
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 22
+Xref: brand.scrye.com linux.git:10206
+
+My "git pull" has turned unhappy within the past few days.  Ideas?
+
+Morten
+
+
+$ git pull
+Fetching refs/heads/master from
+http://www.kernel.org/pub/scm/git/git.git/ using http
+Getting alternates list
+error: The requested URL returned error: 404 (curl_result = 22,
+http_code = 404, sha1 = 4aaa702794447d9b281dd22fe532fd61e02434e1)
+Getting pack list
+error: Unable to find 4aaa702794447d9b281dd22fe532fd61e02434e1 under
+http://www.kernel.org/pub/scm/git/git.git//
+
+Cannot obtain needed object 4aaa702794447d9b281dd22fe532fd61e02434e1
+while processing commit 0000000000000000000000000000000000000000.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

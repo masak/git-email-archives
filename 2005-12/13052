@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  1 08:44:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9A6581BB36F
+	for <tkil@scrye.com>; Thu,  1 Dec 2005 08:44:19 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932302AbVLAPmX (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 1 Dec 2005 10:42:23 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932295AbVLAPmX
+	(ORCPT <rfc822;git-outgoing>); Thu, 1 Dec 2005 10:42:23 -0500
+Received: from mail0.lsil.com ([147.145.40.20]:16300 "EHLO mail0.lsil.com")
+	by vger.kernel.org with ESMTP id S932298AbVLAPmW (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 1 Dec 2005 10:42:22 -0500
+Received: from milmhbs0.lsil.com (mhbs.lsil.com [147.145.1.30])
+	by mail0.lsil.com (8.12.8/8.12.8) with ESMTP id jB1FbXSW020172
+	for <git@vger.kernel.org>; Thu, 1 Dec 2005 07:37:33 -0800 (PST)
+Received: from EXA-ATLANTA.se.lsil.com (atl1.se.lsil.com [147.145.16.4])
+	by milmhbs0.lsil.com (8.12.11/8.12.11) with ESMTP id jB1FgLue012133
+	for <git@vger.kernel.org>; Thu, 1 Dec 2005 07:42:21 -0800
+Received: by exa-atlanta with Internet Mail Service (5.5.2658.27)
+	id <46HA4HAJ>; Thu, 1 Dec 2005 10:42:20 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <0E3FA95632D6D047BA649F95DAB60E5703662C66@exa-atlanta>
+From:	"Ju, Seokmann" <Seokmann.Ju@engenio.com>
+To:	"'git@vger.kernel.org'" <git@vger.kernel.org>
+Subject: How to set-up git on my system
+Date:	Thu, 1 Dec 2005 10:42:18 -0500 
+MIME-Version: 1.0
+X-Mailer: Internet Mail Service (5.5.2658.27)
+Content-Type: text/plain
+X-Scanned-By: MIMEDefang 2.39
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:13052
+
+Hi,
+
+I'm trying to use git and in the middle of installing it on the RHEL4 U2.
+I have following modules in hand.
+- git-core-0.99.7-1.i386.rpm
+- cogito-0.15.1-1.noarch.rpm
+
+During 'git-core-0.99.7-1.i386.rpm' installation, I'm getting following
+error message,
+[root@dhcp root]# rpm-ihv git-core-0.99.7-1.i386.rpm
+error: Failed dependencies:
+	perl(String::ShellQuote) is needed by git-core-0.99.7-1.i386
+	python >= 2.4 is needed by git-core-0.99.7-1.i386
+
+Where can I find those modules?
+Also, please point out if you see any further obstacles along the way to
+move forward.
+
+Any feedback would be appreciated.
+
+Regards,
+
+Seokmann
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

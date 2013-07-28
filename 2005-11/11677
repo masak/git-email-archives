@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 06:44:28 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 21FE01842E8
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 06:44:28 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932361AbVKLNoY (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 08:44:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932368AbVKLNoY
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 08:44:24 -0500
+Received: from mail-01.jhb.wbs.co.za ([196.30.31.196]:4862 "EHLO
+	mail-01.jhb.wbs.co.za") by vger.kernel.org with ESMTP
+	id S932361AbVKLNoX (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 12 Nov 2005 08:44:23 -0500
+Received: from wbs-196-2-115-130.wbs.co.za ([196.2.115.130] helo=[172.17.17.2])
+	by mail-01.jhb.wbs.co.za with esmtp (Exim 4.50)
+	id 1Eavfr-0000ZH-3c
+	for git@vger.kernel.org; Sat, 12 Nov 2005 15:44:07 +0200
+Mime-Version: 1.0 (Apple Message framework v623)
+In-Reply-To: <1131800663.29461.11.camel@blade>
+References: <1131800663.29461.11.camel@blade>
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <cae2e895f6598781f4f22b76e781684b@codefountain.com>
+Content-Transfer-Encoding: 7bit
+From:	Craig Schlenter <craig@codefountain.com>
+Subject: Re: Remove unneeded packs
+Date:	Sat, 12 Nov 2005 15:40:50 +0200
+To:	git@vger.kernel.org
+X-Mailer: Apple Mail (2.623)
+X-Original-Subject: Re: Remove unneeded packs
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:11677
+
+On 12 Nov 2005, at 3:04 PM, Marcel Holtmann wrote:
+
+> every time Linus re-creates the pack for his linux-2.6 tree, I end up
+> with another pack. I use HTTP as transport and thus the new pack will 
+> be
+> download (which is almost 100 MB), but that is fine.
+> [snip]
+
+The 100MB situation is not cool for those of us on a tight bandwidth
+budget or slow links. Can anyone tell me if the native git protocol is
+any better at this stuff please?
+
+Thanks,
+
+--Craig
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

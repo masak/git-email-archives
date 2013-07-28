@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Dec 27 11:02:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B49DA1BBDD8
+	for <tkil@scrye.com>; Tue, 27 Dec 2005 11:02:07 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932369AbVL0SBF (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 27 Dec 2005 13:01:05 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932375AbVL0SBF
+	(ORCPT <rfc822;git-outgoing>); Tue, 27 Dec 2005 13:01:05 -0500
+Received: from wrzx35.rz.uni-wuerzburg.de ([132.187.3.35]:27593 "EHLO
+	wrzx35.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932369AbVL0SBE (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 27 Dec 2005 13:01:04 -0500
+Received: from amavis.mail (amavis1.rz.uni-wuerzburg.de [132.187.3.46])
+	by wrzx35.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id E6848E3F05; Tue, 27 Dec 2005 19:01:00 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by amavis.mail (Postfix) with ESMTP id DA930250D;
+	Tue, 27 Dec 2005 19:01:00 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by amavis.mail (Postfix) with ESMTP id BF4318E7;
+	Tue, 27 Dec 2005 19:01:00 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A12C0141228; Tue, 27 Dec 2005 19:01:00 +0100 (CET)
+Date:	Tue, 27 Dec 2005 19:01:00 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Do not allow git-init-db to be called twice in the same
+ directory
+In-Reply-To: <7vlky6bi6f.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0512271859250.1618@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.63.0512270053030.14928@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vbqz3ibhn.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.63.0512271457200.17086@wbgn013.biozentrum.uni-wuerzburg.de>
+ <7vlky6bi6f.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new at uni-wuerzburg.de
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:14071
+
+Hi,
+
+On Tue, 27 Dec 2005, Junio C Hamano wrote:
+
+> Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+> 
+> >> Is there a particular reason running the current init-db twice
+> >> is undesirable?
+> >
+> > In my case, yes. When I do that, it means that I did not correctly 
+> > change directories. I fscked up my private git repository twice that way.
+> 
+> Maybe a warning (e.g. "rerunning in an already set up
+> repository") is in order?
+
+Yeah. Or a command line parameter "--exists" without which it fails?
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

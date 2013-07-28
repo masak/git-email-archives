@@ -1,0 +1,59 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Apr 25 06:32:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id EF9C3665D
+	for <tkil@scrye.com>; Mon, 25 Apr 2005 06:32:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262592AbVDYMcl (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 25 Apr 2005 08:32:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262595AbVDYMcl
+	(ORCPT <rfc822;git-outgoing>); Mon, 25 Apr 2005 08:32:41 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:11227 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262592AbVDYMcj (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 25 Apr 2005 08:32:39 -0400
+Received: (qmail 31066 invoked by uid 2001); 25 Apr 2005 12:32:36 -0000
+Date:	Mon, 25 Apr 2005 14:32:36 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Matthias-Christian Ott <matthias.christian@tiscali.de>
+Cc: Linus Torvalds <torvalds@osdl.org>, git@vger.kernel.org,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH GIT 0.6] make use of register variables & size_t
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050425123236.GC26665@pasky.ji.cz>
+References: <426CD1F1.2010101@tiscali.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <426CD1F1.2010101@tiscali.de>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 18
+Xref: brand.scrye.com linux.git:1584
+
+Dear diary, on Mon, Apr 25, 2005 at 01:18:09PM CEST, I got a letter
+where Matthias-Christian Ott <matthias.christian@tiscali.de> told me that...
+> The "git" didn't try store small variables, which aren't referenced, in 
+> the processor registers. It also didn't use the size_t type. I corrected 
+> a C++ style comment too.
+
+Honestly, I don't think using the register keyword helps anything but to
+make the code less readable.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

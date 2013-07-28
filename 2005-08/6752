@@ -1,0 +1,52 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug  3 11:08:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C29BD17568A
+	for <tkil@scrye.com>; Wed,  3 Aug 2005 11:08:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262329AbVHCRID (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 3 Aug 2005 13:08:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262348AbVHCRID
+	(ORCPT <rfc822;git-outgoing>); Wed, 3 Aug 2005 13:08:03 -0400
+Received: from iabervon.org ([66.92.72.58]:36619 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S262329AbVHCRH7 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 3 Aug 2005 13:07:59 -0400
+Received: (qmail 7761 invoked by uid 1000); 3 Aug 2005 13:11:00 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 3 Aug 2005 13:11:00 -0400
+Date:	Wed, 3 Aug 2005 13:11:00 -0400 (EDT)
+From: barkalow@iabervon.org
+To: git@vger.kernel.org
+Subject: git-local-pull?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.62.0508031259430.23721@iabervon.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,NO_REAL_NAME 
+	autolearn=no version=3.0.4
+Lines: 16
+Xref: brand.scrye.com linux.git:6752
+
+IIRC, git-local-pull still doesn't work for a packed source repository, 
+because it doesn't include the possibility of copying a pack (or 
+extracting an object) if the requested object is in a pack.
+
+I can probably fix it if anyone cares, but it's not something I use 
+personally, so I don't know if it's worthwhile. It should probably be 
+removed if we don't fix it, since it will fail on any popular repository 
+at this point.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

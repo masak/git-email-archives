@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jul  2 01:56:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 69A621F90E7
+	for <tkil@scrye.com>; Sat,  2 Jul 2005 01:56:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261474AbVGBH4D (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 2 Jul 2005 03:56:03 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261513AbVGBH4D
+	(ORCPT <rfc822;git-outgoing>); Sat, 2 Jul 2005 03:56:03 -0400
+Received: from rproxy.gmail.com ([64.233.170.199]:51092 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261474AbVGBH4B convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Sat, 2 Jul 2005 03:56:01 -0400
+Received: by rproxy.gmail.com with SMTP id i8so352379rne
+        for <git@vger.kernel.org>; Sat, 02 Jul 2005 00:56:01 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=O1ABrCrhpr/Wd2RGoodwkNcfbX38NWL+GqOT3VQjFdFeDz9Im2p5D06AaPgswdg7gDEHnlZHAFj6AqsSUDbpC6Pm+/SxWa3siNsbHAlhM+Ab+33P4L9cXTWJFqdLchL/+gqj2NnpMJV7WGUX7jT2G24NSL0GIL0je0e6mDGrLFc=
+Received: by 10.38.65.5 with SMTP id n5mr1411274rna;
+        Sat, 02 Jul 2005 00:56:01 -0700 (PDT)
+Received: by 10.38.104.42 with HTTP; Sat, 2 Jul 2005 00:56:01 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <2cfc4032050702005656b389e@mail.gmail.com>
+Date:	Sat, 2 Jul 2005 17:56:01 +1000
+From: Jon Seymour <jon.seymour@gmail.com>
+Reply-To: jon@blackcubes.dyndns.org
+To: git@vger.kernel.org
+Subject: Re: [WITHDRAWN PATCH 1/2] Add --topo-order flag to git-rev-list
+Cc: torvalds@osdl.org, jon.seymour@gmail.com,
+	Paul Mackerras <paulus@samba.org>
+In-Reply-To: <20050702060936.13011.qmail@blackcubes.dyndns.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <20050702060936.13011.qmail@blackcubes.dyndns.org>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.4
+Lines: 13
+Xref: brand.scrye.com linux.git:5543
+
+Actually, I need to withdraw this patch.
+
+The way show_commit_list works defeats the approach I was using to
+perform a topological sort - since show_commit_list does more than
+show the list, it also performs a chronological sort on the list,
+thereby undoing the topological sort that is attempted.
+
+jon.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

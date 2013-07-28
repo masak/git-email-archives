@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 05:00:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id CD6982851FC
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 05:00:43 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750764AbVKQMAW (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 07:00:22 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750765AbVKQMAW
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 07:00:22 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:4283 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750764AbVKQMAV (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 07:00:21 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8ADB013FB2B; Thu, 17 Nov 2005 13:00:20 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6FDA69F33C; Thu, 17 Nov 2005 13:00:20 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 374EA98FA6; Thu, 17 Nov 2005 13:00:20 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id B348713FB2F; Thu, 17 Nov 2005 13:00:19 +0100 (CET)
+Date:	Thu, 17 Nov 2005 13:00:19 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Andrew Wozniak <awozniak@mc.com>
+Cc:	git@vger.kernel.org
+Subject: Re: recent patch breaks the build ?
+In-Reply-To: <437B6997.8010903@mc.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511171258440.2104@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <437B6997.8010903@mc.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:12096
+
+Hi,
+
+On Wed, 16 Nov 2005, Andrew Wozniak wrote:
+
+> It appears that a recent patch "Fix for multiple alternates requests in 
+> http" references curlm without the necessary #ifdef USE_CURL_MULTI
+
+Note that I had no success making http-fetch work without USE_CURL_MULTI. 
+So maybe you can compile it, but maybe you experience the same problems as 
+I had.
+
+Hth,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

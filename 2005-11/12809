@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 27 13:05:40 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9D304265ADF
+	for <tkil@scrye.com>; Sun, 27 Nov 2005 13:05:40 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750754AbVK0UFZ (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 27 Nov 2005 15:05:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750834AbVK0UFZ
+	(ORCPT <rfc822;git-outgoing>); Sun, 27 Nov 2005 15:05:25 -0500
+Received: from nhugin.diku.dk ([130.225.96.140]:55783 "EHLO nhugin.diku.dk")
+	by vger.kernel.org with ESMTP id S1750754AbVK0UFZ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 27 Nov 2005 15:05:25 -0500
+Received: by nhugin.diku.dk (Postfix, from userid 754)
+	id BAED66DFD8A; Sun, 27 Nov 2005 21:04:42 +0100 (CET)
+Received: from ask.diku.dk (ask.diku.dk [130.225.96.225])
+	by nhugin.diku.dk (Postfix) with ESMTP
+	id 866206DFDE4; Sun, 27 Nov 2005 21:04:42 +0100 (CET)
+Received: by ask.diku.dk (Postfix, from userid 3873)
+	id B56E161460; Sun, 27 Nov 2005 21:05:23 +0100 (CET)
+Date:	Sun, 27 Nov 2005 21:05:21 +0100
+From:	Jonas Fonseca <fonseca@diku.dk>
+To:	Petr Baudis <pasky@ucw.cz>
+Cc:	git@vger.kernel.org
+Subject: [PATCH] t9105-fetch-local: quote path created with pwd
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051127200521.GA17293@diku.dk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:12809
+
+Small fix to let it work when pwd contains spaces.
+
+Signed-off-by: Jonas Fonseca <fonseca@diku.dk>
+---
+diff --git a/t/t9105-fetch-local.sh b/t/t9105-fetch-local.sh
+index a309693..35e2778 100755
+--- a/t/t9105-fetch-local.sh
++++ b/t/t9105-fetch-local.sh
+@@ -35,7 +35,7 @@ test_expect_success 'symlinked clone of 
+ rm -rf repo2
+ mkdir repo2
+ test_expect_success 'clone in-current-dir repo2 from $(pwd)/../repo1/../repo1.git/' \
+-	'(cd repo2 && cg-clone -s $(pwd)/../repo1/../repo1.git/)'
++	'(cd repo2 && cg-clone -s "$(pwd)/../repo1/../repo1.git/")'
+ 
+ echo file1v2 >repo1/file1
+ test_expect_success 'commit in repo1' \
+ 
+-- 
+Jonas Fonseca
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

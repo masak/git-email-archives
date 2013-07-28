@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 17 20:01:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A0E2B14C9DD
+	for <tkil@scrye.com>; Sat, 17 Sep 2005 20:01:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751268AbVIRCBg (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Sep 2005 22:01:36 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751269AbVIRCBg
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Sep 2005 22:01:36 -0400
+Received: from inti.inf.utfsm.cl ([200.1.21.155]:62156 "EHLO inti.inf.utfsm.cl")
+	by vger.kernel.org with ESMTP id S1751268AbVIRCBg (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 17 Sep 2005 22:01:36 -0400
+Received: from inti.inf.utfsm.cl (localhost.localdomain [127.0.0.1])
+	by inti.inf.utfsm.cl (8.13.4/8.13.1) with ESMTP id j8H1wOVh027636;
+	Fri, 16 Sep 2005 21:58:24 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200509170158.j8H1wOVh027636@inti.inf.utfsm.cl>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	git@vger.kernel.org
+Subject: Re: deprecating more 
+In-Reply-To: Message from Junio C Hamano <junkio@cox.net> 
+   of "Fri, 16 Sep 2005 18:31:54 MST." <7vzmqceayd.fsf@assigned-by-dhcp.cox.net> 
+X-Mailer: MH-E 7.4.2; nmh 1.1; XEmacs 21.4 (patch 17)
+Date:	Fri, 16 Sep 2005 21:58:24 -0400
+From:	Horst von Brand <vonbrand@inf.utfsm.cl>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_24_48 autolearn=no version=3.0.4
+Lines: 33
+Xref: brand.scrye.com linux.git:8766
+
+Junio C Hamano <junkio@cox.net> wrote:
+
+[About axing programs]
+
+> Among them, I could be talked into keeping git-export on the
+> condition that we will add a counterpart git-import that can
+> read git-export output and recreate an identical repository
+> [*1*]; without something like that, I doubt its usefulness,
+> especially since "git-whatchanged" is far more useful for
+> everyday use.
+> 
+> [Footnote]
+> 
+> *1* which I think actually is impossible without fixing
+> git-export first so that it exports the initial commit.  I may
+> be mistaken.
+
+Given that you can just tar the whole repository up and handle it that way,
+all that work makes little sense.
+
+Note that bk export (and cg-export) copy the current snapshot into a
+directory or tarball, so this doesn't do what I'd expected.
+-- 
+Dr. Horst H. von Brand                   User #22616 counter.li.org
+Departamento de Informatica                     Fono: +56 32 654431
+Universidad Tecnica Federico Santa Maria              +56 32 654239
+Casilla 110-V, Valparaiso, Chile                Fax:  +56 32 797513
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 30 17:15:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5BA94FC355
+	for <tkil@scrye.com>; Sat, 30 Apr 2005 17:15:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261455AbVD3XPf (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 30 Apr 2005 19:15:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261451AbVD3XPf
+	(ORCPT <rfc822;git-outgoing>); Sat, 30 Apr 2005 19:15:35 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:41680 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S261455AbVD3XPa
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 30 Apr 2005 19:15:30 -0400
+Received: from [172.27.0.18] (c-67-169-23-106.hsd1.ca.comcast.net [67.169.23.106])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j3UNF0EU000954
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sat, 30 Apr 2005 16:15:00 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42741173.9040507@zytor.com>
+Date:	Sat, 30 Apr 2005 16:14:59 -0700
+From: "H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.2-1.3.2 (X11/20050324)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Edgar Toernig <froese@gmx.de>,
+	Linus Torvalds <torvalds@osdl.org>,
+	"Luck, Tony" <tony.luck@intel.com>, git@vger.kernel.org
+Subject: Re: Trying to use AUTHOR_DATE
+References: <B8E391BBE9FE384DAA4C5C003888BE6F035EDE2C@scsmsx401.amr.corp.intel.com>	 <42730061.5010106@zytor.com>	 <Pine.LNX.4.58.0504292101230.2296@ppc970.osdl.org>	 <Pine.LNX.4.58.0504292114580.2296@ppc970.osdl.org>	 <20050430125333.2bd81b18.froese@gmx.de> <1114859594.24014.60.camel@localhost.localdomain>
+In-Reply-To: <1114859594.24014.60.camel@localhost.localdomain>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 20
+Xref: brand.scrye.com linux.git:2245
+
+David Woodhouse wrote:
+> On Sat, 2005-04-30 at 12:53 +0200, Edgar Toernig wrote:
+> 
+>>+       tm = localtime(&now); /* get timezone and tm_isdst */
+>>+       offset = -timezone / 60;
+>>+       if (tm->tm_isdst > 0)
+>>+               offset += 60;
+> 
+> 
+> Some locales have DST offsets which aren't 60 minutes, don't they?
+> 
+
+Correct.  I believe South Australia is among them.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

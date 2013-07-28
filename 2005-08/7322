@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 15 17:56:16 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 26B0319CE89
+	for <tkil@scrye.com>; Mon, 15 Aug 2005 17:56:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965037AbVHOXz5 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 15 Aug 2005 19:55:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965040AbVHOXz5
+	(ORCPT <rfc822;git-outgoing>); Mon, 15 Aug 2005 19:55:57 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:51938 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S965037AbVHOXz4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 15 Aug 2005 19:55:56 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 06DE0E282D; Tue, 16 Aug 2005 01:55:56 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id DCB39B08A1; Tue, 16 Aug 2005 01:55:55 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id BF1C5ACB9C; Tue, 16 Aug 2005 01:55:55 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx68.rz.uni-wuerzburg.de [132.187.3.68])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id A1815E282D; Tue, 16 Aug 2005 01:55:55 +0200 (CEST)
+Date:	Tue, 16 Aug 2005 01:55:55 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	Carl Baldwin <cnb@fc.hp.com>, git@vger.kernel.org
+Subject: Re: How is working on arbitrary remote heads supposed to work in
+ Cogito (+ PATCH)?
+In-Reply-To: <7vacjmqnu7.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508160153000.26580@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <20050729081051.GH24895@pasky.ji.cz> <20050813041114.GA29412@hpsvcnb.fc.hp.com>
+ <7vacjmqnu7.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:7322
+
+Hi,
+
+On Sat, 13 Aug 2005, Junio C Hamano wrote:
+
+> Johannes posted a script on the list a couple of days ago, which
+> should work well, except that it was written before the
+> git-fetch-pack command was updated to natively download from
+> multiple refs, so it does not know how to fetch multiple refs at
+> a one go.
+
+Actually, my script usually only calls fetch once. It checks if the commit 
+object is already local before trying to fetch it, and it turns out that a 
+single fetch is often (always?) sufficient to slurp the other commits, 
+too. I did not have time to find out if that is a true bug in git.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

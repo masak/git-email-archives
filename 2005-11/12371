@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 20 05:15:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1DB702851FA
+	for <tkil@scrye.com>; Sun, 20 Nov 2005 05:15:54 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751220AbVKTMOj (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 20 Nov 2005 07:14:39 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751221AbVKTMOj
+	(ORCPT <rfc822;git-outgoing>); Sun, 20 Nov 2005 07:14:39 -0500
+Received: from [85.8.31.11] ([85.8.31.11]:33185 "EHLO mail6.wasadata.com")
+	by vger.kernel.org with ESMTP id S1751220AbVKTMOj (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 20 Nov 2005 07:14:39 -0500
+Received: from c165 (unknown [85.8.2.189])
+	by mail6.wasadata.com (Postfix) with ESMTP
+	id 865E54102; Sun, 20 Nov 2005 13:23:42 +0100 (CET)
+Received: from ksorim by c165 with local (Exim 3.36 #1 (Debian))
+	id 1Edo5e-0004Gf-00; Sun, 20 Nov 2005 13:14:38 +0100
+Date:	Sun, 20 Nov 2005 13:14:37 +0100
+From:	Fredrik Kuivinen <freku045@student.liu.se>
+To:	git@vger.kernel.org
+Cc:	junkio@cox.net
+Subject: [PATCH] merge-recursive: Replace 'except:'
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051120121437.GD4946@c165.ib.student.liu.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 33
+Xref: brand.scrye.com linux.git:12371
+
+Plain except:s are evil as they will catch all kinds of exceptions
+including NameError and AttrubiteError.
+
+Signed-off-by: Fredrik Kuivinen <freku045@student.liu.se>
+
+
+---
+
+ git-merge-recursive.py |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+applies-to: c037ce1b974c7d0671312b52ed46ed405c1a8443
+e90840aaf9adb880297d98e16031665b426e3987
+diff --git a/git-merge-recursive.py b/git-merge-recursive.py
+index 52e2ad7..3e7758d 100755
+--- a/git-merge-recursive.py
++++ b/git-merge-recursive.py
+@@ -243,7 +243,7 @@ def updateFileExt(sha, mode, path, updat
+ 
+             try:
+                 createDir = not stat.S_ISDIR(os.lstat(p).st_mode)
+-            except: 
++            except OSError:
+                 createDir = True
+             
+             if createDir:
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

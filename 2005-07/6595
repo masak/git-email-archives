@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul 29 20:19:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 019908D756
+	for <tkil@scrye.com>; Fri, 29 Jul 2005 20:19:18 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262766AbVG3CSQ (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 29 Jul 2005 22:18:16 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262928AbVG3CNn
+	(ORCPT <rfc822;git-outgoing>); Fri, 29 Jul 2005 22:13:43 -0400
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:21979 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S262766AbVG3CLP (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 29 Jul 2005 22:11:15 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050730021059.VUTY16890.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 29 Jul 2005 22:10:59 -0400
+To: Petr Baudis <pasky@suse.cz>
+Cc: Johannes Schindelin <Johannes.Schindelin@gmx.de>,
+	git@vger.kernel.org
+Subject: Re: How is working on arbitrary remote heads supposed to work in Cogito (+ PATCH)?
+References: <20050728183904.GA24948@pasky.ji.cz>
+	<7v4qaeqrh3.fsf@assigned-by-dhcp.cox.net>
+	<20050729070628.GA24895@pasky.ji.cz>
+	<7vmzo6jbme.fsf@assigned-by-dhcp.cox.net>
+	<20050729081051.GH24895@pasky.ji.cz>
+	<7vek9igfgw.fsf@assigned-by-dhcp.cox.net>
+	<20050729094046.GO24895@pasky.ji.cz>
+	<Pine.LNX.4.58.0507291254100.5849@wgmdd8.biozentrum.uni-wuerzburg.de>
+	<20050729111304.GS24895@pasky.ji.cz>
+	<Pine.LNX.4.58.0507291424070.6247@wgmdd8.biozentrum.uni-wuerzburg.de>
+	<20050729122844.GA21909@pasky.ji.cz>
+From: Junio C Hamano <junkio@cox.net>
+Date:	Fri, 29 Jul 2005 19:11:09 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vll3p82ma.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 18
+Xref: brand.scrye.com linux.git:6595
+
+Petr Baudis <pasky@suse.cz> writes:
+
+>> > How would that document anything normal push wouldn't?
+>> 
+>> git-merge?
+>
+> You have to git-merge anyway if remote head is not your ancestor yet,
+> otherwise the push cannot proceed.
+
+Indeed.  And if git-merge fast forwards, then you would not get
+any trail, so the "documentation by merge" argument does not
+stand.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 10 10:23:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id CDCFD14E720
+	for <tkil@scrye.com>; Fri, 10 Jun 2005 10:23:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262598AbVFJQW2 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 10 Jun 2005 12:22:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262601AbVFJQW2
+	(ORCPT <rfc822;git-outgoing>); Fri, 10 Jun 2005 12:22:28 -0400
+Received: from ylpvm43-ext.prodigy.net ([207.115.57.74]:63192 "EHLO
+	ylpvm43.prodigy.net") by vger.kernel.org with ESMTP id S262598AbVFJQVc
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 10 Jun 2005 12:21:32 -0400
+Received: from pimout1-ext.prodigy.net (pimout1-int.prodigy.net [207.115.5.65])
+	by ylpvm43.prodigy.net (8.12.10 outbound/8.12.10) with ESMTP id j5AGKcKf003508
+	for <git@vger.kernel.org>; Fri, 10 Jun 2005 12:21:00 -0400
+X-ORBL:	[63.202.173.158]
+Received: from taniwha.stupidest.org (adsl-63-202-173-158.dsl.snfc21.pacbell.net [63.202.173.158])
+	by pimout1-ext.prodigy.net (8.12.10 milter /8.12.10) with ESMTP id j5AGKRsk099608;
+	Fri, 10 Jun 2005 12:20:28 -0400
+Received: by taniwha.stupidest.org (Postfix, from userid 38689)
+	id 65539528F22; Fri, 10 Jun 2005 09:20:27 -0700 (PDT)
+Date:	Fri, 10 Jun 2005 09:20:27 -0700
+From: Chris Wedgwood <cw@f00f.org>
+To: Jon Smirl <jonsmirl@gmail.com>
+Cc: git <git@vger.kernel.org>
+Subject: Re: Lost uncommitted changes and cogito
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID:  <059176.ed2e86bb7f91c5a63977e0fe2c7a5cac.ANY@taniwha.stupidest.org>
+References: <9e473391050609122372080863@mail.gmail.com> <9e4733910506091728761275d7@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9e4733910506091728761275d7@mail.gmail.com>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.9 required=5.0 tests=AWL,BAYES_00,
+	RCVD_IN_NJABL_DUL,RCVD_IN_SORBS_DUL autolearn=no version=3.0.3
+Lines: 19
+Xref: brand.scrye.com linux.git:4801
+
+On Thu, Jun 09, 2005 at 08:28:25PM -0400, Jon Smirl wrote:
+
+> After experimenting for a while it looks like any cg update to a
+> branch that the repository wasn't initially cloned from will lose
+> the pending uncomitted changes.
+
+I've had my current working tree trashed too a few times so I more or
+less backup my tree before doing anything adventurous in case of
+accidents or bugs.
+
+I'd actually like to see checked out files being RO and needing some
+kind of explicit "cg-edit <filename>" or similar to frob them to RW so
+that we can use the R/W status in order to determine what files are
+safe to mess with.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

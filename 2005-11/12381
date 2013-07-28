@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 20 11:13:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B74502851FC
+	for <tkil@scrye.com>; Sun, 20 Nov 2005 11:13:46 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750792AbVKTSNp (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 20 Nov 2005 13:13:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750794AbVKTSNp
+	(ORCPT <rfc822;git-outgoing>); Sun, 20 Nov 2005 13:13:45 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:25246 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750792AbVKTSNo (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 20 Nov 2005 13:13:44 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jAKIDXnO009409
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 20 Nov 2005 10:13:33 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jAKIDWkE011549;
+	Sun, 20 Nov 2005 10:13:32 -0800
+Date:	Sun, 20 Nov 2005 10:13:32 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	"J. Bruce Fields" <bfields@fieldses.org>
+cc:	Blaisorblade <blaisorblade@yahoo.it>, Chuck Lever <cel@netapp.com>,
+	Catalin Marinas <catalin.marinas@gmail.com>,
+	git@vger.kernel.org
+Subject: Re: Diffs "from" working directory
+In-Reply-To: <20051120174359.GA24177@fieldses.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0511201010490.13959@g5.osdl.org>
+References: <200511201817.15780.blaisorblade@yahoo.it> <20051120174359.GA24177@fieldses.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:12381
+
+
+
+On Sun, 20 Nov 2005, J. Bruce Fields wrote:
+> 
+> That's a diff *to* the working directory.  My complaint was that there
+> wasn't a convenient way to get a diff *from* the working directory.
+
+Something like
+
+	git diff -R -M -p
+
+should do it, no?
+
+("git diff" has the strange property that if you give it any diff flags at 
+all, it forgets all the default ones. So it defaults to "-M -p", but if 
+you just say "-R", it will drop its own defaults, and use _just_ "-R").
+
+[ Which is almost certainly not what most users want, but it's practical 
+  when you want to get the internal git format. Whether that is important 
+  enough to confuse users or not, I dunno ]
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

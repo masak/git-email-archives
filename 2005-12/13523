@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Dec 12 11:24:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1751A1EA14B
+	for <tkil@scrye.com>; Mon, 12 Dec 2005 11:24:52 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932109AbVLLSTi (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Dec 2005 13:19:38 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932110AbVLLSTi
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Dec 2005 13:19:38 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:19169 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932109AbVLLSTh (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Dec 2005 13:19:37 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jBCIIgDZ024377
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 12 Dec 2005 10:18:43 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jBCIIcMD007917;
+	Mon, 12 Dec 2005 10:18:39 -0800
+Date:	Mon, 12 Dec 2005 10:18:37 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Timo Hirvonen <tihirvon@gmail.com>
+cc:	junkio@cox.net, linux@horizon.com, git@vger.kernel.org
+Subject: Re: as promised, docs: git for the confused
+In-Reply-To: <20051212195319.11d41269.tihirvon@gmail.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0512121010550.15597@g5.osdl.org>
+References: <20051209215414.14072.qmail@science.horizon.com>
+ <7vmzj9zwfu.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.64.0512120827440.15597@g5.osdl.org>
+ <20051212195319.11d41269.tihirvon@gmail.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.128 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:13523
+
+
+
+On Mon, 12 Dec 2005, Timo Hirvonen wrote:
+> 
+> Me too.  BTW, new users very likely read tutorial.txt first.  But it is
+> way too low level (git-cat-file, git-write-tree...).  Maybe those low
+> level commands should be described in technical/ instead?  The tutorial
+> would be logical place for examples.
+
+I'd almost suggest skipping the technical notes in the current tutorial, 
+and just gearing it directly more towards a regular user. 
+
+When I started writing it, I cared more about people understanding how git 
+works internally. I think that was useful too, but I suspect that it's 
+less useful than just knowing how to use git, and there _are_ enough 
+people out there that understand how git works under the hood that it 
+probably would be much better to concentrate on getting people _first_ 
+used to using git, and then having a separate tutorial for "what goes 
+under the hood".
+
+So instead of teaching people about "git-read-tree --reset HEAD" etc that 
+you'd never know on your own, just teach about "git reset". And not 
+bothering with the "git-write-tree + git-commit-tree + git-update-ref" 
+approach, just make people use "git commit" from the very beginning.
+
+Anybody willing to just strip out the raw internals talk?
+
+Then we could add a small section about importing from a tar-file. 
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

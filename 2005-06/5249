@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jun 25 12:41:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id C476826E372
+	for <tkil@scrye.com>; Sat, 25 Jun 2005 12:41:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261240AbVFYSio (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 25 Jun 2005 14:38:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261241AbVFYSib
+	(ORCPT <rfc822;git-outgoing>); Sat, 25 Jun 2005 14:38:31 -0400
+Received: from DELFT.AURA.CS.CMU.EDU ([128.2.206.88]:56039 "EHLO
+	delft.aura.cs.cmu.edu") by vger.kernel.org with ESMTP
+	id S261237AbVFYSfV (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 25 Jun 2005 14:35:21 -0400
+Received: from jaharkes by delft.aura.cs.cmu.edu with local (Exim 3.36 #1 (Debian))
+	id 1DmFUu-0002pr-00; Sat, 25 Jun 2005 14:35:20 -0400
+Date:	Sat, 25 Jun 2005 14:35:19 -0400
+To: git@vger.kernel.org
+Cc: Linus Torvalds <torvalds@osdl.org>
+Subject: git-verify-tag script
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050625183519.GB10425@delft.aura.cs.cmu.edu>
+Mail-Followup-To: git@vger.kernel.org,
+	Linus Torvalds <torvalds@osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+From: Jan Harkes <jaharkes@cs.cmu.edu>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:5249
+
+Here is a script to simplify validating the gpg signature created by
+git-tag-script. Might be useful to add to the git tree so that people
+don't have to search for the right post in the git mailinglist archives
+when they want to validate a tag.
+
+Jan
+
+----
+#!/bin/sh
+
+GIT_DIR=${GIT_DIR:-.git}
+
+tag=$1
+[ -f "$GIT_DIR/refs/tags/$tag" ] && tag=$(cat "$GIT_DIR/refs/tags/$tag")
+
+git-cat-file tag $tag > .tmp-vtag || exit 1
+cat .tmp-vtag | sed '/-----BEGIN PGP/Q' | gpg --verify .tmp-vtag -
+rm -f .tmp-vtag
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

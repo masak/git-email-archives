@@ -1,0 +1,119 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 23:10:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 466252851FA
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 23:10:46 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030382AbVKRGJz (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 01:09:55 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964912AbVKRGJz
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 01:09:55 -0500
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:32403 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S964896AbVKRGJy (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 01:09:54 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051118060854.LCSX26964.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 18 Nov 2005 01:08:54 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+Cc:	git@vger.kernel.org, junkio@cox.net
+Subject: Re: [PATCH] Add test case for git-config-set
+References: <Pine.LNX.4.63.0511172249410.18285@wbgn013.biozentrum.uni-wuerzburg.de>
+Date:	Thu, 17 Nov 2005 22:09:53 -0800
+In-Reply-To: <Pine.LNX.4.63.0511172249410.18285@wbgn013.biozentrum.uni-wuerzburg.de>
+	(Johannes Schindelin's message of "Thu, 17 Nov 2005 22:50:08 +0100
+	(CET)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vd5kypjv2.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 74
+Xref: brand.scrye.com linux.git:12193
+
+Johannes Schindelin <Johannes.Schindelin@gmx.de> writes:
+
+> +test_expect_failure 'ambiguous unset' \
+> +	'git-config-set --unset nextsection.nonewline'
+
+I am not so sure about this case.  Shouldn't this remove both?
+
+For example, if a Porcelain wants to force pull.twohead to be
+resolve and nothing else, and it wants to do it unconditionally,
+it would first want to empty whatever multivalue there are
+currently, and then insert its own, and I'd imagine the way to
+say that would be like this:
+
+	git-config-set --unset pull.twohead '^'
+        git-config-set pull.twohead resolve
+
+More simply (I do not think you have a test case for this):
+
+        git-config-set pull.twohead resolve '^'
+
+I think it is the easiest to explain and understand the
+semantics of config_set_multivalue if it were to first remove all
+existing key-value for matching ones, and then insert what was
+provided by the user.
+
+Extending that multivalue example a bit more, I think it is a
+bit cumbersome for a Porcelain to set pull.twohead to recursive
+and then resolve, with your interface.  Even if you had the
+emptying behaviour I suggested above, you would have to say
+something awkard like this:
+
+	git-config-set --unset pull.twohead '^'
+        git-config-set pull.twohead recursive
+        git-config-set pull.twohead resolve no-such-value-should-be-there
+
+Maybe we could have the shell-level interface like this:
+
+	git-config-set [--remove rx] section.key [value...]
+
+When --remove rx is specified, the command first removes
+existing multivalue for the given section.key that match rx, and
+then insert given value(s); not giving any values amounts to
+--unset.  Not giving --remove rx is the same as giving a regexp
+that matches all multivalues.  So the simplest:
+
+	git-config-set section.key value
+
+becomes a single-value assignment (insert-or-replace),
+
+	git-config-set section.key
+
+confusingly enough is --unset (we probably would want to require
+an explicit command line noise-word "--unset" in this case).
+And "replacing with two values regardless of whatever there are
+currently" naturally becomes:
+
+	git-config-set pull.twohead recursive resolve
+
+The C-level interface would become something like:
+
+	git_config_set_multivar(const char *key,
+        			const char *remove_value_regex,
+                                const char **values)
+
+where values is a NULL terminated list of values.
+
+BTW, do we want to remove the section after removing the last
+key and making it empty?
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

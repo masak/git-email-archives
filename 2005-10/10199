@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 17 23:54:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BA02C1DE0B9
+	for <tkil@scrye.com>; Mon, 17 Oct 2005 23:54:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932402AbVJRFxx (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 18 Oct 2005 01:53:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932393AbVJRFxx
+	(ORCPT <rfc822;git-outgoing>); Tue, 18 Oct 2005 01:53:53 -0400
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:13460 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S932387AbVJRFxw (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 18 Oct 2005 01:53:52 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051018055326.ZWDG776.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 18 Oct 2005 01:53:26 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	git@vger.kernel.org
+Cc:	linux-kernel@vger.kernel.org
+Subject: GIT 0.99.8e
+References: <7vachadnmy.fsf@assigned-by-dhcp.cox.net>
+Date:	Mon, 17 Oct 2005 22:53:50 -0700
+In-Reply-To: <7vachadnmy.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Sat, 15 Oct 2005 22:41:41 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v8xwrtlox.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:10199
+
+GIT 0.99.8e is available as usual at:
+
+    RPMs and tarball: www.kernel.org:/pub/software/scm/git/
+    Debs and tarball: www.kernel.org:/pub/software/scm/git/debian/
+
+The "master" branch has updated "git-diff-*" commands, that deal
+with pathnames with funny characters (most importantly tabs and
+newlines) in a way compatible with the proposed change to GNU
+patch, which was outlined in:
+
+    http://marc.theaimsgroup.com/?l=git&m=112927316408690&w=2
+
+When people start generating diffs with them, patches that touch
+paths that have double-quotes '"' or spaces ' ' in them need to
+be applied with the updated git-apply that knows how new
+"git-diff-*" encodes these funny pathnames.  GIT 0.99.8e
+contains the necessary backport of the git-apply changes.
+
+This will hopefully be the last 0.99.8 maintenance release.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

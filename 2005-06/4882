@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun 12 11:50:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 31CF61E4150
+	for <tkil@scrye.com>; Sun, 12 Jun 2005 11:50:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262662AbVFLRt1 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 12 Jun 2005 13:49:27 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262663AbVFLRt1
+	(ORCPT <rfc822;git-outgoing>); Sun, 12 Jun 2005 13:49:27 -0400
+Received: from dsl092-000-086.sfo1.dsl.speakeasy.net ([66.92.0.86]:34231 "EHLO
+	tumblerings.org") by vger.kernel.org with ESMTP id S262662AbVFLRtV
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 12 Jun 2005 13:49:21 -0400
+Received: from zbrown by tumblerings.org with local (Exim 4.50)
+	id 1DhWa1-0005K1-4r; Sun, 12 Jun 2005 10:49:05 -0700
+Date:	Sun, 12 Jun 2005 10:49:05 -0700
+From: Zack Brown <zbrown@tumblerings.org>
+To: Jon Smirl <jonsmirl@gmail.com>
+Cc: git <git@vger.kernel.org>
+Subject: Re: cogito and tags propagation
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050612174905.GA18751@tumblerings.org>
+References: <9e4733910506120850f762078@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9e4733910506120850f762078@mail.gmail.com>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 31
+Xref: brand.scrye.com linux.git:4882
+
+On Sun, Jun 12, 2005 at 11:50:08AM -0400, Jon Smirl wrote:
+> If I add a tag to tree A,  then go to tree B which depends on A and do
+> cg update. It says the branch is already fully merged. It's not
+> counting the addition of a tag as something that marks the tree dirty.
+
+My impression is that tags are local to a given repo, i.e. they are not included
+by default in the publically accessible data. The repo owner has to somehow
+'tell' people about the tags, in order for them to be able to get them.
+
+Apparently this is useful because it allows smaller groups to work together with
+their own 'local' tags, without polluting the main tree.
+
+Be well,
+Zack
+
+> 
+> -- 
+> Jon Smirl
+> jonsmirl@gmail.com
+> -
+> To unsubscribe from this list: send the line "unsubscribe git" in
+> the body of a message to majordomo@vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+
+-- 
+Zack Brown
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

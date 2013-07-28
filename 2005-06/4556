@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun  5 10:15:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D1C806D7E
+	for <tkil@scrye.com>; Sun,  5 Jun 2005 10:15:37 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261592AbVFEQPW (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 5 Jun 2005 12:15:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261591AbVFEQPW
+	(ORCPT <rfc822;git-outgoing>); Sun, 5 Jun 2005 12:15:22 -0400
+Received: from fire.osdl.org ([65.172.181.4]:32193 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261592AbVFEQPQ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 5 Jun 2005 12:15:16 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j55GF9jA001175
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 5 Jun 2005 09:15:09 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j55GF8Ro012630;
+	Sun, 5 Jun 2005 09:15:08 -0700
+Date:	Sun, 5 Jun 2005 09:17:13 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Daniel Barkalow <barkalow@iabervon.org>, git@vger.kernel.org
+Subject: Re: [PATCH] git-daemon server
+In-Reply-To: <7vzmu5b8o6.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0506050914030.1876@ppc970.osdl.org>
+References: <7vk6l9flzr.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.21.0506050132590.30848-100000@iabervon.org>
+ <7vzmu5b8o6.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 21
+Xref: brand.scrye.com linux.git:4556
+
+
+
+On Sat, 4 Jun 2005, Junio C Hamano wrote:
+> 
+> Linus, can your workflow grok things like this, or do you prefer
+> patch submission to use traditional diff format without renames?
+
+I haven't made "git-apply" do the final part yet: it doesn't actually 
+apply anything. So I'm still using standard patch in my workflow.
+
+But that's largely been because I haven't been hugely motivated to fixing 
+it yet. I will now correct that.
+
+Let's see if I can do the last mile now.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

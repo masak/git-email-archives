@@ -1,0 +1,95 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug  1 12:20:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id D1AEEAF0B3
+	for <tkil@scrye.com>; Mon,  1 Aug 2005 12:20:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261972AbVHASSj (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 1 Aug 2005 14:18:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261685AbVHASQN
+	(ORCPT <rfc822;git-outgoing>); Mon, 1 Aug 2005 14:16:13 -0400
+Received: from smtp-v.fe.bosch.de ([139.15.237.2]:64394 "EHLO
+	smtp-v.fe.bosch.de") by vger.kernel.org with ESMTP id S261672AbVHASPh
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 1 Aug 2005 14:15:37 -0400
+Received: from mta1.fe.internet.bosch.com (unknown [10.4.98.30])
+	by imta5.fe.bosch.de (Postfix) with ESMTP id 8F1A13C01C
+	for <git@vger.kernel.org>; Mon,  1 Aug 2005 20:15:36 +0200 (CEST)
+Received: from si-imc02.de.bosch.com (virusscan7.fe.internet.bosch.com [10.4.98.12])
+	by mta1.fe.internet.bosch.com (Postfix) with ESMTP id 802378C052
+	for <git@vger.kernel.org>; Mon,  1 Aug 2005 20:15:36 +0200 (CEST)
+Received: from hi-mail02.de.bosch.com ([10.34.16.71]) by si-imc02.de.bosch.com with Microsoft SMTPSVC(5.0.2195.6713);
+	 Mon, 1 Aug 2005 20:15:36 +0200
+Received: from [10.4.105.54] ([10.4.105.54]) by hi-mail02.de.bosch.com with Microsoft SMTPSVC(5.0.2195.6713);
+	 Mon, 1 Aug 2005 20:15:34 +0200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <42EE66C8.9000908@de.bosch.com>
+Date:	Mon, 01 Aug 2005 20:15:36 +0200
+From: Dirk Behme <dirk.behme@de.bosch.com>
+User-Agent: Mozilla Thunderbird 1.0.6 (X11/20050716)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: Darrin Thompson <darrint@progeny.com>, git@vger.kernel.org
+Subject: Re: Using git with http behind proxy with authentification?
+References: <42E21A33.6010804@de.bosch.com> <1122329673.4378.4.camel@localhost.localdomain>
+In-Reply-To: <1122329673.4378.4.camel@localhost.localdomain>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-OriginalArrivalTime: 01 Aug 2005 18:15:35.0435 (UTC) FILETIME=[0314DDB0:01C596C5]
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,USERPASS 
+	autolearn=no version=3.0.4
+Lines: 46
+Xref: brand.scrye.com linux.git:6696
+
+Darrin Thompson wrote:
+
+> On Sat, 2005-07-23 at 12:21 +0200, Dirk Behme wrote:
+> 
+>>In the past, for bk I used
+>>
+>>$ export http_proxy=http://user:password@someproxy.some.where:8080/
+>>
+>>which worked. But no luck with cogito/git.
+>>
+>>Looking into recent cogito/git, the reason for this seems to be that 
+>>cogito/git uses a combination of wget in scripts and curl in compiled 
+>>executables. Having a look to cg-pull script, this script uses wget. 
+>>Then, it calls git-http-pull if it thinks that http should be used. 
+>>Looking at http-pull.c shows that there curl is used for http access. If 
+>>I understand it correctly from man pages, wget understands user:password 
+>>syntax of http_proxy environment, but curl doesn't. As I understand it 
+>>curl understands only 'someproxy.some.where:8080' and wants the user and 
+>>password given as parameter of curl_easy_setopt. The curl_easy_setopt 
+>>man page tells something about CURLOPT_PROXYUSERPWD parameter.
+>>
+> 
+> For git itself everything is curl only now as far as I know. That's new
+> as of hours after you sent this.
+
+I think this is
+
+http://marc.theaimsgroup.com/?l=git&m=112122076822024&w=2
+
+which is now part of recent git. It converts http-pull.c and 
+git-fetch-script to curl.
+
+But cogito script cg-pull still contains wget. Will this be converted as 
+well?
+
+Dirk
+
+
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

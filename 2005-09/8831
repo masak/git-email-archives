@@ -1,0 +1,82 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 00:14:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 73553227063
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 00:14:19 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932328AbVISGOH (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 02:14:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932331AbVISGOH
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 02:14:07 -0400
+Received: from bayc1-pasmtp03.bayc1.hotmail.com ([65.54.191.163]:60201 "EHLO
+	BAYC1-PASMTP03.bayc1.hotmail.com") by vger.kernel.org with ESMTP
+	id S932329AbVISGOG (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Sep 2005 02:14:06 -0400
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <BAYC1-PASMTP030A084E1D3B3D9B324DAEAE920@cez.ice>
+X-Originating-IP: [67.71.125.52]
+X-Originating-Email: [seanlkml@sympatico.ca]
+Received: from linux1.attic.local ([67.71.125.52]) by BAYC1-PASMTP03.bayc1.hotmail.com over TLS secured channel with Microsoft SMTPSVC(6.0.3790.211);
+	 Sun, 18 Sep 2005 23:13:41 -0700
+Received: by linux1.attic.local (Postfix, from userid 48)
+	id 20C70644BED; Mon, 19 Sep 2005 02:14:04 -0400 (EDT)
+Received: from 10.10.10.28
+        (SquirrelMail authenticated user sean)
+        by linux1 with HTTP;
+        Mon, 19 Sep 2005 02:14:04 -0400 (EDT)
+Message-ID: <57460.10.10.10.28.1127110444.squirrel@linux1>
+In-Reply-To: <7v8xxtzmtl.fsf@assigned-by-dhcp.cox.net>
+References: <432E1F28.9060909@bigpond.net.au>
+    <7v8xxtzmtl.fsf@assigned-by-dhcp.cox.net>
+Date:	Mon, 19 Sep 2005 02:14:04 -0400 (EDT)
+Subject: Re: Strange dependency problem installing GIT 0.99.7
+From:	"Sean" <seanlkml@sympatico.ca>
+To:	"Peter Williams" <pwil3058@bigpond.net.au>
+Cc:	git@vger.kernel.org
+User-Agent: SquirrelMail/1.4.4-2
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+X-Priority: 3 (Normal)
+Importance: Normal
+X-OriginalArrivalTime: 19 Sep 2005 06:13:41.0448 (UTC) FILETIME=[482CB480:01C5BCE1]
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.3 required=5.0 tests=AWL,BAYES_00,
+	FORGED_HOTMAIL_RCVD,MSGID_FROM_MTA_HEADER autolearn=no version=3.0.4
+Lines: 28
+Xref: brand.scrye.com linux.git:8831
+
+On Mon, September 19, 2005 12:46 am, Junio C Hamano said:
+> Peter Williams <pwil3058@bigpond.net.au> writes:
+>
+>> So I installed String::ShellQuote from CPAN and tried again with the
+>> same result.  So I then rebuilt the rpm on my system and still got the
+>> same error message.  So I've installed the rpm using the --nodeps option
+>> but would like to test whether it is successfully finding
+>> String::ShellQuote.  Which command(s) would exercise this perl package?
+>
+> $ git grep ShellQuote
+> git-archimport.perl:42:use String::ShellQuote;
+
+Peter,
+
+You need to install ShellQuote with rpm rather than installing it directly
+from CPAN.  You can pick up a rpm version of ShellQuote from several
+places, here's one:  http://tinyurl.com/7p7ey
+
+Cheers,
+Sean
+
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

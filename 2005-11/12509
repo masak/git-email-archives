@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Nov 21 21:18:25 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4685267791
+	for <tkil@scrye.com>; Mon, 21 Nov 2005 21:18:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932154AbVKVESA (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 21 Nov 2005 23:18:00 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932167AbVKVESA
+	(ORCPT <rfc822;git-outgoing>); Mon, 21 Nov 2005 23:18:00 -0500
+Received: from yue.linux-ipv6.org ([203.178.140.15]:36622 "EHLO
+	yue.st-paulia.net") by vger.kernel.org with ESMTP id S932154AbVKVER7
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 21 Nov 2005 23:17:59 -0500
+Received: from localhost (localhost [127.0.0.1])
+	by yue.st-paulia.net (Postfix) with ESMTP
+	id 9E95B33CC2; Tue, 22 Nov 2005 12:18:24 +0900 (JST)
+Date:	Tue, 22 Nov 2005 12:18:23 +0900 (JST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051122.121823.46966877.yoshfuji@linux-ipv6.org>
+To:	junkio@cox.net
+Cc:	git@vger.kernel.org, yoshfuji@linux-ipv6.org
+Subject: [PATCH] GIT: Fix compilation error in connect.c
+From:	YOSHIFUJI Hideaki / =?iso-2022-jp?B?GyRCNUhGIzFRTEAbKEI=?= 
+	<yoshfuji@linux-ipv6.org>
+Organization: USAGI/WIDE Project
+X-URL:	http://www.yoshifuji.org/%7Ehideaki/
+X-Fingerprint: 9022 65EB 1ECF 3AD1 0BDF  80D8 4807 F894 E062 0EEA
+X-PGP-Key-URL: http://www.yoshifuji.org/%7Ehideaki/hideaki@yoshifuji.org.asc
+X-Face:	"5$Al-.M>NJ%a'@hhZdQm:."qn~PA^gq4o*>iCFToq*bAi#4FRtx}enhuQKz7fNqQz\BYU]
+ $~O_5m-9'}MIs`XGwIEscw;e5b>n"B_?j/AkL~i/MEa<!5P`&C$@oP>ZBLP
+X-Mailer: Mew version 2.2 on Emacs 20.7 / Mule 4.1 (AOI)
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 40
+Xref: brand.scrye.com linux.git:12509
+
+Fix compilation error for gcc-2.95.
+
+Signed-off-by: YOSHIFUJI Hideaki <yoshfuji@linux-ipv6.org>
+
+diff --git a/connect.c b/connect.c
+index a4d6d35..7a417e5 100644
+--- a/connect.c
++++ b/connect.c
+@@ -455,6 +455,10 @@ static int rhost_len;
+ static int git_proxy_command_options(const char *var, const char *value)
+ {
+ 	if (!strcmp(var, "core.gitproxy")) {
++		const char *for_pos;
++		int matchlen = -1;
++		int hostlen;
++
+ 		if (git_proxy_command)
+ 			return 0;
+ 		/* [core]
+@@ -463,10 +467,7 @@ static int git_proxy_command_options(con
+ 		 * gitproxy = netcatter-2 for sample.xz
+ 		 * gitproxy = netcatter-default
+ 		 */
+-		const char *for_pos = strstr(value, " for ");
+-		int matchlen = -1;
+-		int hostlen;
+-
++		for_pos = strstr(value, " for ");
+ 		if (!for_pos)
+ 			/* matches everybody */
+ 			matchlen = strlen(value);
+
+-- 
+YOSHIFUJI Hideaki @ USAGI Project  <yoshfuji@linux-ipv6.org>
+GPG-FP  : 9022 65EB 1ECF 3AD1 0BDF  80D8 4807 F894 E062 0EEA
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Apr 28 12:54:03 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 740F1641C
+	for <tkil@scrye.com>; Thu, 28 Apr 2005 12:54:03 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262222AbVD1Sxf (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 28 Apr 2005 14:53:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262228AbVD1Sxf
+	(ORCPT <rfc822;git-outgoing>); Thu, 28 Apr 2005 14:53:35 -0400
+Received: from fire.osdl.org ([65.172.181.4]:31180 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262222AbVD1Sx0 (ORCPT
+	<rfc822;git@vger.kernel.org>); Thu, 28 Apr 2005 14:53:26 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3SIrHs4029605
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 28 Apr 2005 11:53:18 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3SIrG9x001646;
+	Thu, 28 Apr 2005 11:53:16 -0700
+Date:	Thu, 28 Apr 2005 11:55:16 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Petr Baudis <pasky@ucw.cz>, "H. Peter Anvin" <hpa@zytor.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: kernel.org now has gitweb installed
+In-Reply-To: <1114680199.12012.363.camel@baythorne.infradead.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504281149330.18901@ppc970.osdl.org>
+References: <42703E79.8050808@zytor.com>  <1114673723.12012.324.camel@baythorne.infradead.org>
+  <20050428081005.GG8612@pasky.ji.cz>  <1114676955.12012.346.camel@baythorne.infradead.org>
+ <1114680199.12012.363.camel@baythorne.infradead.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 43
+Xref: brand.scrye.com linux.git:2040
+
+
+
+On Thu, 28 Apr 2005, David Woodhouse wrote:
+> 
+> Walk the tree once. For each commit, count the number of _children_.
+> That's not hard -- each new commit you find below HEAD has one child to
+> start with, then you increment that figure by one each time you find
+> another path to the same commit.
+> 
+> When printing, you walk the tree depth-first, remote-parent-first.
+
+No, that really sucks. 
+
+Realize that "remote" and "local" parents don't really exist. They have no 
+meaning. I've considered sorting the parents by the sha1 name, but I've 
+left that for now.
+
+Anyway, the reason remote and local don't matter is that if somebody else
+merges with me, and I just pull the result without having any changes in 
+my tree, we just "fast-forward" to that other side, because otherwise you 
+can never "converge" on anything (people merging each others trees would 
+always create a new commit, for no good reason).
+
+What does that mean? It means that my local tree now became the _remote_ 
+parent, even though it was always local to my tree.
+
+So if you look at remote vs local, you're _guaranteed_ to mess up. It has 
+no meaning.
+
+So what you can do is:
+ - if there is one parent, just always walk straight down
+ - if it's a merge, add the parents _in_date_order_ to the list of things 
+   to do, and then pop the most recent one.
+
+Really. You say that dates don't matter, but they _do_ actually matter a
+lot more than "remote/local" does. At least they have meaning.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

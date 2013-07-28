@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Oct 14 08:27:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_MK autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0C768AC709
+	for <tkil@scrye.com>; Fri, 14 Oct 2005 08:27:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750756AbVJNOYF (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 14 Oct 2005 10:24:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750757AbVJNOYF
+	(ORCPT <rfc822;git-outgoing>); Fri, 14 Oct 2005 10:24:05 -0400
+Received: from mail.atsec.com ([195.30.252.105]:60904 "EHLO mail.atsec.com")
+	by vger.kernel.org with ESMTP id S1750756AbVJNOYE (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 14 Oct 2005 10:24:04 -0400
+Received: (qmail 14751 invoked by uid 10125); 14 Oct 2005 14:23:59 -0000
+X-SpaceNet-Virusscan: Sophos Version: 3.97; Last IDE Update: 2005-10-14 15:30
+    no information about results
+Received: from unknown (HELO io.lan.w-m-p.com) (24.105.57.222)
+  by mail.atsec.com with SMTP; 14 Oct 2005 14:23:59 -0000
+X-SpaceNet-Authentification: SMTP AUTH verified <klaus@atsec.com>
+Received: by io.lan.w-m-p.com (Postfix, from userid 501)
+	id A09D314AF2; Fri, 14 Oct 2005 09:23:47 -0500 (CDT)
+Date:	Fri, 14 Oct 2005 09:23:45 -0500
+From:	Klaus Weidner <kweidner@pobox.com>
+To:	git@vger.kernel.org
+Subject: PATCH: fix cg-mkpatch "-f" option
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051014142345.GB30663@w-m-p.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:10100
+
+Hello, 
+
+in cogito-0.15.1, the "-f" option to specify a format string for output
+filenames didn't work, it was getting an empty OPTARG. The following
+patch fixes it for me.
+
+-Klaus
+
+--- cogito/cg-mkpatch.orig	2005-10-14 09:16:04.000000000 -0500
++++ cogito/cg-mkpatch	2005-10-14 09:16:33.000000000 -0500
+@@ -119,7 +119,7 @@
+ 		mergebase=1
+ 	elif optparse -d=; then
+ 		outdir="$OPTARG"
+-	elif optparse -f; then
++	elif optparse -f=; then
+ 		fileformat="$OPTARG"
+ 	else
+ 		optfail
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

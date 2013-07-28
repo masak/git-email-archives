@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jul 16 17:24:48 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A01602A3B8B
+	for <tkil@scrye.com>; Sat, 16 Jul 2005 17:24:48 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261882AbVGPXYW (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 16 Jul 2005 19:24:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261891AbVGPXYS
+	(ORCPT <rfc822;git-outgoing>); Sat, 16 Jul 2005 19:24:18 -0400
+Received: from smtp103.mail.sc5.yahoo.com ([66.163.169.222]:34666 "HELO
+	smtp103.mail.sc5.yahoo.com") by vger.kernel.org with SMTP
+	id S261883AbVGPXYC (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 16 Jul 2005 19:24:02 -0400
+Received: (qmail 10044 invoked from network); 16 Jul 2005 23:23:58 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Received:From:To:Cc:Message-Id:In-Reply-To:References:Subject;
+  b=iCkno31y68s8At0E8e7KtfBzlvw9JPhzQ0IpRIw8gBQIBj3xx1NAcRYAhzyZbaJXm0UBdjQaL+HuTN0mjEo095PeLL3jHrQ8XMYliNkZ6Zp993wRtLZjTY7j8qJ5IQnXTtCXT19zNJxMB8Oaz+XJdGRg9mNZqXl19emvfIL/5Ac=  ;
+Received: from unknown (HELO bryan-larsens-ibook-g4.local) (bryanlarsen@65.93.75.85 with plain)
+  by smtp103.mail.sc5.yahoo.com with SMTP; 16 Jul 2005 23:23:58 -0000
+From: Bryan Larsen <bryanlarsen@yahoo.com>
+To: bryan.larsen@gmail.com
+Cc: Bryan Larsen <bryanlarsen@yahoo.com>, pasky@suse.cz,
+	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050716232353.7317.63574.sendpatchset@bryan-larsens-ibook-g4.local>
+In-Reply-To: <20050716232308.7317.56890.sendpatchset@bryan-larsens-ibook-g4.local>
+References: <20050716232308.7317.56890.sendpatchset@bryan-larsens-ibook-g4.local>
+Subject: [PATCH 4/5] cogito: try harder to find gnu date
+Date:	Sat, 16 Jul 2005 19:24:02 -0400
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 35
+Xref: brand.scrye.com linux.git:6185
+
+Look harder for gnu date, use if available.
+
+Signed-off-by: Bryan Larsen <bryan.larsen@gmail.com>
+---
+
+ cg-Xlib |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/cg-Xlib b/cg-Xlib
+--- a/cg-Xlib
++++ b/cg-Xlib
+@@ -70,7 +70,7 @@ showdate () {
+ 	secs=$(($secs + $tzhours * 3600 + $tzmins * 60))
+ 	[ "$format" ] || format="+%a, %d %b %Y %H:%M:%S $2"
+ 	if [ "$has_gnudate" ]; then
+-		LANG=C date -ud "1970-01-01 UTC + $secs sec" "$format"
++		LANG=C ${has_gnudate} -ud "1970-01-01 UTC + $secs sec" "$format"
+ 	else
+ 		LANG=C date -u -r $secs "$format"
+ 	fi
+@@ -236,4 +236,8 @@ has_stat=$(which gnustat 2> /dev/null ||
+     which gstat 2> /dev/null ||
+     which stat 2>/dev/null)
+ [ "$has_stat" ] && $has_stat -c %s / 2>/dev/null >&2 || has_stat=
+-has_gnudate=$(date -Rud "1970-01-01 UTC" 2>/dev/null)
++has_gnudate=$(which gnudate 2> /dev/null || 
++    which gdate 2> /dev/null || 
++    which stat 2>/dev/null)
++[ "$has_gnudate" ] && 
++    $has_gnudate -Rud  "1970-01-01 UTC" 2> /dev/null >&2 || has_gnudate=
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

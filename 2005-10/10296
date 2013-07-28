@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 14:32:21 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1CFE92851FA
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 14:32:21 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751309AbVJSUcF (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 16:32:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751311AbVJSUcF
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 16:32:05 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:54192 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751309AbVJSUcE (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 19 Oct 2005 16:32:04 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j9JKVsFC003340
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 19 Oct 2005 13:31:55 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j9JKVreR018486;
+	Wed, 19 Oct 2005 13:31:54 -0700
+Date:	Wed, 19 Oct 2005 13:31:53 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Timo Hirvonen <tihirvon@gmail.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] git-clone: don't unpack objects
+In-Reply-To: <7v4q7d5kwo.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510191327560.3369@g5.osdl.org>
+References: <20051019154341.2aed6998.tihirvon@gmail.com>
+ <7v4q7d5kwo.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.125 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:10296
+
+
+
+On Wed, 19 Oct 2005, Junio C Hamano wrote:
+> 
+> Are there cases where you would do 'git clone' over git native
+> transport and want the resulting pack expanded?
+
+No, I think the unconditional --keep is fine for clone.
+
+What to do about incremental pulls is not as clear, but I think the clone 
+case is pretty much obvious these days.
+
+The main reason for unpacking was that packs used to be "strange". These 
+days, packs are arguably the _common_ thing.
+
+Now, having tons and tons of small packs is probably worse than having 
+tons and tons of individual files, but if people get used to doing 
+occasional full repacks, that doesn't matter.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

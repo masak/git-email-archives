@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 15:18:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 799E72851FA
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 15:18:35 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751043AbVKRWSR (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 17:18:17 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751044AbVKRWSR
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 17:18:17 -0500
+Received: from fed1rmmtao08.cox.net ([68.230.241.31]:43697 "EHLO
+	fed1rmmtao08.cox.net") by vger.kernel.org with ESMTP
+	id S1751042AbVKRWSQ (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 17:18:16 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao08.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051118221714.WMGW26964.fed1rmmtao08.cox.net@assigned-by-dhcp.cox.net>;
+          Fri, 18 Nov 2005 17:17:14 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Luben Tuikov <ltuikov@yahoo.com>
+Subject: Re: [PATCH rev-list.c] max-count in terms of intersection
+References: <20051118214722.4449.qmail@web31813.mail.mud.yahoo.com>
+cc:	git@vger.kernel.org
+Date:	Fri, 18 Nov 2005 14:18:14 -0800
+In-Reply-To: <20051118214722.4449.qmail@web31813.mail.mud.yahoo.com> (Luben
+	Tuikov's message of "Fri, 18 Nov 2005 13:47:22 -0800 (PST)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v1x1dha6x.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:12278
+
+Luben Tuikov <ltuikov@yahoo.com> writes:
+
+> diff-tree 768b79de9eadc38a839332df0fcce021f7174d6d (from 2e67a5f449f4026097494569f871d79bf263ab28)
+> tree 6403fc730f8d5843043788f4c2f466727ba94bc0
+> parent 2e67a5f449f4026097494569f871d79bf263ab28
+> author Luben Tuikov <ltuikov@yahoo.com> 1132349344 -0500
+> committer Luben Tuikov <ltuikov@yahoo.com> 1132349344 -0500
+>
+>     [PATCH rev-list.c] max-count in terms of intersection
+>     
+
+Documentation/SubmittingPatches, perhaps?
+
+>     When a path designation is given, max-count counts the number
+>     of commits therein (intersection), not globally.
+
+This makes sense, but I wonder if the same logic applies to
+max_age as well.  If we have clock-skewed commits that are
+skipped by the DENSE processing, we probably do not want them to
+be affecting what to do on the commits that matter.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

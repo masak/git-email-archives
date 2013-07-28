@@ -1,0 +1,88 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep 13 11:55:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4DA5A24F186
+	for <tkil@scrye.com>; Tue, 13 Sep 2005 11:55:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964939AbVIMRvj (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 13 Sep 2005 13:51:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964941AbVIMRvj
+	(ORCPT <rfc822;git-outgoing>); Tue, 13 Sep 2005 13:51:39 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:25534 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S964939AbVIMRvi (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 13 Sep 2005 13:51:38 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8DHpOBo004983
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 13 Sep 2005 10:51:25 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8DHpNrP014153;
+	Tue, 13 Sep 2005 10:51:23 -0700
+Date:	Tue, 13 Sep 2005 10:51:23 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Horst von Brand <vonbrand@inf.utfsm.cl>
+cc:	Junio C Hamano <junkio@cox.net>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [PATCH] Improve "git grep" flags handling 
+In-Reply-To: <200509131739.j8DHdQL1010615@laptop11.inf.utfsm.cl>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509131044340.3351@g5.osdl.org>
+References: <200509131739.j8DHdQL1010615@laptop11.inf.utfsm.cl>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 42
+Xref: brand.scrye.com linux.git:8468
+
+
+
+On Tue, 13 Sep 2005, Horst von Brand wrote:
+> 
+> Shouldn't shebang go /bin/bash, as the script uses bash-isms now?
+> (For portability to non-enlightened systems the installation would have to
+> locate bash too... and/or mention this in the INSTALL file)
+
+Some bash installs only install in /bin/sh, so..
+
+> Or perhaps redo the mess in Perl or some such?
+
+Hey, the code isn't a mess. The fact that there are tons of different 
+shells and they don't support it is the mess.
+
+So we should strive for bash syntax to be so common that other shells 
+follow suit ;)
+
+I personally find perl to be a really bad language. It has more of a 
+unified base (different versions, but at least not totally different and 
+unrelated implementations), and it's clearly more powerful, but as a 
+_language_ I don't understand how anybody can accept that crap.
+
+The "there's more than one way to do something" slogan may be cute and
+sound good to people who are drawn to that thing, but it's actually bad.  
+The language is designed to be write-only, and the "you can do it fifty
+different ways" is part of it (and line noise characters is another part
+of it).
+
+So sh is actually often a much better language. Too bad some of the 
+features end up being outside the standard language.
+
+I know, I know, people will consider me crazy for saying that. 
+
+Oh, well. As long as all the _important_ stuff is in C, we're ok.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

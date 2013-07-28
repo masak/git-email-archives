@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 27 22:59:50 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.3 required=5.0 tests=AWL,BAYES_00,
+	RCVD_NUMERIC_HELO autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9E7DE135893
+	for <tkil@scrye.com>; Thu, 27 Oct 2005 22:59:50 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965096AbVJ1E7l (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 28 Oct 2005 00:59:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965097AbVJ1E7l
+	(ORCPT <rfc822;git-outgoing>); Fri, 28 Oct 2005 00:59:41 -0400
+Received: from 22.107.233.220.exetel.com.au ([220.233.107.22]:31242 "EHLO
+	arnor.apana.org.au") by vger.kernel.org with ESMTP id S965096AbVJ1E7k
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 28 Oct 2005 00:59:40 -0400
+Received: from gondolin.me.apana.org.au ([192.168.0.6] ident=mail)
+	by arnor.apana.org.au with esmtp (Exim 3.36 #1 (Debian))
+	id 1EVMK7-0000gh-00; Fri, 28 Oct 2005 14:58:39 +1000
+Received: from herbert by gondolin.me.apana.org.au with local (Exim 3.36 #1 (Debian))
+	id 1EVMK5-0000JA-00; Fri, 28 Oct 2005 14:58:37 +1000
+Date:	Fri, 28 Oct 2005 14:58:37 +1000
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Linus Torvalds <torvalds@osdl.org>, smurf@smurf.noris.de,
+	git@vger.kernel.org
+Subject: Re: [PATCH] Avoid using dc in git-count-objects
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051028045837.GA1167@gondor.apana.org.au>
+References: <E1EVKmt-0003xn-00@gondolin.me.apana.org.au> <4361A5BB.5040100@zytor.com> <20051028043211.GA781@gondor.apana.org.au> <4361AA56.2090906@zytor.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4361AA56.2090906@zytor.com>
+User-Agent: Mutt/1.5.9i
+From:	Herbert Xu <herbert@gondor.apana.org.au>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:10751
+
+On Thu, Oct 27, 2005 at 09:34:30PM -0700, H. Peter Anvin wrote:
+>
+> >Perhaps you could use dash for your project as well?
+> 
+> Depends on how big it is.
+
+I just noticed that you were building it with -Os.  So I built
+dash with -Os and this is what I get:
+
+$ size dash
+   text    data     bss     dec     hex filename
+  64397     884   10240   75521   12701 dash
+$ size klibc-1.1.1/ash/sh.shared
+   text    data     bss     dec     hex filename
+  66237     424   70908  137569   21961 klibc-1.1.1/ash/sh.shared
+
+So it looks like as long as dash can link with klibc then:
+
+1) It should be smaller in size.
+2) It should be more stable due to much wider testing coverage (Debian).
+3) You get some extra bells & whistles thrown in for free like printf.
+
+I'll let you know when I have a version that links with klibc.
+
+Cheers,
+-- 
+Visit Openswan at http://www.openswan.org/
+Email: Herbert Xu ~{PmV>HI~} <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

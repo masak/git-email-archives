@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 12 23:50:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EFB38D31F3
+	for <tkil@scrye.com>; Wed, 12 Oct 2005 23:50:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751234AbVJMFuN (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 13 Oct 2005 01:50:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751400AbVJMFuN
+	(ORCPT <rfc822;git-outgoing>); Thu, 13 Oct 2005 01:50:13 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:14982 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1751234AbVJMFuL (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 13 Oct 2005 01:50:11 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051013054953.LIUE29216.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 13 Oct 2005 01:49:53 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	merlyn@stonehenge.com (Randal L. Schwartz)
+Subject: Re: maybe breakage with latest git-pull and http protocol
+References: <867jciz18w.fsf@blue.stonehenge.com>
+cc:	git@vger.kernel.org
+Date:	Wed, 12 Oct 2005 22:50:10 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7aq55kd.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 27
+Xref: brand.scrye.com linux.git:10053
+
+merlyn@stonehenge.com (Randal L. Schwartz) writes:
+
+> I updated git to d06b689a933f6d2130f8afdf1ac0ddb83eeb59ab,
+> then compiled and installed.
+>
+> When I went to "git-pull" on my cogito archive (which I had edited
+> to use HTTP instead of RSYNC), I got into trouble.  Unfortunately,
+> I changed it to rsync to force cogito into a sane state before
+> I realized that this would be a good bug report. :)
+
+Indeed I wish we could see the set of refs you had and output
+from fsck-objects before the failed git-pull and after.
+
+One thing I am aware of is that cogito repository at kernel.org
+is not set up to be HTTP friendly -- it lacks info/refs file
+git-clone uses for discovery of the available refs.
+
+Cogito's clone/fetch over HTTP uses recursive wget for
+discovery, and I presume that is one of the reasons nobody
+noticed this.  Another reason may probably be that more people
+use rsync transport.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

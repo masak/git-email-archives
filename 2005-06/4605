@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun  5 23:44:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 20DEA6E8A
+	for <tkil@scrye.com>; Sun,  5 Jun 2005 23:44:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261180AbVFFFoK (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 6 Jun 2005 01:44:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261183AbVFFFoK
+	(ORCPT <rfc822;git-outgoing>); Mon, 6 Jun 2005 01:44:10 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:37007 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S261180AbVFFFoG (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 6 Jun 2005 01:44:06 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j565huS8010922
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 6 Jun 2005 05:43:57 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j565huaR010921;
+	Mon, 6 Jun 2005 07:43:56 +0200 (CEST)
+Date:	Mon, 6 Jun 2005 07:43:56 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: Last mile for 1.0
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050606054356.GB3669@cip.informatik.uni-erlangen.de>
+References: <7voeak1o0q.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0506051509490.1876@ppc970.osdl.org> <7vk6l8xue5.fsf_-_@assigned-by-dhcp.cox.net> <Pine.LNX.4.58.0506051658100.1876@ppc970.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0506051658100.1876@ppc970.osdl.org>
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 34
+Xref: brand.scrye.com linux.git:4605
+
+Hello,
+
+> >  - "What happens when a merge goes wrong" helper script Jeff
+> >    wanted to have in *4*.
+
+> Does anybody have any suggestions? Preferably with a reasonable 
+> test-case, so that people can try it out.. Maybe just leaving the merge 
+> failures where they are?
+
+I think the simplest and effectivies way to handle this is the
+following: Add a flag to the current merge script which indicates that
+on conflicts the user will be dropped to a shell per conflict to solve:
+
+	- Checkout filename.LOCAL, filename.REMOTE, filename.GCA (with
+	  sanitychecks of course (eg not overwriting existing files)
+	- Run merga -A on them and maybe wiggle and write the product in
+	  filename
+	- If the user resolves the conflict drop him a note to
+	  'update-cache' the resolved conflict and exit the subshell.
+
+I also have at the moment a very nice perl merge script which works with
+multiple heads, duplicates and stuff. Maybe I should write this down in
+bash.
+
+The above approach worked out very good at least for me. I often had to
+resolve 'simple' conflicts when pulling in upstream changes from Linus
+repo.
+
+	Thomas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

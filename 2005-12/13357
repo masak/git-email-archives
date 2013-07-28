@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  8 08:28:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id F31251D734D
+	for <tkil@scrye.com>; Thu,  8 Dec 2005 08:28:06 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750914AbVLHP1g (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 10:27:36 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751194AbVLHP1g
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 10:27:36 -0500
+Received: from host46-203.pool8538.interbusiness.it ([85.38.203.46]:772 "HELO
+	dave-tech.it") by vger.kernel.org with SMTP id S1750914AbVLHP1f
+	(ORCPT <rfc822;git@vger.kernel.org>); Thu, 8 Dec 2005 10:27:35 -0500
+Received: (qmail 9862 invoked by uid 0); 8 Dec 2005 16:31:25 -0000
+Received: from unknown (HELO ?192.168.0.24?) (192.168.2.253)
+  by 192.168.2.1 with SMTP; 8 Dec 2005 16:31:25 -0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <439850DF.7070407@dave-tech.it>
+Date:	Thu, 08 Dec 2005 16:27:27 +0100
+From:	R&D4 <r&d4@dave-tech.it>
+User-Agent: Mozilla Thunderbird 1.0.6 (Windows/20050716)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git mailing list <git@vger.kernel.org>
+Subject: problem with cvs import and removed files
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 53
+Xref: brand.scrye.com linux.git:13357
+
+
+Hi Git gurus!
+
+I'm trying to `git cvs import` this cvs repository
+http://cvs.sourceforge.net/viewcvs.py/compiere
+
+When trying to import module "utils" as follows:
+
+git cvsimport -v -d 
+:pserver:anonymous@cvs.sourceforge.net:/cvsroot/compiere -C utils utils
+
+I have a problem about "non-existent revision" of a file:
+
+cvs_direct initialized to CVSROOT /cvsroot/compiere
+cvs rlog: Logging utils
+request for non-existent rev 1.1 in file .project
+DONE; creating master branch
+cp: cannot stat `/home/cvs/compiere/utils/.git/refs/heads/origin': No
+such file or directory
+usage: git-read-tree (<sha> | -m [-u | -i] <sha1> [<sha2> [<sha3>]])
+checkout failed: 256
+
+In fact rev 1.1 of .project in main branch shows "file removed" 
+(http://cvs.sourceforge.net/viewcvs.py/compiere/utils/.project?rev=1.2&view=log)
+
+The same happen with some other module of this project.
+
+I'm running git --version is:
+0.99.9.GIT
+
+and cvsps --version is:
+2.1
+
+
+Any clue in how to solve this kind of problem?
+Is it possible to skip this file(s) and maybe include them later "manually"?
+
+Thanks in advance and best regards,
+
+
+-- 
+
+Andrea
+
+DAVE Srl - Electronics System House
+e-mail address: r&d4@dave-tech.it
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

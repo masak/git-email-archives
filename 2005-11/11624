@@ -1,0 +1,70 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 11 13:51:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 2EA676E96F
+	for <tkil@scrye.com>; Fri, 11 Nov 2005 13:51:52 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751194AbVKKUvp (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 11 Nov 2005 15:51:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751196AbVKKUvo
+	(ORCPT <rfc822;git-outgoing>); Fri, 11 Nov 2005 15:51:44 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:53943 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S1751194AbVKKUvo (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 11 Nov 2005 15:51:44 -0500
+Received: (qmail 5738 invoked from network); 11 Nov 2005 21:51:41 +0100
+Received: from localhost (HELO machine.or.cz) (xpasky@127.0.0.1)
+  by localhost with SMTP; 11 Nov 2005 21:51:41 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	<git@vger.kernel.org>
+Subject: [PATCH] Reference technical/trivial-merge.txt in git-read-tree documentation
+Date:	Fri, 11 Nov 2005 21:51:40 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20051111205140.5719.68724.stgit@machine.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:11624
+
+That file, with the so valuable (and so confusing) tables describing
+the precise resolution rules git-read-tree follows, silently sat in
+the corner and almost noone knew about it (well, I didn't, at least).
+This references it from the git-read-tree documentation, so that there
+is some chance that interested people will find it.
+
+Signed-off-by: Petr Baudis <pasky@suse.cz>
+---
+
+ Documentation/git-read-tree.txt |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
+
+diff --git a/Documentation/git-read-tree.txt b/Documentation/git-read-tree.txt
+index 7db5fb5..ff17bad 100644
+--- a/Documentation/git-read-tree.txt
++++ b/Documentation/git-read-tree.txt
+@@ -55,6 +55,12 @@ merge, a single tree merge if only 1 tre
+ fast-forward merge with 2 trees, or a 3-way merge if 3 trees are
+ provided.
+ 
++The detailed listing of the precise automatic resolution rules
++git-read-tree follows can be found in 'technical/trivial-merge.txt'.
++It is in part redundant with what you will find below since the
++fellow documenters cannot decide which of the descriptions is more
++confusing and remove the other one.
++
+ 
+ Single Tree Merge
+ ~~~~~~~~~~~~~~~~~
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

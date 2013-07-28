@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Jun 19 07:04:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 6ABC6179923
+	for <tkil@scrye.com>; Sun, 19 Jun 2005 07:04:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261954AbVFSNDx (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 19 Jun 2005 09:03:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262233AbVFSNDx
+	(ORCPT <rfc822;git-outgoing>); Sun, 19 Jun 2005 09:03:53 -0400
+Received: from mx2.elte.hu ([157.181.151.9]:8069 "EHLO mx2.elte.hu")
+	by vger.kernel.org with ESMTP id S261954AbVFSNDp (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 19 Jun 2005 09:03:45 -0400
+Received: from chiara.elte.hu (chiara.elte.hu [157.181.150.200])
+	by mx2.elte.hu (Postfix) with ESMTP id 075EE31E670;
+	Sun, 19 Jun 2005 15:00:30 +0200 (CEST)
+Received: by chiara.elte.hu (Postfix, from userid 17806)
+	id E707E1FC2; Sun, 19 Jun 2005 15:03:36 +0200 (CEST)
+Date:	Sun, 19 Jun 2005 15:02:57 +0200
+From: Ingo Molnar <mingo@elte.hu>
+To: Marco Costalba <mcostalba@yahoo.it>
+Cc: git@vger.kernel.org, berkus@gmail.com
+Subject: Re: qgit-0.6
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050619130257.GA18226@elte.hu>
+References: <20050618103805.8461.qmail@web26302.mail.ukl.yahoo.com> <20050619130035.GA15355@elte.hu>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050619130035.GA15355@elte.hu>
+User-Agent: Mutt/1.4.2.1i
+X-ELTE-SpamVersion: MailScanner 4.31.6-itk1 (ELTE 1.2) SpamAssassin 2.63 ClamAV 0.73
+X-ELTE-VirusStatus: clean
+X-ELTE-SpamCheck: no
+X-ELTE-SpamCheck-Details: score=-4.9, required 5.9,
+	autolearn=not spam, BAYES_00 -4.90
+X-ELTE-SpamLevel: 
+X-ELTE-SpamScore: -4
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:5018
+
+
+* Ingo Molnar <mingo@elte.hu> wrote:
+
+> works fine here and is nice and fast, but there are a few minor visual 
+> glitches:
+
+one more thing: for the annotated output it would be nicer to have 
+fixed-width fonts to display code. For commit messages the current 
+output is fine, but code is much more readable in fixed-width output.
+
+	Ingo
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

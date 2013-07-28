@@ -1,0 +1,78 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul 27 10:24:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 188F5286807
+	for <tkil@scrye.com>; Wed, 27 Jul 2005 10:24:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262398AbVG0Pwv (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Jul 2005 11:52:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262428AbVG0Pwa
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Jul 2005 11:52:30 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:38842 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262398AbVG0Puw (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 27 Jul 2005 11:50:52 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j6RFoWjA030175
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 27 Jul 2005 08:50:33 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j6RFoRIr027180;
+	Wed, 27 Jul 2005 08:50:29 -0700
+Date:	Wed, 27 Jul 2005 08:50:27 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: tglx@linutronix.de, Git Mailing List <git@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: Linux BKCVS kernel history git import..
+In-Reply-To: <1122478870.28128.52.camel@hades.cambridge.redhat.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0507270846360.3227@g5.osdl.org>
+References: <Pine.LNX.4.58.0507261136280.19309@g5.osdl.org> 
+ <1122457238.3027.37.camel@baythorne.infradead.org> 
+ <Pine.LNX.4.58.0507270819550.3227@g5.osdl.org> <1122478870.28128.52.camel@hades.cambridge.redhat.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:6464
+
+
+
+On Wed, 27 Jul 2005, David Woodhouse wrote:
+> 
+> Hm, OK. That works and can also be used for the "fake _absence_ of
+> parent" thing -- if I'm space-constrained and want only the history back
+> to some relatively recent point like 2.6.0, I can do that by turning the
+> 2.6.0 commit into an orphan instead of also using all the rest of the
+> history back to 2.4.0. 
+
+Yes. The grafting really should work pretty well for various things like
+this, and at the same time I don't think it's ever going to be a huge 
+problem: people may have a couple of graft-points (if you want to drop 
+history, you may well have more than one point you need to "cauterize": 
+you may not be able to just cut it off at 2.6.0, since there may be merges 
+furhter back in history), but I don't think it's going to explode and 
+become unwieldly.
+
+I just don't see people having more than a few trees that they might want
+to graft together, and while the "drop history" thing might cause more
+issues, even that is bounded by the amount of development parallellism, so 
+while it probably causes more graft-points than the "join trees" usage, it 
+should still be just a small handful of points.
+
+			Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

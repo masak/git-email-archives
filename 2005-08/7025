@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Aug 10 10:45:31 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 88542194055
+	for <tkil@scrye.com>; Wed, 10 Aug 2005 10:45:31 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965205AbVHJQpY (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 10 Aug 2005 12:45:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965206AbVHJQpY
+	(ORCPT <rfc822;git-outgoing>); Wed, 10 Aug 2005 12:45:24 -0400
+Received: from zealot.progeny.com ([216.37.46.162]:41091 "EHLO
+	morimoto.progeny.com") by vger.kernel.org with ESMTP
+	id S965205AbVHJQpY (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 10 Aug 2005 12:45:24 -0400
+Received: from localhost.localdomain (morimoto.progeny.com [192.168.1.53])
+	by morimoto.progeny.com (Postfix) with ESMTP
+	id 53496636AB; Wed, 10 Aug 2005 11:45:22 -0500 (EST)
+Subject: Re: [PATCH] Teach git push .git/branches shorthand
+From: Darrin Thompson <darrint@progeny.com>
+To: Junio C Hamano <junkio@cox.net>
+Cc: Josef Weidendorfer <Josef.Weidendorfer@gmx.de>,
+	Johannes Schindelin <Johannes.Schindelin@gmx.de>, git@vger.kernel.org
+In-Reply-To: <200508081141.23242.Josef.Weidendorfer@gmx.de>
+References: <7viryhgdo5.fsf@assigned-by-dhcp.cox.net>
+	 <Pine.LNX.4.63.0508081106580.26210@wgmdd8.biozentrum.uni-wuerzburg.de>
+	 <200508081141.23242.Josef.Weidendorfer@gmx.de>
+Content-Type: text/plain
+Date:	Tue, 09 Aug 2005 18:26:41 -0500
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <1123630001.3609.24.camel@localhost.localdomain>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.2.3 
+Content-Transfer-Encoding: 7bit
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=AWL,BAYES_00,
+	DATE_IN_PAST_12_24 autolearn=ham version=3.0.4
+Lines: 15
+Xref: brand.scrye.com linux.git:7025
+
+On Mon, 2005-08-08 at 11:41 +0200, Josef Weidendorfer wrote:
+> Perhaps we should call it "remoterefs/" instead?
+> 
+
+How about .git/peers/ ?
+
+--
+Darrin
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

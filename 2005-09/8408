@@ -1,0 +1,106 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 12 13:07:07 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9761D1E43F1
+	for <tkil@scrye.com>; Mon, 12 Sep 2005 13:07:07 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932150AbVILTGU (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 12 Sep 2005 15:06:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932153AbVILTGU
+	(ORCPT <rfc822;git-outgoing>); Mon, 12 Sep 2005 15:06:20 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:46514 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932150AbVILTGT (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 12 Sep 2005 15:06:19 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8CJ6DBo011342
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 12 Sep 2005 12:06:14 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8CJ6AxA012183;
+	Mon, 12 Sep 2005 12:06:12 -0700
+Date:	Mon, 12 Sep 2005 12:06:10 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Git Mailing List <git@vger.kernel.org>,
+	Junio C Hamano <junkio@cox.net>
+Subject: Add "git grep" helper
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509121203210.4098@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 63
+Xref: brand.scrye.com linux.git:8408
+
+
+Very convenient shorthand for
+
+	git-ls-files [file-patterns] | xargs grep <pattern>
+
+which I tend to do all the time.
+
+Yes, it's trivial, but it's really nice. I can do
+
+	git grep '\<some_variable\>' arch/i386 include/asm-i386
+
+and it does exactly what you'd think it does. And since it just uses the 
+normal git-ls-files file patterns, you can do things like
+
+	git grep something 'include/*.h'
+
+and it will search all header files under the include/ subdirectory.
+
+Signed-off-by: Linus Torvalds <torvalds@osdl.org>
+---
+
+diff --git a/Makefile b/Makefile
+--- a/Makefile
++++ b/Makefile
+@@ -76,7 +76,7 @@ SCRIPT_SH = \
+ 	git-tag.sh git-verify-tag.sh git-whatchanged.sh git.sh \
+ 	git-applymbox.sh git-applypatch.sh \
+ 	git-merge.sh git-merge-stupid.sh git-merge-octopus.sh \
+-	git-merge-resolve.sh
++	git-merge-resolve.sh git-grep.sh
+ 
+ SCRIPT_PERL = \
+ 	git-archimport.perl git-cvsimport.perl git-relink.perl \
+diff --git a/git-grep.sh b/git-grep.sh
+new file mode 100755
+--- /dev/null
++++ b/git-grep.sh
+@@ -0,0 +1,20 @@
++#!/bin/sh
++flags=
++while :; do
++  pattern="$1"
++  case "$pattern" in
++  -i|-I|-a|-E|-H|-h|-l)
++    flags="$flags $pattern"
++    shift
++    ;;
++  -*)
++    echo "unknown flag $pattern" >&2
++    exit 1
++    ;;
++  *)
++    break
++    ;;
++  esac
++done
++shift
++git-ls-files -z "$@" | xargs -0 grep $flags "$pattern"
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

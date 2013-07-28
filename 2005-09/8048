@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep  4 04:56:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id BA670125A41
+	for <tkil@scrye.com>; Sun,  4 Sep 2005 04:56:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750745AbVIDKzz (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 4 Sep 2005 06:55:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750746AbVIDKzz
+	(ORCPT <rfc822;git-outgoing>); Sun, 4 Sep 2005 06:55:55 -0400
+Received: from 202-0-36-112.cable.paradise.net.nz ([202.0.36.112]:48320 "EHLO
+	localhost.localdomain") by vger.kernel.org with ESMTP
+	id S1750745AbVIDKzy (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 4 Sep 2005 06:55:54 -0400
+Received: from aporo-debian (localhost.localdomain [127.0.0.1])
+	by localhost.localdomain (Postfix) with SMTP id DBE018AAC3;
+	Sun,  4 Sep 2005 22:55:29 +1200 (NZST)
+Cc:	Martin Langhoff <martin@catalyst.net.nz>
+Subject: [PATCH] archimport: avoid committing on an Arch tag
+In-Reply-To: 
+X-Mailer: git-send-email-script
+Date:	Sun, 4 Sep 2005 22:55:29 +1200
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <11258313291144-git-send-email-martin@catalyst.net.nz>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Reply-To: Martin Langhoff <martin@catalyst.net.nz>
+To:	git@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+From:	Martin Langhoff <martin@catalyst.net.nz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 38
+Xref: brand.scrye.com linux.git:8048
+
+Arch tags are full commits (without any changed files) as well. Trust Arch
+to have put an unchanged tree in place (which seems to do reliably), and
+just add a tag & new branch. Speeds up Arch imports significantly, and leaves
+history in a much saner state.
+
+Signed-off-by: Martin Langhoff <martin@catalyst.net.nz>
+
+
+---
+
+ git-archimport-script |    8 ++++++++
+ 1 files changed, 8 insertions(+), 0 deletions(-)
+
+55f05e4d4ab662caff10437bdd4de7e8b87f30e0
+diff --git a/git-archimport-script b/git-archimport-script
+--- a/git-archimport-script
++++ b/git-archimport-script
+@@ -227,6 +227,14 @@ foreach my $ps (@psets) {
+             
+             # find where we are supposed to branch from
+             `git checkout -b $ps->{branch} $branchpoint`;
++
++            # If we trust Arch with the fact that this is just 
++            # a tag, and it does not affect the state of the tree
++            # then we just tag and move on
++            tag($ps->{id}, $branchpoint);
++            ptag($ps->{id}, $branchpoint);
++            print " * Tagged $ps->{id} at $branchpoint\n";
++            next;
+         } 
+         die $! if $?;
+     } 
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

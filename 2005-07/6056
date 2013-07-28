@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Jul 13 05:19:02 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 0A6EB29FE33
+	for <tkil@scrye.com>; Wed, 13 Jul 2005 05:19:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262637AbVGMLRV (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 13 Jul 2005 07:17:21 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262631AbVGMLRM
+	(ORCPT <rfc822;git-outgoing>); Wed, 13 Jul 2005 07:17:12 -0400
+Received: from cam-admin0.cambridge.arm.com ([193.131.176.58]:3058 "EHLO
+	cam-admin0.cambridge.arm.com") by vger.kernel.org with ESMTP
+	id S262637AbVGMLO4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 13 Jul 2005 07:14:56 -0400
+Received: from cam-mail2.cambridge.arm.com (cam-mail2.cambridge.arm.com [10.1.127.39])
+	by cam-admin0.cambridge.arm.com (8.12.10/8.12.10) with ESMTP id j6DBDms4004278;
+	Wed, 13 Jul 2005 12:13:48 +0100 (BST)
+Received: from ZIPPY.Emea.Arm.com (cam-exch2.emea.arm.com [10.1.255.58])
+	by cam-mail2.cambridge.arm.com (8.9.3/8.9.3) with ESMTP id MAA02943;
+	Wed, 13 Jul 2005 12:14:19 +0100 (BST)
+Received: from localhost.localdomain ([10.1.69.144]) by ZIPPY.Emea.Arm.com with Microsoft SMTPSVC(6.0.3790.211);
+	 Wed, 13 Jul 2005 12:14:17 +0100
+To: Russell King <rmk@arm.linux.org.uk>
+Cc: Petr Baudis <pasky@ucw.cz>, Linus Torvalds <torvalds@osdl.org>,
+	git@vger.kernel.org
+Subject: Re: [ANNOUNCE] Cogito 0.12.1
+References: <20050712010058.GE5981@pasky.ji.cz>
+	<20050713081257.D19871@flint.arm.linux.org.uk>
+From: Catalin Marinas <catalin.marinas@gmail.com>
+Date:	Wed, 13 Jul 2005 12:13:52 +0100
+In-Reply-To: <20050713081257.D19871@flint.arm.linux.org.uk> (Russell King's
+ message of "Wed, 13 Jul 2005 08:12:57 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <tnxzmsrc61b.fsf@arm.com>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-OriginalArrivalTime: 13 Jul 2005 11:14:17.0978 (UTC) FILETIME=[02B1C5A0:01C5879C]
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 19
+Xref: brand.scrye.com linux.git:6056
+
+Russell King <rmk@arm.linux.org.uk> wrote:
+> I won't bother trying to explain, I'll just paste the errors.  We've been
+> here before in a previous cogito revision.
+>
+> rmk@dyn-67:[linux-2.6-rmk]:<1038> cg-branch-ls
+> origin  ../linux-2.6
+> smp     ../linux-2.6-smp
+
+I noticed that Cogito doesn't work well with relative paths. Run
+cg-branch-chg and put absolute paths, it might work (it did for me).
+
+-- 
+Catalin
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

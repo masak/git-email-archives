@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 19 16:40:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 361FD285244
+	for <tkil@scrye.com>; Wed, 19 Oct 2005 16:40:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751587AbVJSWj5 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 19 Oct 2005 18:39:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751617AbVJSWj4
+	(ORCPT <rfc822;git-outgoing>); Wed, 19 Oct 2005 18:39:56 -0400
+Received: from qproxy.gmail.com ([72.14.204.197]:61033 "EHLO qproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1751586AbVJSWj4 convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 19 Oct 2005 18:39:56 -0400
+Received: by qproxy.gmail.com with SMTP id v40so204316qbe
+        for <git@vger.kernel.org>; Wed, 19 Oct 2005 15:39:55 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=VY/gdgmR9MHB//B2ZUVIPATb4IbiI9ckgrKaUEPGEaO3dnBmwv6YU55GnjqNMBplF0qiYvtMPvdkP7RryYU5nSTZC+122HDL2DIR/fOEMuNeNUimWnX4YJUFjSgznhDtM4xB8TsTKA3UR5dY9pVxudVg+dv8R+UyawcX9TuPBG0=
+Received: by 10.64.156.18 with SMTP id d18mr950085qbe;
+        Wed, 19 Oct 2005 15:39:55 -0700 (PDT)
+Received: by 10.64.243.14 with HTTP; Wed, 19 Oct 2005 15:39:55 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <12c511ca0510191539w3dd76f89ra5fe48e1d84750d6@mail.gmail.com>
+Date:	Wed, 19 Oct 2005 15:39:55 -0700
+From:	Tony Luck <tony.luck@gmail.com>
+To:	Petr Baudis <pasky@suse.cz>
+Subject: Re: The git protocol and DoS
+Cc:	"H. Peter Anvin" <hpa@zytor.com>,
+	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <20051019222044.GP30889@pasky.or.cz>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <4356A5C5.5080905@zytor.com> <20051019222044.GP30889@pasky.or.cz>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 17
+Xref: brand.scrye.com linux.git:10314
+
+On 10/19/05, Petr Baudis <pasky@suse.cz> wrote:
+> [client]        git-upload-pack <path>
+> [server]        challenge somethingnonsensical
+> [client]        challenge-response <username>:sha1(somethingnonsensical<password>)
+> [server]        All right, the pack goes like this...
+
+I think this requires that the server store the cleartext version of
+the password so
+that it can validate sha1(somethingnonsensical<password>) ... which is generally
+thought to be a bad idea.
+
+-Tony
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

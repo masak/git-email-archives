@@ -1,0 +1,106 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Oct  1 08:22:59 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_CV,TW_DW,
+	TW_WM autolearn=no version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5A30127BFE2
+	for <tkil@scrye.com>; Sat,  1 Oct 2005 08:22:59 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750705AbVJAOV5 (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 1 Oct 2005 10:21:57 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750718AbVJAOV5
+	(ORCPT <rfc822;git-outgoing>); Sat, 1 Oct 2005 10:21:57 -0400
+Received: from paleosilicon.orionmulti.com ([209.128.68.66]:905 "EHLO
+	paleosilicon.orionmulti.com") by vger.kernel.org with ESMTP
+	id S1750705AbVJAOV4 (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 1 Oct 2005 10:21:56 -0400
+X-Envelope-From: hpa@zytor.com
+Received: from [172.27.0.18] (c-67-180-239-42.hsd1.ca.comcast.net [67.180.239.42])
+	(authenticated bits=0)
+	by paleosilicon.orionmulti.com (8.12.10/8.12.10) with ESMTP id j91ELdJv012208
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Sat, 1 Oct 2005 07:21:40 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <433E9B73.3040807@zytor.com>
+Date:	Sat, 01 Oct 2005 07:21:39 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Martin Coxall <quasi@cream.org>
+CC:	Git Mailing List <git@vger.kernel.org>, users@kernel.org
+Subject: Re: Packing on kernel.org
+References: <Pine.LNX.4.64.0509302320560.3378@g5.osdl.org> <068ea79fc648433faa44a6d4cc287614@cream.org>
+In-Reply-To: <068ea79fc648433faa44a6d4cc287614@cream.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on paleosilicon.orionmulti.com
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 58
+Xref: brand.scrye.com linux.git:9588
+
+Martin Coxall wrote:
+> Was there an cron process or kernel.org that should be repacking the 
+> public repositories periodically?
+
+No, too many people complained.
+
+> The git/cogito/sparse/linux-2.6 repositories all now have several 
+> thousand unpacked objects a piece, and it takes so long to do an http 
+> clone it's not even funny.
+
+HARP: Please pack your repositories periodically.  PLEASE.  It matters 
+especially now when kernel.org is down one server.
+
+If your username is high on this list, it's imperative that you pack 
+your trees:
+
+brodo                 197469
+wim                   184343
+marcelo                68442
+jgarzik                59860
+lm                     39680
+mpm                    38995
+pavel                  37624
+lenb                   36406
+hch                    34037
+davem                  27671
+jejb                   23553
+willy                  21626
+pasky                  17019
+sfrench                15912
+smurf                  15236
+acme                   12504
+torvalds                8834
+aegl                    7369
+ericvh                  6750
+roland                  6296
+airlied                 6053
+chrisw                  5619
+axboe                   5221
+dwmw2                   4101
+gregkh                  3659
+dtor                    3537
+hpa                     3350
+paulus                  2074
+perex                   1999
+bart                    1955
+cvaroqui                1537
+kay                     1250
+junio                   1119
+sam                     1073
+kkeil                   1050
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

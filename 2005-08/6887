@@ -1,0 +1,62 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug  6 23:32:32 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 0C16D1F73EE
+	for <tkil@scrye.com>; Sat,  6 Aug 2005 23:32:32 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751067AbVHGFbx (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 7 Aug 2005 01:31:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751068AbVHGFbx
+	(ORCPT <rfc822;git-outgoing>); Sun, 7 Aug 2005 01:31:53 -0400
+Received: from fed1rmmtao09.cox.net ([68.230.241.30]:64669 "EHLO
+	fed1rmmtao09.cox.net") by vger.kernel.org with ESMTP
+	id S1751056AbVHGFbw (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 7 Aug 2005 01:31:52 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao09.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050807053151.NLLT7275.fed1rmmtao09.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 7 Aug 2005 01:31:51 -0400
+From: Junio C Hamano <junkio@cox.net>
+To: Petr Baudis <pasky@suse.cz>
+Subject: Re: git-local-pull?
+References: <Pine.LNX.4.62.0508031259430.23721@iabervon.org>
+	<20050804201230.GC24479@pasky.ji.cz>
+Cc: git@vger.kernel.org
+Date:	Sat, 06 Aug 2005 22:31:50 -0700
+In-Reply-To: <20050804201230.GC24479@pasky.ji.cz> (Petr Baudis's message of
+	"Thu, 4 Aug 2005 22:12:30 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vbr4a2tyx.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:6887
+
+Petr Baudis <pasky@suse.cz> writes:
+
+>> I can probably fix it if anyone cares, but it's not something I use 
+>> personally, so I don't know if it's worthwhile. It should probably be 
+>> removed if we don't fix it, since it will fail on any popular repository 
+>> at this point.
+>
+> I want to use it in Cogito again, since copying everything obviously
+> sucks and I want to hardlink, so repacking is not a solution either.
+
+Me too.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

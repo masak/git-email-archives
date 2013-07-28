@@ -1,0 +1,87 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Aug 12 21:11:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7EC9F6123
+	for <tkil@scrye.com>; Fri, 12 Aug 2005 21:11:01 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750884AbVHMDKa (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 12 Aug 2005 23:10:30 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750889AbVHMDKa
+	(ORCPT <rfc822;git-outgoing>); Fri, 12 Aug 2005 23:10:30 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:4868 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S1750858AbVHMDK3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 12 Aug 2005 23:10:29 -0400
+Received: (qmail 22790 invoked by uid 2001); 13 Aug 2005 03:10:25 -0000
+Date:	Sat, 13 Aug 2005 05:10:25 +0200
+From: Petr Baudis <pasky@suse.cz>
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org, ftpadmin@kernel.org
+Subject: Re: Cloning speed comparison
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050813031025.GE20812@pasky.ji.cz>
+References: <20050813015402.GC20812@pasky.ji.cz> <Pine.LNX.4.58.0508121908180.3295@g5.osdl.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.58.0508121908180.3295@g5.osdl.org>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 47
+Xref: brand.scrye.com linux.git:7157
+
+Dear diary, on Sat, Aug 13, 2005 at 04:12:26AM CEST, I got a letter
+where Linus Torvalds <torvalds@osdl.org> told me that...
+> On Sat, 13 Aug 2005, Petr Baudis wrote:
+> > 
+> >   Anyway, clone-pack is a clear winner for networks (but someone should
+> > re-check that, especially compared to rsync, wrt. server-side file
+> > caching); really cool fast, but not very practical for anonymous access.
+> 
+> git-daemon is for the anonymous access case, either started from inetd 
+> (or any other external "listen to port, exec service" thing), or with the 
+> built-in listening stuff.
+> 
+> It uses exactly the same protocol and logic as the regular ssh clone-pack 
+> thing, except it doesn't authenticate the remote end: it only checks that 
+> the local end is accepting anonymous pulls by checking whether there is a 
+> "git-daemon-export-ok" file in the git directory.
+> 
+> In my tests, the git daemon was noticeably faster than ssh, if only 
+> because the authentication actually tends to be a big part of the overhead 
+> in small pulls.
+
+Oh. Sounds nice, are there plans to run this on kernel.org too? (So far,
+90% of my GIT network activity happens with kernel.org; the rest is with
+my notebook, and I want to keep that ssh.)
+
+BTW, is the pack protocol flexible enough to be extended to support
+pushing? That would be great as well. You might suggest just using ssh,
+but that (i) requires you to be root on the machine to add new users
+(ii) consequently adds administrative burden (iii) isn't easy to set up
+so that the user has no shell access, shall you want to restrict that.
+
+> [ Hey. There's a deer outside my window eating our roses again. Cute ]
+
+Oh, it must be nice in Oregon. I can't imagine anything like that to
+happen in Czechia unless you live at a solitude or in some lonely tiny
+village.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+If you want the holes in your knowledge showing up try teaching
+someone.  -- Alan Cox
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

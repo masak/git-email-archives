@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec  8 17:50:38 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1A3AB1E8770
+	for <tkil@scrye.com>; Thu,  8 Dec 2005 17:50:37 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932770AbVLIAu0 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 8 Dec 2005 19:50:26 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932771AbVLIAu0
+	(ORCPT <rfc822;git-outgoing>); Thu, 8 Dec 2005 19:50:26 -0500
+Received: from mxfep01.bredband.com ([195.54.107.70]:21984 "EHLO
+	mxfep01.bredband.com") by vger.kernel.org with ESMTP
+	id S932770AbVLIAu0 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 8 Dec 2005 19:50:26 -0500
+Received: from puritan.petwork ([213.112.43.250] [213.112.43.250])
+          by mxfep01.bredband.com with ESMTP
+          id <20051209005024.VTAN676.mxfep01.bredband.com@puritan.petwork>
+          for <git@vger.kernel.org>; Fri, 9 Dec 2005 01:50:24 +0100
+Received: by puritan.petwork (Postfix, from userid 1000)
+	id 5D63EADFE5; Fri,  9 Dec 2005 01:50:25 +0100 (CET)
+Date:	Fri, 9 Dec 2005 01:50:25 +0100
+From:	Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org>
+To:	git@vger.kernel.org
+Subject: Re: [PATCH 6/17] Document the [<head>...] and -- arguments to git-prune.
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051209005025.GA8932@puritan.petwork>
+Mail-Followup-To: git@vger.kernel.org
+References: <1134084485547-git-send-email-mailing-lists.git@rawuncut.elitemail.org> <1134084485869-git-send-email-mailing-lists.git@rawuncut.elitemail.org> <7v4q5jb149.fsf@assigned-by-dhcp.cox.net> <7vzmnb9m7w.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vzmnb9m7w.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 39
+Xref: brand.scrye.com linux.git:13400
+
+Junio C Hamano wrote:
+
+> Junio C Hamano <junkio@cox.net> writes:
+
+> > Nikolai Weibull <mailing-lists.git@rawuncut.elitemail.org> writes:
+
+> > > The documentation for git-prune was lacking descriptions of the head
+> > > arguments and the -- option.
+> > >
+> > > +<head>...::
+> > > +        The heads to look for unreachable objects in.  This is
+> > > +        relative to $GIT_DIR (e.g., "HEAD", "refs/heads/master").
+> > > +        When unspecified, all heads are updated to match the
+> > > +        remote repository.
+
+> > ? updated to match???
+
+> Come to think of it, why would anybody want to pass heads explicitly?
+> It seems to me that it would allow you to _lose_ objects referenced
+> only from omitted branches...
+ 
+Sorry.  I have no idea why I pasted in that description.  How about:
+
+<head>...::
+        A head to use for an unreachability trace.
+
+(This mimics the description of <object> in git-fsck-objects.)
+
+        nikolai
+
+-- 
+Nikolai Weibull: now available free of charge at http://bitwi.se/!
+Born in Chicago, IL USA; currently residing in Gothenburg, Sweden.
+main(){printf(&linux["\021%six\012\0"],(linux)["have"]+"fun"-97);}
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

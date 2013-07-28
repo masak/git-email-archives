@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 09:28:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C46A42877AF
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 09:28:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932454AbVJaQ1l (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 11:27:41 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932456AbVJaQ1l
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 11:27:41 -0500
+Received: from terminus.zytor.com ([192.83.249.54]:20176 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S932454AbVJaQ1k
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 31 Oct 2005 11:27:40 -0500
+Received: from [172.27.0.18] (c-67-180-238-27.hsd1.ca.comcast.net [67.180.238.27])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j9VGR2Cx030215
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 31 Oct 2005 08:27:03 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <436645D6.3050506@zytor.com>
+Date:	Mon, 31 Oct 2005 08:27:02 -0800
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc4 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Linus Torvalds <torvalds@osdl.org>
+CC:	Chris Wright <chrisw@osdl.org>, Junio C Hamano <junkio@cox.net>,
+	git@vger.kernel.org
+Subject: Re: git 0.99.9: Subversion importer breaks RPM generation (rpmbuild
+ bug)
+References: <43652934.8000308@zytor.com> <7vy84ajl4c.fsf@assigned-by-dhcp.cox.net> <20051031064105.GV8041@shell0.pdx.osdl.net> <43663EEA.5050102@zytor.com> <Pine.LNX.4.64.0510310819290.27915@g5.osdl.org>
+In-Reply-To: <Pine.LNX.4.64.0510310819290.27915@g5.osdl.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 19
+Xref: brand.scrye.com linux.git:10857
+
+Linus Torvalds wrote:
+> 
+> Now, I'm not certain how happy RPM would be with having one source RPM 
+> generate multiple binary RPM's, so we might have problems with some stupid 
+> RPM rules, but I think we should really do this. There's always going to 
+> be some extra feature that not everybody needs, but that it would be silly 
+> to have its own project for. 
+> 
+
+RPM is more than happy to do this.  It's a standard feature of RPM.  The 
+current RPM, however, is structured in a way that makes it somewhat 
+painful, as it depends a little too much on wildcards.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

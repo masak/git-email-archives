@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 16 12:01:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 47DA9CF90F
+	for <tkil@scrye.com>; Wed, 16 Nov 2005 12:01:18 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030419AbVKPTAp (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 16 Nov 2005 14:00:45 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030430AbVKPTAp
+	(ORCPT <rfc822;git-outgoing>); Wed, 16 Nov 2005 14:00:45 -0500
+Received: from zproxy.gmail.com ([64.233.162.205]:10042 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S1030419AbVKPTAo convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 16 Nov 2005 14:00:44 -0500
+Received: by zproxy.gmail.com with SMTP id z3so1479105nzf
+        for <git@vger.kernel.org>; Wed, 16 Nov 2005 11:00:43 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=g/hXw2YfFvyzsdJrR6AA2CkvksdeDrg+jCCmrg+jFMVCnf2w2ytseKU3KxYZdAsyyn3km6Q6cjdXDb3jUZuPkx6Lt24qCatzDa8jkY0o6MGaZAzCArHoTyxqLCEBUEsJod6q4lKzsaaQMS3RvSUDNgosQAe3wxdQnrAAATBO7uQ=
+Received: by 10.65.188.4 with SMTP id q4mr516385qbp;
+        Wed, 16 Nov 2005 11:00:42 -0800 (PST)
+Received: by 10.64.242.4 with HTTP; Wed, 16 Nov 2005 11:00:42 -0800 (PST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f90511161100x4263ac01iaf3c0497db5021f6@mail.gmail.com>
+Date:	Thu, 17 Nov 2005 08:00:42 +1300
+From:	Martin Langhoff <martin.langhoff@gmail.com>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: Sourceforge doesn't like git cvsimport
+Cc:	Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <437B7416.8030704@zytor.com>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <437B7416.8030704@zytor.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:12029
+
+Unpossible!
+
+I run git-cvsimport against Moodle's cvs repo on SF.net at least twice
+a day over SSH. I did it several times with anon cvs too. SF.net cvs
+servers have been up, down and unreliable the last week, but that's
+bad with the plain old cvs client too.
+
+Can we get more info on what's happening?
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

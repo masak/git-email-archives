@@ -1,0 +1,195 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov  8 15:21:27 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E64362B7059
+	for <tkil@scrye.com>; Tue,  8 Nov 2005 15:21:25 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030331AbVKHWSg (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 8 Nov 2005 17:18:36 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030332AbVKHWSg
+	(ORCPT <rfc822;git-outgoing>); Tue, 8 Nov 2005 17:18:36 -0500
+Received: from mail.cs.umu.se ([130.239.40.25]:29421 "EHLO mail.cs.umu.se")
+	by vger.kernel.org with ESMTP id S1030331AbVKHWSf (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 8 Nov 2005 17:18:35 -0500
+Received: from localhost (localhost [127.0.0.1])
+	by amavisd-new (Postfix) with ESMTP id 5EFC92D91;
+	Tue,  8 Nov 2005 23:18:34 +0100 (MET)
+Received: from mail.cs.umu.se ([127.0.0.1])
+ by localhost (mimmi.cs.umu.se [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 27157-01-10; Tue,  8 Nov 2005 23:18:31 +0100 (MET)
+Received: from peppar.cs.umu.se (peppar.cs.umu.se [130.239.40.13])
+	by mail.cs.umu.se (Postfix) with ESMTP id 2B5E42D89;
+	Tue,  8 Nov 2005 23:18:31 +0100 (MET)
+Received: by peppar.cs.umu.se (Postfix, from userid 12006)
+	id 153A12EDA; Tue,  8 Nov 2005 23:18:31 +0100 (MET)
+Date:	Tue, 8 Nov 2005 23:18:31 +0100
+From:	Peter Hagervall <hager@cs.umu.se>
+To:	junkio@cox.net
+Cc:	git@vger.kernel.org
+Subject: [PATCH] sparse fixes for http-{fetch,push}.c
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051108221830.GA14318@peppar.cs.umu.se>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.10i
+X-Virus-Scanned: amavisd-new at cs.umu.se
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 147
+Xref: brand.scrye.com linux.git:11354
+
+Make a bunch of needlessly global functions static, and replace two
+K&R-style declarations.
+
+Signed-off-by: Peter Hagervall <hager@cs.umu.se>
+---
+
+diff --git a/http-fetch.c b/http-fetch.c
+index ea8af1b..88b74b4 100644
+--- a/http-fetch.c
++++ b/http-fetch.c
+@@ -569,7 +569,7 @@ static void release_request(struct trans
+ }
+ 
+ #ifdef USE_CURL_MULTI
+-void process_curl_messages(void)
++static void process_curl_messages(void)
+ {
+ 	int num_messages;
+ 	struct active_request_slot *slot;
+@@ -625,7 +625,7 @@ void process_curl_messages(void)
+ 	}
+ }
+ 
+-void process_request_queue(void)
++static void process_request_queue(void)
+ {
+ 	struct transfer_request *request = request_queue_head;
+ 	struct active_request_slot *slot = active_queue_head;
+diff --git a/http-push.c b/http-push.c
+index 0b90fb9..8866189 100644
+--- a/http-push.c
++++ b/http-push.c
+@@ -595,7 +595,7 @@ static void start_move(struct transfer_r
+ 	}
+ }
+ 
+-int refresh_lock(struct active_lock *lock)
++static int refresh_lock(struct active_lock *lock)
+ {
+ 	struct active_request_slot *slot;
+ 	char *if_header;
+@@ -726,7 +726,7 @@ static void release_request(struct trans
+ }
+ 
+ #ifdef USE_CURL_MULTI
+-void process_curl_messages(void)
++static void process_curl_messages(void)
+ {
+ 	int num_messages;
+ 	struct active_request_slot *slot;
+@@ -766,7 +766,7 @@ void process_curl_messages(void)
+ 	}
+ }
+ 
+-void process_request_queue(void)
++static void process_request_queue(void)
+ {
+ 	struct transfer_request *request = request_queue_head;
+ 	struct active_request_slot *slot = active_queue_head;
+@@ -799,7 +799,7 @@ void process_request_queue(void)
+ }
+ #endif
+ 
+-void process_waiting_requests(void)
++static void process_waiting_requests(void)
+ {
+ 	struct active_request_slot *slot = active_queue_head;
+ 
+@@ -812,7 +812,7 @@ void process_waiting_requests(void)
+ 		}
+ }
+ 
+-void add_request(unsigned char *sha1, struct active_lock *lock)
++static void add_request(unsigned char *sha1, struct active_lock *lock)
+ {
+ 	struct transfer_request *request = request_queue_head;
+ 	struct packed_git *target;
+@@ -939,7 +939,7 @@ static int setup_index(unsigned char *sh
+ 	return 0;
+ }
+ 
+-static int fetch_indices()
++static int fetch_indices(void)
+ {
+ 	unsigned char sha1[20];
+ 	char *url;
+@@ -1189,7 +1189,7 @@ end_lockprop_element(void *userData, con
+ 	}
+ }
+ 
+-struct active_lock *lock_remote(char *file, long timeout)
++static struct active_lock *lock_remote(char *file, long timeout)
+ {
+ 	struct active_request_slot *slot;
+ 	struct buffer out_buffer;
+@@ -1318,7 +1318,7 @@ struct active_lock *lock_remote(char *fi
+ 	return new_lock;
+ }
+ 
+-int unlock_remote(struct active_lock *lock)
++static int unlock_remote(struct active_lock *lock)
+ {
+ 	struct active_request_slot *slot;
+ 	char *lock_token_header;
+@@ -1359,7 +1359,7 @@ int unlock_remote(struct active_lock *lo
+ 	return rc;
+ }
+ 
+-int check_locking()
++static int check_locking(void)
+ {
+ 	struct active_request_slot *slot;
+ 	struct buffer in_buffer;
+@@ -1425,7 +1425,7 @@ int check_locking()
+ 		return 1;
+ }
+ 
+-int is_ancestor(unsigned char *sha1, struct commit *commit)
++static int is_ancestor(unsigned char *sha1, struct commit *commit)
+ {
+ 	struct commit_list *parents;
+ 
+@@ -1446,8 +1446,8 @@ int is_ancestor(unsigned char *sha1, str
+ 	return 0;
+ }
+ 
+-void get_delta(unsigned char *sha1, struct object *obj,
+-	       struct active_lock *lock)
++static void get_delta(unsigned char *sha1, struct object *obj,
++		      struct active_lock *lock)
+ {
+ 	struct commit *commit;
+ 	struct commit_list *parents;
+@@ -1503,7 +1503,7 @@ void get_delta(unsigned char *sha1, stru
+ 	}
+ }
+ 
+-int update_remote(unsigned char *sha1, struct active_lock *lock)
++static int update_remote(unsigned char *sha1, struct active_lock *lock)
+ {
+ 	struct active_request_slot *slot;
+ 	char *out_data;
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

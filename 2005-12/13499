@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 11 13:57:08 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_VS 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 26D62100760
+	for <tkil@scrye.com>; Sun, 11 Dec 2005 13:57:08 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750747AbVLKU4g (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Dec 2005 15:56:36 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750748AbVLKU4g
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Dec 2005 15:56:36 -0500
+Received: from mail.codeweavers.com ([216.251.189.131]:49353 "EHLO
+	mail.codeweavers.com") by vger.kernel.org with ESMTP
+	id S1750747AbVLKU4g (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 11 Dec 2005 15:56:36 -0500
+Received: from foghorn.codeweavers.com ([216.251.189.130] helo=[127.0.0.1])
+	by mail.codeweavers.com with esmtp (Exim 4.50)
+	id 1ElYF9-0005lw-VU; Sun, 11 Dec 2005 14:56:30 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <439C92A7.4030704@codeweavers.com>
+Date:	Mon, 12 Dec 2005 05:57:11 +0900
+From:	Mike McCormack <mike@codeweavers.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.7) Gecko/20050414
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Martin Langhoff <martin.langhoff@gmail.com>
+CC:	Git Mailing List <git@vger.kernel.org>
+References: <46a038f90512101844q326b3d43nf8b40617bd82c576@mail.gmail.com>
+In-Reply-To: <46a038f90512101844q326b3d43nf8b40617bd82c576@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 216.251.189.130
+X-SA-Exim-Mail-From: mike@codeweavers.com
+Subject: Re: [RFC] Planning a git-cvsdaemon
+X-SA-Exim-Version: 4.2 (built Thu, 03 Mar 2005 10:44:12 +0100)
+X-SA-Exim-Scanned: Yes (on mail.codeweavers.com)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 25
+Xref: brand.scrye.com linux.git:13499
+
+Martin Langhoff wrote:
+
+> In any case, I am after feedback in general (and any truly
+> insurmountable issues you can think of),  I haven't found yet  a good
+> library implementing the server side of the protocol (other than
+> cvs's). git-cvsdaemon will probably take shape in Perl initially,
+> though if there's a good cvs protocol library in other scripting
+> language, I'm interested...
+
+Hey Martin,
+
+That's a neat idea, and a great way to get projects to move from CVS to GIT.
+
+I'd recommend that you avoid providing commit access to a GIT repository 
+via CVS for starters.  Many projects (eg. Wine) would benefit greatly 
+from just having a way for people to get the source via CVS without 
+having to write scripts to maintain a CVS tree in parallel.  Serious 
+developers will use GIT if the master repository is GIT anyway.
+
+Mike
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

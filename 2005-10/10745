@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Oct 27 21:52:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B103B13579F
+	for <tkil@scrye.com>; Thu, 27 Oct 2005 21:52:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965080AbVJ1DwL (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 27 Oct 2005 23:52:11 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965081AbVJ1DwL
+	(ORCPT <rfc822;git-outgoing>); Thu, 27 Oct 2005 23:52:11 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:26839 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S965080AbVJ1DwK (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 27 Oct 2005 23:52:10 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051028035136.EWVW29216.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 27 Oct 2005 23:51:36 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Martin Langhoff <martin.langhoff@gmail.com>,
+	Chris Shoemaker <c.shoemaker@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH gitweb] Visually indicating patch size with horizontal bars
+References: <20051027203945.GC1622@pe.Belkin>
+	<7vfyqm1uvx.fsf@assigned-by-dhcp.cox.net>
+	<46a038f90510271816i26389d5cqe136f515007ca057@mail.gmail.com>
+	<Pine.LNX.4.64.0510271933140.4664@g5.osdl.org>
+Date:	Thu, 27 Oct 2005 20:52:07 -0700
+In-Reply-To: <Pine.LNX.4.64.0510271933140.4664@g5.osdl.org> (Linus Torvalds's
+	message of "Thu, 27 Oct 2005 19:38:21 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vr7a6z4bc.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:10745
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> Well, if you do full copy detection (and break detection), then 
+> git-diff-tree will actually have effectively calculated the size of the 
+> diff of each file. It just doesn't print them (well, it does a percentage 
+> for the renames/copies).
+
+Unbroken in-place edit would never go through diffcore-rename,
+so that is a gross overstatement.
+
+But we could if we wanted to.  I do not know how useful it would
+be, but if somebody wants to do it, I think the best strategy is
+to do as a separate diffcore backend that comes after
+diffcore_rename() runs, and do the similarity estimator only on
+filepairs that rename/copy did not touch.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

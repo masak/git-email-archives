@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jul 16 14:19:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 9348A2AB56B
+	for <tkil@scrye.com>; Sat, 16 Jul 2005 14:19:49 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261565AbVGPUTo (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 16 Jul 2005 16:19:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261632AbVGPUTo
+	(ORCPT <rfc822;git-outgoing>); Sat, 16 Jul 2005 16:19:44 -0400
+Received: from ebiederm.dsl.xmission.com ([166.70.28.69]:32216 "EHLO
+	ebiederm.dsl.xmission.com") by vger.kernel.org with ESMTP
+	id S261565AbVGPUTn (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 16 Jul 2005 16:19:43 -0400
+Received: from ebiederm.dsl.xmission.com (localhost [127.0.0.1])
+	by ebiederm.dsl.xmission.com (8.13.4/8.13.4/Debian-3) with ESMTP id j6GKJOG2020639;
+	Sat, 16 Jul 2005 14:19:24 -0600
+Received: (from eric@localhost)
+	by ebiederm.dsl.xmission.com (8.13.4/8.13.4/Submit) id j6GKJOMv020638;
+	Sat, 16 Jul 2005 14:19:24 -0600
+X-Authentication-Warning: ebiederm.dsl.xmission.com: eric set sender to ebiederm@xmission.com using -f
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: <git@vger.kernel.org>
+Subject: [PATCH] Install git-verify-tag-script
+From: ebiederm@xmission.com (Eric W. Biederman)
+Date:	Sat, 16 Jul 2005 14:19:24 -0600
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <m1y886o65v.fsf@ebiederm.dsl.xmission.com>
+User-Agent: Gnus/5.1007 (Gnus v5.10.7) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 25
+Xref: brand.scrye.com linux.git:6177
+
+
+Signed-off-by: Eric W. Biederman <ebiederm@xmission.com>
+---
+
+ Makefile |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+b4ef59fcedf0855519fc23b58f9ec0c80e78221c
+diff --git a/Makefile b/Makefile
+--- a/Makefile
++++ b/Makefile
+@@ -36,7 +36,7 @@ SCRIPTS=git git-apply-patch-script git-m
+ 	git-reset-script git-add-script git-checkout-script git-clone-script \
+ 	gitk git-cherry git-rebase-script git-relink-script git-repack-script \
+ 	git-format-patch-script git-sh-setup-script git-push-script \
+-	git-branch-script git-parse-remote
++	git-branch-script git-parse-remote git-verify-tag-script
+ 
+ PROG=   git-update-cache git-diff-files git-init-db git-write-tree \
+ 	git-read-tree git-commit-tree git-cat-file git-fsck-cache \
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

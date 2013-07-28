@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sat May 21 16:14:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 720C729E527
+	for <tkil@scrye.com>; Sat, 21 May 2005 16:14:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261654AbVEUWOF (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 21 May 2005 18:14:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261658AbVEUWOF
+	(ORCPT <rfc822;git-outgoing>); Sat, 21 May 2005 18:14:05 -0400
+Received: from fire.osdl.org ([65.172.181.4]:28618 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261654AbVEUWOB (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 21 May 2005 18:14:01 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j4LMDujA023319
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 21 May 2005 15:13:57 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j4LMDtTW015684;
+	Sat, 21 May 2005 15:13:56 -0700
+Date:	Sat, 21 May 2005 15:16:02 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] Constness fix for pickaxe option.
+In-Reply-To: <7v1x80gruc.fsf_-_@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0505211514360.2206@ppc970.osdl.org>
+References: <7vu0kz1p6k.fsf@assigned-by-dhcp.cox.net>
+ <Pine.LNX.4.58.0505190901340.2322@ppc970.osdl.org> <7vzmuokjhg.fsf@assigned-by-dhcp.cox.net>
+ <7voeb4kjda.fsf_-_@assigned-by-dhcp.cox.net> <7v1x80gruc.fsf_-_@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 27
+Xref: brand.scrye.com linux.git:3701
+
+
+
+On Sat, 21 May 2005, Junio C Hamano wrote:
+>
+> Constness fix for pickaxe option.
+
+Btw, this:
+
+	static const char *pickaxe = 0;
+
+may be legal C, but that doesn't make it less crap.
+
+It's a pointer. If you want to make it a NULL pointer, make it a NULL 
+pointer:
+
+	static const char *pickaxe = NULL;
+
+and don't try to stuff an integer into a pointer. Yeah, yeah, the integer 
+zero is magic and special, but that's a bug in the C language, and we 
+should try to not perpetuate it.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,65 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 11 10:53:13 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 3A6FF28AFA0
+	for <tkil@scrye.com>; Tue, 11 Oct 2005 10:53:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751457AbVJKQxK (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 11 Oct 2005 12:53:10 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751459AbVJKQxK
+	(ORCPT <rfc822;git-outgoing>); Tue, 11 Oct 2005 12:53:10 -0400
+Received: from iabervon.org ([66.92.72.58]:22280 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751457AbVJKQxJ (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 11 Oct 2005 12:53:09 -0400
+Received: (qmail 3395 invoked by uid 1000); 11 Oct 2005 12:58:03 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 11 Oct 2005 12:58:03 -0400
+Date:	Tue, 11 Oct 2005 12:58:03 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Linus Torvalds <torvalds@osdl.org>
+cc:	Ben Lau <benlau@ust.hk>, git@vger.kernel.org
+Subject: Re: How to restore the original head after `git-reset --hard master^`
+In-Reply-To: <Pine.LNX.4.64.0510110856520.14597@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510111240410.23242@iabervon.org>
+References: <434BD65A.9000108@ust.hk> <Pine.LNX.4.64.0510110856520.14597@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 26
+Xref: brand.scrye.com linux.git:9965
+
+On Tue, 11 Oct 2005, Linus Torvalds wrote:
+
+> On Tue, 11 Oct 2005, Ben Lau wrote:
+> > 
+> >   After involves the command `git-reset --hard master^` in a repository, 
+> > the working tree , current head and index are restored to the parent of 
+> > master. That includes the content of '.git/refs/head/master'. Although 
+> > the original commit object is still existed , I couldn't find it back.
+> > 
+> >  Is there anyway to recover the original master branch ?
+> 
+> Just run "git-fsck-objects" and look at any dangling commits. The commit 
+> and related objects are still there (unless you've run "git prune"), so 
+> once you find the name of it, you're all done.
+
+That reminds me: if you lose all of your refs, it's hard to get them back, 
+because git-fsck-objects aborts if you don't specify any heads or have any 
+refs. Is there some reason for this check?
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

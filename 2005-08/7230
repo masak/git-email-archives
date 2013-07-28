@@ -1,0 +1,98 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Aug 13 23:04:44 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 41FDB30800
+	for <tkil@scrye.com>; Sat, 13 Aug 2005 23:04:44 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932452AbVHNFDz (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 14 Aug 2005 01:03:55 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932454AbVHNFDy
+	(ORCPT <rfc822;git-outgoing>); Sun, 14 Aug 2005 01:03:54 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:40135 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S932452AbVHNFDy (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 14 Aug 2005 01:03:54 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j7E53pjA025689
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 13 Aug 2005 22:03:51 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j7E53mVN011843;
+	Sat, 13 Aug 2005 22:03:50 -0700
+Date:	Sat, 13 Aug 2005 22:03:48 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Steve French <smfrench@austin.rr.com>
+Cc: git@vger.kernel.org
+Subject: Re: sending changesets from the middle of a git tree
+In-Reply-To: <42FEBC16.9050309@austin.rr.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508132155100.3553@g5.osdl.org>
+References: <42FEBC16.9050309@austin.rr.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.114 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 53
+Xref: brand.scrye.com linux.git:7230
+
+
+
+On Sat, 13 Aug 2005, Steve French wrote:
+> 
+> 1) There is no way to send a particular changeset from the "middle" of a 
+> set from one tree to another, without exporting it as a patch or 
+> rebuilding a new git tree.
+
+Correct.
+
+> If I export those two changesets as patches, and send them on.
+> presumably I lose the changset comments etc.
+
+Well, you can export them with "git send-email" and you won't be losing 
+any comments.
+
+Alternatively, use "git cherry", which helps re-order the commits in your
+tree. They'll be _new_ commits, but they'll have the contents moved over. 
+Junio, maybe you want to talk about how you move patches from your "pu" 
+branch to the real branches.
+
+> and then when the upstream tree is merged back, it might look a little
+> odd in the changeset history.
+
+Well, you'll end up having the same change twice. It happens. Or if you 
+just redo your tree as a separate branch, you can reorder things so that 
+you don't have them twice at all.
+
+> 2) There is no way to update the comment field of a changeset after it 
+> goes in (e.g. to add a bugzilla bug number for a bug that was opened 
+> just after the fix went in).
+
+That's correct. Same things apply: you can move a patch over, and create a 
+new one with a modified comment, but basically the _old_ commit will be 
+immutable.
+
+The good news is that it means that nobody else can change what you said 
+or did either. 
+
+> 3) There is no way to do a test commit of an individual changeset 
+> against a specified tree (to make sure it would still merge cleanly, 
+> automatically).
+
+Oh, sure, that's certainly very possible, and the git cherry stuff even
+helps you do it.  Or use "git-apply --check" to just see if a patch
+applies and do your own scripts. 
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

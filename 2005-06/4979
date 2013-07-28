@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jun 17 02:14:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 5A799103840
+	for <tkil@scrye.com>; Fri, 17 Jun 2005 02:14:55 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261908AbVFQIOR (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 17 Jun 2005 04:14:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261920AbVFQIOR
+	(ORCPT <rfc822;git-outgoing>); Fri, 17 Jun 2005 04:14:17 -0400
+Received: from rhodium.liacs.nl ([132.229.131.16]:28121 "EHLO rhodium.liacs.nl")
+	by vger.kernel.org with ESMTP id S261908AbVFQIOJ (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 17 Jun 2005 04:14:09 -0400
+Received: from pc117b.liacs.nl (pc117b.liacs.nl [132.229.129.143])
+	by rhodium.liacs.nl (8.13.0/8.13.0/LIACS 1.4) with ESMTP id j5H8DIPE000652;
+	Fri, 17 Jun 2005 10:13:23 +0200
+Received: by pc117b.liacs.nl (Postfix, from userid 17122)
+	id 988366FE9; Fri, 17 Jun 2005 10:13:18 +0200 (CEST)
+Date:	Fri, 17 Jun 2005 10:13:18 +0200
+From: Sven Verdoolaege <skimo@liacs.nl>
+To: git@vger.kernel.org, Daniel Barkalow <barkalow@iabervon.org>,
+	Linus Torvalds <torvalds@osdl.org>
+Subject: Re: [PATCH] ssh-push: Don't add '/' to pathname
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050617081318.GA23688@pc117b.liacs.nl>
+References: <20050614103738.GA14483@pc117b.liacs.nl>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050614103738.GA14483@pc117b.liacs.nl>
+User-Agent: Mutt/1.5.6i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 40
+Xref: brand.scrye.com linux.git:4979
+
+Ok, I'm stupid.
+
+This patch has actually been tested.
+
+skimo
+
+--
+ssh-push.c: Fix handling of ssh://host/path URLs
+
+Previous patch to fix host:path notation broke
+handling of ssh://host/path notation.
+
+Signed-off-by: Sven Verdoolaege <skimo@liacs.nl>
+
+---
+commit 4fd62062eb2d52d32cb771feb05bf1ee29d760f9
+tree 75ea11a1b6bf7ca17a274b3a8ce2191e7b815e87
+parent 7875b50d1a9928e683299b283bfe94778b6c344e
+author Sven Verdoolaege <skimo@liacs.nl> Fri, 17 Jun 2005 10:08:27 +0200
+committer Sven Verdoolaege <skimo@liacs.nl> Fri, 17 Jun 2005 10:08:27 +0200
+
+ rsh.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+diff --git a/rsh.c b/rsh.c
+--- a/rsh.c
++++ b/rsh.c
+@@ -41,6 +41,7 @@ int setup_connection(int *fd_in, int *fd
+ 	snprintf(command, COMMAND_SIZE, 
+ 		 "%s='%s' %s",
+ 		 GIT_DIR_ENVIRONMENT, path, remote_prog);
++	*path = '\0';
+ 	posn = command + strlen(command);
+ 	for (i = 0; i < rmt_argc; i++) {
+ 		*(posn++) = ' ';
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

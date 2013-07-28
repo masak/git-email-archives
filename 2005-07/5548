@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Jul  2 11:47:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 34121CF8FB
+	for <tkil@scrye.com>; Sat,  2 Jul 2005 11:47:30 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261242AbVGBRqO (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 2 Jul 2005 13:46:14 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261243AbVGBRqO
+	(ORCPT <rfc822;git-outgoing>); Sat, 2 Jul 2005 13:46:14 -0400
+Received: from zproxy.gmail.com ([64.233.162.203]:34420 "EHLO zproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261242AbVGBRor convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Sat, 2 Jul 2005 13:44:47 -0400
+Received: by zproxy.gmail.com with SMTP id i11so267412nzh
+        for <git@vger.kernel.org>; Sat, 02 Jul 2005 10:44:47 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=f+RI2FEsaIAPNr4djhZ8xb5DU5KFvuOUl6qlWMuBsye1XzBxbpkFxQjqvtLrbgXChOrcSpvLYaY3q4PS5n1YXszmQ96vsakEZqN9p6mvz9e6aj+UrFIYYIOcQyaC/fdgCNVvcmhX1Fiz6mmyA6Knq0taveJnuB+v5B+Ly7q+D7I=
+Received: by 10.36.222.38 with SMTP id u38mr1126707nzg;
+        Sat, 02 Jul 2005 10:44:47 -0700 (PDT)
+Received: by 10.36.59.4 with HTTP; Sat, 2 Jul 2005 10:44:47 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <12c511ca05070210441c0d3a33@mail.gmail.com>
+Date:	Sat, 2 Jul 2005 10:44:47 -0700
+From: Tony Luck <tony.luck@gmail.com>
+Reply-To: Tony Luck <tony.luck@gmail.com>
+To: Linus Torvalds <torvalds@osdl.org>
+Subject: Re: "git-send-pack"
+Cc: "H. Peter Anvin" <hpa@zytor.com>,
+	Mike Taht <mike.taht@timesys.com>,
+	Daniel Barkalow <barkalow@iabervon.org>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+In-Reply-To: <Pine.LNX.4.58.0507021009580.3019@ppc970.osdl.org>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <Pine.LNX.4.21.0506301651250.30848-100000@iabervon.org>
+	 <Pine.LNX.4.58.0506301514240.14331@ppc970.osdl.org>
+	 <42C482ED.1010306@zytor.com>
+	 <Pine.LNX.4.58.0506301656570.14331@ppc970.osdl.org>
+	 <42C5D553.80905@timesys.com>
+	 <Pine.LNX.4.58.0507011831060.2977@ppc970.osdl.org>
+	 <42C61351.10306@zytor.com>
+	 <Pine.LNX.4.58.0507012119360.3019@ppc970.osdl.org>
+	 <42C61818.30109@zytor.com>
+	 <Pine.LNX.4.58.0507021009580.3019@ppc970.osdl.org>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AWL,BAYES_00,RCVD_BY_IP,
+	RCVD_IN_BL_SPAMCOP_NET autolearn=no version=3.0.4
+Lines: 26
+Xref: brand.scrye.com linux.git:5548
+
+Here's another approach.
+
+Teach the variants of git-pull to look for a file that names an
+alternate repository
+that should be used to get any object that is referenced in the repository, but
+doesn't exist in it.
+
+At least part of the problem for kernel.org is that there around 50 repositories
+that are tracking the 2.6 kernel.  All of them have 50,000 objects that are
+duplicates of each other ... and a few hundred 'unique' objects that belong
+to just one repo, or are minimally shared.
+
+If there was a way to specify an alternate repo, then a large GIT server like
+kernel.org could set up a "git-history"[1] repo which each of the hosted repos
+could point to.  Then a cron job could look for duplicates, and move them
+off to the history area.
+
+-Tony
+
+[1] Different projects, like git and sparse, might never have any common
+files with the Linux kernel ... but they can all share the same history.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

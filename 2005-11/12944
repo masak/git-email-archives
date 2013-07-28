@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 29 13:48:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FORGED_RCVD_HELO 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7F40A9F571
+	for <tkil@scrye.com>; Tue, 29 Nov 2005 13:48:56 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932396AbVK2Usb (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 29 Nov 2005 15:48:31 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932397AbVK2Usb
+	(ORCPT <rfc822;git-outgoing>); Tue, 29 Nov 2005 15:48:31 -0500
+Received: from devrace.com ([198.63.210.113]:58125 "EHLO devrace.com")
+	by vger.kernel.org with ESMTP id S932396AbVK2Usa (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 29 Nov 2005 15:48:30 -0500
+Received: from tigra.home (p54A0CEB2.dip.t-dialin.net [84.160.206.178])
+	(authenticated bits=0)
+	by devrace.com (8.12.11/8.12.11) with ESMTP id jATKlbxk020907;
+	Tue, 29 Nov 2005 14:47:39 -0600 (CST)
+	(envelope-from fork0@users.sourceforge.net)
+Received: from steel.home ([192.168.1.2])
+	by tigra.home with esmtp (Exim 3.36 #1 (Debian))
+	id 1EhCNz-0002jl-00; Tue, 29 Nov 2005 21:47:35 +0100
+Received: from raa by steel.home with local (Exim 4.42 #1 (Debian))
+	id 1EhCNu-0007zr-OT; Tue, 29 Nov 2005 21:47:31 +0100
+Date:	Tue, 29 Nov 2005 21:47:29 +0100
+From:	Alex Riesen <raa.lkml@gmail.com>
+To:	Petr Baudis <pasky@suse.cz>, Junio C Hamano <junkio@cox.net>
+Cc:	Andreas Ericsson <ae@op5.se>, git@vger.kernel.org
+Subject: Re: Question about handling of heterogeneous repositories
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051129204729.GA3033@steel.home>
+Reply-To: Alex Riesen <raa.lkml@gmail.com>
+References: <81b0412b0511220850w429d2f36lafe9de7ce19ce8f@mail.gmail.com> <43837442.9060602@op5.se> <20051122232228.GB2916@steel.home> <20051127131147.GF22159@pasky.or.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051127131147.GF22159@pasky.or.cz>
+User-Agent: Mutt/1.5.6i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:12944
+
+Petr Baudis, Sun, Nov 27, 2005 14:11:47 +0100:
+> > > >For everyone who have an experience with ClearCase or Perforce (I'm
+> > > >sorry for mentioning it) it is what the "mappings" are often used for:
+> > > >a project is build together from different parts, which can be worked
+> > > >on separately.
+> > > >
+> > > >I'm trying to introduce git at work, but have to prepare myself for
+> > > >possible questions first, and this is one of them :)
+> 
+> This is something e.g. Cogito wants to support, but does not yet.
+> Patches welcome.
+
+I wouldn't know what to patch, having no clear picture of the approach
+myself, and especially when I don't feel safe using the solution. For
+example, how do you go about moving/renaming files between subrepos?
+Rename detection will not work, which will be unexpected...
+
+BTW, how does git-mv behave for out-of-tree renaming? How about
+inter-repo renaming (remove+add)?
+
+> > > It would certainly be nicer to have git ignore directories that have the 
+> > > ".git" directory (so long as it's not the top of the repo, that is), but 
+> > > I haven't had the energy to fix that when there's already a solution 
+> > > that's simple enough and quite adequate.
+> > 
+> > BTW, will something like "*/.git/*" in info/exclude work? IOW, does *
+> > match a "/"?
+> 
+> Nope, but try just '.git' - in case it is not a pathname but just a
+> filename (or dirname, for that matter), it will recursively apply to all
+> the subtrees.
+
+well, it ignored the ".git"s in the subdirs, not _the_ subdirectories.
+I think that can be helped by putting the directories themselves into
+.gitignore lists.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,90 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Nov 13 13:52:49 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,TW_QG autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5D43C2851FA
+	for <tkil@scrye.com>; Sun, 13 Nov 2005 13:52:48 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751031AbVKMUwm (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 13 Nov 2005 15:52:42 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751033AbVKMUwm
+	(ORCPT <rfc822;git-outgoing>); Sun, 13 Nov 2005 15:52:42 -0500
+Received: from web26301.mail.ukl.yahoo.com ([217.146.176.12]:26720 "HELO
+	web26301.mail.ukl.yahoo.com") by vger.kernel.org with SMTP
+	id S1751024AbVKMUwm (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 13 Nov 2005 15:52:42 -0500
+Received: (qmail 70223 invoked by uid 60001); 13 Nov 2005 20:52:41 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Message-ID:Received:Date:From:Subject:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding;
+  b=N6ZO9n0de6pEZP9ExxbkzRHnKBLsCAtIrMUM7KxBaD5CRleQhR9NqRKtpITNy4ec/Lb0dOy3nXH/kRT8iHp3p580stE+o6xMvEadpcJLmMTsQG10FUOj9jL4GdJI3kIEPvdoOOntA2xZeZSw7bhsPExMEo2FAnG2yNMrTklYWGQ=  ;
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051113205241.70221.qmail@web26301.mail.ukl.yahoo.com>
+Received: from [151.56.23.39] by web26301.mail.ukl.yahoo.com via HTTP; Sun, 13 Nov 2005 12:52:40 PST
+Date:	Sun, 13 Nov 2005 12:52:40 -0800 (PST)
+From:	Marco Costalba <mcostalba@yahoo.it>
+Subject: Re: GIT character codecs
+To:	Linus Torvalds <torvalds@osdl.org>, Junio C Hamano <junkio@cox.net>
+Cc:	"git@vger.kernel.org" <git@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 48
+Xref: brand.scrye.com linux.git:11742
+
+Linus Torvalds wrote:
+
+>
+>On Sun, 13 Nov 2005, Marco Costalba wrote:
+>
+>>If encoding is a per-blob _and_ per-log message property a real solution, although cumbersone,
+>>could be that git stores encoding togheter with the blob and the commits.
+>
+>
+>We'd be much better off with just saying "we encourage people to use 
+>utf-8, but if you don't, just set your locale to make things show up 
+>properly".
+>
+>utf-8 is clearly the future, and if we make git internally aware of 
+>locales, that's just going to complicate things. And usually for no good 
+>reason, since users don't really care that much.
+>
+
+Yes, I agree with you and Junio, a workaround like let the user to choose the code page 
+in the viewer is more then enough.
+
+And also in this case, a choice between the local codec and utf-8 should take almost 
+all cases.
+
+Because of this, I added a text codec selector in qgit, reachable from settings menu.
+
+There is a new release, qgit-0.97.2, with this new feature and some good
+annotate fixes.
+
+For the people interested the page with all the links is:
+ http://digilander.libero.it/mcostalba/
+
+  Marco
+
+P.S: Now I can finally see Junio japanese name ;-)
+
+
+
+	
+		
+__________________________________ 
+Yahoo! Mail - PC Magazine Editors' Choice 2005 
+http://mail.yahoo.com
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

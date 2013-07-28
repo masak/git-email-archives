@@ -1,0 +1,76 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct  5 17:33:57 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 506C81A0AFA
+	for <tkil@scrye.com>; Wed,  5 Oct 2005 17:33:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1030437AbVJEXdv (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 5 Oct 2005 19:33:51 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1030438AbVJEXdv
+	(ORCPT <rfc822;git-outgoing>); Wed, 5 Oct 2005 19:33:51 -0400
+Received: from 82-44-22-127.cable.ubr06.croy.blueyonder.co.uk ([82.44.22.127]:46497
+	"EHLO home.chandlerfamily.org.uk") by vger.kernel.org with ESMTP
+	id S1030437AbVJEXdu (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 5 Oct 2005 19:33:50 -0400
+Received: from kanger.home ([192.168.0.21])
+	by home.chandlerfamily.org.uk with esmtp (Exim 4.50)
+	id 1ENIli-0000ia-8R
+	for git@vger.kernel.org; Thu, 06 Oct 2005 00:33:50 +0100
+From:	Alan Chandler <alan@chandlerfamily.org.uk>
+To:	git@vger.kernel.org
+Subject: Re: Confused as to the correct syntax
+Date:	Thu, 6 Oct 2005 00:33:50 +0100
+User-Agent: KMail/1.8.2
+References: <200510052350.07217.alan@chandlerfamily.org.uk> <7v7jcrh7wu.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7v7jcrh7wu.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <200510060033.51010.alan@chandlerfamily.org.uk>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:9738
+
+On Thursday 06 Oct 2005 00:16, Junio C Hamano wrote:
+> Alan Chandler <alan@chandlerfamily.org.uk> writes:
+> > "A  suffix  ~<n>  to  a  revision parameter means the commit object that
+> > is the <n>th generation grand-parent of the named commit object,
+> > following only the first parent. I.e. rev~3 is equivalent to rev^ which
+> > is equivalent to rev11^1."
+> >
+> > Why is rev~3 equivalent to rev^,  surely it is equivalent to rev^^^
+> >
+> > Why is rev~3 equivalent to rev11^1, should that not be rev^1^1^1
+>
+> Sorry, for not knowing how to do that properly in Asciidoc ;-).
+>
+> The source to the man page and HTML page reads like this:
+>
+> * A suffix '~<n>' to a revision parameter means the commit
+>   object that is the <n>th generation grand-parent of the named
+>   commit object, following only the first parent.  I.e. rev~3 is
+>   equivalent to rev^^^ which is equivalent to rev^1^1^1.
+
+No the HTML page is screwed up too.
+
+
+-- 
+Alan Chandler
+http://www.chandlerfamily.org.uk
+Open Source. It's the difference between trust and antitrust.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

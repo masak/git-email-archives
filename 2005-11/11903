@@ -1,0 +1,81 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 09:10:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.8 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id ED44BB64EA
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 09:10:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964790AbVKOQH3 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 11:07:29 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964775AbVKOQH3
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 11:07:29 -0500
+Received: from mivlgu.ru ([81.18.140.87]:46746 "EHLO master.mivlgu.local")
+	by vger.kernel.org with ESMTP id S964790AbVKOQH2 (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 15 Nov 2005 11:07:28 -0500
+Received: by master.mivlgu.local (Postfix, from userid 1000)
+	id B976918011E; Tue, 15 Nov 2005 19:07:15 +0300 (MSK)
+Date:	Tue, 15 Nov 2005 19:07:15 +0300
+From:	Sergey Vlasov <vsu@altlinux.ru>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: [PATCH] git-fsck-objects: Free tree entries after use
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051115160715.GF24496@master.mivlgu.local>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 44
+Xref: brand.scrye.com linux.git:11903
+
+The Massif tool of Valgrind revealed that parsed tree entries occupy
+more than 60% of memory allocated by git-fsck-objects.  These entries
+can be freed immediately after use, which significantly decreases
+memory consumption.
+
+Signed-off-by: Sergey Vlasov <vsu@altlinux.ru>
+
+
+---
+
+ fsck-objects.c |    7 +++++++
+ 1 files changed, 7 insertions(+), 0 deletions(-)
+
+applies-to: 4b6dbe856a3e63699b299c76f4f1fc5cb34cbe26
+0742a20134cc7f58f2c4cbc982a3eb115c6eaf47
+diff --git a/fsck-objects.c b/fsck-objects.c
+index 17d0536..c1b279e 100644
+--- a/fsck-objects.c
++++ b/fsck-objects.c
+@@ -184,10 +184,17 @@ static int fsck_tree(struct tree *item)
+ 			default:
+ 				break;
+ 			}
++			free(last->name);
++			free(last);
+ 		}
+ 
+ 		last = entry;
+ 	}
++	if (last) {
++		free(last->name);
++		free(last);
++	}
++	item->entries = NULL;
+ 
+ 	retval = 0;
+ 	if (has_full_path) {
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

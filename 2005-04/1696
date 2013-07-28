@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 01:21:15 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id E2C74170721
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 01:21:14 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261383AbVDZHSE (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 03:18:04 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261385AbVDZHSE
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 03:18:04 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:39809 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261383AbVDZHRg (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 26 Apr 2005 03:17:36 -0400
+Received: (qmail 16255 invoked by uid 2001); 26 Apr 2005 07:17:23 -0000
+Date:	Tue, 26 Apr 2005 09:17:23 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: git@vger.kernel.org
+Subject: Full linux-2.6 history?
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050426071723.GA15580@pasky.ji.cz>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 20
+Xref: brand.scrye.com linux.git:1696
+
+  Hello,
+
+  I would like to ask about the status of the project to export the
+linux-2.6 history from BitKeeper to GIT repository; it looked very
+hopeful about a week or two ago, but got covered in silence soon.
+Did Larry come upon you? ;-)
+
+  I kept having people asking about this, so I would like to know.
+
+  Thanks,
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

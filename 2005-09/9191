@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 23 14:02:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 55A0527BB10
+	for <tkil@scrye.com>; Fri, 23 Sep 2005 14:02:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751199AbVIWUBR (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Sep 2005 16:01:17 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751200AbVIWUBR
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Sep 2005 16:01:17 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:40675 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S1751199AbVIWUBQ
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 23 Sep 2005 16:01:16 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.4/8.13.4) with ESMTP id j8NK0nIC026319
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Fri, 23 Sep 2005 13:00:50 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <43345EED.5060706@zytor.com>
+Date:	Fri, 23 Sep 2005 13:00:45 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Joel Becker <Joel.Becker@oracle.com>
+CC:	Peter Eriksen <s022018@student.dtu.dk>, git@vger.kernel.org
+Subject: Re: /bin/sh portability question
+References: <20050923075058.GA25473@bohr.gbar.dtu.dk> <43345C17.7060402@zytor.com> <20050923195706.GV27375@ca-server1.us.oracle.com>
+In-Reply-To: <20050923195706.GV27375@ca-server1.us.oracle.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:9191
+
+Joel Becker wrote:
+> On Fri, Sep 23, 2005 at 12:48:39PM -0700, H. Peter Anvin wrote:
+> 
+>>Peter Eriksen wrote:
+>>
+>>>     path=$(dirname $0)
+>>>...
+>>>     ./git.sh: syntax error at line 4: `path=$' unexpected
+>>
+>>I think $(foo) is required by POSIX.
+> 
+> 
+> 	I believe that Solaris and others (AIX IIRC) have /bin/sh linked
+> to /bin/ksh, and it behaves as the POSIX shell when run as /bin/ksh, but
+> behaves as a much more true-to-bourne shell when run as /bin/sh.
+> 
+
+But "sh" is required to be the POSIX shell (XSH page 850.)
+
+Thus, they might have some braindamage where /usr/bin/sh is the POSIX 
+shell and /bin/sh is a braindead shell.  Sigh.
+
+	-hpa
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

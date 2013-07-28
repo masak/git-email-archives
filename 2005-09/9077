@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Sep 21 17:27:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 360B927B7FE
+	for <tkil@scrye.com>; Wed, 21 Sep 2005 17:27:12 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S965179AbVIUX0x (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 21 Sep 2005 19:26:53 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S965180AbVIUX0x
+	(ORCPT <rfc822;git-outgoing>); Wed, 21 Sep 2005 19:26:53 -0400
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:9621 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S965179AbVIUX0w (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 21 Sep 2005 19:26:52 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050921232652.KXRU21449.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Wed, 21 Sep 2005 19:26:52 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Petr Baudis <pasky@suse.cz>
+Cc:	git@vger.kernel.org
+Subject: Re: [Core GIT] Long-term cherrypicking
+References: <20050921164015.GC21971@pasky.or.cz>
+	<7vzmq6p2an.fsf@assigned-by-dhcp.cox.net>
+	<20050921221931.GC10575@pasky.or.cz>
+Date:	Wed, 21 Sep 2005 16:26:51 -0700
+In-Reply-To: <20050921221931.GC10575@pasky.or.cz> (Petr Baudis's message of
+	"Thu, 22 Sep 2005 00:19:31 +0200")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7voe6mngsk.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:9077
+
+Petr Baudis <pasky@suse.cz> writes:
+
+> Well, I guess that if you are going to do this all, it really gets
+> visible that this rebasing stuff is really quite an ugly hack and that
+> you are probably much better off with something like StGIT. ;-)
+
+Yes.
+
+> *1* I find the fast-forward restriction more and more annoying in this
+> context, actually, and I'm seriously considering dropping it from Cogito
+> altogether.
+
+My "pu" is always floating and I have this in my
+.git/remotes/ko:
+
+    URL: master.kernel.org:/pub/scm/git/git.git/
+    Push: master maint rc +pu
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

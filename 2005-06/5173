@@ -1,0 +1,51 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun 23 17:19:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B2452110D38
+	for <tkil@scrye.com>; Thu, 23 Jun 2005 17:19:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261535AbVFWXTA (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 23 Jun 2005 19:19:00 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262606AbVFWXTA
+	(ORCPT <rfc822;git-outgoing>); Thu, 23 Jun 2005 19:19:00 -0400
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:51893 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S261535AbVFWXS6 (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 23 Jun 2005 19:18:58 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.60.172])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050623231857.YSRX1367.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 23 Jun 2005 19:18:57 -0400
+To: Linus Torvalds <torvalds@osdl.org>
+Cc: git@vger.kernel.org
+Subject: [PATCH 0/2] Finishing touches for pull "-w ref"
+From: Junio C Hamano <junkio@cox.net>
+Date:	Thu, 23 Jun 2005 16:18:56 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfyv8fyqn.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 11
+Xref: brand.scrye.com linux.git:5173
+
+I'll be sending these two patches to add finishing touches to
+"-w ref" support.
+
+    [PATCH 1/2] Add a bit of developer documentation to pull.h
+    [PATCH 2/2] http-pull: documentation updates.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

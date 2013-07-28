@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Oct 25 07:53:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 908FEF63B0
+	for <tkil@scrye.com>; Tue, 25 Oct 2005 07:53:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932146AbVJYNwW (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 25 Oct 2005 09:52:22 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932147AbVJYNwW
+	(ORCPT <rfc822;git-outgoing>); Tue, 25 Oct 2005 09:52:22 -0400
+Received: from linux-server1.op5.se ([193.201.96.2]:39400 "EHLO
+	smtp-gw1.op5.se") by vger.kernel.org with ESMTP id S932146AbVJYNwV
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 25 Oct 2005 09:52:21 -0400
+Received: from [192.168.1.19] (1-2-9-7a.gkp.gbg.bostream.se [82.182.116.44])
+	by smtp-gw1.op5.se (Postfix) with ESMTP id 878D86BD00
+	for <git@vger.kernel.org>; Tue, 25 Oct 2005 15:52:19 +0200 (CEST)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <435E3892.4020002@op5.se>
+Date:	Tue, 25 Oct 2005 15:52:18 +0200
+From:	Andreas Ericsson <ae@op5.se>
+User-Agent: Mozilla Thunderbird 1.0.7-1.1.fc3 (X11/20050929)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	GIT Mailing List <git@vger.kernel.org>
+Subject: Re: The MIT error
+References: <200510251340.j9PDeGGt006248@laptop11.inf.utfsm.cl>
+In-Reply-To: <200510251340.j9PDeGGt006248@laptop11.inf.utfsm.cl>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 38
+Xref: brand.scrye.com linux.git:10580
+
+Horst von Brand wrote:
+> Morten Welinder <mwelinder@gmail.com> wrote:
+> 
+>>After the isspace/BSD conflict I looked into what reserved symbols are
+>>being used by git.  Quite a few, it turns out.
+> 
+> 
+> [...]
+> 
+> 
+>>Just as isspace is reserved by the C implementation...
+>>
+>>       7.26.2  Character handling <ctype.h>
+>>
+>>       [#1]  Function  names that begin with either is or to, and a
+>>       lowercase letter (possibly followed by  any  combination  of
+>>       digits,  letters,  and  underscore)  may  be  added  to  the
+>>       declarations in the <ctype.h> header.
+> 
+> 
+> There go is_space(), etc as suggested by the relevant patches...
+
+
+No they don't. "begin with either is or to and a lowercase letter", 
+meaning (is|to)[a-z].*, just as Morten wrote. is_.* doesn't fall into 
+this category. The underscore exemption is so that users can write their 
+own is_file(), is_whatever() str_replace() and such. Some thought has 
+gone into the standard.
+
+-- 
+Andreas Ericsson                   andreas.ericsson@op5.se
+OP5 AB                             www.op5.se
+Tel: +46 8-230225                  Fax: +46 8-230231
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

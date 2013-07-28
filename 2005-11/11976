@@ -1,0 +1,89 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Nov 15 18:45:37 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7DD2FE57B4
+	for <tkil@scrye.com>; Tue, 15 Nov 2005 18:45:37 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932565AbVKPBoO (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 15 Nov 2005 20:44:14 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932577AbVKPBoO
+	(ORCPT <rfc822;git-outgoing>); Tue, 15 Nov 2005 20:44:14 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:29067 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S932565AbVKPBoN (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 15 Nov 2005 20:44:13 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 9EAB513F8C9; Wed, 16 Nov 2005 02:44:12 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 86B379F309; Wed, 16 Nov 2005 02:44:12 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 72E109F2E3; Wed, 16 Nov 2005 02:44:12 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 5906F13F8C9; Wed, 16 Nov 2005 02:44:12 +0100 (CET)
+Date:	Wed, 16 Nov 2005 02:44:12 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	git@vger.kernel.org, junkio@cox.net
+Subject: [PATCH] Fix compilation of git.c
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511160243360.14176@wbgn013.biozentrum.uni-wuerzburg.de>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 41
+Xref: brand.scrye.com linux.git:11976
+
+
+Some systems do not define GLOB_ABORTED and GLOB_NOMATCH.
+
+Signed-off-by: Johannes Schindelin <Johannes.Schindelin@gmx.de>
+
+---
+
+ git.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+applies-to: c20dc1194fcfa73a7bf6e9d315c878d4f8c2828a
+57cce66195a824221c0e9517ff4999daf2fbe2d2
+diff --git a/git.c b/git.c
+index 583923d..30b3c04 100644
+--- a/git.c
++++ b/git.c
+@@ -77,13 +77,17 @@ static void list_commands(const char *ex
+ 	case GLOB_NOSPACE:
+ 		puts("Out of memory when running glob()");
+ 		exit(2);
++#ifdef GLOB_ABORTED
+ 	case GLOB_ABORTED:
+ 		printf("'%s': Read error: %s\n", exec_path, strerror(errno));
+ 		exit(2);
++#endif
++#ifdef GLOB_NOMATCH
+ 	case GLOB_NOMATCH:
+ 		printf("No git commands available in '%s'.\n", exec_path);
+ 		printf("Do you need to specify --exec-path or set GIT_EXEC_PATH?\n");
+ 		exit(1);
++#endif
+ 	}
+ 
+ 	for (i = 0; i < gl.gl_pathc; i++) {
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Apr 26 15:44:23 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3F58D1709AA
+	for <tkil@scrye.com>; Tue, 26 Apr 2005 15:44:23 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261781AbVDZVoM (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 26 Apr 2005 17:44:12 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261804AbVDZVoM
+	(ORCPT <rfc822;git-outgoing>); Tue, 26 Apr 2005 17:44:12 -0400
+Received: from fire.osdl.org ([65.172.181.4]:18896 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S261781AbVDZVoJ (ORCPT
+	<rfc822;git@vger.kernel.org>); Tue, 26 Apr 2005 17:44:09 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3QLi7s4029222
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 26 Apr 2005 14:44:08 -0700
+Received: from shell0.pdx.osdl.net (localhost [127.0.0.1])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3QLi7OG011419;
+	Tue, 26 Apr 2005 14:44:07 -0700
+Received: (from chrisw@localhost)
+	by shell0.pdx.osdl.net (8.13.1/8.13.1/Submit) id j3QLi7U7011418;
+	Tue, 26 Apr 2005 14:44:07 -0700
+Date:	Tue, 26 Apr 2005 14:44:07 -0700
+From: Chris Wright <chrisw@osdl.org>
+To: "Joshua T. Corbin" <jcorbin@wunjo.org>
+Cc: git@vger.kernel.org
+Subject: Re: [PATCH] cogito - split out cg-X* to prefix/lib/cogito
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050426214407.GC5324@shell0.pdx.osdl.net>
+References: <200504260053.33506.jcorbin@wunjo.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200504260053.33506.jcorbin@wunjo.org>
+User-Agent: Mutt/1.5.6i
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 22
+Xref: brand.scrye.com linux.git:1784
+
+(BTW, this patch was linewrapped)
+
+* Joshua T. Corbin (jcorbin@wunjo.org) wrote:
+> The following patch does the following:
+>   * Change the Makefile to install all cg-X* to $(prefix)/lib/cogito
+>   * Modify all cg-* to use this lib prefix.
+
+Hmm, I agree with the intent of this patch (place extraneous bits out of
+/usr/bin namespace), although I'm not sure it's the best method.  It
+winds up only putting three files there (with cg- prefixes as well).
+
+I've left it out of the rpm build for now.
+
+thanks,
+-chris
+-- 
+Linux Security Modules     http://lsm.immunix.org     http://lsm.bkbits.net
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,63 @@
+X-From-Line: git-owner@vger.kernel.org  Thu May  5 16:58:42 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id B38721BB410
+	for <tkil@scrye.com>; Thu,  5 May 2005 16:58:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261790AbVEEW60 (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 5 May 2005 18:58:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261882AbVEEW60
+	(ORCPT <rfc822;git-outgoing>); Thu, 5 May 2005 18:58:26 -0400
+Received: from faui03.informatik.uni-erlangen.de ([131.188.30.103]:31681 "EHLO
+	faui03.informatik.uni-erlangen.de") by vger.kernel.org with ESMTP
+	id S261790AbVEEW6Y (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 5 May 2005 18:58:24 -0400
+Received: from faui03.informatik.uni-erlangen.de (faui03.informatik.uni-erlangen.de [131.188.30.103])
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) with ESMTP id j45MwNS8005635
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <git@vger.kernel.org>; Thu, 5 May 2005 22:58:23 GMT
+Received: (from sithglan@localhost)
+	by faui03.informatik.uni-erlangen.de (8.12.9/8.12.9) id j45MwMCJ005634
+	for git@vger.kernel.org; Fri, 6 May 2005 00:58:22 +0200 (CEST)
+Date:	Fri, 6 May 2005 00:58:22 +0200
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: GIT <git@vger.kernel.org>
+Subject: Re: git-diff-cache uses checked-out-working-directory-files if files are newer than the cache entry
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050505225822.GT20994@cip.informatik.uni-erlangen.de>
+Mail-Followup-To: GIT <git@vger.kernel.org>
+References: <20050505223727.GR20994@cip.informatik.uni-erlangen.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20050505223727.GR20994@cip.informatik.uni-erlangen.de>
+X-URL:	http://wwwcip.informatik.uni-erlangen.de/~sithglan/
+User-Agent: Mutt/1.5.9i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 16
+Xref: brand.scrye.com linux.git:2618
+
+Hello,
+
+* Thomas Glanzmann <sithglan@stud.uni-erlangen.de> [050506 00:38]:
+> I have trouble with git-diff-cache, because it uses the file from the
+> working directory instead of the cache file if the working directory is
+> newer than the entry in the cache:
+
+'git-diff-cache -r --cached HEAD' does what I want.
+                   ~~~~~~~~
+
+	Thomas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

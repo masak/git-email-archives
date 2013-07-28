@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Nov 18 15:19:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A3EAC2851FC
+	for <tkil@scrye.com>; Fri, 18 Nov 2005 15:19:52 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751045AbVKRWTq (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 18 Nov 2005 17:19:46 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751046AbVKRWTq
+	(ORCPT <rfc822;git-outgoing>); Fri, 18 Nov 2005 17:19:46 -0500
+Received: from pne-smtpout1-sn2.hy.skanova.net ([81.228.8.83]:36540 "EHLO
+	pne-smtpout1-sn2.hy.skanova.net") by vger.kernel.org with ESMTP
+	id S1751044AbVKRWTp (ORCPT <rfc822;git@vger.kernel.org>);
+	Fri, 18 Nov 2005 17:19:45 -0500
+Received: from [192.168.0.82] (213.66.95.18) by pne-smtpout1-sn2.hy.skanova.net (7.2.060.1)
+        id 437DDE8100018AEE; Fri, 18 Nov 2005 23:19:45 +0100
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <437E539F.6080304@etek.chalmers.se>
+Date:	Fri, 18 Nov 2005 23:20:15 +0100
+From:	=?UTF-8?B?THVrYXMgU2FuZHN0csO2bQ==?= <lukass@etek.chalmers.se>
+Organization: Chalmers
+User-Agent: Mozilla Thunderbird 1.0.7 (X11/20051015)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	git@vger.kernel.org
+CC:	=?UTF-8?B?THVrYXMgU2FuZHN0csO2bQ==?= <lukass@etek.chalmers.se>,
+	Junio C Hamano <junkio@cox.net>
+Subject: [PATCH] Document the "ignore objects" feature of git-pack-redundant
+References: <437E530E.1020803@etek.chalmers.se>
+In-Reply-To: <437E530E.1020803@etek.chalmers.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 35
+Xref: brand.scrye.com linux.git:12279
+
+Signed-off-by: Lukas Sandström <lukass@etek.chalmers.se>
+
+---
+
+ Documentation/git-pack-redundant.txt |    8 ++++++++
+ 1 files changed, 8 insertions(+), 0 deletions(-)
+
+applies-to: 5053091ee7d1f4b32b18a21f4b255cf1141cf72c
+e417344dab21aca41fbc1f99d935ef033e53e3a8
+diff --git a/Documentation/git-pack-redundant.txt b/Documentation/git-pack-redundant.txt
+index 2e23cbc..9fe86ae 100644
+--- a/Documentation/git-pack-redundant.txt
++++ b/Documentation/git-pack-redundant.txt
+@@ -16,6 +16,14 @@ This program computes which packs in you
+ are redundant. The output is suitable for piping to
+ 'xargs rm' if you are in the root of the repository.
+ 
++git-pack-redundant accepts a list of objects on standard input. Any objects
++given will be ignored when checking which packs are required. This makes the 
++following command useful when wanting to remove packs which contain unreachable
++objects.
++
++git-fsck-objects --full --unreachable | cut -d ' ' -f3 | \
++git-pack-redundant --all | xargs rm
++
+ OPTIONS
+ -------
+ 
+---
+0.99.9.GIT
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

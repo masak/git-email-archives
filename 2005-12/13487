@@ -1,0 +1,67 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Dec 11 03:16:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 67F38EB455
+	for <tkil@scrye.com>; Sun, 11 Dec 2005 03:16:01 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751317AbVLKKPY (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 11 Dec 2005 05:15:24 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751327AbVLKKPY
+	(ORCPT <rfc822;git-outgoing>); Sun, 11 Dec 2005 05:15:24 -0500
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:50879 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1751317AbVLKKPY (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 11 Dec 2005 05:15:24 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051211101447.HDST3131.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 11 Dec 2005 05:14:47 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Fredrik Kuivinen <freku045@student.liu.se>
+Subject: Re: [RFC, PATCH] Usage message clean-up, take #2
+References: <20051211095549.GB4919@c165.ib.student.liu.se>
+cc:	git@vger.kernel.org
+Date:	Sun, 11 Dec 2005 02:15:22 -0800
+In-Reply-To: <20051211095549.GB4919@c165.ib.student.liu.se> (Fredrik
+	Kuivinen's message of "Sun, 11 Dec 2005 10:55:49 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vu0dglz2d.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 23
+Xref: brand.scrye.com linux.git:13487
+
+Fredrik Kuivinen <freku045@student.liu.se> writes:
+
+> The scripts will also set USAGE and possibly LONG_USAGE before they
+> source git-sh-setup. If LONG_USAGE isn't set it defaults to USAGE.
+
+Looks like a good start to allow us to mechanically generate
+parts of the manpages in the future.
+
+Last time I played around with various bourne derivative shells,
+I was annoyed by that scripts sourced with '.'  behaved slightly
+differently regarding positional arguments such as "$1", which
+may be one thing to watch out for (sorry, I do not remember the
+details right now, other than one case: ". ./foobra.sh arg1
+arg2", and depending on the shell the value of $# and $1
+foobra.sh sees was different.  I do not think this would matter
+for our purpose because in our case ". script" form is never
+used with extra parameters).
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

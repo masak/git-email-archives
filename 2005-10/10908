@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 31 18:49:34 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO,TW_NR autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 9DE609E14E
+	for <tkil@scrye.com>; Mon, 31 Oct 2005 18:49:34 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964943AbVKABtE (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 31 Oct 2005 20:49:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964944AbVKABtD
+	(ORCPT <rfc822;git-outgoing>); Mon, 31 Oct 2005 20:49:03 -0500
+Received: from smtp.osdl.org ([65.172.181.4]:32665 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S964943AbVKABtC (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 31 Oct 2005 20:49:02 -0500
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id jA11mlW6030293
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 31 Oct 2005 17:48:47 -0800
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id jA11mkHu009398;
+	Mon, 31 Oct 2005 17:48:46 -0800
+Date:	Mon, 31 Oct 2005 17:48:46 -0800 (PST)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Joel Becker <Joel.Becker@oracle.com>
+cc:	Martin Langhoff <martin.langhoff@gmail.com>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org,
+	Petr Baudis <pasky@suse.cz>
+Subject: Re: git versus CVS (versus bk)
+In-Reply-To: <20051101012915.GR11488@ca-server1.us.oracle.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510311747580.27915@g5.osdl.org>
+References: <Pine.LNX.4.63.0510311111340.2916@wbgn013.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.64.0510310804400.27915@g5.osdl.org> <20051031195010.GM11488@ca-server1.us.oracle.com>
+ <7vr7a1e719.fsf@assigned-by-dhcp.cox.net> <20051031213616.GO11488@ca-server1.us.oracle.com>
+ <7vk6ftcp0d.fsf@assigned-by-dhcp.cox.net> <20051031224246.GP11488@ca-server1.us.oracle.com>
+ <7vbr15b4m4.fsf@assigned-by-dhcp.cox.net> <20051101004255.GQ11488@ca-server1.us.oracle.com>
+ <46a038f90510311702wfb43281rf4464a02e8e3be2@mail.gmail.com>
+ <20051101012915.GR11488@ca-server1.us.oracle.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.127 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 16
+Xref: brand.scrye.com linux.git:10908
+
+
+
+On Mon, 31 Oct 2005, Joel Becker wrote:
+> 
+> 	But I'm not.  I don't want patches in the first place.  I want
+> cg-pull but with a flattened history.
+
+Well, that you've largely got in "git rebase". But if you wanrt to merge 
+commits, you'd have to do that logic yourself..
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

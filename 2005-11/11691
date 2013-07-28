@@ -1,0 +1,74 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Nov 12 12:55:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 375261846E4
+	for <tkil@scrye.com>; Sat, 12 Nov 2005 12:55:24 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932486AbVKLTzS (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 12 Nov 2005 14:55:18 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932487AbVKLTzR
+	(ORCPT <rfc822;git-outgoing>); Sat, 12 Nov 2005 14:55:17 -0500
+Received: from w241.dkm.cz ([62.24.88.241]:24284 "EHLO machine.or.cz")
+	by vger.kernel.org with ESMTP id S932486AbVKLTzQ (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 12 Nov 2005 14:55:16 -0500
+Received: (qmail 9896 invoked by uid 2001); 12 Nov 2005 20:55:13 +0100
+Date:	Sat, 12 Nov 2005 20:55:13 +0100
+From:	Petr Baudis <pasky@suse.cz>
+To:	Nick Hengeveld <nickh@reactrix.com>
+Cc:	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+Subject: Re: [PATCH] Fix bunch of fd leaks in http-fetch
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051112195513.GF30496@pasky.or.cz>
+References: <dd9dee136a573d72fc7332373cfd8ac1@freescale.com> <20051111235516.GY30496@pasky.or.cz> <7vk6feiflx.fsf@assigned-by-dhcp.cox.net> <20051112173828.GG4051@reactrix.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20051112173828.GG4051@reactrix.com>
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+User-Agent: Mutt/1.5.11
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:11691
+
+Dear diary, on Sat, Nov 12, 2005 at 06:38:28PM CET, I got a letter
+where Nick Hengeveld <nickh@reactrix.com> said that...
+> On Fri, Nov 11, 2005 at 09:45:30PM -0800, Junio C Hamano wrote:
+> 
+> > It strikes me somewhat odd that these close() are not tied to
+> > the lifetime rule of the transfer_request structure.  When the
+> > program falls back from an individual object to alternates, the
+> > same request structure is reused, but in that case ->local stays
+> > the same.  Otherwise, the original request structure is released
+> > so I wonder if would make things cleaner to close ->local inside
+> > request_release()...
+> 
+> That is the intent of the fd close in finish_request() - but that isn't
+> called if the server returns a 404 and there are no alternates left to
+> try.
+> 
+> The following patch should fix it.
+
+What about the rest of the leaks?
+
+Specifically, the one around release_request(), and the one caused by
+re-open()ing local in start_request() when re-calling it on existing
+request.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+VI has two modes: the one in which it beeps and the one in which
+it doesn't.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

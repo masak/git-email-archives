@@ -1,0 +1,89 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Jul  8 02:19:24 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 3D2D317964D
+	for <tkil@scrye.com>; Fri,  8 Jul 2005 02:19:24 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262101AbVGHITC (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 8 Jul 2005 04:19:02 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262234AbVGHITC
+	(ORCPT <rfc822;git-outgoing>); Fri, 8 Jul 2005 04:19:02 -0400
+Received: from mail.autoweb.net ([198.172.237.26]:20896 "EHLO mail.autoweb.net")
+	by vger.kernel.org with ESMTP id S262101AbVGHITB (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 8 Jul 2005 04:19:01 -0400
+Received: from pcp01184054pcs.strl301.mi.comcast.net ([68.60.186.73] helo=michonline.com)
+	by mail.autoweb.net with esmtp (Exim 4.44)
+	id 1Dqo4a-00048L-M9; Fri, 08 Jul 2005 04:19:00 -0400
+Received: from mythical ([10.254.251.11] ident=Debian-exim)
+	by michonline.com with esmtp (Exim 3.35 #1 (Debian))
+	id 1DqoAo-0004hZ-00; Fri, 08 Jul 2005 04:25:26 -0400
+Received: from ryan by mythical with local (Exim 4.50)
+	id 1Dqo4Z-0005rb-Pa; Fri, 08 Jul 2005 04:18:59 -0400
+Date:	Fri, 8 Jul 2005 04:18:59 -0400
+From: Ryan Anderson <ryan@michonline.com>
+To: Alexey Dobriyan <adobriyan@gmail.com>
+Cc: git@vger.kernel.org
+Subject: Re: pack-e3117bbaf6a59cb53c3f6f0d9b17b9433f0e4135.pack
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050708081859.GG20369@mythryan2.michonline.com>
+References: <200507081149.45344.adobriyan@gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <200507081149.45344.adobriyan@gmail.com>
+User-Agent: Mutt/1.5.6+20040907i
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00,TW_AV 
+	autolearn=ham version=3.0.4
+Lines: 43
+Xref: brand.scrye.com linux.git:5793
+
+On Fri, Jul 08, 2005 at 11:49:45AM +0400, Alexey Dobriyan wrote:
+> Being a happy user of
+> 
+> 	$ cat ./rsync-linus
+> 	#!/bin/sh -x
+> 
+> 	cd linux-linus
+> 	rsync -avz --progress \
+> 	        rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git/ \
+> 	        .git/
+> 
+> I'm confused now. This pack file is ~60M in size. Will rsync download
+> another 60M next time? What command should I use now to a) get latest and
+> greatest and b) be nice with my traffic?
+
+You won't need to download another 60M next time.
+
+Run this:
+	cd linux-linus
+	du -sh .
+	git-prune-packed
+	du -sh .
+
+You should see a nice drop i space used, as that one big "pack" file is
+now taking the place of almost every object in the kernel repository.
+
+In the future, you'll just download new packs as Linus generates them.
+I suspect objects will trickle in as well, but an occassional
+git-prune-packed will tidy things back up.
+
+The packs internally use a delta-based algorithm to save huge amounts of
+space, and for speed of daily use, the standalone objects are still in
+use.
+
+-- 
+
+Ryan Anderson
+  sometimes Pug Majere
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

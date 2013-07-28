@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 15 16:49:43 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EF78F1C521
+	for <tkil@scrye.com>; Mon, 15 Aug 2005 16:49:42 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750812AbVHOWtf (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 15 Aug 2005 18:49:35 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750911AbVHOWtf
+	(ORCPT <rfc822;git-outgoing>); Mon, 15 Aug 2005 18:49:35 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:35807 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750812AbVHOWtf (ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 15 Aug 2005 18:49:35 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 1E65FE27F0; Tue, 16 Aug 2005 00:49:34 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id F361CB088E; Tue, 16 Aug 2005 00:49:33 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CDBD2B088C; Tue, 16 Aug 2005 00:49:33 +0200 (CEST)
+Received: from wgmdd8.biozentrum.uni-wuerzburg.de (wrzx68.rz.uni-wuerzburg.de [132.187.3.68])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 09207E27F0; Tue, 16 Aug 2005 00:49:33 +0200 (CEST)
+Date:	Tue, 16 Aug 2005 00:49:33 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wgmdd8.biozentrum.uni-wuerzburg.de
+To:	Carl Baldwin <cnb@fc.hp.com>
+Cc:	git@vger.kernel.org
+Subject: Re: Making note, in the repository, of push/pull relationships
+In-Reply-To: <20050815162519.GB9719@hpsvcnb.fc.hp.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508160044490.25894@wgmdd8.biozentrum.uni-wuerzburg.de>
+References: <20050815162519.GB9719@hpsvcnb.fc.hp.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:7316
+
+Hi,
+
+On Mon, 15 Aug 2005, Carl Baldwin wrote:
+
+> Somewhere in the thread something was mentioned about maintaining
+> <local branch>:<remote branch> pairs in the git repository when pushes
+> and pulls are performed.  I think the argument was actually against
+> keeping this information and ultimately against allowing pushes to a
+> branch of a different name.
+
+I think the loudest voice was mine :-)
+
+Actually, I was not against *keeping* the information, but against 
+*pulling* in such strange ways. If "cross-pulling" is allowed, I am all 
+for keeping track of that.
+
+In the meantime, I did not think about the issue at all :-) However, as is 
+often the case in an open discussion, I think I was wrong after all. There 
+may be cases you want that, and in the end, nobody forces me to use that 
+feature.
+
+Anyway, Junio decided to enhance the fetch mechanism to support the 
+cross-pulling (and also multi-pulling).
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

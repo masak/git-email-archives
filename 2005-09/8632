@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Sep 15 14:58:18 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A55AA295004
+	for <tkil@scrye.com>; Thu, 15 Sep 2005 14:58:16 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932598AbVIOU5Y (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Sep 2005 16:57:24 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932602AbVIOU5Y
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Sep 2005 16:57:24 -0400
+Received: from relais.videotron.ca ([24.201.245.36]:22408 "EHLO
+	relais.videotron.ca") by vger.kernel.org with ESMTP id S932598AbVIOU5Y
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 15 Sep 2005 16:57:24 -0400
+Received: from xanadu.home ([24.202.136.67]) by VL-MO-MR001.ip.videotron.ca
+ (Sun Java System Messaging Server 6.2-2.05 (built Apr 28 2005))
+ with ESMTP id <0IMV005RMM7JWE10@VL-MO-MR001.ip.videotron.ca> for
+ git@vger.kernel.org; Thu, 15 Sep 2005 16:57:19 -0400 (EDT)
+Date:	Thu, 15 Sep 2005 16:57:19 -0400 (EDT)
+From:	Nicolas Pitre <nico@cam.org>
+Subject: Re: git-diff-tree rename detection bug
+In-reply-to: <43290DA0.3030402@zytor.com>
+X-X-Sender: nico@localhost.localdomain
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Cc:	Paul Mackerras <paulus@samba.org>,
+	Linus Torvalds <torvalds@osdl.org>,
+	Wayne Scott <wsc9tt@gmail.com>,
+	Junio C Hamano <junkio@cox.net>, git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-id: <Pine.LNX.4.63.0509151647380.31877@localhost.localdomain>
+MIME-version: 1.0
+Content-type: TEXT/PLAIN; charset=US-ASCII
+Content-transfer-encoding: 7BIT
+References: <59a6e583050914094777c4fe96@mail.gmail.com>
+ <7vwtljjzc3.fsf@assigned-by-dhcp.cox.net>
+ <59a6e583050914114054b1564d@mail.gmail.com>
+ <Pine.LNX.4.58.0509141321180.26803@g5.osdl.org>
+ <17192.56103.803096.526568@cargo.ozlabs.ibm.com> <43290DA0.3030402@zytor.com>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 23
+Xref: brand.scrye.com linux.git:8632
+
+On Wed, 14 Sep 2005, H. Peter Anvin wrote:
+
+> Paul Mackerras wrote:
+> > 
+> > I assume you're compiling git as 32-bit executables on your G5.  I
+> > don't see any reason why the git binaries would need to be 64-bit.
+> > 
+> 
+> Well, git seems to assume it can mmap() the entirety of any file under its
+> control, so a 64-bit git could handle larger files.
+
+But beware that the delta code would break since it currently won't cope 
+with any file offset larger than 32 bits.  I reserved the zero byte to 
+prefix any extended encoding but felt it wasn't really needed yet and I 
+just didn't bother coding it.
+
+
+Nicolas
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

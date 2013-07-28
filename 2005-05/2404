@@ -1,0 +1,86 @@
+X-From-Line: git-owner@vger.kernel.org  Mon May  2 19:33:52 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 76CABFC567
+	for <tkil@scrye.com>; Mon,  2 May 2005 19:33:52 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261285AbVECBb2 (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 2 May 2005 21:31:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261283AbVECB3r
+	(ORCPT <rfc822;git-outgoing>); Mon, 2 May 2005 21:29:47 -0400
+Received: from waste.org ([216.27.176.166]:47545 "EHLO waste.org")
+	by vger.kernel.org with ESMTP id S261282AbVECB3k (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 2 May 2005 21:29:40 -0400
+Received: from waste.org (localhost [127.0.0.1])
+	by waste.org (8.13.4/8.13.4/Debian-1) with ESMTP id j431TMnj008338
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+	Mon, 2 May 2005 20:29:22 -0500
+Received: (from oxymoron@localhost)
+	by waste.org (8.13.4/8.13.4/Submit) id j431TMa1008333;
+	Mon, 2 May 2005 20:29:22 -0500
+Date:	Mon, 2 May 2005 18:29:21 -0700
+From: Matt Mackall <mpm@selenic.com>
+To: "Bodo Eggert <harvested.in.lkml@posting.7eggert.dyndns.org>" <7eggert@gmx.de>
+Cc: Linus Torvalds <torvalds@osdl.org>,
+	Ryan Anderson <ryan@michonline.com>,
+	Bill Davidsen <davidsen@tmr.com>, Andrea Arcangeli <andrea@suse.de>,
+	linux-kernel <linux-kernel@vger.kernel.org>, git@vger.kernel.org
+Subject: Re: Mercurial 0.4b vs git patchbomb benchmark
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050503012921.GD22038@waste.org>
+References: <3YQn9-8qX-5@gated-at.bofh.it> <3ZLEF-56n-1@gated-at.bofh.it> <3ZM7L-5ot-13@gated-at.bofh.it> <3ZN3P-69A-9@gated-at.bofh.it> <3ZNdz-6gK-9@gated-at.bofh.it> <E1DSm1T-0002Tc-FV@be1.7eggert.dyndns.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1DSm1T-0002Tc-FV@be1.7eggert.dyndns.org>
+User-Agent: Mutt/1.5.6+20040907i
+X-Virus-Scanned: by amavisd-new
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.3
+Lines: 37
+Xref: brand.scrye.com linux.git:2404
+
+On Tue, May 03, 2005 at 03:16:26AM +0200, Bodo Eggert <harvested.in.lkml@posting.7eggert.dyndns.org> wrote:
+> Linus Torvalds <torvalds@osdl.org> wrote:
+> > On Mon, 2 May 2005, Ryan Anderson wrote:
+> >> On Mon, May 02, 2005 at 09:31:06AM -0700, Linus Torvalds wrote:
+> 
+> >> > That said, I think the /usr/bin/env trick is stupid too. It may be more
+> >> > portable for various Linux distributions, but if you want _true_
+> >> > portability, you use /bin/sh, and you do something like
+> >> > 
+> >> > #!/bin/sh
+> >> > exec perl perlscript.pl "$@"
+> >> if 0;
+> 
+> exec may fail.
+> 
+> #!/bin/sh
+> exec perl -x $0 ${1+"$@"} || exit 127
+> #!perl
+> 
+> >> You don't really want Perl to get itself into an exec loop.
+> > 
+> > This would _not_ be "perlscript.pl" itself. This is the shell-script, and
+> > it's not called ".pl".
+> 
+> In this thread, it originally was.
+
+In this thread, it was originally a Python script. In particular, one
+aimed at managing the Linux kernel source. I'm going to use
+/usr/bin/env, systems where that doesn't exist can edit the source.
+
+--
+Mathematics is the supreme nostalgia of our time.
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

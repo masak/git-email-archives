@@ -1,0 +1,92 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Aug 15 11:49:41 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B45062384FD
+	for <tkil@scrye.com>; Mon, 15 Aug 2005 11:49:41 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964824AbVHORrN (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 15 Aug 2005 13:47:13 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964854AbVHORrN
+	(ORCPT <rfc822;git-outgoing>); Mon, 15 Aug 2005 13:47:13 -0400
+Received: from iabervon.org ([66.92.72.58]:10246 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S964824AbVHORrM (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 15 Aug 2005 13:47:12 -0400
+Received: (qmail 21385 invoked by uid 1000); 15 Aug 2005 13:50:31 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 15 Aug 2005 13:50:31 -0400
+Date:	Mon, 15 Aug 2005 13:50:31 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Petr Baudis <pasky@suse.cz>
+cc:	git@vger.kernel.org
+Subject: Re: Cloning speed comparison
+In-Reply-To: <20050813015402.GC20812@pasky.ji.cz>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0508151321270.12816@iabervon.org>
+References: <20050813015402.GC20812@pasky.ji.cz>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 53
+Xref: brand.scrye.com linux.git:7299
+
+On Sat, 13 Aug 2005, Petr Baudis wrote:
+
+>   Hello,
+> 
+>   I've wondered how slow the protocols other than rsync are, and the
+> (well, a bit dubious; especially wrt. caching on the remote side)
+> results are:
+> 
+> 	git	clone-pack:ssh	25s
+> 	git	rsync		27s
+> 	git	http-pull	47s
+> 	git	dumb-http	54s
+> 	git	ssh-pull	660s
+> 
+> 	cogito	clone-pack:ssh	35s (!)
+> 	cogito	rsync		140s
+> 	cogito	ssh-pull	480s
+> 	cogito	http-pull	extrapolated to about an hour!
+
+I should be able to get http-pull down to the neighborhood of 
+(current) ssh-pull; http-pull is that slow (when the source repository 
+isn't packed) because it's entirely sequential, rather than overlapping 
+requests like ssh-pull now does.
+
+I should also be able to get ssh-pull down to the area of clone-pack, but 
+that's lower-priority, since there's clone-pack.
+
+(I've written an untested patch for local-pull, which I'll be testing, 
+cleaning, and submitting tonight, assuming my newly-arrived monitor 
+actually works)
+
+>   PS:
+> 	With the latest git version as of time of writing this:
+> 	$ time cg-clone git+ssh://pasky@localhost/home/pasky/WWW/dev/git/.g cogito
+> 	...
+> 	progress: 5759 objects, 10292457 bytes
+> 	$ time cg-clone http://localhost/~pasky/dev/git/.g cogito
+> 	...
+> 	progress: 8681 objects, 14881571 bytes
+
+I've noticed that ssh connections don't actually disconnect at the end 
+with recent versions of ssh sometimes. In my experience, this occasionally 
+happens with git, but always happens with scp, suggesting that it's an ssh 
+bug of some sort; I've also only noticed this with openssh 3.9_p1 with 
+some of Gentoo's -r2 patches.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

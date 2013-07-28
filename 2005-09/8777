@@ -1,0 +1,66 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 10:50:51 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 882A524F1BB
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 10:50:51 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751181AbVIRQtF (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 12:49:05 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751230AbVIRQtF
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 12:49:05 -0400
+Received: from ppp-62-11-72-222.dialup.tiscali.it ([62.11.72.222]:48323 "EHLO
+	zion.home.lan") by vger.kernel.org with ESMTP id S1751181AbVIRQtE
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Sep 2005 12:49:04 -0400
+Received: from zion.home.lan (localhost [127.0.0.1])
+	by zion.home.lan (Postfix) with ESMTP id E0ABB4392C;
+	Sun, 18 Sep 2005 18:47:14 +0200 (CEST)
+From:	Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+Subject: [PATCH] Fix series mismerge
+Date:	Sun, 18 Sep 2005 18:47:12 +0200
+To:	Catalin Marinas <catalin.marinas@gmail.com>
+Cc:	git@vger.kernel.org
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <20050918164712.13735.86782.stgit@zion.home.lan>
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.1 required=5.0 tests=ABUSEAT,AWL,BAYES_00 
+	autolearn=no version=3.0.4
+Lines: 30
+Xref: brand.scrye.com linux.git:8777
+
+From: Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+
+Mismerge with my addition of -e. Sorry for not pulling that time.
+
+Signed-off-by: Paolo 'Blaisorblade' Giarrusso <blaisorblade@yahoo.it>
+---
+
+ stgit/commands/series.py |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/stgit/commands/series.py b/stgit/commands/series.py
+--- a/stgit/commands/series.py
++++ b/stgit/commands/series.py
+@@ -32,8 +32,8 @@ with a '+' and the unapplied ones with a
+ prefixed with a '>'. Empty patches are prefixed with a '0'."""
+ 
+ options = [make_option('-b', '--branch',
+-                       help = 'use BRANCH instead of the default one')]
+-options = [make_option('-e', '--empty',
++                       help = 'use BRANCH instead of the default one'),
++           make_option('-e', '--empty',
+                        help = 'check whether patches are empty '
+                        '(much slower)',
+                        action = 'store_true') ]
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

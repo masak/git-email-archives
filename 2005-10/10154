@@ -1,0 +1,91 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Oct 16 11:10:30 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id EB365187965
+	for <tkil@scrye.com>; Sun, 16 Oct 2005 11:10:29 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751337AbVJPRKU (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 16 Oct 2005 13:10:20 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751338AbVJPRKU
+	(ORCPT <rfc822;git-outgoing>); Sun, 16 Oct 2005 13:10:20 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:34529 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1751337AbVJPRKS (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 16 Oct 2005 13:10:18 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 3E0CE13EB7F; Sun, 16 Oct 2005 19:10:15 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 1188AB4D6E; Sun, 16 Oct 2005 19:10:15 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id EAE515987A; Sun, 16 Oct 2005 19:10:14 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 655E513EB7F; Sun, 16 Oct 2005 19:10:11 +0200 (CEST)
+Date:	Sun, 16 Oct 2005 19:10:11 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Brian Gerst <bgerst@didntduck.org>
+Cc:	Nick Hengeveld <nickh@reactrix.com>,
+	Daniel Barkalow <barkalow@iabervon.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: [kernel.org users] Re: auto-packing on kernel.org? please?
+In-Reply-To: <43527E86.8000907@didntduck.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510161906220.25573@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <Pine.LNX.4.64.0510131113490.15297@g5.osdl.org> <434EABFD.5070604@zytor.com>
+ <434EC07C.30505@pobox.com> <Pine.LNX.4.64.0510131422161.23590@g5.osdl.org>
+ <435264B1.2010204@de.bosch.com> <Pine.LNX.4.63.0510161122570.23242@iabervon.org>
+ <20051016161244.GE5509@reactrix.com> <43527E86.8000907@didntduck.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 34
+Xref: brand.scrye.com linux.git:10154
+
+Hi,
+
+On Sun, 16 Oct 2005, Brian Gerst wrote:
+
+> Nick Hengeveld wrote:
+> > On Sun, Oct 16, 2005 at 11:44:46AM -0400, Daniel Barkalow wrote:
+> > 
+> > > This is the problem: it's impossible to download only a few objects from a
+> > > pack file from an HTTP server, because those don't exist on the server as
+> > > separate files.
+> > 
+> > Is it possible to determine the object locations inside the remote pack
+> > file?  If so, it would be possible to use Range: headers to download
+> > selected objects from a pack.
+> > 
+> 
+> Not possible because the entire pack is compressed.
+
+Maybe we should introduce an option which only packs objects of a minimal 
+age (something like "pack only objects 2 days and older")? This could be 
+used to autopackage as long as HTTP is the preferred protocol, so that if 
+you update daily, you already have those objects.
+
+Alternatively, git-prune-packed could have an option to prune only those 
+objects older than 2 days.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

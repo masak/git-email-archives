@@ -1,0 +1,109 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Dec 15 16:38:55 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 4E203287468
+	for <tkil@scrye.com>; Thu, 15 Dec 2005 16:38:55 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751209AbVLOXiN (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 15 Dec 2005 18:38:13 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751208AbVLOXiN
+	(ORCPT <rfc822;git-outgoing>); Thu, 15 Dec 2005 18:38:13 -0500
+Received: from fed1rmmtao07.cox.net ([68.230.241.32]:10961 "EHLO
+	fed1rmmtao07.cox.net") by vger.kernel.org with ESMTP
+	id S1751209AbVLOXiM (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 15 Dec 2005 18:38:12 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao07.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051215233730.SLCS3131.fed1rmmtao07.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 15 Dec 2005 18:37:30 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Alex Riesen <raa.lkml@gmail.com>
+Subject: Re: [PATCH] [COGITO] make cg-tag use git-check-ref-format
+References: <11344712912199-git-send-email-matlads@dsmagic.com>
+	<7vy82p9rnb.fsf@assigned-by-dhcp.cox.net>
+	<20051213170015.GD22159@pasky.or.cz>
+	<7vu0dcalgo.fsf@assigned-by-dhcp.cox.net>
+	<20051215222424.GA3094@steel.home>
+cc:	git@vger.kernel.org
+Date:	Thu, 15 Dec 2005 15:38:07 -0800
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vacf2lyn4.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 63
+Xref: brand.scrye.com linux.git:13709
+
+Alex Riesen <raa.lkml@gmail.com> writes:
+
+> Junio C Hamano, Tue, Dec 13, 2005 19:41:27 +0100:
+>> 
+>> > Thank you both for the patch, but I'd be much more comfortable if at
+>> > least quotes (both ' and "), backslashes, ? and * would be prohibited in
+>> > the names as well.
+>> 
+>> I second that, and thanks for pointing it out.  Any objections?
+>
+> Just as a warning, perhaps? It's not like git is anywhere limited in
+> this respect...
+
+Yeah, after thinking about it a bit more, I changed my mind.
+
+The wildcard letters like ? and * I understand and sympathetic
+about somewhat.  Something like this:
+
+        name="*.sh" ;# this also comes from the end user
+        echo $name
+
+ends up showing every shell script in the current directory,
+and not literal '*.sh'.
+
+However, I do not think covering five characters '"\?* gives us
+anything, and sends a strong message that we do not know our
+shell programming to whoever is reading our code.  For one
+thing, the user can still say "foo[a-z]bar" to confuse you, so
+you also need to forbid [].
+
+The thing is, if you start to care about single and double
+quotes, then what you are doing carelessly is not something
+simple like this:
+
+	name='frotz'\''nitfol"filfre\xyzzy' ;# this comes from the end user.
+	echo $name ;# and this prints just fine.
+
+For quotes to matter, you must be doing an "eval" carelessly,
+and "eval" and careless should never go together.
+
+        # do not try this in your repository without echo
+	name="foo; echo rm -fr ."
+        eval "git-rev-parse $name" 
+
+You end up needing to forbid a lot more than the quoting and
+wildcard, if you want to keep your shell scripts loose and lazy;
+which may be a worthy goal in itself but pretty much defeats the
+initial discussion of "why do we allow only these characters in
+tags".
+
+So in short, I am somewhat negative about the idea of adding
+more "forbidden letters".  Let's make sure our scripts are
+careful where safety matters.
+
+Note that this does not forbid Porcelains to enforce additional
+restrictions on their own.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

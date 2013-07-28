@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec 24 12:52:56 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D1EB61443D6
+	for <tkil@scrye.com>; Sat, 24 Dec 2005 12:52:55 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932343AbVLXTws (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 24 Dec 2005 14:52:48 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932350AbVLXTws
+	(ORCPT <rfc822;git-outgoing>); Sat, 24 Dec 2005 14:52:48 -0500
+Received: from hand.yhbt.net ([66.150.188.102]:42883 "EHLO mail.yhbt.net")
+	by vger.kernel.org with ESMTP id S932343AbVLXTwr (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 24 Dec 2005 14:52:47 -0500
+Received: by mail.yhbt.net (Postfix, from userid 500)
+	id A2BC47DC005; Sat, 24 Dec 2005 11:52:47 -0800 (PST)
+Date:	Sat, 24 Dec 2005 11:52:47 -0800
+From:	Eric Wong <normalperson@yhbt.net>
+To:	Junio C Hamano <junkio@cox.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH 3/4] add xmktime() function that always accounts for the TZ env
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20051224195247.GF3963@mail.yhbt.net>
+References: <20051224121007.GA19136@mail.yhbt.net> <20051224121339.GB3963@mail.yhbt.net> <7vy82aqp5r.fsf@assigned-by-dhcp.cox.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7vy82aqp5r.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Mutt/1.5.9i
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:14024
+
+Junio C Hamano <junkio@cox.net> wrote:
+> Eric Wong <normalperson@yhbt.net> writes:
+> 
+> > This function was added because mktime in dietlibc doesn't seem to
+> > account for the TZ env.  Also, xmktime() now shares the same
+> > always-summer bug TZ parsing elsewhere,
+> 
+> Where elsewhere?
+ 
+match_alpha() in date.c
+
+-- 
+Eric Wong
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,64 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Apr 24 14:45:26 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 1AA896ECE
+	for <tkil@scrye.com>; Sun, 24 Apr 2005 14:45:26 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262409AbVDXUo0 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 24 Apr 2005 16:44:26 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262410AbVDXUo0
+	(ORCPT <rfc822;git-outgoing>); Sun, 24 Apr 2005 16:44:26 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:50635 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S262409AbVDXUoO (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 24 Apr 2005 16:44:14 -0400
+Received: (qmail 10810 invoked by uid 2001); 24 Apr 2005 20:44:09 -0000
+Date:	Sun, 24 Apr 2005 22:44:09 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Jeff Garzik <jgarzik@pobox.com>
+Cc: git@vger.kernel.org
+Subject: Re: Humble request of 'git' developers
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050424204408.GM1507@pasky.ji.cz>
+References: <426AA8E2.60403@pobox.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <426AA8E2.60403@pobox.com>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 24
+Xref: brand.scrye.com linux.git:1518
+
+Dear diary, on Sat, Apr 23, 2005 at 09:58:26PM CEST, I got a letter
+where Jeff Garzik <jgarzik@pobox.com> told me that...
+> Please stop filling up my /usr/local/bin :)
+> 
+> Just have one 'git' script, which looks in /usr/local/libexec/git for 
+> further scripts and backends programs like write-tree and diff-cache.
+
+Ad core git, yes, one of the reasons why I decided for the Cogito rename
+was to free the "git namesace" for the git programs. :-)
+
+> Also, please don't assume that "." is in PATH.  I think there is at 
+> least one invocation of commit-id with that assumption, in git-pasky-0.6.3.
+
+Yes, sorry, fixed and pushed out.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,73 @@
+X-From-Line: git-owner@vger.kernel.org  Fri Sep 23 18:43:47 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,
+	FORGED_RCVD_HELO autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5A55B1421A4
+	for <tkil@scrye.com>; Fri, 23 Sep 2005 18:43:47 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750900AbVIXAn2 (ORCPT <rfc822;tkil@scrye.com>);
+	Fri, 23 Sep 2005 20:43:28 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751356AbVIXAn2
+	(ORCPT <rfc822;git-outgoing>); Fri, 23 Sep 2005 20:43:28 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:10647 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1750900AbVIXAn1 (ORCPT
+	<rfc822;git@vger.kernel.org>); Fri, 23 Sep 2005 20:43:27 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j8O0hM4s019500
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 23 Sep 2005 17:43:22 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j8O0hKvC018824;
+	Fri, 23 Sep 2005 17:43:21 -0700
+Date:	Fri, 23 Sep 2005 17:43:20 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+cc:	Peter TB Brett <peter@peter-b.co.uk>,
+	Git Mailing List <git@vger.kernel.org>,
+	Davide Libenzi <davidel@xmailserver.org>
+Subject: Re: git 0.99.7b doesn't build on Cygwin
+In-Reply-To: <Pine.LNX.4.58.0509231647300.3308@g5.osdl.org>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509231737140.3308@g5.osdl.org>
+References: <ud5mznc1x.fsf@peter-b.co.uk>
+ <Pine.LNX.4.63.0509231537390.11109@wgmdd8.biozentrum.uni-wuerzburg.de>
+ <Pine.LNX.4.58.0509231647300.3308@g5.osdl.org>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.118 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 24
+Xref: brand.scrye.com linux.git:9207
+
+
+
+On Fri, 23 Sep 2005, Linus Torvalds wrote:
+> 
+> Davide, maybe I'm being stupid, but I'm thinking that it might be possible
+> to generate a -u3 diff by basically walking the xdiff file in a linear
+> fashion: if the edits are in strictly ascending order
+
+Ahh, no. Looking at the xdiff format, the edits are strictly ascending in 
+the destination, but they may take stuff from the source in any order, so 
+it's not like you can generate a diff from it by just walking it.
+
+Oh, well. I guess we're better off just using the external diff command, 
+even if it is slower to execve an external diff. 
+
+The GNU diff sources are hard enough to read that I don't think we want to 
+try to merge the unified diff generation from there.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

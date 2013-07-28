@@ -1,0 +1,60 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Aug 28 15:07:12 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id A56991C416C
+	for <tkil@scrye.com>; Sun, 28 Aug 2005 15:07:10 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750805AbVH1VGg (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 28 Aug 2005 17:06:36 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750806AbVH1VGg
+	(ORCPT <rfc822;git-outgoing>); Sun, 28 Aug 2005 17:06:36 -0400
+Received: from fed1rmmtao11.cox.net ([68.230.241.28]:34805 "EHLO
+	fed1rmmtao11.cox.net") by vger.kernel.org with ESMTP
+	id S1750805AbVH1VGf (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 28 Aug 2005 17:06:35 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao11.cox.net
+          (InterMail vM.6.01.04.00 201-2131-118-20041027) with ESMTP
+          id <20050828210635.QYUT12158.fed1rmmtao11.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 28 Aug 2005 17:06:35 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Robert Fitzsimons <robfitz@273k.net>
+Subject: Re: [PATCH 3/9] Fix processing of a patch file which modifies the same file in git-apply.
+References: <1125242667404-git-send-email-robfitz@273k.net>
+	<11252426681254-git-send-email-robfitz@273k.net>
+cc:	git@vger.kernel.org
+Date:	Sun, 28 Aug 2005 14:06:33 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7v64tplqjq.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 17
+Xref: brand.scrye.com linux.git:7879
+
+Robert Fitzsimons <robfitz@273k.net> writes:
+
+> A patch file (or stdin) which modifies the same file more then once
+> will fail to apply the patch correctly.  In the worst case it will
+> apply some of the patch and leave an invalid output file(s).
+
+I am not sure if this is solving the right problem.  A patch
+that touches the same file more than once is hard to review and
+I think we should be discouraging the users to do so.  The same
+comment goes for [PATCH 4/9].
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

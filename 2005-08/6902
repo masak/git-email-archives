@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Aug  7 14:02:36 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C0490DC3C2
+	for <tkil@scrye.com>; Sun,  7 Aug 2005 14:02:36 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751109AbVHGUC3 (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 7 Aug 2005 16:02:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1752664AbVHGUC3
+	(ORCPT <rfc822;git-outgoing>); Sun, 7 Aug 2005 16:02:29 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:8875 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751109AbVHGUC3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Sun, 7 Aug 2005 16:02:29 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j77K2NjA004222
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sun, 7 Aug 2005 13:02:24 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j77K2NT4016988;
+	Sun, 7 Aug 2005 13:02:23 -0700
+Date:	Sun, 7 Aug 2005 13:02:23 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Junio C Hamano <junkio@cox.net>
+Cc: git@vger.kernel.org
+Subject: Re: use of temporary refs in resolve
+In-Reply-To: <7v3bplwmzg.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0508071256140.3258@g5.osdl.org>
+References: <7v3bplwmzg.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.113 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:6902
+
+
+
+On Sun, 7 Aug 2005, Junio C Hamano wrote:
+> 
+> Also ORIG_HEAD is probably redundant.  After a successful
+> automerge, the same information can be had by HEAD^1
+
+Absolutely not.
+
+You forgot about one of the most common merge cases: fast-forward.
+
+In fact, ORIG_HEAD is _the_ most common head I use explicitly. Almost all 
+operations take HEAD as default, but doing a
+
+	gitk ORIG_HEAD..
+
+is extremely useful after a pull.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

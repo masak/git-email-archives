@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Nov 23 22:44:46 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=AWL,BAYES_00,TW_QG 
+	autolearn=ham version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C671D2AE16F
+	for <tkil@scrye.com>; Wed, 23 Nov 2005 22:44:45 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1161003AbVKXFlw (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 24 Nov 2005 00:41:52 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1161008AbVKXFlw
+	(ORCPT <rfc822;git-outgoing>); Thu, 24 Nov 2005 00:41:52 -0500
+Received: from smtp012.mail.yahoo.com ([216.136.173.32]:25511 "HELO
+	smtp012.mail.yahoo.com") by vger.kernel.org with SMTP
+	id S1161003AbVKXFlv (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 24 Nov 2005 00:41:51 -0500
+Received: (qmail 8211 invoked from network); 24 Nov 2005 05:41:48 -0000
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.it;
+  h=Received:Message-ID:Date:From:User-Agent:X-Accept-Language:MIME-Version:To:CC:Subject:References:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+  b=hUAUD454Mg/3daF525miZ94hAb+ptBADN139TMUnsyxoU0wms1Fg6Xp0XRe6MZuYHiK2iA7M1B3iUyICFzXxhT4lk8kYldLr6fR3Cbj7DxXVraW4rixiFyA2zSID6CagcgFG33AEOm5COYUf86efAxa/0RbjjBekOkPDq8lKAQU=  ;
+Received: from unknown (HELO ?10.0.0.13?) (mcostalba@151.44.27.8 with plain)
+  by smtp012.mail.yahoo.com with SMTP; 24 Nov 2005 05:41:47 -0000
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <4385528D.7010203@yahoo.it>
+Date:	Thu, 24 Nov 2005 06:41:33 +0100
+From:	Marco Costalba <mcostalba@yahoo.it>
+User-Agent: Mozilla Thunderbird 1.0.6-7.2.20060mdk (X11/20050322)
+X-Accept-Language: it, it-it, en-us, en
+MIME-Version: 1.0
+To:	Junio C Hamano <junkio@cox.net>
+CC:	git@vger.kernel.org, Martin Atukunda <matlads@dsmagic.com>
+Subject: Re: [RFC/PATCH 1/3] git-find-git: a new helper.
+References: <7vmzjuzphl.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vmzjuzphl.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 32
+Xref: brand.scrye.com linux.git:12666
+
+Junio C Hamano wrote:
+
+>  git-find-git uses it to find the
+> top-level, and if it was run from a subdirectory, outputs shell
+> script fragments that can be evaled to define the two variables:
+> 
+>     GIT_DIR_PREFIX is a string to be prepended to cwd relative
+>     paths to make them repository relative.
+> 
+>     GIT_DIR_UPLEVEL is a string (e.g. "../") for the command to
+>     use to cd to the top-level of repository.
+> 
+>
+Sounds very good.
+
+I did't had the time to test it but I think I can now
+easily update qgit to run from a subdirectory with this new helper.
+
+Marco
+
+	
+
+	
+		
+___________________________________ 
+Yahoo! Mail: gratis 1GB per i messaggi e allegati da 10MB 
+http://mail.yahoo.it
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

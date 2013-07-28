@@ -1,0 +1,80 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct 24 00:30:58 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id DC0692767F8
+	for <tkil@scrye.com>; Mon, 24 Oct 2005 00:30:57 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751021AbVJXG2l (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 24 Oct 2005 02:28:41 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751026AbVJXG2l
+	(ORCPT <rfc822;git-outgoing>); Mon, 24 Oct 2005 02:28:41 -0400
+Received: from iabervon.org ([66.92.72.58]:7180 "EHLO iabervon.org")
+	by vger.kernel.org with ESMTP id S1751020AbVJXG2k (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 24 Oct 2005 02:28:40 -0400
+Received: (qmail 5908 invoked by uid 1000); 24 Oct 2005 02:28:04 -0400
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 24 Oct 2005 02:28:04 -0400
+Date:	Mon, 24 Oct 2005 02:28:04 -0400 (EDT)
+From:	Daniel Barkalow <barkalow@iabervon.org>
+To:	Junio C Hamano <junkio@cox.net>
+cc:	Petr Baudis <pasky@suse.cz>, git@vger.kernel.org
+Subject: Re: User-relative paths
+In-Reply-To: <7voe5gypvi.fsf@assigned-by-dhcp.cox.net>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.64.0510240219410.25300@iabervon.org>
+References: <435ABB99.5020908@op5.se> <7vll0l6pn7.fsf@assigned-by-dhcp.cox.net>
+ <435B5AE0.1060400@op5.se> <20051023183757.GS30889@pasky.or.cz>
+ <7voe5gypvi.fsf@assigned-by-dhcp.cox.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 39
+Xref: brand.scrye.com linux.git:10523
+
+On Sun, 23 Oct 2005, Junio C Hamano wrote:
+
+> Petr Baudis <pasky@suse.cz> writes:
+> 
+> >> diff --git a/Makefile b/Makefile
+> >> index 903c57c..87188ea 100644
+> >> --- a/Makefile
+> >> +++ b/Makefile
+> >> @@ -359,6 +362,9 @@ git-cherry-pick: git-revert
+> >>  %.o: %.S
+> >>  	$(CC) -o $*.o -c $(ALL_CFLAGS) $<
+> >>  
+> >> +$(SERVERSIDE_PROGRAMS) : git-%$X : %.o srvside-ssh.o $(LIB_FILE)
+> >> +	$(CC) $(ALL_CFLAGS) -o $@ $(filter %o,$^) $(LIBS)
+> >> +
+> >>  git-%$X: %.o $(LIB_FILE)
+> >>  	$(CC) $(ALL_CFLAGS) -o $@ $(filter %.o,$^) $(LIBS)
+> >>  
+> >
+> > Why are you adding own compilation command, and why is it inconsistent
+> > with the git-%$X's one?
+> 
+> Although I'd prefer the simplicity of putting srvside-ssh.o in
+> LIB_OBJS, this is arguably defensible; it avoids relinking of
+> everything else merely because srvside-ssh.c is changed.
+
+The line:
+
+$(SERVERSIDE_PROGRAMS): srvside-ssh.o
+
+would suffice for that.
+
+	-Daniel
+*This .sig left intentionally blank*
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

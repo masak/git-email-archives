@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Tue Sep  6 13:01:54 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id B51D82851FC
+	for <tkil@scrye.com>; Tue,  6 Sep 2005 13:01:54 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750801AbVIFTB3 (ORCPT <rfc822;tkil@scrye.com>);
+	Tue, 6 Sep 2005 15:01:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750802AbVIFTB3
+	(ORCPT <rfc822;git-outgoing>); Tue, 6 Sep 2005 15:01:29 -0400
+Received: from fed1rmmtao12.cox.net ([68.230.241.27]:40636 "EHLO
+	fed1rmmtao12.cox.net") by vger.kernel.org with ESMTP
+	id S1750801AbVIFTB3 (ORCPT <rfc822;git@vger.kernel.org>);
+	Tue, 6 Sep 2005 15:01:29 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao12.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050906190129.SQUG11315.fed1rmmtao12.cox.net@assigned-by-dhcp.cox.net>;
+          Tue, 6 Sep 2005 15:01:29 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	"H. Peter Anvin" <hpa@zytor.com>
+Subject: Re: [PATCH] git-cvsimport-script: handling of tags
+References: <431DD381.4050709@zytor.com>
+cc:	git@vger.kernel.org
+Date:	Tue, 06 Sep 2005 12:01:27 -0700
+In-Reply-To: <431DD381.4050709@zytor.com> (H. Peter Anvin's message of "Tue,
+	06 Sep 2005 10:36:01 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vwtluaum0.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 14
+Xref: brand.scrye.com linux.git:8130
+
+"H. Peter Anvin" <hpa@zytor.com> writes:
+
+> This patch changes git-cvsimport-script so that it creates tag objects 
+> instead of refs to commits, and adds an option, -u, to convert 
+> underscores in branch and tag names to dots (since CVS doesn't allow 
+> dots in branches and tags.)
+
+Looks good.  Thanks.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

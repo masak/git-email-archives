@@ -1,0 +1,68 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Dec 24 14:10:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id D52576B104
+	for <tkil@scrye.com>; Sat, 24 Dec 2005 14:10:13 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750722AbVLXVKE (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 24 Dec 2005 16:10:04 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750724AbVLXVKE
+	(ORCPT <rfc822;git-outgoing>); Sat, 24 Dec 2005 16:10:04 -0500
+Received: from fed1rmmtao10.cox.net ([68.230.241.29]:4763 "EHLO
+	fed1rmmtao10.cox.net") by vger.kernel.org with ESMTP
+	id S1750722AbVLXVKD (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 24 Dec 2005 16:10:03 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao10.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051224210859.RHQE20441.fed1rmmtao10.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 24 Dec 2005 16:08:59 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Eric Wong <normalperson@yhbt.net>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH 3/4] add xmktime() function that always accounts for the TZ env
+References: <20051224121007.GA19136@mail.yhbt.net>
+	<20051224121339.GB3963@mail.yhbt.net>
+	<7vy82aqp5r.fsf@assigned-by-dhcp.cox.net>
+	<20051224195247.GF3963@mail.yhbt.net>
+Date:	Sat, 24 Dec 2005 13:10:00 -0800
+In-Reply-To: <20051224195247.GF3963@mail.yhbt.net> (Eric Wong's message of
+	"Sat, 24 Dec 2005 11:52:47 -0800")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vpsnmqk0n.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 21
+Xref: brand.scrye.com linux.git:14026
+
+Eric Wong <normalperson@yhbt.net> writes:
+
+> Junio C Hamano <junkio@cox.net> wrote:
+>> Eric Wong <normalperson@yhbt.net> writes:
+>> 
+>> > This function was added because mktime in dietlibc doesn't seem to
+>> > account for the TZ env.  Also, xmktime() now shares the same
+>> > always-summer bug TZ parsing elsewhere,
+>> 
+>> Where elsewhere?
+>  
+> match_alpha() in date.c
+
+Then probably we should extract partime.c from rcs and munge
+that.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

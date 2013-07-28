@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sun Sep 18 11:54:35 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 1ED2A16D71A
+	for <tkil@scrye.com>; Sun, 18 Sep 2005 11:54:35 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932143AbVIRRyX (ORCPT <rfc822;tkil@scrye.com>);
+	Sun, 18 Sep 2005 13:54:23 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932144AbVIRRyX
+	(ORCPT <rfc822;git-outgoing>); Sun, 18 Sep 2005 13:54:23 -0400
+Received: from fed1rmmtao06.cox.net ([68.230.241.33]:32468 "EHLO
+	fed1rmmtao06.cox.net") by vger.kernel.org with ESMTP
+	id S932143AbVIRRyW (ORCPT <rfc822;git@vger.kernel.org>);
+	Sun, 18 Sep 2005 13:54:22 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao06.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050918175419.YPQ18416.fed1rmmtao06.cox.net@assigned-by-dhcp.cox.net>;
+          Sun, 18 Sep 2005 13:54:19 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Linus Torvalds <torvalds@osdl.org>
+Cc:	Alan Chandler <alan@chandlerfamily.org.uk>, git@vger.kernel.org
+Subject: Re: Newbie falls at first hurdle
+References: <alan@chandlerfamily.org.uk>
+	<200509180135.j8I1Z34n023252@inti.inf.utfsm.cl>
+	<46a038f9050918035436352f71@mail.gmail.com>
+	<200509181347.11403.alan@chandlerfamily.org.uk>
+	<7vek7m5m0z.fsf@assigned-by-dhcp.cox.net>
+	<Pine.LNX.4.58.0509181033520.26803@g5.osdl.org>
+Date:	Sun, 18 Sep 2005 10:54:20 -0700
+In-Reply-To: <Pine.LNX.4.58.0509181033520.26803@g5.osdl.org> (Linus Torvalds's
+	message of "Sun, 18 Sep 2005 10:40:06 -0700 (PDT)")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vzmqa2reb.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 20
+Xref: brand.scrye.com linux.git:8790
+
+Linus Torvalds <torvalds@osdl.org> writes:
+
+> In other words, you'd have to explain what "pu^2~3" means.
+>
+> And octopus merges, for that matter. I don't think the tutorial ever 
+> explains those.
+
+Sorry, my excuses are (1) I just did a quick example from a tree
+I had handy -- my live tree; (2) as long as the user knows the
+commit show-branch labeled with the cryptic "pu^2~3" is the one
+s/he wants, it does not matter much what that label exactly
+means.
+
+But of course you are right.
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,83 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep 19 15:03:53 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 67A261D6877
+	for <tkil@scrye.com>; Mon, 19 Sep 2005 15:03:53 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932465AbVISVAo (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 19 Sep 2005 17:00:44 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932466AbVISVAo
+	(ORCPT <rfc822;git-outgoing>); Mon, 19 Sep 2005 17:00:44 -0400
+Received: from terminus.zytor.com ([209.128.68.124]:53140 "EHLO
+	terminus.zytor.com") by vger.kernel.org with ESMTP id S932465AbVISVAn
+	(ORCPT <rfc822;git@vger.kernel.org>);
+	Mon, 19 Sep 2005 17:00:43 -0400
+Received: from [10.4.1.13] (yardgnome.orionmulti.com [209.128.68.65])
+	(authenticated bits=0)
+	by terminus.zytor.com (8.13.1/8.13.1) with ESMTP id j8JL0UYT008578
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 19 Sep 2005 14:00:31 -0700
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <432F26E9.9090707@zytor.com>
+Date:	Mon, 19 Sep 2005 14:00:25 -0700
+From:	"H. Peter Anvin" <hpa@zytor.com>
+User-Agent: Mozilla Thunderbird 1.0.6-1.1.fc4 (X11/20050720)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To:	Junio C Hamano <junkio@cox.net>
+CC:	Fredrik Kuivinen <freku045@student.liu.se>,
+	Git Mailing List <git@vger.kernel.org>
+Subject: Re: Why does git-core 0.99.7 require python 2.4?
+References: <432F0C66.7060402@zytor.com>	<20050919200222.GA11322@c165.ib.student.liu.se> <7vslw0lqvd.fsf@assigned-by-dhcp.cox.net>
+In-Reply-To: <7vslw0lqvd.fsf@assigned-by-dhcp.cox.net>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV version 0.87, clamav-milter version 0.87 on localhost
+X-Virus-Status:	Clean
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 35
+Xref: brand.scrye.com linux.git:8898
+
+Junio C Hamano wrote:
+> Fredrik Kuivinen <freku045@student.liu.se> writes:
+> 
+>>Not supporting one of the major Linux distributions isn't ideal
+>>though, so maybe we should do something about this. I will have a look
+>>at rewriting the code to not use subprocess.
+> 
+> Thanks -- I personally feel that it would be best to just let FC
+> catch up, solving this problem for us, while you spend your time
+> on other things first.
+> 
+
+The problem isn't FC, the problem is RHEL, generally used on machines 
+for which an OS update it's huge deal.
+
+> Peter, if you feel strongly about it I'd do 0.99.7.1 removing
+> the 'requires python >=2.4', but as Fredrik says the only thing
+> that uses Python 2.4 is his recursive merge, and it is not
+> something we use without the user explicitly asking for it.  We
+> can consider it as the same status as send-email or archimport
+> which cannot work without Perl modules necessary for their
+> operation, so if you can install bypassing requires- check that
+> would work equally well.
+
+My suggestion would be to fork off the recursive merge into a separate 
+binary package which can have the python >= 2.4 requirement (unless 
+Fredrik just fixes it.)
+
+	-hpa
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,69 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Sep 17 02:33:09 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 659CB1C9589
+	for <tkil@scrye.com>; Sat, 17 Sep 2005 02:33:09 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751010AbVIQIcJ (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 17 Sep 2005 04:32:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751012AbVIQIcI
+	(ORCPT <rfc822;git-outgoing>); Sat, 17 Sep 2005 04:32:08 -0400
+Received: from fed1rmmtao02.cox.net ([68.230.241.37]:37024 "EHLO
+	fed1rmmtao02.cox.net") by vger.kernel.org with ESMTP
+	id S1751010AbVIQIcI (ORCPT <rfc822;git@vger.kernel.org>);
+	Sat, 17 Sep 2005 04:32:08 -0400
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao02.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20050917083206.DHLX23945.fed1rmmtao02.cox.net@assigned-by-dhcp.cox.net>;
+          Sat, 17 Sep 2005 04:32:06 -0400
+From:	Junio C Hamano <junkio@cox.net>
+To:	Daniel Barkalow <barkalow@iabervon.org>
+Subject: Re: [PATCH] Fix fetch completeness assumptions
+References: <Pine.LNX.4.63.0509142120020.23242@iabervon.org>
+	<7vhdckceas.fsf@assigned-by-dhcp.cox.net>
+cc:	git@vger.kernel.org, torvalds@osdl.org
+Date:	Sat, 17 Sep 2005 01:32:06 -0700
+In-Reply-To: <7vhdckceas.fsf@assigned-by-dhcp.cox.net> (Junio C. Hamano's
+	message of "Sat, 17 Sep 2005 01:02:35 -0700")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vacicccxl.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 24
+Xref: brand.scrye.com linux.git:8752
+
+Junio C Hamano <junkio@cox.net> writes:
+
+> Daniel Barkalow <barkalow@iabervon.org> writes:
+>
+>> Don't assume that any commit we have is complete; assume that any ref
+>> we have is complete.
+>
+> Have you tested this idea with cloning into an empty repository?
+> It seems to break my tests.
+
+Sorry, I spoke too fast.  This is not _broken_ per se, but is
+just slow.
+
+I tried to clone http://kernel.org/pub/scm/git.git/; bulk of the
+objects are packed there but the new code is _too_ cautious,
+since it did not have any refs to begin with, it ended up
+walking the commits in the already downloaded packs to the root.
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

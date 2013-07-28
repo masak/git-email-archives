@@ -1,0 +1,71 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 17 06:39:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id C2A212851FA
+	for <tkil@scrye.com>; Thu, 17 Nov 2005 06:39:38 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1750820AbVKQNjZ (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 17 Nov 2005 08:39:25 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1750824AbVKQNjZ
+	(ORCPT <rfc822;git-outgoing>); Thu, 17 Nov 2005 08:39:25 -0500
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:22762 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S1750820AbVKQNjY (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 17 Nov 2005 08:39:24 -0500
+Received: from wrzx30.rz.uni-wuerzburg.de (wrzx30.rz.uni-wuerzburg.de [132.187.1.30])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 8D39313FAED; Thu, 17 Nov 2005 14:39:23 +0100 (CET)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 707E79F33C; Thu, 17 Nov 2005 14:39:23 +0100 (CET)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx30.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 43B6398FA6; Thu, 17 Nov 2005 14:39:23 +0100 (CET)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id B2C6313FB46; Thu, 17 Nov 2005 14:39:21 +0100 (CET)
+Date:	Thu, 17 Nov 2005 14:39:21 +0100 (CET)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Martin Atukunda <matlads@dsmagic.com>
+Cc:	git@vger.kernel.org
+Subject: Re: [PATCH] Add .git/version
+In-Reply-To: <11322339372137-git-send-email-matlads@dsmagic.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0511171436170.13358@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <11322339372137-git-send-email-matlads@dsmagic.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 20
+Xref: brand.scrye.com linux.git:12103
+
+Hi,
+
+On Thu, 17 Nov 2005, Martin Atukunda wrote:
+
+> This patch series attempts to add .git/version support to init-db.c.
+
+Wouldn't it make more sense to add the variable VERSION to git-var? After 
+all, git is designed to be backwards compatible; newer versions are 
+supposed to work with ancient repositories.
+
+I think you are more interested in knowing which version the tools are at.
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

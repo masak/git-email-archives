@@ -1,0 +1,109 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Apr 27 16:53:04 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id A40E11A3FE
+	for <tkil@scrye.com>; Wed, 27 Apr 2005 16:53:04 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S262069AbVD0WTs (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 27 Apr 2005 18:19:48 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S262062AbVD0WSt
+	(ORCPT <rfc822;git-outgoing>); Wed, 27 Apr 2005 18:18:49 -0400
+Received: from fire.osdl.org ([65.172.181.4]:53903 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S262052AbVD0WR3 (ORCPT
+	<rfc822;git@vger.kernel.org>); Wed, 27 Apr 2005 18:17:29 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j3RMHPs4020795
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 27 Apr 2005 15:17:26 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j3RMHOqw013057;
+	Wed, 27 Apr 2005 15:17:25 -0700
+Date:	Wed, 27 Apr 2005 15:19:23 -0700 (PDT)
+From: Linus Torvalds <torvalds@osdl.org>
+To: Chris Mason <mason@suse.com>
+Cc: git@vger.kernel.org
+Subject: Re: Finding file revisions
+In-Reply-To: <200504271423.37433.mason@suse.com>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0504271506290.18901@ppc970.osdl.org>
+References: <200504271251.00635.mason@suse.com> <Pine.LNX.4.58.0504271027460.18901@ppc970.osdl.org>
+ <200504271423.37433.mason@suse.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.109 $
+X-Scanned-By: MIMEDefang 2.36
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 63
+Xref: brand.scrye.com linux.git:1900
+
+
+
+On Wed, 27 Apr 2005, Chris Mason wrote:
+> 
+> So, new prog attached.  New usage:
+> 
+> file-changes [-c commit_id] [-s commit_id] file ...
+> 
+> -c is the commit where you want to start searching
+> -s is the commit where you want to stop searching
+
+Your script will do some funky stuff, because you incorrectly think that
+the rev-list is sorted linearly. It's not. It's sorted in a rough
+chronological order, but you really can't do the "last" vs "cur" thing
+that you do, because two commits after each other in the rev-list listing
+may well be from two totally different branches, so when you compare one
+tree against the other, you're really doing something pretty nonsensical.
+
+diff-tree will happily compare trees that aren't related, so it will 
+"work" in a sense, but it doesn't actually do what you think it does ;)
+
+So what you should do is basically something like
+
+	open(RL, "rev-list $commit|") || die "rev-list failed";
+	while(<RL>) {
+		chomp;
+		my $cur = $_;
+
+(so far so good) but then you should look at the _parents_ of that 
+commit, ie do (NOTE NOTE NOTE! I'm a total perl idiot, so I'm not going to 
+do this right):
+
+		open(PARENT, "cat-file commit $cur") || die "cat-file failed");
+		while(<PARENT>) {
+			chomp;
+			my @words = split;
+			if ($words[1] == "tree")
+				continue;
+			if ($words[1] != "parent")
+				break;
+			test_diff($cur, $words[2]);
+		}
+		close(PARENT);
+	}
+	close(RL);
+
+and now your "test_diff()" thing can do the tree diff.
+
+That way you actually do "tree-diff" on the thing you should do, and it 
+will show you _which_ way it changed in a merge (ie if you hit a 
+merge-point, it will do a tree-diff against both parents, and show you 
+which one had the difference - then you'll obviously usually see that same 
+difference later on when you dig down to the actual changeset that did it 
+too).
+
+Remember: time is not a nice linear stream.
+
+		Linus
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

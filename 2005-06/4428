@@ -1,0 +1,115 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Jun  2 15:17:19 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 49710297B54
+	for <tkil@scrye.com>; Thu,  2 Jun 2005 15:17:13 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261351AbVFBVOj (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 2 Jun 2005 17:14:39 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261256AbVFBVCh
+	(ORCPT <rfc822;git-outgoing>); Thu, 2 Jun 2005 17:02:37 -0400
+Received: from rproxy.gmail.com ([64.233.170.206]:4796 "EHLO rproxy.gmail.com")
+	by vger.kernel.org with ESMTP id S261289AbVFBUKQ convert rfc822-to-8bit
+	(ORCPT <rfc822;git@vger.kernel.org>); Thu, 2 Jun 2005 16:10:16 -0400
+Received: by rproxy.gmail.com with SMTP id i8so366670rne
+        for <git@vger.kernel.org>; Thu, 02 Jun 2005 13:10:07 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:message-id:date:from:reply-to:to:subject:cc:in-reply-to:mime-version:content-type:content-transfer-encoding:content-disposition:references;
+        b=DLSct6uI4XB228c1L7VIeUCDDFOFzZCKhPmVglxmN1hvC22wuJkK+wEaqdVDmOTz1XvqqDmd0kXu1m+evR1ivzXgwxYFv0bGvUVTghZ6RJOWWCi+r6E2KWB7EAgDMjaUC9DXUCaAlOmE0NbufQ9MmtiyFi9xnZKL4qIY8ThrmqU=
+Received: by 10.38.14.39 with SMTP id 39mr531238rnn;
+        Thu, 02 Jun 2005 13:10:07 -0700 (PDT)
+Received: by 10.38.101.46 with HTTP; Thu, 2 Jun 2005 13:10:07 -0700 (PDT)
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <46a038f905060213104d9ad96f@mail.gmail.com>
+Date:	Fri, 3 Jun 2005 08:10:07 +1200
+From: Martin Langhoff <martin.langhoff@gmail.com>
+Reply-To: Martin Langhoff <martin.langhoff@gmail.com>
+To: Anton Altaparmakov <aia21@cam.ac.uk>
+Subject: (was Re: Using cvs2git to track an external CVS project)
+Cc: Git Mailing List <git@vger.kernel.org>
+In-Reply-To: <1117631266.26067.40.camel@imp.csi.cam.ac.uk>
+Mime-Version: 1.0
+Content-Type:	text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Content-Disposition: inline
+References: <46a038f905060105358e24723@mail.gmail.com>
+	 <1117631266.26067.40.camel@imp.csi.cam.ac.uk>
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.3 (2005-04-27) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_BY_IP 
+	autolearn=ham version=3.0.3
+Lines: 66
+Xref: brand.scrye.com linux.git:4428
+
+On 6/2/05, Anton Altaparmakov <aia21@cam.ac.uk> wrote:
+> Disregarding anything about cvs2git there is one point you may not be
+> thinking about but you may want to care about:  when you send something
+> upstream to the cvs repository and then get it back via cvs2git you will
+> get a completely different commit to the one your local git repository
+> has.
+
+If upstream hasn't touched the files I'm patching, and cvs2gig/cvs2ps
+use -kk there is some hope that the objects should be the same...
+right?
+
+>  So while the file changes inside those two commits are the same
+> the actual commits are not and you will end up with all those commits in
+> duplicate because of it as well as an automatic merge commit to merge
+> the two commits. 
+
+So, this is the scenario for a situation where the files I'm patching
+have changed upstream, so upstream merges my patch on top of previous
+patches, and I get commit objects echoed back that logically contain
+my patch but git sees as different.
+
+Is it any better if upstream is using git as well? Is there any chance
+for a private branch or tree to survive anything but a "perfect match"
+merge where upstream and the branch are in perfect sync before and
+after?
+
+I understand this is architected to _not_ support cherry picking in
+the darcs/arch sense and I think it's a good idea. But it seems than
+any non-trivial merge ends up being a completely manual process. 
+Anyone having to work on a series of patches for Linux that get
+accepted in stages is going to find himself forced to a potentially
+time-consuming remerge every time Linus does a partial merge. Argh.
+
+So it seems to me that git is well suited for a set of closely related
+HEADs that are very aggressive in synching with each other. Synching
+work is pushed out to the peripheral branches -- a design decision I
+agree with -- but there's very little support to help me keep a
+peripheral branch in sync.
+
+The assumption that those peripheral branches must be short-lived and
+discardable is valid for a limited set of cases -- very circumscribed
+to short-term dev work. As soon as a dev branch has to run a little
+longer, it cannot afford to not sync with the HEAD. Particularly, it
+cannot skip a _single_ patch coming from HEAD.
+
+And if I'm doing development from my branch and pushing to HEAD, and
+the guy doing the merge in HEAD merges my patches in a different order
+I'll have a spurious conflict.
+
+I use peripheral branches to track versions of code in production,
+that may have different sets of patches applied. For that purpose,
+patch-based SCMs are quite helpful (you can ask what patch is applied
+where), but as Linus pointed out, they don't actually help convergence
+at all. Git pulls towards convergence like a demon AFAICS -- yet some
+primitive patch trading smarts would save a lot of effort at the
+borders of the dev network.
+
+cheers,
+
+
+martin
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

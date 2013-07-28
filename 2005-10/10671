@@ -1,0 +1,84 @@
+X-From-Line: git-owner@vger.kernel.org  Wed Oct 26 10:50:01 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id E1D3C184173
+	for <tkil@scrye.com>; Wed, 26 Oct 2005 10:50:00 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S964830AbVJZQt3 (ORCPT <rfc822;tkil@scrye.com>);
+	Wed, 26 Oct 2005 12:49:29 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S964832AbVJZQt3
+	(ORCPT <rfc822;git-outgoing>); Wed, 26 Oct 2005 12:49:29 -0400
+Received: from wrzx28.rz.uni-wuerzburg.de ([132.187.3.28]:160 "EHLO
+	wrzx28.rz.uni-wuerzburg.de") by vger.kernel.org with ESMTP
+	id S964830AbVJZQt1 (ORCPT <rfc822;git@vger.kernel.org>);
+	Wed, 26 Oct 2005 12:49:27 -0400
+Received: from wrzx34.rz.uni-wuerzburg.de (wrzx34.rz.uni-wuerzburg.de [132.187.3.34])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id C485813F3BF; Wed, 26 Oct 2005 18:49:26 +0200 (CEST)
+Received: from virusscan (localhost [127.0.0.1])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 9A588B353C; Wed, 26 Oct 2005 18:49:26 +0200 (CEST)
+Received: from wrzx28.rz.uni-wuerzburg.de (wrzx28.rz.uni-wuerzburg.de [132.187.3.28])
+	by wrzx34.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id 6CFF5B4E80; Wed, 26 Oct 2005 18:46:55 +0200 (CEST)
+Received: from dumbo2 (wbgn013.biozentrum.uni-wuerzburg.de [132.187.25.13])
+	by wrzx28.rz.uni-wuerzburg.de (Postfix) with ESMTP
+	id CC28D13F321; Wed, 26 Oct 2005 18:46:45 +0200 (CEST)
+Date:	Wed, 26 Oct 2005 18:46:45 +0200 (CEST)
+From:	Johannes Schindelin <Johannes.Schindelin@gmx.de>
+X-X-Sender: gene099@wbgn013.biozentrum.uni-wuerzburg.de
+To:	Jan Harkes <jaharkes@cs.cmu.edu>
+Cc:	git@vger.kernel.org
+Subject: Re: git 565ebbf79f61873042c22a7126d002c104e056f4 broken on OpenBSD
+In-Reply-To: <20051026161552.GA11483@delft.aura.cs.cmu.edu>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.63.0510261844020.29044@wbgn013.biozentrum.uni-wuerzburg.de>
+References: <86y84gfjv4.fsf@blue.stonehenge.com> <86u0f4fjah.fsf@blue.stonehenge.com>
+ <Pine.LNX.4.63.0510261708280.2803@wbgn013.biozentrum.uni-wuerzburg.de>
+ <86mzkwfh54.fsf@blue.stonehenge.com> <Pine.LNX.4.63.0510261725150.8507@wbgn013.biozentrum.uni-wuerzburg.de>
+ <86irvkfg80.fsf@blue.stonehenge.com> <20051026161552.GA11483@delft.aura.cs.cmu.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by amavisd-new (Rechenzentrum Universitaet Wuerzburg)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 30
+Xref: brand.scrye.com linux.git:10671
+
+Hi,
+
+On Wed, 26 Oct 2005, Jan Harkes wrote:
+
+> Checking the SuSv2 manpage for link(2), it doesn't mention either of
+> these error codes. But does mention EPERM as a valid error when the
+> filesystem doesn't support hardlinks.
+>     http://www.opengroup.org/onlinepubs/007908799/xsh/link.html
+> 
+> My local manual page for link(2) agrees with that definition,
+> 
+> 	EPERM  oldpath is a directory.
+> 
+> 	EPERM  The  filesystem  containing oldpath and newpath does not support
+> 	       the creation of hard links.
+
+On my iBook, connecting a USB stick (FAT formatted), link() sets 
+errno=ENOTSUP. I checked the man page, and erroneously thought that they 
+got it right.
+
+*turns his eyes helplessly to the sky*
+
+Ciao,
+Dscho
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

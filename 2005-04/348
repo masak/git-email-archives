@@ -1,0 +1,72 @@
+X-From-Line: git-owner@vger.kernel.org  Sat Apr 16 17:00:20 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [12.107.209.244])
+	by mail.scrye.com (Postfix) with ESMTP id 694821B298D
+	for <tkil@scrye.com>; Sat, 16 Apr 2005 17:00:20 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S261183AbVDPXAJ (ORCPT <rfc822;tkil@scrye.com>);
+	Sat, 16 Apr 2005 19:00:09 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S261184AbVDPXAI
+	(ORCPT <rfc822;git-outgoing>); Sat, 16 Apr 2005 19:00:08 -0400
+Received: from w241.dkm.cz ([62.24.88.241]:44422 "HELO machine.sinus.cz")
+	by vger.kernel.org with SMTP id S261183AbVDPXAB (ORCPT
+	<rfc822;git@vger.kernel.org>); Sat, 16 Apr 2005 19:00:01 -0400
+Received: (qmail 11330 invoked by uid 2001); 16 Apr 2005 23:00:00 -0000
+Date:	Sun, 17 Apr 2005 01:00:00 +0200
+From: Petr Baudis <pasky@ucw.cz>
+To: Daniel Barkalow <barkalow@iabervon.org>
+Cc: git@vger.kernel.org
+Subject: Re: Re: Add "clone" support to lntree
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <20050416230000.GN19099@pasky.ji.cz>
+References: <20050416024755.GX7417@pasky.ji.cz> <Pine.LNX.4.21.0504152251300.30848-100000@iabervon.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Pine.LNX.4.21.0504152251300.30848-100000@iabervon.org>
+User-Agent: Mutt/1.4i
+X-message-flag:	Outlook : A program to spread viri, but it can do mail too.
+Sender: git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.2 (2004-11-16) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.0.2
+Lines: 32
+Xref: brand.scrye.com linux.git:348
+
+Dear diary, on Sat, Apr 16, 2005 at 05:06:54AM CEST, I got a letter
+where Daniel Barkalow <barkalow@iabervon.org> told me that...
+> On Sat, 16 Apr 2005, Petr Baudis wrote:
+> > I'm sorry but you are late, I added it about a hour and half ago or so.
+> > :-) Check git fork. (I *want* separate command than git lntree. In fact,
+> > I think I should make git lntree gitXlntree.sh instead, since it is
+> > really internal command for git-tools and the user should probably never
+> > need it for anything. git lntree is too lowlevel.)
+> 
+> Have you not pushed since? I don't see it.
+
+See my last mail. :-)
+
+> I think "fork" is as good as anything for describing the operation. I had
+> thought about "clone" because it seemed to fill the role that "bk
+> clone" had (although I never used BK, so I'm not sure). It doesn't seem
+> useful to me to try cloning multiple remote repositories, since you'd get
+> a copy of anything common from each; you just want to suck everything into
+> the same .git/objects and split off working directories.
+
+Actually, what about if git pull outside of repository did what git
+clone does now? I'd kinda like clone instead of fork too.
+
+-- 
+				Petr "Pasky" Baudis
+Stuff: http://pasky.or.cz/
+C++: an octopus made by nailing extra legs onto a dog. -- Steve Taylor
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

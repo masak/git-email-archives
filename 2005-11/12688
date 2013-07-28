@@ -1,0 +1,75 @@
+X-From-Line: git-owner@vger.kernel.org  Thu Nov 24 02:17:14 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 7507E64334
+	for <tkil@scrye.com>; Thu, 24 Nov 2005 02:17:14 -0700 (MST)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932548AbVKXJPR (ORCPT <rfc822;tkil@scrye.com>);
+	Thu, 24 Nov 2005 04:15:17 -0500
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932550AbVKXJPQ
+	(ORCPT <rfc822;git-outgoing>); Thu, 24 Nov 2005 04:15:16 -0500
+Received: from fed1rmmtao04.cox.net ([68.230.241.35]:25062 "EHLO
+	fed1rmmtao04.cox.net") by vger.kernel.org with ESMTP
+	id S932548AbVKXJPP (ORCPT <rfc822;git@vger.kernel.org>);
+	Thu, 24 Nov 2005 04:15:15 -0500
+Received: from assigned-by-dhcp.cox.net ([68.4.9.127])
+          by fed1rmmtao04.cox.net
+          (InterMail vM.6.01.05.02 201-2131-123-102-20050715) with ESMTP
+          id <20051124091359.HPES17690.fed1rmmtao04.cox.net@assigned-by-dhcp.cox.net>;
+          Thu, 24 Nov 2005 04:13:59 -0500
+From:	Junio C Hamano <junkio@cox.net>
+To:	Nico -telmich- Schottelius <nico-linux-git@schottelius.org>
+Subject: Re: files are disappearing in git
+References: <20051123142303.GJ22568@schottelius.org>
+	<Pine.LNX.4.64.0511230917130.13959@g5.osdl.org>
+	<20051124084633.GA3361@schottelius.org>
+cc:	git@vger.kernel.org
+Date:	Thu, 24 Nov 2005 01:15:13 -0800
+In-Reply-To: <20051124084633.GA3361@schottelius.org>
+	(nico-linux-git@schottelius.org's message of "Thu, 24 Nov 2005
+	09:46:33 +0100")
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <7vfypmwgny.fsf@assigned-by-dhcp.cox.net>
+User-Agent: Gnus/5.110004 (No Gnus v0.4) Emacs/21.4 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 28
+Xref: brand.scrye.com linux.git:12688
+
+Nico -telmich- Schottelius <nico-linux-git@schottelius.org> writes:
+
+> Linus Torvalds [Wed, Nov 23, 2005 at 09:20:28AM -0800]:
+>> On Wed, 23 Nov 2005, Nico -telmich- Schottelius wrote:
+>>...
+>> I bet somebody just messed up the index before that commit.
+>
+> What would be the best things to corrupt the index?
+> Our developers here do the following each day:
+>
+> - cg-update
+> - <work>
+> - cg-commit
+> - cg-update + merge if there are changes
+> - cg-push origin
+
+Was any of the CG:F line changed/removed by the developer during
+cg-commit?
+
+Does any of the files under Code/Spikes/Statistik/ have funny
+characters in their pathnames?
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

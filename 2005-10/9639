@@ -1,0 +1,58 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Oct  3 13:56:33 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00 autolearn=ham 
+	version=3.1.0
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 5E2B827A325
+	for <tkil@scrye.com>; Mon,  3 Oct 2005 13:56:33 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S932663AbVJCT4H (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 3 Oct 2005 15:56:07 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S932665AbVJCT4G
+	(ORCPT <rfc822;git-outgoing>); Mon, 3 Oct 2005 15:56:06 -0400
+Received: from smtp.nildram.co.uk ([195.112.4.54]:22288 "EHLO
+	smtp.nildram.co.uk") by vger.kernel.org with ESMTP id S932663AbVJCT4E
+	(ORCPT <rfc822;git@vger.kernel.org>); Mon, 3 Oct 2005 15:56:04 -0400
+Received: from [192.168.0.4] (unknown [84.12.75.194])
+	by smtp.nildram.co.uk (Postfix) with ESMTP id 44F4924E9CF
+	for <git@vger.kernel.org>; Mon,  3 Oct 2005 20:55:55 +0100 (BST)
+Mime-Version: 1.0 (Apple Message framework v623)
+In-Reply-To: <Pine.LNX.4.63.0510031522590.23242@iabervon.org>
+References: <7v7jcvxxrl.fsf@assigned-by-dhcp.cox.net> <Pine.LNX.4.63.0510031522590.23242@iabervon.org>
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-Id: <96785d706a5ed4395e234c860bfe2255@cream.org>
+Content-Transfer-Encoding: 7bit
+From:	Martin Coxall <quasi@cream.org>
+Subject: Re: What to expect after 0.99.8
+Date:	Mon, 3 Oct 2005 20:55:58 +0100
+To:	Git Mailing List <git@vger.kernel.org>
+X-Mailer: Apple Mail (2.623)
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+Lines: 18
+Xref: brand.scrye.com linux.git:9639
+
+> I'd also like to add:
+>
+>  * Accept patches to fetch multiple objects by HTTP in parallel.
+>
+
+Indeed. As a humble user of git for our inhouse development, I can 
+vouch that HTTP pulling on unpacked repositories (i.e. all of them, it 
+seems) is appalling. Ship a 1.0 without addressing this, then I imagine 
+the Mercurial devs will haemorrage with their Pythonesque mocking. ;p
+
+Martin
+
+
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+

@@ -1,0 +1,79 @@
+X-From-Line: git-owner@vger.kernel.org  Mon Sep  5 08:41:39 2005
+Return-Path: <git-owner@vger.kernel.org>
+X-Original-To: tkil@scrye.com
+Delivered-To: tkil@scrye.com
+Received: from vger.kernel.org (vger.kernel.org [209.132.176.167])
+	by mail.scrye.com (Postfix) with ESMTP id 15DEC27FB35
+	for <tkil@scrye.com>; Mon,  5 Sep 2005 08:41:39 -0600 (MDT)
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+	id S1751231AbVIEOlc (ORCPT <rfc822;tkil@scrye.com>);
+	Mon, 5 Sep 2005 10:41:32 -0400
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1751246AbVIEOlc
+	(ORCPT <rfc822;git-outgoing>); Mon, 5 Sep 2005 10:41:32 -0400
+Received: from smtp.osdl.org ([65.172.181.4]:4507 "EHLO smtp.osdl.org")
+	by vger.kernel.org with ESMTP id S1751231AbVIEOlc (ORCPT
+	<rfc822;git@vger.kernel.org>); Mon, 5 Sep 2005 10:41:32 -0400
+Received: from shell0.pdx.osdl.net (fw.osdl.org [65.172.181.6])
+	by smtp.osdl.org (8.12.8/8.12.8) with ESMTP id j85EfFBo011366
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 5 Sep 2005 07:41:16 -0700
+Received: from localhost (shell0.pdx.osdl.net [10.9.0.31])
+	by shell0.pdx.osdl.net (8.13.1/8.11.6) with ESMTP id j85EfBId012924;
+	Mon, 5 Sep 2005 07:41:13 -0700
+Date:	Mon, 5 Sep 2005 07:41:30 -0700 (PDT)
+From:	Linus Torvalds <torvalds@osdl.org>
+To:	Horst von Brand <vonbrand@inf.utfsm.cl>
+cc:	Junio C Hamano <junkio@cox.net>,
+	Daniel Barkalow <barkalow@iabervon.org>,
+	Tim Ottinger <tottinge@progeny.com>, git@vger.kernel.org
+Subject: Re: Tool renames? was Re: First stab at glossary 
+In-Reply-To: <200509050054.j850sC3D023778@laptop11.inf.utfsm.cl>
+X-Gnus-Mail-Source: directory:~/.incoming-mail
+Message-ID: <Pine.LNX.4.58.0509050738340.3504@evo.osdl.org>
+References: <200509050054.j850sC3D023778@laptop11.inf.utfsm.cl>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-MIMEDefang-Filter: osdl$Revision: 1.115 $
+X-Scanned-By: MIMEDefang 2.36
+Sender:	git-owner@vger.kernel.org
+Precedence: bulk
+X-Mailing-List:	git@vger.kernel.org
+X-Spam-Checker-Version: SpamAssassin 3.0.4 (2005-06-05) on brand.scrye.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=AWL,BAYES_00 autolearn=ham 
+	version=3.0.4
+Lines: 32
+Xref: brand.scrye.com linux.git:8084
+
+
+
+On Sun, 4 Sep 2005, Horst von Brand wrote:
+> > I had the same opinion.  The counter-argument people raised when
+> > this topic came up on the list was that it would help grepping
+> > in the source tree.
+> 
+> Grepping for what?
+
+Grepping for strings.
+
+For example, when renaming a binary, the sane way to check that you fixed 
+all users right now is
+
+	grep old-binary-name *.c *.h *-scripts
+
+and you catch all users.
+
+In contrast, "grep *" will catch totally uninteresting patterns like 
+object files etc.
+
+I personally find that very useful, and I don't see _any_ point to naming 
+by what _kind_ of interpreter you use. Why would _anybody_ care whether 
+something is written in perl vs shell? There's no reason to name things by 
+the interpreter.
+
+		Kubys
+-
+To unsubscribe from this list: send the line "unsubscribe git" in
+the body of a message to majordomo@vger.kernel.org
+More majordomo info at  http://vger.kernel.org/majordomo-info.html
+
